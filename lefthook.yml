@@ -1,0 +1,16 @@
+pre-commit:
+  commands:
+    lint:
+      glob: "*.{js,jsx,mjs,cjs,ts,tsx,vue}"
+      run: bun --bun oxlint --fix --deny-warnings --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true
+    format:
+      glob: "*.{js,jsx,mjs,cjs,ts,tsx,vue,json,jsonc,json5,yaml,yml,toml,html,css,scss,less,md,mdx,graphql,gql}"
+      exclude: '^(data/|DATA_DISCLOSURE\.md$|bun\.lock$)'
+      run: bun --bun oxfmt --write --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    check:
+      run: bun run check

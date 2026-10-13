@@ -1,0 +1,38 @@
+{
+  "name": "tsuzuru",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.3",
+  "engines": {
+    "bun": "1.4.3"
+  },
+  "scripts": {
+    "dev": "bun --bun nuxt dev",
+    "build": "bun --bun nuxt build",
+    "generate": "bun --bun nuxt generate",
+    "preview": "bun --bun nuxt preview",
+    "start": "bun .output/server/index.mjs",
+    "postinstall": "bun --bun nuxt prepare && bun run hooks:install",
+    "hooks:install": "bun scripts/install-hooks.ts",
+    "lint": "bun --bun oxlint --deny-warnings .",
+    "lint:fix": "bun --bun oxlint --fix .",
+    "format": "bun --bun oxfmt --write .",
+    "format:check": "bun --bun oxfmt --check .",
+    "typecheck": "bun --bun nuxt typecheck && bun --bun tsc --project tsconfig.scripts.json",
+    "check": "bun run lint && bun run format:check && bun run typecheck"
+  },
+  "dependencies": {
+    "nuxt": "4.6.1",
+    "vue": "3.5.43",
+    "vue-router": "5.4.0"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.3",
+    "lefthook": "2.2.1",
+    "oxfmt": "0.72.0",
+    "oxlint": "1.87.0",
+    "typescript": "6.0.3",
+    "vue-tsc": "3.3.13"
+  }
+}

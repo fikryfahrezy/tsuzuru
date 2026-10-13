@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "vue"],
+  "categories": { "correctness": "error" },
+  "ignorePatterns": [".nuxt/**", ".output/**", "dist/**", "data/**"],
+  "globals": {
+    "defineNuxtConfig": "readonly",
+    "defineEventHandler": "readonly"
+  }
+}
