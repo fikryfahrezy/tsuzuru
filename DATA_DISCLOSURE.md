@@ -44,6 +44,12 @@ English word count uses a documented regular expression in the importer. Japanes
 
 No accepted-answer variants, tokenized readings, kana-only answers, automatic semantic judgments, or AI-generated exercises have been created by this import. Source grammar examples remain in their original grammar files and are not merged into the vocabulary sentence-candidate file.
 
+## Current application use
+
+The beta app uses candidates with complete, consistent reading annotations for reference practice. It filters by target vocabulary level and English word count, and derives kana spellings from supplied furigana at comparison time. It does not assign certified sentence-level difficulty or perform semantic translation grading. Flexible writing accepts each annotated word's reference spelling or supplied kana reading; exact writing preserves the reference script. All modes normalize Unicode width differences and ignore whitespace and common sentence punctuation. The original imported files remain unchanged.
+
+The app's Data & credits page exposes this disclosure, the upstream attribution notice and license, and the import manifest. Tatoeba sentence links appear with reference answers. Manual language review and additional accepted translations remain necessary for a reviewed exercise bank. Practice history and preferences are saved in browser localStorage; the app server compares answers without persisting them or invoking an AI service.
+
 ## Educational limitations
 
 The [official JLPT FAQ](https://www.jlpt.jp/e/faq/) explains that current vocabulary, kanji, and grammar specifications are not published. Dataset level labels come from community resources and are not official certification. The JLPT itself does not include composition testing; Tsuzuru's writing exercises are its own practice format.

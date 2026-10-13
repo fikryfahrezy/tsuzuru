@@ -44,8 +44,10 @@ application and Docker image, and smoke tests the container.
 
 - `app/`: Nuxt application, with file-based routes in `app/pages/`.
 - `server/`: Nitro server routes; `GET /health` reports readiness.
+- `shared/`: exercise types, length buckets, and writing comparison rules.
+- `tests/`: comparison tests, including kana variants and homophone rejection.
 - `scripts/`: development helpers and the existing learning-data importer.
-- `data/`: versioned learning data, excluded from formatting and Docker builds.
+- `data/`: versioned learning data, excluded from formatting and included in Docker builds.
 
 Nuxt auto-imports are available in application and server code. The Oxlint
 configuration lists the globals used by the starter; add new Nuxt auto-imports
@@ -70,9 +72,37 @@ only Nuxt's standalone output as the unprivileged `bun` user. It exposes port
 3000 and checks `/health`. Set `PORT` in your shell or a local `.env` file to
 change the host port (see `.env.example`).
 
-The existing data snapshot is not served or bundled into the starter. If a
-future feature needs it at runtime, explicitly include the required processed
-files in the Docker build and serve them through an application route.
+The processed sentence candidates are bundled into the server, not the browser.
+Docker builds include the data and disclosures needed for this. The development
+and build commands generate public disclosure files from the original documents.
+
+## Practice flow
+
+Choose an N5–N1 vocabulary focus, English sentence length (short: 1–7 words,
+medium: 8–12, long: 13+), and writing mode. Translate the prompt with a Japanese
+keyboard, check the reference, then continue. Ctrl / Command + Enter checks an
+answer or advances after comparison; IME composition is respected.
+
+- Kana only: hiragana or katakana, with no kanji.
+- Kana + kanji: each annotated word may use the supplied kanji or kana reading.
+- Exact writing: the reference's spelling and script must match.
+
+All modes ignore whitespace and common sentence punctuation and normalize
+Unicode width differences. Flexible comparison preserves unknown kanji rather
+than accepting homophones. Only consistent examples with complete reading
+annotations are eligible. Answers are compared against the supplied reference;
+other valid translations may not match. The imported bank remains unreviewed,
+and vocabulary levels are not whole-sentence difficulty certifications.
+
+The journal stores up to 100 entries plus settings in browser localStorage.
+Comparison happens on the server without persisting answers. No AI service or
+account is needed. `/sources` provides credits, data limitations, and downloadable
+disclosures. Generated disclosures live in ignored `public/disclosures/`.
+
+`GET /api/exercises?level=N5&length=short` returns a random prompt without its
+answer. `POST /api/compare` accepts `{ id, answer, mode }` and returns a reference
+comparison. Invalid settings and unknown IDs are rejected. Run `bun run test`
+for comparison tests; `bun run check` also runs them.
 
 ## Dependency versions
 

@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   nitro: { preset: "bun" },
   typescript: { strict: true },
+  css: ["~/assets/css/main.css"],
   app: {
     head: {
       title: "Tsuzuru",

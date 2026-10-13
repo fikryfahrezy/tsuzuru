@@ -8,9 +8,10 @@
     "bun": "1.4.3"
   },
   "scripts": {
-    "dev": "bun --bun nuxt dev",
-    "build": "bun --bun nuxt build",
-    "generate": "bun --bun nuxt generate",
+    "dev": "bun scripts/prepare-disclosure.ts && bun --bun nuxt dev",
+    "build": "bun scripts/prepare-disclosure.ts && bun --bun nuxt build",
+    "generate": "bun scripts/prepare-disclosure.ts && bun --bun nuxt generate",
+    "test": "bun test tests",
     "preview": "bun --bun nuxt preview",
     "start": "bun .output/server/index.mjs",
     "postinstall": "bun --bun nuxt prepare && bun run hooks:install",
@@ -20,7 +21,7 @@
     "format": "bun --bun oxfmt --write .",
     "format:check": "bun --bun oxfmt --check .",
     "typecheck": "bun --bun nuxt typecheck && bun --bun tsc --project tsconfig.scripts.json",
-    "check": "bun run lint && bun run format:check && bun run typecheck"
+    "check": "bun run lint && bun run format:check && bun run typecheck && bun run test"
   },
   "dependencies": {
     "nuxt": "4.6.1",

@@ -18,5 +18,3 @@ logs
 .env.*
 !.env.example
 .DS_Store
-data
-DATA_DISCLOSURE.md
