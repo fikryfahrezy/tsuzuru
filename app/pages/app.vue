@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { definePageMeta, useSeoMeta } from "#imports";
-import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { definePageMeta, useHead, useSeoMeta } from "#imports";
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { $fetch } from "ofetch";
 import {
   levels,
+  normalize,
   type Level,
   type Length,
   type Strictness,
@@ -12,6 +13,17 @@ import {
 } from "#shared/practice";
 
 definePageMeta({ alias: ["/practice"] });
+useHead({
+  link: [
+    { rel: "manifest", href: "/app/manifest.webmanifest" },
+    { rel: "apple-touch-icon", href: "/app/icons/apple-touch-icon.png" },
+  ],
+  meta: [
+    { name: "theme-color", content: "#b93327" },
+    { name: "apple-mobile-web-app-capable", content: "yes" },
+    { name: "apple-mobile-web-app-title", content: "Tsuzuru" },
+  ],
+});
 useSeoMeta({
   title: "Practice Japanese — Tsuzuru",
   description:
@@ -26,11 +38,14 @@ type Entry = {
   outcome: "matched" | "unmatched" | "revealed";
   date: string;
   level: Level;
+  mode?: Strictness;
+  comparison?: Comparison | null;
 };
 const level = ref<Level>("N5");
 const length = ref<Length>("short");
 const mode = ref<Strictness>("flexible");
 const tab = ref<"practice" | "journal">("practice");
+const settingsOpen = ref(false);
 const question = ref<Question | null>(null);
 const answer = ref("");
 const result = ref<Comparison | null>(null);
@@ -41,7 +56,17 @@ const error = ref("");
 const storageNote = ref("");
 const journal = ref<Entry[]>([]);
 const ready = ref(false);
+const online = ref(true);
+function updateConnection() {
+  online.value = navigator.onLine;
+}
 const field = ref<HTMLTextAreaElement | null>(null);
+const resultStatus = ref<HTMLElement | null>(null);
+const displayedReference = computed(() =>
+  result.value?.differences && !revealed.value
+    ? result.value.differences.expected.map((part) => part.text).join("")
+    : (result.value?.reference ?? ""),
+);
 let request = 0;
 const modeHelp = computed(
   () =>
@@ -51,12 +76,6 @@ const modeHelp = computed(
         "Use the reference kanji, their kana readings, or a mixture of both.",
       exact: "Match the reference’s kanji and kana spelling.",
     })[mode.value],
-);
-const attempts = computed(() =>
-  journal.value.filter((entry) => entry.outcome !== "revealed"),
-);
-const matches = computed(
-  () => attempts.value.filter((entry) => entry.outcome === "matched").length,
 );
 const lengthOptions = [
   { value: "short", label: "Short", note: "1–7 words" },
@@ -147,10 +166,16 @@ async function submit(reveal = false) {
             : "unmatched",
         date: new Date().toISOString(),
         level: level.value,
+        mode: mode.value,
+        comparison: reveal
+          ? { ...comparison, differences: null, explanations: [] }
+          : comparison,
       },
       ...journal.value,
     ].slice(0, 100);
     persist();
+    await nextTick();
+    if (sequence === request) resultStatus.value?.focus();
   } catch {
     error.value =
       "We couldn’t compare your answer. Your writing is still here; please try again.";
@@ -179,7 +204,59 @@ function resetJournal() {
   journal.value = [];
   persist();
 }
+function restoreComparison(value: unknown): Comparison | null {
+  if (!value || typeof value !== "object") return null;
+  const saved = value as Comparison;
+  if (
+    typeof saved.matched !== "boolean" ||
+    typeof saved.reference !== "string" ||
+    typeof saved.kana !== "string"
+  )
+    return null;
+  if (saved.differences !== null) {
+    if (
+      !saved.differences ||
+      !Array.isArray(saved.differences.answer) ||
+      !Array.isArray(saved.differences.expected)
+    )
+      return null;
+    const valid = [
+      ...saved.differences.answer,
+      ...saved.differences.expected,
+    ].every(
+      (part) =>
+        part &&
+        typeof part.text === "string" &&
+        ["same", "changed", "extra", "missing"].includes(part.kind) &&
+        (part.expected === undefined || typeof part.expected === "string"),
+    );
+    if (!valid) return null;
+  }
+  return {
+    ...saved,
+    explanations: Array.isArray(saved.explanations)
+      ? saved.explanations.filter(
+          (explanation) =>
+            explanation &&
+            typeof explanation.title === "string" &&
+            typeof explanation.detail === "string" &&
+            typeof explanation.actual === "string" &&
+            typeof explanation.expected === "string" &&
+            (explanation.context === undefined ||
+              typeof explanation.context === "string"),
+        )
+      : [],
+    sourceUrl:
+      typeof saved.sourceUrl === "string" &&
+      /^https:\/\/tatoeba\.org\/sentences\/show\/\d+$/.test(saved.sourceUrl)
+        ? saved.sourceUrl
+        : null,
+  };
+}
 onMounted(() => {
+  updateConnection();
+  window.addEventListener("online", updateConnection);
+  window.addEventListener("offline", updateConnection);
   try {
     const saved = JSON.parse(
       localStorage.getItem("tsuzuru.practice.v1") ?? "null",
@@ -206,6 +283,13 @@ onMounted(() => {
               ["matched", "unmatched", "revealed"].includes(row.outcome)
             );
           })
+          .map((entry: Entry) => ({
+            ...entry,
+            mode: modes.some((item) => item.value === entry.mode)
+              ? entry.mode
+              : undefined,
+            comparison: restoreComparison(entry.comparison),
+          }))
           .slice(0, 100);
     }
   } catch {
@@ -215,6 +299,10 @@ onMounted(() => {
   ready.value = true;
   void loadQuestion();
 });
+onUnmounted(() => {
+  window.removeEventListener("online", updateConnection);
+  window.removeEventListener("offline", updateConnection);
+});
 watch([level, length], () => {
   if (ready.value) {
     persist();
@@ -223,78 +311,88 @@ watch([level, length], () => {
 });
 watch(mode, () => {
   if (ready.value) {
+    result.value = null;
+    revealed.value = false;
     persist();
-    void loadQuestion();
   }
 });
 </script>
 
 <template>
-  <div class="app-shell">
-    <header class="topbar">
-      <NuxtLink class="brand" to="/" aria-label="Tsuzuru home"
-        ><span class="brand-mark" lang="ja">綴</span
-        ><span
-          >tsuzuru<span class="brand-caption"
-            >JAPANESE WRITING PRACTICE</span
-          ></span
-        ></NuxtLink
+  <div class="practice-shell">
+    <aside class="workspace-rail" aria-label="Workspace navigation">
+      <NuxtLink
+        class="workspace-home"
+        to="/"
+        aria-label="Tsuzuru home"
+        title="Back to home"
+        ><span class="brand-mark" lang="ja">綴</span></NuxtLink
       >
       <nav aria-label="Main navigation">
         <button
           :class="{ active: tab === 'practice' }"
-          @click="tab = 'practice'"
+          :aria-pressed="tab === 'practice'"
+          @click="
+            tab = 'practice';
+            settingsOpen = false;
+          "
         >
-          Practice
+          <span class="rail-mark" lang="ja" aria-hidden="true">文</span
+          ><span>Practice</span>
         </button>
-        <button :class="{ active: tab === 'journal' }" @click="tab = 'journal'">
-          Journal <span class="nav-count">{{ journal.length }}</span>
+        <button
+          :class="{ active: tab === 'journal' }"
+          :aria-pressed="tab === 'journal'"
+          @click="
+            tab = 'journal';
+            settingsOpen = false;
+          "
+        >
+          <span class="rail-mark" lang="ja" aria-hidden="true">記</span
+          ><span
+            >Journal <span class="nav-count">{{ journal.length }}</span></span
+          >
         </button>
-        <NuxtLink to="/sources">Data &amp; credits ↗</NuxtLink>
       </nav>
-    </header>
-    <main class="workspace">
-      <section class="intro">
+      <NuxtLink class="workspace-credits" to="/sources" title="Data and credits"
+        ><span aria-hidden="true">ⓘ</span><span>Credits</span></NuxtLink
+      >
+    </aside>
+    <main class="workspace practice-workspace">
+      <header class="workspace-heading">
         <div>
-          <p class="eyebrow">
-            {{
-              tab === "practice"
-                ? "一文ずつ / ONE SENTENCE AT A TIME"
-                : "学習記録 / YOUR PRACTICE JOURNAL"
-            }}
-          </p>
           <h1>
-            {{
-              tab === "practice"
-                ? "Find your words."
-                : "Every sentence counts."
-            }}<br v-if="tab === 'practice'" /><em v-if="tab === 'practice'"
-              >Write in Japanese.</em
-            >
+            {{ tab === "practice" ? "Sentence practice" : "Practice journal" }}
           </h1>
-          <p class="lede">
-            {{
-              tab === "practice"
-                ? "A little thought. A little ink. Turn an English sentence into Japanese, at your own pace."
-                : "Revisit what you wrote, compare your references, and keep going."
-            }}
-          </p>
         </div>
-        <div class="intro-seal" aria-hidden="true" lang="ja">
-          <span>綴</span><small>つづる</small>
-        </div>
-      </section>
-      <div class="session-strip">
-        <span><i></i> REFERENCE PRACTICE · BETA</span
-        ><span
-          >{{ attempts.length }} attempts <b>/</b> {{ matches }} reference
-          matches <b>/</b> saved in this browser</span
+        <button
+          v-if="tab === 'practice'"
+          class="settings-toggle"
+          :aria-expanded="settingsOpen"
+          aria-controls="practice-settings"
+          @click="settingsOpen = !settingsOpen"
         >
-      </div>
+          {{ settingsOpen ? "Close settings ×" : "Settings ☰" }}
+        </button>
+      </header>
       <p v-if="storageNote" class="notice" role="status">{{ storageNote }}</p>
+      <p v-if="!online" class="notice" role="status">
+        You’re offline. Your saved journal is available. Connect to load
+        sentences and check answers.
+      </p>
       <div v-if="tab === 'practice'" class="practice-layout">
-        <aside class="settings-panel" aria-label="Practice settings">
-          <p class="eyebrow">01 / SET YOUR PACE</p>
+        <button
+          v-if="settingsOpen"
+          class="settings-scrim"
+          aria-label="Close settings"
+          @click="settingsOpen = false"
+        ></button>
+        <aside
+          id="practice-settings"
+          class="settings-panel"
+          :class="{ 'settings-open': settingsOpen }"
+          aria-label="Practice settings"
+        >
           <fieldset :disabled="checking">
             <legend>Vocabulary level</legend>
             <div class="levels">
@@ -308,13 +406,6 @@ watch(mode, () => {
                 {{ item }}
               </button>
             </div>
-            <div class="range-label">
-              <span>BEGINNER</span><span>ADVANCED</span>
-            </div>
-            <p class="setting-note">
-              {{ level }} vocabulary focus. Sentence difficulty is estimated;
-              grammar may be harder.
-            </p>
           </fieldset>
           <fieldset :disabled="checking">
             <legend>Sentence length</legend>
@@ -351,33 +442,21 @@ watch(mode, () => {
             </div>
             <p class="setting-note">{{ modeHelp }}</p>
           </fieldset>
-          <div class="margin-note">
-            <span lang="ja">続</span>
-            <p>Small sentences.<br />Steady progress.</p>
-          </div>
         </aside>
         <section
           class="writing-card"
           aria-label="Sentence practice"
           :aria-busy="loading || checking"
+          @keydown="shortcut"
         >
-          <div class="card-heading">
-            <span class="eyebrow">02 / READ &amp; WRITE</span
-            ><span class="paper-label"
-              >{{ level }} · {{ length.toUpperCase() }}</span
-            >
-          </div>
           <div class="prompt">
             <p class="paper-label">TRANSLATE INTO JAPANESE</p>
             <h2 v-if="question">{{ question.english }}</h2>
             <h2 v-else>
-              {{
-                loading ? "Opening a fresh page…" : "Let’s try another page."
-              }}
+              {{ loading ? "Loading sentence…" : "Sentence unavailable." }}
             </h2>
             <div v-if="question" class="prompt-meta">
-              <span>{{ question.wordCount }} English words</span
-              ><button :disabled="checking" @click="loadQuestion">
+              <button :disabled="checking" @click="loadQuestion">
                 Another sentence ↻
               </button>
             </div>
@@ -386,6 +465,7 @@ watch(mode, () => {
             <div class="writing-field">
               <label class="paper-label" for="answer">YOUR JAPANESE</label
               ><textarea
+                v-if="!result || revealed"
                 id="answer"
                 ref="field"
                 v-model="answer"
@@ -397,18 +477,50 @@ watch(mode, () => {
                 autocomplete="off"
                 spellcheck="false"
                 aria-describedby="writing-help"
-                @keydown="shortcut"
-              ></textarea
-              ><span class="character-count"
-                >{{ [...answer].length }} characters</span
+              ></textarea>
+              <div
+                v-else
+                class="answer-review"
+                lang="ja"
+                aria-label="Your checked answer"
               >
+                <template v-if="result.matched">{{ answer }}</template>
+                <template v-else
+                  ><span
+                    v-for="(part, index) in result.differences?.answer"
+                    :key="index"
+                    :class="`difference-${part.kind}`"
+                    :title="
+                      part.kind === 'missing'
+                        ? `Missing: ${part.expected}`
+                        : part.kind === 'extra'
+                          ? 'Extra character'
+                          : part.kind === 'changed'
+                            ? 'Different from reference'
+                            : undefined
+                    "
+                    >{{ part.text }}</span
+                  ></template
+                >
+              </div>
             </div>
             <div class="card-actions">
-              <p id="writing-help">
-                Spaces and common sentence punctuation are ignored.<br /><span
-                  >Use your Japanese keyboard · Ctrl / ⌘ + Enter to
-                  continue</span
-                >
+              <p v-if="!result || revealed" id="writing-help">
+                Ctrl / ⌘ + Enter
+              </p>
+              <p
+                v-else
+                class="writing-status"
+                ref="resultStatus"
+                tabindex="-1"
+                :class="{ 'writing-status-matched': result.matched }"
+                role="status"
+              >
+                {{
+                  result.matched
+                    ? "✓ Matches the reference"
+                    : "× Does not match the reference"
+                }}
               </p>
               <button
                 v-if="!result"
@@ -440,19 +552,40 @@ watch(mode, () => {
           >
             <p class="eyebrow">
               {{
-                revealed
-                  ? "A REFERENCE TO LEARN FROM"
-                  : result.matched
-                    ? "✓ MATCHES THE REFERENCE"
-                    : "COMPARE YOUR WRITING"
+                !revealed && !result.matched
+                  ? "EXPECTED WRITING"
+                  : "REFERENCE ANSWER"
               }}
             </p>
             <p v-if="!result.matched && !revealed" class="feedback-note">
-              Your answer differs from this reference. It may still be a valid
-              translation.
+              Highlighted characters differ; □ marks missing characters. Other
+              translations may still be valid.
             </p>
-            <p class="reference-text" lang="ja">{{ result.reference }}</p>
-            <p class="reading-text" lang="ja">{{ result.kana }}</p>
+            <p
+              v-if="!revealed && !result.matched"
+              class="reference-text difference-reference"
+              lang="ja"
+            >
+              <span
+                v-for="(part, index) in result.differences?.expected"
+                :key="index"
+                :class="`difference-${part.kind}`"
+                >{{ part.text }}</span
+              >
+            </p>
+            <p v-else class="reference-text" lang="ja">
+              {{ result.reference }}
+            </p>
+            <p
+              v-if="
+                result.kana &&
+                normalize(result.kana) !== normalize(displayedReference)
+              "
+              class="reading-text"
+              lang="ja"
+            >
+              {{ result.kana }}
+            </p>
             <a
               v-if="result.sourceUrl"
               :href="result.sourceUrl"
@@ -460,12 +593,13 @@ watch(mode, () => {
               rel="noopener noreferrer"
               >Sentence &amp; contributors on Tatoeba ↗</a
             >
+            <WritingExplanations
+              v-if="!revealed && !result.matched"
+              :explanations="result.explanations ?? []"
+            />
           </section>
           <div v-else-if="question" class="below-paper">
-            <span
-              >{{ question.poolSize.toLocaleString() }} sentences in this
-              selection</span
-            ><button :disabled="checking" @click="submit(true)">
+            <button :disabled="checking" @click="submit(true)">
               Show reference ↗
             </button>
           </div>
@@ -479,8 +613,7 @@ watch(mode, () => {
           </button>
         </div>
         <div v-if="!journal.length" class="empty-journal">
-          <span lang="ja">始</span>
-          <h2>Your first sentence is waiting.</h2>
+          <h2>No journal entries yet.</h2>
           <p>
             Your writing and references will appear here after you practice.
           </p>
@@ -491,43 +624,102 @@ watch(mode, () => {
         <article v-for="entry in journal" :key="entry.id" class="journal-entry">
           <div class="journal-meta">
             <span
-              >{{ entry.level }} ·
+              >{{ entry.level
+              }}<template v-if="entry.mode">
+                ·
+                {{
+                  modes.find((item) => item.value === entry.mode)?.label
+                }}</template
+              >
+              ·
               {{
                 new Date(entry.date).toLocaleDateString("en", {
                   month: "short",
                   day: "numeric",
                 })
               }}</span
-            ><span :class="{ 'success-text': entry.outcome === 'matched' }">{{
-              entry.outcome === "matched"
-                ? "Reference matched"
-                : entry.outcome === "revealed"
-                  ? "Reference viewed"
-                  : "Reference differs"
-            }}</span>
+            ><span
+              class="journal-outcome"
+              :class="{
+                'success-text': entry.outcome === 'matched',
+                unmatched: entry.outcome === 'unmatched',
+              }"
+              >{{
+                entry.outcome === "matched"
+                  ? "✓ Matches the reference"
+                  : entry.outcome === "revealed"
+                    ? "Reference viewed"
+                    : "× Does not match the reference"
+              }}</span
+            >
           </div>
           <h2>{{ entry.english }}</h2>
           <p v-if="entry.answer" class="journal-answer" lang="ja">
-            {{ entry.answer }}
+            <template
+              v-if="
+                entry.outcome === 'unmatched' && entry.comparison?.differences
+              "
+              ><span
+                v-for="(part, index) in entry.comparison.differences.answer"
+                :key="index"
+                :class="`difference-${part.kind}`"
+                :title="
+                  part.kind === 'missing'
+                    ? `Missing: ${part.expected}`
+                    : part.kind === 'extra'
+                      ? 'Extra character'
+                      : part.kind === 'changed'
+                        ? 'Different from reference'
+                        : undefined
+                "
+                >{{ part.text }}</span
+              ></template
+            >
+            <template v-else>{{ entry.answer }}</template>
           </p>
-          <p class="journal-reference">
-            Reference <span lang="ja">{{ entry.reference }}</span>
+          <p class="journal-reference difference-reference">
+            {{
+              entry.outcome === "unmatched" && entry.comparison?.differences
+                ? "Expected"
+                : "Reference"
+            }}
+            <span class="journal-reference-text" lang="ja"
+              ><template
+                v-if="
+                  entry.outcome === 'unmatched' && entry.comparison?.differences
+                "
+                ><span
+                  v-for="(part, index) in entry.comparison.differences.expected"
+                  :key="index"
+                  :class="`difference-${part.kind}`"
+                  >{{ part.text }}</span
+                ></template
+              ><template v-else>{{ entry.reference }}</template></span
+            >
           </p>
+          <p
+            v-if="
+              entry.outcome === 'unmatched' && !entry.comparison?.differences
+            "
+            class="journal-legacy-note"
+          >
+            Character details weren’t saved for this older entry.
+          </p>
+          <a
+            v-if="entry.comparison?.sourceUrl"
+            class="journal-source"
+            :href="entry.comparison.sourceUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Tatoeba source ↗</a
+          >
+          <WritingExplanations
+            v-if="entry.outcome === 'unmatched'"
+            :explanations="entry.comparison?.explanations ?? []"
+            :expanded="false"
+          />
         </article>
-        <p v-if="journal.length" class="journal-privacy">
-          Stored only in this browser. Clearing browser data removes your
-          journal.
-        </p>
       </section>
-      <p class="practice-note">
-        Practice with open sentence data. Reference matching checks writing
-        forms, not every possible translation.
-        <NuxtLink to="/sources">About the data ↗</NuxtLink>
-      </p>
     </main>
-    <footer class="page-footer">
-      <span>綴る · TSUZURU</span><span>A LITTLE PRACTICE, EVERY DAY.</span
-      ><NuxtLink to="/sources">OPEN DATA · OPEN POSSIBILITIES ↗</NuxtLink>
-    </footer>
   </div>
 </template>

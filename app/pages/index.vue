@@ -140,38 +140,19 @@ const faqs = [
         </div>
         <div
           class="product-scene"
-          aria-label="An illustrative preview of sentence practice"
+          aria-label="Screenshot of the Tsuzuru practice app"
         >
           <span class="scene-kanji" lang="ja" aria-hidden="true">綴</span>
           <div class="preview-window">
-            <div class="preview-toolbar">
-              <span class="preview-brand" lang="ja">綴 <b>tsuzuru</b></span
-              ><span>YOUR DAILY PRACTICE</span>
-            </div>
-            <div class="preview-body">
-              <div class="preview-settings">
-                <span class="paper-label">YOUR PACE</span>
-                <div class="preview-levels">
-                  <span class="chosen">N5</span><span>N4</span><span>N3</span
-                  ><span>N2</span><span>N1</span>
-                </div>
-                <span class="paper-label">SHORT SENTENCE · KANA + KANJI</span>
-              </div>
-              <div class="preview-question">
-                <p class="paper-label">TRANSLATE INTO JAPANESE</p>
-                <p class="preview-english">I drink water.</p>
-                <p class="paper-label">YOUR JAPANESE</p>
-                <p class="preview-writing" lang="ja">水を飲みます。</p>
-                <div class="preview-feedback">
-                  <span>✓ REFERENCE MATCHED</span
-                  ><span lang="ja">みずをのみます。</span>
-                </div>
-              </div>
-            </div>
-            <div class="preview-bottom">
-              <span>A little thought. A little ink.</span
-              ><span>Next sentence →</span>
-            </div>
+            <img
+              class="preview-screenshot"
+              src="/app-screenshot.webp"
+              alt="Tsuzuru’s sentence practice app with vocabulary level, sentence length, and writing mode settings alongside a checked Japanese answer."
+              width="2000"
+              height="1600"
+              fetchpriority="high"
+              decoding="async"
+            />
           </div>
           <div class="scene-note">
             <span lang="ja">一文ずつ</span>

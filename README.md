@@ -1,6 +1,6 @@
 # Tsuzuru
 
-A Nuxt application for practicing Japanese writing.
+An application for practicing Japanese writing.
 
 ## Requirements
 
@@ -99,10 +99,44 @@ annotations are eligible. Answers are compared against the supplied reference;
 other valid translations may not match. The imported bank remains unreviewed,
 and vocabulary levels are not whole-sentence difficulty certifications.
 
+After checking, the app shows an explicit reference match result. Character
+differences highlight substitutions and extra characters in the original input;
+`□` marks missing characters. The expected writing highlights corrections.
+Flexible mode aligns against the closest allowed kana/kanji spelling without
+enumerating every combination. Ignored punctuation and accepted script variants
+are not marked as errors. These are reference differences, not semantic judgments.
+The "Why it differs" explanation identifies missing, extra, and replaced text
+with sentence context, explains writing-mode restrictions, and uses supplied
+word readings for kanji corrections. Explanations are saved with new journal
+comparisons. They do not provide unrestricted grammar or meaning assessment.
+
 The journal stores up to 100 entries plus settings in browser localStorage.
+New entries retain their writing mode and comparison snapshot, so character
+highlights and expected corrections survive reloads and later setting changes.
+Older entries without comparison snapshots retain their original text and outcome.
 Comparison happens on the server without persisting answers. No AI service or
 account is needed. `/sources` provides credits, data limitations, and downloadable
 disclosures. Generated disclosures live in ignored `public/disclosures/`.
+
+### Installable workspace
+
+The `/app` workspace can be installed using the browser's install action or
+Add to Home Screen. It launches at `/app` in a standalone window, with regular,
+maskable, and Apple touch icons matching the Tsuzuru mark. Deployment requires
+HTTPS (localhost also works).
+
+Production builds generate `/sw.js` with a cache version derived from the worker
+and built client assets. After opening `/app` online and allowing installation
+to finish, the workspace and saved journal can reopen offline. Loading sentences
+and checking answers still require a connection; API responses and submitted
+writing are never cached by the worker. The landing page and credits are outside
+the workspace's scope. Updates activate after existing workspace tabs close,
+then remove older Tsuzuru caches. Service worker registration is disabled in
+development; test installation with `bun run build` and `bun run preview`.
+
+To verify in a browser, open `/app`, inspect the manifest and service worker in
+DevTools, reload once, then switch offline and reload again. The journal should
+remain available and the workspace should explain which actions need a connection.
 
 `GET /api/exercises?level=N5&length=short` returns a random prompt without its
 answer. `POST /api/compare` accepts `{ id, answer, mode }` and returns a reference

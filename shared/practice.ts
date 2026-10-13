@@ -1,3 +1,6 @@
+import { writingDifferences } from "./writing-diff";
+import { explainWriting } from "./writing-explanations";
+
 export const levels = ["N5", "N4", "N3", "N2", "N1"] as const;
 export type Level = (typeof levels)[number];
 export type Length = "short" | "medium" | "long";
@@ -17,11 +20,35 @@ export interface Question {
   wordCount: number;
   poolSize: number;
 }
+export interface DifferencePart {
+  text: string;
+  kind: "same" | "changed" | "extra" | "missing";
+  expected?: string;
+}
 export interface Comparison {
   matched: boolean;
   reference: string;
   kana: string;
   sourceUrl: string | null;
+  differences: DifferenceDetails | null;
+  explanations?: WritingExplanation[];
+}
+export interface WritingEdit {
+  actual: string;
+  expected: string;
+  context: string;
+}
+export interface DifferenceDetails {
+  answer: DifferencePart[];
+  expected: DifferencePart[];
+  edits?: WritingEdit[];
+}
+export interface WritingExplanation {
+  title: string;
+  detail: string;
+  actual: string;
+  expected: string;
+  context?: string;
 }
 
 // Deliberately ignore only spacing and common sentence punctuation.
@@ -35,7 +62,9 @@ export function hiragana(text: string): string {
   );
 }
 
-function parts(furigana: string): { surface: string; reading: string }[] {
+export function parts(
+  furigana: string,
+): { surface: string; reading: string }[] {
   const result: { surface: string; reading: string }[] = [];
   let cursor = 0;
   for (const match of furigana.matchAll(/\{([^{}|]+)\|([^{}|]+)\}/gu)) {
@@ -104,8 +133,15 @@ export function compare(
       });
     }
   }
+  const differences = matched
+    ? null
+    : writingDifferences(candidate, answer, mode);
   return {
     matched,
+    differences,
+    explanations: differences
+      ? explainWriting(candidate, answer, mode, differences)
+      : [],
     reference: candidate.japanese,
     kana: readings[0]
       ? hiragana(

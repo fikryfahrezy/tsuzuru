@@ -28,8 +28,14 @@ jobs:
       - run: docker compose up --build --wait --wait-timeout 120
       - name: Smoke test container
         run: |
-          curl --fail --retry 5 --retry-delay 2 http://localhost:3000/health
-          curl --fail http://localhost:3000/
+          docker compose exec -T web bun -e '
+            for (const path of ["/health", "/"]) {
+              const response = await fetch(`http://127.0.0.1:3000${path}`);
+              if (!response.ok) {
+                throw new Error(`${path}: HTTP ${response.status}`);
+              }
+            }
+          '
       - name: Container logs
         if: failure()
         run: docker compose logs

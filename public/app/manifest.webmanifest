@@ -1,0 +1,32 @@
+{
+  "id": "/app",
+  "name": "Tsuzuru — Japanese Writing Practice",
+  "short_name": "Tsuzuru",
+  "description": "A space to practice Japanese writing.",
+  "lang": "en",
+  "start_url": "/app",
+  "scope": "/app",
+  "display": "standalone",
+  "background_color": "#e3ded0",
+  "theme_color": "#b93327",
+  "icons": [
+    {
+      "src": "/app/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/app/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/app/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
