@@ -78,6 +78,11 @@ and build commands generate public disclosure files from the original documents.
 
 ## Practice flow
 
+The public landing page is at `/`, with a product preview, features, a practice
+guide, and FAQs. The full workspace is at `/app` (also available at `/practice`).
+`/sources` provides credits and disclosure documents. All landing calls to action
+open the workspace; its brand link returns to the landing page.
+
 Choose an N5–N1 vocabulary focus, English sentence length (short: 1–7 words,
 medium: 8–12, long: 13+), and writing mode. Translate the prompt with a Japanese
 keyboard, check the reference, then continue. Ctrl / Command + Enter checks an

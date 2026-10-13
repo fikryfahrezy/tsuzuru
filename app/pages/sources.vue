@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useSeoMeta } from "#imports";
+
+useSeoMeta({
+  title: "Data & credits — Tsuzuru",
+  description:
+    "Learning data sources, licenses, attribution, and limitations for Tsuzuru’s Japanese writing practice.",
+});
+</script>
+
 <template>
   <div class="app-shell">
     <header class="topbar">
@@ -10,7 +20,7 @@
         ></NuxtLink
       >
       <nav aria-label="Main navigation">
-        <NuxtLink to="/">Back to practice ←</NuxtLink>
+        <NuxtLink to="/app">Back to practice ←</NuxtLink>
       </nav>
     </header>
     <main class="workspace sources-content">
@@ -112,7 +122,7 @@
         server for reference comparison; Tsuzuru does not persist answers on the
         server or send them to an AI service.
       </p>
-      <NuxtLink class="primary-button" to="/"
+      <NuxtLink class="primary-button" to="/app"
         >Back to writing <span>→</span></NuxtLink
       >
     </main>

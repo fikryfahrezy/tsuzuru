@@ -1,229 +1,99 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from "vue";
-import { $fetch } from "ofetch";
-import {
-  levels,
-  type Level,
-  type Length,
-  type Strictness,
-  type Question,
-  type Comparison,
-} from "#shared/practice";
+import { useSeoMeta } from "#imports";
 
-type Entry = {
-  id: string;
-  english: string;
-  answer: string;
-  reference: string;
-  outcome: "matched" | "unmatched" | "revealed";
-  date: string;
-  level: Level;
-};
-const level = ref<Level>("N5");
-const length = ref<Length>("short");
-const mode = ref<Strictness>("flexible");
-const tab = ref<"practice" | "journal">("practice");
-const question = ref<Question | null>(null);
-const answer = ref("");
-const result = ref<Comparison | null>(null);
-const revealed = ref(false);
-const loading = ref(true);
-const checking = ref(false);
-const error = ref("");
-const storageNote = ref("");
-const journal = ref<Entry[]>([]);
-const ready = ref(false);
-const field = ref<HTMLTextAreaElement | null>(null);
-let request = 0;
-const modeHelp = computed(
-  () =>
-    ({
-      kana: "Write entirely in hiragana or katakana. Kanji is not accepted in this mode.",
-      flexible:
-        "Use the reference kanji, their kana readings, or a mixture of both.",
-      exact: "Match the reference’s kanji and kana spelling.",
-    })[mode.value],
-);
-const attempts = computed(() =>
-  journal.value.filter((entry) => entry.outcome !== "revealed"),
-);
-const matches = computed(
-  () => attempts.value.filter((entry) => entry.outcome === "matched").length,
-);
-const lengthOptions = [
-  { value: "short", label: "Short", note: "1–7 words" },
-  { value: "medium", label: "Medium", note: "8–12 words" },
-  { value: "long", label: "Long", note: "13+ words" },
-] as const;
-const modes = [
-  { value: "kana", label: "Kana only", mark: "あ" },
-  { value: "flexible", label: "Kana + kanji", mark: "あ漢" },
-  { value: "exact", label: "Exact writing", mark: "漢" },
-] as const;
-
-function persist() {
-  if (!ready.value) return;
-  try {
-    localStorage.setItem(
-      "tsuzuru.practice.v1",
-      JSON.stringify({
-        level: level.value,
-        length: length.value,
-        mode: mode.value,
-        journal: journal.value,
-      }),
-    );
-  } catch {
-    storageNote.value =
-      "Browser storage is unavailable. Your progress will last for this session only.";
-  }
-}
-
-async function loadQuestion() {
-  const sequence = ++request;
-  const previous = question.value?.id;
-  question.value = null;
-  result.value = null;
-  answer.value = "";
-  revealed.value = false;
-  error.value = "";
-  loading.value = true;
-  try {
-    const next = await $fetch<Question>("/api/exercises", {
-      query: { level: level.value, length: length.value, previous },
-    });
-    if (sequence !== request) return;
-    question.value = next;
-  } catch {
-    if (sequence === request)
-      error.value = "We couldn’t load a sentence. Please try again.";
-  } finally {
-    if (sequence === request) loading.value = false;
-  }
-}
-
-async function submit(reveal = false) {
-  const current = question.value;
-  const sequence = request;
-  if (
-    !current ||
-    checking.value ||
-    result.value ||
-    (!reveal && !answer.value.trim())
-  )
-    return;
-  checking.value = true;
-  error.value = "";
-  try {
-    const comparison = await $fetch<Comparison>("/api/compare", {
-      method: "POST",
-      body: {
-        id: current.id,
-        answer: reveal ? "__reveal__" : answer.value,
-        mode: mode.value,
-      },
-    });
-    if (sequence !== request || current.id !== question.value?.id) return;
-    result.value = comparison;
-    revealed.value = reveal;
-    journal.value = [
-      {
-        id: `${current.id}-${Date.now()}`,
-        english: current.english,
-        answer: reveal ? "" : answer.value,
-        reference: comparison.reference,
-        outcome: reveal
-          ? "revealed"
-          : comparison.matched
-            ? "matched"
-            : "unmatched",
-        date: new Date().toISOString(),
-        level: level.value,
-      },
-      ...journal.value,
-    ].slice(0, 100);
-    persist();
-  } catch {
-    error.value =
-      "We couldn’t compare your answer. Your writing is still here; please try again.";
-  } finally {
-    checking.value = false;
-  }
-}
-
-async function nextSentence() {
-  await loadQuestion();
-  await nextTick();
-  field.value?.focus();
-}
-function shortcut(event: KeyboardEvent) {
-  if (
-    event.isComposing ||
-    !(event.metaKey || event.ctrlKey) ||
-    event.key !== "Enter"
-  )
-    return;
-  event.preventDefault();
-  if (result.value) void nextSentence();
-  else void submit();
-}
-function resetJournal() {
-  journal.value = [];
-  persist();
-}
-onMounted(() => {
-  try {
-    const saved = JSON.parse(
-      localStorage.getItem("tsuzuru.practice.v1") ?? "null",
-    );
-    if (saved && typeof saved === "object") {
-      if (levels.includes(saved.level)) level.value = saved.level;
-      if (["short", "medium", "long"].includes(saved.length))
-        length.value = saved.length;
-      if (["kana", "flexible", "exact"].includes(saved.mode))
-        mode.value = saved.mode;
-      if (Array.isArray(saved.journal))
-        journal.value = saved.journal
-          .filter((entry: unknown): entry is Entry => {
-            if (!entry || typeof entry !== "object") return false;
-            const row = entry as Entry;
-            return (
-              typeof row.id === "string" &&
-              typeof row.english === "string" &&
-              typeof row.answer === "string" &&
-              typeof row.reference === "string" &&
-              typeof row.date === "string" &&
-              Number.isFinite(Date.parse(row.date)) &&
-              levels.includes(row.level) &&
-              ["matched", "unmatched", "revealed"].includes(row.outcome)
-            );
-          })
-          .slice(0, 100);
-    }
-  } catch {
-    storageNote.value =
-      "Saved progress couldn’t be read. You can keep practicing in this session.";
-  }
-  ready.value = true;
-  void loadQuestion();
+useSeoMeta({
+  title: "Tsuzuru — Japanese, one sentence at a time",
+  description:
+    "Build a Japanese writing habit with English sentence prompts, N5–N1 vocabulary practice, flexible kana and kanji comparison, and a personal practice journal. No account needed.",
+  ogTitle: "Tsuzuru — Japanese, one sentence at a time",
+  ogDescription:
+    "A calm place to turn English sentences into Japanese. Choose your pace, write your answer, and learn from the reference.",
+  ogType: "website",
 });
-watch([level, length], () => {
-  if (ready.value) {
-    persist();
-    void loadQuestion();
-  }
-});
-watch(mode, () => {
-  if (ready.value) {
-    persist();
-    void loadQuestion();
-  }
-});
+const features = [
+  {
+    number: "01",
+    mark: "級",
+    title: "Choose your starting point.",
+    description:
+      "Explore vocabulary from N5 through N1. Begin where you feel comfortable, then make room for something new.",
+    note: "N5 / N4 / N3 / N2 / N1",
+  },
+  {
+    number: "02",
+    mark: "文",
+    title: "Make time for one sentence.",
+    description:
+      "Pick a short prompt for a spare moment, or a longer sentence when you want to stretch. Your pace, your page.",
+    note: "SHORT / MEDIUM / LONG",
+  },
+  {
+    number: "03",
+    mark: "字",
+    title: "Write the way you’re learning.",
+    description:
+      "Start with kana, mix in kanji, or practice the exact reference spelling. Compare your writing without losing your train of thought.",
+    note: "KANA / MIXED / EXACT",
+  },
+];
+const steps = [
+  {
+    number: "01",
+    title: "Set your pace",
+    description:
+      "Choose a vocabulary level, sentence length, and writing mode.",
+  },
+  {
+    number: "02",
+    title: "Find the Japanese",
+    description:
+      "Read the English prompt. Type your answer with your Japanese keyboard.",
+  },
+  {
+    number: "03",
+    title: "Compare. Keep going.",
+    description:
+      "See the reference and its kana reading. Revisit your writing in your journal.",
+  },
+];
+const faqs = [
+  {
+    question: "Do I need an account?",
+    answer:
+      "No. Open the app and start practicing. Your preferences and latest 100 journal entries are saved in this browser.",
+  },
+  {
+    question: "Can I write entirely in hiragana or katakana?",
+    answer:
+      "Yes. Kana-only mode accepts either script. Flexible mode lets you mix the reference kanji with their supplied kana readings. Exact mode asks you to match the reference’s spelling. Spaces and common sentence punctuation are ignored in every mode.",
+  },
+  {
+    question: "Does a different answer mean my Japanese is wrong?",
+    answer:
+      "No. Japanese often has more than one valid translation. Tsuzuru compares your writing to a supplied reference and its readings; it does not judge every possible translation.",
+  },
+  {
+    question: "Are the N5–N1 levels official?",
+    answer:
+      "The labels are community estimates for target vocabulary. They are not certified difficulty levels for whole sentences, and examples may contain harder grammar. The exercise bank is currently in beta and still needs language review.",
+  },
+  {
+    question: "Can I draw characters by hand?",
+    answer:
+      "Tsuzuru currently uses typed Japanese input. You can use your device’s Japanese keyboard or handwriting keyboard to enter text. A drawing canvas is not part of the app yet.",
+  },
+  {
+    question: "Where does the learning data come from?",
+    answer:
+      "OpenJLPT, incorporating EDRDG’s JMdict and KANJIDIC2, Jonathan Waller’s vocabulary lists, and Tatoeba sentence contributors. You can find source credits, licenses, and the full data disclosure on our Data & credits page.",
+  },
+];
 </script>
 
 <template>
-  <div class="app-shell">
-    <header class="topbar">
+  <div class="landing-shell">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar landing-nav">
       <NuxtLink class="brand" to="/" aria-label="Tsuzuru home"
         ><span class="brand-mark" lang="ja">綴</span
         ><span
@@ -233,293 +103,213 @@ watch(mode, () => {
         ></NuxtLink
       >
       <nav aria-label="Main navigation">
-        <button
-          :class="{ active: tab === 'practice' }"
-          @click="tab = 'practice'"
-        >
-          Practice
-        </button>
-        <button :class="{ active: tab === 'journal' }" @click="tab = 'journal'">
-          Journal <span class="nav-count">{{ journal.length }}</span>
-        </button>
-        <NuxtLink to="/sources">Data &amp; credits ↗</NuxtLink>
+        <a href="#features">Features</a><a href="#how-it-works">How it works</a
+        ><a href="#faq">FAQ</a>
       </nav>
+      <NuxtLink class="landing-open" to="/app"
+        >Open the app <span aria-hidden="true">↗</span></NuxtLink
+      >
     </header>
-    <main class="workspace">
-      <section class="intro">
-        <div>
-          <p class="eyebrow">
-            {{
-              tab === "practice"
-                ? "一文ずつ / ONE SENTENCE AT A TIME"
-                : "学習記録 / YOUR PRACTICE JOURNAL"
-            }}
-          </p>
-          <h1>
-            {{
-              tab === "practice"
-                ? "Find your words."
-                : "Every sentence counts."
-            }}<br v-if="tab === 'practice'" /><em v-if="tab === 'practice'"
-              >Write in Japanese.</em
-            >
+    <main id="main">
+      <section
+        class="landing-hero landing-container"
+        aria-labelledby="hero-title"
+      >
+        <div class="hero-copy">
+          <p class="eyebrow">綴る / A LITTLE PRACTICE, EVERY DAY</p>
+          <h1 id="hero-title">
+            Japanese,<br /><em>one sentence<br />at a time.</em>
           </h1>
-          <p class="lede">
-            {{
-              tab === "practice"
-                ? "A little thought. A little ink. Turn an English sentence into Japanese, at your own pace."
-                : "Revisit what you wrote, compare your references, and keep going."
-            }}
+          <p class="hero-lede">
+            You know more words than you think. Give them a place on the page. A
+            calm space to turn English sentences into Japanese, and build a
+            writing habit that stays with you.
           </p>
-        </div>
-        <div class="intro-seal" aria-hidden="true" lang="ja">
-          <span>綴</span><small>つづる</small>
-        </div>
-      </section>
-      <div class="session-strip">
-        <span><i></i> REFERENCE PRACTICE · BETA</span
-        ><span
-          >{{ attempts.length }} attempts <b>/</b> {{ matches }} reference
-          matches <b>/</b> saved in this browser</span
-        >
-      </div>
-      <p v-if="storageNote" class="notice" role="status">{{ storageNote }}</p>
-      <div v-if="tab === 'practice'" class="practice-layout">
-        <aside class="settings-panel" aria-label="Practice settings">
-          <p class="eyebrow">01 / SET YOUR PACE</p>
-          <fieldset :disabled="checking">
-            <legend>Vocabulary level</legend>
-            <div class="levels">
-              <button
-                v-for="item in levels"
-                :key="item"
-                :aria-pressed="level === item"
-                :class="{ selected: level === item }"
-                @click="level = item"
-              >
-                {{ item }}
-              </button>
-            </div>
-            <div class="range-label">
-              <span>BEGINNER</span><span>ADVANCED</span>
-            </div>
-            <p class="setting-note">
-              {{ level }} vocabulary focus. Sentence difficulty is estimated;
-              grammar may be harder.
-            </p>
-          </fieldset>
-          <fieldset :disabled="checking">
-            <legend>Sentence length</legend>
-            <div class="length-options">
-              <button
-                v-for="item in lengthOptions"
-                :key="item.value"
-                :aria-pressed="length === item.value"
-                :class="{ selected: length === item.value }"
-                @click="length = item.value"
-              >
-                <span>{{ item.label }}</span
-                ><small>{{ item.note }}</small>
-              </button>
-            </div>
-            <p class="setting-note">Measured in English words.</p>
-          </fieldset>
-          <fieldset :disabled="checking">
-            <legend>Writing mode</legend>
-            <div class="mode-options">
-              <button
-                v-for="item in modes"
-                :key="item.value"
-                :aria-pressed="mode === item.value"
-                :class="{ selected: mode === item.value }"
-                @click="mode = item.value"
-              >
-                <span class="mode-mark" lang="ja">{{ item.mark }}</span
-                ><span>{{ item.label }}</span
-                ><span class="radio-mark" aria-hidden="true">{{
-                  mode === item.value ? "●" : "○"
-                }}</span>
-              </button>
-            </div>
-            <p class="setting-note">{{ modeHelp }}</p>
-          </fieldset>
-          <div class="margin-note">
-            <span lang="ja">続</span>
-            <p>Small sentences.<br />Steady progress.</p>
-          </div>
-        </aside>
-        <section
-          class="writing-card"
-          aria-label="Sentence practice"
-          :aria-busy="loading || checking"
-        >
-          <div class="card-heading">
-            <span class="eyebrow">02 / READ &amp; WRITE</span
-            ><span class="paper-label"
-              >{{ level }} · {{ length.toUpperCase() }}</span
+          <div class="hero-actions">
+            <NuxtLink class="primary-button" to="/app"
+              >Start practicing <span aria-hidden="true">→</span></NuxtLink
+            ><a class="text-action" href="#how-it-works"
+              >See how it works <span aria-hidden="true">↓</span></a
             >
           </div>
-          <div class="prompt">
-            <p class="paper-label">TRANSLATE INTO JAPANESE</p>
-            <h2 v-if="question">{{ question.english }}</h2>
-            <h2 v-else>
-              {{
-                loading ? "Opening a fresh page…" : "Let’s try another page."
-              }}
+          <ul class="hero-notes" aria-label="Product highlights">
+            <li>No account needed</li>
+            <li>Free to practice</li>
+            <li>In your browser</li>
+          </ul>
+        </div>
+        <div
+          class="product-scene"
+          aria-label="An illustrative preview of sentence practice"
+        >
+          <span class="scene-kanji" lang="ja" aria-hidden="true">綴</span>
+          <div class="preview-window">
+            <div class="preview-toolbar">
+              <span class="preview-brand" lang="ja">綴 <b>tsuzuru</b></span
+              ><span>YOUR DAILY PRACTICE</span>
+            </div>
+            <div class="preview-body">
+              <div class="preview-settings">
+                <span class="paper-label">YOUR PACE</span>
+                <div class="preview-levels">
+                  <span class="chosen">N5</span><span>N4</span><span>N3</span
+                  ><span>N2</span><span>N1</span>
+                </div>
+                <span class="paper-label">SHORT SENTENCE · KANA + KANJI</span>
+              </div>
+              <div class="preview-question">
+                <p class="paper-label">TRANSLATE INTO JAPANESE</p>
+                <p class="preview-english">I drink water.</p>
+                <p class="paper-label">YOUR JAPANESE</p>
+                <p class="preview-writing" lang="ja">水を飲みます。</p>
+                <div class="preview-feedback">
+                  <span>✓ REFERENCE MATCHED</span
+                  ><span lang="ja">みずをのみます。</span>
+                </div>
+              </div>
+            </div>
+            <div class="preview-bottom">
+              <span>A little thought. A little ink.</span
+              ><span>Next sentence →</span>
+            </div>
+          </div>
+          <div class="scene-note">
+            <span lang="ja">一文ずつ</span>
+            <p>One sentence.<br />One step forward.</p>
+          </div>
+          <p class="preview-caption">A GLIMPSE OF YOUR PRACTICE SPACE</p>
+        </div>
+      </section>
+      <section
+        class="landing-trust landing-container"
+        aria-label="Practice highlights"
+      >
+        <div>
+          <span>01</span><strong>From N5 to N1</strong
+          ><small>Find your vocabulary focus</small>
+        </div>
+        <div>
+          <span>02</span><strong>A page at your pace</strong
+          ><small>Short, medium, or long sentences</small>
+        </div>
+        <div>
+          <span>03</span><strong>A habit worth keeping</strong
+          ><small>Your writing, saved in this browser</small>
+        </div>
+      </section>
+      <section
+        id="features"
+        class="landing-features landing-section landing-container"
+        aria-labelledby="features-title"
+      >
+        <div class="landing-section-heading">
+          <div>
+            <p class="eyebrow">LESS SETUP. MORE WRITING.</p>
+            <h2 id="features-title">
+              A small space.<br /><em>Room to grow.</em>
             </h2>
-            <div v-if="question" class="prompt-meta">
-              <span>{{ question.wordCount }} English words</span
-              ><button :disabled="checking" @click="loadQuestion">
-                Another sentence ↻
-              </button>
-            </div>
           </div>
-          <form @submit.prevent="submit()">
-            <div class="writing-field">
-              <label class="paper-label" for="answer">YOUR JAPANESE</label
-              ><textarea
-                id="answer"
-                ref="field"
-                v-model="answer"
-                lang="ja"
-                placeholder="ここに書いてください。"
-                :disabled="loading || !question || checking"
-                :readonly="!!result"
-                maxlength="2000"
-                autocomplete="off"
-                spellcheck="false"
-                aria-describedby="writing-help"
-                @keydown="shortcut"
-              ></textarea
-              ><span class="character-count"
-                >{{ [...answer].length }} characters</span
-              >
-            </div>
-            <div class="card-actions">
-              <p id="writing-help">
-                Spaces and common sentence punctuation are ignored.<br /><span
-                  >Use your Japanese keyboard · Ctrl / ⌘ + Enter to
-                  continue</span
-                >
-              </p>
-              <button
-                v-if="!result"
-                class="primary-button"
-                type="submit"
-                :disabled="!question || !answer.trim() || loading || checking"
-              >
-                {{ checking ? "Comparing…" : "Check writing" }}
-                <span>→</span></button
-              ><button
-                v-else
-                class="primary-button"
-                type="button"
-                @click="nextSentence"
-              >
-                Next sentence <span>→</span>
-              </button>
-            </div>
-          </form>
-          <div v-if="error" class="error-message" role="alert">
-            {{ error }}
-            <button v-if="!question" @click="loadQuestion">Try again ↻</button>
-          </div>
-          <section
-            v-if="result"
-            class="feedback"
-            :class="{ matched: result.matched && !revealed }"
-            aria-live="polite"
-          >
-            <p class="eyebrow">
-              {{
-                revealed
-                  ? "A REFERENCE TO LEARN FROM"
-                  : result.matched
-                    ? "✓ MATCHES THE REFERENCE"
-                    : "COMPARE YOUR WRITING"
-              }}
-            </p>
-            <p v-if="!result.matched && !revealed" class="feedback-note">
-              Your answer differs from this reference. It may still be a valid
-              translation.
-            </p>
-            <p class="reference-text" lang="ja">{{ result.reference }}</p>
-            <p class="reading-text" lang="ja">{{ result.kana }}</p>
-            <a
-              v-if="result.sourceUrl"
-              :href="result.sourceUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Sentence &amp; contributors on Tatoeba ↗</a
-            >
-          </section>
-          <div v-else-if="question" class="below-paper">
-            <span
-              >{{ question.poolSize.toLocaleString() }} sentences in this
-              selection</span
-            ><button :disabled="checking" @click="submit(true)">
-              Show reference ↗
-            </button>
-          </div>
-        </section>
-      </div>
-      <section v-else class="journal-panel">
-        <div class="card-heading">
-          <span class="eyebrow">YOUR LAST 100 SENTENCES</span
-          ><button v-if="journal.length" @click="resetJournal">
-            Clear journal
-          </button>
-        </div>
-        <div v-if="!journal.length" class="empty-journal">
-          <span lang="ja">始</span>
-          <h2>Your first sentence is waiting.</h2>
           <p>
-            Your writing and references will appear here after you practice.
+            Just enough structure to get you started.<br />Just enough freedom
+            to make it yours.
           </p>
-          <button class="primary-button" @click="tab = 'practice'">
-            Start writing →
-          </button>
         </div>
-        <article v-for="entry in journal" :key="entry.id" class="journal-entry">
-          <div class="journal-meta">
-            <span
-              >{{ entry.level }} ·
-              {{
-                new Date(entry.date).toLocaleDateString("en", {
-                  month: "short",
-                  day: "numeric",
-                })
-              }}</span
-            ><span :class="{ 'success-text': entry.outcome === 'matched' }">{{
-              entry.outcome === "matched"
-                ? "Reference matched"
-                : entry.outcome === "revealed"
-                  ? "Reference viewed"
-                  : "Reference differs"
+        <div class="feature-grid">
+          <article
+            v-for="feature in features"
+            :key="feature.number"
+            class="feature-card"
+          >
+            <span class="feature-number">{{ feature.number }}</span
+            ><span class="feature-mark" lang="ja" aria-hidden="true">{{
+              feature.mark
             }}</span>
-          </div>
-          <h2>{{ entry.english }}</h2>
-          <p v-if="entry.answer" class="journal-answer" lang="ja">
-            {{ entry.answer }}
-          </p>
-          <p class="journal-reference">
-            Reference <span lang="ja">{{ entry.reference }}</span>
-          </p>
-        </article>
-        <p v-if="journal.length" class="journal-privacy">
-          Stored only in this browser. Clearing browser data removes your
-          journal.
-        </p>
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+            <span class="feature-note">{{ feature.note }}</span>
+          </article>
+        </div>
       </section>
-      <p class="practice-note">
-        Practice with open sentence data. Reference matching checks writing
-        forms, not every possible translation.
-        <NuxtLink to="/sources">About the data ↗</NuxtLink>
-      </p>
+      <section
+        id="how-it-works"
+        class="landing-process landing-section landing-container"
+        aria-labelledby="process-title"
+      >
+        <div class="landing-section-heading">
+          <div>
+            <p class="eyebrow">A SIMPLE DAILY RITUAL</p>
+            <h2 id="process-title">
+              Read. Write.<br /><em>Come back tomorrow.</em>
+            </h2>
+          </div>
+          <NuxtLink class="text-action" to="/app"
+            >Try your first sentence →</NuxtLink
+          >
+        </div>
+        <ol class="process-steps">
+          <li v-for="step in steps" :key="step.number">
+            <span>{{ step.number }} /</span>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </li>
+        </ol>
+      </section>
+      <section
+        class="journal-promo landing-container"
+        aria-labelledby="journal-title"
+      >
+        <div class="journal-stamp" lang="ja" aria-hidden="true">記</div>
+        <div>
+          <p class="eyebrow">YOUR WORDS HAVE A HOME</p>
+          <h2 id="journal-title">See how far<br />a sentence can take you.</h2>
+        </div>
+        <div>
+          <p>
+            Your journal keeps your latest 100 entries, so you can look back at
+            your writing and learn from the references. No account to set up. No
+            streak to protect.
+          </p>
+          <p class="journal-promo-note">
+            History stays in this browser. Answers go to the app server for
+            comparison, without being saved there.
+          </p>
+        </div>
+      </section>
+      <section
+        id="faq"
+        class="landing-faq landing-section landing-container"
+        aria-labelledby="faq-title"
+      >
+        <div>
+          <p class="eyebrow">BEFORE YOUR FIRST SENTENCE</p>
+          <h2 id="faq-title">A few things<br /><em>to know.</em></h2>
+          <NuxtLink class="text-action" to="/sources"
+            >Data &amp; credits ↗</NuxtLink
+          >
+        </div>
+        <div class="faq-list">
+          <details v-for="faq in faqs" :key="faq.question">
+            <summary>
+              {{ faq.question }}<span aria-hidden="true">+</span>
+            </summary>
+            <p>{{ faq.answer }}</p>
+          </details>
+        </div>
+      </section>
+      <section class="landing-final" aria-labelledby="final-title">
+        <p class="eyebrow">THE NEXT SENTENCE IS YOURS</p>
+        <h2 id="final-title">
+          A little Japanese.<br /><em>A little every day.</em>
+        </h2>
+        <NuxtLink class="primary-button" to="/app"
+          >Open your practice space <span aria-hidden="true">→</span></NuxtLink
+        >
+        <p>No account needed. Start with one sentence.</p>
+      </section>
     </main>
-    <footer class="page-footer">
-      <span>綴る · TSUZURU</span><span>A LITTLE PRACTICE, EVERY DAY.</span
-      ><NuxtLink to="/sources">OPEN DATA · OPEN POSSIBILITIES ↗</NuxtLink>
+    <footer class="page-footer landing-container">
+      <span>綴る · TSUZURU</span><span>JAPANESE, ONE SENTENCE AT A TIME.</span
+      ><NuxtLink to="/sources">DATA &amp; CREDITS ↗</NuxtLink>
     </footer>
   </div>
 </template>
