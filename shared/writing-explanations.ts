@@ -70,7 +70,7 @@ export function explainWriting(
         title: kanji ? "Different kanji or spelling" : "Different spelling",
         detail:
           word && mode === Strictness.Flexible
-            ? `The reference uses 「${word.surface}」, with the supplied reading 「${word.reading}」. This mode accepts that kanji spelling or its reading, but not another kanji spelling.`
+            ? `The reference uses 「${word.surface}」, with the supplied reading 「${word.reading}」. This mode accepts the reference spelling, its reading, and verified spelling variants recorded for this sentence.`
             : "The reference uses different text at this position. Replace the highlighted text with the expected spelling shown below. This comparison does not determine whether an alternative translation is grammatically valid.",
         ...edit,
       });

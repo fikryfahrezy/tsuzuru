@@ -1,0 +1,253 @@
+import { expect, test } from "bun:test";
+import {
+  compare,
+  Strictness,
+  DifferenceKind,
+  type Candidate,
+} from "../shared/practice";
+import { writingDifferences } from "../shared/writing-diff";
+import {
+  verifiedSpellings,
+  type SpellingBank,
+} from "../shared/writing-spellings";
+import { exerciseById, exercises } from "../server/utils/exercises";
+import bank from "../data/spelling-variants/bank.json";
+import manifest from "../data/manifest.json";
+import { createApp, toWebHandler } from "h3";
+import compareHandler from "../server/api/compare.post";
+
+const removal = exerciseById.get("6f089ad7d7e1f1da1398e9c9")!;
+
+test("the comparison API accepts recorded spellings with alternatives off and rejects wrong homophones", async () => {
+  const app = createApp();
+  app.use("/api/compare", compareHandler);
+  const handle = toWebHandler(app);
+  for (const [answer, mode, matched] of [
+    ["あなたの名前はリストから外された。", "flexible", true],
+    ["あなたの名前はリストから筈された。", "flexible", false],
+    ["あなたの名前はリストから外された。", "exact", false],
+  ] as const) {
+    const response = await handle(
+      new Request("http://localhost/api/compare", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: removal.id,
+          answer,
+          mode,
+          acceptAlternatives: false,
+        }),
+      }),
+    );
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ matched });
+  }
+});
+
+test("verified spelling variants work independently of alternative translations and vocabulary level", () => {
+  for (const alternatives of [false, true]) {
+    const result = compare(
+      removal,
+      "あなたの 名前 は リスト から 外された",
+      Strictness.Flexible,
+      alternatives,
+    );
+    expect(result.matched).toBe(true);
+    expect(result.acceptedAlternative).toBeUndefined();
+    expect(result.differences).toBeNull();
+    expect(result.reference).toBe(removal.japanese);
+  }
+  const collar = exerciseById.get("06fb6cfc1da1b7e3a2191581")!;
+  expect(
+    compare(collar, "犬はやすやすと首輪を外した。", Strictness.Flexible)
+      .matched,
+  ).toBe(true);
+  const unsure = exerciseById.get("05cc8b160dd943ea79213a94")!;
+  expect(
+    compare(unsure, "今ははっきりとは分かりません。", Strictness.Flexible)
+      .matched,
+  ).toBe(true);
+});
+
+test("spelling variations preserve tense, negation, particles, and word identity", () => {
+  for (const answer of [
+    "あなたの名前はリストから外される。",
+    "あなたの名前はリストから外されなかった。",
+    "あなたの名前はリストに外された。",
+    "あなたの名前はリストから筈された。",
+  ])
+    expect(compare(removal, answer, Strictness.Flexible).matched).toBe(false);
+  expect(
+    compare(removal, "あなたの名前はリストから外された。", Strictness.Exact)
+      .matched,
+  ).toBe(false);
+  expect(
+    compare(removal, "あなたの名前はリストから外された。", Strictness.Kana)
+      .matched,
+  ).toBe(false);
+  expect(
+    compare(removal, "あなたのなまえはりすとからはずされた。", Strictness.Kana)
+      .matched,
+  ).toBe(true);
+});
+
+test("accepted kanji are not highlighted when another part of the answer is wrong", () => {
+  const differences = writingDifferences(
+    removal,
+    "あなたの名前はリストから外される。",
+    Strictness.Flexible,
+  );
+  expect(differences.answer.find((part) => part.text === "外")?.kind).toBe(
+    DifferenceKind.Same,
+  );
+  expect(differences.edits?.every((edit) => !edit.actual.includes("外"))).toBe(
+    true,
+  );
+  const matching = writingDifferences(
+    removal,
+    "あなたの名前はリストから外された。",
+    Strictness.Flexible,
+  );
+  expect(
+    matching.answer.every((part) => part.kind === DifferenceKind.Same),
+  ).toBe(true);
+  const exact = compare(
+    removal,
+    "あなたの名前はリストから外された。",
+    Strictness.Exact,
+  );
+  expect(exact.explanations?.[0]?.title).toBe("Writing mode mismatch");
+});
+
+test("unrecorded homophones remain rejected even when the reference is entirely kana", () => {
+  const bridge: Candidate = {
+    ...removal,
+    id: "ambiguous-bridge",
+    japanese: "はしをわたる。",
+    furiganaVariants: ["はしをわたる。"],
+    spellingVariants: [],
+    acceptedAlternatives: [],
+  };
+  expect(compare(bridge, "橋をわたる。", Strictness.Flexible).matched).toBe(
+    false,
+  );
+  expect(compare(bridge, "箸をわたる。", Strictness.Flexible).matched).toBe(
+    false,
+  );
+  const kanjiBridge = {
+    ...bridge,
+    japanese: "橋をわたる。",
+    furiganaVariants: ["{橋|はし}をわたる。"],
+  };
+  expect(
+    compare(kanjiBridge, "箸をわたる。", Strictness.Flexible).matched,
+  ).toBe(false);
+  expect(
+    compare(kanjiBridge, "はしをわたる。", Strictness.Flexible).matched,
+  ).toBe(true);
+});
+
+test("stale, malformed, overlapping, and unsupported spelling records are ignored", () => {
+  const copy = () => structuredClone(bank) as SpellingBank;
+  expect(
+    verifiedSpellings(
+      { ...removal, english: "Changed prompt" },
+      copy(),
+      manifest.revision,
+    ),
+  ).toEqual([]);
+  expect(
+    verifiedSpellings(
+      { ...removal, japanese: "違う。" },
+      copy(),
+      manifest.revision,
+    ),
+  ).toEqual([]);
+  expect(verifiedSpellings(removal, copy(), "outdated")).toEqual([]);
+  for (const mutate of [
+    (
+      span: SpellingBank["entries"][string]["references"][number]["spans"][number],
+    ) => {
+      span.reading = "ねむ";
+    },
+    (
+      span: SpellingBank["entries"][string]["references"][number]["spans"][number],
+    ) => {
+      span.end = 200;
+    },
+    (
+      span: SpellingBank["entries"][string]["references"][number]["spans"][number],
+    ) => {
+      span.spellings = ["外さ。"];
+    },
+    (
+      span: SpellingBank["entries"][string]["references"][number]["spans"][number],
+    ) => {
+      span.method = "reviewed-context";
+    },
+  ]) {
+    const changed = copy();
+    mutate(changed.entries[removal.id]!.references[0]!.spans[0]!);
+    expect(verifiedSpellings(removal, changed, manifest.revision)).toEqual([]);
+  }
+  const overlap = copy();
+  const reference = overlap.entries[removal.id]!.references[0]!;
+  reference.spans.push(reference.spans[0]!);
+  expect(verifiedSpellings(removal, overlap, manifest.revision)).toEqual([]);
+  // Spelling paths from an original reference must not leak into other translations.
+  expect(
+    compare(
+      {
+        ...removal,
+        japanese: "名前がない。",
+        furiganaVariants: ["{名前|なまえ}がない。"],
+        acceptedAlternatives: [],
+      },
+      "あなたの名前はリストから外された。",
+      Strictness.Flexible,
+    ).matched,
+  ).toBe(false);
+});
+
+test("every generated span loads and matches its recorded reference with consistent highlighting", () => {
+  expect(Object.keys(bank.entries).length).toBeGreaterThan(1000);
+  for (const [id, entry] of Object.entries(bank.entries)) {
+    const candidate = exerciseById.get(id)!;
+    expect(candidate.spellingVariants).toHaveLength(entry.references.length);
+    for (const reference of candidate.spellingVariants!) {
+      const source = {
+        ...candidate,
+        japanese: reference.japanese,
+        furiganaVariants: [reference.furigana],
+        acceptedAlternatives: [],
+      };
+      // Combine each span's first variant; the graph must avoid exponential enumeration.
+      let answer = reference.japanese;
+      for (const span of [...reference.spans].reverse())
+        answer =
+          answer.slice(0, span.start) +
+          span.spellings[0]! +
+          answer.slice(span.end);
+      expect(compare(source, answer, Strictness.Flexible).matched).toBe(true);
+      expect(
+        writingDifferences(source, answer, Strictness.Flexible).answer.every(
+          (part) => part.kind === DifferenceKind.Same,
+        ),
+      ).toBe(true);
+      for (const span of reference.spans) {
+        for (const spelling of span.spellings) {
+          const single =
+            reference.japanese.slice(0, span.start) +
+            spelling +
+            reference.japanese.slice(span.end);
+          expect(compare(source, single, Strictness.Flexible).matched).toBe(
+            true,
+          );
+        }
+      }
+    }
+  }
+  expect(
+    exercises.filter((candidate) => candidate.spellingVariants.length).length,
+  ).toBe(Object.keys(bank.entries).length);
+});

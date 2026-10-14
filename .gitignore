@@ -17,3 +17,4 @@ logs/
 .fleet/
 public/disclosures/
 data/alternatives/generation-prompts.jsonl
+__pycache__/

@@ -77,9 +77,29 @@ methods, supported formats, and regeneration behavior.
 
 ## Current application use
 
-The beta app uses candidates with complete, consistent reading annotations for reference practice. It filters by target vocabulary level and English word count, and derives kana spellings from supplied furigana at comparison time. It does not assign certified sentence-level difficulty or perform semantic translation grading. Flexible writing accepts each annotated word's reference spelling or supplied kana reading; exact writing preserves the reference script. When the optional pre-generated-alternatives setting is enabled, these same rules also apply to listed alternative sentences. Added wording is attributed according to its own provenance; attribution and links for the original reference are retained separately. Results show the available alternatives after comparison or revealing the reference, regardless of whether alternative matching is on. New Journal entries save the list and provenance as a snapshot. The enriched bank remains CC BY-SA 4.0 and is downloadable from the credits page. All modes normalize Unicode width differences and ignore whitespace and common sentence punctuation. The original imported files remain unchanged.
+The beta app uses candidates with complete, consistent reading annotations for reference practice. It filters by target vocabulary level and English word count, and derives kana spellings from supplied furigana at comparison time. It does not assign certified sentence-level difficulty or perform semantic translation grading. Flexible writing accepts each annotated word's reference spelling or supplied kana reading, plus the verified variants described below; exact writing preserves the reference script. When the optional pre-generated-alternatives setting is enabled, these same rules also apply to listed alternative sentences. Added wording is attributed according to its own provenance; attribution and links for the original reference are retained separately. Results show the available alternatives after comparison or revealing the reference, regardless of whether alternative matching is on. New Journal entries save the list and provenance as a snapshot. The enriched bank remains CC BY-SA 4.0 and is downloadable from the credits page. All modes normalize Unicode width differences and ignore whitespace and common sentence punctuation. The original imported files remain unchanged.
 
 The app's Data & credits page exposes this disclosure, the upstream attribution notice and license, and the import manifest. Tatoeba sentence links appear with reference answers. Manual language review and additional accepted translations remain necessary for a reviewed exercise bank. Practice history and preferences are saved in browser localStorage; the app server compares answers without persisting them or invoking an AI service.
+
+## Verified spelling variants
+
+`data/spelling-variants/bank.json` adds word-position spelling variants derived
+from a checksum-recorded JMdict snapshot and pinned SudachiPy/SudachiDict versions.
+JMdict is copyright James William Breen and EDRDG, under CC BY-SA 4.0; the derived
+spelling bank uses that same licence. Sudachi and SudachiDict are from Works
+Applications under Apache 2.0, and the dictionary includes UniDic and NEologd
+material. Retained licences, upstream notices, attribution, source checksums,
+generation rules, and the review procedure are documented in
+[the spelling bank README](data/spelling-variants/README.md).
+
+The generator validates spelling/reading restrictions, supplied reference
+furigana, and unchanged lexical forms, pronunciation, POS and conjugation in a
+whole-sentence round trip. Unresolved homophones and sense-specific spellings
+are held for explicit context review; the generated bank does not claim
+independent language review. Original references remain unchanged. Kana + kanji
+mode accepts recorded spelling variants automatically, separately from the
+optional alternative translations. Kana-only and exact modes retain their
+existing restrictions. Comparison and highlighting use the same allowed paths.
 
 ## Educational limitations
 

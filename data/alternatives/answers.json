@@ -20537,6 +20537,23 @@
           }
         }
       ]
+    },
+    "6f089ad7d7e1f1da1398e9c9": {
+      "sourceEnglish": "Your name was dropped from the list.",
+      "sourceJapanese": "あなたの名前はリストからはずされた。",
+      "alternatives": [
+        {
+          "japanese": "あなたの名前はリストから外された。",
+          "furiganaVariants": [
+            "あなたの{名前|なまえ}はリストから{外|はず}された。"
+          ],
+          "provenance": {
+            "creator": "Codex",
+            "method": "authored",
+            "note": "Replaces the kana spelling はずされた with 外された, retaining the same passive past verb, subject, and list context. The imported OpenJLPT glossary records 外す with reading はずす. All other reference wording and readings are retained."
+          }
+        }
+      ]
     }
   }
 }

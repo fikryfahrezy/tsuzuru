@@ -1,8 +1,6 @@
 import {
   hiragana,
   normalize,
-  parts,
-  validReadings,
   type Candidate,
   type DifferencePart,
   Strictness,
@@ -10,6 +8,7 @@ import {
   type DifferenceDetails,
   type WritingEdit,
 } from "./practice";
+import { writingPaths } from "./writing-spellings";
 
 type Edge = { from: number; character: string };
 type Operation = {
@@ -36,24 +35,15 @@ function spellingGraph(candidate: Candidate, mode: Strictness): Edge[][] {
     graph.push(ends.map((from) => ({ from, character: "" })));
     return graph.length - 1;
   }
-  if (mode === Strictness.Exact) append(0, [candidate.japanese]);
-  else {
-    const ends: number[] = [];
-    for (const reading of validReadings(candidate)) {
-      let node = 0;
-      for (const part of parts(reading))
-        node = append(
-          node,
-          mode === Strictness.Kana
-            ? [part.reading]
-            : [part.surface, part.reading],
-        );
-      ends.push(node);
-    }
-    // No annotated reading: still provide an informative reference difference.
-    if (!ends.length) ends.push(append(0, [candidate.japanese]));
-    graph.push(ends.map((from) => ({ from, character: "" })));
+  const ends: number[] = [];
+  for (const path of writingPaths(candidate, mode)) {
+    let node = 0;
+    for (const options of path) node = append(node, options);
+    ends.push(node);
   }
+  // No annotated reading: still provide an informative reference difference.
+  if (!ends.length) ends.push(append(0, [candidate.japanese]));
+  graph.push(ends.map((from) => ({ from, character: "" })));
   return graph;
 }
 

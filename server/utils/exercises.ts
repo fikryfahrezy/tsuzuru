@@ -1,6 +1,11 @@
 import raw from "../../data/processed/sentence-candidates.json";
 import bank from "../../data/alternatives/answers.json";
 import manifest from "../../data/manifest.json";
+import spellingBank from "../../data/spelling-variants/bank.json";
+import {
+  verifiedSpellings,
+  type SpellingBank,
+} from "../../shared/writing-spellings";
 import {
   acceptedAlternatives,
   type AlternativeBank,
@@ -14,6 +19,14 @@ export const exercises = (raw as Candidate[])
     acceptedAlternatives: acceptedAlternatives(
       row,
       bank as AlternativeBank,
+      manifest.revision,
+    ),
+  }))
+  .map((row) => ({
+    ...row,
+    spellingVariants: verifiedSpellings(
+      row,
+      spellingBank as SpellingBank,
       manifest.revision,
     ),
   }));

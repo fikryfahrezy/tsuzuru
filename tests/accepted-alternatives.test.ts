@@ -12,6 +12,43 @@ import compareHandler from "../server/api/compare.post";
 
 const tennis = exerciseById.get("004f3984827963025986b55a")!;
 
+test("list removal accepts the recorded kanji spelling without imposing a JLPT kanji limit", () => {
+  const sentence = exerciseById.get("6f089ad7d7e1f1da1398e9c9")!;
+  const answer = "あなたの 名前 は リスト から 外された";
+  const result = compare(sentence, answer, Strictness.Flexible, true);
+  expect(result.matched).toBe(true);
+  expect(result.differences).toBeNull();
+  expect(result.reference).toBe("あなたの名前はリストからはずされた。");
+  expect(result.acceptedAlternative).toBeUndefined();
+  const exactAlternative = compare(sentence, answer, Strictness.Exact, true);
+  expect(exactAlternative.acceptedAlternative?.japanese).toBe(
+    "あなたの名前はリストから外された。",
+  );
+  expect(exactAlternative.acceptedAlternative?.kana).toBe(
+    "あなたのなまえはりすとからはずされた。",
+  );
+  expect(compare(sentence, answer, Strictness.Flexible, false).matched).toBe(
+    true,
+  );
+  expect(compare(sentence, answer, Strictness.Kana, true).matched).toBe(false);
+  expect(
+    compare(
+      sentence,
+      "あなたのなまえはリストからはずされた。",
+      Strictness.Kana,
+      true,
+    ).matched,
+  ).toBe(true);
+  for (const invalid of [
+    "あなたの名前はリストから外される。",
+    "あなたの名前はリストから外されなかった。",
+    "あなたの名前はリストから筈された。",
+  ])
+    expect(compare(sentence, invalid, Strictness.Flexible, true).matched).toBe(
+      false,
+    );
+});
+
 test("results include every alternative regardless of matching or the toggle", () => {
   for (const accept of [false, true]) {
     for (const answer of [
@@ -160,7 +197,7 @@ test("the comparison API validates the toggle and only activates listed alternat
 });
 
 test("all generated answers are active with source provenance", () => {
-  expect(Object.keys(bank.entries)).toHaveLength(948);
+  expect(Object.keys(bank.entries)).toHaveLength(949);
   let count = 0;
   for (const [id, entry] of Object.entries(bank.entries)) {
     const candidate = exerciseById.get(id)!;
@@ -177,7 +214,7 @@ test("all generated answers are active with source provenance", () => {
       count++;
     }
   }
-  expect(count).toBe(1334);
+  expect(count).toBe(1335);
 });
 
 test("listed number spellings preserve quantity, readings, and the alternatives toggle", () => {

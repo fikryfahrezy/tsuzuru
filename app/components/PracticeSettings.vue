@@ -21,7 +21,7 @@ const modeHelp = computed(
       [Strictness.Kana]:
         "Write entirely in hiragana or katakana. Kanji is not accepted in this mode.",
       [Strictness.Flexible]:
-        "Use the reference kanji, their kana readings, or a mixture of both.",
+        "Use kana, the reference kanji, or verified spelling variants. Kanji level does not affect acceptance.",
       [Strictness.Exact]: acceptAlternatives.value
         ? "Match the kanji and kana spelling of the reference or a pre-generated alternative."
         : "Match the reference’s kanji and kana spelling.",

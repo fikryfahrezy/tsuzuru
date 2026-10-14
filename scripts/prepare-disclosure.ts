@@ -13,6 +13,10 @@ const documents = {
   "openjlpt-license.txt": `${manifest.snapshotPath}/LICENSE`,
   "manifest.json": "data/manifest.json",
   "accepted-alternatives.json": "data/alternatives/answers.json",
+  "spelling-variants.json": "data/spelling-variants/bank.json",
+  "spelling-variants.md": "data/spelling-variants/README.md",
+  "sudachi-legal.txt": "data/spelling-variants/SUDACHI-LEGAL.txt",
+  "sudachi-license.txt": "data/spelling-variants/APACHE-2.0.txt",
 };
 for (const [name, path] of Object.entries(documents)) {
   await writeFile(resolve(output, name), await readFile(resolve(root, path)));

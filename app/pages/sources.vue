@@ -51,8 +51,8 @@ useSeoMeta({
           <a href="https://www.edrdg.org/edrdg/licence.html">
             EDRDG: JMdict and KANJIDIC2
           </a>
-          — dictionary data and kanji information, incorporated through
-          OpenJLPT.
+          — dictionary data and kanji information through OpenJLPT, plus JMdict
+          spelling data used to generate verified writing variants.
         </li>
         <li>
           <a href="https://www.tanos.co.uk/jlpt/">
@@ -70,6 +70,27 @@ useSeoMeta({
           . Individual source links appear with each reference answer.
         </li>
       </ul>
+      <p>
+        Spelling analysis uses
+        <a href="https://github.com/WorksApplications/sudachi.rs">SudachiPy</a>
+        and
+        <a href="https://github.com/WorksApplications/SudachiDict">
+          SudachiDict
+        </a>
+        from Works Applications, including UniDic and NEologd data.
+        <a href="/disclosures/sudachi-legal.txt">Dictionary notices</a>
+        and the
+        <a href="/disclosures/sudachi-license.txt">Apache 2.0 license</a>
+        are retained. The
+        <a href="/disclosures/spelling-variants.json" download>
+          generated spelling bank
+        </a>
+        is available under CC BY-SA 4.0 with
+        <a href="/disclosures/spelling-variants.md">
+          source and maintenance details
+        </a>
+        .
+      </p>
       <h2>Reference practice, explained</h2>
       <p class="license-note">
         This is a beta exercise bank drawn from unreviewed sentence candidates.
@@ -89,9 +110,11 @@ useSeoMeta({
         Comparison checks the supplied reference and its annotated readings. It
         cannot judge every valid translation. Kana-only accepts hiragana and
         katakana. Flexible writing accepts the reference kanji or their supplied
-        readings; it does not accept arbitrary kanji with the same sound. Exact
-        writing preserves the reference script. All modes ignore spaces and
-        common sentence punctuation.
+        readings and verified spelling variants, independently of the
+        alternative-translations setting. Ambiguous dictionary cases are held
+        for review; it does not accept arbitrary kanji with the same sound.
+        Exact writing preserves the reference script. All modes ignore spaces
+        and common sentence punctuation.
       </p>
       <p>
         Only examples with complete, consistent reading annotations are

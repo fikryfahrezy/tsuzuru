@@ -1,5 +1,6 @@
 import { writingDifferences } from "./writing-diff";
 import { explainWriting } from "./writing-explanations";
+import { writingPaths, type SpellingReference } from "./writing-spellings";
 
 export enum Level {
   N5 = "N5",
@@ -49,6 +50,7 @@ export interface Candidate {
   englishWordCount: number;
   targetVocabulary: { id: string; word: string; level: string }[];
   sources: { tatoebaUrl: string | null }[];
+  spellingVariants?: SpellingReference[];
   acceptedAlternatives?: {
     japanese: string;
     furiganaVariants: string[];
@@ -183,15 +185,14 @@ function compareReference(
             ),
         );
     } else {
-      // Each annotated word may use its original kanji or its supplied reading.
-      // Converting arbitrary input kanji to sounds would accept homophone errors.
-      matched = readings.some((reading) => {
-        const pattern = parts(reading)
-          .map((part) => {
-            const surface = escapePattern(hiragana(normalize(part.surface)));
-            const kana = escapePattern(hiragana(normalize(part.reading)));
-            return `(?:${surface}|${kana})`;
-          })
+      // Only recorded spellings are allowed; arbitrary kanji-to-kana conversion
+      // would also accept words with different meanings but the same reading.
+      matched = writingPaths(candidate, mode).some((path) => {
+        const pattern = path
+          .map(
+            (options) =>
+              `(?:${options.map((option) => escapePattern(hiragana(normalize(option)))).join("|")})`,
+          )
           .join("");
         return new RegExp(`^${pattern}$`, "u").test(hiragana(normalized));
       });

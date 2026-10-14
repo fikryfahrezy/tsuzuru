@@ -126,7 +126,8 @@ can retry different answers. Return to `/app` for random practice. Unknown IDs
 show an error; only dataset entries with validated readings are available.
 
 - Kana only: hiragana or katakana, with no kanji.
-- Kana + kanji: each annotated word may use the supplied kanji or kana reading.
+- Kana + kanji: supplied kanji, kana readings, and verified spelling variants
+  are accepted, independently of the alternative-translations toggle or JLPT level.
 - Exact writing: the reference's spelling and script must match.
 
 All modes ignore whitespace and common sentence punctuation and normalize
@@ -135,6 +136,14 @@ than accepting homophones. Only consistent examples with complete reading
 annotations are eligible. Answers are compared against the supplied reference;
 other valid translations may not match. The imported bank remains unreviewed,
 and vocabulary levels are not whole-sentence difficulty certifications.
+
+Spelling variants are generated offline using pinned SudachiPy/SudachiDict and
+JMdict snapshots. The generator checks dictionary identity, permitted spellings
+and readings, supplied reference furigana, and unchanged pronunciation and
+conjugation in a whole-sentence round trip. Ambiguous homophones and
+sense-restricted spellings require a recorded review. See
+[spelling generation and review](data/spelling-variants/README.md). Python and
+the large dictionaries are not needed by the running app.
 
 After checking, the app shows an explicit reference match result. Character
 differences highlight substitutions and extra characters in the original input;
