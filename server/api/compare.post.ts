@@ -14,7 +14,9 @@ export default defineEventHandler(async (event) => {
     typeof body.answer !== "string" ||
     !body.answer.trim() ||
     body.answer.length > 2000 ||
-    !isStrictness(body.mode)
+    !isStrictness(body.mode) ||
+    ("acceptAlternatives" in body &&
+      typeof body.acceptAlternatives !== "boolean")
   ) {
     throw createError({
       statusCode: 400,
@@ -28,5 +30,10 @@ export default defineEventHandler(async (event) => {
       statusCode: 404,
       statusMessage: "This sentence is unavailable. Load another sentence.",
     });
-  return compare(row, body.answer, body.mode);
+  return compare(
+    row,
+    body.answer,
+    body.mode,
+    "acceptAlternatives" in body && body.acceptAlternatives === true,
+  );
 });

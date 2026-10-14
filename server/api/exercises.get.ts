@@ -31,6 +31,7 @@ export default defineEventHandler((event): Question => {
       wordHints: wordHints(selected),
       wordCount: selected.englishWordCount,
       poolSize: 1,
+      alternativeCount: selected.acceptedAlternatives?.length ?? 0,
     };
   }
   if (!isLevel(query.level) || !isLength(query.length)) {
@@ -59,5 +60,6 @@ export default defineEventHandler((event): Question => {
     wordHints: wordHints(row),
     wordCount: row.englishWordCount,
     poolSize: pool.length,
+    alternativeCount: row.acceptedAlternatives?.length ?? 0,
   };
 });

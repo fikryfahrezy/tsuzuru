@@ -18,3 +18,4 @@ logs
 .env.*
 !.env.example
 .DS_Store
+data/alternatives/generation-prompts.jsonl

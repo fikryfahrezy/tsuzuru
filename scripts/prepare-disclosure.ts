@@ -12,6 +12,7 @@ const documents = {
   "openjlpt-notice.md": `${manifest.snapshotPath}/NOTICE.md`,
   "openjlpt-license.txt": `${manifest.snapshotPath}/LICENSE`,
   "manifest.json": "data/manifest.json",
+  "accepted-alternatives.json": "data/alternatives/answers.json",
 };
 for (const [name, path] of Object.entries(documents)) {
   await writeFile(resolve(output, name), await readFile(resolve(root, path)));

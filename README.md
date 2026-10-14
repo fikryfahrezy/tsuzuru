@@ -142,6 +142,40 @@ Comparison happens on the server without persisting answers. No AI service or
 account is needed. `/sources` provides credits, data limitations, and downloadable
 disclosures. Generated disclosures live in ignored `public/disclosures/`.
 
+### Pre-generated alternative answers
+
+Enable “Pre-generated alternatives” in the sidebar to accept additional listed
+answers. It starts off and remembers your preference. Each alternative uses the
+selected kana/kanji writing rules. Every result, including mismatches and revealed
+references, lists all available alternatives with their readings and origins.
+This list is saved in journal snapshots alongside the original reference and
+source link. Viewing the list does not require enabling alternative matching.
+Unlisted wording may still be valid; matching a listed answer is not semantic grading.
+
+Alternatives are Tsuzuru additions to the imported references. They come from
+rules that omit explicit first-person topics or vary integer spellings, and from
+AI-authored wording added during development. Each entry retains its creator,
+method, change explanation, and link to the original data through its sentence ID.
+The result and Journal list is smaller, collapsible, and appears after “Why it differs.”
+
+Integer variants preserve the value, such as `40` / `四十` and `二人` / `2人`.
+The generator excludes unsupported formats such as decimals, grouped numbers,
+and leading-zero identifiers. It retains supplied readings; digits stay digits
+when the source has no pronunciation annotation. Subject omission relies on the
+speaker being implied by the English prompt. Neither generated nor AI-authored
+additions have independent native-speaker verification, and they may contain errors.
+They do not make the list exhaustive or establish that an unlisted answer is wrong.
+
+The original source files are unchanged. The adapted answer bank is distributed
+under CC BY-SA 4.0 with source attribution and modification notices; specific
+creator details live in each answer’s provenance. See
+[DATA_DISCLOSURE.md](DATA_DISCLOSURE.md) for the full disclosure.
+
+`bun run alternatives:generate` rebuilds rule-generated entries and preserves
+authored entries in `data/alternatives/answers.json`. `bun run alternatives:prompts`
+exports tasks for batch generation; it does not download or invoke a model.
+See [data/README.md](data/README.md) for maintenance instructions.
+
 ### Installable workspace
 
 The `/app` workspace can be installed using the browser's install action or
@@ -163,7 +197,7 @@ DevTools, reload once, then switch offline and reload again. The journal should
 remain available and the workspace should explain which actions need a connection.
 
 `GET /api/exercises?level=N5&length=short` returns a random English prompt and its
-romaji hint. `POST /api/compare` accepts `{ id, answer, mode }` and returns a reference
+romaji hint. `POST /api/compare` accepts `{ id, answer, mode, acceptAlternatives? }` and returns a reference
 comparison. Invalid settings and unknown IDs are rejected. Run `bun run test`
 for comparison tests; `bun run check` also runs them.
 

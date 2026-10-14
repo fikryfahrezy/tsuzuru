@@ -28,6 +28,18 @@ export enum DifferenceKind {
   Missing = "missing",
 }
 
+export enum AlternativeMethod {
+  OmitFirstPersonTopic = "omit-first-person-topic",
+  NumberSpelling = "number-spelling",
+  Authored = "authored",
+}
+
+export interface AlternativeProvenance {
+  creator: string;
+  method: AlternativeMethod;
+  note: string;
+}
+
 export const levels = Object.values(Level);
 export interface Candidate {
   id: string;
@@ -37,6 +49,11 @@ export interface Candidate {
   englishWordCount: number;
   targetVocabulary: { id: string; word: string; level: string }[];
   sources: { tatoebaUrl: string | null }[];
+  acceptedAlternatives?: {
+    japanese: string;
+    furiganaVariants: string[];
+    provenance: AlternativeProvenance;
+  }[];
 }
 export interface Question {
   id: string;
@@ -45,6 +62,7 @@ export interface Question {
   wordHints: PromptPart[];
   wordCount: number;
   poolSize: number;
+  alternativeCount: number;
 }
 export interface VocabularyHint {
   japanese: string;
@@ -62,6 +80,11 @@ export interface DifferencePart {
   kind: DifferenceKind;
   expected?: string;
 }
+export interface AlternativeAnswer {
+  japanese: string;
+  kana: string;
+  provenance: AlternativeProvenance;
+}
 export interface Comparison {
   matched: boolean;
   reference: string;
@@ -69,6 +92,8 @@ export interface Comparison {
   sourceUrl: string | null;
   differences: DifferenceDetails | null;
   explanations?: WritingExplanation[];
+  acceptedAlternative?: AlternativeAnswer;
+  alternatives?: AlternativeAnswer[];
 }
 export interface WritingEdit {
   actual: string;
@@ -130,7 +155,7 @@ function escapePattern(text: string): string {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-export function compare(
+function compareReference(
   candidate: Candidate,
   answer: string,
   mode: Strictness,
@@ -192,6 +217,54 @@ export function compare(
   };
 }
 
+export function compare(
+  candidate: Candidate,
+  answer: string,
+  mode: Strictness,
+  acceptAlternatives = false,
+): Comparison {
+  const reference = compareReference(candidate, answer, mode);
+  reference.alternatives = (candidate.acceptedAlternatives ?? []).flatMap(
+    (alternative) => {
+      const reading = validReadings({ ...candidate, ...alternative })[0];
+      return reading
+        ? [
+            {
+              japanese: alternative.japanese,
+              kana: hiragana(
+                parts(reading)
+                  .map((part) => part.reading)
+                  .join(""),
+              ),
+              provenance: alternative.provenance,
+            },
+          ]
+        : [];
+    },
+  );
+  if (reference.matched || !acceptAlternatives) return reference;
+  for (const alternative of candidate.acceptedAlternatives ?? []) {
+    const match = compareReference(
+      { ...candidate, ...alternative },
+      answer,
+      mode,
+    );
+    if (match.matched)
+      return {
+        ...reference,
+        matched: true,
+        differences: null,
+        explanations: [],
+        acceptedAlternative: {
+          japanese: alternative.japanese,
+          provenance: alternative.provenance,
+          kana: match.kana,
+        },
+      };
+  }
+  return reference;
+}
+
 export function lengthOf(count: number): Length {
   return count <= 7 ? Length.Short : count <= 12 ? Length.Medium : Length.Long;
 }
@@ -210,4 +283,10 @@ export function isStrictness(value: unknown): value is Strictness {
 
 export function isDifferenceKind(value: unknown): value is DifferenceKind {
   return Object.values(DifferenceKind).some((item) => item === value);
+}
+
+export function isAlternativeMethod(
+  value: unknown,
+): value is AlternativeMethod {
+  return Object.values(AlternativeMethod).some((item) => item === value);
 }

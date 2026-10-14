@@ -42,11 +42,42 @@ The raw snapshot is unchanged. The local importer creates [sentence-candidates.j
 
 English word count uses a documented regular expression in the importer. Japanese character count counts Unicode code points except whitespace, including punctuation; it is not a Japanese word count. Length buckets have not yet been assigned.
 
-No accepted-answer variants, tokenized readings, kana-only answers, automatic semantic judgments, or AI-generated exercises have been created by this import. Source grammar examples remain in their original grammar files and are not merged into the vocabulary sentence-candidate file.
+The raw import creates no accepted-answer variants or automatic semantic judgments.
+Source grammar examples remain in their original grammar files and are not merged
+into the vocabulary sentence-candidate file.
+
+### Added alternative answers
+
+Tsuzuru keeps added answers in [data/alternatives/answers.json](data/alternatives/answers.json),
+separate from the unmodified source snapshot and imported sentence candidates.
+The adapted bank is distributed under CC BY-SA 4.0 with the original source
+attribution retained. Added wording is a Tsuzuru adaptation, not a translation
+supplied or endorsed by the original sentence contributors.
+
+Alternatives are produced by rules that omit explicit first-person topics or
+vary integer spellings, and by AI-authored wording added during development.
+Subject omission relies on the speaker being implied by the English prompt.
+Integer variants preserve numeric values and supplied reading annotations;
+when the source represents a number with digits and provides no pronunciation,
+the reading retains those digits. The generator excludes unsupported number
+formats and restricts kanji-to-digit conversion to recognized counter contexts.
+It does not infer missing pronunciations or perform semantic translation grading.
+
+Each entry records its source revision, original English and Japanese text,
+creator, generation method, change explanation, and reading annotations. Its
+sentence ID connects it to the retained upstream provenance and Tatoeba link.
+This metadata distinguishes the source reference from later additions and makes
+the origin of individual answers inspectable.
+
+Neither rule-generated nor AI-authored additions have independent native-speaker
+verification. They may contain errors or depend on context, and the list is not
+exhaustive. Structural validation and inclusion in the bank do not certify that
+an answer is a correct translation. See [data/README.md](data/README.md) for the
+methods, supported formats, and regeneration behavior.
 
 ## Current application use
 
-The beta app uses candidates with complete, consistent reading annotations for reference practice. It filters by target vocabulary level and English word count, and derives kana spellings from supplied furigana at comparison time. It does not assign certified sentence-level difficulty or perform semantic translation grading. Flexible writing accepts each annotated word's reference spelling or supplied kana reading; exact writing preserves the reference script. All modes normalize Unicode width differences and ignore whitespace and common sentence punctuation. The original imported files remain unchanged.
+The beta app uses candidates with complete, consistent reading annotations for reference practice. It filters by target vocabulary level and English word count, and derives kana spellings from supplied furigana at comparison time. It does not assign certified sentence-level difficulty or perform semantic translation grading. Flexible writing accepts each annotated word's reference spelling or supplied kana reading; exact writing preserves the reference script. When the optional pre-generated-alternatives setting is enabled, these same rules also apply to listed alternative sentences. Added wording is attributed according to its own provenance; attribution and links for the original reference are retained separately. Results show the available alternatives after comparison or revealing the reference, regardless of whether alternative matching is on. New Journal entries save the list and provenance as a snapshot. The enriched bank remains CC BY-SA 4.0 and is downloadable from the credits page. All modes normalize Unicode width differences and ignore whitespace and common sentence punctuation. The original imported files remain unchanged.
 
 The app's Data & credits page exposes this disclosure, the upstream attribution notice and license, and the import manifest. Tatoeba sentence links appear with reference answers. Manual language review and additional accepted translations remain necessary for a reviewed exercise bank. Practice history and preferences are saved in browser localStorage; the app server compares answers without persisting them or invoking an AI service.
 
@@ -56,7 +87,7 @@ The [official JLPT FAQ](https://www.jlpt.jp/e/faq/) explains that current vocabu
 
 A vocabulary level describes the target word, not all vocabulary and grammar in an accompanying sentence. Sentences can also require context, differ in register, or have multiple valid translations. Neither the source data nor this import guarantees exhaustive accepted answers or error-free readings and translations.
 
-Candidates need language review, sentence-level difficulty assessment, and approved answer forms before they are enabled as graded exercises. Comparing kana alone can confuse words with the same reading. Exact reference matching should be described to learners as matching an approved form, rather than proving all other translations incorrect.
+This is reference practice, not certified translation grading. Language review and sentence-level difficulty assessment would be needed for a graded exercise bank. Comparing kana alone can confuse words with the same reading. A match indicates that an answer follows a listed form under the selected writing rules; a mismatch does not prove the translation is incorrect.
 
 ## Reproducibility and updates
 

@@ -5,6 +5,7 @@ import { $fetch } from "ofetch";
 import {
   levels,
   normalize,
+  isAlternativeMethod,
   Level,
   isLevel,
   isLength,
@@ -15,6 +16,7 @@ import {
   Strictness,
   type Question,
   type Comparison,
+  type AlternativeAnswer,
 } from "#shared/practice";
 
 definePageMeta({ alias: ["/practice"] });
@@ -63,6 +65,7 @@ const mode = ref<Strictness>(Strictness.Flexible);
 const tab = ref<PracticeTab>(PracticeTab.Practice);
 const settingsOpen = ref(false);
 const showRomaji = ref(false);
+const acceptAlternatives = ref(false);
 const route = useRoute();
 const sentence = computed(() =>
   typeof route.query.sentence === "string"
@@ -117,7 +120,9 @@ const modeHelp = computed(
         "Write entirely in hiragana or katakana. Kanji is not accepted in this mode.",
       [Strictness.Flexible]:
         "Use the reference kanji, their kana readings, or a mixture of both.",
-      [Strictness.Exact]: "Match the reference’s kanji and kana spelling.",
+      [Strictness.Exact]: acceptAlternatives.value
+        ? "Match the kanji and kana spelling of the reference or a pre-generated alternative."
+        : "Match the reference’s kanji and kana spelling.",
     })[mode.value],
 );
 const lengthOptions = [
@@ -141,6 +146,7 @@ function persist() {
         length: length.value,
         mode: mode.value,
         showRomaji: showRomaji.value,
+        acceptAlternatives: acceptAlternatives.value,
         journal: journal.value,
       }),
     );
@@ -201,6 +207,7 @@ async function submit(reveal = false) {
         id: current.id,
         answer: reveal ? "__reveal__" : answer.value,
         mode: mode.value,
+        acceptAlternatives: acceptAlternatives.value,
       },
     });
     if (sequence !== request || current.id !== question.value?.id) return;
@@ -257,6 +264,23 @@ function resetJournal() {
   journal.value = [];
   persist();
 }
+function restoreAlternative(value: unknown): AlternativeAnswer | null {
+  if (!value || typeof value !== "object") return null;
+  const alternative = value as AlternativeAnswer;
+  if (
+    typeof alternative.japanese !== "string" ||
+    typeof alternative.kana !== "string" ||
+    typeof alternative.provenance?.creator !== "string" ||
+    typeof alternative.provenance.note !== "string" ||
+    !isAlternativeMethod(alternative.provenance.method)
+  )
+    return null;
+  return {
+    japanese: alternative.japanese,
+    kana: alternative.kana,
+    provenance: { ...alternative.provenance },
+  };
+}
 function restoreComparison(value: unknown): Comparison | null {
   if (!value || typeof value !== "object") return null;
   const saved = value as Comparison;
@@ -299,6 +323,15 @@ function restoreComparison(value: unknown): Comparison | null {
               typeof explanation.context === "string"),
         )
       : [],
+    acceptedAlternative: saved.matched
+      ? (restoreAlternative(saved.acceptedAlternative) ?? undefined)
+      : undefined,
+    alternatives: Array.isArray(saved.alternatives)
+      ? saved.alternatives.flatMap((value) => {
+          const alternative = restoreAlternative(value);
+          return alternative ? [alternative] : [];
+        })
+      : undefined,
     sourceUrl:
       typeof saved.sourceUrl === "string" &&
       /^https:\/\/tatoeba\.org\/sentences\/show\/\d+$/.test(saved.sourceUrl)
@@ -320,6 +353,8 @@ onMounted(() => {
       if (isStrictness(saved.mode)) mode.value = saved.mode;
       if (typeof saved.showRomaji === "boolean")
         showRomaji.value = saved.showRomaji;
+      if (typeof saved.acceptAlternatives === "boolean")
+        acceptAlternatives.value = saved.acceptAlternatives;
       if (Array.isArray(saved.journal))
         journal.value = saved.journal
           .filter((entry: unknown): entry is Entry => {
@@ -370,6 +405,13 @@ watch(mode, () => {
   }
 });
 watch(showRomaji, persist);
+watch(acceptAlternatives, () => {
+  if (ready.value) {
+    result.value = null;
+    revealed.value = false;
+    persist();
+  }
+});
 watch(sentence, () => {
   if (ready.value) void loadQuestion();
 });
@@ -518,6 +560,29 @@ watch(sentence, () => {
               </button>
             </div>
             <p class="setting-note">{{ modeHelp }}</p>
+          </fieldset>
+          <fieldset :disabled="checking">
+            <legend>Accepted answers</legend>
+            <button
+              type="button"
+              class="alternatives-toggle"
+              :aria-pressed="acceptAlternatives"
+              @click="acceptAlternatives = !acceptAlternatives"
+            >
+              <span>Pre-generated alternatives</span>
+              <span>{{ acceptAlternatives ? "On" : "Off" }}</span>
+            </button>
+            <p class="setting-note">
+              Accept additional answers from our pre-generated list. Unlisted
+              wording can still be valid.
+            </p>
+            <p v-if="question" class="setting-note">
+              {{ question.alternativeCount }} pre-generated
+              {{
+                question.alternativeCount === 1 ? "alternative" : "alternatives"
+              }}
+              for this sentence.
+            </p>
           </fieldset>
         </aside>
         <section
@@ -683,7 +748,9 @@ watch(sentence, () => {
               >
                 {{
                   result.matched
-                    ? "✓ Matches the reference"
+                    ? result.acceptedAlternative
+                      ? "✓ Matches a pre-generated alternative"
+                      : "✓ Matches the reference"
                     : "× Does not match the reference"
                 }}
               </p>
@@ -766,6 +833,13 @@ watch(sentence, () => {
               v-if="!revealed && !result.matched"
               :explanations="result.explanations ?? []"
             />
+            <AlternativeAnswers
+              v-if="result.alternatives"
+              :alternatives="result.alternatives"
+              :matched-japanese="
+                !revealed ? result.acceptedAlternative?.japanese : undefined
+              "
+            />
           </section>
           <div v-else-if="question" class="below-paper">
             <button :disabled="checking" @click="submit(true)">
@@ -815,7 +889,9 @@ watch(sentence, () => {
             >
               {{
                 entry.outcome === JournalOutcome.Matched
-                  ? "✓ Matches the reference"
+                  ? entry.comparison?.acceptedAlternative
+                    ? "✓ Matches a pre-generated alternative"
+                    : "✓ Matches the reference"
                   : entry.outcome === JournalOutcome.Revealed
                     ? "Reference viewed"
                     : "× Does not match the reference"
@@ -897,6 +973,15 @@ watch(sentence, () => {
             :explanations="entry.comparison?.explanations ?? []"
             :expanded="false"
           />
+          <AlternativeAnswers
+            v-if="entry.comparison?.alternatives"
+            :alternatives="entry.comparison.alternatives"
+            :matched-japanese="
+              entry.outcome === JournalOutcome.Matched
+                ? entry.comparison.acceptedAlternative?.japanese
+                : undefined
+            "
+          />
         </article>
       </section>
     </main>
@@ -904,6 +989,29 @@ watch(sentence, () => {
 </template>
 
 <style scoped>
+.alternatives-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 11px;
+}
+.alternatives-toggle > span:last-child {
+  margin-left: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.alternatives-toggle[aria-pressed="true"] {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: rgba(185, 51, 39, 0.07);
+}
+
 .nav-count {
   margin-left: 6px;
   font-size: 9px;

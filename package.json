@@ -12,6 +12,8 @@
     "build": "bun scripts/prepare-disclosure.ts && bun --bun nuxt build",
     "generate": "bun scripts/prepare-disclosure.ts && bun --bun nuxt generate",
     "test": "bun test tests",
+    "alternatives:generate": "bun scripts/generate-alternatives.ts",
+    "alternatives:prompts": "bun scripts/generate-alternatives.ts --prompts",
     "preview": "bun --bun nuxt preview",
     "start": "bun .output/server/index.mjs",
     "postinstall": "bun --bun nuxt prepare && bun run hooks:install",

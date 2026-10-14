@@ -16,3 +16,4 @@ logs/
 .idea/
 .fleet/
 public/disclosures/
+data/alternatives/generation-prompts.jsonl

@@ -99,11 +99,32 @@ useSeoMeta({
         politeness, and omitted subjects can require context that an English
         prompt does not provide.
       </p>
+      <h2>Added alternative answers</h2>
+      <p>
+        Pre-generated alternatives are Tsuzuru additions to the imported
+        references. They come from rules that omit explicit first-person topics
+        or vary integer spellings, and from AI-authored wording added during
+        development. The original source files remain unchanged.
+      </p>
+      <p>
+        Subject omission relies on the speaker being implied by the prompt.
+        Number variants preserve the value and supplied readings; missing
+        pronunciations are not guessed. Each alternative displays its creator
+        and change explanation, and new Journal entries save those details.
+        Original source attribution and sentence links are retained separately.
+      </p>
+      <p>
+        These additions have not been independently checked by native speakers
+        and may contain errors. Enabling alternatives accepts listed forms under
+        your writing-mode settings; it does not assess every possible
+        translation. An unlisted answer may still be valid.
+      </p>
       <h2>License &amp; disclosure documents</h2>
       <p>
-        The learning data and adaptations retain their data licenses, separately
-        from Tsuzuru’s MIT software license. No source organization endorses
-        this app.
+        The alternative-answer bank is distributed under CC BY-SA 4.0 with
+        source attribution and modification notices. The learning data and
+        adaptations retain their data licenses, separately from Tsuzuru’s MIT
+        software license. No source organization endorses this app.
       </p>
       <ul>
         <li>
@@ -119,6 +140,11 @@ useSeoMeta({
         </li>
         <li>
           <a href="/disclosures/manifest.json">Import revision and checksums</a>
+        </li>
+        <li>
+          <a href="/disclosures/accepted-alternatives.json">
+            Pre-generated alternative answers (CC BY-SA 4.0)
+          </a>
         </li>
       </ul>
       <h2>Your practice stays with you</h2>
