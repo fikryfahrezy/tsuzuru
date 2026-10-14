@@ -39,3 +39,14 @@ test("every eligible exercise provides a hint without Japanese letters", () => {
       throw new Error(`Incomplete romaji for ${candidate.id}: ${hint}`);
   }
 });
+
+test("hints separate kana words and particles after an annotated noun", () => {
+  const candidate = exerciseById.get("8f62ed30e02787755889cb7f")!;
+  expect(romajiHint(candidate)).toBe("uta ga umakereba ii no ni naa.");
+});
+
+test("word spacing preserves polite negative and past endings", () => {
+  expect(romajiHint(exerciseById.get("02cb469b4193cbcf21c1460c")!)).toBe(
+    "sono hako ni ha nani mo arimasendeshita.",
+  );
+});

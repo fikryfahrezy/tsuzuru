@@ -1,4 +1,5 @@
 import { hiragana, parts, validReadings, type Candidate } from "./practice";
+import wordBoundaries from "../data/romaji/word-boundaries.json";
 
 const syllables: Record<string, string> = {};
 const rows = [
@@ -122,6 +123,19 @@ export function kanaToRomaji(reading: string): string {
 export function romajiHint(candidate: Candidate): string {
   const reading = validReadings(candidate)[0];
   if (!reading) return "";
+  const boundaries = (wordBoundaries as Record<string, number[]>)[reading];
+  if (boundaries) {
+    const kana = parts(reading)
+      .map((part) => part.reading)
+      .join("");
+    let start = 0;
+    const words = [...boundaries, kana.length].map((end) => {
+      const word = kana.slice(start, end);
+      start = end;
+      return word;
+    });
+    return formatRomaji(words.join(" "));
+  }
   const chunks: { text: string; annotated: boolean }[] = [];
   for (const part of parts(reading)) {
     if (!part.surface) continue;
@@ -162,7 +176,11 @@ export function romajiHint(candidate: Candidate): string {
       } else chunks.push({ text: literal, annotated: false });
     }
   }
-  return kanaToRomaji(chunks.map((chunk) => chunk.text).join(" "))
+  return formatRomaji(chunks.map((chunk) => chunk.text).join(" "));
+}
+
+function formatRomaji(reading: string): string {
+  return kanaToRomaji(reading)
     .replace(/\s+([.,!?;:)\]"％%])/gu, "$1")
     .replace(/([,;:!?])(?=\S)/gu, "$1 ")
     .replace(/([([])\s+/gu, "$1")

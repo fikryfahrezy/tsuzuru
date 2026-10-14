@@ -17,6 +17,8 @@
     "spellings:generate": ".cache/spelling-tools/bin/python scripts/generate-spelling-variants.py",
     "spellings:check": ".cache/spelling-tools/bin/python scripts/generate-spelling-variants.py --check",
     "spellings:test": "python3 -m unittest discover -s tests -p test_spelling_generator.py",
+    "romaji:generate": ".cache/spelling-tools/bin/python scripts/generate-romaji-boundaries.py",
+    "romaji:check": ".cache/spelling-tools/bin/python scripts/generate-romaji-boundaries.py --check",
     "preview": "bun --bun nuxt preview",
     "start": "bun .output/server/index.mjs",
     "postinstall": "bun --bun nuxt prepare && bun run hooks:install",
