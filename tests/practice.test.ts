@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { exercises } from "../server/utils/exercises";
 import {
   compare,
+  Strictness,
   lengthOf,
   validReadings,
   type Candidate,
@@ -18,18 +19,34 @@ const sentence: Candidate = {
 };
 describe("reference writing comparison", () => {
   test("kana accepts either kana script but rejects kanji", () => {
-    expect(compare(sentence, "みずをのみます", "kana").matched).toBe(true);
-    expect(compare(sentence, "ミズヲノミマス。", "kana").matched).toBe(true);
-    expect(compare(sentence, "水を飲みます", "kana").matched).toBe(false);
+    expect(compare(sentence, "みずをのみます", Strictness.Kana).matched).toBe(
+      true,
+    );
+    expect(compare(sentence, "ミズヲノミマス。", Strictness.Kana).matched).toBe(
+      true,
+    );
+    expect(compare(sentence, "水を飲みます", Strictness.Kana).matched).toBe(
+      false,
+    );
   });
   test("flexible accepts mixed writing without changing tense", () => {
-    expect(compare(sentence, "水をのみます", "flexible").matched).toBe(true);
-    expect(compare(sentence, "ミズを飲みます", "flexible").matched).toBe(true);
-    expect(compare(sentence, "水を飲みました", "flexible").matched).toBe(false);
+    expect(compare(sentence, "水をのみます", Strictness.Flexible).matched).toBe(
+      true,
+    );
+    expect(
+      compare(sentence, "ミズを飲みます", Strictness.Flexible).matched,
+    ).toBe(true);
+    expect(
+      compare(sentence, "水を飲みました", Strictness.Flexible).matched,
+    ).toBe(false);
   });
   test("exact preserves spelling with width, space, and punctuation tolerance", () => {
-    expect(compare(sentence, " 水を 飲みます！ ", "exact").matched).toBe(true);
-    expect(compare(sentence, "みずをのみます", "exact").matched).toBe(false);
+    expect(
+      compare(sentence, " 水を 飲みます！ ", Strictness.Exact).matched,
+    ).toBe(true);
+    expect(compare(sentence, "みずをのみます", Strictness.Exact).matched).toBe(
+      false,
+    );
   });
   test("homophone kanji cannot pass flexible mode", () => {
     const bridge = {
@@ -37,8 +54,8 @@ describe("reference writing comparison", () => {
       japanese: "橋です。",
       furiganaVariants: ["{橋|はし}です。"],
     };
-    expect(compare(bridge, "箸です", "flexible").matched).toBe(false);
-    expect(compare(bridge, "はしです", "flexible").matched).toBe(true);
+    expect(compare(bridge, "箸です", Strictness.Flexible).matched).toBe(false);
+    expect(compare(bridge, "はしです", Strictness.Flexible).matched).toBe(true);
   });
   test("mismatched annotations and incomplete readings are excluded", () => {
     expect(
@@ -49,7 +66,11 @@ describe("reference writing comparison", () => {
     ).toEqual([]);
   });
   test("empty or punctuation-only writing never matches", () => {
-    for (const mode of ["kana", "flexible", "exact"] as const)
+    for (const mode of [
+      Strictness.Kana,
+      Strictness.Flexible,
+      Strictness.Exact,
+    ] as const)
       expect(compare(sentence, " 。！ ", mode).matched).toBe(false);
   });
   test("length buckets include their boundaries", () => {
@@ -75,11 +96,11 @@ test("the imported bank supports every level and length without missing readings
     }
   }
   for (const row of exercises) {
-    const reference = compare(row, row.japanese, "exact");
+    const reference = compare(row, row.japanese, Strictness.Exact);
     if (
       !reference.matched ||
-      !compare(row, reference.kana, "kana").matched ||
-      !compare(row, row.japanese, "flexible").matched
+      !compare(row, reference.kana, Strictness.Kana).matched ||
+      !compare(row, row.japanese, Strictness.Flexible).matched
     ) {
       throw new Error(`Inconsistent reference forms for ${row.id}`);
     }

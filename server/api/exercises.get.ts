@@ -1,14 +1,16 @@
 import { createError, defineEventHandler, getQuery } from "h3";
 import { randomInt } from "node:crypto";
 import { exercises } from "../utils/exercises";
-import { lengthOf, levels, type Question } from "../../shared/practice";
+import {
+  lengthOf,
+  isLevel,
+  isLength,
+  type Question,
+} from "../../shared/practice";
 
 export default defineEventHandler((event): Question => {
   const query = getQuery(event);
-  if (
-    !levels.some((level) => level === query.level) ||
-    !["short", "medium", "long"].includes(String(query.length))
-  ) {
+  if (!isLevel(query.level) || !isLength(query.length)) {
     throw createError({
       statusCode: 400,
       statusMessage: "Choose a valid level and length.",

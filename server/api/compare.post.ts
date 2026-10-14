@@ -1,6 +1,6 @@
 import { createError, defineEventHandler, readBody } from "h3";
 import { exerciseById } from "../utils/exercises";
-import { compare, type Strictness } from "../../shared/practice";
+import { compare, isStrictness } from "../../shared/practice";
 
 export default defineEventHandler(async (event) => {
   const body: unknown = await readBody(event);
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     typeof body.answer !== "string" ||
     !body.answer.trim() ||
     body.answer.length > 2000 ||
-    !["kana", "flexible", "exact"].includes(String(body.mode))
+    !isStrictness(body.mode)
   ) {
     throw createError({
       statusCode: 400,
@@ -28,5 +28,5 @@ export default defineEventHandler(async (event) => {
       statusCode: 404,
       statusMessage: "This sentence is unavailable. Load another sentence.",
     });
-  return compare(row, body.answer, body.mode as Strictness);
+  return compare(row, body.answer, body.mode);
 });

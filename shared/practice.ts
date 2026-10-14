@@ -1,10 +1,34 @@
 import { writingDifferences } from "./writing-diff";
 import { explainWriting } from "./writing-explanations";
 
-export const levels = ["N5", "N4", "N3", "N2", "N1"] as const;
-export type Level = (typeof levels)[number];
-export type Length = "short" | "medium" | "long";
-export type Strictness = "kana" | "flexible" | "exact";
+export enum Level {
+  N5 = "N5",
+  N4 = "N4",
+  N3 = "N3",
+  N2 = "N2",
+  N1 = "N1",
+}
+
+export enum Length {
+  Short = "short",
+  Medium = "medium",
+  Long = "long",
+}
+
+export enum Strictness {
+  Kana = "kana",
+  Flexible = "flexible",
+  Exact = "exact",
+}
+
+export enum DifferenceKind {
+  Same = "same",
+  Changed = "changed",
+  Extra = "extra",
+  Missing = "missing",
+}
+
+export const levels = Object.values(Level);
 export interface Candidate {
   id: string;
   english: string;
@@ -22,7 +46,7 @@ export interface Question {
 }
 export interface DifferencePart {
   text: string;
-  kind: "same" | "changed" | "extra" | "missing";
+  kind: DifferenceKind;
   expected?: string;
 }
 export interface Comparison {
@@ -102,9 +126,9 @@ export function compare(
   const readings = validReadings(candidate);
   let matched = false;
   if (normalized) {
-    if (mode === "exact")
+    if (mode === Strictness.Exact)
       matched = normalized === normalize(candidate.japanese);
-    else if (mode === "kana") {
+    else if (mode === Strictness.Kana) {
       matched =
         !/\p{Script=Han}/u.test(normalized) &&
         readings.some(
@@ -156,5 +180,21 @@ export function compare(
 }
 
 export function lengthOf(count: number): Length {
-  return count <= 7 ? "short" : count <= 12 ? "medium" : "long";
+  return count <= 7 ? Length.Short : count <= 12 ? Length.Medium : Length.Long;
+}
+
+export function isLevel(value: unknown): value is Level {
+  return Object.values(Level).some((item) => item === value);
+}
+
+export function isLength(value: unknown): value is Length {
+  return Object.values(Length).some((item) => item === value);
+}
+
+export function isStrictness(value: unknown): value is Strictness {
+  return Object.values(Strictness).some((item) => item === value);
+}
+
+export function isDifferenceKind(value: unknown): value is DifferenceKind {
+  return Object.values(DifferenceKind).some((item) => item === value);
 }

@@ -5,7 +5,8 @@ import {
   validReadings,
   type Candidate,
   type DifferencePart,
-  type Strictness,
+  Strictness,
+  DifferenceKind,
   type DifferenceDetails,
   type WritingEdit,
 } from "./practice";
@@ -21,7 +22,7 @@ type Operation = {
 function spellingGraph(candidate: Candidate, mode: Strictness): Edge[][] {
   const graph: Edge[][] = [[]];
   const fold = (text: string) =>
-    mode === "exact" ? normalize(text) : hiragana(normalize(text));
+    mode === Strictness.Exact ? normalize(text) : hiragana(normalize(text));
   function append(start: number, options: string[]): number {
     const ends: number[] = [];
     for (const option of new Set(options.map(fold))) {
@@ -35,7 +36,7 @@ function spellingGraph(candidate: Candidate, mode: Strictness): Edge[][] {
     graph.push(ends.map((from) => ({ from, character: "" })));
     return graph.length - 1;
   }
-  if (mode === "exact") append(0, [candidate.japanese]);
+  if (mode === Strictness.Exact) append(0, [candidate.japanese]);
   else {
     const ends: number[] = [];
     for (const reading of validReadings(candidate)) {
@@ -43,7 +44,9 @@ function spellingGraph(candidate: Candidate, mode: Strictness): Edge[][] {
       for (const part of parts(reading))
         node = append(
           node,
-          mode === "kana" ? [part.reading] : [part.surface, part.reading],
+          mode === Strictness.Kana
+            ? [part.reading]
+            : [part.surface, part.reading],
         );
       ends.push(node);
     }
@@ -65,7 +68,7 @@ export function writingDifferences(
   const characters: { text: string; original: number }[] = [];
   graphemes.forEach((text, original) => {
     const normalized =
-      mode === "exact" ? normalize(text) : hiragana(normalize(text));
+      mode === Strictness.Exact ? normalize(text) : hiragana(normalize(text));
     for (const character of normalized)
       characters.push({ text: character, original });
   });
@@ -123,14 +126,25 @@ export function writingDifferences(
     const expected = edgeCharacters[node]![j]!;
     if (step === 4) node = from;
     else if (step === 1) {
-      operations.push({ kind: "extra", answerIndex: j - 1, expected: "" });
+      operations.push({
+        kind: DifferenceKind.Extra,
+        answerIndex: j - 1,
+        expected: "",
+      });
       j--;
     } else if (step === 2) {
-      operations.push({ kind: "missing", answerIndex: j, expected });
+      operations.push({
+        kind: DifferenceKind.Missing,
+        answerIndex: j,
+        expected,
+      });
       node = from;
     } else if (step === 3) {
       operations.push({
-        kind: characters[j - 1]!.text === expected ? "same" : "changed",
+        kind:
+          characters[j - 1]!.text === expected
+            ? DifferenceKind.Same
+            : DifferenceKind.Changed,
         answerIndex: j - 1,
         expected,
       });
@@ -141,16 +155,20 @@ export function writingDifferences(
   operations.reverse();
   const edits: WritingEdit[] = [];
   for (let start = 0; start < operations.length;) {
-    if (operations[start]!.kind === "same") {
+    if (operations[start]!.kind === DifferenceKind.Same) {
       start++;
       continue;
     }
     let end = start;
-    while (end < operations.length && operations[end]!.kind !== "same") end++;
+    while (
+      end < operations.length &&
+      operations[end]!.kind !== DifferenceKind.Same
+    )
+      end++;
     const run = operations.slice(start, end);
     const originalIndexes = new Set(
       run
-        .filter((op) => op.kind !== "missing")
+        .filter((op) => op.kind !== DifferenceKind.Missing)
         .map((op) => characters[op.answerIndex]!.original),
     );
     const expected = run.map((op) => op.expected).join("");
@@ -177,34 +195,37 @@ export function writingDifferences(
     });
     start = end;
   }
-  const statuses = graphemes.map((): DifferencePart["kind"] => "same");
+  const statuses = graphemes.map(
+    (): DifferencePart["kind"] => DifferenceKind.Same,
+  );
   const missing = new Map<number, string[]>();
   const expectedParts: DifferencePart[] = [];
   for (const operation of operations) {
-    if (operation.kind === "missing") {
+    if (operation.kind === DifferenceKind.Missing) {
       const at =
         characters[operation.answerIndex]?.original ??
         (characters.at(-1)?.original ?? -1) + 1;
       missing.set(at, [...(missing.get(at) ?? []), operation.expected]);
     } else {
       const index = characters[operation.answerIndex]!.original;
-      if (operation.kind !== "same") statuses[index] = operation.kind;
+      if (operation.kind !== DifferenceKind.Same)
+        statuses[index] = operation.kind;
     }
     if (operation.expected)
       expectedParts.push({
         text: operation.expected,
         kind:
-          operation.kind === "same"
-            ? "same"
-            : operation.kind === "missing"
-              ? "missing"
-              : "changed",
+          operation.kind === DifferenceKind.Same
+            ? DifferenceKind.Same
+            : operation.kind === DifferenceKind.Missing
+              ? DifferenceKind.Missing
+              : DifferenceKind.Changed,
       });
   }
   const answerParts: DifferencePart[] = [];
   for (let index = 0; index <= graphemes.length; index++) {
     for (const expected of missing.get(index) ?? [])
-      answerParts.push({ text: "□", kind: "missing", expected });
+      answerParts.push({ text: "□", kind: DifferenceKind.Missing, expected });
     if (index < graphemes.length)
       answerParts.push({ text: graphemes[index]!, kind: statuses[index]! });
   }

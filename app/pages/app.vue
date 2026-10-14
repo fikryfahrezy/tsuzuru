@@ -5,9 +5,14 @@ import { $fetch } from "ofetch";
 import {
   levels,
   normalize,
-  type Level,
-  type Length,
-  type Strictness,
+  Level,
+  isLevel,
+  isLength,
+  isStrictness,
+  isDifferenceKind,
+  DifferenceKind,
+  Length,
+  Strictness,
   type Question,
   type Comparison,
 } from "#shared/practice";
@@ -30,21 +35,32 @@ useSeoMeta({
     "Choose a vocabulary level and sentence length, write in Japanese, and compare your writing with a reference.",
 });
 
+enum JournalOutcome {
+  Matched = "matched",
+  Unmatched = "unmatched",
+  Revealed = "revealed",
+}
+
+enum PracticeTab {
+  Practice = "practice",
+  Journal = "journal",
+}
+
 type Entry = {
   id: string;
   english: string;
   answer: string;
   reference: string;
-  outcome: "matched" | "unmatched" | "revealed";
+  outcome: JournalOutcome;
   date: string;
   level: Level;
   mode?: Strictness;
   comparison?: Comparison | null;
 };
-const level = ref<Level>("N5");
-const length = ref<Length>("short");
-const mode = ref<Strictness>("flexible");
-const tab = ref<"practice" | "journal">("practice");
+const level = ref<Level>(Level.N5);
+const length = ref<Length>(Length.Short);
+const mode = ref<Strictness>(Strictness.Flexible);
+const tab = ref<PracticeTab>(PracticeTab.Practice);
 const settingsOpen = ref(false);
 const question = ref<Question | null>(null);
 const answer = ref("");
@@ -71,21 +87,22 @@ let request = 0;
 const modeHelp = computed(
   () =>
     ({
-      kana: "Write entirely in hiragana or katakana. Kanji is not accepted in this mode.",
-      flexible:
+      [Strictness.Kana]:
+        "Write entirely in hiragana or katakana. Kanji is not accepted in this mode.",
+      [Strictness.Flexible]:
         "Use the reference kanji, their kana readings, or a mixture of both.",
-      exact: "Match the reference’s kanji and kana spelling.",
+      [Strictness.Exact]: "Match the reference’s kanji and kana spelling.",
     })[mode.value],
 );
 const lengthOptions = [
-  { value: "short", label: "Short", note: "1–7 words" },
-  { value: "medium", label: "Medium", note: "8–12 words" },
-  { value: "long", label: "Long", note: "13+ words" },
+  { value: Length.Short, label: "Short", note: "1–7 words" },
+  { value: Length.Medium, label: "Medium", note: "8–12 words" },
+  { value: Length.Long, label: "Long", note: "13+ words" },
 ] as const;
 const modes = [
-  { value: "kana", label: "Kana only", mark: "あ" },
-  { value: "flexible", label: "Kana + kanji", mark: "あ漢" },
-  { value: "exact", label: "Exact writing", mark: "漢" },
+  { value: Strictness.Kana, label: "Kana only", mark: "あ" },
+  { value: Strictness.Flexible, label: "Kana + kanji", mark: "あ漢" },
+  { value: Strictness.Exact, label: "Exact writing", mark: "漢" },
 ] as const;
 
 function persist() {
@@ -160,10 +177,10 @@ async function submit(reveal = false) {
         answer: reveal ? "" : answer.value,
         reference: comparison.reference,
         outcome: reveal
-          ? "revealed"
+          ? JournalOutcome.Revealed
           : comparison.matched
-            ? "matched"
-            : "unmatched",
+            ? JournalOutcome.Matched
+            : JournalOutcome.Unmatched,
         date: new Date().toISOString(),
         level: level.value,
         mode: mode.value,
@@ -227,7 +244,7 @@ function restoreComparison(value: unknown): Comparison | null {
       (part) =>
         part &&
         typeof part.text === "string" &&
-        ["same", "changed", "extra", "missing"].includes(part.kind) &&
+        isDifferenceKind(part.kind) &&
         (part.expected === undefined || typeof part.expected === "string"),
     );
     if (!valid) return null;
@@ -262,11 +279,9 @@ onMounted(() => {
       localStorage.getItem("tsuzuru.practice.v1") ?? "null",
     );
     if (saved && typeof saved === "object") {
-      if (levels.includes(saved.level)) level.value = saved.level;
-      if (["short", "medium", "long"].includes(saved.length))
-        length.value = saved.length;
-      if (["kana", "flexible", "exact"].includes(saved.mode))
-        mode.value = saved.mode;
+      if (isLevel(saved.level)) level.value = saved.level;
+      if (isLength(saved.length)) length.value = saved.length;
+      if (isStrictness(saved.mode)) mode.value = saved.mode;
       if (Array.isArray(saved.journal))
         journal.value = saved.journal
           .filter((entry: unknown): entry is Entry => {
@@ -279,8 +294,8 @@ onMounted(() => {
               typeof row.reference === "string" &&
               typeof row.date === "string" &&
               Number.isFinite(Date.parse(row.date)) &&
-              levels.includes(row.level) &&
-              ["matched", "unmatched", "revealed"].includes(row.outcome)
+              isLevel(row.level) &&
+              Object.values(JournalOutcome).includes(row.outcome)
             );
           })
           .map((entry: Entry) => ({
@@ -330,10 +345,10 @@ watch(mode, () => {
       >
       <nav aria-label="Main navigation">
         <button
-          :class="{ active: tab === 'practice' }"
-          :aria-pressed="tab === 'practice'"
+          :class="{ active: tab === PracticeTab.Practice }"
+          :aria-pressed="tab === PracticeTab.Practice"
           @click="
-            tab = 'practice';
+            tab = PracticeTab.Practice;
             settingsOpen = false;
           "
         >
@@ -341,10 +356,10 @@ watch(mode, () => {
           ><span>Practice</span>
         </button>
         <button
-          :class="{ active: tab === 'journal' }"
-          :aria-pressed="tab === 'journal'"
+          :class="{ active: tab === PracticeTab.Journal }"
+          :aria-pressed="tab === PracticeTab.Journal"
           @click="
-            tab = 'journal';
+            tab = PracticeTab.Journal;
             settingsOpen = false;
           "
         >
@@ -362,11 +377,15 @@ watch(mode, () => {
       <header class="workspace-heading">
         <div>
           <h1>
-            {{ tab === "practice" ? "Sentence practice" : "Practice journal" }}
+            {{
+              tab === PracticeTab.Practice
+                ? "Sentence practice"
+                : "Practice journal"
+            }}
           </h1>
         </div>
         <button
-          v-if="tab === 'practice'"
+          v-if="tab === PracticeTab.Practice"
           class="settings-toggle"
           :aria-expanded="settingsOpen"
           aria-controls="practice-settings"
@@ -380,7 +399,7 @@ watch(mode, () => {
         You’re offline. Your saved journal is available. Connect to load
         sentences and check answers.
       </p>
-      <div v-if="tab === 'practice'" class="practice-layout">
+      <div v-if="tab === PracticeTab.Practice" class="practice-layout">
         <button
           v-if="settingsOpen"
           class="settings-scrim"
@@ -491,11 +510,11 @@ watch(mode, () => {
                     :key="index"
                     :class="`difference-${part.kind}`"
                     :title="
-                      part.kind === 'missing'
+                      part.kind === DifferenceKind.Missing
                         ? `Missing: ${part.expected}`
-                        : part.kind === 'extra'
+                        : part.kind === DifferenceKind.Extra
                           ? 'Extra character'
-                          : part.kind === 'changed'
+                          : part.kind === DifferenceKind.Changed
                             ? 'Different from reference'
                             : undefined
                     "
@@ -617,7 +636,7 @@ watch(mode, () => {
           <p>
             Your writing and references will appear here after you practice.
           </p>
-          <button class="primary-button" @click="tab = 'practice'">
+          <button class="primary-button" @click="tab = PracticeTab.Practice">
             Start writing →
           </button>
         </div>
@@ -641,13 +660,13 @@ watch(mode, () => {
             ><span
               class="journal-outcome"
               :class="{
-                'success-text': entry.outcome === 'matched',
-                unmatched: entry.outcome === 'unmatched',
+                'success-text': entry.outcome === JournalOutcome.Matched,
+                unmatched: entry.outcome === JournalOutcome.Unmatched,
               }"
               >{{
-                entry.outcome === "matched"
+                entry.outcome === JournalOutcome.Matched
                   ? "✓ Matches the reference"
-                  : entry.outcome === "revealed"
+                  : entry.outcome === JournalOutcome.Revealed
                     ? "Reference viewed"
                     : "× Does not match the reference"
               }}</span
@@ -657,18 +676,19 @@ watch(mode, () => {
           <p v-if="entry.answer" class="journal-answer" lang="ja">
             <template
               v-if="
-                entry.outcome === 'unmatched' && entry.comparison?.differences
+                entry.outcome === JournalOutcome.Unmatched &&
+                entry.comparison?.differences
               "
               ><span
                 v-for="(part, index) in entry.comparison.differences.answer"
                 :key="index"
                 :class="`difference-${part.kind}`"
                 :title="
-                  part.kind === 'missing'
+                  part.kind === DifferenceKind.Missing
                     ? `Missing: ${part.expected}`
-                    : part.kind === 'extra'
+                    : part.kind === DifferenceKind.Extra
                       ? 'Extra character'
-                      : part.kind === 'changed'
+                      : part.kind === DifferenceKind.Changed
                         ? 'Different from reference'
                         : undefined
                 "
@@ -679,14 +699,16 @@ watch(mode, () => {
           </p>
           <p class="journal-reference difference-reference">
             {{
-              entry.outcome === "unmatched" && entry.comparison?.differences
+              entry.outcome === JournalOutcome.Unmatched &&
+              entry.comparison?.differences
                 ? "Expected"
                 : "Reference"
             }}
             <span class="journal-reference-text" lang="ja"
               ><template
                 v-if="
-                  entry.outcome === 'unmatched' && entry.comparison?.differences
+                  entry.outcome === JournalOutcome.Unmatched &&
+                  entry.comparison?.differences
                 "
                 ><span
                   v-for="(part, index) in entry.comparison.differences.expected"
@@ -699,7 +721,8 @@ watch(mode, () => {
           </p>
           <p
             v-if="
-              entry.outcome === 'unmatched' && !entry.comparison?.differences
+              entry.outcome === JournalOutcome.Unmatched &&
+              !entry.comparison?.differences
             "
             class="journal-legacy-note"
           >
@@ -714,7 +737,7 @@ watch(mode, () => {
             >Tatoeba source ↗</a
           >
           <WritingExplanations
-            v-if="entry.outcome === 'unmatched'"
+            v-if="entry.outcome === JournalOutcome.Unmatched"
             :explanations="entry.comparison?.explanations ?? []"
             :expanded="false"
           />

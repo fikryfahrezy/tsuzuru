@@ -3,7 +3,8 @@ import {
   validReadings,
   type Candidate,
   type DifferenceDetails,
-  type Strictness,
+  Strictness,
+  DifferenceKind,
   type WritingExplanation,
 } from "./practice";
 import { writingDifferences } from "./writing-diff";
@@ -15,7 +16,7 @@ export function explainWriting(
   differences: DifferenceDetails,
 ): WritingExplanation[] {
   const explanations: WritingExplanation[] = [];
-  if (mode === "kana" && /\p{Script=Han}/u.test(answer)) {
+  if (mode === Strictness.Kana && /\p{Script=Han}/u.test(answer)) {
     explanations.push({
       title: "Kanji in kana-only mode",
       detail:
@@ -25,9 +26,9 @@ export function explainWriting(
     });
   }
   if (
-    mode === "exact" &&
-    writingDifferences(candidate, answer, "flexible").answer.every(
-      (part) => part.kind === "same",
+    mode === Strictness.Exact &&
+    writingDifferences(candidate, answer, Strictness.Flexible).answer.every(
+      (part) => part.kind === DifferenceKind.Same,
     )
   ) {
     return [
@@ -68,7 +69,7 @@ export function explainWriting(
       explanations.push({
         title: kanji ? "Different kanji or spelling" : "Different spelling",
         detail:
-          word && mode === "flexible"
+          word && mode === Strictness.Flexible
             ? `The reference uses 「${word.surface}」, with the supplied reading 「${word.reading}」. This mode accepts that kanji spelling or its reading, but not another kanji spelling.`
             : "The reference uses different text at this position. Replace the highlighted text with the expected spelling shown below. This comparison does not determine whether an alternative translation is grammatically valid.",
         ...edit,
