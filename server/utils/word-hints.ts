@@ -4,16 +4,18 @@ import n3 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f
 import n2 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n2.json";
 import n1 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n1.json";
 import {
+  HintSource,
   hiragana,
-  parts,
   validReadings,
   type Candidate,
   type PromptPart,
 } from "../../shared/practice";
 import { kanaToRomaji } from "../../shared/romaji";
 import lemmatize from "wink-lemmatizer";
+import { referenceLexemes } from "./reference-lexemes";
 import {
   sentencePhraseHints,
+  referenceReading,
   type SentencePhraseSpan,
 } from "./sentence-phrase-hints";
 
@@ -112,13 +114,24 @@ function lookupPhrase(words: string[]): Entry[] {
 }
 
 export function wordHints(candidate: Candidate): PromptPart[] {
-  const annotatedWords = new Set(
-    validReadings(candidate).flatMap((reading) =>
-      parts(reading)
-        .filter((part) => part.surface !== part.reading)
-        .map((part) => part.surface),
-    ),
-  );
+  const lexemes = referenceLexemes(candidate);
+  const forms = new Map<string, { japanese: string; reading: string }[]>();
+  const primaryReference = {
+    ...candidate,
+    furiganaVariants: validReadings(candidate).slice(0, 1),
+  };
+  const referenceForms = (entry: Entry) => {
+    if (!forms.has(entry.word)) {
+      const inflected = lexemes.filter((lexeme) => lexeme.lemma === entry.word);
+      const readings = referenceReading(primaryReference, entry.word);
+      forms.set(entry.word, [
+        ...inflected,
+        ...readings.map((reading) => ({ japanese: entry.word, reading })),
+      ]);
+    }
+    return forms.get(entry.word)!;
+  };
+  const inReference = (entry: Entry) => referenceForms(entry).length > 0;
   const tokens =
     candidate.english.match(
       /[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*|[^\p{L}\p{N}]+/gu,
@@ -172,6 +185,16 @@ export function wordHints(candidate: Candidate): PromptPart[] {
           break;
         const phraseMatches = lookupPhrase(words);
         if (phraseMatches.length) {
+          const phraseInReference = phraseMatches.some(inReference);
+          const individualInReference = words.some((word) =>
+            lookup(word).some(inReference),
+          );
+          // A generic phrase must not hide words supplied by this sentence.
+          if (
+            !phraseInReference &&
+            (matches.some(inReference) || individualInReference)
+          )
+            continue;
           end = cursor;
           matches = phraseMatches;
         }
@@ -187,32 +210,46 @@ export function wordHints(candidate: Candidate): PromptPart[] {
         isWord: true,
         hints: annotation.hints,
         phrase: annotation.phrase,
-        hintSource: "sentence" as const,
+        hintSource: HintSource.Sentence,
       };
     const isWord = /^[\p{L}\p{N}]/u.test(text);
-    const inReference = (entry: Entry) =>
-      annotatedWords.has(entry.word) || candidate.japanese.includes(entry.word);
-    const sorted = matches
-      .filter((entry) => entry.exact || inReference(entry))
-      .sort(
-        (a, b) =>
-          Number(inReference(b)) - Number(inReference(a)) ||
-          Number(b.exact) - Number(a.exact),
-      );
+    const contextual = matches.filter(inReference);
+    const sentenceMatched = contextual.length > 0;
+    const sorted = (
+      sentenceMatched ? contextual : matches.filter((entry) => entry.exact)
+    ).sort(
+      (a, b) =>
+        Number(inReference(b)) - Number(inReference(a)) ||
+        Number(b.exact) - Number(a.exact),
+    );
     const seen = new Set<string>();
     const hints = sorted
-      .filter((entry) => {
-        if (seen.has(entry.word)) return false;
-        seen.add(entry.word);
+      .flatMap((entry) => {
+        const supplied = referenceForms(entry);
+        const choices = supplied.length
+          ? supplied
+          : [{ japanese: entry.word, reading: entry.reading }];
+        return choices.map((form) => ({
+          japanese: form.japanese,
+          reading: form.reading,
+          romaji: kanaToRomaji(form.reading),
+          meaning: entry.meaning,
+        }));
+      })
+      .filter((hint) => {
+        const key = `${hint.japanese}\0${hint.reading}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
         return true;
       })
-      .slice(0, 3)
-      .map((entry) => ({
-        japanese: entry.word,
-        reading: entry.reading,
-        romaji: kanaToRomaji(entry.reading),
-        meaning: entry.meaning,
-      }));
-    return { text, isWord, hints };
+      .slice(0, 3);
+    return {
+      text,
+      isWord,
+      hints,
+      // Presence in the reference validates the wording and pronunciation,
+      // but does not establish the English meaning or occurrence alignment.
+      ...(sentenceMatched ? { hintSource: HintSource.Reference } : {}),
+    };
   });
 }

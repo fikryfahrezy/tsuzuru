@@ -2,7 +2,7 @@ import { expect, test } from "bun:test";
 import { createApp, toWebHandler } from "h3";
 import exerciseHandler from "../server/api/exercises.get";
 import compareHandler from "../server/api/compare.post";
-import { Strictness } from "../shared/practice";
+import { HintSource, Strictness } from "../shared/practice";
 import { romajiHint } from "../shared/romaji";
 import { wordHints } from "../server/utils/word-hints";
 import { exerciseById } from "../server/utils/exercises";
@@ -85,7 +85,7 @@ test("sentence API delivers contextual and separated phrase hints", async () => 
     text: "got up",
     isWord: true,
     phrase: "got up",
-    hintSource: "sentence",
+    hintSource: HintSource.Sentence,
     hints: [
       {
         japanese: "起きた",

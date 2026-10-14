@@ -105,6 +105,35 @@ class RomajiGeneratorTests(unittest.TestCase):
                          ["がっこう", "では", "べんきょう", "する", "。"])
         self.assertEqual(self.words("はめていた。"), ["はめて", "いた", "。"])
 
+    def lexemes(self, furigana):
+        surface, offsets = generator.reading_offsets(furigana)
+        tokens = list(self.tokenizer.tokenize(surface, SplitMode.C))
+        boundaries = generator.word_boundaries(self.tokenizer, surface, offsets)
+        return generator.reference_lexemes(tokens, surface, offsets, furigana, boundaries)
+
+    def test_inflected_forms_retain_supplied_readings_and_endings(self):
+        self.assertEqual(self.lexemes("{水|みず}を{飲|の}みました。"),
+                         [{"lemma": "飲む", "japanese": "飲みました", "reading": "のみました"}])
+        self.assertEqual(self.lexemes("{高|たか}くても{買|か}います。"),
+                         [{"lemma": "高い", "japanese": "高くても", "reading": "たかくても"},
+                          {"lemma": "買う", "japanese": "買います", "reading": "かいます"}])
+
+    def test_lexemes_never_split_or_guess_annotated_pronunciations(self):
+        self.assertEqual(self.lexemes("{飲み|のみ}ました。"),
+                         [{"lemma": "飲む", "japanese": "飲みました", "reading": "のみました"}])
+        self.assertEqual(self.lexemes("{飲みます|のみます}。"),
+                         [{"lemma": "飲む", "japanese": "飲みます", "reading": "のみます"}])
+        self.assertEqual(self.lexemes("{水を飲みます|みずをのみます}。"), [])
+        self.assertEqual(self.lexemes("{飲んでいる|のんでいる}。"), [])
+        self.assertEqual(self.lexemes("{相次|あいつ}いで。"), [])
+        self.assertEqual(self.lexemes("{読|よ}んではいけない。")[0],
+                         {"lemma": "読む", "japanese": "読んでは", "reading": "よんでは"})
+
+    def test_honorific_prefix_is_part_of_inflected_hint(self):
+        self.assertEqual(self.lexemes("お{待|ま}ちください。"),
+                         [{"lemma": "待つ", "japanese": "お待ち", "reading": "おまち"},
+                          {"lemma": "くださる", "japanese": "ください", "reading": "ください"}])
+
 
 if __name__ == "__main__":
     unittest.main()

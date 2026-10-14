@@ -110,3 +110,23 @@ spaced even when their spelling matches a conjunction.
 The regular Bun tests reject missing spacing for eligible readings and changed
 review snapshots. CI also regenerates the bank in check mode and runs generator
 tests, so changes to source data or spacing rules require an updated bank.
+
+The same generator produces `romaji/reference-lexemes.json`, which connects
+dictionary forms of verbs and adjectives to their complete conjugated words in
+the reference. Endings and honorific prefixes use the romaji word boundaries;
+all readings come from the supplied furigana. Word hints use these forms before
+dictionary alternatives, so an English match for 飲む can display 飲みました
+with its supplied reading. Whole-word annotations containing a stem and endings
+are supported without splitting their reading; annotations spanning multiple
+lexical words are excluded. Repeated words retain their distinct reference
+forms and readings as hint alternatives, using the same primary furigana as
+the romaji hint. This handles inflection, while idioms and English meanings
+absent from the glossary still need explicit mappings in
+`phrase-hints/sentences.json`. Dictionary fallback hints retain their existing
+dictionary-source note.
+
+Only explicit entries in `phrase-hints/sentences.json` are labeled as sentence
+translations. Automatic glossary matches are labeled as possible reference
+vocabulary: the spelling and reading occur in the reference, while dictionary
+meanings and English word pairing remain unconfirmed. Add a reviewed sentence
+mapping when a polysemous English word would otherwise suggest the wrong sense.

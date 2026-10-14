@@ -30,7 +30,10 @@ export interface SentencePhraseSpan extends Span {
 const entries = new Map(bank.entries.map((entry) => [entry.sentenceId, entry]));
 
 // Read only supplied furigana; never guess a kanji reading or accept a partial annotation.
-function referenceReading(candidate: Candidate, japanese: string): string[] {
+export function referenceReading(
+  candidate: Candidate,
+  japanese: string,
+): string[] {
   const readings: string[] = [];
   for (const reading of validReadings(candidate)) {
     for (
@@ -73,6 +76,10 @@ export function sentencePhraseHints(
   )
     return [];
   const result: SentencePhraseSpan[] = [];
+  const primaryReference = {
+    ...candidate,
+    furiganaVariants: validReadings(candidate).slice(0, 1),
+  };
   const wordTokens = [
     ...candidate.english.matchAll(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu),
   ];
@@ -105,7 +112,7 @@ export function sentencePhraseHints(
         !hint.meaning ||
         !hint.reading ||
         /[\p{Script=Han}{}|]/u.test(hint.reading) ||
-        !referenceReading(candidate, hint.japanese).includes(
+        !referenceReading(primaryReference, hint.japanese).includes(
           hiragana(hint.reading),
         )
       )

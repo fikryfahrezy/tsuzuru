@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from "vue";
-import type { Question } from "#shared/practice";
+import { HintSource, type Question } from "#shared/practice";
 const props = defineProps<{
   question: Question | null;
   loading: boolean;
@@ -36,7 +36,7 @@ watch(
 
 <template>
   <div class="prompt">
-    <p class="paper-label">TRANSLATE INTO JAPANESE</p>
+    <p class="paper-label">Translate into Japanese</p>
     <h2 v-if="question" class="english-prompt">
       <template v-for="(part, index) in question.wordHints" :key="index">
         <button
@@ -69,7 +69,15 @@ watch(
     >
       <div class="word-hint-heading">
         <p class="paper-label">
-          JAPANESE HINT · {{ activeWord.phrase ?? activeWord.text }}
+          {{
+            activeWord.hintSource === HintSource.Reference
+              ? "Possible reference vocabulary"
+              : "Japanese hint"
+          }}
+          ·
+          <span class="word-hint-phrase">
+            {{ activeWord.phrase ?? activeWord.text }}
+          </span>
         </p>
         <button
           type="button"
@@ -103,9 +111,11 @@ watch(
       </p>
       <p v-if="activeWord.hints.length" class="setting-note">
         {{
-          activeWord.hintSource === "sentence"
+          activeWord.hintSource === HintSource.Sentence
             ? "Wording and reading from this sentence's Japanese reference."
-            : "Dictionary forms and meanings; the wording used in this sentence may differ."
+            : activeWord.hintSource === HintSource.Reference
+              ? "Vocabulary found in the Japanese reference, with dictionary meanings. The exact meaning and English word pairing are not confirmed."
+              : "Dictionary forms and meanings; the wording used in this sentence may differ."
         }}
       </p>
     </section>
@@ -128,7 +138,7 @@ watch(
       class="romaji-hint"
       :hidden="!showRomaji"
     >
-      <p class="paper-label">REFERENCE IN ROMAJI</p>
+      <p class="paper-label">Reference in romaji</p>
       <p lang="ja-Latn">{{ question.romaji }}</p>
       <small>
         Kana spelling in Latin letters; other translations may also be valid.
@@ -146,9 +156,13 @@ watch(
     sans-serif;
 }
 .paper-label {
+  text-transform: uppercase;
   font-size: 9px;
   letter-spacing: 0.09em;
   color: var(--muted);
+}
+.word-hint-phrase {
+  text-transform: none;
 }
 .prompt {
   padding: 28px 32px 22px;

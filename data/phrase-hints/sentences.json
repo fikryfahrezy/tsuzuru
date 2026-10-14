@@ -456,6 +456,68 @@
           ]
         }
       ]
+    },
+    {
+      "sentenceId": "1da7295f0006574b48b73277",
+      "english": "Do you have a laundry service?",
+      "japanese": "洗濯のサービスはありますか。",
+      "phrases": [
+        {
+          "spans": [
+            {
+              "start": 14,
+              "end": 21,
+              "text": "laundry"
+            }
+          ],
+          "hints": [
+            {
+              "japanese": "洗濯",
+              "reading": "せんたく",
+              "meaning": "laundry"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "00121c45c61969376c90e342",
+      "english": "She wore a diamond ring on her left third finger.",
+      "japanese": "彼女は左手の薬指にダイヤの指輪をはめていた。",
+      "phrases": [
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 8,
+              "text": "wore"
+            }
+          ],
+          "hints": [
+            {
+              "japanese": "はめていた",
+              "reading": "はめていた",
+              "meaning": "was wearing (a ring)"
+            }
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 31,
+              "end": 35,
+              "text": "left"
+            }
+          ],
+          "hints": [
+            {
+              "japanese": "左手",
+              "reading": "ひだりて",
+              "meaning": "left hand"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

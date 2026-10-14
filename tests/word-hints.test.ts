@@ -4,6 +4,9 @@ import { exerciseById, exercises } from "../server/utils/exercises";
 import type { Candidate } from "../shared/practice";
 import phraseBank from "../data/phrase-hints/sentences.json";
 import { sentencePhraseHints } from "../server/utils/sentence-phrase-hints";
+import { referenceLexemes } from "../server/utils/reference-lexemes";
+import lexemeBank from "../data/romaji/reference-lexemes.json";
+import { HintSource, validReadings } from "../shared/practice";
 
 const water: Candidate = {
   ...exercises[0]!,
@@ -178,11 +181,11 @@ test("sentence mappings distinguish waking up from dressing up and use supplied 
   const waking = wordHints(exerciseById.get("45dee2bd33974022d4c206b8")!);
   const dressing = wordHints(exerciseById.get("509e3885d6a95a1d8130ec56")!);
   expect(waking.find((token) => token.text === "got up")).toMatchObject({
-    hintSource: "sentence",
+    hintSource: HintSource.Sentence,
     hints: [{ japanese: "起きた", reading: "おきた", romaji: "okita" }],
   });
   expect(dressing.find((token) => token.text === "got up")).toMatchObject({
-    hintSource: "sentence",
+    hintSource: HintSource.Sentence,
     hints: [{ japanese: "着飾っていた", reading: "きかざっていた" }],
   });
 });
@@ -192,7 +195,10 @@ test("separated phrases share a hint while their object keeps its own hint", () 
   const tokens = wordHints(candidate);
   const turn = tokens.find((token) => token.text === "turn")!;
   const on = tokens.find((token) => token.text === "on")!;
-  expect(turn).toMatchObject({ phrase: "turn … on", hintSource: "sentence" });
+  expect(turn).toMatchObject({
+    phrase: "turn … on",
+    hintSource: HintSource.Sentence,
+  });
   expect(on.hints).toEqual(turn.hints);
   expect(turn.hints[0]).toMatchObject({
     japanese: "つけて",
@@ -215,7 +221,7 @@ test("separated phrases share a hint while their object keeps its own hint", () 
 test("idioms absent from the glossary can use sentence-specific hints", () => {
   const tokens = wordHints(exerciseById.get("bc3183eb19754387b26be05c")!);
   expect(tokens.find((token) => token.text === "fed up with")).toMatchObject({
-    hintSource: "sentence",
+    hintSource: HintSource.Sentence,
     hints: [{ japanese: "辟易している", reading: "へきえきしている" }],
   });
 });
@@ -230,9 +236,195 @@ test("every maintained phrase mapping remains aligned with its source and readin
     const tokens = wordHints(candidate);
     expect(tokens.map((token) => token.text).join("")).toBe(candidate.english);
     expect(
-      tokens.filter((token) => token.hintSource === "sentence"),
+      tokens.filter(
+        (token) => token.hintSource === HintSource.Sentence && token.phrase,
+      ),
     ).toHaveLength(sentencePhraseHints(candidate).length);
   }
+});
+
+test("reference words take priority over an unrelated dictionary phrase", () => {
+  const candidate = exerciseById.get("1da7295f0006574b48b73277")!;
+  const tokens = wordHints(candidate);
+  expect(tokens.map((token) => token.text).join("")).toBe(candidate.english);
+  expect(tokens.some((token) => token.text === "laundry service")).toBe(false);
+  expect(tokens.find((token) => token.text === "laundry")).toMatchObject({
+    hintSource: HintSource.Sentence,
+    hints: [{ japanese: "洗濯", reading: "せんたく", romaji: "sentaku" }],
+  });
+  expect(tokens.find((token) => token.text === "service")).toMatchObject({
+    hintSource: HintSource.Reference,
+    hints: [{ japanese: "サービス", reading: "さーびす", romaji: "saabisu" }],
+  });
+});
+
+test("a phrase is retained when its vocabulary appears in the reference", () => {
+  const tokens = wordHints({
+    ...water,
+    english: "Do you have a laundry service?",
+    japanese: "クリーニングはありますか。",
+    furiganaVariants: ["クリーニングはありますか。"],
+  });
+  expect(
+    tokens.find((token) => token.text === "laundry service"),
+  ).toMatchObject({
+    hintSource: HintSource.Reference,
+    hints: [{ japanese: "クリーニング", romaji: "kuriiningu" }],
+  });
+});
+
+test("generic phrases cannot consume a later word supported by the reference", () => {
+  const tokens = wordHints({
+    ...water,
+    english: "Do you have a laundry service?",
+    japanese: "サービスはありますか。",
+    furiganaVariants: ["サービスはありますか。"],
+  });
+  expect(tokens.some((token) => token.text === "laundry service")).toBe(false);
+  expect(tokens.find((token) => token.text === "service")).toMatchObject({
+    hintSource: HintSource.Reference,
+    hints: [{ japanese: "サービス", romaji: "saabisu" }],
+  });
+});
+
+test("reference hints use supplied pronunciation and omit unrelated synonyms", () => {
+  const tokens = wordHints({
+    ...water,
+    english: "Tomorrow.",
+    japanese: "明日。",
+    furiganaVariants: ["{明日|あす}。"],
+  });
+  expect(tokens[0]).toMatchObject({
+    hintSource: HintSource.Reference,
+    hints: [{ japanese: "明日", reading: "あす", romaji: "asu" }],
+  });
+});
+
+test("partial annotations cannot be labeled as reference vocabulary", () => {
+  const tokens = wordHints({
+    ...water,
+    english: "water",
+    japanese: "水曜日。",
+    furiganaVariants: ["{水曜日|すいようび}。"],
+  });
+  expect(tokens[0]?.hintSource).toBeUndefined();
+});
+
+test("dictionary lemmas resolve to conjugated wording used by real reference sentences", () => {
+  const tried = wordHints(exerciseById.get("0000e8f8c0565c3fbcea0a4c")!);
+  expect(tried.find((token) => token.text === "tried")).toMatchObject({
+    hintSource: HintSource.Reference,
+    hints: [
+      { japanese: "試みた", reading: "こころみた", romaji: "kokoromita" },
+    ],
+  });
+  const think = wordHints(exerciseById.get("000459094742195f226bab0e")!);
+  expect(think.find((token) => token.text === "think")).toMatchObject({
+    hintSource: HintSource.Reference,
+    hints: [
+      { japanese: "思います", reading: "おもいます", romaji: "omoimasu" },
+    ],
+  });
+});
+
+test("generated lexemes stay aligned with every eligible reference reading", () => {
+  for (const candidate of exercises) {
+    const furigana = validReadings(candidate)[0]!;
+    const expected = (lexemeBank as Record<string, unknown[]>)[furigana] ?? [];
+    expect(referenceLexemes(candidate)).toHaveLength(expected.length);
+  }
+});
+
+test("changed or missing supplied readings cannot reuse cached conjugation hints", () => {
+  const candidate = exerciseById.get("0000e8f8c0565c3fbcea0a4c")!;
+  expect(referenceLexemes({ ...candidate, japanese: "違います。" })).toEqual(
+    [],
+  );
+  expect(referenceLexemes({ ...candidate, furiganaVariants: [] })).toEqual([]);
+});
+
+test("repeated reference words retain their distinct supplied pronunciations", () => {
+  const tokens = wordHints({
+    ...water,
+    english: "Tomorrow and tomorrow.",
+    japanese: "明日と明日。",
+    furiganaVariants: ["{明日|あす}と{明日|あした}。"],
+  });
+  expect(tokens[0]?.hints).toEqual([
+    expect.objectContaining({
+      japanese: "明日",
+      reading: "あす",
+      romaji: "asu",
+    }),
+    expect.objectContaining({
+      japanese: "明日",
+      reading: "あした",
+      romaji: "ashita",
+    }),
+  ]);
+});
+
+test("repeated conjugated verbs are offered as distinct reference forms", () => {
+  const tokens = wordHints(exerciseById.get("0df89d44e3e6a8aeefcf9f4f")!);
+  expect(tokens.find((token) => token.text === "bought")).toMatchObject({
+    hintSource: HintSource.Reference,
+    hints: [
+      { japanese: "買い", reading: "かい", romaji: "kai" },
+      { japanese: "買った", reading: "かった", romaji: "katta" },
+    ],
+  });
+});
+
+test("reference hints use the same primary reading as the romaji hint", () => {
+  const tokens = wordHints({
+    ...water,
+    english: "Tomorrow.",
+    japanese: "明日。",
+    furiganaVariants: ["{明日|あす}。", "{明日|あした}。"],
+  });
+  expect(tokens[0]?.hints).toEqual([
+    expect.objectContaining({
+      japanese: "明日",
+      reading: "あす",
+      romaji: "asu",
+    }),
+  ]);
+});
+
+test("reviewed mappings prevent unrelated senses for left and wore", () => {
+  const tokens = wordHints(exerciseById.get("00121c45c61969376c90e342")!);
+  expect(tokens.find((token) => token.text === "left")).toMatchObject({
+    hintSource: HintSource.Sentence,
+    hints: [{ japanese: "左手", reading: "ひだりて", romaji: "hidarite" }],
+  });
+  expect(tokens.find((token) => token.text === "wore")).toMatchObject({
+    hintSource: HintSource.Sentence,
+    hints: [
+      { japanese: "はめていた", reading: "はめていた", romaji: "hameteita" },
+    ],
+  });
+});
+
+test("explicit mappings cannot use a secondary pronunciation different from the romaji reference", () => {
+  const candidate = {
+    ...water,
+    english: "Tomorrow.",
+    japanese: "明日。",
+    furiganaVariants: ["{明日|あす}。", "{明日|あした}。"],
+  };
+  expect(
+    sentencePhraseHints(candidate, {
+      sentenceId: candidate.id,
+      english: candidate.english,
+      japanese: candidate.japanese,
+      phrases: [
+        {
+          spans: [{ start: 0, end: 8, text: "Tomorrow" }],
+          hints: [{ japanese: "明日", reading: "あした", meaning: "tomorrow" }],
+        },
+      ],
+    }),
+  ).toEqual([]);
 });
 
 test("stale snapshots, partial words, overlaps, and unsupported Japanese readings invalidate mappings", () => {

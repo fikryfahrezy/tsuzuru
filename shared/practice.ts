@@ -29,6 +29,11 @@ export enum DifferenceKind {
   Missing = "missing",
 }
 
+export enum HintSource {
+  Sentence = "sentence",
+  Reference = "reference",
+}
+
 export enum AlternativeMethod {
   OmitFirstPersonTopic = "omit-first-person-topic",
   NumberSpelling = "number-spelling",
@@ -77,7 +82,7 @@ export interface PromptPart {
   isWord: boolean;
   hints: VocabularyHint[];
   phrase?: string;
-  hintSource?: "sentence";
+  hintSource?: HintSource;
 }
 export interface DifferencePart {
   text: string;
