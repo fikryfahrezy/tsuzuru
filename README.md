@@ -1,246 +1,60 @@
 # Tsuzuru
 
-An application for practicing Japanese writing.
+A space to practice Japanese writing. Translate English prompts into Japanese,
+compare your answer with a supplied reference, and keep a journal of your practice.
+Built with Nuxt, Vue, and Bun. No account or AI service is required to practice.
 
-## Requirements
+## What you can do
 
-- Bun **1.4.3** (pinned in `.bun-version`, `package.json`, and `Dockerfile`).
-- Docker with the Compose plugin for container development or deployment.
-- Python 3 only if you need to refresh the learning data.
+- Choose an N5–N1 vocabulary focus and short, medium, or long prompts.
+- Practice in kana only, kana + kanji, or exact writing mode.
+- Reveal romaji and vocabulary hints when you need them.
+- Review character differences and optionally accept pre-generated alternatives.
+- Save up to 100 journal entries in your browser.
+- Install the workspace as an app; view your saved journal offline.
 
-Install the pinned Bun version with the official installer:
+Answers are compared with listed references. Other valid translations may not
+match, and the learning data has not been independently reviewed. Loading prompts
+and checking answers require a connection.
 
-```sh
-curl -fsSL https://bun.com/install | bash -s "bun-v1.4.3"
-```
+## Quick start
 
-## Development
+Install **Bun 1.4.3** (the version pinned in [`.bun-version`](.bun-version)), then run:
 
 ```sh
 bun install --frozen-lockfile
 bun run dev
 ```
 
-Open <http://localhost:3000>. Installation prepares Nuxt types and installs
-Lefthook Git hooks outside CI and production. If hooks need reinstalling, run
-`bun run hooks:install`.
+Open <http://localhost:3000> for the landing page or
+<http://localhost:3000/app> to start practicing.
 
-| Command            | Purpose                                      |
-| ------------------ | -------------------------------------------- |
-| `bun run check`    | Lint, check formatting, and check TypeScript |
-| `bun run lint:fix` | Apply Oxlint fixes                           |
-| `bun run format`   | Format with Oxfmt                            |
-| `bun run build`    | Build the Bun server into `.output/`         |
-| `bun run start`    | Run the production build                     |
-| `bun run preview`  | Preview the production build                 |
-| `bun run generate` | Generate a static site                       |
+Choose your settings, write a translation, and press **Ctrl / Command + Enter**
+to check it. Press again to continue. Your journal and settings stay in this
+browser's localStorage; answers are compared on the server without being stored there.
 
-Pre-commit fixes lint issues in staged JavaScript, TypeScript, and Vue files,
-formats supported files, and restages both. Pre-push runs `bun run check`.
-GitHub Actions runs these checks, builds the
-application and Docker image, and smoke tests the container.
+## Development
 
-## Project structure
+| Command            | Purpose                                            |
+| ------------------ | -------------------------------------------------- |
+| `bun run check`    | Run lint, formatting, TypeScript checks, and tests |
+| `bun run test`     | Run comparison tests                               |
+| `bun run lint:fix` | Apply lint fixes                                   |
+| `bun run format`   | Format the project                                 |
+| `bun run build`    | Build for production                               |
+| `bun run start`    | Run the production build                           |
 
-- `app/`: Nuxt application, with file-based routes in `app/pages/`.
-- `server/`: Nitro server routes; `GET /health` reports readiness.
-- `shared/`: exercise types, length buckets, and writing comparison rules.
-- `tests/`: comparison tests, including kana variants and homophone rejection.
-- `scripts/`: development helpers and the existing learning-data importer.
-- `data/`: versioned learning data, excluded from formatting and included in Docker builds.
+Installation sets up Nuxt types and Git hooks. Pre-commit fixes lint and formatting;
+pre-push runs `bun run check`.
 
-Nuxt auto-imports are available in application and server code. The Oxlint
-configuration lists the globals used by the starter; add new Nuxt auto-imports
-there if a lint rule requires them. TypeScript checks run separately through
-Nuxt and Vue's type checker.
+## Documentation
 
-Oxfmt uses the same explicit formatting options as `../kaku` and
-`../GenkouYoushi/web`. Oxlint follows Kaku's plugin and correctness settings,
-with Vue support and Nuxt globals added. Lefthook follows Kaku's staged lint
-fixes and formatting, while preserving this project's pre-push checks.
+- [Practice guide](docs/practice.md) — hints, writing rules, results, alternatives, and app installation.
+- [Development guide](docs/development.md) — setup, project structure, Docker, and dependency upgrades.
+- [Learning data](data/README.md) — importing data and maintaining answer banks.
+- [Data disclosure](DATA_DISCLOSURE.md) — sources, attribution, licenses, and learning limitations.
 
-## Docker
+## License
 
-```sh
-docker compose up --build -d --wait
-docker compose logs -f web
-docker compose down
-```
-
-The multi-stage image installs the frozen lockfile, builds with Bun, and runs
-only Nuxt's standalone output as the unprivileged `bun` user. It exposes port
-3000 and checks `/health`. Set `PORT` in your shell or a local `.env` file to
-change the host port (see `.env.example`).
-
-The processed sentence candidates are bundled into the server, not the browser.
-Docker builds include the data and disclosures needed for this. The development
-and build commands generate public disclosure files from the original documents.
-
-## Practice flow
-
-The public landing page is at `/`, with a product preview, features, a practice
-guide, and FAQs. The full workspace is at `/app` (also available at `/practice`).
-`/sources` provides credits and disclosure documents. All landing calls to action
-open the workspace; its brand link returns to the landing page.
-
-Choose an N5–N1 vocabulary focus, English sentence length (short: 1–7 words,
-medium: 8–12, long: 13+), and writing mode. Translate the prompt with a Japanese
-keyboard, check the reference, then continue. Ctrl / Command + Enter checks an
-answer or advances after comparison; IME composition is respected.
-
-Use “Show romaji hint” beneath the English prompt to see the supplied Japanese
-reference in Latin letters. Hints start hidden, and the toggle preference is saved
-with your settings. Romaji follows the kana spelling (including ha, he, and wo);
-long vowel sequences are written out. Spaces use the supplied annotations and
-script boundaries, keeping kana verb endings with their annotated stems; they
-are reading aids rather than full grammatical word segmentation.
-Other translations may also be valid.
-
-English words and recognized dictionary phrases have a dashed underline.
-Phrases such as “got up,” “looked for,” and “gave up” open as one hint;
-matching uses wink-lemmatizer for regular and irregular English verb forms.
-Click an underlined word or phrase (or focus it and press Enter)
-to reveal Japanese vocabulary and English meanings from the imported OpenJLPT
-glossary. Kanji vocabulary also shows its dictionary reading in hiragana and
-romaji beneath the word. Click again, close the hint, or press Escape to hide it. Hints favor
-vocabulary present in the reference, but are dictionary suggestions rather than
-word-for-word sentence alignments. Maintained sentence-specific mappings take
-precedence and show the supplied reference's wording and reading: “I got up at
-about six” shows 起きた / okita, while “The dancers were beautifully got up”
-shows 着飾っていた. For mapped separated phrases such as “turn the light on,”
-both “turn” and “on” open the same “turn … on” hint; “light” keeps its own hint.
-The hint panel identifies whether it uses the sentence reference or dictionary
-forms. Other verb hints show dictionary forms, such as 起きる / okiru.
-Phrases absent from both the mappings and glossary fall back to individual words.
-Separated phrases require an explicit sentence mapping; they are not guessed
-from distant words. See `data/phrase-hints/README.md` to maintain these mappings.
-Articles, names, and words missing from the
-glossary show an explicit unavailable message. New sentences clear the selection.
-
-Open `/app?sentence=<id>` to practice a specific eligible sentence from
-`data/processed/sentence-candidates.json`. For example,
-`/app?sentence=213aa0ae8044611b00c1ba95` loads “Most Japanese drink water from the tap.”
-The selected sentence overrides level and length filters; writing mode and hints
-work normally. Next sentence and Another sentence reload that sentence so you
-can retry different answers. Return to `/app` for random practice. Unknown IDs
-show an error; only dataset entries with validated readings are available.
-
-- Kana only: hiragana or katakana, with no kanji.
-- Kana + kanji: supplied kanji, kana readings, and verified spelling variants
-  are accepted, independently of the alternative-translations toggle or JLPT level.
-- Exact writing: the reference's spelling and script must match.
-
-All modes ignore whitespace and common sentence punctuation and normalize
-Unicode width differences. Flexible comparison preserves unknown kanji rather
-than accepting homophones. Only consistent examples with complete reading
-annotations are eligible. Answers are compared against the supplied reference;
-other valid translations may not match. The imported bank remains unreviewed,
-and vocabulary levels are not whole-sentence difficulty certifications.
-
-Spelling variants are generated offline using pinned SudachiPy/SudachiDict and
-JMdict snapshots. The generator checks dictionary identity, permitted spellings
-and readings, supplied reference furigana, and unchanged pronunciation and
-conjugation in a whole-sentence round trip. Ambiguous homophones and
-sense-restricted spellings require a recorded review. See
-[spelling generation and review](data/spelling-variants/README.md). Python and
-the large dictionaries are not needed by the running app.
-
-After checking, the app shows an explicit reference match result. Character
-differences highlight substitutions and extra characters in the original input;
-`□` marks missing characters. The expected writing highlights corrections.
-Flexible mode aligns against the closest allowed kana/kanji spelling without
-enumerating every combination. Ignored punctuation and accepted script variants
-are not marked as errors. These are reference differences, not semantic judgments.
-The "Why it differs" explanation identifies missing, extra, and replaced text
-with sentence context, explains writing-mode restrictions, and uses supplied
-word readings for kanji corrections. Explanations are saved with new journal
-comparisons. They do not provide unrestricted grammar or meaning assessment.
-
-The journal stores up to 100 entries plus settings in browser localStorage.
-New entries retain their writing mode and comparison snapshot, so character
-highlights and expected corrections survive reloads and later setting changes.
-Older entries without comparison snapshots retain their original text and outcome.
-Comparison happens on the server without persisting answers. No AI service or
-account is needed. `/sources` provides credits, data limitations, and downloadable
-disclosures. Generated disclosures live in ignored `public/disclosures/`.
-
-### Pre-generated alternative answers
-
-Enable “Pre-generated alternatives” in the sidebar to accept additional listed
-answers. It starts off and remembers your preference. Each alternative uses the
-selected kana/kanji writing rules. Every result, including mismatches and revealed
-references, lists all available alternatives with their readings and origins.
-This list is saved in journal snapshots alongside the original reference and
-source link. Viewing the list does not require enabling alternative matching.
-Unlisted wording may still be valid; matching a listed answer is not semantic grading.
-
-Alternatives are Tsuzuru additions to the imported references. They come from
-rules that omit explicit first-person topics or vary integer spellings, and from
-AI-authored wording added during development. Each entry retains its creator,
-method, change explanation, and link to the original data through its sentence ID.
-The result and Journal list is smaller, collapsible, and appears after “Why it differs.”
-
-Integer variants preserve the value, such as `40` / `四十` and `二人` / `2人`.
-The generator excludes unsupported formats such as decimals, grouped numbers,
-and leading-zero identifiers. It retains supplied readings; digits stay digits
-when the source has no pronunciation annotation. Subject omission relies on the
-speaker being implied by the English prompt. Neither generated nor AI-authored
-additions have independent native-speaker verification, and they may contain errors.
-They do not make the list exhaustive or establish that an unlisted answer is wrong.
-
-The original source files are unchanged. The adapted answer bank is distributed
-under CC BY-SA 4.0 with source attribution and modification notices; specific
-creator details live in each answer’s provenance. See
-[DATA_DISCLOSURE.md](DATA_DISCLOSURE.md) for the full disclosure.
-
-`bun run alternatives:generate` rebuilds rule-generated entries and preserves
-authored entries in `data/alternatives/answers.json`. `bun run alternatives:prompts`
-exports tasks for batch generation; it does not download or invoke a model.
-See [data/README.md](data/README.md) for maintenance instructions.
-
-### Installable workspace
-
-The `/app` workspace can be installed using the browser's install action or
-Add to Home Screen. It launches at `/app` in a standalone window, with regular,
-maskable, and Apple touch icons matching the Tsuzuru mark. Deployment requires
-HTTPS (localhost also works).
-
-Production builds generate `/sw.js` with a cache version derived from the worker
-and built client assets. After opening `/app` online and allowing installation
-to finish, the workspace and saved journal can reopen offline. Loading sentences
-and checking answers still require a connection; API responses and submitted
-writing are never cached by the worker. The landing page and credits are outside
-the workspace's scope. Updates activate after existing workspace tabs close,
-then remove older Tsuzuru caches. Service worker registration is disabled in
-development; test installation with `bun run build` and `bun run preview`.
-
-To verify in a browser, open `/app`, inspect the manifest and service worker in
-DevTools, reload once, then switch offline and reload again. The journal should
-remain available and the workspace should explain which actions need a connection.
-
-`GET /api/exercises?level=N5&length=short` returns a random English prompt and its
-romaji hint. `POST /api/compare` accepts `{ id, answer, mode, acceptAlternatives? }` and returns a reference
-comparison. Invalid settings and unknown IDs are rejected. Run `bun run test`
-for comparison tests; `bun run check` also runs them.
-
-## Dependency versions
-
-Direct dependencies use exact stable versions checked against the npm registry
-on October 13, 2026. TypeScript is pinned to **6.0.3**, the latest compatible
-release: TypeScript 7.0.2 removed the compiler API required by `vue-tsc` 3.3.13.
-`bun.lock` locks transitive dependencies;
-`bun install --frozen-lockfile` enforces it. `bunfig.toml` makes future additions
-exact by default. CI actions are pinned to commit hashes and the Docker base
-image uses an exact Bun release tag and digest.
-
-When upgrading, resolve stable versions explicitly, update the package pins and
-lockfile together, and run `bun run check`, `bun run build`, and the Docker smoke
-test. For Bun upgrades, also update `.bun-version`, `packageManager`, `engines`,
-the Docker image tag and digest, and the installation command above.
-
-## Learning data and licenses
-
-See [data/README.md](data/README.md) for import and reproduction commands and
-[DATA_DISCLOSURE.md](DATA_DISCLOSURE.md) for provenance, licenses, and educational
-limitations. The [MIT license](LICENSE) applies to project software; third-party
-learning data has its own licenses.
+Project software is covered by the [MIT license](LICENSE).
+Third-party learning data has its own licenses; see the [data disclosure](DATA_DISCLOSURE.md).
