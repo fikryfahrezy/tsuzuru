@@ -294,21 +294,21 @@ legend {
     font-size: 7px;
   }
 }
-:global(.practice-shell) .settings-panel {
+.practice-shell .settings-panel {
   display: block;
   overflow-y: auto;
   border: 0;
   border-right: 1px solid var(--line);
   padding: 24px 20px;
 }
-:global(.practice-shell) .mode-mark {
+.practice-shell .mode-mark {
   white-space: nowrap;
 }
 @media (max-width: 640px) {
-  :global(.practice-shell) .settings-panel {
+  .practice-shell .settings-panel {
     display: none;
   }
-  :global(.practice-shell) .settings-panel.settings-open {
+  .practice-shell .settings-panel.settings-open {
     display: block;
     position: absolute;
     z-index: 5;
@@ -321,7 +321,7 @@ legend {
     border-left: 1px solid var(--line);
     box-shadow: -10px 0 30px rgba(31, 28, 23, 0.1);
   }
-  :global(.practice-shell) .settings-panel fieldset {
+  .practice-shell .settings-panel fieldset {
     margin-bottom: 25px;
   }
 }

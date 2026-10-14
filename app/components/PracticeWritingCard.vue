@@ -256,7 +256,7 @@ defineExpose({
     font-size: 8px;
   }
 }
-:global(.practice-shell) .writing-card {
+.practice-shell .writing-card {
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -264,40 +264,40 @@ defineExpose({
   border: 0;
   box-shadow: none;
 }
-:global(.practice-shell) .writing-card > form {
+.practice-shell .writing-card > form {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 240px;
 }
-:global(.practice-shell) .writing-field {
+.practice-shell .writing-field {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 180px;
 }
-:global(.practice-shell) .writing-field textarea {
+.practice-shell .writing-field textarea {
   flex: 1;
   min-height: 150px;
   resize: none;
 }
-:global(.practice-shell) .card-actions {
+.practice-shell .card-actions {
   flex-shrink: 0;
 }
 @media (max-width: 640px) {
-  :global(.practice-shell) .card-actions {
+  .practice-shell .card-actions {
     padding-block: 14px;
     gap: 10px;
   }
-  :global(.practice-shell) .card-actions p span {
+  .practice-shell .card-actions p span {
     display: none;
   }
-  :global(.practice-shell) .writing-card > form {
+  .practice-shell .writing-card > form {
     min-height: 250px;
   }
 }
 
-:global(.practice-shell) .answer-review {
+.practice-shell .answer-review {
   flex: 1;
   min-height: 150px;
   padding: 22px 0 32px;
@@ -328,16 +328,16 @@ defineExpose({
 .difference-extra {
   text-decoration: line-through;
 }
-:global(.practice-shell) .card-actions .writing-status {
+.practice-shell .card-actions .writing-status {
   color: var(--primary);
   font-size: 13px;
   font-weight: 600;
 }
-:global(.practice-shell) .card-actions .writing-status-matched {
+.practice-shell .card-actions .writing-status-matched {
   color: var(--green);
 }
 @media (max-width: 640px) {
-  :global(.practice-shell) .answer-review {
+  .practice-shell .answer-review {
     font-size: 23px;
   }
 }

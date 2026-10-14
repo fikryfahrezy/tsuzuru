@@ -277,17 +277,17 @@ watch(
     padding: 24px 20px;
   }
 }
-:global(.practice-shell) .prompt {
+.practice-shell .prompt {
   padding-block: 24px 20px;
 }
-:global(.practice-shell) .prompt-meta {
+.practice-shell .prompt-meta {
   justify-content: flex-end;
 }
 @media (max-width: 640px) {
-  :global(.practice-shell) .prompt {
+  .practice-shell .prompt {
     padding-block: 18px 14px;
   }
-  :global(.practice-shell) .prompt h2 {
+  .practice-shell .prompt h2 {
     font-size: 24px;
     margin-bottom: 14px;
   }

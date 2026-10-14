@@ -80,21 +80,21 @@ const emit = defineEmits<{ clear: []; practice: [] }>();
     padding-inline: 20px;
   }
 }
-:global(.practice-shell) .journal-panel {
+.practice-shell .journal-panel {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   border: 0;
   box-shadow: none;
 }
-:global(.practice-shell) .journal-panel .card-heading {
+.practice-shell .journal-panel .card-heading {
   position: sticky;
   top: 0;
   background: var(--surface);
   z-index: 1;
 }
 @media (max-width: 640px) {
-  :global(.practice-shell) .card-heading {
+  .practice-shell .card-heading {
     padding-block: 13px;
   }
 }
