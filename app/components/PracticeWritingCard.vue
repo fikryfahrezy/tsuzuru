@@ -264,10 +264,13 @@ defineExpose({
   border: 0;
   box-shadow: none;
 }
+.practice-shell .writing-card > * {
+  flex-shrink: 0;
+}
 .practice-shell .writing-card > form {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1 0 auto;
   min-height: 240px;
 }
 .practice-shell .writing-field {

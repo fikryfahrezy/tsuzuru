@@ -11,14 +11,22 @@ import {
   type PromptPart,
 } from "../../shared/practice";
 import { kanaToRomaji } from "../../shared/romaji";
+import lemmatize from "wink-lemmatizer";
+import {
+  sentencePhraseHints,
+  type SentencePhraseSpan,
+} from "./sentence-phrase-hints";
 
 interface Entry {
   word: string;
   reading: string;
   meaning: string;
   exact: boolean;
+  verb: boolean;
 }
 const index = new Map<string, Entry[]>();
+const phraseIndex = new Map<string, Entry[]>();
+let longestPhrase = 1;
 // These gloss words usually describe grammar, rather than a standalone translation.
 const functionWords = new Set([
   "a",
@@ -49,15 +57,28 @@ for (const entry of [...n5, ...n4, ...n3, ...n2, ...n1]) {
       .replace(/^to\s+/iu, "")
       .trim();
     const terms = englishWords(clean);
+    const vocabulary = {
+      word: entry.word,
+      reading: hiragana(entry.reading.normalize("NFKC")),
+      meaning,
+      exact: terms.length === 1,
+      verb: /^to\s+/iu.test(meaning),
+    };
+    // Only join whitespace-separated words, never clauses or punctuation.
+    if (
+      terms.length > 1 &&
+      terms.join(" ") === clean.toLowerCase().replace(/\s+/gu, " ")
+    ) {
+      const phrase = terms.join(" ");
+      const matches = phraseIndex.get(phrase) ?? [];
+      matches.push({ ...vocabulary, exact: true });
+      phraseIndex.set(phrase, matches);
+      longestPhrase = Math.max(longestPhrase, terms.length);
+    }
     for (const term of new Set(terms)) {
       if (functionWords.has(term)) continue;
       const matches = index.get(term) ?? [];
-      matches.push({
-        word: entry.word,
-        reading: hiragana(entry.reading.normalize("NFKC")),
-        meaning,
-        exact: terms.length === 1,
-      });
+      matches.push(vocabulary);
       index.set(term, matches);
     }
   }
@@ -65,19 +86,28 @@ for (const entry of [...n5, ...n4, ...n3, ...n2, ...n1]) {
 
 function lookup(word: string): Entry[] {
   const term = word.toLowerCase().replaceAll("’", "'");
-  // Fall back only to dictionary-backed base forms, preserving the displayed word.
-  const bases = term.endsWith("ies")
-    ? [term.slice(0, -3) + "y"]
-    : term.endsWith("ing")
-      ? [term.slice(0, -3), term.slice(0, -3) + "e"]
-      : term.endsWith("ed")
-        ? [term.slice(0, -2), term.slice(0, -1)]
-        : term.endsWith("s")
-          ? [term.slice(0, -1), term.slice(0, -2)]
-          : [];
+  const verb = lemmatize.verb(term);
+  const noun = lemmatize.noun(term);
   return [
     ...(index.get(term) ?? []),
-    ...bases.flatMap((base) => index.get(base) ?? []),
+    ...(verb === term
+      ? []
+      : (index.get(verb) ?? []).filter((entry) => entry.verb)),
+    ...(noun === term
+      ? []
+      : (index.get(noun) ?? []).filter((entry) => !entry.verb)),
+  ];
+}
+
+function lookupPhrase(words: string[]): Entry[] {
+  const terms = words.map((word) => word.toLowerCase().replaceAll("’", "'"));
+  return [
+    ...(phraseIndex.get(terms.join(" ")) ?? []),
+    ...(
+      phraseIndex.get(
+        [lemmatize.verb(terms[0]!), ...terms.slice(1)].join(" "),
+      ) ?? []
+    ).filter((entry) => entry.verb),
   ];
 }
 
@@ -89,13 +119,77 @@ export function wordHints(candidate: Candidate): PromptPart[] {
         .map((part) => part.surface),
     ),
   );
-  return (
+  const tokens =
     candidate.english.match(
       /[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*|[^\p{L}\p{N}]+/gu,
-    ) ?? []
-  ).map((text) => {
+    ) ?? [];
+  const grouped: {
+    text: string;
+    matches: Entry[];
+    annotation?: SentencePhraseSpan;
+  }[] = [];
+  const annotations = sentencePhraseHints(candidate);
+  // Character positions keep explicit phrase spans aligned with the original prompt.
+  const offsets: number[] = [];
+  let offset = 0;
+  for (const token of tokens) {
+    offsets.push(offset);
+    offset += token.length;
+  }
+  for (let start = 0; start < tokens.length; start++) {
+    const annotation = annotations.find(
+      (span) => span.start === offsets[start],
+    );
+    if (annotation) {
+      grouped.push({ text: annotation.text, matches: [], annotation });
+      while (start + 1 < tokens.length && offsets[start + 1]! < annotation.end)
+        start++;
+      continue;
+    }
+    const text = tokens[start]!;
+    let end = start;
+    let matches = /^[\p{L}\p{N}]/u.test(text) ? lookup(text) : [];
+    if (/^[\p{L}\p{N}]/u.test(text)) {
+      const words = [text];
+      for (
+        let cursor = start + 2;
+        cursor < tokens.length && words.length < longestPhrase;
+        cursor += 2
+      ) {
+        if (
+          !/^\s+$/u.test(tokens[cursor - 1]!) ||
+          !/^[\p{L}\p{N}]/u.test(tokens[cursor]!)
+        )
+          break;
+        words.push(tokens[cursor]!);
+        if (
+          annotations.some(
+            (span) =>
+              span.start < offsets[cursor]! + tokens[cursor]!.length &&
+              span.end > offsets[start]!,
+          )
+        )
+          break;
+        const phraseMatches = lookupPhrase(words);
+        if (phraseMatches.length) {
+          end = cursor;
+          matches = phraseMatches;
+        }
+      }
+    }
+    grouped.push({ text: tokens.slice(start, end + 1).join(""), matches });
+    start = end;
+  }
+  return grouped.map(({ text, matches, annotation }) => {
+    if (annotation)
+      return {
+        text,
+        isWord: true,
+        hints: annotation.hints,
+        phrase: annotation.phrase,
+        hintSource: "sentence" as const,
+      };
     const isWord = /^[\p{L}\p{N}]/u.test(text);
-    const matches = isWord ? lookup(text) : [];
     const inReference = (entry: Entry) =>
       annotatedWords.has(entry.word) || candidate.japanese.includes(entry.word);
     const sorted = matches

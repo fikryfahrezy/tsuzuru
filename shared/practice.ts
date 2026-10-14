@@ -74,6 +74,8 @@ export interface PromptPart {
   text: string;
   isWord: boolean;
   hints: VocabularyHint[];
+  phrase?: string;
+  hintSource?: "sentence";
 }
 export interface DifferencePart {
   text: string;

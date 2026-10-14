@@ -72,3 +72,39 @@ test("invalid IDs fail explicitly and requests without IDs still select from the
   expect(random.status).toBe(200);
   expect(exerciseById.has((await random.json()).id)).toBe(true);
 });
+
+test("sentence API delivers contextual and separated phrase hints", async () => {
+  const handle = api();
+  const waking = await handle(
+    new Request(
+      "http://localhost/api/exercises?sentence=45dee2bd33974022d4c206b8",
+    ),
+  );
+  expect(waking.status).toBe(200);
+  expect((await waking.json()).wordHints).toContainEqual({
+    text: "got up",
+    isWord: true,
+    phrase: "got up",
+    hintSource: "sentence",
+    hints: [
+      {
+        japanese: "起きた",
+        reading: "おきた",
+        romaji: "okita",
+        meaning: "got up (past)",
+      },
+    ],
+  });
+  const separated = await handle(
+    new Request(
+      "http://localhost/api/exercises?sentence=efa5a7b6a9fe73f45005153f",
+    ),
+  );
+  expect(separated.status).toBe(200);
+  const question = await separated.json();
+  expect(
+    question.wordHints.filter(
+      (part: { phrase?: string }) => part.phrase === "turn … on",
+    ),
+  ).toHaveLength(2);
+});

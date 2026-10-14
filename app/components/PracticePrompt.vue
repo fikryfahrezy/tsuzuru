@@ -47,7 +47,7 @@ watch(
           :class="{ 'prompt-word-active': selectedWord === index }"
           :aria-expanded="selectedWord === index"
           aria-controls="word-hint"
-          :aria-label="`Japanese hint for ${part.text}`"
+          :aria-label="`Japanese hint for ${part.phrase ?? part.text}`"
           @click="selectedWord = selectedWord === index ? null : index"
           @keydown.esc="closeWordHint"
         >
@@ -68,7 +68,9 @@ watch(
       @keydown.esc="closeWordHint"
     >
       <div class="word-hint-heading">
-        <p class="paper-label">JAPANESE HINT · {{ activeWord.text }}</p>
+        <p class="paper-label">
+          JAPANESE HINT · {{ activeWord.phrase ?? activeWord.text }}
+        </p>
         <button
           type="button"
           aria-label="Close word hint"
@@ -100,7 +102,11 @@ watch(
         a phrase, grammar, or context in Japanese.
       </p>
       <p v-if="activeWord.hints.length" class="setting-note">
-        Dictionary meanings; the wording used in this sentence may differ.
+        {{
+          activeWord.hintSource === "sentence"
+            ? "Wording and reading from this sentence's Japanese reference."
+            : "Dictionary forms and meanings; the wording used in this sentence may differ."
+        }}
       </p>
     </section>
     <div v-if="question" class="prompt-meta">
@@ -188,14 +194,12 @@ watch(
 .prompt-word:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 4px;
-  border-radius: 2px;
 }
 .word-hint {
   margin: 0 0 18px;
   padding: 14px 16px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 4px;
 }
 .word-hint-heading {
   display: flex;
@@ -249,7 +253,6 @@ watch(
   padding: 14px 16px;
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 4px;
   overflow-wrap: anywhere;
 }
 .romaji-hint > p[lang] {

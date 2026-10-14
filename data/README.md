@@ -3,6 +3,7 @@
 - `manifest.json`: upstream revision, URLs, checksums, retrieval time, and actual counts.
 - `sources/openjlpt/<commit>/`: unmodified upstream JSON plus README, NOTICE, and LICENSE.
 - `processed/sentence-candidates.json`: deduplicated vocabulary example pairs with provenance and length measurements. These are unreviewed candidates, not a graded exercise bank.
+- `phrase-hints/sentences.json`: maintained phrase spans with wording and readings from the Japanese reference. See [phrase hint maintenance](phrase-hints/README.md).
 
 Read [DATA_DISCLOSURE.md](../DATA_DISCLOSURE.md) for credits, licenses, modifications, and educational limitations. Third-party data is not covered by the project's MIT software license.
 

@@ -96,12 +96,25 @@ script boundaries, keeping kana verb endings with their annotated stems; they
 are reading aids rather than full grammatical word segmentation.
 Other translations may also be valid.
 
-Each English word has a dashed underline. Click it (or focus it and press Enter)
+English words and recognized dictionary phrases have a dashed underline.
+Phrases such as “got up,” “looked for,” and “gave up” open as one hint;
+matching uses wink-lemmatizer for regular and irregular English verb forms.
+Click an underlined word or phrase (or focus it and press Enter)
 to reveal Japanese vocabulary and English meanings from the imported OpenJLPT
 glossary. Kanji vocabulary also shows its dictionary reading in hiragana and
 romaji beneath the word. Click again, close the hint, or press Escape to hide it. Hints favor
 vocabulary present in the reference, but are dictionary suggestions rather than
-word-for-word sentence alignments. Articles, names, and words missing from the
+word-for-word sentence alignments. Maintained sentence-specific mappings take
+precedence and show the supplied reference's wording and reading: “I got up at
+about six” shows 起きた / okita, while “The dancers were beautifully got up”
+shows 着飾っていた. For mapped separated phrases such as “turn the light on,”
+both “turn” and “on” open the same “turn … on” hint; “light” keeps its own hint.
+The hint panel identifies whether it uses the sentence reference or dictionary
+forms. Other verb hints show dictionary forms, such as 起きる / okiru.
+Phrases absent from both the mappings and glossary fall back to individual words.
+Separated phrases require an explicit sentence mapping; they are not guessed
+from distant words. See `data/phrase-hints/README.md` to maintain these mappings.
+Articles, names, and words missing from the
 glossary show an explicit unavailable message. New sentences clear the selection.
 
 Open `/app?sentence=<id>` to practice a specific eligible sentence from
