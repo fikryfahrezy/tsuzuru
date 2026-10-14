@@ -1,0 +1,2671 @@
+[
+  {
+    "id": "00ca9b14f39400422c5f4d04",
+    "japanese": "友達がここにいないのでがっかりだ。",
+    "english": "I am disappointed that my friend is not here.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "016b5539c1c23fe08eae726c",
+    "japanese": "お金がないので、プチッと旅行。",
+    "english": "As I don't have the money, it'll just be a short trip.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 5,
+        "end": 7,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "01913ff0b380f6a0f719a7fd",
+    "japanese": "道が濡れていたので、車は横にスリップしたにちがいない。",
+    "english": "As the road was wet, the car must have slipped sideways.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "03ea21386583f85272df83a9",
+    "japanese": "彼は決して勇気がないのではない。",
+    "english": "He is by no means wanting in courage.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "0424b9db6ec1cb50cc689b53",
+    "japanese": "アーア、絶対うまくいくと思ったのになあ。",
+    "english": "Oh man! I was sure this was going to work out.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "09ae208258b2f6081b01f373",
+    "japanese": "昔は、平気で昆虫触れたのに、今は、図鑑を見るだけでもだめ。",
+    "english": "When I was a kid, touching bugs didn't bother me a bit. Now I can hardly stand looking at pictures of them.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "0b5f46fad3f3556a9468c14f",
+    "japanese": "少年はクイズを解くのにかなり苦労した。",
+    "english": "The boy took great pains to solve the quiz.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "0c1657f7081f555086463c71",
+    "japanese": "長く歩いてきたので空腹を感じた。",
+    "english": "I felt hungry after the long walk.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "0c9cd7596a064f9334263e09",
+    "japanese": "治るのにどのくらいの期間がかかりますか。",
+    "english": "How long will it take to get well?",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 2,
+        "end": 4,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "0e1b2e7c7bc30fc940671386",
+    "japanese": "トムが女の子だったらよかったのに。そしたら気兼ねなく寄り添ってられたのに。",
+    "english": "I wish that Tom were a girl. That way I would be able to get close to him without any hesitation.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 14,
+        "end": 16,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      },
+      {
+        "start": 34,
+        "end": 36,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "0efc59a7d8fec3f200d4677e",
+    "japanese": "私がこの本を読み上げるのに約１時間かかった。",
+    "english": "It took me about an hour to read this book through.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "1117579dcda5154fd1176eac",
+    "japanese": "僕の片言の英語がなんとか通じたのでほっとしました。",
+    "english": "I was relieved that I could make my broken English understood.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "112322ab22925f7d45e581f0",
+    "japanese": "前の会社では何でも屋に終始したので今度は専門職に就きたい。",
+    "english": "I wore several hats at my last office so I'd like to specialize this time.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "129bbb85ffbdbbf55a9cdeec",
+    "japanese": "「今日はリチャード先生がお休みなので、英語の授業は自習です」「キター！」",
+    "english": "\"Since Richard is away today, English class will be self study.\" \"Nice!\"",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 16,
+        "end": 18,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "130f0cb1cab6a14ffc473d53",
+    "japanese": "暑かったので、彼女は汗びっしょりになりました。",
+    "english": "It being hot, she was wet with sweat.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 4,
+        "end": 6,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "15153d4c9b643d34992fd91f",
+    "japanese": "彼はいないのでかえって目立った。",
+    "english": "He was conspicuous by his absence.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 5,
+        "end": 7,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "195cde4063dece3c7fc562ed",
+    "japanese": "彼は子供をしつけるのに厳格だった。",
+    "english": "He was strict in disciplining his children.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "1b72b12cd9e7f05bc8cf762f",
+    "japanese": "田中嬢は長年アメリカにいたので英語を話すのが非常にうまい。",
+    "english": "Having been in America for many years, Miss Tanaka is a very good speaker of English.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 13,
+        "end": 15,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "1b9b9b60cd4e9f720b6138b5",
+    "japanese": "このミシンのこつをのみ込むのに、どのくらい時間がかかるのか。",
+    "english": "How long does it take to get the hang of this sewing machine?",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 13,
+        "end": 15,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "1c54bad355b7ec48448316ef",
+    "japanese": "この神殿は建てるのに４６年かかりました。",
+    "english": "It has taken forty-six years to build this temple.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "1e2b8fd59b2319c678372ec9",
+    "japanese": "疲れたのでもう床に入ろうと思う。",
+    "english": "I'm tired, so I think I'll turn in now.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 3,
+        "end": 5,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "208d48aea99a235289063e09",
+    "japanese": "この為替を作るのに銀行の手数料が５０ドルかかった。",
+    "english": "Arranging this money order cost $50 in bank fees and commissions.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "23091d473d7703b9089d08a3",
+    "japanese": "彼女は金持ちなのに幸せではない。",
+    "english": "For all her riches, she's not happy.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "259e7f29a546f6393629c972",
+    "japanese": "彼は彼女が遅いのでいらいらした。",
+    "english": "He was irritated by her delay.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "264429e066ec8cabd3924203",
+    "japanese": "彼らは女王がおいでになるので旗を掲げた。",
+    "english": "They hung out the flag for the Queen's visit.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "26906df21dcebc2f23070cdf",
+    "japanese": "ここの下りも手掛かりがないので危険だ。",
+    "english": "The downclimb here is also dangerous as there are no handholds.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 13,
+        "end": 15,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "2810f254b1fff534debfb0b5",
+    "japanese": "小さいおうちはお金で売れなかったのでじーとそこにとどまったままながめつづけていました。",
+    "english": "She couldn't be sold for gold or silver, so she just stayed there and watched.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 16,
+        "end": 18,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "28903a280a35c237e9ade8f0",
+    "japanese": "自動車にひかれたのではないですか。",
+    "english": "Wasn't he killed by a car?",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "28a08351b5d29281f99a5dc5",
+    "japanese": "人前で話をするのにも慣れました。",
+    "english": "I've got accustomed to speaking in public.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "29b86e72d74481a5e53b6854",
+    "japanese": "ドアが閉まっていたので、入ることが出来なかった。",
+    "english": "The door was locked, so I couldn't get in.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "2af2f817c84ad75a7b86b916",
+    "japanese": "滑り出しが好調なら事は半ば成就したのに等しい。",
+    "english": "Well begun is half done.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 17,
+        "end": 19,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "2b76e4395a6a05be0352e582",
+    "japanese": "私達は質素な食物を食べるのに慣れている。",
+    "english": "We are used to eating plain food.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "2d4e5df86a1a7a457c555f90",
+    "japanese": "彼は疲れたので壁に寄りかかった。",
+    "english": "He leaned against the wall as he was tired.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 5,
+        "end": 7,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "2d74f03dbd6e82edd125b26e",
+    "japanese": "うんとお金があればいいのに。",
+    "english": "I wish I had much money.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "2ddf32166e9d1fa6fa322359",
+    "japanese": "当人の終始変わらない努力が最後にものを言うのである。",
+    "english": "It is your constant efforts that count most in the end.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 21,
+        "end": 23,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "2e8e2496073d4df2f18a82cb",
+    "japanese": "何年か前には、結核にかかっていると知らされることは死の宣告を聞くのに等しかった。",
+    "english": "Some years ago, learning that one had tuberculosis amounted to hearing a sentence of death.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 32,
+        "end": 34,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "2f4bdc90d855740cc6e3b7a4",
+    "japanese": "この本を読むのに３日かかった。",
+    "english": "It took me three days to read this book.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "2f579461f0a47f26d5110520",
+    "japanese": "雨だったので出かけられなかった。",
+    "english": "It being rainy, I could not go out.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 4,
+        "end": 6,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "2fb16615baac72ebe7638f4b",
+    "japanese": "彼らは彼を勉強しないので退学させた。",
+    "english": "They booted him out of school for not studying.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "3495e5a12b41db734abefc5b",
+    "japanese": "ゴムをすると確かに性感が落ちるので、出来れば生でしたいです。",
+    "english": "The sensitivity certainly drops if I use a condom, so if possible I'd like to do it bareback.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "36cf6a939f182c89b3a5010b",
+    "japanese": "彼は仕事中なので面会は出来ません。",
+    "english": "You can't see him because he is engaged.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "374eafe50fd615ec691fd13f",
+    "japanese": "あんなに長所が多いのに彼女は誇らなかった。",
+    "english": "With all her merits she was not proud.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "37e712b5560cc0f064f52c13",
+    "japanese": "熱があるので家にいたほうがいい。",
+    "english": "As you have a fever, you'd better stay home.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 4,
+        "end": 6,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "3beca75eb292ef765e28ed96",
+    "japanese": "彼らは神の手の中にいるのである。",
+    "english": "They are in the hands of the gods.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "3c5ff48ffd75722b779a5bad",
+    "japanese": "私はこの本を買うのに十分なお金を持っている。",
+    "english": "I have enough money to buy this book.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "3ca55e6d16e1201d088f4ce9",
+    "japanese": "僕は実験方法を学んでいたのではなかったし、実験を再現する方法を学んでいるのでさえなかった。",
+    "english": "I was not being taught to experiment or even to repeat experiments.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      },
+      {
+        "start": 36,
+        "end": 38,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "3cd829393450f5724f473fc6",
+    "japanese": "これは掛けるのにたいそう頑丈ないすだ。",
+    "english": "This is a very sturdy chair to sit in.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "47464d53fde01b261936b2e0",
+    "japanese": "朝早く起きるのには慣れています。",
+    "english": "I'm accustomed to getting up early.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "483fa8e9f1e0b33c60bc17b0",
+    "japanese": "とても寒かったので火をたいた。",
+    "english": "It was so cold that we made a fire.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "491a9e65e7b4e1262bada37e",
+    "japanese": "トムはジョンが方言を使うのでいつもからかう。",
+    "english": "Tom always makes fun of John because of his dialect.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "4a56d0d5dbb84bff28b5599e",
+    "japanese": "いったん約束したのであれば、守らなければならない。",
+    "english": "Once you have made a promise, you must keep it.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "4a710f192a510c19ec8d7847",
+    "japanese": "時間がたつのに気がつかなかった。",
+    "english": "I took no note of the time.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 5,
+        "end": 7,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "4bd8234a03a58b583c7e5295",
+    "japanese": "母はワイシャツのしわをアイロンでのばすのにいそがしかった。",
+    "english": "I found my mother busy ironing out some shirts.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 19,
+        "end": 21,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "4f3b959690ac02b4b83d9bc0",
+    "japanese": "腰掛けのつもりだったのに、気がついたら私もこの会社で古株になってしまった。",
+    "english": "I only figured on staying with this company a little while when I started, but before I knew it I'd become an old timer here.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "4fa60095a5a9eec11237f529",
+    "japanese": "車が故障したので遅れました。",
+    "english": "I was late because my car broke down.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "50434cbffc3314abda26e8de",
+    "japanese": "日向に座っているのに、まだ寒気がした。",
+    "english": "Though I was sitting in the sun, I still felt chilly.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "5122b60c31b68778a7b8a6e2",
+    "japanese": "もっと一緒にいられたらいいのに。",
+    "english": "I wish that we could spend more time together.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 13,
+        "end": 15,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "51e1dcff73d866f9c10e2db7",
+    "japanese": "知識というものは肥料と同じで、広まってこそ良いのである。",
+    "english": "Knowledge is like manure, it's only good when spread.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 23,
+        "end": 25,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "531fd3d367abd20cf3fb3691",
+    "japanese": "決心がつきかねたので、私は感情のおもむくままに行動した。",
+    "english": "I couldn't decide what to do, so I just followed my heart.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "5328e3fd0bf0871deda3803f",
+    "japanese": "退職したのでしばらくのんびり暮らすつもりです。",
+    "english": "I've retired and I'm going to take it easy for a while.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 4,
+        "end": 6,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "5674377470f4141fd04fc7a1",
+    "japanese": "たくさん食べたので腹が膨れた。",
+    "english": "I've had enough, so my stomach is full.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "57020670e09a0e4a979fff0c",
+    "japanese": "彼は記事を書くのにとても忙しい。",
+    "english": "He is very busy writing stories.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "57d22cdb4a7a11d86c13dae3",
+    "japanese": "彼は若い、それなのに分別がある。",
+    "english": "He is young, and yet he is prudent.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "58c2d83ce9badc66b52a8b6a",
+    "japanese": "読書は語彙を増やすのに役に立つ。",
+    "english": "Reading helps you build up your vocabulary.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "5ac866226acdd982355a0f04",
+    "japanese": "彼は年の割に若く見えるので、大学生として通用します。",
+    "english": "He looks so young for his age that he passes for a college student.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "5c4fc21e19e22d0137304290",
+    "japanese": "この生地は洋服をつくるのには向かない。",
+    "english": "This material is not suitable for a dress.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "5ef836858e2742e48d5cacf5",
+    "japanese": "せっかく骨を折ったのに、彼は失敗した。",
+    "english": "He has failed after all his labors.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "5ef8e030fe538c2c97f2f7b8",
+    "japanese": "私が早く去るので彼らは残念がった。",
+    "english": "My leaving early made them feel sorry.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "5f32b5a838f0147ce1ff46b2",
+    "japanese": "先生は答案を調べるのに忙しい。",
+    "english": "The teacher is busy looking over the examination papers.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "614ab085012d40c75ec23645",
+    "japanese": "それを建てるのに何年もかかった。",
+    "english": "It took many years to build it.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "61bbade7322e28c2fd28dcc9",
+    "japanese": "彼は組んだ下位候補者が悪かったので落選しました。",
+    "english": "He was dropped because of his running mate.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "620313c55d3b902b3fda19d6",
+    "japanese": "電池が弱ってきているのでうまく動かない。",
+    "english": "It doesn't work so well because the batteries are running down.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "62e59c6e55f8a1d1e026e2df",
+    "japanese": "母親は夕食を作るのに忙しかった。",
+    "english": "My mother was busy cooking dinner.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "6330e164074312a9317ee355",
+    "japanese": "客がいなかったので店を早仕舞いにした。",
+    "english": "There were no customers, so we closed the shop earlier.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "63a6865abedde07f157465b4",
+    "japanese": "今日が天気ならいいのに。",
+    "english": "I wish it were fine today.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "64b3c989dba2c4003b91ebeb",
+    "japanese": "これはバーゲン商品なので定価よりやすくなっているんじゃないですか。",
+    "english": "Aren't you selling this at a discount price?",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "6529518f4e472fa26446b404",
+    "japanese": "天気が良かったので、その野外コンサートは大成功だった。",
+    "english": "Thanks to the good weather, the outdoor concert was a success.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "66964124ff1c6f358fbfdf62",
+    "japanese": "ほとんど空なのでガソリンを入れなくてはなりません。",
+    "english": "I need to put some gas in the car, as it's almost empty.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "6791b629b3dd1669b2d40357",
+    "japanese": "別に特定の人をさして言っているのではない。",
+    "english": "I am not alluding to any person in particular.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "683f94525291c8a424effadc",
+    "japanese": "あまり太ったのでカラーの前が合わなかった。",
+    "english": "He got so stout that his collar did not meet.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "696514e0450fd61b1c4a9a35",
+    "japanese": "ドアのカギをなくしたので家に入れない。",
+    "english": "I lost the door key, so I can't enter the house.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "6d16dcb741a6b60d930bf4c6",
+    "japanese": "道が悪いのでスピードを出せない。",
+    "english": "The bad roads prohibit speeding.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 4,
+        "end": 6,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "70251b50a7d0924949526f43",
+    "japanese": "みかけはそうではないのに本当は意地が悪い。",
+    "english": "He doesn't look that way, but he's really a nasty piece of work.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "7275004427d4ac5a1c8f39cd",
+    "japanese": "暑かったので扇風機をつけた。",
+    "english": "Feeling hot, I turned on the fan.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 4,
+        "end": 6,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "73a443564fb7f87ea1ab1d6e",
+    "japanese": "妻はアメリカでの新しい生活のリズムに慣れるのにえらい苦労した。",
+    "english": "My wife had a hard time getting into the swing of our new life in America.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 21,
+        "end": 23,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "74656fc679c9406996a17210",
+    "japanese": "彼は死んでいるのではないかと危ぶまれている。",
+    "english": "They fear that he may be dead.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "75d218846994694cf44347e1",
+    "japanese": "あまりに光が強いので彼女は目をつぶった。",
+    "english": "She shut her eyes because the light was so strong.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "75d2b21ad691516047677348",
+    "japanese": "日曜日に出社したので月曜日が代休だった。",
+    "english": "I worked on Sunday, so I had Monday off.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "75f76a6e7f6589ca96282aab",
+    "japanese": "この理由により、著者に関する信憑性は、資料の信憑性に拠っているのである。",
+    "english": "For this reason, the credibility of the book's authors rests on the credibility of their sources.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 31,
+        "end": 33,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "76a0803394bda2ea74e4aed4",
+    "japanese": "食べるのにどうしてそんなに手間がかかるのか。",
+    "english": "Why do you take so long to eat?",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 3,
+        "end": 5,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "78b58372f227ff9bbd22e4aa",
+    "japanese": "彼は３８歳なのに両親に頼りきりです。",
+    "english": "Though 38, he is still dependent on his parents.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "796cf076d8dd661b4af54702",
+    "japanese": "軍は全領土を支配するのに成功した。",
+    "english": "The armed forces succeeded in occupying the entire territory.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "79e233cd163427b37ca761c3",
+    "japanese": "私はそのレコードを買うのに３０００円かかった。",
+    "english": "It cost me 3,000 yen to buy the record.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "7e121f89454203089022b2f5",
+    "japanese": "不景気なのに依然物価は高い。",
+    "english": "In spite of the depression, the prices of commodities are still high.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 4,
+        "end": 6,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "7fb67a90b1618391edfadfab",
+    "japanese": "定規は直線を引くのに役立つ。",
+    "english": "A ruler helps one to draw a straight line.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "818b4d0aa528642b49ab7938",
+    "japanese": "オートバイが買えたらいいのになあ。",
+    "english": "I wish I could buy a motorcycle.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "85e25d3528a32cf2894e6120",
+    "japanese": "彼は、中国語をしっていたので、私たちは計画を円滑に実行できた。",
+    "english": "His knowledge of Chinese enabled us to carry out our plan smoothly.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "89af7791fc2f7902ed57fa26",
+    "japanese": "その遊園地を建設するのに１０年かかった。",
+    "english": "It took ten years to build the amusement park.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "89f6aa98ae134ed32c7dacaf",
+    "japanese": "非常にうまい洒落だったので、満場爆笑した。",
+    "english": "It was such a nice joke that everybody burst out laughing.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "8bfec7baeec540bb91729fd6",
+    "japanese": "あなたから離れようと思っているのにいざそうしようとしてもうまくいかない。",
+    "english": "I want to split up, but I know I couldn't even if I tried.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "8c914059989131de614589b0",
+    "japanese": "ただし、調子に乗ると失敗を招くので注意！",
+    "english": "However if you get carried away you'll risk failure so take care!",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "8d88c49626906be1411b6c5c",
+    "japanese": "彼は帰ってくると約束した。それなのに帰ってこなかった。",
+    "english": "He promised to return and yet he didn't.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 16,
+        "end": 18,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "8de71998aedf2326ea2bbe83",
+    "japanese": "紙を綴じるのにホチキスはとても便利です。",
+    "english": "A stapler is very useful for attaching papers together.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 5,
+        "end": 7,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "8f2f82e0b12e965f1042879f",
+    "japanese": "君の厚かましいのには呆れたよ。",
+    "english": "I am amazed at your audacity.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "8f62ed30e02787755889cb7f",
+    "japanese": "歌がうまければいいのになあ。",
+    "english": "I wish I were a good singer.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "8feb0516801bebe9394de9b1",
+    "japanese": "「その人なんて言ってたんスか？」「露語が全く通じなかったので露語でなじってやった」",
+    "english": "\"What was that person saying?\" \"He couldn't communicate in Russian at all so I told him off in Russian.\"",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 28,
+        "end": 30,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "907b1ffd98de8f0702201157",
+    "japanese": "なにぶんこんな辺ぴな村に住んでいるので、めったに客は来ない。",
+    "english": "Living as I do in a remote village, I seldom have visitors.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 17,
+        "end": 19,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "90c99ffaaa59354dec5c5850",
+    "japanese": "幸福は単に富にあるのではない。",
+    "english": "Happiness does not consist simply in wealth.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "9346cf02dcedc21dbe6bd415",
+    "japanese": "もっとお金があれば大きな家に移れるのにな。",
+    "english": "If I had more money, I could move to a bigger house.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 17,
+        "end": 19,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "95d30360c9c4675820bf6c45",
+    "japanese": "どちらかが他方よりいい、というのではない。",
+    "english": "One way is not better than the other.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "95df817b102efed9bdd6f5ed",
+    "japanese": "彼は努力が足りないので失敗した。",
+    "english": "He failed due to lack of effort.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "976dcd5664ad7a874d3bd8ab",
+    "japanese": "私は近視なので、あの看板に何が書いてあるか分からない。",
+    "english": "I am near-sighted, so I cannot make out what is written on that signboard.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 5,
+        "end": 7,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "97aec2865cbcef7a73e5fff5",
+    "japanese": "富と名声はあるのに、彼は孤独だ。",
+    "english": "For all his wealth and fame, he is a lonely man.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "97beeabffde812fe3fee4eef",
+    "japanese": "彼はその仕事を完成するのに貢献した。",
+    "english": "He had a share in completing the job.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "9a7ddd954d36e23203263565",
+    "japanese": "ガソリンがなくなったので、予備タンクに頼った。",
+    "english": "I fell back on the reserve tank when the gas ran out.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "9c07a76dce232ce0542ee533",
+    "japanese": "彼はテレビを見るのに飽きている。",
+    "english": "He is tired of watching television.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "9d99ac943bd6665cf532bfc7",
+    "japanese": "時計がおくれていたので、私は特急にのりそこねた。",
+    "english": "As my watch was slow, I missed the special express.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "9e09bd0090aa279dc0d4f397",
+    "japanese": "その機械は精巧に出来ているので、すぐ壊れる。",
+    "english": "The machine is so delicate that it easily breaks.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 13,
+        "end": 15,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "9e55a62c04349832f768df3b",
+    "japanese": "私は収支を合わすのに苦労しました。",
+    "english": "I had a hard time making both ends meet.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "9e725c7326b6c0d5900dcebc",
+    "japanese": "君が入賞したのにはびっくりした。",
+    "english": "I was surprised that you won the prize.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "a2b0e2d20a40974bdfc3145c",
+    "japanese": "婚約しているのにキスを拒否された。",
+    "english": "Even though we're engaged, she wouldn't let me kiss her.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "a5610abef220c2bbf2668b6a",
+    "japanese": "ここに傷があるので安くしてください。",
+    "english": "There's a scratch here. Could you give me a discount?",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "a6eac5a6b61dacd6c1aa469b",
+    "japanese": "病気なので試験が受けられません。",
+    "english": "I can't sit for the examination because I am ill.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 3,
+        "end": 5,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "aa8e2fa60e43d4a825d31c82",
+    "japanese": "遅刻するのではないかと心配した。",
+    "english": "I was afraid I might be late.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 4,
+        "end": 6,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "aae9685e41ae4335f20663d6",
+    "japanese": "彼女は料理をするのに慣れている。",
+    "english": "She is used to cooking.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "ad0147c55a4c7e352ddec26b",
+    "japanese": "彼はもう成人なので投票できる。",
+    "english": "As he is already of age, he can vote.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "b1378a98677ef4eb08027792",
+    "japanese": "とても寒かったのにもかかわらず、その子供はオーバーコートを身につけていなかった。",
+    "english": "The child had no overcoat on although it was very cold.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "b8e1c562213e59423555b41e",
+    "japanese": "そもそも事故の大半は熱帯雨林ではなく、身近な場所でおこるのである。",
+    "english": "Most accidents, after all, happen around the corner, not in the rainforest.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 28,
+        "end": 30,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "bab78cc34ce38ea62330dc10",
+    "japanese": "彼はバスのボイコット運動を組織したのである。",
+    "english": "He organized a boycott of the bus service.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 17,
+        "end": 19,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "bb1ada96f4d20d4171e1dd0b",
+    "japanese": "もし眠るといけないので目覚し時計をセットしなさい。",
+    "english": "In case you sleep, set the alarm.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "bbc9109636becbdb43beaecc",
+    "japanese": "治るのにしばらくかかりますね。",
+    "english": "It will take a while to go away.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 2,
+        "end": 4,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "bc6b14dd1a8af942ecaf4caa",
+    "japanese": "彼女は徹夜するのに慣れている。",
+    "english": "She is used to staying up all night.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "bd02e5edae06aa210405a856",
+    "japanese": "この家は住むのにとても快適だ。",
+    "english": "This house is very comfortable to live in.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "bddc15aaacc6cc4f79173a60",
+    "japanese": "部長の都合が悪くなってしまったので、飲み会の日程は仕切り直しだね。",
+    "english": "We'll have to organize the drinking party all over again as the section chief can't make it now.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "be448a7fac6aa59b8dceffbe",
+    "japanese": "私たちは間違った方角に進んでいるのではないかと思う。",
+    "english": "I am afraid we are advancing in the wrong direction.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 16,
+        "end": 18,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "c2e2090f31e82e1ea5169a3b",
+    "japanese": "かぜがなおるのに３週間かかった。",
+    "english": "It took three weeks for me to get over my cold.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "c3c7c127514ffbe0361a32b0",
+    "japanese": "完全な円にはもう見えないのである。",
+    "english": "It no longer seems to be a perfect circle.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "c5d4558d128248db50150c8f",
+    "japanese": "レストランにその音楽が流れてきたのでロマンチックなムードになった。",
+    "english": "Music started playing in the restaurant so there was a real romantic mood.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 16,
+        "end": 18,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "c5e04ae371e3158bb74e7003",
+    "japanese": "チャンネルを変えたので彼は怒った。",
+    "english": "Because the channel was changed he got angry.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "c7b4e203d073a7f3323e553c",
+    "japanese": "私の兄は、未婚なので、所帯を持たず、奉公人と一緒によその家で食事をしていた。",
+    "english": "My brother, being yet unmarried, did not keep house, but boarded with his apprentices at the home of another family.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "c900ca69b59ed48a40ecaead",
+    "japanese": "ダンスはスタイルをよくするのにいい。",
+    "english": "Dancing is good for the figure.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 13,
+        "end": 15,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "c9c56b6330a20edeec00f7e2",
+    "japanese": "canは助動詞ですので、疑問文では文頭に持ってきます。",
+    "english": "'can' is an auxiliary verb, so in question sentences it is brought to the start of the phrase.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "cc12cace7f9ed583563ec01d",
+    "japanese": "彼はとても若く見えるのでよく学生と間違われる。",
+    "english": "He is often taken for a student because he looks so young.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "cd0fc5706b7b5d881672054f",
+    "japanese": "もっと一生懸命勉強すべきだったのに。",
+    "english": "You should have worked harder.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 15,
+        "end": 17,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "d01878c339d75aaeffdd3f90",
+    "japanese": "学生センターは話をするのに良いところだ。",
+    "english": "The student center is a good place to strike up conversations.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "d3bd6eabe7cf0bcf5c368560",
+    "japanese": "トムは実業家になるのに向いている。",
+    "english": "Tom is fit to become a businessman.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "d600bdf3a9b6ac78bdb9c1e4",
+    "japanese": "個々の木を見分けるのが困難になってはじめて森が見えるようになるのである。",
+    "english": "You get to see the wood only when it becomes too difficult to distinguish individual trees.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 31,
+        "end": 33,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "d6326b948460b112caaad935",
+    "japanese": "彼はピューマを慣らすのに大いに骨を折った。",
+    "english": "He took great pains in taming a puma.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "d757ef534522457d2757ab7a",
+    "japanese": "クレーンを操縦するのには、勿論、免許が必要です。",
+    "english": "Of course, a license is needed to operate a crane.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "d8c3b6a43c87bfc7f354f499",
+    "japanese": "君と意見を異にするので私には心苦しい。",
+    "english": "It pains me to disagree with your opinion.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "daccde655cd2992d6ee88516",
+    "japanese": "このテーブルを頼んだのではない。",
+    "english": "I didn't ask for a table here.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "dcd345795a48eaa1e8fe4893",
+    "japanese": "従業員たちは超過勤務をするのに異議を唱えた。",
+    "english": "The employees demurred at working overtime.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 13,
+        "end": 15,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "dd48e6b80b53e6ee72cf203e",
+    "japanese": "メアリーは重態だ。死にかけているのではないだろうか。",
+    "english": "Mary is very ill and I'm afraid she is dying.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 16,
+        "end": 18,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "dd51d43d67c7cf5ef28ba561",
+    "japanese": "２０歳になっていれば、投票できるのに。",
+    "english": "If I were twenty, I could vote.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 16,
+        "end": 18,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "de2de7d7ea694f37db88f01f",
+    "japanese": "チェックアウトしたいので、会計をおねがいします。",
+    "english": "I'd like to check out. Do you have my bill?",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "de7c60e19f3438940a5f3c84",
+    "japanese": "地下鉄から出るのに私はもがいた。",
+    "english": "I struggled to get out of the subway.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "df2ef3b82b57fb9bd6483c17",
+    "japanese": "期待していたので、尚更がっかりした。",
+    "english": "I was all the more disappointed because of my expectations.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "dfbe5fa53914a30e91e4d175",
+    "japanese": "みなさまがお揃いになったので、送別会を始められます。",
+    "english": "Now that we are all here, we can start the farewell party.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "dfbfd403a8284e27ac2fb2f6",
+    "japanese": "私は彼女が不在なので失望した。",
+    "english": "I was disappointed at her absence.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "dfcccf003997430145581400",
+    "japanese": "改めるのに遅すぎるということはない。",
+    "english": "It is never too late to mend.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 3,
+        "end": 5,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "dfd6a615450ecad7da3b443f",
+    "japanese": "彼はいま歯が痛むのでよくかむことができない。",
+    "english": "He can't chew well, because he has a toothache now.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 8,
+        "end": 10,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "e21a28b907ec62c93e1edda0",
+    "japanese": "私は公衆の面前で演説するのに慣れてない。",
+    "english": "I am not accustomed to making speeches in public.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "e51038b140cc9a62ded56743",
+    "japanese": "その男は私の足を踏んだのにわびることさえしなかった。",
+    "english": "The man did not so much as apologize for stepping on my foot.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "e6808b2f0f63f11d2338fec3",
+    "japanese": "我々が真理を知るのは、理知によるだけではなく、また心情によって知るのである。",
+    "english": "We know the truth, not only by reason, but also at heart.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 33,
+        "end": 35,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "e761be8e0c8bcfcc6ccb8b94",
+    "japanese": "ジョンはひどく急いでいたので話をする暇もなかった。",
+    "english": "John was in such a hurry that he had no time for talking.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 12,
+        "end": 14,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "e883fc2e4a3296b8398cffd6",
+    "japanese": "背後に声がしたので彼女は体をねじって振り返った。",
+    "english": "She twists around at a voice behind.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "eac9c8df5bcd6085374e580b",
+    "japanese": "彼は正直なので多くの友人がいる。",
+    "english": "He gains many friends through his honesty.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 5,
+        "end": 7,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "eedaabd909ecef88bc137632",
+    "japanese": "サイフがないのにふと気がついた。",
+    "english": "He suddenly noticed his wallet was missing.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 6,
+        "end": 8,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "ef02edd7d612140a9c02c64a",
+    "japanese": "監督はチームをトーナメント優勝に今一歩という所までもっていったのに悔しいことだった。",
+    "english": "It was annoying, as the manager took his team to a near-miss in the tournament.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 31,
+        "end": 33,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "ef2154ff56cfdcd7cdcdc1ca",
+    "japanese": "単語は徐々に増えますので、こまめにチェックしてください。",
+    "english": "The words covered are steadily increasing, so check frequently.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "f041a4800766a96ede13edb3",
+    "japanese": "パーマをかけたので、髪の毛が縮れています。",
+    "english": "Now I have curly hair, because I had a perm.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 7,
+        "end": 9,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "f54b24daeffbf0aaea3ffc1f",
+    "japanese": "私の名前はロバートなので、皆は略してボブと呼びます。",
+    "english": "My name is Robert, so they call me Bob for short.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "f5671a14c8a5d7a60a70cfff",
+    "japanese": "夜が更けて疲れていたので私は宿屋に泊まった。",
+    "english": "As it was late at night and I was very tired, I put up at an inn.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 10,
+        "end": 12,
+        "surface": "ので",
+        "join": true,
+        "reason": "Causal conjunction (because/so)."
+      }
+    ]
+  },
+  {
+    "id": "fa27d8e199a646d5ca601b81",
+    "japanese": "あれだけのコインを収集するのにどれだけの年月がかかりましたか。",
+    "english": "How long did it take you to collect so many coins?",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 13,
+        "end": 15,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  },
+  {
+    "id": "fb41790790b034d4c62481c9",
+    "japanese": "火曜日まで待ってもよいのではありませんか。",
+    "english": "You might as well wait until Tuesday.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 11,
+        "end": 13,
+        "surface": "ので",
+        "join": false,
+        "reason": "Explanatory nominalizer followed by a copula."
+      }
+    ]
+  },
+  {
+    "id": "fdddea8016786118c130b53f",
+    "japanese": "もし金があれば、それが買えるのに。",
+    "english": "If I had money, I could buy it.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 14,
+        "end": 16,
+        "surface": "のに",
+        "join": true,
+        "reason": "Concessive or regret conjunction (although/if only)."
+      }
+    ]
+  },
+  {
+    "id": "ffca0f21b220bebc5c59a3bc",
+    "japanese": "石けんは泥を落とすのに役立つ。",
+    "english": "Soap helps remove the dirt.",
+    "reviewer": "Codex",
+    "decisions": [
+      {
+        "start": 9,
+        "end": 11,
+        "surface": "のに",
+        "join": false,
+        "reason": "Nominalized clause followed by a case particle."
+      }
+    ]
+  }
+]

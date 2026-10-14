@@ -72,3 +72,41 @@ alternatives and their origins; new Journal entries retain that list as a snapsh
 When distributing the bank, retain attribution, a license link, and modification
 notices under CC BY-SA 4.0. Keep original contributor credit separate from the
 creator of added wording. See [DATA_DISCLOSURE.md](../DATA_DISCLOSURE.md).
+
+## Romaji spacing
+
+`romaji/word-boundaries.json` stores spacing for supplied furigana readings.
+Sudachi provides boundaries, while the original furigana provides pronunciation.
+Honorific prefixes and inflectional endings stay with their words. Compound
+particles `demo`, `temo`, and `deha` are joined. Noun + `suru` constructions and
+auxiliary verbs after a te-form retain spaces (`benkyou suru`, `hamete ita`).
+The output preserves kana spelling, including particles `ha`, `he`, and `wo`,
+and explicit vowel sequences such as `ou` and `uu`.
+
+`romaji/conjunction-reviews.json` records context-specific decisions for の + で
+and の + に. Causal ので and concessive/regret のに are joined (`node`, `noni`);
+nominalized clauses followed by case particles or explanatory copulas retain
+spaces. These decisions were reviewed by Codex against the Japanese sentence
+and English prompt; each entry records the reviewer and reason.
+
+To regenerate after importing or editing sentences:
+
+```sh
+python3 -m venv .cache/spelling-tools
+.cache/spelling-tools/bin/pip install -r scripts/spelling-requirements.txt
+bun run romaji:generate
+bun run romaji:check
+bun run romaji:test
+```
+
+Generation stops on missing, stale, or malformed conjunction decisions before
+writing the bank. Update the review entry with matching Japanese and English
+text, a reviewer, and a decision for every ambiguous token pair. `start` and
+`end` are Python character offsets in the Japanese source, with an exclusive
+end. `surface` must match that range; `join` is a boolean and `reason` explains
+the contextual reading. Keep separate nominalizer/particle constructions
+spaced even when their spelling matches a conjunction.
+
+The regular Bun tests reject missing spacing for eligible readings and changed
+review snapshots. CI also regenerates the bank in check mode and runs generator
+tests, so changes to source data or spacing rules require an updated bank.

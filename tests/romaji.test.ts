@@ -1,6 +1,10 @@
 import { expect, test } from "bun:test";
 import { kanaToRomaji, romajiHint } from "../shared/romaji";
 import { exercises, exerciseById } from "../server/utils/exercises";
+import wordBoundaries from "../data/romaji/word-boundaries.json";
+import conjunctionReviews from "../data/romaji/conjunction-reviews.json";
+import sourceCandidates from "../data/processed/sentence-candidates.json";
+import { validReadings } from "../shared/practice";
 
 test("romaji handles both kana scripts, combined sounds, and doubled consonants", () => {
   expect(kanaToRomaji("みずをのみます。")).toBe("mizuwonomimasu.");
@@ -42,11 +46,69 @@ test("every eligible exercise provides a hint without Japanese letters", () => {
 
 test("hints separate kana words and particles after an annotated noun", () => {
   const candidate = exerciseById.get("8f62ed30e02787755889cb7f")!;
-  expect(romajiHint(candidate)).toBe("uta ga umakereba ii no ni naa.");
+  expect(romajiHint(candidate)).toBe("uta ga umakereba ii noni naa.");
+});
+
+test("every supplied reading has generated spacing so new data cannot silently use the fallback", () => {
+  for (const candidate of exercises) {
+    for (const reading of validReadings(candidate)) {
+      if (!Object.hasOwn(wordBoundaries, reading))
+        throw new Error(
+          `Missing romaji spacing for ${candidate.id}; run romaji:generate.`,
+        );
+    }
+  }
+});
+
+test("conjunction decisions remain aligned with their reviewed source", () => {
+  const sourceById = new Map(
+    sourceCandidates.map((candidate) => [candidate.id, candidate]),
+  );
+  for (const review of conjunctionReviews) {
+    const candidate = sourceById.get(review.id);
+    expect(candidate?.japanese).toBe(review.japanese);
+    expect(candidate?.english).toBe(review.english);
+  }
+});
+
+test("reviewed causal conjunctions are joined while nominalized clauses stay separate", () => {
+  expect(romajiHint(exerciseById.get("00ca9b14f39400422c5f4d04")!)).toBe(
+    "tomodachi ga koko ni inai node gakkari da.",
+  );
+  expect(romajiHint(exerciseById.get("0c9cd7596a064f9334263e09")!)).toBe(
+    "naoru no ni dono kurai no kikan ga kakarimasu ka.",
+  );
+});
+
+test("compound particle deha follows the documented spacing convention", () => {
+  expect(romajiHint(exerciseById.get("0028ff5e1ccfd69a615c5240")!)).toBe(
+    "watashi ha suugaku deha kare yori ototte iru.",
+  );
 });
 
 test("word spacing preserves polite negative and past endings", () => {
   expect(romajiHint(exerciseById.get("02cb469b4193cbcf21c1460c")!)).toBe(
     "sono hako ni ha nani mo arimasendeshita.",
+  );
+});
+
+test("compound demo and temo stay together across the sentence bank", () => {
+  expect(romajiHint(exerciseById.get("5f5cc8b5eae897bed3742337")!)).toBe(
+    "kamereon ha donna iro ni demo nareru.",
+  );
+  expect(romajiHint(exerciseById.get("04e30483b5c4c5b9a80d794c")!)).toBe(
+    "onaji mono ha doko ni demo mitsukarimasu.",
+  );
+  expect(romajiHint(exerciseById.get("0364a0abf8ed1efcc797071b")!)).toBe(
+    "sukoshi terebi wo mitemo iidesu ka.",
+  );
+});
+
+test("honorific prefixes stay with their nouns in sentence hints", () => {
+  expect(romajiHint(exerciseById.get("037ecf536cc433ef401f94da")!)).toBe(
+    "suupu wo ireru kubonda osara ga arimasu ka.",
+  );
+  expect(romajiHint(exerciseById.get("0324d950cada541bfaeb25e2")!)).toBe(
+    "kikimashita wa yo. goryoushin ga shakkin wo nokoshite jouhatsu shita sou desu wa ne.",
   );
 });

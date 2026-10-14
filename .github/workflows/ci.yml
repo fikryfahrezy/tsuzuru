@@ -22,6 +22,12 @@ jobs:
         with:
           bun-version-file: .bun-version
       - run: bun install --frozen-lockfile
+      - name: Validate generated romaji spacing and reviewed conjunctions
+        run: |
+          python3 -m venv .cache/spelling-tools
+          .cache/spelling-tools/bin/pip install -r scripts/spelling-requirements.txt
+          bun run romaji:check
+          bun run romaji:test
       - run: bun run check
       - run: bun run build
       - run: docker compose config --quiet

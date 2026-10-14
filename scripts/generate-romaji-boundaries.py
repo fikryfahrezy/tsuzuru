@@ -35,7 +35,37 @@ def reading_offsets(furigana):
     return surface, offsets
 
 
-def word_boundaries(tokenizer, surface, offsets):
+def ambiguous_conjunctions(tokens):
+    return [
+        {"start": tokens[index - 1].begin(), "end": token.end(),
+         "surface": "の" + token.surface()}
+        for index, token in enumerate(tokens)
+        if index
+        and tokens[index - 1].surface() == "の"
+        and token.surface() in ("で", "に")
+        and tokens[index - 1].part_of_speech()[0] == "助詞"
+        and token.part_of_speech()[0] in ("助詞", "助動詞")
+    ]
+
+
+def reviewed_joins(candidate, tokens, review):
+    hits = ambiguous_conjunctions(tokens)
+    if not hits and review is None:
+        return set()
+    if (review is None or review.get("japanese") != candidate["japanese"]
+            or review.get("english") != candidate["english"]
+            or not review.get("reviewer", "").strip()):
+        raise ValueError(f"Missing or stale conjunction review: {candidate['id']}")
+    decisions = review.get("decisions", [])
+    snapshots = [{key: decision.get(key) for key in ("start", "end", "surface")}
+                 for decision in decisions]
+    if snapshots != hits or any(type(d.get("join")) is not bool or
+                               not d.get("reason", "").strip() for d in decisions):
+        raise ValueError(f"Invalid conjunction decisions: {candidate['id']}")
+    return {decision["start"] + 1 for decision in decisions if decision["join"]}
+
+
+def word_boundaries(tokenizer, surface, offsets, joins=None):
     tokens = list(tokenizer.tokenize(surface, SplitMode.C))
     boundaries = []
     for index, token in enumerate(tokens):
@@ -43,8 +73,29 @@ def word_boundaries(tokenizer, surface, offsets):
             continue  # Never split a supplied reading annotation.
         previous = tokens[index - 1]
         pos, previous_pos = token.part_of_speech(), previous.part_of_speech()
+        # Sudachi separates で/て + も. Keep demo/temo together, but
+        # leave standalone も (e.g. 手も, 何も) separate from the noun.
+        compound_mo = (
+            token.surface() == "も"
+            and pos[0] == "助詞"
+            and previous.surface() in ("で", "て")
+            and previous_pos[0] in ("助詞", "助動詞")
+        )
+        # Join only honorific prefixes identified by the tokenizer, rather
+        # than every literal お/ご that happens to precede another word.
+        honorific_prefix = (
+            previous_pos[0] == "接頭辞"
+            and previous.surface() in ("お", "ご", "御")
+            and pos[0] in ("名詞", "動詞", "形容詞", "形状詞")
+        )
         if (
-            pos[0] == "接尾辞"
+            compound_mo
+            or honorific_prefix
+            or (joins is not None and token.begin() in joins)
+            # Treat the compound particle では consistently as deha.
+            or (token.surface() == "は" and pos[0] == "助詞"
+                and previous.surface() == "で" and previous_pos[0] in ("助詞", "助動詞"))
+            or pos[0] == "接尾辞"
             or (pos[0] == "助動詞" and previous_pos[0] in ("動詞", "形容詞", "助動詞"))
             or (token.surface() == "ば" and previous_pos[5].startswith("仮定形"))
             or (token.surface() in ("て", "で") and pos[1] == "接続助詞" and previous_pos[0] in ("動詞", "形容詞", "助動詞"))
@@ -61,16 +112,25 @@ def main():
     args = parser.parse_args()
     tokenizer = Dictionary(dict="core").create()
     candidates = json.loads((ROOT / "data/processed/sentence-candidates.json").read_text())
+    reviews = json.loads((ROOT / "data/romaji/conjunction-reviews.json").read_text())
+    review_by_id = {review["id"]: review for review in reviews}
+    if len(review_by_id) != len(reviews) or not set(review_by_id).issubset({c["id"] for c in candidates}):
+        raise SystemExit("Duplicate or obsolete conjunction reviews.")
     bank = {}
     for candidate in candidates:
+        tokens = list(tokenizer.tokenize(candidate["japanese"], SplitMode.C))
+        try:
+            joins = reviewed_joins(candidate, tokens, review_by_id.get(candidate["id"]))
+        except ValueError as error:
+            raise SystemExit(f"{error}. Review the source text and update data/romaji/conjunction-reviews.json.") from error
         for furigana in candidate["furiganaVariants"]:
             surface, offsets = reading_offsets(furigana)
             if surface != candidate["japanese"]:
                 continue
-            bank[furigana] = word_boundaries(tokenizer, surface, offsets)
+            bank[furigana] = word_boundaries(tokenizer, surface, offsets, joins)
     output = ROOT / "data/romaji/word-boundaries.json"
-    # Compact, deterministic output keeps this generated lookup small.
-    content = json.dumps(dict(sorted(bank.items())), ensure_ascii=False, separators=(",", ":")) + "\n"
+    # Stable, readable output makes individual boundary changes reviewable.
+    content = json.dumps(dict(sorted(bank.items())), ensure_ascii=False, indent=2) + "\n"
     if args.check:
         if not output.exists() or output.read_text() != content:
             raise SystemExit("Romaji boundaries are stale; run romaji:generate.")
