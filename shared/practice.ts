@@ -41,8 +41,21 @@ export interface Candidate {
 export interface Question {
   id: string;
   english: string;
+  romaji: string;
+  wordHints: PromptPart[];
   wordCount: number;
   poolSize: number;
+}
+export interface VocabularyHint {
+  japanese: string;
+  reading: string;
+  romaji: string;
+  meaning: string;
+}
+export interface PromptPart {
+  text: string;
+  isWord: boolean;
+  hints: VocabularyHint[];
 }
 export interface DifferencePart {
   text: string;

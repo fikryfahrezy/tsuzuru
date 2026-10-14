@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { definePageMeta, useHead, useSeoMeta } from "#imports";
+import { definePageMeta, useHead, useSeoMeta, useRoute } from "#imports";
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { $fetch } from "ofetch";
 import {
@@ -62,7 +62,33 @@ const length = ref<Length>(Length.Short);
 const mode = ref<Strictness>(Strictness.Flexible);
 const tab = ref<PracticeTab>(PracticeTab.Practice);
 const settingsOpen = ref(false);
+const showRomaji = ref(false);
+const route = useRoute();
+const sentence = computed(() =>
+  typeof route.query.sentence === "string"
+    ? route.query.sentence
+    : route.query.sentence === undefined
+      ? undefined
+      : "",
+);
 const question = ref<Question | null>(null);
+const selectedWord = ref<number | null>(null);
+const activeWord = computed(() =>
+  selectedWord.value === null
+    ? null
+    : (question.value?.wordHints[selectedWord.value] ?? null),
+);
+function closeWordHint() {
+  const previous = selectedWord.value;
+  selectedWord.value = null;
+  if (previous !== null)
+    void nextTick(() =>
+      document.getElementById(`prompt-word-${previous}`)?.focus(),
+    );
+}
+function hasKanji(text: string): boolean {
+  return /\p{Script=Han}/u.test(text);
+}
 const answer = ref("");
 const result = ref<Comparison | null>(null);
 const revealed = ref(false);
@@ -114,6 +140,7 @@ function persist() {
         level: level.value,
         length: length.value,
         mode: mode.value,
+        showRomaji: showRomaji.value,
         journal: journal.value,
       }),
     );
@@ -127,6 +154,7 @@ async function loadQuestion() {
   const sequence = ++request;
   const previous = question.value?.id;
   question.value = null;
+  selectedWord.value = null;
   result.value = null;
   answer.value = "";
   revealed.value = false;
@@ -134,13 +162,21 @@ async function loadQuestion() {
   loading.value = true;
   try {
     const next = await $fetch<Question>("/api/exercises", {
-      query: { level: level.value, length: length.value, previous },
+      query: {
+        level: level.value,
+        length: length.value,
+        previous,
+        sentence: sentence.value,
+      },
     });
     if (sequence !== request) return;
     question.value = next;
   } catch {
     if (sequence === request)
-      error.value = "We couldn’t load a sentence. Please try again.";
+      error.value =
+        sentence.value !== undefined
+          ? "We couldn’t load the requested sentence. Check the sentence ID or return to random practice."
+          : "We couldn’t load a sentence. Please try again.";
   } finally {
     if (sequence === request) loading.value = false;
   }
@@ -282,6 +318,8 @@ onMounted(() => {
       if (isLevel(saved.level)) level.value = saved.level;
       if (isLength(saved.length)) length.value = saved.length;
       if (isStrictness(saved.mode)) mode.value = saved.mode;
+      if (typeof saved.showRomaji === "boolean")
+        showRomaji.value = saved.showRomaji;
       if (Array.isArray(saved.journal))
         journal.value = saved.journal
           .filter((entry: unknown): entry is Entry => {
@@ -331,6 +369,10 @@ watch(mode, () => {
     persist();
   }
 });
+watch(showRomaji, persist);
+watch(sentence, () => {
+  if (ready.value) void loadQuestion();
+});
 </script>
 
 <template>
@@ -341,8 +383,9 @@ watch(mode, () => {
         to="/"
         aria-label="Tsuzuru home"
         title="Back to home"
-        ><span class="brand-mark" lang="ja">綴</span></NuxtLink
       >
+        <span class="brand-mark" lang="ja">綴</span>
+      </NuxtLink>
       <nav aria-label="Main navigation">
         <button
           :class="{ active: tab === PracticeTab.Practice }"
@@ -352,8 +395,8 @@ watch(mode, () => {
             settingsOpen = false;
           "
         >
-          <span class="rail-mark" lang="ja" aria-hidden="true">文</span
-          ><span>Practice</span>
+          <span class="rail-mark" lang="ja" aria-hidden="true">文</span>
+          <span>Practice</span>
         </button>
         <button
           :class="{ active: tab === PracticeTab.Journal }"
@@ -363,15 +406,21 @@ watch(mode, () => {
             settingsOpen = false;
           "
         >
-          <span class="rail-mark" lang="ja" aria-hidden="true">記</span
-          ><span
-            >Journal <span class="nav-count">{{ journal.length }}</span></span
-          >
+          <span class="rail-mark" lang="ja" aria-hidden="true">記</span>
+          <span>
+            Journal
+            <span class="nav-count">{{ journal.length }}</span>
+          </span>
         </button>
       </nav>
-      <NuxtLink class="workspace-credits" to="/sources" title="Data and credits"
-        ><span aria-hidden="true">ⓘ</span><span>Credits</span></NuxtLink
+      <NuxtLink
+        class="workspace-credits"
+        to="/sources"
+        title="Data and credits"
       >
+        <span aria-hidden="true">ⓘ</span>
+        <span>Credits</span>
+      </NuxtLink>
     </aside>
     <main class="workspace practice-workspace">
       <header class="workspace-heading">
@@ -412,7 +461,16 @@ watch(mode, () => {
           :class="{ 'settings-open': settingsOpen }"
           aria-label="Practice settings"
         >
-          <fieldset :disabled="checking">
+          <div v-if="sentence !== undefined" class="selected-sentence-note">
+            <p class="setting-note">
+              Practicing a selected sentence. Level and length apply to random
+              practice.
+            </p>
+            <NuxtLink to="/app" @click="settingsOpen = false">
+              Return to random practice
+            </NuxtLink>
+          </div>
+          <fieldset v-if="sentence === undefined" :disabled="checking">
             <legend>Vocabulary level</legend>
             <div class="levels">
               <button
@@ -426,7 +484,7 @@ watch(mode, () => {
               </button>
             </div>
           </fieldset>
-          <fieldset :disabled="checking">
+          <fieldset v-if="sentence === undefined" :disabled="checking">
             <legend>Sentence length</legend>
             <div class="length-options">
               <button
@@ -436,8 +494,8 @@ watch(mode, () => {
                 :class="{ selected: length === item.value }"
                 @click="length = item.value"
               >
-                <span>{{ item.label }}</span
-                ><small>{{ item.note }}</small>
+                <span>{{ item.label }}</span>
+                <small>{{ item.note }}</small>
               </button>
             </div>
             <p class="setting-note">Measured in English words.</p>
@@ -452,11 +510,11 @@ watch(mode, () => {
                 :class="{ selected: mode === item.value }"
                 @click="mode = item.value"
               >
-                <span class="mode-mark" lang="ja">{{ item.mark }}</span
-                ><span>{{ item.label }}</span
-                ><span class="radio-mark" aria-hidden="true">{{
-                  mode === item.value ? "●" : "○"
-                }}</span>
+                <span class="mode-mark" lang="ja">{{ item.mark }}</span>
+                <span>{{ item.label }}</span>
+                <span class="radio-mark" aria-hidden="true">
+                  {{ mode === item.value ? "●" : "○" }}
+                </span>
               </button>
             </div>
             <p class="setting-note">{{ modeHelp }}</p>
@@ -470,20 +528,107 @@ watch(mode, () => {
         >
           <div class="prompt">
             <p class="paper-label">TRANSLATE INTO JAPANESE</p>
-            <h2 v-if="question">{{ question.english }}</h2>
+            <h2 v-if="question" class="english-prompt">
+              <template
+                v-for="(part, index) in question.wordHints"
+                :key="index"
+              >
+                <button
+                  v-if="part.isWord"
+                  type="button"
+                  class="prompt-word"
+                  :id="`prompt-word-${index}`"
+                  :class="{ 'prompt-word-active': selectedWord === index }"
+                  :aria-expanded="selectedWord === index"
+                  aria-controls="word-hint"
+                  :aria-label="`Japanese hint for ${part.text}`"
+                  @click="selectedWord = selectedWord === index ? null : index"
+                  @keydown.esc="closeWordHint"
+                >
+                  {{ part.text }}
+                </button>
+                <template v-else>{{ part.text }}</template>
+              </template>
+            </h2>
             <h2 v-else>
               {{ loading ? "Loading sentence…" : "Sentence unavailable." }}
             </h2>
+            <section
+              v-if="activeWord"
+              id="word-hint"
+              class="word-hint"
+              aria-label="Japanese word hint"
+              aria-live="polite"
+              @keydown.esc="closeWordHint"
+            >
+              <div class="word-hint-heading">
+                <p class="paper-label">JAPANESE HINT · {{ activeWord.text }}</p>
+                <button
+                  type="button"
+                  aria-label="Close word hint"
+                  @click="closeWordHint"
+                >
+                  ×
+                </button>
+              </div>
+              <ul v-if="activeWord.hints.length">
+                <li v-for="hint in activeWord.hints" :key="hint.japanese">
+                  <span class="word-hint-word">
+                    <span class="word-hint-japanese" lang="ja">
+                      {{ hint.japanese }}
+                    </span>
+                    <span
+                      v-if="hasKanji(hint.japanese) && hint.reading"
+                      class="word-hint-reading"
+                    >
+                      <span lang="ja">{{ hint.reading }}</span>
+                      <span aria-hidden="true">·</span>
+                      <span lang="ja-Latn">{{ hint.romaji }}</span>
+                    </span>
+                  </span>
+                  <span>{{ hint.meaning }}</span>
+                </li>
+              </ul>
+              <p v-else class="word-hint-empty">
+                No vocabulary hint available for this word. It may be expressed
+                through a phrase, grammar, or context in Japanese.
+              </p>
+              <p v-if="activeWord.hints.length" class="setting-note">
+                Dictionary meanings; the wording used in this sentence may
+                differ.
+              </p>
+            </section>
             <div v-if="question" class="prompt-meta">
+              <button
+                type="button"
+                :aria-pressed="showRomaji"
+                aria-controls="romaji-hint"
+                @click="showRomaji = !showRomaji"
+              >
+                {{ showRomaji ? "Hide romaji hint" : "Show romaji hint" }}
+              </button>
               <button :disabled="checking" @click="loadQuestion">
                 Another sentence ↻
               </button>
             </div>
+            <div
+              v-if="question"
+              id="romaji-hint"
+              class="romaji-hint"
+              :hidden="!showRomaji"
+            >
+              <p class="paper-label">REFERENCE IN ROMAJI</p>
+              <p lang="ja-Latn">{{ question.romaji }}</p>
+              <small>
+                Kana spelling in Latin letters; other translations may also be
+                valid.
+              </small>
+            </div>
           </div>
           <form @submit.prevent="submit()">
             <div class="writing-field">
-              <label class="paper-label" for="answer">YOUR JAPANESE</label
-              ><textarea
+              <label class="paper-label" for="answer">YOUR JAPANESE</label>
+              <textarea
                 v-if="!result || revealed"
                 id="answer"
                 ref="field"
@@ -504,8 +649,8 @@ watch(mode, () => {
                 aria-label="Your checked answer"
               >
                 <template v-if="result.matched">{{ answer }}</template>
-                <template v-else
-                  ><span
+                <template v-else>
+                  <span
                     v-for="(part, index) in result.differences?.answer"
                     :key="index"
                     :class="`difference-${part.kind}`"
@@ -518,9 +663,10 @@ watch(mode, () => {
                             ? 'Different from reference'
                             : undefined
                     "
-                    >{{ part.text }}</span
-                  ></template
-                >
+                  >
+                    {{ part.text }}
+                  </span>
+                </template>
               </div>
             </div>
             <div class="card-actions">
@@ -548,14 +694,16 @@ watch(mode, () => {
                 :disabled="!question || !answer.trim() || loading || checking"
               >
                 {{ checking ? "Comparing…" : "Check writing" }}
-                <span>→</span></button
-              ><button
+                <span>→</span>
+              </button>
+              <button
                 v-else
                 class="primary-button"
                 type="button"
                 @click="nextSentence"
               >
-                Next sentence <span>→</span>
+                Next sentence
+                <span>→</span>
               </button>
             </div>
           </form>
@@ -589,8 +737,9 @@ watch(mode, () => {
                 v-for="(part, index) in result.differences?.expected"
                 :key="index"
                 :class="`difference-${part.kind}`"
-                >{{ part.text }}</span
               >
+                {{ part.text }}
+              </span>
             </p>
             <p v-else class="reference-text" lang="ja">
               {{ result.reference }}
@@ -610,8 +759,9 @@ watch(mode, () => {
               :href="result.sourceUrl"
               target="_blank"
               rel="noopener noreferrer"
-              >Sentence &amp; contributors on Tatoeba ↗</a
             >
+              Sentence &amp; contributors on Tatoeba ↗
+            </a>
             <WritingExplanations
               v-if="!revealed && !result.matched"
               :explanations="result.explanations ?? []"
@@ -626,8 +776,8 @@ watch(mode, () => {
       </div>
       <section v-else class="journal-panel">
         <div class="card-heading">
-          <span class="eyebrow">YOUR LAST 100 SENTENCES</span
-          ><button v-if="journal.length" @click="resetJournal">
+          <span class="eyebrow">YOUR LAST 100 SENTENCES</span>
+          <button v-if="journal.length" @click="resetJournal">
             Clear journal
           </button>
         </div>
@@ -642,35 +792,35 @@ watch(mode, () => {
         </div>
         <article v-for="entry in journal" :key="entry.id" class="journal-entry">
           <div class="journal-meta">
-            <span
-              >{{ entry.level
-              }}<template v-if="entry.mode">
+            <span>
+              {{ entry.level }}
+              <template v-if="entry.mode">
                 ·
-                {{
-                  modes.find((item) => item.value === entry.mode)?.label
-                }}</template
-              >
+                {{ modes.find((item) => item.value === entry.mode)?.label }}
+              </template>
               ·
               {{
                 new Date(entry.date).toLocaleDateString("en", {
                   month: "short",
                   day: "numeric",
                 })
-              }}</span
-            ><span
+              }}
+            </span>
+            <span
               class="journal-outcome"
               :class="{
                 'success-text': entry.outcome === JournalOutcome.Matched,
                 unmatched: entry.outcome === JournalOutcome.Unmatched,
               }"
-              >{{
+            >
+              {{
                 entry.outcome === JournalOutcome.Matched
                   ? "✓ Matches the reference"
                   : entry.outcome === JournalOutcome.Revealed
                     ? "Reference viewed"
                     : "× Does not match the reference"
-              }}</span
-            >
+              }}
+            </span>
           </div>
           <h2>{{ entry.english }}</h2>
           <p v-if="entry.answer" class="journal-answer" lang="ja">
@@ -679,7 +829,8 @@ watch(mode, () => {
                 entry.outcome === JournalOutcome.Unmatched &&
                 entry.comparison?.differences
               "
-              ><span
+            >
+              <span
                 v-for="(part, index) in entry.comparison.differences.answer"
                 :key="index"
                 :class="`difference-${part.kind}`"
@@ -692,9 +843,10 @@ watch(mode, () => {
                         ? 'Different from reference'
                         : undefined
                 "
-                >{{ part.text }}</span
-              ></template
-            >
+              >
+                {{ part.text }}
+              </span>
+            </template>
             <template v-else>{{ entry.answer }}</template>
           </p>
           <p class="journal-reference difference-reference">
@@ -704,20 +856,23 @@ watch(mode, () => {
                 ? "Expected"
                 : "Reference"
             }}
-            <span class="journal-reference-text" lang="ja"
-              ><template
+            <span class="journal-reference-text" lang="ja">
+              <template
                 v-if="
                   entry.outcome === JournalOutcome.Unmatched &&
                   entry.comparison?.differences
                 "
-                ><span
+              >
+                <span
                   v-for="(part, index) in entry.comparison.differences.expected"
                   :key="index"
                   :class="`difference-${part.kind}`"
-                  >{{ part.text }}</span
-                ></template
-              ><template v-else>{{ entry.reference }}</template></span
-            >
+                >
+                  {{ part.text }}
+                </span>
+              </template>
+              <template v-else>{{ entry.reference }}</template>
+            </span>
           </p>
           <p
             v-if="
@@ -734,8 +889,9 @@ watch(mode, () => {
             :href="entry.comparison.sourceUrl"
             target="_blank"
             rel="noopener noreferrer"
-            >Tatoeba source ↗</a
           >
+            Tatoeba source ↗
+          </a>
           <WritingExplanations
             v-if="entry.outcome === JournalOutcome.Unmatched"
             :explanations="entry.comparison?.explanations ?? []"

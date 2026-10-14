@@ -11,21 +11,24 @@ useSeoMeta({
 <template>
   <div class="app-shell">
     <header class="topbar">
-      <NuxtLink to="/" class="brand"
-        ><span class="brand-mark" lang="ja">綴</span
-        ><span
-          >tsuzuru<span class="brand-caption"
-            >JAPANESE WRITING PRACTICE</span
-          ></span
-        ></NuxtLink
-      >
+      <NuxtLink to="/" class="brand">
+        <span class="brand-mark" lang="ja">綴</span>
+        <span>
+          tsuzuru
+          <span class="brand-caption">JAPANESE WRITING PRACTICE</span>
+        </span>
+      </NuxtLink>
       <nav aria-label="Main navigation">
         <NuxtLink to="/app">Back to practice ←</NuxtLink>
       </nav>
     </header>
     <main class="workspace sources-content">
       <p class="eyebrow">THE WORDS BEHIND THE PRACTICE</p>
-      <h1>Open data.<br /><em>With due credit.</em></h1>
+      <h1>
+        Open data.
+        <br />
+        <em>With due credit.</em>
+      </h1>
       <p>
         Tsuzuru uses OpenJLPT data under CC BY-SA 4.0, incorporating JMdict and
         KANJIDIC2 from EDRDG, Jonathan Waller’s JLPT Resources, and sentences
@@ -35,34 +38,36 @@ useSeoMeta({
       <h2>Our sources</h2>
       <ul>
         <li>
-          <a href="https://github.com/evanclan/OpenJLPT"
-            >OpenJLPT and its contributors</a
-          >
+          <a href="https://github.com/evanclan/OpenJLPT">
+            OpenJLPT and its contributors
+          </a>
           — vocabulary, kanji, grammar, and associated examples;
-          <a href="https://creativecommons.org/licenses/by-sa/4.0/"
-            >CC BY-SA 4.0</a
-          >.
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            CC BY-SA 4.0
+          </a>
+          .
         </li>
         <li>
-          <a href="https://www.edrdg.org/edrdg/licence.html"
-            >EDRDG: JMdict and KANJIDIC2</a
-          >
+          <a href="https://www.edrdg.org/edrdg/licence.html">
+            EDRDG: JMdict and KANJIDIC2
+          </a>
           — dictionary data and kanji information, incorporated through
           OpenJLPT.
         </li>
         <li>
-          <a href="https://www.tanos.co.uk/jlpt/"
-            >Jonathan Waller’s JLPT Resources</a
-          >
+          <a href="https://www.tanos.co.uk/jlpt/">
+            Jonathan Waller’s JLPT Resources
+          </a>
           — community vocabulary and kanji level assignments; CC BY as
           identified in the upstream notice.
         </li>
         <li>
-          <a href="https://tatoeba.org/">Tatoeba and its contributors</a> —
-          English–Japanese sentence examples;
-          <a href="https://creativecommons.org/licenses/by/2.0/fr/"
-            >CC BY 2.0 FR</a
-          >. Individual source links appear with each reference answer.
+          <a href="https://tatoeba.org/">Tatoeba and its contributors</a>
+          — English–Japanese sentence examples;
+          <a href="https://creativecommons.org/licenses/by/2.0/fr/">
+            CC BY 2.0 FR
+          </a>
+          . Individual source links appear with each reference answer.
         </li>
       </ul>
       <h2>Reference practice, explained</h2>
@@ -74,9 +79,10 @@ useSeoMeta({
       </p>
       <p>
         The
-        <a href="https://www.jlpt.jp/e/faq/"
-          >JLPT does not publish current vocabulary, kanji, or grammar lists</a
-        >, and it does not test composition. Tsuzuru is an independent writing
+        <a href="https://www.jlpt.jp/e/faq/">
+          JLPT does not publish current vocabulary, kanji, or grammar lists
+        </a>
+        , and it does not test composition. Tsuzuru is an independent writing
         practice tool.
       </p>
       <p>
@@ -104,9 +110,9 @@ useSeoMeta({
           <a href="/disclosures/data-disclosure.md">Full data disclosure</a>
         </li>
         <li>
-          <a href="/disclosures/openjlpt-notice.md"
-            >Original source attribution notice</a
-          >
+          <a href="/disclosures/openjlpt-notice.md">
+            Original source attribution notice
+          </a>
         </li>
         <li>
           <a href="/disclosures/openjlpt-license.txt">Full OpenJLPT license</a>
@@ -122,12 +128,14 @@ useSeoMeta({
         server for reference comparison; Tsuzuru does not persist answers on the
         server or send them to an AI service.
       </p>
-      <NuxtLink class="primary-button" to="/app"
-        >Back to writing <span>→</span></NuxtLink
-      >
+      <NuxtLink class="primary-button" to="/app">
+        Back to writing
+        <span>→</span>
+      </NuxtLink>
     </main>
     <footer class="page-footer">
-      <span>綴る · TSUZURU</span><span>A LITTLE PRACTICE, EVERY DAY.</span>
+      <span>綴る · TSUZURU</span>
+      <span>A LITTLE PRACTICE, EVERY DAY.</span>
     </footer>
   </div>
 </template>

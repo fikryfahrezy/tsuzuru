@@ -1,6 +1,8 @@
 import { createError, defineEventHandler, getQuery } from "h3";
 import { randomInt } from "node:crypto";
-import { exercises } from "../utils/exercises";
+import { exercises, exerciseById } from "../utils/exercises";
+import { romajiHint } from "../../shared/romaji";
+import { wordHints } from "../utils/word-hints";
 import {
   lengthOf,
   isLevel,
@@ -10,6 +12,27 @@ import {
 
 export default defineEventHandler((event): Question => {
   const query = getQuery(event);
+  if (query.sentence !== undefined) {
+    if (typeof query.sentence !== "string" || !query.sentence.trim())
+      throw createError({
+        statusCode: 400,
+        statusMessage: "Choose a valid sentence ID.",
+      });
+    const selected = exerciseById.get(query.sentence);
+    if (!selected)
+      throw createError({
+        statusCode: 404,
+        statusMessage: "This sentence is unavailable.",
+      });
+    return {
+      id: selected.id,
+      english: selected.english,
+      romaji: romajiHint(selected),
+      wordHints: wordHints(selected),
+      wordCount: selected.englishWordCount,
+      poolSize: 1,
+    };
+  }
   if (!isLevel(query.level) || !isLength(query.length)) {
     throw createError({
       statusCode: 400,
@@ -32,6 +55,8 @@ export default defineEventHandler((event): Question => {
   return {
     id: row.id,
     english: row.english,
+    romaji: romajiHint(row),
+    wordHints: wordHints(row),
     wordCount: row.englishWordCount,
     poolSize: pool.length,
   };

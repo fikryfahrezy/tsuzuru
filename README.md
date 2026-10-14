@@ -88,6 +88,30 @@ medium: 8–12, long: 13+), and writing mode. Translate the prompt with a Japane
 keyboard, check the reference, then continue. Ctrl / Command + Enter checks an
 answer or advances after comparison; IME composition is respected.
 
+Use “Show romaji hint” beneath the English prompt to see the supplied Japanese
+reference in Latin letters. Hints start hidden, and the toggle preference is saved
+with your settings. Romaji follows the kana spelling (including ha, he, and wo);
+long vowel sequences are written out. Spaces use the supplied annotations and
+script boundaries, keeping kana verb endings with their annotated stems; they
+are reading aids rather than full grammatical word segmentation.
+Other translations may also be valid.
+
+Each English word has a dashed underline. Click it (or focus it and press Enter)
+to reveal Japanese vocabulary and English meanings from the imported OpenJLPT
+glossary. Kanji vocabulary also shows its dictionary reading in hiragana and
+romaji beneath the word. Click again, close the hint, or press Escape to hide it. Hints favor
+vocabulary present in the reference, but are dictionary suggestions rather than
+word-for-word sentence alignments. Articles, names, and words missing from the
+glossary show an explicit unavailable message. New sentences clear the selection.
+
+Open `/app?sentence=<id>` to practice a specific eligible sentence from
+`data/processed/sentence-candidates.json`. For example,
+`/app?sentence=213aa0ae8044611b00c1ba95` loads “Most Japanese drink water from the tap.”
+The selected sentence overrides level and length filters; writing mode and hints
+work normally. Next sentence and Another sentence reload that sentence so you
+can retry different answers. Return to `/app` for random practice. Unknown IDs
+show an error; only dataset entries with validated readings are available.
+
 - Kana only: hiragana or katakana, with no kanji.
 - Kana + kanji: each annotated word may use the supplied kanji or kana reading.
 - Exact writing: the reference's spelling and script must match.
@@ -138,8 +162,8 @@ To verify in a browser, open `/app`, inspect the manifest and service worker in
 DevTools, reload once, then switch offline and reload again. The journal should
 remain available and the workspace should explain which actions need a connection.
 
-`GET /api/exercises?level=N5&length=short` returns a random prompt without its
-answer. `POST /api/compare` accepts `{ id, answer, mode }` and returns a reference
+`GET /api/exercises?level=N5&length=short` returns a random English prompt and its
+romaji hint. `POST /api/compare` accepts `{ id, answer, mode }` and returns a reference
 comparison. Invalid settings and unknown IDs are rejected. Run `bun run test`
 for comparison tests; `bun run check` also runs them.
 
