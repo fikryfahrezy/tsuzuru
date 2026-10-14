@@ -902,3 +902,1057 @@ watch(sentence, () => {
     </main>
   </div>
 </template>
+
+<style scoped>
+.nav-count {
+  margin-left: 6px;
+  font-size: 9px;
+}
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 34px;
+}
+.lede {
+  max-width: 510px;
+  margin: 0;
+  color: var(--secondary);
+  font:
+    15px/1.7 system-ui,
+    sans-serif;
+}
+.intro-seal {
+  margin-right: 50px;
+  width: 110px;
+  color: var(--primary);
+  text-align: center;
+}
+.intro-seal > span {
+  display: grid;
+  place-items: center;
+  width: 94px;
+  height: 104px;
+  border: 1px solid var(--primary);
+  outline: 1px solid var(--primary);
+  outline-offset: -6px;
+  font:
+    65px "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  transform: rotate(-4deg);
+}
+.intro-seal small {
+  display: block;
+  margin-top: 15px;
+  letter-spacing: 0.45em;
+  font-size: 11px;
+}
+.session-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding: 16px 0 22px;
+  color: var(--secondary);
+  font-size: 9px;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+}
+.session-strip i {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: var(--green);
+  margin-right: 6px;
+}
+.session-strip b {
+  margin: 0 9px;
+  color: var(--muted);
+  font-weight: normal;
+}
+.practice-layout {
+  display: grid;
+  grid-template-columns: 275px minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+.settings-panel {
+  padding: 25px 22px;
+  background: rgba(251, 247, 232, 0.34);
+  border: 1px solid var(--line);
+}
+.settings-panel > .eyebrow {
+  margin-bottom: 27px;
+}
+fieldset {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  margin: 0 0 28px;
+}
+legend {
+  padding: 0;
+  margin-bottom: 13px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.levels {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.levels button {
+  padding: 12px 0;
+  border: 1px solid var(--line);
+  border-right: 0;
+  background: transparent;
+  font-size: 11px;
+}
+.levels button:last-child {
+  border-right: 1px solid var(--line);
+}
+.levels button.selected {
+  color: var(--surface);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.range-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 7px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+}
+.selected-sentence-note {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.selected-sentence-note .setting-note {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+.selected-sentence-note a {
+  color: var(--secondary);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.setting-note {
+  margin: 11px 0 0;
+  color: var(--secondary);
+  font:
+    12px/1.6 system-ui,
+    sans-serif;
+}
+.length-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.length-options button {
+  padding: 11px 3px;
+  background: transparent;
+  border: 1px solid var(--line);
+  font-size: 10px;
+}
+.length-options button small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 8px;
+}
+.length-options .selected {
+  background: rgba(185, 51, 39, 0.07);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.mode-options {
+  display: grid;
+  gap: 7px;
+}
+.mode-options button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  font-size: 10px;
+}
+.mode-options .selected {
+  border-color: var(--primary);
+  background: rgba(185, 51, 39, 0.055);
+}
+.mode-mark {
+  width: 29px;
+  font:
+    16px "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+}
+.radio-mark {
+  margin-left: auto;
+  color: var(--primary);
+}
+.writing-card,
+.journal-panel {
+  border: 1px solid var(--line);
+  background: rgba(251, 247, 232, 0.87);
+  box-shadow: 0 20px 50px rgba(53, 48, 39, 0.055);
+  min-width: 0;
+}
+.card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 19px 27px;
+  border-bottom: 1px solid var(--line);
+}
+.card-heading .eyebrow {
+  margin: 0;
+  font-size: 9px;
+}
+.paper-label {
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+}
+.prompt {
+  padding: 28px 32px 22px;
+}
+.prompt > .paper-label {
+  margin-bottom: 15px;
+}
+.prompt h2 {
+  font:
+    500 clamp(23px, 2.5vw, 32px)/1.3 Iowan Old Style,
+    Georgia,
+    serif;
+  margin-bottom: 20px;
+  overflow-wrap: anywhere;
+}
+.prompt-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 9px;
+}
+.prompt-word {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: underline dashed;
+  text-decoration-color: var(--muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  cursor: pointer;
+}
+.prompt-word:hover,
+.prompt-word-active {
+  color: var(--primary);
+  text-decoration-color: var(--primary);
+}
+.prompt-word:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.word-hint {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.word-hint-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.word-hint-heading button {
+  border: 0;
+  background: transparent;
+  color: var(--secondary);
+  font-size: 18px;
+  padding: 2px 6px;
+}
+.word-hint ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+.word-hint li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  padding: 5px 0;
+  color: var(--secondary);
+  font-size: 12px;
+}
+.word-hint-word {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.word-hint-japanese {
+  font-size: 20px;
+  color: var(--ink);
+}
+.word-hint-reading {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.word-hint-empty {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--secondary);
+}
+.romaji-hint {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+.romaji-hint > p[lang] {
+  margin: 8px 0;
+  color: var(--secondary);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.romaji-hint small {
+  color: var(--muted);
+  font-size: 10px;
+}
+.prompt-meta button,
+.below-paper button,
+.journal-panel .card-heading button,
+.error-message button {
+  border: 0;
+  background: transparent;
+  padding: 5px 0;
+  color: var(--secondary);
+  font-size: 9px;
+}
+.writing-field {
+  position: relative;
+  margin: 0 32px;
+  border-top: 1px solid var(--line);
+}
+.writing-field label {
+  display: block;
+  padding-top: 21px;
+}
+.writing-field textarea {
+  display: block;
+  width: 100%;
+  min-height: 185px;
+  resize: vertical;
+  padding: 22px 0 32px;
+  border: 0;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 47px,
+    rgba(107, 135, 110, 0.13) 47px,
+    rgba(107, 135, 110, 0.13) 48px
+  );
+  background-position: 0 14px;
+  color: var(--ink);
+  font:
+    26px/48px "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  caret-color: var(--primary);
+}
+.writing-field textarea::placeholder {
+  color: #a39f90;
+  font-size: 23px;
+}
+.writing-field textarea:focus-visible {
+  outline-offset: -2px;
+}
+.character-count {
+  display: block;
+  color: var(--muted);
+  text-align: right;
+  font-size: 9px;
+  margin: 7px 0 21px;
+}
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 27px;
+  border-top: 1px solid var(--line);
+  background: rgba(227, 222, 208, 0.25);
+}
+.card-actions p {
+  margin: 0;
+  color: var(--secondary);
+  font:
+    11px/1.7 system-ui,
+    sans-serif;
+}
+.card-actions p span {
+  color: var(--muted);
+  font-size: 10px;
+}
+.below-paper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 13px 27px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 9px;
+}
+.feedback {
+  padding: 23px 32px;
+  border-top: 1px solid var(--line);
+  border-left: 3px solid var(--primary);
+}
+.feedback.matched {
+  border-left-color: var(--green);
+  background: rgba(64, 125, 101, 0.04);
+}
+.feedback.matched .eyebrow,
+.success-text {
+  color: var(--green);
+}
+.feedback .eyebrow {
+  margin-bottom: 12px;
+}
+.feedback-note {
+  font:
+    12px/1.6 system-ui,
+    sans-serif;
+  color: var(--secondary);
+}
+.reference-text {
+  font:
+    24px/1.6 "Yu Mincho",
+    serif;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+.reading-text {
+  font:
+    13px/1.8 system-ui,
+    sans-serif;
+  color: var(--secondary);
+  overflow-wrap: anywhere;
+}
+.feedback a {
+  font-size: 9px;
+  color: var(--muted);
+}
+.error-message,
+.notice {
+  padding: 18px 25px;
+  font:
+    13px/1.6 system-ui,
+    sans-serif;
+  color: var(--primary);
+}
+.practice-note {
+  margin: 25px 0 0;
+  color: var(--secondary);
+  font:
+    11px/1.7 system-ui,
+    sans-serif;
+  text-align: center;
+}
+.practice-note a {
+  white-space: nowrap;
+  margin-left: 5px;
+}
+.empty-journal {
+  padding: 55px 25px;
+  text-align: center;
+}
+.empty-journal > span {
+  color: var(--primary);
+  font:
+    50px "Yu Mincho",
+    serif;
+}
+.empty-journal h2 {
+  margin: 22px 0 15px;
+  font:
+    30px Georgia,
+    serif;
+}
+.empty-journal p {
+  color: var(--secondary);
+  font:
+    14px/1.7 system-ui,
+    sans-serif;
+}
+.journal-entry {
+  padding: 25px 30px;
+  border-bottom: 1px solid var(--line);
+}
+.journal-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 10px;
+  margin-bottom: 15px;
+}
+.journal-entry h2 {
+  font:
+    24px/1.4 Georgia,
+    serif;
+}
+.journal-answer {
+  font:
+    22px/1.7 "Yu Mincho",
+    serif;
+  overflow-wrap: anywhere;
+}
+.journal-reference {
+  font-size: 10px;
+  color: var(--secondary);
+  margin-bottom: 0;
+}
+.journal-reference span {
+  margin-left: 10px;
+  font:
+    15px/1.8 system-ui,
+    sans-serif;
+  overflow-wrap: anywhere;
+}
+.journal-privacy {
+  margin: 0;
+  padding: 18px 30px;
+  font-size: 10px;
+  color: var(--muted);
+}
+@media (max-width: 850px) {
+  .practice-layout {
+    grid-template-columns: 225px minmax(0, 1fr);
+    gap: 18px;
+  }
+  .settings-panel {
+    padding: 22px 15px;
+  }
+  .intro-seal {
+    margin-right: 15px;
+  }
+  .card-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+@media (max-width: 640px) {
+  .intro {
+    gap: 10px;
+  }
+  .intro-seal {
+    width: 48px;
+    margin: 0;
+  }
+  .intro-seal > span {
+    width: 44px;
+    height: 54px;
+    font-size: 32px;
+    outline-offset: -4px;
+  }
+  .intro-seal small {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+  }
+  .lede {
+    font-size: 13px;
+  }
+  .practice-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .settings-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 20px;
+  }
+  .settings-panel > .eyebrow {
+    grid-column: 1/-1;
+    margin: 0;
+  }
+  fieldset {
+    margin: 0;
+  }
+  fieldset:last-of-type {
+    grid-column: 1/-1;
+  }
+  .mode-options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .mode-options button {
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+    padding: 10px 4px;
+    font-size: 8px;
+  }
+  .radio-mark {
+    display: none;
+  }
+  .mode-mark {
+    width: auto;
+  }
+  .setting-note {
+    font-size: 11px;
+  }
+  .length-options button {
+    font-size: 8px;
+  }
+  .length-options button small {
+    font-size: 7px;
+  }
+  .card-heading,
+  .card-actions {
+    padding-inline: 20px;
+  }
+  .prompt {
+    padding: 24px 20px;
+  }
+  .writing-field {
+    margin-inline: 20px;
+  }
+  .writing-field textarea {
+    font-size: 23px;
+  }
+  .writing-field textarea::placeholder {
+    font-size: 19px;
+  }
+  .below-paper {
+    padding-inline: 20px;
+    font-size: 8px;
+  }
+  .feedback {
+    padding: 20px;
+  }
+  .journal-meta {
+    font-size: 9px;
+  }
+  .journal-entry {
+    padding: 22px 20px;
+  }
+}
+.practice-shell {
+  height: 100dvh;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--paper);
+}
+.workspace-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 6px;
+  border-right: 1px solid var(--line);
+  background: rgba(251, 247, 232, 0.45);
+}
+.workspace-home {
+  text-decoration: none;
+}
+.workspace-home .brand-mark {
+  width: 40px;
+  height: 40px;
+}
+.workspace-rail nav {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+.workspace-rail nav button,
+.workspace-credits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 12px 3px;
+  min-height: 65px;
+  border: 1px solid transparent;
+  background: none;
+  font-size: 9px;
+  color: var(--secondary);
+  text-decoration: none;
+}
+.workspace-rail nav button.active {
+  color: var(--primary);
+  border-color: rgba(185, 51, 39, 0.25);
+  background: rgba(185, 51, 39, 0.07);
+}
+.rail-mark {
+  font:
+    24px/1 "Yu Mincho",
+    serif;
+}
+.workspace-rail .nav-count {
+  margin-left: 2px;
+  font-size: 8px;
+}
+.workspace-credits {
+  margin-top: auto;
+}
+.workspace-credits > span:first-child {
+  font-size: 22px;
+}
+.practice-workspace {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.workspace-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+  padding: 15px 24px;
+  min-height: 65px;
+  border-bottom: 1px solid var(--line);
+}
+.workspace-heading > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.workspace-heading h1 {
+  margin: 0;
+  font:
+    500 20px/1.2 Georgia,
+    serif;
+  letter-spacing: -0.02em;
+}
+.workspace-heading span {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.practice-shell .session-strip {
+  flex-shrink: 0;
+  border-top: 0;
+  padding: 12px 24px;
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+}
+.practice-shell .notice {
+  margin: 0;
+  padding: 10px 24px;
+}
+.practice-shell .practice-layout {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: 265px minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+}
+.practice-shell .settings-panel {
+  display: block;
+  overflow-y: auto;
+  border: 0;
+  border-right: 1px solid var(--line);
+  padding: 24px 20px;
+}
+.practice-shell .writing-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  border: 0;
+  box-shadow: none;
+}
+.practice-shell .writing-card > form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 240px;
+}
+.practice-shell .writing-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 180px;
+}
+.practice-shell .writing-field textarea {
+  flex: 1;
+  min-height: 150px;
+  resize: none;
+}
+.practice-shell .prompt {
+  padding-block: 24px 20px;
+}
+.practice-shell .prompt-meta {
+  justify-content: flex-end;
+}
+.practice-shell .card-actions {
+  flex-shrink: 0;
+}
+.practice-shell .practice-note {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 10px 20px;
+  border-top: 1px solid var(--line);
+  background: rgba(251, 247, 232, 0.3);
+  font-size: 10px;
+}
+.practice-shell .journal-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  border: 0;
+  box-shadow: none;
+}
+.practice-shell .journal-panel .card-heading {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 1;
+}
+.practice-shell .mode-mark {
+  white-space: nowrap;
+}
+.settings-toggle,
+.settings-scrim {
+  display: none;
+}
+@media (max-width: 850px) and (min-width: 641px) {
+  .practice-shell .practice-layout {
+    grid-template-columns: 225px minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .practice-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) 64px;
+  }
+  .workspace-rail {
+    grid-row: 2;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 8px;
+    padding: 5px max(8px, env(safe-area-inset-right))
+      max(5px, env(safe-area-inset-bottom));
+    border-right: 0;
+    border-top: 1px solid var(--line);
+  }
+  .workspace-home .brand-mark {
+    width: 34px;
+    height: 34px;
+    font-size: 23px;
+  }
+  .workspace-rail nav {
+    display: flex;
+    width: auto;
+    flex: 1;
+    justify-content: space-evenly;
+    gap: 8px;
+  }
+  .workspace-rail nav button,
+  .workspace-credits {
+    min-height: 49px;
+    min-width: 64px;
+    padding: 5px 10px;
+    gap: 4px;
+  }
+  .rail-mark {
+    font-size: 19px;
+  }
+  .workspace-credits {
+    margin: 0;
+  }
+  .workspace-credits > span:first-child {
+    font-size: 18px;
+  }
+  .workspace-heading {
+    min-height: 55px;
+    padding: 12px 16px;
+  }
+  .workspace-heading h1 {
+    font-size: 19px;
+  }
+  .workspace-heading > div > span {
+    display: none;
+  }
+  .settings-toggle {
+    display: block;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+    background: rgba(251, 247, 232, 0.6);
+    padding: 9px;
+    font-size: 10px;
+  }
+  .practice-shell .session-strip {
+    padding: 10px 16px;
+    font-size: 8px;
+    gap: 6px;
+  }
+  .practice-shell .practice-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .practice-shell .settings-panel {
+    display: none;
+  }
+  .practice-shell .settings-panel.settings-open {
+    display: block;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: min(300px, 100%);
+    padding: 22px;
+    background: var(--surface);
+    border-left: 1px solid var(--line);
+    box-shadow: -10px 0 30px rgba(31, 28, 23, 0.1);
+  }
+  .settings-scrim {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    background: rgba(31, 28, 23, 0.2);
+    border: 0;
+  }
+  .practice-shell .settings-panel fieldset {
+    margin-bottom: 25px;
+  }
+  .practice-shell .practice-note {
+    font-size: 9px;
+    padding: 8px 12px;
+  }
+  .practice-shell .card-heading {
+    padding-block: 13px;
+  }
+  .practice-shell .prompt {
+    padding-block: 18px 14px;
+  }
+  .practice-shell .prompt h2 {
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+  .practice-shell .card-actions {
+    padding-block: 14px;
+    gap: 10px;
+  }
+  .practice-shell .card-actions p span {
+    display: none;
+  }
+  .practice-shell .writing-card > form {
+    min-height: 250px;
+  }
+}
+
+.practice-shell .answer-review {
+  flex: 1;
+  min-height: 150px;
+  padding: 22px 0 32px;
+  color: var(--ink);
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 47px,
+    rgba(107, 135, 110, 0.13) 47px,
+    rgba(107, 135, 110, 0.13) 48px
+  );
+  background-position: 0 14px;
+  font:
+    26px/48px "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.difference-changed,
+.difference-extra,
+.difference-missing {
+  color: #a5271e;
+  background: rgba(185, 51, 39, 0.1);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+.difference-extra {
+  text-decoration: line-through;
+}
+.difference-reference .difference-changed,
+.difference-reference .difference-missing {
+  color: #285940;
+  background: rgba(64, 125, 101, 0.12);
+}
+.practice-shell .card-actions .writing-status {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+.practice-shell .card-actions .writing-status-matched {
+  color: var(--green);
+}
+@media (max-width: 640px) {
+  .practice-shell .answer-review {
+    font-size: 23px;
+  }
+}
+
+.journal-answer {
+  white-space: pre-wrap;
+}
+.journal-reference .journal-reference-text span {
+  margin-left: 0;
+  font: inherit;
+}
+.journal-outcome.unmatched {
+  color: var(--primary);
+}
+.journal-legacy-note {
+  color: var(--muted);
+  font:
+    11px/1.6 system-ui,
+    sans-serif;
+  margin: 12px 0 0;
+}
+.journal-source {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 9px;
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .journal-meta {
+    flex-wrap: wrap;
+  }
+}
+</style>

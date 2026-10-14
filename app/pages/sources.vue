@@ -139,3 +139,34 @@ useSeoMeta({
     </footer>
   </div>
 </template>
+
+<style scoped>
+.sources-content {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.sources-content h1 {
+  font-size: clamp(40px, 6vw, 64px);
+}
+.sources-content h2 {
+  margin-top: 30px;
+  font:
+    27px Georgia,
+    serif;
+}
+.sources-content p,
+.sources-content li {
+  font:
+    15px/1.8 system-ui,
+    sans-serif;
+  color: var(--secondary);
+}
+.sources-content li {
+  margin-bottom: 10px;
+}
+.sources-content .license-note {
+  padding: 22px;
+  border-left: 2px solid var(--primary);
+  background: rgba(251, 247, 232, 0.65);
+}
+</style>
