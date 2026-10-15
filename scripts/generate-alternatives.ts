@@ -158,10 +158,23 @@ if (process.argv.includes("--prompts")) {
       }
     }
   }
-  await writeFile(
-    resolve(output, "answers.json"),
-    JSON.stringify(bank, null, 2) + "\n",
+  // Sort by sentence ID so the output depends only on its inputs, not on
+  // the order of the previous file that authored entries are read from.
+  bank.entries = Object.fromEntries(
+    Object.entries(bank.entries).sort(([a], [b]) =>
+      a < b ? -1 : a > b ? 1 : 0,
+    ),
   );
+  const content = JSON.stringify(bank, null, 2) + "\n";
+  const path = resolve(output, "answers.json");
+  if (process.argv.includes("--check")) {
+    if ((await readFile(path, "utf8").catch(() => "")) !== content) {
+      console.error(
+        "Alternative answers are stale; run alternatives:generate.",
+      );
+      process.exit(1);
+    }
+  } else await writeFile(path, content);
   const count = Object.values(bank.entries).reduce(
     (sum, entry) => sum + entry.alternatives.length,
     0,

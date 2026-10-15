@@ -156,3 +156,19 @@ test("sentences once annotated with JMdict entry numbers use the entry's reading
       for (const reading of rendering.readings)
         expect(reading.furigana).not.toMatch(/\|[#＃]/u);
 });
+
+test("sentences upstream left without furigana use generated readings", () => {
+  // See data/generated-furigana/furigana.json.
+  const cup = exerciseById.get("032a553bc6e5af0964019df3")!;
+  expect(cup.reference.readings[0].furigana).toBe(
+    "そのコップを{落|おと}すな。",
+  );
+  expect(cup.level).not.toBeNull();
+  expect(romajiHint(cup)).toBe("sono koppu wo otosu na.");
+  expect(compare(cup, "そのこっぷをおとすな", Strictness.Kana).matched).toBe(
+    true,
+  );
+  expect(compare(cup, "そのコップを落すな", Strictness.Exact).matched).toBe(
+    true,
+  );
+});

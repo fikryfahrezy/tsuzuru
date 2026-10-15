@@ -49,6 +49,35 @@ bun run readings:test
 After changing repairs, rebuild the candidates and regenerate the banks keyed by
 furigana: alternatives, spelling variants, romaji, and sentence levels.
 
+### Generated furigana
+
+About a quarter of upstream sentences come without furigana, and readings are
+never guessed, so they cannot be practiced. `generated-furigana/furigana.json`
+supplies furigana for those that can be annotated with certainty: every word
+written with kanji has exactly one JMdict reading for its spelling, Sudachi
+reads it the same way, and the reading splits unambiguously across the word's
+kanji and kana (an inflected word must keep its dictionary form's kanji
+reading). Kanji-free sentences need no annotation. Sentences with a word such
+as 何 (なに or なん) stay out, as do sentences that would need a reviewed spacing
+decision for の + で / に. Building candidates applies an entry only when the
+sentence has no upstream furigana and its Japanese text still matches.
+
+```sh
+bun run furigana:generate
+bun run furigana:check
+bun run furigana:test
+```
+
+After regenerating, rebuild the candidates and regenerate the dependent banks:
+
+```sh
+bun run data:rebuild
+bun run alternatives:generate
+bun run spellings:generate
+bun run romaji:generate
+bun run levels:generate
+```
+
 ## Alternative answers
 
 `alternatives/answers.json` contains Tsuzuru additions to the imported references,

@@ -12,6 +12,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 REPO = "evanclan/OpenJLPT"
 REPAIRS = ROOT / "data/reading-repairs/repairs.json"
+GENERATED_FURIGANA = ROOT / "data/generated-furigana/furigana.json"
 ENTRY_ANNOTATION = re.compile(r"\{([^{}|]+)\|#(\d+)\}")
 
 
@@ -47,8 +48,19 @@ def repair_furigana(furigana, repairs):
     return ENTRY_ANNOTATION.sub(replace, furigana)
 
 
-def build_candidates(snapshot, revision, repairs=None):
+def load_generated_furigana(path=GENERATED_FURIGANA):
+    """Sentence id to generated furigana; see scripts/generate-furigana.py."""
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("version") != 1:
+        raise ValueError(f"Unsupported generated furigana version: {path}")
+    return data["entries"]
+
+
+def build_candidates(snapshot, revision, repairs=None, generated=None):
     repairs = load_repairs() if repairs is None else repairs
+    generated = load_generated_furigana() if generated is None else generated
     pairs = {}
     counts = {}
     for category in ("vocab", "kanji", "grammar"):
@@ -99,6 +111,12 @@ def build_candidates(snapshot, revision, repairs=None):
         for level, count in levels.items():
             if meta["counts"][category][level] != count:
                 raise ValueError(f"Upstream count mismatch: {category} {level}")
+    # Generated furigana fills in only sentences upstream left unannotated,
+    # and only while the source text it was generated from still matches.
+    for candidate in pairs.values():
+        entry = generated.get(candidate["id"])
+        if not candidate["furiganaVariants"] and entry and entry["sourceJapanese"] == candidate["japanese"]:
+            candidate["furiganaVariants"].append(entry["furigana"])
     candidates = sorted(pairs.values(), key=lambda row: row["id"])
     return counts, candidates
 

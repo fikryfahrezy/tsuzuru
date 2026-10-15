@@ -31,6 +31,8 @@ jobs:
           bun run levels:test
           bun run hints:test
           bun run readings:test
+          bun run furigana:test
+      - run: bun run alternatives:check
       - run: bun run check
       - run: bun run build
       - run: docker compose config --quiet

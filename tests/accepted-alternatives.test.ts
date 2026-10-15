@@ -204,7 +204,7 @@ test("the comparison API validates the toggle and only activates listed alternat
 });
 
 test("all generated answers are active with source provenance", () => {
-  expect(Object.keys(bank.entries)).toHaveLength(949);
+  expect(Object.keys(bank.entries)).toHaveLength(976);
   let count = 0;
   for (const [id, entry] of Object.entries(bank.entries)) {
     const candidate = exerciseById.get(id)!;
@@ -219,7 +219,7 @@ test("all generated answers are active with source provenance", () => {
       count++;
     }
   }
-  expect(count).toBe(1335);
+  expect(count).toBe(1385);
 });
 
 test("listed number spellings preserve quantity, readings, and the alternatives toggle", () => {

@@ -32,11 +32,11 @@ const limits: Record<
   keyof LoadReport,
   { minLoaded: number; maxDropped: number }
 > = {
-  sentences: { minLoaded: 9597, maxDropped: 3018 },
-  alternatives: { minLoaded: 1335, maxDropped: 0 },
-  spellings: { minLoaded: 3239, maxDropped: 0 },
+  sentences: { minLoaded: 10312, maxDropped: 2303 },
+  alternatives: { minLoaded: 1385, maxDropped: 0 },
+  spellings: { minLoaded: 3491, maxDropped: 0 },
   phraseHints: { minLoaded: 20, maxDropped: 0 },
-  levels: { minLoaded: 9597, maxDropped: 0 },
+  levels: { minLoaded: 10312, maxDropped: 0 },
 };
 
 function violations(report: LoadReport): string[] {
