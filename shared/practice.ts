@@ -236,7 +236,7 @@ function matches(rendering: Rendering, answer: string, mode: Strictness) {
 function alternativeAnswers(sentence: Sentence): AlternativeAnswer[] {
   return sentence.alternatives.map((alternative) => ({
     japanese: alternative.japanese,
-    kana: alternative.readings[0]!.kana,
+    kana: alternative.readings[0].kana,
     provenance: alternative.provenance,
   }));
 }
@@ -259,7 +259,7 @@ export function compare(
       ? explainWriting(reference, answer, mode, differences)
       : [],
     reference: reference.japanese,
-    kana: reference.readings[0]!.kana,
+    kana: reference.readings[0].kana,
     sourceUrl: sentence.sourceUrl,
     alternatives: alternativeAnswers(sentence),
   };

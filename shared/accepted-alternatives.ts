@@ -4,7 +4,7 @@ import {
   type AlternativeProvenance,
   type Candidate,
 } from "./practice";
-import { parseReadings, type Reading } from "./sentence";
+import { isNonEmpty, parseReadings, type Readings } from "./sentence";
 
 export interface AlternativeRecord {
   japanese: string;
@@ -42,7 +42,7 @@ export function acceptedAlternatives(
   drop: (reason: AlternativeDropReason) => void = () => {},
 ): {
   japanese: string;
-  readings: Reading[];
+  readings: Readings;
   provenance: AlternativeProvenance;
 }[] {
   const entry = bank.entries[candidate.id];
@@ -78,7 +78,7 @@ export function acceptedAlternatives(
       alternative.japanese,
       alternative.furiganaVariants,
     );
-    if (!readings.length) {
+    if (!isNonEmpty(readings)) {
       drop("no-valid-reading");
       return [];
     }

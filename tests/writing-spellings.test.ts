@@ -287,9 +287,11 @@ test("every generated span loads and matches its recorded reference with consist
         ...candidate,
         reference: {
           japanese: rendering.japanese,
-          readings: rendering.readings.filter(
-            (reading) => reading.furigana === reference.furigana,
-          ),
+          readings: [
+            rendering.readings.find(
+              (reading) => reading.furigana === reference.furigana,
+            )!,
+          ],
           spellings: [reference],
         },
         alternatives: [],

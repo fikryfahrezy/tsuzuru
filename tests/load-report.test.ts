@@ -3,7 +3,10 @@ import alternativeBank from "../data/alternatives/answers.json";
 import spellingBank from "../data/spelling-variants/bank.json";
 import type { AlternativeBank } from "../shared/accepted-alternatives";
 import type { SpellingBank } from "../shared/writing-spellings";
-import { phraseHintEntries } from "../server/utils/sentence-phrase-hints";
+import {
+  phraseHintBank,
+  phraseHintEntries,
+} from "../server/utils/sentence-phrase-hints";
 import {
   candidates,
   defaultBanks,
@@ -50,8 +53,8 @@ test("bundled banks stay within their drop budgets", () => {
 });
 
 describe("corrupting one bank record breaks the budget", () => {
-  const load = (banks = defaultBanks, phraseHints = phraseHintEntries) =>
-    loadExercises(candidates, banks, phraseHints).report;
+  const load = (banks = defaultBanks) =>
+    loadExercises(candidates, banks).report;
 
   test("alternative with an invalid reading", () => {
     const bank = structuredClone(alternativeBank) as AlternativeBank;
@@ -89,7 +92,10 @@ describe("corrupting one bank record breaks the budget", () => {
       phraseHintEntries,
     ) as typeof phraseHintEntries;
     entries[0]!.phrases[0]!.hints[0]!.reading = "ちがう";
-    const report = load(defaultBanks, entries);
+    const report = load({
+      ...defaultBanks,
+      phraseHints: phraseHintBank(entries),
+    });
     expect(report.phraseHints.dropped).toEqual({ "unverified-hint": 1 });
     expect(violations(report)).not.toEqual([]);
   });

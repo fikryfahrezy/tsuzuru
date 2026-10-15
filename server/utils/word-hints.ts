@@ -14,15 +14,12 @@ import { kanaToRomaji } from "../../shared/romaji";
 import {
   primaryReading,
   primaryRendering,
+  type PhraseHintSpan,
   type Sentence,
 } from "../../shared/sentence";
 import lemmatize from "wink-lemmatizer";
 import { referenceLexemes } from "./reference-lexemes";
-import {
-  sentencePhraseHints,
-  referenceReading,
-  type SentencePhraseSpan,
-} from "./sentence-phrase-hints";
+import { referenceReading } from "./sentence-phrase-hints";
 
 interface Entry {
   word: string;
@@ -220,9 +217,9 @@ export function wordHints(sentence: Sentence): PromptPart[] {
   const grouped: {
     text: string;
     matches: Entry[];
-    annotation?: SentencePhraseSpan;
+    annotation?: PhraseHintSpan;
   }[] = [];
-  const annotations = sentencePhraseHints(sentence);
+  const annotations = sentence.phraseHints;
   // Character positions keep explicit phrase spans aligned with the original prompt.
   const offsets: number[] = [];
   let offset = 0;

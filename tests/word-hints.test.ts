@@ -3,8 +3,8 @@ import { vocabulary, wordHints } from "../server/utils/word-hints";
 import {
   candidateById,
   candidates,
-  exerciseById,
   defaultBanks,
+  exerciseById,
   exercises,
   loadSentence,
 } from "../server/utils/exercises";
@@ -60,7 +60,7 @@ test("verified spelling hints preserve conjugated endings", () => {
 
 test("across resolves kana and kanji reference nouns without a sentence mapping", () => {
   const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
-  expect(sentencePhraseHints(candidate)).toEqual([]);
+  expect(candidate.phraseHints).toEqual([]);
   for (const english of [
     candidate.english,
     "Take me across the river, please.",
@@ -386,7 +386,7 @@ test("every maintained phrase mapping remains aligned with its source and readin
   for (const entry of phraseBank.entries) {
     const candidate = exerciseById.get(entry.sentenceId)!;
     expect(candidate).toBeDefined();
-    expect(sentencePhraseHints(candidate)).toHaveLength(
+    expect(candidate.phraseHints).toHaveLength(
       entry.phrases.reduce((count, phrase) => count + phrase.spans.length, 0),
     );
     const tokens = wordHints(candidate);
@@ -395,7 +395,7 @@ test("every maintained phrase mapping remains aligned with its source and readin
       tokens.filter(
         (token) => token.hintSource === HintSource.Sentence && token.phrase,
       ),
-    ).toHaveLength(sentencePhraseHints(candidate).length);
+    ).toHaveLength(candidate.phraseHints.length);
   }
 });
 
@@ -628,16 +628,18 @@ test("stale snapshots, partial words, overlaps, and unsupported Japanese reading
   const candidate = exerciseById.get(entry.sentenceId)!;
   const record = candidateById.get(candidate.id)!;
   expect(
-    sentencePhraseHints(load({ ...record, english: candidate.english + "!" })),
+    load({ ...record, english: candidate.english + "!" }, defaultBanks)
+      .phraseHints,
   ).toEqual([]);
   expect(
-    sentencePhraseHints(
-      load({
+    load(
+      {
         ...record,
         japanese: "違う。",
         furiganaVariants: ["{違|ちが}う。"],
-      }),
-    ),
+      },
+      defaultBanks,
+    ).phraseHints,
   ).toEqual([]);
   expect(loadSentence({ ...record, furiganaVariants: [] })).toBeNull();
   const partial = structuredClone(entry);

@@ -3,6 +3,7 @@ import {
   normalize,
   parts,
   type AlternativeProvenance,
+  type VocabularyHint,
 } from "./practice";
 import type { SpellingReference } from "./writing-spellings";
 
@@ -42,21 +43,37 @@ export interface Reading {
   lexemes?: ReferenceLexeme[];
 }
 
+// Readings are never guessed, so a loaded rendering always has at least one.
+export type Readings = [Reading, ...Reading[]];
+
+export function isNonEmpty<T>(items: T[]): items is [T, ...T[]] {
+  return items.length > 0;
+}
+
 // A verified spelling record with its precomputed path of accepted options.
 export interface VerifiedSpelling extends SpellingReference {
   path: string[][];
 }
 
 // A Japanese text that answers the English prompt, with every reading that
-// was supplied for it. Readings are never guessed, so the list is non-empty.
+// was supplied for it.
 export interface Rendering {
   japanese: string;
-  readings: Reading[];
+  readings: Readings;
   spellings: VerifiedSpelling[];
 }
 
 export interface Alternative extends Rendering {
   provenance: AlternativeProvenance;
+}
+
+// A verified span of the English prompt with its sentence-specific hints.
+export interface PhraseHintSpan {
+  start: number;
+  end: number;
+  text: string;
+  phrase: string;
+  hints: VocabularyHint[];
 }
 
 export interface Sentence {
@@ -67,6 +84,7 @@ export interface Sentence {
   sourceUrl: string | null;
   reference: Rendering;
   alternatives: Alternative[];
+  phraseHints: PhraseHintSpan[];
 }
 
 export function parseReading(
@@ -101,7 +119,7 @@ export function parseReadings(
 
 // The first supplied reading drives hints, chips, and romaji.
 export function primaryReading(rendering: Rendering): Reading {
-  return rendering.readings[0]!;
+  return rendering.readings[0];
 }
 
 export function primaryRendering(rendering: Rendering): Rendering {

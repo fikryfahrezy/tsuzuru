@@ -1,7 +1,8 @@
 import bank from "../../data/phrase-hints/sentences.json";
-import { hiragana, type VocabularyHint } from "../../shared/practice";
+import { hiragana } from "../../shared/practice";
 import {
   primaryRendering,
+  type PhraseHintSpan,
   type Rendering,
   type Sentence,
 } from "../../shared/sentence";
@@ -22,11 +23,8 @@ export interface SentencePhraseEntry {
   japanese: string;
   phrases: Phrase[];
 }
-export interface SentencePhraseSpan extends Span {
-  phrase: string;
-  hints: VocabularyHint[];
-}
-const entries = new Map(bank.entries.map((entry) => [entry.sentenceId, entry]));
+// Phrase-hint entries keyed by sentence ID, like the other banks.
+export type PhraseHintBank = Record<string, SentencePhraseEntry>;
 
 // Read only supplied furigana; never guess a kanji reading or accept a partial annotation.
 export function referenceReading(
@@ -64,18 +62,25 @@ export function referenceReading(
 
 export const phraseHintEntries: readonly SentencePhraseEntry[] = bank.entries;
 
+export function phraseHintBank(
+  entries: readonly SentencePhraseEntry[],
+): PhraseHintBank {
+  return Object.fromEntries(entries.map((entry) => [entry.sentenceId, entry]));
+}
+
 export type PhraseHintDropReason =
   | "stale-entry"
   | "empty-phrase"
   | "invalid-span"
   | "unverified-hint";
 
-// Any invalid phrase rejects the whole entry; `drop` hears the reason.
+// Validates an entry once at load. Any invalid phrase rejects the whole
+// entry; `drop` hears the reason.
 export function sentencePhraseHints(
-  sentence: Sentence,
-  entry: SentencePhraseEntry | undefined = entries.get(sentence.id),
+  sentence: Pick<Sentence, "id" | "english" | "reference">,
+  entry: SentencePhraseEntry | undefined,
   drop: (reason: PhraseHintDropReason) => void = () => {},
-): SentencePhraseSpan[] {
+): PhraseHintSpan[] {
   if (!entry) return [];
   // Snapshot checks invalidate mappings when either sentence changes.
   if (
@@ -86,7 +91,7 @@ export function sentencePhraseHints(
     drop("stale-entry");
     return [];
   }
-  const result: SentencePhraseSpan[] = [];
+  const result: PhraseHintSpan[] = [];
   const primaryReference = primaryRendering(sentence.reference);
   const wordTokens = [
     ...sentence.english.matchAll(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu),

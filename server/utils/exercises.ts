@@ -16,6 +16,7 @@ import {
 } from "../../shared/accepted-alternatives";
 import type { Candidate } from "../../shared/practice";
 import {
+  isNonEmpty,
   parseReadings,
   type ReadingBank,
   type ReferenceLexemeBank,
@@ -23,10 +24,11 @@ import {
   type WordBoundaryBank,
 } from "../../shared/sentence";
 import {
+  phraseHintBank,
   phraseHintEntries,
   sentencePhraseHints,
+  type PhraseHintBank,
   type PhraseHintDropReason,
-  type SentencePhraseEntry,
 } from "./sentence-phrase-hints";
 
 export interface Banks {
@@ -34,6 +36,7 @@ export interface Banks {
   spellings?: SpellingBank;
   wordBoundaries?: WordBoundaryBank;
   referenceLexemes?: ReferenceLexemeBank;
+  phraseHints?: PhraseHintBank;
   revision?: string;
 }
 
@@ -42,6 +45,7 @@ export const defaultBanks: Banks = {
   spellings: spellingBank as SpellingBank,
   wordBoundaries: wordBoundaryBank as WordBoundaryBank,
   referenceLexemes: referenceLexemeBank as ReferenceLexemeBank,
+  phraseHints: phraseHintBank(phraseHintEntries),
   revision: manifest.revision,
 };
 
@@ -120,7 +124,7 @@ export function loadSentence(
       };
     },
   );
-  if (!readings.length) {
+  if (!isNonEmpty(readings)) {
     dropInto(report.sentences)("no-valid-reading");
     return null;
   }
@@ -148,6 +152,22 @@ export function loadSentence(
   report.spellings.loaded += spellings.length;
   const spellingsFor = (japanese: string) =>
     spellings.filter((spelling) => spelling.japanese === japanese);
+  const reference = {
+    japanese: row.japanese,
+    readings,
+    spellings: spellingsFor(row.japanese),
+  };
+  const phraseEntry = banks.phraseHints?.[row.id];
+  let phraseDropped = false;
+  const phraseHints = sentencePhraseHints(
+    { id: row.id, english: row.english, reference },
+    phraseEntry,
+    (reason) => {
+      phraseDropped = true;
+      dropInto(report.phraseHints)(reason);
+    },
+  );
+  if (phraseEntry && !phraseDropped) report.phraseHints.loaded++;
   return {
     id: row.id,
     english: row.english,
@@ -155,15 +175,12 @@ export function loadSentence(
     targetVocabulary: row.targetVocabulary,
     sourceUrl:
       row.sources.find((source) => source.tatoebaUrl)?.tatoebaUrl ?? null,
-    reference: {
-      japanese: row.japanese,
-      readings,
-      spellings: spellingsFor(row.japanese),
-    },
+    reference,
     alternatives: alternatives.map((alternative) => ({
       ...alternative,
       spellings: spellingsFor(alternative.japanese),
     })),
+    phraseHints,
   };
 }
 
@@ -171,7 +188,6 @@ export function loadSentence(
 export function loadExercises(
   rows: Candidate[],
   banks: Banks = {},
-  phraseHints: readonly SentencePhraseEntry[] = [],
 ): { exercises: Sentence[]; report: LoadReport } {
   const report = emptyLoadReport();
   const exercises = rows.flatMap((row) => {
@@ -196,17 +212,9 @@ export function loadExercises(
     if (reason)
       entry.references.forEach(() => dropInto(report.spellings)(reason));
   }
-  for (const entry of phraseHints) {
-    const reason = orphan(entry.sentenceId);
+  for (const id of Object.keys(banks.phraseHints ?? {})) {
+    const reason = orphan(id);
     if (reason) dropInto(report.phraseHints)(reason);
-    else {
-      let dropped = false;
-      sentencePhraseHints(loaded.get(entry.sentenceId)!, entry, (cause) => {
-        dropped = true;
-        dropInto(report.phraseHints)(cause);
-      });
-      if (!dropped) report.phraseHints.loaded++;
-    }
   }
   return { exercises, report };
 }
@@ -225,7 +233,7 @@ export function summarizeLoadReport(report: LoadReport): string {
 
 export const candidates = raw as Candidate[];
 export const candidateById = new Map(candidates.map((row) => [row.id, row]));
-const loaded = loadExercises(candidates, defaultBanks, phraseHintEntries);
+const loaded = loadExercises(candidates, defaultBanks);
 export const exercises = loaded.exercises;
 export const loadReport = loaded.report;
 export const exerciseById = new Map(exercises.map((row) => [row.id, row]));
