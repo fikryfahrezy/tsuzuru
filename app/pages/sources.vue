@@ -98,9 +98,10 @@ useSeoMeta({
       <h2>Reference practice, explained</h2>
       <p class="license-note">
         This is a beta exercise bank drawn from unreviewed sentence candidates.
-        The level selector offers sentences whose vocabulary is at that level or
-        easier. This is not a certified difficulty: grammar is not graded, and
-        kana words outside the JLPT lists, mostly loanwords, do not raise a
+        The level selector offers sentences whose vocabulary and reviewed
+        grammar patterns are at that level or easier. This is not a certified
+        difficulty: only a reviewed set of grammar patterns is graded, and kana
+        words outside the JLPT lists, mostly loanwords, do not raise a
         sentence's level, so some sentences still contain harder grammar.
       </p>
       <p>

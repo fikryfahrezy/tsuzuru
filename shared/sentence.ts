@@ -31,8 +31,8 @@ export type ReadingBank<T> = Record<
 >;
 export type WordBoundaryBank = ReadingBank<number[]>;
 
-// Generated vocabulary grade per sentence: the highest JLPT level among its
-// listed content words. See scripts/generate-sentence-levels.py.
+// Generated grade per sentence: the harder of its vocabulary level and its
+// grammar level. See scripts/generate-sentence-levels.py.
 export interface SentenceLevelBank {
   version: number;
   sourceRevision: string;
@@ -44,6 +44,7 @@ export interface SentenceLevelBank {
       level: string;
       // A null level marks an unlisted kanji word, graded above every level.
       limitingWords: { surface: string; lemma: string; level: string | null }[];
+      limitingGrammar: { pattern: string; level: string }[];
     }
   >;
 }

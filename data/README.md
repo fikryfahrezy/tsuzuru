@@ -166,7 +166,19 @@ A word still unlisted after these steps counts as above every level when it is
 written with kanji (卒倒, 扮装), because such words are usually advanced. An
 unlisted kana word, usually a loanword such as チョコレート, does not raise the
 level. Each entry keeps the words that set its level, so a grade can be
-explained. Grammar is not graded.
+explained.
+
+`sentence-levels/grammar-patterns.json` lists reviewed grammar patterns, such as
+the passive 〜れる / 〜られる, お〜になる, 〜てみる, 〜ほど〜ない, 〜べきだ, and 〜について.
+A sentence's level is the harder of its vocabulary level and the highest level
+among the patterns it contains, and each entry keeps the patterns that set its
+level. `scripts/grammar_patterns.py` detects each pattern from Sudachi's words and
+grammatical labels rather than from text, so 〜って does not match every て-form.
+Every pattern cites OpenJLPT grammar entries, and generation fails if a level
+differs from those entries, a pattern lacks a rule or reviewer, or a rule lacks
+an entry. The generator tests list sentences each pattern must and must not
+match. Common N4 grammar such as 〜ので, 〜たら, and 〜てしまう is not yet included,
+so N5 sentences may still use it.
 
 ```sh
 bun run levels:generate

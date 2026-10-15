@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Grade each sentence by the vocabulary it uses, with the Sudachi spelling-tools environment.
 
-A sentence's level is the highest JLPT level among its content words, looked up
-in the OpenJLPT vocabulary lists plus a small reviewed supplement for common
+A sentence's level is the harder of its vocabulary level and its grammar level.
+The vocabulary level is the highest JLPT level among its content words, looked
+up in the OpenJLPT vocabulary lists plus a small reviewed supplement for common
 words the lists lack. An unlisted word written with kanji counts as above every
 level; unlisted kana words (mostly loanwords), names, and numerals do not raise
-the level. Grammar is not graded. Run through `bun run levels:generate` or
-`levels:check`.
+the level. The grammar level is the highest level among reviewed grammar
+patterns found in the sentence (scripts/grammar_patterns.py). Run through
+`bun run levels:generate` or `levels:check`.
 """
 import argparse
 import json
@@ -14,6 +16,8 @@ import re
 from pathlib import Path
 
 from sudachipy import Dictionary, SplitMode
+
+from grammar_patterns import RULES, matched_patterns
 
 ROOT = Path(__file__).resolve().parents[1]
 LEVELS = ["N5", "N4", "N3", "N2", "N1"]
@@ -158,6 +162,37 @@ def limiting_words(words, level):
             if word["level"] == level or (level == LEVELS[-1] and unlisted_kanji(word))]
 
 
+def grammar_levels(snapshot, patterns):
+    """Pattern id to level index. Every pattern needs a rule, a reviewer, and
+    a level matching each OpenJLPT grammar entry it cites."""
+    if patterns.get("version") != 1:
+        raise ValueError("Unsupported grammar pattern version.")
+    openjlpt = {}
+    for level in LEVELS:
+        for row in json.loads((snapshot / f"data/json/grammar/{level.lower()}.json").read_text()):
+            openjlpt[row["id"]] = row["level"]
+    levels = {}
+    for entry in patterns["patterns"]:
+        pattern = entry.get("id", "")
+        if pattern not in RULES or pattern in levels:
+            raise ValueError(f"Grammar pattern without a unique rule: {pattern or entry}")
+        if entry.get("level") not in LEVELS or not entry.get("reviewer", "").strip():
+            raise ValueError(f"Invalid grammar pattern entry: {pattern}")
+        cited = entry.get("openjlpt") or []
+        if not cited or any(openjlpt.get(source) != entry["level"] for source in cited):
+            raise ValueError(f"Grammar pattern level does not match OpenJLPT: {pattern}")
+        levels[pattern] = LEVELS.index(entry["level"])
+    if set(levels) != set(RULES):
+        raise ValueError(f"Grammar rules missing from the pattern list: {sorted(set(RULES) - set(levels))}")
+    return levels
+
+
+def found_grammar(patterns, found):
+    """Grammar patterns found, with levels, hardest first."""
+    return sorted(({"pattern": p, "level": LEVELS[patterns[p]]} for p in found),
+                  key=lambda row: -LEVELS.index(row["level"]))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
@@ -169,20 +204,29 @@ def main():
         vocabulary = vocabulary_levels(tokenizer, ROOT / manifest["snapshotPath"], supplement)
     except ValueError as error:
         raise SystemExit(f"{error} Update data/sentence-levels/supplement.json.") from error
+    pattern_file = json.loads((ROOT / "data/sentence-levels/grammar-patterns.json").read_text())
+    try:
+        patterns = grammar_levels(ROOT / manifest["snapshotPath"], pattern_file)
+    except ValueError as error:
+        raise SystemExit(f"{error} Update data/sentence-levels/grammar-patterns.json.") from error
     candidates = json.loads((ROOT / "data/processed/sentence-candidates.json").read_text())
     entries = {}
     for candidate in candidates:
         words = word_levels(tokenizer, vocabulary, candidate["japanese"])
-        level = sentence_level(words)
+        grammar = found_grammar(patterns, matched_patterns(tokenizer, candidate["japanese"]))
+        vocabulary_level = sentence_level(words)
+        level = max([vocabulary_level, *(row["level"] for row in grammar)], key=LEVELS.index)
         entries[candidate["id"]] = {
             "sourceJapanese": candidate["japanese"],
             "level": level,
             "limitingWords": limiting_words(words, level),
+            # Grammar patterns that set the level, so each grade can be explained.
+            "limitingGrammar": [row for row in grammar if level != "N5" and row["level"] == level],
         }
     bank = {
         "version": 1,
         "sourceRevision": manifest["revision"],
-        "method": "Highest vocabulary level among Sudachi content words, from OpenJLPT and the reviewed supplement; unlisted kanji words count as N1, while unlisted kana words, names, and numerals do not raise the level.",
+        "method": "Harder of the vocabulary level and the grammar level. Vocabulary: highest level among Sudachi content words, from OpenJLPT and the reviewed supplement; unlisted kanji words count as N1, while unlisted kana words, names, and numerals do not raise the level. Grammar: highest level among the reviewed patterns found.",
         "entries": dict(sorted(entries.items())),
     }
     output = ROOT / "data/sentence-levels/bank.json"

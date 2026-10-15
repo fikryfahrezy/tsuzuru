@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "note": "Grammar patterns that raise a sentence's level. Levels must match the cited OpenJLPT grammar entries; each pattern id needs a rule in scripts/grammar_patterns.py, with test sentences in tests/test_sentence_levels.py.",
+  "patterns": [
+    {
+      "id": "passive-potential",
+      "pattern": "〜れる / 〜られる (passive or potential)",
+      "level": "N4",
+      "openjlpt": [
+        "reru-rareru-passive",
+        "eru-rareru-potential"
+      ],
+      "note": "Passive, potential, and respectful uses share the N4 level, so they are not told apart.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "o-ni-naru",
+      "pattern": "お〜になる (honorific)",
+      "level": "N4",
+      "openjlpt": [
+        "o-ni-naru"
+      ],
+      "note": "Requires a verb stem or する-noun, so お茶になる does not match.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "o-kudasai",
+      "pattern": "お〜ください (honorific request)",
+      "level": "N4",
+      "openjlpt": [
+        "sonkeigo"
+      ],
+      "note": "Requires a verb stem, so お茶をください does not match.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "honorific-verbs",
+      "pattern": "Honorific verbs (いらっしゃる, おっしゃる, 召し上がる, ご存じ, ご覧)",
+      "level": "N4",
+      "openjlpt": [
+        "sonkeigo"
+      ],
+      "note": "The common special honorific verbs.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "te-itadaku-kudasaru",
+      "pattern": "〜ていただく / 〜てくださる",
+      "level": "N4",
+      "openjlpt": [
+        "te-kudasaru-te-itadaku"
+      ],
+      "note": "Excludes the plain request 〜てください (N5).",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "te-miru",
+      "pattern": "〜てみる (try doing)",
+      "level": "N4",
+      "openjlpt": [
+        "te-miru"
+      ],
+      "note": "みる after a て-form.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "hodo-nai",
+      "pattern": "〜ほど〜ない (not as … as)",
+      "level": "N4",
+      "openjlpt": [
+        "hodo-nai"
+      ],
+      "note": "Excludes ほど after a quantity (３キロほど).",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "hodo-wa-nai",
+      "pattern": "〜ほど〜はない (nothing is as … as)",
+      "level": "N3",
+      "openjlpt": [
+        "hodo-wa-nai"
+      ],
+      "note": "Excludes the copula's では, which is plain 〜ほど〜ない.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "ba-hodo",
+      "pattern": "〜ば〜ほど (the more … the more)",
+      "level": "N3",
+      "openjlpt": [
+        "ba-hodo"
+      ],
+      "note": "Conditional ば followed closely by ほど.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "dake-de-naku",
+      "pattern": "〜だけでなく / 〜ばかりでなく (not only)",
+      "level": "N3",
+      "openjlpt": [
+        "dake-de-naku",
+        "bakari-de-naku"
+      ],
+      "note": "Includes the casual じゃなく.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "beki",
+      "pattern": "〜べきだ (should)",
+      "level": "N3",
+      "openjlpt": [
+        "beki-da-beki-de-wa-nai"
+      ],
+      "note": "The auxiliary べき.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "ni-tsuite",
+      "pattern": "〜について (about)",
+      "level": "N3",
+      "openjlpt": [
+        "ni-tsuite"
+      ],
+      "note": "Excludes 〜についている (\"attached to\").",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "ni-yotte",
+      "pattern": "〜によって / 〜による (by, depending on)",
+      "level": "N3",
+      "openjlpt": [
+        "ni-yotte-ni-yoru"
+      ],
+      "note": "Excludes 寄る (\"stop by\").",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "uchi-ni",
+      "pattern": "〜うちに (while, before it changes)",
+      "level": "N3",
+      "openjlpt": [
+        "uchi-ni"
+      ],
+      "note": "After a verb or adjective, excluding うち (\"home\"). The set phrase 近いうちに (\"soon\") counts, by decision.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "wake",
+      "pattern": "〜わけだ / 〜わけではない / 〜わけがない",
+      "level": "N3",
+      "openjlpt": [
+        "wake-da",
+        "wake-de-wa-nai",
+        "wake-ga-nai"
+      ],
+      "note": "Excludes わけ as \"reason\" (わけを話す, わけがわからない).",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "dokoro",
+      "pattern": "〜どころではない / 〜どころか",
+      "level": "N2",
+      "openjlpt": [
+        "dokoro-de-wa-nai",
+        "dokoro-ka"
+      ],
+      "note": "どころ as a particle.",
+      "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    }
+  ]
+}
