@@ -346,6 +346,21 @@ defineExpose({
       :spelling-options="question?.spellingOptions ?? []"
     />
     <div v-else-if="question" class="below-paper">
+      <div class="sentence-notes">
+        <p>
+          {{ question.alternativeCount }} additional
+          {{ question.alternativeCount === 1 ? "translation" : "translations" }}
+          for this sentence.
+        </p>
+        <p v-if="question.spellingOptions.length">
+          {{ question.spellingOptions.length }}
+          {{
+            question.spellingOptions.length === 1 ? "word has" : "words have"
+          }}
+          verified spelling variants. These are accepted in Kana + kanji mode
+          even when alternative translations are off.
+        </p>
+      </div>
       <button :disabled="checking" @click="emit('submit', true)">
         Show reference ↗
       </button>
@@ -432,13 +447,16 @@ defineExpose({
 }
 .below-paper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   padding: 13px 27px;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 9px;
+}
+.sentence-notes p {
+  line-height: 1.6;
 }
 .error-message {
   padding: 18px 25px;

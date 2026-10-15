@@ -167,8 +167,6 @@ watch(difficulty, () => {
           :sentence="sentence"
           :settings-open="settingsOpen"
           :checking="checking"
-          :alternative-count="question?.alternativeCount"
-          :spelling-word-count="question?.spellingOptions.length"
           @close="closeSettings"
           @keydown.esc.stop.prevent="closeSettings"
         />

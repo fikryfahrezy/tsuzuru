@@ -183,14 +183,41 @@ test("accepted spellings appear after checking without revealing Challenge answe
   expect(after).toContain("even when alternative translations are off");
 });
 
-test("settings distinguish zero additional translations from available spelling variants", async () => {
+test("sentence notes sit above Show reference and leave settings", async () => {
+  const withSpellings: Question = {
+    ...question,
+    alternativeCount: 0,
+    spellingOptions: [
+      { japanese: "むこう", kana: "むこう", spellings: ["向こう"] },
+      { japanese: "わたし", kana: "わたし", spellings: ["私"] },
+      { japanese: "ください", kana: "ください", spellings: ["下さい"] },
+    ],
+  };
+  const before = (
+    await renderPractice(PracticeDifficulty.Guided, null, withSpellings)
+  ).replace(/\s+/gu, " ");
+  expect(before).toContain("0 additional translations for this sentence");
+  expect(before).toContain("3 words have verified spelling variants");
+  expect(before.indexOf("additional translations")).toBeLessThan(
+    before.indexOf("Show reference"),
+  );
+  const after = await renderPractice(
+    PracticeDifficulty.Guided,
+    {
+      matched: true,
+      reference: "水",
+      kana: "みず",
+      sourceUrl: null,
+      differences: null,
+    },
+    withSpellings,
+  );
+  expect(after).not.toContain("additional translations for this sentence");
   const app = createSSRApp({
     render: () =>
       h(Settings, {
         settingsOpen: true,
         checking: false,
-        alternativeCount: 0,
-        spellingWordCount: 3,
         level: "N5",
         length: "short",
         mode: Strictness.Flexible,
@@ -199,12 +226,10 @@ test("settings distinguish zero additional translations from available spelling 
       }),
   });
   app.component("NuxtLink", { render: () => null });
-  const html = (await renderToString(app))
-    .replace(/<!--.*?-->/gu, "")
-    .replace(/\s+/gu, " ");
-  expect(html).toContain("Alternative translations");
-  expect(html).toContain("0 additional translations for this sentence");
-  expect(html).toContain("3 words have verified spelling variants");
+  const settings = (await renderToString(app)).replace(/\s+/gu, " ");
+  expect(settings).toContain("Alternative translations");
+  expect(settings).not.toContain("additional translations for this sentence");
+  expect(settings).not.toContain("verified spelling variants. These");
 });
 
 test("Challenge renders plain English and removes every practice aid even with saved hints open", async () => {

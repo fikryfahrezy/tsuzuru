@@ -10,8 +10,6 @@ defineProps<{
   sentence?: string;
   settingsOpen: boolean;
   checking: boolean;
-  alternativeCount?: number;
-  spellingWordCount?: number;
 }>();
 const emit = defineEmits<{ close: [] }>();
 const level = defineModel<Level>("level", { required: true });
@@ -134,17 +132,6 @@ const modeHelp = computed(
       <p class="setting-note">
         Accept additional translations from our pre-generated list. Unlisted
         wording can still be valid.
-      </p>
-      <p v-if="alternativeCount !== undefined" class="setting-note">
-        {{ alternativeCount }} additional
-        {{ alternativeCount === 1 ? "translation" : "translations" }}
-        for this sentence.
-      </p>
-      <p v-if="spellingWordCount" class="setting-note">
-        {{ spellingWordCount }}
-        {{ spellingWordCount === 1 ? "word has" : "words have" }} verified
-        spelling variants. These are accepted in Kana + kanji mode even when
-        alternative translations are off.
       </p>
     </fieldset>
   </aside>
