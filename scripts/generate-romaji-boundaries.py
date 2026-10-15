@@ -164,6 +164,13 @@ def reference_lexemes(tokens, surface, offsets, furigana, boundaries):
     return result
 
 
+def add_reading(bank, candidate, furigana, data):
+    """Key generated data by sentence ID, guarded by the source text it was
+    computed from, so a changed sentence or reading cannot reuse it."""
+    entry = bank.setdefault(candidate["id"], {"sourceJapanese": candidate["japanese"], "readings": {}})
+    entry["readings"][furigana] = data
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
@@ -186,10 +193,10 @@ def main():
             if surface != candidate["japanese"]:
                 continue
             boundaries = word_boundaries(tokenizer, surface, offsets, joins)
-            bank[furigana] = boundaries
+            add_reading(bank, candidate, furigana, boundaries)
             rows = reference_lexemes(tokens, surface, offsets, furigana, boundaries)
             if rows:
-                lexemes[furigana] = rows
+                add_reading(lexemes, candidate, furigana, rows)
     for name, data in [("word-boundaries", bank), ("reference-lexemes", lexemes)]:
         output = ROOT / f"data/romaji/{name}.json"
         content = json.dumps(dict(sorted(data.items())), ensure_ascii=False, indent=2) + "\n"
@@ -199,7 +206,7 @@ def main():
         else:
             output.parent.mkdir(parents=True, exist_ok=True)
             output.write_text(content)
-    print(f"{len(bank)} supplied readings with word boundaries")
+    print(f"{sum(len(entry['readings']) for entry in bank.values())} supplied readings with word boundaries")
 
 
 if __name__ == "__main__":

@@ -56,7 +56,7 @@ test("sentence selection loads a dataset entry regardless of filters or previous
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         id: selected.id,
-        answer: selected.japanese,
+        answer: selected.reference.japanese,
         mode: Strictness.Flexible,
       }),
     }),
@@ -64,7 +64,7 @@ test("sentence selection loads a dataset entry regardless of filters or previous
   expect(response.status).toBe(200);
   expect(await response.json()).toMatchObject({
     matched: true,
-    reference: selected.japanese,
+    reference: selected.reference.japanese,
   });
 });
 

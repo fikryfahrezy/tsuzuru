@@ -1,22 +1,14 @@
 import { randomInt } from "node:crypto";
-import boundaries from "../../data/romaji/word-boundaries.json";
-import {
-  hiragana,
-  normalize,
-  parts,
-  validReadings,
-  type AnswerChip,
-  type Candidate,
-} from "../../shared/practice";
+import { hiragana, normalize, type AnswerChip } from "../../shared/practice";
+import { primaryReading, type Sentence } from "../../shared/sentence";
 
-export function answerChips(candidate: Candidate): AnswerChip[] {
-  const reading = validReadings(candidate)[0];
-  if (!reading) return [];
-  const ends = new Set((boundaries as Record<string, number[]>)[reading] ?? []);
+export function answerChips(sentence: Sentence): AnswerChip[] {
+  const { segments, wordBoundaries } = primaryReading(sentence.reference);
+  const ends = new Set(wordBoundaries ?? []);
   const chips: AnswerChip[] = [];
   let offset = 0;
   let chip: AnswerChip = { japanese: "", kana: "" };
-  for (const part of parts(reading)) {
+  for (const part of segments) {
     // Annotated kanji readings stay intact; literal kana can split at word boundaries.
     const units =
       part.surface === part.reading
@@ -46,8 +38,8 @@ export function answerChips(candidate: Candidate): AnswerChip[] {
     .filter((chip) => chip.japanese && chip.kana);
 }
 
-export function shuffledAnswerChips(candidate: Candidate): AnswerChip[] {
-  const chips = answerChips(candidate);
+export function shuffledAnswerChips(sentence: Sentence): AnswerChip[] {
+  const chips = answerChips(sentence);
   for (let index = chips.length - 1; index > 0; index--) {
     const other = randomInt(index + 1);
     [chips[index], chips[other]] = [chips[other]!, chips[index]!];

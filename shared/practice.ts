@@ -1,6 +1,7 @@
 import { writingDifferences } from "./writing-diff";
 import { explainWriting } from "./writing-explanations";
-import { writingPaths, type SpellingReference } from "./writing-spellings";
+import { writingPaths } from "./writing-spellings";
+import { parseReadings, type Rendering, type Sentence } from "./sentence";
 
 export enum Level {
   N5 = "N5",
@@ -47,6 +48,7 @@ export interface AlternativeProvenance {
 }
 
 export const levels = Object.values(Level);
+// A sentence record as stored in sentence-candidates.json, before validation.
 export interface Candidate {
   id: string;
   english: string;
@@ -55,12 +57,6 @@ export interface Candidate {
   englishWordCount: number;
   targetVocabulary: { id: string; word: string; level: string }[];
   sources: { tatoebaUrl: string | null }[];
-  spellingVariants?: SpellingReference[];
-  acceptedAlternatives?: {
-    japanese: string;
-    furiganaVariants: string[];
-    provenance: AlternativeProvenance;
-  }[];
 }
 
 export interface Question {
@@ -198,128 +194,87 @@ export function parts(
   return result;
 }
 
-export function validReadings(candidate: Candidate): string[] {
-  return candidate.furiganaVariants.filter((variant) => {
-    const segments = parts(variant);
-    return (
-      normalize(segments.map((p) => p.surface).join("")) ===
-        normalize(candidate.japanese) &&
-      !/[\p{Script=Han}{}|]/u.test(segments.map((p) => p.reading).join(""))
-    );
-  });
+export function validReadings(
+  candidate: Pick<Candidate, "japanese" | "furiganaVariants">,
+): string[] {
+  return parseReadings(candidate.japanese, candidate.furiganaVariants).map(
+    (reading) => reading.furigana,
+  );
 }
 
 function escapePattern(text: string): string {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function compareReference(
-  candidate: Candidate,
-  answer: string,
-  mode: Strictness,
-): Comparison {
+function matches(rendering: Rendering, answer: string, mode: Strictness) {
   const normalized = normalize(answer);
-  const readings = validReadings(candidate);
-  let matched = false;
-  if (normalized) {
-    if (mode === Strictness.Exact)
-      matched = normalized === normalize(candidate.japanese);
-    else if (mode === Strictness.Kana) {
-      matched =
-        !/\p{Script=Han}/u.test(normalized) &&
-        readings.some(
-          (reading) =>
-            hiragana(normalized) ===
-            hiragana(
-              normalize(
-                parts(reading)
-                  .map((p) => p.reading)
-                  .join(""),
-              ),
-            ),
-        );
-    } else {
-      // Only recorded spellings are allowed; arbitrary kanji-to-kana conversion
-      // would also accept words with different meanings but the same reading.
-      matched = writingPaths(candidate, mode).some((path) => {
-        const pattern = path
-          .map(
-            (options) =>
-              `(?:${options.map((option) => escapePattern(hiragana(normalize(option)))).join("|")})`,
-          )
-          .join("");
-        return new RegExp(`^${pattern}$`, "u").test(hiragana(normalized));
-      });
-    }
-  }
-  const differences = matched
-    ? null
-    : writingDifferences(candidate, answer, mode);
-  return {
-    matched,
-    differences,
-    explanations: differences
-      ? explainWriting(candidate, answer, mode, differences)
-      : [],
-    reference: candidate.japanese,
-    kana: readings[0]
-      ? hiragana(
-          parts(readings[0])
-            .map((p) => p.reading)
-            .join(""),
-        )
-      : "",
-    sourceUrl:
-      candidate.sources.find((source) => source.tatoebaUrl)?.tatoebaUrl ?? null,
-  };
+  if (!normalized) return false;
+  if (mode === Strictness.Exact)
+    return normalized === normalize(rendering.japanese);
+  if (mode === Strictness.Kana)
+    return (
+      !/\p{Script=Han}/u.test(normalized) &&
+      rendering.readings.some(
+        (reading) =>
+          hiragana(normalized) ===
+          hiragana(normalize(reading.segments.map((p) => p.reading).join(""))),
+      )
+    );
+  // Only recorded spellings are allowed; arbitrary kanji-to-kana conversion
+  // would also accept words with different meanings but the same reading.
+  return writingPaths(rendering, mode).some((path) => {
+    const pattern = path
+      .map(
+        (options) =>
+          `(?:${options.map((option) => escapePattern(hiragana(normalize(option)))).join("|")})`,
+      )
+      .join("");
+    return new RegExp(`^${pattern}$`, "u").test(hiragana(normalized));
+  });
+}
+
+function alternativeAnswers(sentence: Sentence): AlternativeAnswer[] {
+  return sentence.alternatives.map((alternative) => ({
+    japanese: alternative.japanese,
+    kana: alternative.readings[0]!.kana,
+    provenance: alternative.provenance,
+  }));
 }
 
 export function compare(
-  candidate: Candidate,
+  sentence: Sentence,
   answer: string,
   mode: Strictness,
   acceptAlternatives = false,
 ): Comparison {
-  const reference = compareReference(candidate, answer, mode);
-  reference.alternatives = (candidate.acceptedAlternatives ?? []).flatMap(
-    (alternative) => {
-      const reading = validReadings({ ...candidate, ...alternative })[0];
-      return reading
-        ? [
-            {
-              japanese: alternative.japanese,
-              kana: hiragana(
-                parts(reading)
-                  .map((part) => part.reading)
-                  .join(""),
-              ),
-              provenance: alternative.provenance,
-            },
-          ]
-        : [];
-    },
+  const { reference } = sentence;
+  const matched = matches(reference, answer, mode);
+  const differences = matched
+    ? null
+    : writingDifferences(reference, answer, mode);
+  const result: Comparison = {
+    matched,
+    differences,
+    explanations: differences
+      ? explainWriting(reference, answer, mode, differences)
+      : [],
+    reference: reference.japanese,
+    kana: reference.readings[0]!.kana,
+    sourceUrl: sentence.sourceUrl,
+    alternatives: alternativeAnswers(sentence),
+  };
+  if (matched || !acceptAlternatives) return result;
+  const index = sentence.alternatives.findIndex((alternative) =>
+    matches(alternative, answer, mode),
   );
-  if (reference.matched || !acceptAlternatives) return reference;
-  for (const alternative of candidate.acceptedAlternatives ?? []) {
-    const match = compareReference(
-      { ...candidate, ...alternative },
-      answer,
-      mode,
-    );
-    if (match.matched)
-      return {
-        ...reference,
-        matched: true,
-        differences: null,
-        explanations: [],
-        acceptedAlternative: {
-          japanese: alternative.japanese,
-          provenance: alternative.provenance,
-          kana: match.kana,
-        },
-      };
-  }
-  return reference;
+  if (index === -1) return result;
+  return {
+    ...result,
+    matched: true,
+    differences: null,
+    explanations: [],
+    acceptedAlternative: result.alternatives![index],
+  };
 }
 
 export function lengthOf(count: number): Length {

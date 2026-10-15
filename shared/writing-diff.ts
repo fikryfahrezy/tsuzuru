@@ -1,7 +1,6 @@
 import {
   hiragana,
   normalize,
-  type Candidate,
   type DifferencePart,
   Strictness,
   DifferenceKind,
@@ -9,6 +8,7 @@ import {
   type WritingEdit,
 } from "./practice";
 import { writingPaths } from "./writing-spellings";
+import type { Rendering } from "./sentence";
 
 type Edge = { from: number; character: string };
 type Operation = {
@@ -18,7 +18,7 @@ type Operation = {
 };
 
 // A graph represents all accepted spellings without enumerating every kanji/kana combination.
-function spellingGraph(candidate: Candidate, mode: Strictness): Edge[][] {
+function spellingGraph(rendering: Rendering, mode: Strictness): Edge[][] {
   const graph: Edge[][] = [[]];
   const fold = (text: string) =>
     mode === Strictness.Exact ? normalize(text) : hiragana(normalize(text));
@@ -36,19 +36,17 @@ function spellingGraph(candidate: Candidate, mode: Strictness): Edge[][] {
     return graph.length - 1;
   }
   const ends: number[] = [];
-  for (const path of writingPaths(candidate, mode)) {
+  for (const path of writingPaths(rendering, mode)) {
     let node = 0;
     for (const options of path) node = append(node, options);
     ends.push(node);
   }
-  // No annotated reading: still provide an informative reference difference.
-  if (!ends.length) ends.push(append(0, [candidate.japanese]));
   graph.push(ends.map((from) => ({ from, character: "" })));
   return graph;
 }
 
 export function writingDifferences(
-  candidate: Candidate,
+  rendering: Rendering,
   answer: string,
   mode: Strictness,
 ): DifferenceDetails {
@@ -62,7 +60,7 @@ export function writingDifferences(
     for (const character of normalized)
       characters.push({ text: character, original });
   });
-  const graph = spellingGraph(candidate, mode);
+  const graph = spellingGraph(rendering, mode);
   const width = characters.length + 1;
   const distances = graph.map(() => new Uint32Array(width));
   const previous = graph.map(() => new Int32Array(width));

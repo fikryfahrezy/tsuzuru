@@ -7,10 +7,11 @@ import {
 } from "../shared/accepted-alternatives";
 import bank from "../data/alternatives/answers.json";
 import manifest from "../data/manifest.json";
-import { exerciseById } from "../server/utils/exercises";
+import { candidateById, exerciseById } from "../server/utils/exercises";
 import compareHandler from "../server/api/compare.post";
 
 const tennis = exerciseById.get("004f3984827963025986b55a")!;
+const tennisRecord = candidateById.get(tennis.id)!;
 
 test("list removal accepts the recorded kanji spelling without imposing a JLPT kanji limit", () => {
   const sentence = exerciseById.get("6f089ad7d7e1f1da1398e9c9")!;
@@ -52,7 +53,7 @@ test("list removal accepts the recorded kanji spelling without imposing a JLPT k
 test("results include every alternative regardless of matching or the toggle", () => {
   for (const accept of [false, true]) {
     for (const answer of [
-      tennis.japanese,
+      tennis.reference.japanese,
       "wrong answer",
       "__reveal__",
       "１年中テニスをします。",
@@ -65,9 +66,7 @@ test("results include every alternative regardless of matching or the toggle", (
       expect(
         result.alternatives?.map((alternative) => alternative.provenance),
       ).toEqual(
-        tennis.acceptedAlternatives!.map(
-          (alternative) => alternative.provenance,
-        ),
+        tennis.alternatives.map((alternative) => alternative.provenance),
       );
     }
   }
@@ -78,11 +77,11 @@ test("results include every alternative regardless of matching or the toggle", (
 });
 
 test("pre-generated alternatives are opt-in and preserve the original reference and attribution", () => {
-  expect(tennis.acceptedAlternatives?.length).toBe(5);
+  expect(tennis.alternatives.length).toBe(5);
   expect(
     compare(tennis, "１年中テニスをします。", Strictness.Flexible).matched,
   ).toBe(false);
-  for (const alternative of tennis.acceptedAlternatives!) {
+  for (const alternative of tennis.alternatives) {
     const result = compare(
       tennis,
       alternative.japanese,
@@ -91,9 +90,9 @@ test("pre-generated alternatives are opt-in and preserve the original reference 
     );
     expect(result.matched).toBe(true);
     expect(result.differences).toBeNull();
-    expect(result.reference).toBe(tennis.japanese);
+    expect(result.reference).toBe(tennis.reference.japanese);
     expect(result.sourceUrl).toBe(
-      compare(tennis, tennis.japanese, Strictness.Exact).sourceUrl,
+      compare(tennis, tennis.reference.japanese, Strictness.Exact).sourceUrl,
     );
     expect(result.acceptedAlternative?.japanese).toBe(alternative.japanese);
     expect(result.acceptedAlternative?.provenance).toEqual(
@@ -101,7 +100,7 @@ test("pre-generated alternatives are opt-in and preserve the original reference 
     );
   }
   expect(
-    compare(tennis, tennis.japanese, Strictness.Exact, true)
+    compare(tennis, tennis.reference.japanese, Strictness.Exact, true)
       .acceptedAlternative,
   ).toBeUndefined();
 });
@@ -156,20 +155,28 @@ test("stale sources, missing provenance, and incomplete readings are ignored", (
   const copy = () => structuredClone(bank) as AlternativeBank;
   let changed = copy();
   changed.sourceRevision = "outdated";
-  expect(acceptedAlternatives(tennis, changed, manifest.revision)).toEqual([]);
+  expect(
+    acceptedAlternatives(tennisRecord, changed, manifest.revision),
+  ).toEqual([]);
   changed = copy();
   changed.entries[tennis.id]!.sourceEnglish = "Different prompt.";
-  expect(acceptedAlternatives(tennis, changed, manifest.revision)).toEqual([]);
+  expect(
+    acceptedAlternatives(tennisRecord, changed, manifest.revision),
+  ).toEqual([]);
   changed = copy();
   changed.entries[tennis.id]!.alternatives.forEach((alternative) => {
     alternative.provenance.creator = "";
   });
-  expect(acceptedAlternatives(tennis, changed, manifest.revision)).toEqual([]);
+  expect(
+    acceptedAlternatives(tennisRecord, changed, manifest.revision),
+  ).toEqual([]);
   changed = copy();
   changed.entries[tennis.id]!.alternatives.forEach((alternative) => {
     alternative.furiganaVariants = [alternative.japanese];
   });
-  expect(acceptedAlternatives(tennis, changed, manifest.revision)).toEqual([]);
+  expect(
+    acceptedAlternatives(tennisRecord, changed, manifest.revision),
+  ).toEqual([]);
 });
 
 test("the comparison API validates the toggle and only activates listed alternatives", async () => {
@@ -202,11 +209,9 @@ test("all generated answers are active with source provenance", () => {
   for (const [id, entry] of Object.entries(bank.entries)) {
     const candidate = exerciseById.get(id)!;
     expect(candidate.english).toBe(entry.sourceEnglish);
-    expect(candidate.japanese).toBe(entry.sourceJapanese);
-    expect(candidate.acceptedAlternatives).toHaveLength(
-      entry.alternatives.length,
-    );
-    for (const alternative of candidate.acceptedAlternatives!) {
+    expect(candidate.reference.japanese).toBe(entry.sourceJapanese);
+    expect(candidate.alternatives).toHaveLength(entry.alternatives.length);
+    for (const alternative of candidate.alternatives) {
       expect(
         compare(candidate, alternative.japanese, Strictness.Exact, true)
           .acceptedAlternative?.provenance,

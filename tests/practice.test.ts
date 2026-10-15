@@ -7,8 +7,9 @@ import {
   validReadings,
   type Candidate,
 } from "../shared/practice";
+import { sentence as load } from "./sentences";
 
-const sentence: Candidate = {
+const record: Candidate = {
   id: "water",
   english: "I drink water.",
   japanese: "水を飲みます。",
@@ -17,6 +18,7 @@ const sentence: Candidate = {
   targetVocabulary: [],
   sources: [{ tatoebaUrl: "https://tatoeba.org/sentences/show/1" }],
 };
+const sentence = load(record);
 describe("reference writing comparison", () => {
   test("kana accepts either kana script but rejects kanji", () => {
     expect(compare(sentence, "みずをのみます", Strictness.Kana).matched).toBe(
@@ -49,18 +51,18 @@ describe("reference writing comparison", () => {
     );
   });
   test("homophone kanji cannot pass flexible mode", () => {
-    const bridge = {
-      ...sentence,
+    const bridge = load({
+      ...record,
       japanese: "橋です。",
       furiganaVariants: ["{橋|はし}です。"],
-    };
+    });
     expect(compare(bridge, "箸です", Strictness.Flexible).matched).toBe(false);
     expect(compare(bridge, "はしです", Strictness.Flexible).matched).toBe(true);
   });
   test("mismatched annotations and incomplete readings are excluded", () => {
     expect(
       validReadings({
-        ...sentence,
+        ...record,
         furiganaVariants: ["{水|みず}を飲みます。", "{橋|はし}です。"],
       }),
     ).toEqual([]);
@@ -96,11 +98,12 @@ test("the imported bank supports every level and length without missing readings
     }
   }
   for (const row of exercises) {
-    const reference = compare(row, row.japanese, Strictness.Exact);
+    const { japanese } = row.reference;
+    const reference = compare(row, japanese, Strictness.Exact);
     if (
       !reference.matched ||
       !compare(row, reference.kana, Strictness.Kana).matched ||
-      !compare(row, row.japanese, Strictness.Flexible).matched
+      !compare(row, japanese, Strictness.Flexible).matched
     ) {
       throw new Error(`Inconsistent reference forms for ${row.id}`);
     }

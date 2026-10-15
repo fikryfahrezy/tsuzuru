@@ -2,9 +2,9 @@ import {
   hiragana,
   type AnswerChip,
   type AnswerBreakdownPart,
-  type Candidate,
   type PromptPart,
 } from "../../shared/practice";
+import type { Sentence } from "../../shared/sentence";
 import { kanaToRomaji } from "../../shared/romaji";
 import { referenceLexemes } from "./reference-lexemes";
 import { vocabulary } from "./word-hints";
@@ -72,11 +72,11 @@ function formNote(text: string): string | undefined {
 }
 
 export function answerBreakdown(
-  candidate: Candidate,
+  sentence: Sentence,
   chips: AnswerChip[],
   hints: PromptPart[],
 ): AnswerBreakdownPart[] {
-  const lexemes = referenceLexemes(candidate);
+  const lexemes = referenceLexemes(sentence);
   return chips
     .filter((chip) => /[\p{L}\p{N}]/u.test(chip.japanese))
     .map((chip) => {

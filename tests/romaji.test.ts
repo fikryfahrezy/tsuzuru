@@ -1,10 +1,14 @@
 import { expect, test } from "bun:test";
 import { kanaToRomaji, romajiHint } from "../shared/romaji";
-import { exercises, exerciseById } from "../server/utils/exercises";
-import wordBoundaries from "../data/romaji/word-boundaries.json";
+import {
+  candidates,
+  defaultBanks,
+  exercises,
+  exerciseById,
+  loadSentence,
+} from "../server/utils/exercises";
 import conjunctionReviews from "../data/romaji/conjunction-reviews.json";
 import sourceCandidates from "../data/processed/sentence-candidates.json";
-import { validReadings } from "../shared/practice";
 
 test("romaji handles both kana scripts, combined sounds, and doubled consonants", () => {
   expect(kanaToRomaji("みずをのみます。")).toBe("mizuwonomimasu.");
@@ -20,13 +24,13 @@ test("romaji handles both kana scripts, combined sounds, and doubled consonants"
 });
 
 test("hints use validated readings instead of guessing kanji pronunciation", () => {
-  const candidate = {
-    ...exercises[0]!,
+  const record = {
+    ...candidates[0]!,
     japanese: "水を飲みます。",
     furiganaVariants: ["{橋|はし}です。", "{水|みず}を{飲|の}みます。"],
   };
-  expect(romajiHint(candidate)).toBe("mizu wo nomimasu.");
-  expect(romajiHint({ ...candidate, furiganaVariants: [] })).toBe("");
+  expect(romajiHint(loadSentence(record)!)).toBe("mizu wo nomimasu.");
+  expect(loadSentence({ ...record, furiganaVariants: [] })).toBeNull();
 });
 
 test("hints space annotations, particles, and script runs while keeping verb endings together", () => {
@@ -51,13 +55,36 @@ test("hints separate kana words and particles after an annotated noun", () => {
 
 test("every supplied reading has generated spacing so new data cannot silently use the fallback", () => {
   for (const candidate of exercises) {
-    for (const reading of validReadings(candidate)) {
-      if (!Object.hasOwn(wordBoundaries, reading))
+    for (const reading of candidate.reference.readings) {
+      if (!reading.wordBoundaries)
         throw new Error(
           `Missing romaji spacing for ${candidate.id}; run romaji:generate.`,
         );
     }
   }
+});
+
+test("generated spacing applies only while the sentence ID, source text, and reading match", () => {
+  const record = candidates.find(
+    (row) => row.id === "0000e8f8c0565c3fbcea0a4c",
+  )!;
+  const spacing = (row: typeof record) =>
+    loadSentence(row, defaultBanks)!.reference.readings[0]!.wordBoundaries;
+  expect(spacing(record)).toBeDefined();
+  expect(spacing({ ...record, id: "unknown" })).toBeUndefined();
+  expect(
+    spacing({
+      ...record,
+      japanese: "二人はかわるがわる試した。",
+      furiganaVariants: ["{二人|ふたり}はかわるがわる{試|ため}した。"],
+    }),
+  ).toBeUndefined();
+  expect(
+    spacing({
+      ...record,
+      furiganaVariants: ["{二|ふた}{人|り}はかわるがわる{試|こころ}みた。"],
+    }),
+  ).toBeUndefined();
 });
 
 test("conjunction decisions remain aligned with their reviewed source", () => {

@@ -1,5 +1,5 @@
-import { hiragana, parts, validReadings, type Candidate } from "./practice";
-import wordBoundaries from "../data/romaji/word-boundaries.json";
+import { hiragana } from "./practice";
+import { primaryReading, type Sentence } from "./sentence";
 
 const syllables: Record<string, string> = {};
 const rows = [
@@ -120,14 +120,12 @@ export function kanaToRomaji(reading: string): string {
   return output;
 }
 
-export function romajiHint(candidate: Candidate): string {
-  const reading = validReadings(candidate)[0];
-  if (!reading) return "";
-  const boundaries = (wordBoundaries as Record<string, number[]>)[reading];
+export function romajiHint(sentence: Sentence): string {
+  const { segments, wordBoundaries: boundaries } = primaryReading(
+    sentence.reference,
+  );
   if (boundaries) {
-    const kana = parts(reading)
-      .map((part) => part.reading)
-      .join("");
+    const kana = segments.map((part) => part.reading).join("");
     let start = 0;
     const words = [...boundaries, kana.length].map((end) => {
       const word = kana.slice(start, end);
@@ -137,7 +135,7 @@ export function romajiHint(candidate: Candidate): string {
     return formatRomaji(words.join(" "));
   }
   const chunks: { text: string; annotated: boolean }[] = [];
-  for (const part of parts(reading)) {
+  for (const part of segments) {
     if (!part.surface) continue;
     if (part.surface !== part.reading) {
       const previous = chunks.at(-1);

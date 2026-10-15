@@ -77,6 +77,10 @@ creator of added wording. See [DATA_DISCLOSURE.md](../DATA_DISCLOSURE.md).
 ## Romaji spacing
 
 `romaji/word-boundaries.json` stores spacing for supplied furigana readings.
+Like the other banks, entries are keyed by sentence ID and record the
+`sourceJapanese` they were generated from, with one entry per supplied reading
+(`readings`, keyed by furigana). The loader attaches them to a sentence only
+while its ID, Japanese text, and furigana all still match.
 Sudachi provides boundaries, while the original furigana provides pronunciation.
 Honorific prefixes and inflectional endings stay with their words. Compound
 particles `demo`, `temo`, and `deha` are joined. Noun + `suru` constructions and
@@ -112,7 +116,8 @@ The regular Bun tests reject missing spacing for eligible readings and changed
 review snapshots. CI also regenerates the bank in check mode and runs generator
 tests, so changes to source data or spacing rules require an updated bank.
 
-The same generator produces `romaji/reference-lexemes.json`, which connects
+The same generator produces `romaji/reference-lexemes.json`, keyed and guarded
+the same way, which connects
 dictionary forms of verbs and adjectives to their complete conjugated words in
 the reference. Endings and honorific prefixes use the romaji word boundaries;
 all readings come from the supplied furigana. Word hints use these forms before

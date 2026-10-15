@@ -1,33 +1,231 @@
 import raw from "../../data/processed/sentence-candidates.json";
-import bank from "../../data/alternatives/answers.json";
+import alternativeBank from "../../data/alternatives/answers.json";
 import manifest from "../../data/manifest.json";
 import spellingBank from "../../data/spelling-variants/bank.json";
+import wordBoundaryBank from "../../data/romaji/word-boundaries.json";
+import referenceLexemeBank from "../../data/romaji/reference-lexemes.json";
 import {
   verifiedSpellings,
   type SpellingBank,
+  type SpellingDropReason,
 } from "../../shared/writing-spellings";
 import {
   acceptedAlternatives,
   type AlternativeBank,
+  type AlternativeDropReason,
 } from "../../shared/accepted-alternatives";
-import { validReadings, type Candidate } from "../../shared/practice";
+import type { Candidate } from "../../shared/practice";
+import {
+  parseReadings,
+  type ReadingBank,
+  type ReferenceLexemeBank,
+  type Sentence,
+  type WordBoundaryBank,
+} from "../../shared/sentence";
+import {
+  phraseHintEntries,
+  sentencePhraseHints,
+  type PhraseHintDropReason,
+  type SentencePhraseEntry,
+} from "./sentence-phrase-hints";
 
-export const exercises = (raw as Candidate[])
-  .filter((row) => validReadings(row).length > 0)
-  .map((row) => ({
-    ...row,
-    acceptedAlternatives: acceptedAlternatives(
-      row,
-      bank as AlternativeBank,
-      manifest.revision,
-    ),
-  }))
-  .map((row) => ({
-    ...row,
-    spellingVariants: verifiedSpellings(
-      row,
-      spellingBank as SpellingBank,
-      manifest.revision,
-    ),
-  }));
+export interface Banks {
+  alternatives?: AlternativeBank;
+  spellings?: SpellingBank;
+  wordBoundaries?: WordBoundaryBank;
+  referenceLexemes?: ReferenceLexemeBank;
+  revision?: string;
+}
+
+export const defaultBanks: Banks = {
+  alternatives: alternativeBank as AlternativeBank,
+  spellings: spellingBank as SpellingBank,
+  wordBoundaries: wordBoundaryBank as WordBoundaryBank,
+  referenceLexemes: referenceLexemeBank as ReferenceLexemeBank,
+  revision: manifest.revision,
+};
+
+// Generated data for one reading, only while the sentence ID, its source
+// text, and the supplied furigana all still match.
+function generated<T>(
+  row: Candidate,
+  furigana: string,
+  bank: ReadingBank<T> | undefined,
+): T | undefined {
+  const entry = bank?.[row.id];
+  if (!entry || entry.sourceJapanese !== row.japanese) return undefined;
+  return Object.hasOwn(entry.readings, furigana)
+    ? entry.readings[furigana]
+    : undefined;
+}
+
+// Bank records whose sentence did not load are never validated.
+type OrphanReason = "sentence-dropped" | "unknown-sentence";
+
+export interface LoadTally<Reason extends string> {
+  loaded: number;
+  dropped: Partial<Record<Reason, number>>;
+}
+
+// What validation kept and dropped: sentences and alternative records,
+// spelling references, and phrase-hint entries.
+export interface LoadReport {
+  sentences: LoadTally<"no-valid-reading">;
+  alternatives: LoadTally<AlternativeDropReason | OrphanReason>;
+  spellings: LoadTally<SpellingDropReason | OrphanReason>;
+  phraseHints: LoadTally<PhraseHintDropReason | OrphanReason>;
+}
+
+export function emptyLoadReport(): LoadReport {
+  return {
+    sentences: { loaded: 0, dropped: {} },
+    alternatives: { loaded: 0, dropped: {} },
+    spellings: { loaded: 0, dropped: {} },
+    phraseHints: { loaded: 0, dropped: {} },
+  };
+}
+
+function dropInto<Reason extends string>(tally: LoadTally<Reason>) {
+  return (reason: Reason) => {
+    tally.dropped[reason] = (tally.dropped[reason] ?? 0) + 1;
+  };
+}
+
+export function droppedCount(tally: LoadTally<string>): number {
+  return Object.values(tally.dropped).reduce<number>(
+    (sum, count) => sum + (count ?? 0),
+    0,
+  );
+}
+
+// Validate and parse a stored record once; request handlers trust the result.
+// Returns null when the reference has no usable reading.
+export function loadSentence(
+  row: Candidate,
+  banks: Banks = {},
+  report: LoadReport = emptyLoadReport(),
+): Sentence | null {
+  const readings = parseReadings(row.japanese, row.furiganaVariants).map(
+    (reading) => {
+      const wordBoundaries = generated(
+        row,
+        reading.furigana,
+        banks.wordBoundaries,
+      );
+      const lexemes = generated(row, reading.furigana, banks.referenceLexemes);
+      return {
+        ...reading,
+        ...(wordBoundaries && { wordBoundaries }),
+        ...(lexemes && { lexemes }),
+      };
+    },
+  );
+  if (!readings.length) {
+    dropInto(report.sentences)("no-valid-reading");
+    return null;
+  }
+  report.sentences.loaded++;
+  const revision = banks.revision ?? manifest.revision;
+  const alternatives = banks.alternatives
+    ? acceptedAlternatives(
+        row,
+        banks.alternatives,
+        revision,
+        dropInto(report.alternatives),
+      )
+    : [];
+  report.alternatives.loaded += alternatives.length;
+  const renderings = [{ japanese: row.japanese, readings }, ...alternatives];
+  const spellings = banks.spellings
+    ? verifiedSpellings(
+        row,
+        renderings,
+        banks.spellings,
+        revision,
+        dropInto(report.spellings),
+      )
+    : [];
+  report.spellings.loaded += spellings.length;
+  const spellingsFor = (japanese: string) =>
+    spellings.filter((spelling) => spelling.japanese === japanese);
+  return {
+    id: row.id,
+    english: row.english,
+    englishWordCount: row.englishWordCount,
+    targetVocabulary: row.targetVocabulary,
+    sourceUrl:
+      row.sources.find((source) => source.tatoebaUrl)?.tatoebaUrl ?? null,
+    reference: {
+      japanese: row.japanese,
+      readings,
+      spellings: spellingsFor(row.japanese),
+    },
+    alternatives: alternatives.map((alternative) => ({
+      ...alternative,
+      spellings: spellingsFor(alternative.japanese),
+    })),
+  };
+}
+
+// Load every record and account for each one that validation dropped.
+export function loadExercises(
+  rows: Candidate[],
+  banks: Banks = {},
+  phraseHints: readonly SentencePhraseEntry[] = [],
+): { exercises: Sentence[]; report: LoadReport } {
+  const report = emptyLoadReport();
+  const exercises = rows.flatMap((row) => {
+    const sentence = loadSentence(row, banks, report);
+    return sentence ? [sentence] : [];
+  });
+  const rowIds = new Set(rows.map((row) => row.id));
+  const loaded = new Map(exercises.map((sentence) => [sentence.id, sentence]));
+  const orphan = (id: string): OrphanReason | null =>
+    loaded.has(id)
+      ? null
+      : rowIds.has(id)
+        ? "sentence-dropped"
+        : "unknown-sentence";
+  for (const [id, entry] of Object.entries(banks.alternatives?.entries ?? {})) {
+    const reason = orphan(id);
+    if (reason)
+      entry.alternatives.forEach(() => dropInto(report.alternatives)(reason));
+  }
+  for (const [id, entry] of Object.entries(banks.spellings?.entries ?? {})) {
+    const reason = orphan(id);
+    if (reason)
+      entry.references.forEach(() => dropInto(report.spellings)(reason));
+  }
+  for (const entry of phraseHints) {
+    const reason = orphan(entry.sentenceId);
+    if (reason) dropInto(report.phraseHints)(reason);
+    else {
+      let dropped = false;
+      sentencePhraseHints(loaded.get(entry.sentenceId)!, entry, (cause) => {
+        dropped = true;
+        dropInto(report.phraseHints)(cause);
+      });
+      if (!dropped) report.phraseHints.loaded++;
+    }
+  }
+  return { exercises, report };
+}
+
+export function summarizeLoadReport(report: LoadReport): string {
+  return (Object.keys(report) as (keyof LoadReport)[])
+    .map((kind) => {
+      const tally: LoadTally<string> = report[kind];
+      const reasons = Object.entries(tally.dropped)
+        .map(([reason, count]) => `${reason} ${count}`)
+        .join(", ");
+      return `${kind} ${tally.loaded} loaded, ${droppedCount(tally)} dropped${reasons ? ` (${reasons})` : ""}`;
+    })
+    .join("; ");
+}
+
+export const candidates = raw as Candidate[];
+export const candidateById = new Map(candidates.map((row) => [row.id, row]));
+const loaded = loadExercises(candidates, defaultBanks, phraseHintEntries);
+export const exercises = loaded.exercises;
+export const loadReport = loaded.report;
 export const exerciseById = new Map(exercises.map((row) => [row.id, row]));

@@ -1,16 +1,14 @@
 import {
-  parts,
-  validReadings,
-  type Candidate,
   type DifferenceDetails,
   Strictness,
   DifferenceKind,
   type WritingExplanation,
 } from "./practice";
 import { writingDifferences } from "./writing-diff";
+import type { Rendering } from "./sentence";
 
 export function explainWriting(
-  candidate: Candidate,
+  rendering: Rendering,
   answer: string,
   mode: Strictness,
   differences: DifferenceDetails,
@@ -27,7 +25,7 @@ export function explainWriting(
   }
   if (
     mode === Strictness.Exact &&
-    writingDifferences(candidate, answer, Strictness.Flexible).answer.every(
+    writingDifferences(rendering, answer, Strictness.Flexible).answer.every(
       (part) => part.kind === DifferenceKind.Same,
     )
   ) {
@@ -37,7 +35,7 @@ export function explainWriting(
         detail:
           "Your spelling is accepted in Kana + kanji mode, but Exact writing requires the reference’s specific kanji and kana. Use the reference spelling, or switch writing modes and check again.",
         actual: answer,
-        expected: candidate.japanese,
+        expected: rendering.japanese,
       },
     ];
   }
@@ -60,8 +58,8 @@ export function explainWriting(
       const kanji =
         /\p{Script=Han}/u.test(edit.expected) ||
         /\p{Script=Han}/u.test(edit.actual);
-      const word = validReadings(candidate)
-        .flatMap(parts)
+      const word = rendering.readings
+        .flatMap((reading) => reading.segments)
         .find(
           (part) =>
             part.surface === edit.expected && part.surface !== part.reading,

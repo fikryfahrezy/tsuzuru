@@ -1,23 +1,25 @@
 import { expect, test } from "bun:test";
-import {
-  compare,
-  Strictness,
-  DifferenceKind,
-  type Candidate,
-} from "../shared/practice";
+import { compare, Strictness, DifferenceKind } from "../shared/practice";
 import { writingDifferences } from "../shared/writing-diff";
 import {
   verifiedSpellings,
   spellingOptions,
   type SpellingBank,
 } from "../shared/writing-spellings";
-import { exerciseById, exercises } from "../server/utils/exercises";
+import {
+  candidateById,
+  defaultBanks,
+  exerciseById,
+  exercises,
+} from "../server/utils/exercises";
+import { sentence } from "./sentences";
 import bank from "../data/spelling-variants/bank.json";
 import manifest from "../data/manifest.json";
 import { createApp, toWebHandler } from "h3";
 import compareHandler from "../server/api/compare.post";
 
 const removal = exerciseById.get("6f089ad7d7e1f1da1398e9c9")!;
+const removalRecord = candidateById.get(removal.id)!;
 
 test("displayed spelling options show approved words separately from alternative translations", () => {
   const river = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
@@ -26,8 +28,16 @@ test("displayed spelling options show approved words separately from alternative
     { japanese: "むこう", kana: "むこう", spellings: ["向こう"] },
     { japanese: "ください", kana: "ください", spellings: ["下さい"] },
   ]);
-  expect(river.acceptedAlternatives ?? []).toHaveLength(0);
-  expect(spellingOptions({ ...river, japanese: "別の文。" })).toEqual([]);
+  expect(river.alternatives).toHaveLength(0);
+  const changed = sentence(
+    {
+      ...candidateById.get(river.id)!,
+      japanese: "別の文。",
+      furiganaVariants: ["{別|べつ}の{文|ぶん}。"],
+    },
+    defaultBanks,
+  );
+  expect(spellingOptions(changed)).toEqual([]);
 });
 
 test("reviewed mukou spelling accepts the spatial word and rejects homophones", () => {
@@ -46,7 +56,7 @@ test("reviewed mukou spelling accepts the spatial word and rejects homophones", 
     compare(river, "わたしを川の無効に渡してください。", Strictness.Flexible)
       .matched,
   ).toBe(false);
-  expect(river.acceptedAlternatives ?? []).toHaveLength(0);
+  expect(river.alternatives).toHaveLength(0);
 });
 
 test("pronoun spellings combine with other verified words while preserving pronunciation", () => {
@@ -65,8 +75,8 @@ test("pronoun spellings combine with other verified words while preserving pronu
     compare(river, "渡しを川の向こうに渡して下さい。", Strictness.Flexible)
       .matched,
   ).toBe(false);
-  const span = river.spellingVariants
-    ?.flatMap((reference) => reference.spans)
+  const span = river.reference.spellings
+    .flatMap((reference) => reference.spans)
     .find((part) => part.surface === "わたし");
   expect(span).toMatchObject({ reading: "わたし", spellings: ["私"] });
 });
@@ -108,7 +118,7 @@ test("verified spelling variants work independently of alternative translations 
     expect(result.matched).toBe(true);
     expect(result.acceptedAlternative).toBeUndefined();
     expect(result.differences).toBeNull();
-    expect(result.reference).toBe(removal.japanese);
+    expect(result.reference).toBe(removal.reference.japanese);
   }
   const collar = exerciseById.get("06fb6cfc1da1b7e3a2191581")!;
   expect(
@@ -146,7 +156,7 @@ test("spelling variations preserve tense, negation, particles, and word identity
 
 test("accepted kanji are not highlighted when another part of the answer is wrong", () => {
   const differences = writingDifferences(
-    removal,
+    removal.reference,
     "あなたの名前はリストから外される。",
     Strictness.Flexible,
   );
@@ -157,7 +167,7 @@ test("accepted kanji are not highlighted when another part of the answer is wron
     true,
   );
   const matching = writingDifferences(
-    removal,
+    removal.reference,
     "あなたの名前はリストから外された。",
     Strictness.Flexible,
   );
@@ -173,25 +183,24 @@ test("accepted kanji are not highlighted when another part of the answer is wron
 });
 
 test("unrecorded homophones remain rejected even when the reference is entirely kana", () => {
-  const bridge: Candidate = {
-    ...removal,
+  const bridgeRecord = {
+    ...removalRecord,
     id: "ambiguous-bridge",
     japanese: "はしをわたる。",
     furiganaVariants: ["はしをわたる。"],
-    spellingVariants: [],
-    acceptedAlternatives: [],
   };
+  const bridge = sentence(bridgeRecord);
   expect(compare(bridge, "橋をわたる。", Strictness.Flexible).matched).toBe(
     false,
   );
   expect(compare(bridge, "箸をわたる。", Strictness.Flexible).matched).toBe(
     false,
   );
-  const kanjiBridge = {
-    ...bridge,
+  const kanjiBridge = sentence({
+    ...bridgeRecord,
     japanese: "橋をわたる。",
     furiganaVariants: ["{橋|はし}をわたる。"],
-  };
+  });
   expect(
     compare(kanjiBridge, "箸をわたる。", Strictness.Flexible).matched,
   ).toBe(false);
@@ -202,21 +211,18 @@ test("unrecorded homophones remain rejected even when the reference is entirely 
 
 test("stale, malformed, overlapping, and unsupported spelling records are ignored", () => {
   const copy = () => structuredClone(bank) as SpellingBank;
+  const renderings = [removal.reference, ...removal.alternatives];
+  const verify = (
+    row: { id: string; english: string; japanese: string },
+    changed: SpellingBank,
+    revision = manifest.revision,
+  ) => verifiedSpellings(row, renderings, changed, revision);
+  expect(verify(removalRecord, copy())).not.toEqual([]);
   expect(
-    verifiedSpellings(
-      { ...removal, english: "Changed prompt" },
-      copy(),
-      manifest.revision,
-    ),
+    verify({ ...removalRecord, english: "Changed prompt" }, copy()),
   ).toEqual([]);
-  expect(
-    verifiedSpellings(
-      { ...removal, japanese: "違う。" },
-      copy(),
-      manifest.revision,
-    ),
-  ).toEqual([]);
-  expect(verifiedSpellings(removal, copy(), "outdated")).toEqual([]);
+  expect(verify({ ...removalRecord, japanese: "違う。" }, copy())).toEqual([]);
+  expect(verify(removalRecord, copy(), "outdated")).toEqual([]);
   for (const mutate of [
     (
       span: SpellingBank["entries"][string]["references"][number]["spans"][number],
@@ -241,21 +247,23 @@ test("stale, malformed, overlapping, and unsupported spelling records are ignore
   ]) {
     const changed = copy();
     mutate(changed.entries[removal.id]!.references[0]!.spans[0]!);
-    expect(verifiedSpellings(removal, changed, manifest.revision)).toEqual([]);
+    expect(verify(removalRecord, changed)).toEqual([]);
   }
   const overlap = copy();
   const reference = overlap.entries[removal.id]!.references[0]!;
   reference.spans.push(reference.spans[0]!);
-  expect(verifiedSpellings(removal, overlap, manifest.revision)).toEqual([]);
+  expect(verify(removalRecord, overlap)).toEqual([]);
   // Spelling paths from an original reference must not leak into other translations.
   expect(
     compare(
-      {
-        ...removal,
-        japanese: "名前がない。",
-        furiganaVariants: ["{名前|なまえ}がない。"],
-        acceptedAlternatives: [],
-      },
+      sentence(
+        {
+          ...removalRecord,
+          japanese: "名前がない。",
+          furiganaVariants: ["{名前|なまえ}がない。"],
+        },
+        defaultBanks,
+      ),
       "あなたの名前はリストから外された。",
       Strictness.Flexible,
     ).matched,
@@ -266,13 +274,25 @@ test("every generated span loads and matches its recorded reference with consist
   expect(Object.keys(bank.entries).length).toBeGreaterThan(1000);
   for (const [id, entry] of Object.entries(bank.entries)) {
     const candidate = exerciseById.get(id)!;
-    expect(candidate.spellingVariants).toHaveLength(entry.references.length);
-    for (const reference of candidate.spellingVariants!) {
+    const renderings = [candidate.reference, ...candidate.alternatives];
+    expect(renderings.flatMap((rendering) => rendering.spellings)).toHaveLength(
+      entry.references.length,
+    );
+    for (const reference of renderings.flatMap((item) => item.spellings)) {
+      const rendering = renderings.find(
+        (item) => item.japanese === reference.japanese,
+      )!;
+      // Compare against this rendering alone, restricted to the recorded reading.
       const source = {
         ...candidate,
-        japanese: reference.japanese,
-        furiganaVariants: [reference.furigana],
-        acceptedAlternatives: [],
+        reference: {
+          japanese: rendering.japanese,
+          readings: rendering.readings.filter(
+            (reading) => reading.furigana === reference.furigana,
+          ),
+          spellings: [reference],
+        },
+        alternatives: [],
       };
       // Combine each span's first variant; the graph must avoid exponential enumeration.
       let answer = reference.japanese;
@@ -283,9 +303,11 @@ test("every generated span loads and matches its recorded reference with consist
           answer.slice(span.end);
       expect(compare(source, answer, Strictness.Flexible).matched).toBe(true);
       expect(
-        writingDifferences(source, answer, Strictness.Flexible).answer.every(
-          (part) => part.kind === DifferenceKind.Same,
-        ),
+        writingDifferences(
+          source.reference,
+          answer,
+          Strictness.Flexible,
+        ).answer.every((part) => part.kind === DifferenceKind.Same),
       ).toBe(true);
       for (const span of reference.spans) {
         for (const spelling of span.spellings) {
@@ -301,6 +323,10 @@ test("every generated span loads and matches its recorded reference with consist
     }
   }
   expect(
-    exercises.filter((candidate) => candidate.spellingVariants.length).length,
+    exercises.filter((candidate) =>
+      [candidate.reference, ...candidate.alternatives].some(
+        (rendering) => rendering.spellings.length,
+      ),
+    ).length,
   ).toBe(Object.keys(bank.entries).length);
 });

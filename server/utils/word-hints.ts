@@ -7,12 +7,15 @@ import glossary from "../../data/hint-glossary/bank.json";
 import {
   HintSource,
   hiragana,
-  validReadings,
-  type Candidate,
   type PromptPart,
   type VocabularyHint,
 } from "../../shared/practice";
 import { kanaToRomaji } from "../../shared/romaji";
+import {
+  primaryReading,
+  primaryRendering,
+  type Sentence,
+} from "../../shared/sentence";
 import lemmatize from "wink-lemmatizer";
 import { referenceLexemes } from "./reference-lexemes";
 import {
@@ -160,30 +163,26 @@ function lookupPhrase(words: string[]): Entry[] {
   ];
 }
 
-function hintSpellings(candidate: Candidate, hint: VocabularyHint): string[] {
-  const primary = validReadings(candidate)[0];
+function hintSpellings(sentence: Sentence, hint: VocabularyHint): string[] {
+  const { reference } = sentence;
+  const primary = primaryReading(reference).furigana;
+  const primaryReference = primaryRendering(reference);
   const variants = new Set<string>();
-  for (const reference of candidate.spellingVariants ?? []) {
-    if (
-      reference.japanese !== candidate.japanese ||
-      reference.furigana !== primary
-    )
-      continue;
+  for (const spelling of reference.spellings) {
+    if (spelling.furigana !== primary) continue;
     for (
-      let start = candidate.japanese.indexOf(hint.japanese);
+      let start = reference.japanese.indexOf(hint.japanese);
       start !== -1;
-      start = candidate.japanese.indexOf(hint.japanese, start + 1)
+      start = reference.japanese.indexOf(hint.japanese, start + 1)
     ) {
       if (
-        !referenceReading(
-          { ...candidate, furiganaVariants: [primary!] },
-          hint.japanese,
-          start,
-        ).includes(hint.reading)
+        !referenceReading(primaryReference, hint.japanese, start).includes(
+          hint.reading,
+        )
       )
         continue;
       const end = start + hint.japanese.length;
-      for (const span of reference.spans) {
+      for (const span of spelling.spans) {
         if (span.start < start || span.end > end) continue;
         for (const spelling of span.spellings) {
           const word =
@@ -198,13 +197,10 @@ function hintSpellings(candidate: Candidate, hint: VocabularyHint): string[] {
   return [...variants].slice(0, 3);
 }
 
-export function wordHints(candidate: Candidate): PromptPart[] {
-  const lexemes = referenceLexemes(candidate);
+export function wordHints(sentence: Sentence): PromptPart[] {
+  const lexemes = referenceLexemes(sentence);
   const forms = new Map<string, { japanese: string; reading: string }[]>();
-  const primaryReference = {
-    ...candidate,
-    furiganaVariants: validReadings(candidate).slice(0, 1),
-  };
+  const primaryReference = primaryRendering(sentence.reference);
   const referenceForms = (entry: Entry) => {
     if (!forms.has(entry.word)) {
       const inflected = lexemes.filter((lexeme) => lexeme.lemma === entry.word);
@@ -218,7 +214,7 @@ export function wordHints(candidate: Candidate): PromptPart[] {
   };
   const inReference = (entry: Entry) => referenceForms(entry).length > 0;
   const tokens =
-    candidate.english.match(
+    sentence.english.match(
       /[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*|[^\p{L}\p{N}]+/gu,
     ) ?? [];
   const grouped: {
@@ -226,7 +222,7 @@ export function wordHints(candidate: Candidate): PromptPart[] {
     matches: Entry[];
     annotation?: SentencePhraseSpan;
   }[] = [];
-  const annotations = sentencePhraseHints(candidate);
+  const annotations = sentencePhraseHints(sentence);
   // Character positions keep explicit phrase spans aligned with the original prompt.
   const offsets: number[] = [];
   let offset = 0;
@@ -349,7 +345,7 @@ export function wordHints(candidate: Candidate): PromptPart[] {
     hints: part.hints.map((hint) => {
       // Only expose spellings already verified for the primary reference and
       // its supplied pronunciation; dictionary fallback hints stay unchanged.
-      const spellings = part.hintSource ? hintSpellings(candidate, hint) : [];
+      const spellings = part.hintSource ? hintSpellings(sentence, hint) : [];
       return spellings.length ? { ...hint, spellings } : hint;
     }),
   }));

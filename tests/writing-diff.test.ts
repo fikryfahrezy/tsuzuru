@@ -1,7 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import { compare, Strictness, type Candidate } from "../shared/practice";
+import { sentence as load } from "./sentences";
 
-const sentence: Candidate = {
+const record: Candidate = {
   id: "water",
   english: "I drink water.",
   japanese: "水を飲みます。",
@@ -10,6 +11,7 @@ const sentence: Candidate = {
   targetVocabulary: [],
   sources: [],
 };
+const sentence = load(record);
 describe("character differences", () => {
   test("a valid writing variant has no differences", () => {
     expect(
@@ -83,11 +85,11 @@ describe("character differences", () => {
     expect(diff.answer.at(-1)).toEqual({ text: "😀", kind: "extra" });
   });
   test("uses the closest approved reading", () => {
-    const tomorrow = {
-      ...sentence,
+    const tomorrow = load({
+      ...record,
       japanese: "明日です。",
       furiganaVariants: ["{明日|あす}です。", "{明日|あした}です。"],
-    };
+    });
     const diff = compare(tomorrow, "あしだです", Strictness.Kana).differences!;
     expect(diff.expected.map((part) => part.text).join("")).toBe("あしたです");
     expect(diff.answer.filter((part) => part.kind !== "same")).toEqual([
@@ -95,11 +97,11 @@ describe("character differences", () => {
     ]);
   });
   test("handles many mixed alternatives without enumerating combinations", () => {
-    const repeated = {
-      ...sentence,
+    const repeated = load({
+      ...record,
       japanese: "水".repeat(24) + "です",
       furiganaVariants: ["{水|みず}".repeat(24) + "です"],
-    };
+    });
     const diff = compare(
       repeated,
       "水みず".repeat(12) + "でし",
@@ -110,11 +112,11 @@ describe("character differences", () => {
     ]);
   });
   test("incorrect homophone kanji is highlighted", () => {
-    const bridge = {
-      ...sentence,
+    const bridge = load({
+      ...record,
       japanese: "橋です",
       furiganaVariants: ["{橋|はし}です"],
-    };
+    });
     expect(
       compare(bridge, "箸です", Strictness.Flexible).differences!.answer[0],
     ).toEqual({ text: "箸", kind: "changed" });

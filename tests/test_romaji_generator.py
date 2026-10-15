@@ -149,6 +149,16 @@ class RomajiGeneratorTests(unittest.TestCase):
                          [{"lemma": "彼", "japanese": "かれ", "reading": "かれ"}])
         self.assertEqual(self.lexemes("{わたし|べつ}。"), [])
 
+    def test_generated_data_is_keyed_by_sentence_and_source_text(self):
+        bank = {}
+        candidate = {"id": "fixture", "japanese": "水です。"}
+        generator.add_reading(bank, candidate, "{水|みず}です。", [2])
+        generator.add_reading(bank, candidate, "{水|すい}です。", [2])
+        self.assertEqual(bank, {"fixture": {
+            "sourceJapanese": "水です。",
+            "readings": {"{水|みず}です。": [2], "{水|すい}です。": [2]},
+        }})
+
 
 if __name__ == "__main__":
     unittest.main()

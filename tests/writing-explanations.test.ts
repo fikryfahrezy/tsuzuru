@@ -1,6 +1,7 @@
 import { expect, test } from "bun:test";
 import { compare, Strictness, type Candidate } from "../shared/practice";
-const sentence: Candidate = {
+import { sentence as load } from "./sentences";
+const record: Candidate = {
   id: "water",
   english: "I drink water.",
   japanese: "水を飲みます。",
@@ -9,6 +10,7 @@ const sentence: Candidate = {
   targetVocabulary: [],
   sources: [],
 };
+const sentence = load(record);
 
 test("accepted script variants do not get error explanations", () => {
   expect(
@@ -50,11 +52,11 @@ test("consecutive substitutions are explained as one span", () => {
   expect(explanations[0]!.expected).toBe("ます");
 });
 test("kanji explanation uses the supplied word reading", () => {
-  const bridge = {
-    ...sentence,
+  const bridge = load({
+    ...record,
     japanese: "橋です",
     furiganaVariants: ["{橋|はし}です"],
-  };
+  });
   const explanation = compare(bridge, "箸です", Strictness.Flexible)
     .explanations![0]!;
   expect(explanation.detail).toContain("「橋」");

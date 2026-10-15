@@ -1,18 +1,17 @@
-import bank from "../../data/romaji/reference-lexemes.json";
-import { hiragana, validReadings, type Candidate } from "../../shared/practice";
+import { hiragana } from "../../shared/practice";
+import {
+  primaryReading,
+  primaryRendering,
+  type ReferenceLexeme,
+  type Sentence,
+} from "../../shared/sentence";
 import { referenceReading } from "./sentence-phrase-hints";
 
-export interface ReferenceLexeme {
-  lemma: string;
-  japanese: string;
-  reading: string;
-}
+export type { ReferenceLexeme };
 
-export function referenceLexemes(candidate: Candidate): ReferenceLexeme[] {
-  const furigana = validReadings(candidate)[0];
-  if (!furigana) return [];
-  const rows = (bank as Record<string, ReferenceLexeme[]>)[furigana] ?? [];
-  const primaryReference = { ...candidate, furiganaVariants: [furigana] };
+export function referenceLexemes(sentence: Sentence): ReferenceLexeme[] {
+  const rows = primaryReading(sentence.reference).lexemes ?? [];
+  const primaryReference = primaryRendering(sentence.reference);
   return rows
     .filter((row) =>
       referenceReading(primaryReference, row.japanese).includes(

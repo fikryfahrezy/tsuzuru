@@ -1,9 +1,10 @@
 import { expect, test } from "bun:test";
 import { answerBreakdown } from "../server/utils/answer-breakdown";
 import { answerChips } from "../server/utils/answer-chips";
-import { exerciseById } from "../server/utils/exercises";
+import { candidateById, exerciseById } from "../server/utils/exercises";
+import { sentence } from "./sentences";
 import { wordHints } from "../server/utils/word-hints";
-import { isAnswerBreakdownPart, type Candidate } from "../shared/practice";
+import { isAnswerBreakdownPart } from "../shared/practice";
 
 const water = exerciseById.get("213aa0ae8044611b00c1ba95")!;
 
@@ -79,11 +80,11 @@ test("breakdown follows only the supplied shuffled chip order, preserving repeti
 });
 
 test("unsupported forms keep supplied readings without inventing a meaning", () => {
-  const candidate: Candidate = {
-    ...water,
+  const candidate = sentence({
+    ...candidateById.get(water.id)!,
     japanese: "架空語",
     furiganaVariants: ["{架空語|かくうご}"],
-  };
+  });
   expect(
     answerBreakdown(candidate, [{ japanese: "架空語", kana: "かくうご" }], []),
   ).toEqual([

@@ -1,10 +1,10 @@
 import {
   normalize,
   isAlternativeMethod,
-  validReadings,
   type AlternativeProvenance,
   type Candidate,
 } from "./practice";
+import { parseReadings, type Reading } from "./sentence";
 
 export interface AlternativeRecord {
   japanese: string;
@@ -26,37 +26,67 @@ export interface AlternativeBank {
   >;
 }
 
+export type AlternativeDropReason =
+  | "stale-bank"
+  | "stale-entry"
+  | "invalid-provenance"
+  | "empty-japanese"
+  | "duplicate"
+  | "no-valid-reading";
+
+// Records failing validation are skipped; `drop` hears each one and why.
 export function acceptedAlternatives(
   candidate: Candidate,
   bank: AlternativeBank,
   revision: string,
-) {
-  if (bank.license !== "CC-BY-SA-4.0" || bank.sourceRevision !== revision)
-    return [];
+  drop: (reason: AlternativeDropReason) => void = () => {},
+): {
+  japanese: string;
+  readings: Reading[];
+  provenance: AlternativeProvenance;
+}[] {
   const entry = bank.entries[candidate.id];
-  if (
-    !entry ||
-    entry.sourceEnglish !== candidate.english ||
-    entry.sourceJapanese !== candidate.japanese
-  )
+  if (!entry) return [];
+  const stale =
+    bank.license !== "CC-BY-SA-4.0" || bank.sourceRevision !== revision
+      ? "stale-bank"
+      : entry.sourceEnglish !== candidate.english ||
+          entry.sourceJapanese !== candidate.japanese
+        ? "stale-entry"
+        : null;
+  if (stale) {
+    entry.alternatives.forEach(() => drop(stale));
     return [];
+  }
   const seen = new Set([normalize(candidate.japanese)]);
   return entry.alternatives.flatMap((alternative) => {
-    if (
+    const reason: AlternativeDropReason | null =
       !alternative.provenance?.creator.trim() ||
       !alternative.provenance.note.trim() ||
-      !isAlternativeMethod(alternative.provenance.method) ||
-      !alternative.japanese.trim() ||
-      seen.has(normalize(alternative.japanese))
-    )
+      !isAlternativeMethod(alternative.provenance.method)
+        ? "invalid-provenance"
+        : !alternative.japanese.trim()
+          ? "empty-japanese"
+          : seen.has(normalize(alternative.japanese))
+            ? "duplicate"
+            : null;
+    if (reason) {
+      drop(reason);
       return [];
-    const readings = validReadings({ ...candidate, ...alternative });
-    if (!readings.length) return [];
+    }
+    const readings = parseReadings(
+      alternative.japanese,
+      alternative.furiganaVariants,
+    );
+    if (!readings.length) {
+      drop("no-valid-reading");
+      return [];
+    }
     seen.add(normalize(alternative.japanese));
     return [
       {
         japanese: alternative.japanese,
-        furiganaVariants: readings,
+        readings,
         provenance: alternative.provenance,
       },
     ];

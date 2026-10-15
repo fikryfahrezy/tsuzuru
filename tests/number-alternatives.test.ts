@@ -7,6 +7,7 @@ import {
   validReadings,
   type Candidate,
 } from "../shared/practice";
+import { sentence, withAlternatives } from "./sentences";
 
 function candidate(japanese: string, reading = japanese): Candidate {
   return {
@@ -40,9 +41,9 @@ test("integer alternatives preserve values, including place values, large number
     const variants = numberAlternatives(row);
     for (const japanese of equivalents)
       expect(spellings(row)).toContain(japanese);
-    const exercise = {
-      ...row,
-      acceptedAlternatives: variants.map((alternative) => ({
+    const exercise = withAlternatives(
+      row,
+      variants.map((alternative) => ({
         ...alternative,
         provenance: {
           creator: "Test generator",
@@ -50,7 +51,7 @@ test("integer alternatives preserve values, including place values, large number
           note: "Same quantity",
         },
       })),
-    };
+    );
     for (const alternative of variants) {
       expect(validReadings({ ...row, ...alternative }).length).toBeGreaterThan(
         0,
@@ -77,11 +78,8 @@ test("supplied counter readings survive kanji-to-digit conversion and annotation
     (row) => row.japanese === "20時に2人が来ます。",
   )!;
   expect(
-    compare(
-      { ...row, ...result },
-      "にじゅうじにふたりがきます。",
-      Strictness.Kana,
-    ).matched,
+    compare(sentence(result), "にじゅうじにふたりがきます。", Strictness.Kana)
+      .matched,
   ).toBe(true);
 });
 
@@ -94,9 +92,9 @@ test("each combination of multiple integers is available without accepting chang
     "六時から九時です。",
   ])
     expect(variants.map((row) => row.japanese)).toContain(japanese);
-  const exercise = {
-    ...row,
-    acceptedAlternatives: variants.map((alternative) => ({
+  const exercise = withAlternatives(
+    row,
+    variants.map((alternative) => ({
       ...alternative,
       provenance: {
         creator: "Test",
@@ -104,7 +102,7 @@ test("each combination of multiple integers is available without accepting chang
         note: "Preserved value",
       },
     })),
-  };
+  );
   expect(
     compare(exercise, "六時から八時です。", Strictness.Flexible, true).matched,
   ).toBe(false);

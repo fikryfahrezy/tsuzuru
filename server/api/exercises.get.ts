@@ -12,6 +12,23 @@ import {
   isLength,
   type Question,
 } from "../../shared/practice";
+import type { Sentence } from "../../shared/sentence";
+
+function toQuestion(sentence: Sentence, poolSize: number): Question {
+  const hints = wordHints(sentence);
+  return {
+    id: sentence.id,
+    english: sentence.english,
+    romaji: romajiHint(sentence),
+    wordHints: hints,
+    wordCount: sentence.englishWordCount,
+    poolSize,
+    alternativeCount: sentence.alternatives.length,
+    spellingOptions: spellingOptions(sentence),
+    wordBank: shuffledAnswerChips(sentence),
+    answerBreakdown: answerBreakdown(sentence, answerChips(sentence), hints),
+  };
+}
 
 export default defineEventHandler((event): Question => {
   const query = getQuery(event);
@@ -27,20 +44,7 @@ export default defineEventHandler((event): Question => {
         statusCode: 404,
         statusMessage: "This sentence is unavailable.",
       });
-    const hints = wordHints(selected);
-    const chips = shuffledAnswerChips(selected);
-    return {
-      id: selected.id,
-      english: selected.english,
-      romaji: romajiHint(selected),
-      wordHints: hints,
-      wordCount: selected.englishWordCount,
-      poolSize: 1,
-      alternativeCount: selected.acceptedAlternatives?.length ?? 0,
-      spellingOptions: spellingOptions(selected),
-      wordBank: chips,
-      answerBreakdown: answerBreakdown(selected, answerChips(selected), hints),
-    };
+    return toQuestion(selected, 1);
   }
   if (!isLevel(query.level) || !isLength(query.length)) {
     throw createError({
@@ -61,18 +65,5 @@ export default defineEventHandler((event): Question => {
   const alternatives = pool.filter((row) => row.id !== query.previous);
   const available = alternatives.length ? alternatives : pool;
   const row = available[randomInt(available.length)]!;
-  const hints = wordHints(row);
-  const chips = shuffledAnswerChips(row);
-  return {
-    id: row.id,
-    english: row.english,
-    romaji: romajiHint(row),
-    wordHints: hints,
-    wordCount: row.englishWordCount,
-    poolSize: pool.length,
-    alternativeCount: row.acceptedAlternatives?.length ?? 0,
-    spellingOptions: spellingOptions(row),
-    wordBank: chips,
-    answerBreakdown: answerBreakdown(row, answerChips(row), hints),
-  };
+  return toQuestion(row, pool.length);
 });

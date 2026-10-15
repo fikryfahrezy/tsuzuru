@@ -1,11 +1,11 @@
+import { hiragana, parts, Strictness, type SpellingOption } from "./practice";
 import {
-  hiragana,
-  parts,
-  validReadings,
-  Strictness,
-  type Candidate,
-  type SpellingOption,
-} from "./practice";
+  primaryReading,
+  type Reading,
+  type Rendering,
+  type Sentence,
+  type VerifiedSpelling,
+} from "./sentence";
 
 export interface SpellingSpan {
   start: number;
@@ -111,48 +111,62 @@ function spellingPath(reference: SpellingReference): string[][] | null {
   return after ? [...path, ...after.options] : null;
 }
 
+export type SpellingDropReason =
+  | "stale-bank"
+  | "stale-entry"
+  | "unknown-reading"
+  | "invalid-spans";
+
+// Validates a bank entry once at load; stale or malformed records are dropped
+// and `drop` hears each one and why.
 export function verifiedSpellings(
-  candidate: Candidate,
+  sentence: { id: string; english: string; japanese: string },
+  renderings: { japanese: string; readings: Reading[] }[],
   bank: SpellingBank,
   revision: string,
-): SpellingReference[] {
-  if (
+  drop: (reason: SpellingDropReason) => void = () => {},
+): VerifiedSpelling[] {
+  const entry = bank.entries[sentence.id];
+  if (!entry) return [];
+  const stale =
     bank.version !== 1 ||
     bank.license !== "CC-BY-SA-4.0" ||
     bank.sourceRevision !== revision
-  )
+      ? "stale-bank"
+      : entry.sourceEnglish !== sentence.english ||
+          entry.sourceJapanese !== sentence.japanese
+        ? "stale-entry"
+        : null;
+  if (stale) {
+    entry.references.forEach(() => drop(stale));
     return [];
-  const entry = bank.entries[candidate.id];
-  if (
-    !entry ||
-    entry.sourceEnglish !== candidate.english ||
-    entry.sourceJapanese !== candidate.japanese
-  )
-    return [];
-  const references = [candidate, ...(candidate.acceptedAlternatives ?? [])];
-  return entry.references.filter(
-    (reference) =>
-      references.some(
-        (source) =>
-          source.japanese === reference.japanese &&
-          validReadings({ ...candidate, ...source }).includes(
-            reference.furigana,
+  }
+  return entry.references.flatMap((reference) => {
+    if (
+      !renderings.some(
+        (rendering) =>
+          rendering.japanese === reference.japanese &&
+          rendering.readings.some(
+            (reading) => reading.furigana === reference.furigana,
           ),
-      ) && spellingPath(reference) !== null,
-  );
+      )
+    ) {
+      drop("unknown-reading");
+      return [];
+    }
+    const path = spellingPath(reference);
+    if (!path) drop("invalid-spans");
+    return path ? [{ ...reference, path }] : [];
+  });
 }
 
-export function spellingOptions(candidate: Candidate): SpellingOption[] {
-  const primary = validReadings(candidate)[0];
+export function spellingOptions(sentence: Sentence): SpellingOption[] {
+  const { reference } = sentence;
+  const primary = primaryReading(reference).furigana;
   const options = new Map<string, SpellingOption>();
-  for (const reference of candidate.spellingVariants ?? []) {
-    if (
-      reference.japanese !== candidate.japanese ||
-      reference.furigana !== primary ||
-      !spellingPath(reference)
-    )
-      continue;
-    for (const span of reference.spans) {
+  for (const spelling of reference.spellings) {
+    if (spelling.furigana !== primary) continue;
+    for (const span of spelling.spans) {
       const key = `${span.surface}\0${span.reading}`;
       const option = options.get(key) ?? {
         japanese: span.surface,
@@ -171,26 +185,16 @@ export function spellingOptions(candidate: Candidate): SpellingOption[] {
 // Comparison and difference highlighting consume these same allowed paths.
 // Keep separate paths for each supplied reading; never combine incompatible readings.
 export function writingPaths(
-  candidate: Candidate,
+  rendering: Rendering,
   mode: Strictness,
 ): string[][][] {
-  if (mode === Strictness.Exact) return [[[candidate.japanese]]];
-  const readings = validReadings(candidate);
-  const paths = readings.map((reading) =>
-    parts(reading).map((part) =>
+  if (mode === Strictness.Exact) return [[[rendering.japanese]]];
+  const paths = rendering.readings.map((reading) =>
+    reading.segments.map((part) =>
       mode === Strictness.Kana ? [part.reading] : [part.surface, part.reading],
     ),
   );
-  if (mode === Strictness.Flexible) {
-    for (const reference of candidate.spellingVariants ?? []) {
-      if (
-        reference.japanese !== candidate.japanese ||
-        !readings.includes(reference.furigana)
-      )
-        continue;
-      const path = spellingPath(reference);
-      if (path) paths.push(path);
-    }
-  }
+  if (mode === Strictness.Flexible)
+    for (const spelling of rendering.spellings) paths.push(spelling.path);
   return paths;
 }
