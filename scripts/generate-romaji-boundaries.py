@@ -15,6 +15,10 @@ ROOT = Path(__file__).resolve().parents[1]
 ANNOTATION = re.compile(r"\{([^{}|]+)\|([^{}|]+)\}")
 
 
+def hira(text):
+    return "".join(chr(ord(c) - 0x60) if "ァ" <= c <= "ヶ" else c for c in text)
+
+
 def reading_offsets(furigana):
     surface, offsets, cursor, reading_offset = "", {0: 0}, 0, 0
     for match in ANNOTATION.finditer(furigana):
@@ -118,7 +122,7 @@ def reference_lexemes(tokens, surface, offsets, furigana, boundaries):
             spans.append((starts[0], finishes[0], a, b))
     result = []
     for token in tokens:
-        if token.is_oov() or token.part_of_speech()[0] not in ("動詞", "形容詞"):
+        if token.is_oov() or token.part_of_speech()[0] not in ("動詞", "形容詞", "名詞", "代名詞"):
             continue
         span = next((span for span in spans if span[0] <= token.begin() and token.end() <= span[1]), None)
         if span is None:
@@ -141,10 +145,19 @@ def reference_lexemes(tokens, surface, offsets, furigana, boundaries):
                for index, part in enumerate(contained)):
             continue
         word = surface[start:end]
+        lemma = token.dictionary_form()
+        if token.part_of_speech()[0] in ("名詞", "代名詞"):
+            # Normalize a complete kana noun/pronoun, never a substring or homophone
+            # inferred from the reading alone. Retain supplied pronunciation.
+            supplied = kana[a * 2:b * 2].decode("utf-16-le")
+            if (word != token.surface() or re.search(r"[\u3400-\u9fff]", word)
+                    or hira(supplied) != hira(token.reading_form())):
+                continue
+            lemma = token.normalized_form()
         # Emit only inflected or extended forms; exact forms already work.
-        if word == token.dictionary_form():
+        if word == lemma:
             continue
-        row = {"lemma": token.dictionary_form(), "japanese": word,
+        row = {"lemma": lemma, "japanese": word,
                "reading": kana[a * 2:b * 2].decode("utf-16-le")}
         if row not in result:
             result.append(row)

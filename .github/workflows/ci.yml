@@ -28,6 +28,7 @@ jobs:
           .cache/spelling-tools/bin/pip install -r scripts/spelling-requirements.txt
           bun run romaji:check
           bun run romaji:test
+          bun run hints:test
       - run: bun run check
       - run: bun run build
       - run: docker compose config --quiet

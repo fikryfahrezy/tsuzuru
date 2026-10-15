@@ -134,6 +134,21 @@ class RomajiGeneratorTests(unittest.TestCase):
                          [{"lemma": "待つ", "japanese": "お待ち", "reading": "おまち"},
                           {"lemma": "くださる", "japanese": "ください", "reading": "ください"}])
 
+    def test_complete_kana_nouns_use_lexical_normalization(self):
+        self.assertEqual(self.lexemes("{川|かわ}のむこう。"),
+                         [{"lemma": "向こう", "japanese": "むこう", "reading": "むこう"}])
+        self.assertEqual(self.lexemes("むこうずね。"),
+                         [{"lemma": "向こう脛", "japanese": "むこうずね", "reading": "むこうずね"}])
+        self.assertEqual(self.lexemes("{むこう|べつ}。"), [])
+        self.assertEqual(self.lexemes("{川のむこう|かわのむこう}。"), [])
+
+    def test_complete_kana_pronouns_use_lexical_normalization(self):
+        self.assertEqual(self.lexemes("わたしを。"),
+                         [{"lemma": "私", "japanese": "わたし", "reading": "わたし"}])
+        self.assertEqual(self.lexemes("かれを。"),
+                         [{"lemma": "彼", "japanese": "かれ", "reading": "かれ"}])
+        self.assertEqual(self.lexemes("{わたし|べつ}。"), [])
+
 
 if __name__ == "__main__":
     unittest.main()

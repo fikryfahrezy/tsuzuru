@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { wordHints } from "../server/utils/word-hints";
+import { vocabulary, wordHints } from "../server/utils/word-hints";
 import { exerciseById, exercises } from "../server/utils/exercises";
 import type { Candidate } from "../shared/practice";
 import phraseBank from "../data/phrase-hints/sentences.json";
@@ -7,6 +7,8 @@ import { sentencePhraseHints } from "../server/utils/sentence-phrase-hints";
 import { referenceLexemes } from "../server/utils/reference-lexemes";
 import lexemeBank from "../data/romaji/reference-lexemes.json";
 import { HintSource, validReadings } from "../shared/practice";
+import hintGlossary from "../data/hint-glossary/bank.json";
+import spellingBank from "../data/spelling-variants/bank.json";
 
 const water: Candidate = {
   ...exercises[0]!,
@@ -14,6 +16,101 @@ const water: Candidate = {
   japanese: "私は水を飲みます。",
   furiganaVariants: ["{私|わたし}は{水|みず}を{飲|の}みます。"],
 };
+
+test("across resolves kana and kanji reference nouns without a sentence mapping", () => {
+  const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
+  expect(sentencePhraseHints(candidate)).toEqual([]);
+  for (const english of [
+    candidate.english,
+    "Take me across the river, please.",
+  ]) {
+    const token = wordHints({ ...candidate, english }).find(
+      (part) => part.text === "across",
+    );
+    expect(token).toMatchObject({
+      hintSource: HintSource.Reference,
+      hints: [{ japanese: "むこう", reading: "むこう", romaji: "mukou" }],
+    });
+  }
+  const kanji = wordHints({
+    ...water,
+    english: "Across the river.",
+    japanese: "川の向こう。",
+    furiganaVariants: ["{川|かわ}の{向|む}こう。"],
+  });
+  expect(kanji[0]?.hints[0]).toMatchObject({
+    japanese: "向こう",
+    reading: "むこう",
+    romaji: "mukou",
+  });
+});
+
+test("additional dictionary senses work across vocabulary with reference support", () => {
+  for (const [english, japanese, furigana, expected] of [
+    ["stream", "川。", "{川|かわ}。", "川"],
+    ["parasol", "傘。", "{傘|かさ}。", "傘"],
+    ["opposite side", "向こう。", "{向|む}こう。", "向こう"],
+  ]) {
+    const token = wordHints({
+      ...water,
+      english: english!,
+      japanese: japanese!,
+      furiganaVariants: [furigana!],
+    })[0];
+    expect(token?.hintSource).toBe(HintSource.Reference);
+    expect(token?.hints.some((hint) => hint.japanese === expected)).toBe(true);
+    const unsupported = wordHints({ ...water, english: english! })[0];
+    expect(unsupported?.hints.some((hint) => hint.japanese === expected)).toBe(
+      false,
+    );
+  }
+});
+
+test("spatial paraphrases cannot infer reference words from kana substrings", () => {
+  const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
+  const tokens = wordHints({
+    ...candidate,
+    japanese: "むこうずね。",
+    furiganaVariants: ["むこうずね。"],
+  });
+  expect(tokens.find((token) => token.text === "across")?.hints).toEqual([]);
+});
+
+test("English object pronouns resolve subject-form glosses only with reference support", () => {
+  for (const [english, japanese, furigana] of [
+    ["him", "彼", "{彼|かれ}"],
+    ["her", "彼女", "{彼女|かのじょ}"],
+    ["them", "彼ら", "{彼|かれ}ら"],
+  ]) {
+    const token = wordHints({
+      ...water,
+      english: english!,
+      japanese: japanese!,
+      furiganaVariants: [furigana!],
+    })[0];
+    expect(token?.hintSource).toBe(HintSource.Reference);
+    expect(token?.hints[0]?.japanese).toBe(japanese);
+    expect(
+      wordHints({ ...water, english: english! })[0]?.hints.some(
+        (hint) => hint.japanese === japanese,
+      ),
+    ).toBe(false);
+  }
+});
+
+test("extended meanings retain their pinned dictionary and source vocabulary", () => {
+  expect(hintGlossary.source).toEqual(spellingBank.sources.jmdict);
+  for (const [id, entry] of Object.entries(hintGlossary.entries)) {
+    expect(
+      vocabulary.some(
+        (word) =>
+          word.id === id &&
+          word.word === entry.word &&
+          word.reading === entry.reading,
+      ),
+    ).toBe(true);
+  }
+});
 
 test("each English word has a clickable hint and punctuation preserves the original prompt", () => {
   const tokens = wordHints(water);

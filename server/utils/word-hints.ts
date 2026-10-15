@@ -3,6 +3,7 @@ import n4 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f
 import n3 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n3.json";
 import n2 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n2.json";
 import n1 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n1.json";
+import glossary from "../../data/hint-glossary/bank.json";
 import {
   HintSource,
   hiragana,
@@ -25,6 +26,8 @@ interface Entry {
   meaning: string;
   exact: boolean;
   verb: boolean;
+  referenceOnly?: boolean;
+  pronoun?: boolean;
 }
 const index = new Map<string, Entry[]>();
 const phraseIndex = new Map<string, Entry[]>();
@@ -55,8 +58,20 @@ function englishWords(text: string): string[] {
 
 export const vocabulary = [...n5, ...n4, ...n3, ...n2, ...n1];
 
+const extraSenses: Record<
+  string,
+  { word: string; reading: string; meanings: string[] }
+> = glossary.entries;
+
 for (const entry of vocabulary) {
-  for (const meaning of entry.meanings) {
+  const extra = extraSenses[entry.id];
+  const meanings = [
+    ...entry.meanings.map((meaning) => ({ meaning, referenceOnly: false })),
+    ...(extra?.word === entry.word && extra.reading === entry.reading
+      ? extra.meanings.map((meaning) => ({ meaning, referenceOnly: true }))
+      : []),
+  ];
+  for (const { meaning, referenceOnly } of meanings) {
     const clean = meaning
       .replace(/\([^)]*\)/gu, "")
       .replace(/^to\s+/iu, "")
@@ -68,6 +83,8 @@ for (const entry of vocabulary) {
       meaning,
       exact: terms.length === 1,
       verb: /^to\s+/iu.test(meaning),
+      referenceOnly,
+      pronoun: entry.pos?.includes("pn"),
     };
     // Only join whitespace-separated words, never clauses or punctuation.
     if (
@@ -81,6 +98,9 @@ for (const entry of vocabulary) {
       longestPhrase = Math.max(longestPhrase, terms.length);
     }
     for (const term of new Set(terms)) {
+      // Extra senses must match a complete gloss, not incidental words in a
+      // definition such as "I think" in a quotation particle's explanation.
+      if (referenceOnly && !vocabulary.exact) continue;
       if (functionWords.has(term)) continue;
       const matches = index.get(term) ?? [];
       matches.push(vocabulary);
@@ -93,6 +113,12 @@ function lookup(word: string): Entry[] {
   const term = word.toLowerCase().replaceAll("’", "'");
   const verb = lemmatize.verb(term);
   const noun = lemmatize.noun(term);
+  const subjectPronoun = (
+    { me: "i", him: "he", her: "she", us: "we", them: "they" } as Record<
+      string,
+      string
+    >
+  )[term];
   return [
     ...(index.get(term) ?? []),
     ...(verb === term
@@ -101,6 +127,23 @@ function lookup(word: string): Entry[] {
     ...(noun === term
       ? []
       : (index.get(noun) ?? []).filter((entry) => !entry.verb)),
+    // Japanese pronouns retain their lexical form in object position. Require
+    // a pronoun entry and reference support rather than guessing from English.
+    ...(subjectPronoun
+      ? (index.get(subjectPronoun) ?? [])
+          .filter((entry) => entry.pronoun)
+          .map((entry) => ({ ...entry, referenceOnly: true }))
+      : []),
+    // English spatial prepositions can correspond to Japanese nouns. These
+    // dictionary paraphrases apply across sentences, only with reference support.
+    ...(term === "across"
+      ? ["other side", "opposite side"].flatMap((phrase) =>
+          (phraseIndex.get(phrase) ?? []).map((entry) => ({
+            ...entry,
+            referenceOnly: true,
+          })),
+        )
+      : []),
   ];
 }
 
@@ -189,6 +232,11 @@ export function wordHints(candidate: Candidate): PromptPart[] {
         const phraseMatches = lookupPhrase(words);
         if (phraseMatches.length) {
           const phraseInReference = phraseMatches.some(inReference);
+          if (
+            !phraseInReference &&
+            phraseMatches.every((entry) => entry.referenceOnly)
+          )
+            continue;
           const individualInReference = words.some((word) =>
             lookup(word).some(inReference),
           );
@@ -219,7 +267,9 @@ export function wordHints(candidate: Candidate): PromptPart[] {
     const contextual = matches.filter(inReference);
     const sentenceMatched = contextual.length > 0;
     const sorted = (
-      sentenceMatched ? contextual : matches.filter((entry) => entry.exact)
+      sentenceMatched
+        ? contextual
+        : matches.filter((entry) => entry.exact && !entry.referenceOnly)
     ).sort(
       (a, b) =>
         Number(inReference(b)) - Number(inReference(a)) ||

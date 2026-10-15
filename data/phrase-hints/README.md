@@ -10,7 +10,10 @@ The sentence ID links each entry to its original source record in
 This initial bank covers 18 sentences, including ambiguous phrases, idioms, and
 separated phrasal verbs. Other sentences retain dictionary hints. Lemmatization
 normalizes English inflections; it does not determine the correct meaning in
-context. Additional context-sensitive phrases need maintained mappings.
+context. Additional context-sensitive phrases need maintained mappings. Shared
+dictionary coverage is extended by the [hint glossary](../hint-glossary/README.md)
+and normalized reference forms; ordinary vocabulary gaps should be addressed
+there when possible rather than repeated in sentence entries.
 
 To add a mapping, copy the sentence ID and exact English and Japanese reference
 into an entry. Add each phrase's English spans with `start`, `end`, and `text`.

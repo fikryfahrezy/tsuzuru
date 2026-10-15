@@ -4,6 +4,7 @@
 - `sources/openjlpt/<commit>/`: unmodified upstream JSON plus README, NOTICE, and LICENSE.
 - `processed/sentence-candidates.json`: deduplicated vocabulary example pairs with provenance and length measurements. These are unreviewed candidates, not a graded exercise bank.
 - `phrase-hints/sentences.json`: maintained phrase spans with wording and readings from the Japanese reference. See [phrase hint maintenance](phrase-hints/README.md).
+- `hint-glossary/bank.json`: additional JMdict English senses for existing vocabulary, used with reference support. See [hint glossary generation](hint-glossary/README.md).
 - `spelling-variants/bank.json`: verified word-position spelling variants generated from JMdict and Sudachi, separate from alternative translations. See [generation and review](spelling-variants/README.md).
 
 Read [DATA_DISCLOSURE.md](../DATA_DISCLOSURE.md) for credits, licenses, modifications, and educational limitations. Third-party data is not covered by the project's MIT software license.
@@ -120,8 +121,10 @@ with its supplied reading. Whole-word annotations containing a stem and endings
 are supported without splitting their reading; annotations spanning multiple
 lexical words are excluded. Repeated words retain their distinct reference
 forms and readings as hint alternatives, using the same primary furigana as
-the romaji hint. This handles inflection, while idioms and English meanings
-absent from the glossary still need explicit mappings in
+the romaji hint. This handles inflection and complete kana nouns/pronouns normalized to
+dictionary forms. Additional senses from the pinned JMdict glossary resolve
+English wording absent from OpenJLPT's abbreviated definitions. Idioms and
+meanings absent from both glossaries still need explicit mappings in
 `phrase-hints/sentences.json`. Dictionary fallback hints retain their existing
 dictionary-source note.
 

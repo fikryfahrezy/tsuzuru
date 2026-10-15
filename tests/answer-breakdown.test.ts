@@ -7,6 +7,28 @@ import { isAnswerBreakdownPart, type Candidate } from "../shared/practice";
 
 const water = exerciseById.get("213aa0ae8044611b00c1ba95")!;
 
+test("kana pronouns retain dictionary meanings and supplied readings in breakdowns", () => {
+  const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
+  const hints = wordHints(candidate);
+  const pronoun = answerBreakdown(
+    candidate,
+    answerChips(candidate),
+    hints,
+  ).find((part) => part.japanese === "わたし");
+  expect(pronoun).toMatchObject({
+    dictionaryForm: "私",
+    kana: "わたし",
+    romaji: "watashi",
+    wordTypes: ["Pronoun"],
+  });
+  expect(pronoun?.meanings).toContain("(humble) I");
+  expect(hints.find((part) => part.text === "me")?.hints[0]).toMatchObject({
+    japanese: "わたし",
+    reading: "わたし",
+    romaji: "watashi",
+  });
+});
+
 test("journal breakdowns survive storage with sentence order and reject malformed saved details", () => {
   const parts = answerBreakdown(water, answerChips(water), wordHints(water));
   const saved = JSON.parse(JSON.stringify(parts));

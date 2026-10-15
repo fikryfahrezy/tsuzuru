@@ -16,7 +16,7 @@ OpenJLPT combines several sources. This table records their attribution and the 
 | [Electronic Dictionary Research and Development Group — KANJIDIC2](https://www.edrdg.org/wiki/KANJIDIC_Project.html) | Kanji readings, meanings, and associated metadata | CC BY-SA 4.0 as identified by OpenJLPT; [EDRDG terms](https://www.edrdg.org/edrdg/licence.html) |
 | [Tatoeba and its sentence contributors](https://tatoeba.org/) | Japanese–English vocabulary example pairs | [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/) as identified by OpenJLPT |
 
-The original upstream NOTICE.md is retained alongside the data. Full standalone JMdict, KANJIDIC2, and Tatoeba corpora have not been downloaded; their content is included through OpenJLPT. KanjiVG stroke diagrams, audio, fonts, and upstream application code are not included in this import.
+The original upstream NOTICE.md is retained alongside the data. The initial import includes dictionary and sentence content through OpenJLPT; later spelling and hint banks use a separately pinned JMdict snapshot as described below. Full standalone KANJIDIC2 and Tatoeba corpora have not been downloaded. KanjiVG stroke diagrams, audio, fonts, and upstream application code are not included in this import.
 
 ## License boundary and redistribution
 
@@ -102,6 +102,15 @@ optional alternative translations. Kana-only and exact modes retain their
 existing restrictions. Comparison and highlighting use the same allowed paths.
 
 ## Educational limitations
+
+The additional hint glossary in `data/hint-glossary/bank.json` extracts English
+senses for existing vocabulary from the same pinned JMdict snapshot. It retains
+JMdict copyright and CC BY-SA 4.0 attribution. Added senses require Japanese
+reference support; complete kana nouns can resolve through Sudachi lexical
+normalization using supplied readings. Shared spatial paraphrases connect
+“across” with “other side” and “opposite side”. These are possible dictionary
+matches, not reviewed sentence translations. See the
+[hint glossary README](data/hint-glossary/README.md) for generation and limits.
 
 The [official JLPT FAQ](https://www.jlpt.jp/e/faq/) explains that current vocabulary, kanji, and grammar specifications are not published. Dataset level labels come from community resources and are not official certification. The JLPT itself does not include composition testing; Tsuzuru's writing exercises are its own practice format.
 
