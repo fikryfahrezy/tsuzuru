@@ -60,12 +60,19 @@ before distribution, as described by EDRDG's licence statement.
 
 ## Approval rules and review
 
-For each noun, verb, or adjective, the generator checks the reference's supplied
+For each noun, pronoun, verb, or adjective, the generator checks the reference's supplied
 furigana against Sudachi's reading. It excludes unknown words and proper names.
 It uses permitted JMdict spelling/reading pairs, excluding unusual-spelling
 flags and kana-only readings. Kana references must identify a single compatible
 dictionary entry; kanji references additionally require their dictionary spelling
 in that entry. Sense-restricted spellings are held for review.
+
+Pronouns match only dictionary pronoun entries, excluding same-reading nouns.
+For a replacement pronoun, the tokenizer may default to a different reading
+(for example, 私 defaults to わたくし). The permitted JMdict spelling/reading
+pair verifies the original pronunciation instead; the recorded reading remains
+わたし when that was supplied. All other tokens must retain their readings, and
+lexical identity, part of speech, conjugation and segmentation still must match.
 
 Only the kanji prefix is substituted; inflected kana, auxiliaries, and particles
 stay unchanged. A full-sentence retokenization must preserve lexical normalized

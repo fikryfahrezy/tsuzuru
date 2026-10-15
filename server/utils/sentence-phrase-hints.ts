@@ -33,6 +33,7 @@ const entries = new Map(bank.entries.map((entry) => [entry.sentenceId, entry]));
 export function referenceReading(
   candidate: Candidate,
   japanese: string,
+  occurrence?: number,
 ): string[] {
   const readings: string[] = [];
   for (const reading of validReadings(candidate)) {
@@ -41,6 +42,7 @@ export function referenceReading(
       start !== -1;
       start = candidate.japanese.indexOf(japanese, start + 1)
     ) {
+      if (occurrence !== undefined && start !== occurrence) continue;
       const end = start + japanese.length;
       let offset = 0;
       let kana = "";

@@ -4,6 +4,7 @@ import {
   validReadings,
   Strictness,
   type Candidate,
+  type SpellingOption,
 } from "./practice";
 
 export interface SpellingSpan {
@@ -139,6 +140,32 @@ export function verifiedSpellings(
           ),
       ) && spellingPath(reference) !== null,
   );
+}
+
+export function spellingOptions(candidate: Candidate): SpellingOption[] {
+  const primary = validReadings(candidate)[0];
+  const options = new Map<string, SpellingOption>();
+  for (const reference of candidate.spellingVariants ?? []) {
+    if (
+      reference.japanese !== candidate.japanese ||
+      reference.furigana !== primary ||
+      !spellingPath(reference)
+    )
+      continue;
+    for (const span of reference.spans) {
+      const key = `${span.surface}\0${span.reading}`;
+      const option = options.get(key) ?? {
+        japanese: span.surface,
+        kana: span.reading,
+        spellings: [],
+      };
+      option.spellings = [
+        ...new Set([...option.spellings, ...span.spellings]),
+      ].filter((word) => word !== span.surface);
+      if (option.spellings.length) options.set(key, option);
+    }
+  }
+  return [...options.values()];
 }
 
 // Comparison and difference highlighting consume these same allowed paths.

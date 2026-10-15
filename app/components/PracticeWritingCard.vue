@@ -343,6 +343,7 @@ defineExpose({
       :result="result"
       :revealed="revealed"
       :breakdown="question?.answerBreakdown ?? []"
+      :spelling-options="question?.spellingOptions ?? []"
     />
     <div v-else-if="question" class="below-paper">
       <button :disabled="checking" @click="emit('submit', true)">

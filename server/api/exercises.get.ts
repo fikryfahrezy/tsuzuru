@@ -5,6 +5,7 @@ import { romajiHint } from "../../shared/romaji";
 import { wordHints } from "../utils/word-hints";
 import { answerChips, shuffledAnswerChips } from "../utils/answer-chips";
 import { answerBreakdown } from "../utils/answer-breakdown";
+import { spellingOptions } from "../../shared/writing-spellings";
 import {
   lengthOf,
   isLevel,
@@ -36,6 +37,7 @@ export default defineEventHandler((event): Question => {
       wordCount: selected.englishWordCount,
       poolSize: 1,
       alternativeCount: selected.acceptedAlternatives?.length ?? 0,
+      spellingOptions: spellingOptions(selected),
       wordBank: chips,
       answerBreakdown: answerBreakdown(selected, answerChips(selected), hints),
     };
@@ -69,6 +71,7 @@ export default defineEventHandler((event): Question => {
     wordCount: row.englishWordCount,
     poolSize: pool.length,
     alternativeCount: row.acceptedAlternatives?.length ?? 0,
+    spellingOptions: spellingOptions(row),
     wordBank: chips,
     answerBreakdown: answerBreakdown(row, answerChips(row), hints),
   };

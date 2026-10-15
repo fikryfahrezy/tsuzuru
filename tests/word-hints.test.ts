@@ -17,6 +17,36 @@ const water: Candidate = {
   furiganaVariants: ["{私|わたし}は{水|みず}を{飲|の}みます。"],
 };
 
+test("word hints include verified kanji spellings while retaining reference wording and reading", () => {
+  const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
+  const tokens = wordHints(candidate);
+  for (const [english, japanese, spelling, reading] of [
+    ["me", "わたし", "私", "わたし"],
+    ["across", "むこう", "向こう", "むこう"],
+    ["Please", "ください", "下さい", "ください"],
+  ]) {
+    const hint = tokens.find((part) => part.text === english)?.hints[0];
+    expect(hint?.japanese).toBe(japanese);
+    expect(hint?.reading).toBe(reading);
+    expect(hint?.spellings).toContain(spelling);
+  }
+  expect(
+    tokens.find((part) => part.text === "across")?.hints[0]?.spellings,
+  ).not.toContain("無効");
+  const stale = wordHints({ ...candidate, furiganaVariants: [] });
+  expect(
+    stale.every((part) => part.hints.every((hint) => !hint.spellings)),
+  ).toBe(true);
+});
+
+test("verified spelling hints preserve conjugated endings", () => {
+  const removal = exerciseById.get("2eea6cfa2b131e3e0f78ed07")!;
+  const hints = wordHints(removal).flatMap((part) => part.hints);
+  expect(
+    hints.find((hint) => hint.japanese === "はずして")?.spellings,
+  ).toContain("外して");
+});
+
 test("across resolves kana and kanji reference nouns without a sentence mapping", () => {
   const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
   expect(sentencePhraseHints(candidate)).toEqual([]);

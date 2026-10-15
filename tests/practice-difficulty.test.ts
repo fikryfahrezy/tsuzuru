@@ -58,14 +58,16 @@ let Prompt: Component;
 let Card: Component;
 let Feedback: Component;
 let Breakdown: Component;
+let Settings: Component;
 beforeAll(async () => {
   const modules = [
     "PracticePrompt",
     "PracticeWritingCard",
     "PracticeFeedback",
     "AnswerBreakdown",
+    "PracticeSettings",
   ].map(component);
-  [Prompt, Card, Feedback, Breakdown] = await Promise.all(
+  [Prompt, Card, Feedback, Breakdown, Settings] = await Promise.all(
     modules.map(async (url) => (await import(url)).default),
   );
 });
@@ -86,6 +88,7 @@ const question: Question = {
   wordCount: 1,
   poolSize: 1,
   alternativeCount: 0,
+  spellingOptions: [],
   wordBank: [{ japanese: "水", kana: "みず" }],
   answerBreakdown: [
     {
@@ -100,11 +103,12 @@ const question: Question = {
 async function renderPractice(
   difficulty: PracticeDifficulty,
   result: Comparison | null = null,
+  practiceQuestion: Question = question,
 ) {
   const app = createSSRApp({
     render: () =>
       h(Card, {
-        question,
+        question: practiceQuestion,
         difficulty,
         result,
         revealed: false,
@@ -141,6 +145,60 @@ test("Guided grants all four practice aids while Challenge denies them", () => {
   expect(isPracticeDifficulty("challenge")).toBe(true);
   expect(isPracticeDifficulty(undefined)).toBe(false);
   expect(isPracticeDifficulty("unknown")).toBe(false);
+});
+
+test("accepted spellings appear after checking without revealing Challenge answers early", async () => {
+  const withSpellings: Question = {
+    ...question,
+    spellingOptions: [
+      { japanese: "むこう", kana: "むこう", spellings: ["向こう"] },
+    ],
+  };
+  const before = await renderPractice(
+    PracticeDifficulty.Challenge,
+    null,
+    withSpellings,
+  );
+  expect(before).not.toContain("Accepted spelling variants");
+  expect(before).not.toContain("向こう");
+  const after = await renderPractice(
+    PracticeDifficulty.Challenge,
+    {
+      matched: true,
+      reference: "水",
+      kana: "みず",
+      sourceUrl: null,
+      differences: null,
+    },
+    withSpellings,
+  );
+  expect(after).toContain("Accepted spelling variants (1 word)");
+  expect(after).toContain("むこう → 向こう");
+  expect(after).toContain("even when alternative translations are off");
+});
+
+test("settings distinguish zero additional translations from available spelling variants", async () => {
+  const app = createSSRApp({
+    render: () =>
+      h(Settings, {
+        settingsOpen: true,
+        checking: false,
+        alternativeCount: 0,
+        spellingWordCount: 3,
+        level: "N5",
+        length: "short",
+        mode: Strictness.Flexible,
+        difficulty: PracticeDifficulty.Guided,
+        acceptAlternatives: false,
+      }),
+  });
+  app.component("NuxtLink", { render: () => null });
+  const html = (await renderToString(app))
+    .replace(/<!--.*?-->/gu, "")
+    .replace(/\s+/gu, " ");
+  expect(html).toContain("Alternative translations");
+  expect(html).toContain("0 additional translations for this sentence");
+  expect(html).toContain("3 words have verified spelling variants");
 });
 
 test("Challenge renders plain English and removes every practice aid even with saved hints open", async () => {

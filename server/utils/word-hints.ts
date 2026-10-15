@@ -10,6 +10,7 @@ import {
   validReadings,
   type Candidate,
   type PromptPart,
+  type VocabularyHint,
 } from "../../shared/practice";
 import { kanaToRomaji } from "../../shared/romaji";
 import lemmatize from "wink-lemmatizer";
@@ -159,6 +160,44 @@ function lookupPhrase(words: string[]): Entry[] {
   ];
 }
 
+function hintSpellings(candidate: Candidate, hint: VocabularyHint): string[] {
+  const primary = validReadings(candidate)[0];
+  const variants = new Set<string>();
+  for (const reference of candidate.spellingVariants ?? []) {
+    if (
+      reference.japanese !== candidate.japanese ||
+      reference.furigana !== primary
+    )
+      continue;
+    for (
+      let start = candidate.japanese.indexOf(hint.japanese);
+      start !== -1;
+      start = candidate.japanese.indexOf(hint.japanese, start + 1)
+    ) {
+      if (
+        !referenceReading(
+          { ...candidate, furiganaVariants: [primary!] },
+          hint.japanese,
+          start,
+        ).includes(hint.reading)
+      )
+        continue;
+      const end = start + hint.japanese.length;
+      for (const span of reference.spans) {
+        if (span.start < start || span.end > end) continue;
+        for (const spelling of span.spellings) {
+          const word =
+            hint.japanese.slice(0, span.start - start) +
+            spelling +
+            hint.japanese.slice(span.end - start);
+          if (word !== hint.japanese) variants.add(word);
+        }
+      }
+    }
+  }
+  return [...variants].slice(0, 3);
+}
+
 export function wordHints(candidate: Candidate): PromptPart[] {
   const lexemes = referenceLexemes(candidate);
   const forms = new Map<string, { japanese: string; reading: string }[]>();
@@ -254,7 +293,7 @@ export function wordHints(candidate: Candidate): PromptPart[] {
     grouped.push({ text: tokens.slice(start, end + 1).join(""), matches });
     start = end;
   }
-  return grouped.map(({ text, matches, annotation }) => {
+  const prompt: PromptPart[] = grouped.map(({ text, matches, annotation }) => {
     if (annotation)
       return {
         text,
@@ -305,4 +344,13 @@ export function wordHints(candidate: Candidate): PromptPart[] {
       ...(sentenceMatched ? { hintSource: HintSource.Reference } : {}),
     };
   });
+  return prompt.map((part) => ({
+    ...part,
+    hints: part.hints.map((hint) => {
+      // Only expose spellings already verified for the primary reference and
+      // its supplied pronunciation; dictionary fallback hints stay unchanged.
+      const spellings = part.hintSource ? hintSpellings(candidate, hint) : [];
+      return spellings.length ? { ...hint, spellings } : hint;
+    }),
+  }));
 }

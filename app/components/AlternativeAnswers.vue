@@ -9,9 +9,9 @@ defineProps<{
 
 <template>
   <details class="alternative-answers">
-    <summary>Pre-generated alternatives ({{ alternatives.length }})</summary>
+    <summary>Alternative translations ({{ alternatives.length }})</summary>
     <p v-if="!alternatives.length" class="alternative-note">
-      No pre-generated alternatives for this sentence.
+      No additional translations are listed for this sentence.
     </p>
     <ul v-else>
       <li v-for="alternative in alternatives" :key="alternative.japanese">

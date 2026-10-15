@@ -40,6 +40,8 @@ class SpellingGeneratorTests(unittest.TestCase):
         self.assertFalse(generator.compatible("adverb (fukushi)", "動詞"))
         self.assertFalse(generator.compatible("auxiliary verb", "動詞"))
         self.assertFalse(generator.compatible("pronoun", "名詞"))
+        self.assertTrue(generator.compatible("pronoun", "代名詞"))
+        self.assertFalse(generator.compatible("noun (common) suffix", "代名詞"))
 
     def test_inflection_is_retained_including_sound_changes(self):
         self.assertEqual(generator.inflected_spelling("外す", "はずす", "はずさ"), "外さ")

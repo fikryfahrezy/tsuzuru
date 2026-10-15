@@ -106,9 +106,16 @@ watch(
           <span class="word-hint-word">
             <span class="word-hint-japanese" lang="ja">
               {{ hint.japanese }}
+              <template v-for="spelling in hint.spellings" :key="spelling">
+                <span aria-hidden="true">/</span>
+                {{ spelling }}
+              </template>
             </span>
             <span
-              v-if="hasKanji(hint.japanese) && hint.reading"
+              v-if="
+                (hasKanji(hint.japanese) || hint.spellings?.some(hasKanji)) &&
+                hint.reading
+              "
               class="word-hint-reading"
             >
               <span lang="ja">{{ hint.reading }}</span>

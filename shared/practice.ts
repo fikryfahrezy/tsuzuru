@@ -71,8 +71,13 @@ export interface Question {
   wordCount: number;
   poolSize: number;
   alternativeCount: number;
+  spellingOptions: SpellingOption[];
   wordBank: AnswerChip[];
   answerBreakdown: AnswerBreakdownPart[];
+}
+
+export interface SpellingOption extends AnswerChip {
+  spellings: string[];
 }
 
 export interface AnswerBreakdownPart extends AnswerChip {
@@ -112,6 +117,7 @@ export interface VocabularyHint {
   reading: string;
   romaji: string;
   meaning: string;
+  spellings?: string[];
 }
 
 export interface PromptPart {

@@ -83,6 +83,8 @@ def load_dictionary(path):
 
 
 def compatible(pos, token_pos):
+    if token_pos == "代名詞":
+        return re.search(r"\bpronoun\b", pos) is not None
     if token_pos == "動詞":
         return re.search(r"\bverb\b", pos) is not None and "auxiliary" not in pos
     if token_pos == "形容詞":
@@ -154,7 +156,7 @@ def generate(args):
                 spans = []
                 for index, token in enumerate(tokens):
                     pos = token.part_of_speech()
-                    if token.is_oov() or pos[0] not in ("動詞", "形容詞", "名詞") or pos[1] == "固有名詞":
+                    if token.is_oov() or pos[0] not in ("動詞", "形容詞", "名詞", "代名詞") or pos[1] == "固有名詞":
                         continue
                     reading = slice_reading(segments, token.begin(), token.end())
                     if reading != hira(token.reading_form()):
@@ -196,7 +198,11 @@ def generate(args):
                         changed_tokens = list(tokenizer.tokenize(changed, SplitMode.A))
                         # A whole-sentence round trip must preserve lexical identity,
                         # pronunciation, POS, and conjugation of every token.
-                        if len(changed_tokens) != len(tokens) or any((a.normalized_form() != b.normalized_form() and not (review and position == index)) or a.reading_form() != b.reading_form() or a.part_of_speech() != b.part_of_speech() for position, (a, b) in enumerate(zip(tokens, changed_tokens))):
+                        # A pronoun's written form may have another default
+                        # tokenizer reading (私 -> ワタクシ). JMdict's permitted
+                        # spelling/reading pair above still verifies the supplied
+                        # pronunciation. Other tokens must keep their readings.
+                        if len(changed_tokens) != len(tokens) or any((a.normalized_form() != b.normalized_form() and not (review and position == index)) or (a.reading_form() != b.reading_form() and not (position == index and pos[0] == "代名詞")) or a.part_of_speech() != b.part_of_speech() for position, (a, b) in enumerate(zip(tokens, changed_tokens))):
                             continue
                         spellings.append(variant)
                     if spellings:

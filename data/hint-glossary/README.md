@@ -31,6 +31,12 @@ dictionary senses and tokenizer normalization do not establish the intended
 translation of every English word. Idioms and ambiguous uses may still need
 explicit sentence mappings.
 
+Word hints display the reference wording alongside up to three verified spelling
+variants from the primary reference's spelling bank, for example わたし / 私.
+Readings and romaji remain supplied by the reference. Variants also preserve
+conjugated endings and can apply within maintained phrase hints. Dictionary
+fallback hints do not inherit reference spelling variants.
+
 Prepare the spelling-tools environment and cached dictionary using
 [the spelling bank README](../spelling-variants/README.md), then run:
 

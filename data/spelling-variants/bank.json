@@ -344,6 +344,30 @@
         }
       ]
     },
+    "00bf9da870dd1fbfcc1a769e": {
+      "sourceEnglish": "Everyone has a right to enjoy his liberty, and all the more, his life.",
+      "sourceJapanese": "だれでも自由を享受する権利を持つ。まして人生を享受する権利はなおさらだ。",
+      "references": [
+        {
+          "japanese": "だれでも自由を享受する権利を持つ。まして人生を享受する権利はなおさらだ。",
+          "furigana": "だれでも{自由|じゆう}を{享受|きょうじゅ}する{権利|けんり}を{持|も}つ。まして{人生|じんせい}を{享受|きょうじゅ}する{権利|けんり}はなおさらだ。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "00c9cc568aa05fe27eca902f": {
       "sourceEnglish": "Actually, it was just a rumour.",
       "sourceJapanese": "実はそれはただのうわさだったよ。",
@@ -614,6 +638,30 @@
               ],
               "dictionaryEntryId": "1548550",
               "lemma": "落ちる",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "0167851079b55fb9bfd1580a": {
+      "sourceEnglish": "Was this somebody else's idea?",
+      "sourceJapanese": "これはだれかの言い出したことかい。",
+      "references": [
+        {
+          "japanese": "これはだれかの言い出したことかい。",
+          "furigana": "これはだれかの{言|い}い{出|だ}したことかい。",
+          "spans": [
+            {
+              "start": 3,
+              "end": 5,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -2891,6 +2939,30 @@
         }
       ]
     },
+    "06fe4050db34361b15017f3d": {
+      "sourceEnglish": "This work does not meet our requirements.",
+      "sourceJapanese": "この仕事はわれわれの必要条件を満たしていない。",
+      "references": [
+        {
+          "japanese": "この仕事はわれわれの必要条件を満たしていない。",
+          "furigana": "この{仕事|しごと}はわれわれの{必要条件|ひつようじょうけん}を{満|み}たしていない。",
+          "spans": [
+            {
+              "start": 5,
+              "end": 9,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "070d02b4c589a11bfe05d469": {
       "sourceEnglish": "He relaxed his hold on me.",
       "sourceJapanese": "彼は私をつかまえている力を緩めた。",
@@ -3127,6 +3199,48 @@
               ],
               "dictionaryEntryId": "1315140",
               "lemma": "字引き",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "0791a12b8ca51e346bd73d21": {
+      "sourceEnglish": "I was a first year student last year.",
+      "sourceJapanese": "わたしは去年一年生でした。",
+      "references": [
+        {
+          "japanese": "わたしは去年一年生でした。",
+          "furigana": "わたしは{去年|きょねん}{一年生|いちねんせい}でした。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        },
+        {
+          "japanese": "わたしは去年1年生でした。",
+          "furigana": "わたしは{去年|きょねん}{1年生|いちねんせい}でした。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -3969,6 +4083,30 @@
         }
       ]
     },
+    "0a2f97cba439dbf379ecab20": {
+      "sourceEnglish": "Do unto others as you would have them do unto you.",
+      "sourceJapanese": "己の欲するところを人に施せ。",
+      "references": [
+        {
+          "japanese": "己の欲するところを人に施せ。",
+          "furigana": "{己|おのれ}の{欲|ほっ}するところを{人|ひと}に{施|ほどこ}せ。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "surface": "己",
+              "reading": "おのれ",
+              "spellings": [
+                "己れ"
+              ],
+              "dictionaryEntryId": "1266890",
+              "lemma": "己",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "0a616652bb3ed11c76424408": {
       "sourceEnglish": "I told it to my mother first and foremost.",
       "sourceJapanese": "私は真っ先に母にそれを告げた。",
@@ -4143,6 +4281,30 @@
               ],
               "dictionaryEntryId": "1223680",
               "lemma": "起こる",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "0aac6239ec4c677050073719": {
+      "sourceEnglish": "We must try to break the deadlock.",
+      "sourceJapanese": "われわれは局面の打開を図らなくてはならない。",
+      "references": [
+        {
+          "japanese": "われわれは局面の打開を図らなくてはならない。",
+          "furigana": "われわれは{局面|きょくめん}の{打開|だかい}を{図|はか}らなくてはならない。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -6216,6 +6378,30 @@
         }
       ]
     },
+    "1117579dcda5154fd1176eac": {
+      "sourceEnglish": "I was relieved that I could make my broken English understood.",
+      "sourceJapanese": "僕の片言の英語がなんとか通じたのでほっとしました。",
+      "references": [
+        {
+          "japanese": "僕の片言の英語がなんとか通じたのでほっとしました。",
+          "furigana": "{僕|ぼく}の{片言|かたこと}の{英語|えいご}がなんとか{通|つう}じたのでほっとしました。",
+          "spans": [
+            {
+              "start": 8,
+              "end": 10,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "1153da0fb1ab106f01724d41": {
       "sourceEnglish": "You make mistakes if you do things in a hurry.",
       "sourceJapanese": "物事をあわててすると、間違いをします。",
@@ -6900,6 +7086,18 @@
           "japanese": "われわれはドアのそばに立ってまった。",
           "furigana": "われわれはドアのそばに{立|た}ってまった。",
           "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 14,
               "end": 16,
@@ -7987,6 +8185,30 @@
         }
       ]
     },
+    "16638d47ef56e41635429e2d": {
+      "sourceEnglish": "Do you have anything to declare?",
+      "sourceJapanese": "なにか申告するものがありますか。",
+      "references": [
+        {
+          "japanese": "なにか申告するものがありますか。",
+          "furigana": "なにか{申告|しんこく}するものがありますか。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "なに",
+              "reading": "なに",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "1577100",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "168f4b2fb7ca2b4925d027df": {
       "sourceEnglish": "Let's stop and take a rest.",
       "sourceJapanese": "ちょっととまって一休みしよう。",
@@ -8681,6 +8903,30 @@
               ],
               "dictionaryEntryId": "1221270",
               "lemma": "帰る",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "18a4cd381832a52ac6badf3b": {
+      "sourceEnglish": "How huge that airship is!",
+      "sourceJapanese": "あの飛行船はなんて巨大なんだろう。",
+      "references": [
+        {
+          "japanese": "あの飛行船はなんて巨大なんだろう。",
+          "furigana": "あの{飛行船|ひこうせん}はなんて{巨大|きょだい}なんだろう。",
+          "spans": [
+            {
+              "start": 6,
+              "end": 8,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -9933,6 +10179,30 @@
         }
       ]
     },
+    "1bde7b5579a487dd85fab330": {
+      "sourceEnglish": "I was appalled at the sight.",
+      "sourceJapanese": "わたしはそれを見てぎょっとした。",
+      "references": [
+        {
+          "japanese": "わたしはそれを見てぎょっとした。",
+          "furigana": "わたしはそれを{見|み}てぎょっとした。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "1be23a8200016051141c7a38": {
       "sourceEnglish": "It is an advantage to be able to use a computer.",
       "sourceJapanese": "コンピューターが使えるのは有利である。",
@@ -10477,6 +10747,18 @@
           "japanese": "ぼくはこの本を古本屋で見つけた。",
           "furigana": "ぼくはこの{本|ほん}を{古本屋|ふるほんや}で{見|み}つけた。",
           "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 11,
               "end": 14,
@@ -14555,6 +14837,18 @@
           "furigana": "ぼくの{自動車|じどうしゃ}はずいぶんガソリンをくう。",
           "spans": [
             {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 16,
               "end": 18,
               "surface": "くう",
@@ -16161,6 +16455,30 @@
         }
       ]
     },
+    "2c20e31d95fcba7b619fbe43": {
+      "sourceEnglish": "Who does your sister take after?",
+      "sourceJapanese": "あなたの妹はだれに似ていますか。",
+      "references": [
+        {
+          "japanese": "あなたの妹はだれに似ていますか。",
+          "furigana": "あなたの{妹|いもうと}はだれに{似|に}ていますか。",
+          "spans": [
+            {
+              "start": 6,
+              "end": 8,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "2c2e21ab2b7cc78abc36b8e4": {
       "sourceEnglish": "When an earthquake occurs, what will you do first?",
       "sourceJapanese": "地震が来たら、真っ先に何をしますか。",
@@ -16265,6 +16583,18 @@
           "japanese": "あの子はなんてうるさい子だろう。",
           "furigana": "あの{子|こ}はなんてうるさい{子|こ}だろう。",
           "spans": [
+            {
+              "start": 4,
+              "end": 6,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 7,
               "end": 11,
@@ -17923,6 +18253,18 @@
           "furigana": "われわれは{重役|じゅうやく}と{向|む}かい{合|あ}って{座|すわ}った。",
           "spans": [
             {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 8,
               "end": 11,
               "surface": "向かい",
@@ -18751,6 +19093,30 @@
         }
       ]
     },
+    "348af01fc205f89eaca1a74a": {
+      "sourceEnglish": "We demanded that she should make up for the loss.",
+      "sourceJapanese": "彼女が損失を補うようわれわれは要求した。",
+      "references": [
+        {
+          "japanese": "彼女が損失を補うようわれわれは要求した。",
+          "furigana": "{彼女|かのじょ}が{損失|そんしつ}を{補|おぎな}うようわれわれは{要求|ようきゅう}した。",
+          "spans": [
+            {
+              "start": 10,
+              "end": 14,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "348c8a32f7451fd167b3d1b5": {
       "sourceEnglish": "The pupils of the eyes contract in sunlight.",
       "sourceJapanese": "瞳は日のあたる所では収縮する。",
@@ -18964,6 +19330,30 @@
               ],
               "dictionaryEntryId": "1591110",
               "lemma": "聞く",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "3592a6e8879a50b0ff8db2e6": {
+      "sourceEnglish": "I'll do anything but that job.",
+      "sourceJapanese": "その仕事以外ならなんでもやる。",
+      "references": [
+        {
+          "japanese": "その仕事以外ならなんでもやる。",
+          "furigana": "その{仕事|しごと}{以外|いがい}ならなんでもやる。",
+          "spans": [
+            {
+              "start": 8,
+              "end": 10,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -20158,6 +20548,30 @@
         }
       ]
     },
+    "3a3642782b8d98454797c4c7": {
+      "sourceEnglish": "This man's shouting at me!",
+      "sourceJapanese": "この人、あたしをどなりつけるんですよ！",
+      "references": [
+        {
+          "japanese": "この人、あたしをどなりつけるんですよ！",
+          "furigana": "この{人|ひと}、あたしをどなりつけるんですよ！",
+          "spans": [
+            {
+              "start": 4,
+              "end": 7,
+              "surface": "あたし",
+              "reading": "あたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311125",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "3a4833cf5862503074dc2444": {
       "sourceEnglish": "I met an American who was interested in Noh plays.",
       "sourceJapanese": "私は能に興味を持つアメリカ人に会いました。",
@@ -20958,6 +21372,18 @@
           "furigana": "あいつはカーマニアだから、{車|くるま}のことならなんでも{知|し}ってるよ。",
           "spans": [
             {
+              "start": 19,
+              "end": 21,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 23,
               "end": 25,
               "surface": "知っ",
@@ -21326,6 +21752,30 @@
               ],
               "dictionaryEntryId": "1150110",
               "lemma": "哀れ",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "3dec770e61de264aa6559126": {
+      "sourceEnglish": "Nobody got zero in that test.",
+      "sourceJapanese": "そのテストではだれも零点をとらなかった。",
+      "references": [
+        {
+          "japanese": "そのテストではだれも零点をとらなかった。",
+          "furigana": "そのテストではだれも{零点|れいてん}をとらなかった。",
+          "spans": [
+            {
+              "start": 7,
+              "end": 9,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -21923,6 +22373,30 @@
               ],
               "dictionaryEntryId": "1591430",
               "lemma": "気持ち",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "40317a8f5ae934f94196a67f": {
+      "sourceEnglish": "How beautiful this flower is!",
+      "sourceJapanese": "この花はなんてきれいなんだろう。",
+      "references": [
+        {
+          "japanese": "この花はなんてきれいなんだろう。",
+          "furigana": "この{花|はな}はなんてきれいなんだろう。",
+          "spans": [
+            {
+              "start": 4,
+              "end": 6,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -22809,6 +23283,18 @@
           "furigana": "われわれは{彼|かれ}の{借金|しゃっきん}の{支払|しはら}いを{請求|せいきゅう}した。",
           "spans": [
             {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 10,
               "end": 13,
               "surface": "支払い",
@@ -23591,6 +24077,18 @@
           "furigana": "あなたは{何処|どこ}へ{向|む}かっているのですか。",
           "spans": [
             {
+              "start": 4,
+              "end": 6,
+              "surface": "何処",
+              "reading": "どこ",
+              "spellings": [
+                "何所"
+              ],
+              "dictionaryEntryId": "1577140",
+              "lemma": "何処",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 7,
               "end": 10,
               "surface": "向かっ",
@@ -23624,6 +24122,30 @@
               ],
               "dictionaryEntryId": "1426100",
               "lemma": "仲良し",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "45236a349310e40679c83316": {
+      "sourceEnglish": "Who has torn the envelope open?",
+      "sourceJapanese": "だれがこの封筒を破って開けたのか。",
+      "references": [
+        {
+          "japanese": "だれがこの封筒を破って開けたのか。",
+          "furigana": "だれがこの{封筒|ふうとう}を{破|やぶ}って{開|あ}けたのか。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -23769,6 +24291,18 @@
               ],
               "dictionaryEntryId": "1591400",
               "lemma": "寄付",
+              "method": "unambiguous-dictionary"
+            },
+            {
+              "start": 26,
+              "end": 28,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -24097,6 +24631,30 @@
               ],
               "dictionaryEntryId": "1382980",
               "lemma": "積もり",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "46b68f363936f07939a77455": {
+      "sourceEnglish": "What made him change his mind?",
+      "sourceJapanese": "なんで彼は考えを変えたのか。",
+      "references": [
+        {
+          "japanese": "なんで彼は考えを変えたのか。",
+          "furigana": "なんで{彼|かれ}は{考|かんが}えを{変|か}えたのか。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -26660,6 +27218,30 @@
         }
       ]
     },
+    "4d86f665b7492c658d2a4fea": {
+      "sourceEnglish": "Harry managed to swim across the river.",
+      "sourceJapanese": "ハリーはなんとかその川を泳ぎきった。",
+      "references": [
+        {
+          "japanese": "ハリーはなんとかその川を泳ぎきった。",
+          "furigana": "ハリーはなんとかその{川|かわ}を{泳|およ}ぎきった。",
+          "spans": [
+            {
+              "start": 4,
+              "end": 6,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "4d8c33daf5a9cc80591f8b88": {
       "sourceEnglish": "He offered his congratulations on the happy occasion.",
       "sourceJapanese": "そのめでたいときに当たり彼は祝辞を述べた。",
@@ -28744,6 +29326,30 @@
         }
       ]
     },
+    "53abe27428297b166659e2f1": {
+      "sourceEnglish": "We should keep our promise.",
+      "sourceJapanese": "われわれは約束を守るべきである。",
+      "references": [
+        {
+          "japanese": "われわれは約束を守るべきである。",
+          "furigana": "われわれは{約束|やくそく}を{守|まも}るべきである。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "53b0a2881049ef5eb77bf370": {
       "sourceEnglish": "When he was young, he was so poor that he virtually had to live on gruel.",
       "sourceJapanese": "若いときは貧乏でかゆをすすって暮らした。",
@@ -28973,6 +29579,30 @@
         }
       ]
     },
+    "548f26bc9ea71e9f13c6d134": {
+      "sourceEnglish": "Why leave me standing here?",
+      "sourceJapanese": "なぜぼくをここに立たせておくの？",
+      "references": [
+        {
+          "japanese": "なぜぼくをここに立たせておくの？",
+          "furigana": "なぜぼくをここに{立|た}たせておくの？",
+          "spans": [
+            {
+              "start": 2,
+              "end": 4,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "54a6c96bef26ee8c6090e3a2": {
       "sourceEnglish": "I'm looking for a school where I can paint portraits.",
       "sourceJapanese": "人物画を描けるスクールを探しています。",
@@ -29120,6 +29750,18 @@
           "japanese": "わたしはこまかい点までしらべました。",
           "furigana": "わたしはこまかい{点|てん}までしらべました。",
           "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 4,
               "end": 8,
@@ -32693,6 +33335,18 @@
           "furigana": "この{小説|しょうせつ}の{作者|さくしゃ}はだれだと{思|おも}いますか。",
           "spans": [
             {
+              "start": 8,
+              "end": 10,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 12,
               "end": 14,
               "surface": "思い",
@@ -32834,6 +33488,30 @@
               ],
               "dictionaryEntryId": "1290310",
               "lemma": "混ぜる",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "6143e5d7ab72e3cce8720b90": {
+      "sourceEnglish": "What will become of our offspring if a nuclear war breaks out?",
+      "sourceJapanese": "もし核戦争になったら、われわれの子孫はどうなるのでしょう。",
+      "references": [
+        {
+          "japanese": "もし核戦争になったら、われわれの子孫はどうなるのでしょう。",
+          "furigana": "もし{核戦争|かくせんそう}になったら、われわれの{子孫|しそん}はどうなるのでしょう。",
+          "spans": [
+            {
+              "start": 11,
+              "end": 15,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -33942,6 +34620,18 @@
           "furigana": "われわれは{彼|かれ}の{家|いえ}のねずみを{退治|たいじ}した。",
           "spans": [
             {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 9,
               "end": 12,
               "surface": "ねずみ",
@@ -34089,6 +34779,18 @@
           "japanese": "なんであれ物事の本体を捕らえる事が肝心だ。",
           "furigana": "なんであれ{物事|ものごと}の{本体|ほんたい}を{捕|と}らえる{事|こと}が{肝心|かんじん}だ。",
           "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 11,
               "end": 15,
@@ -34596,6 +35298,18 @@
           "furigana": "だれかこのドアを{開|あ}けてください。",
           "spans": [
             {
+              "start": 0,
+              "end": 2,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 11,
               "end": 15,
               "surface": "ください",
@@ -35049,6 +35763,30 @@
         }
       ]
     },
+    "67b9144d04a511bd19b98b84": {
+      "sourceEnglish": "What a tall tree this is!",
+      "sourceJapanese": "これはなんと高い木なのでしょう。",
+      "references": [
+        {
+          "japanese": "これはなんと高い木なのでしょう。",
+          "furigana": "これはなんと{高|たか}い{木|き}なのでしょう。",
+          "spans": [
+            {
+              "start": 3,
+              "end": 5,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "67bfbb417ae5ed1a2bd3f1c5": {
       "sourceEnglish": "She's still dependent on her parents.",
       "sourceJapanese": "彼女はまだ親のすねをかじっている。",
@@ -35068,6 +35806,30 @@
               ],
               "dictionaryEntryId": "1610640",
               "lemma": "齧る",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "67dad364de08d3ffe28a96c7": {
+      "sourceEnglish": "Everybody showed sympathy toward the prisoner.",
+      "sourceJapanese": "だれもがその囚人に情けをかけた。",
+      "references": [
+        {
+          "japanese": "だれもがその囚人に情けをかけた。",
+          "furigana": "だれもがその{囚人|しゅうじん}に{情|なさ}けをかけた。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -35188,6 +35950,30 @@
               ],
               "dictionaryEntryId": "1245370",
               "lemma": "空しい",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "68a3eac323b3e84d332c98d8": {
+      "sourceEnglish": "Can you give me some money?",
+      "sourceJapanese": "ぼくにいくらかお金をくれないか。",
+      "references": [
+        {
+          "japanese": "ぼくにいくらかお金をくれないか。",
+          "furigana": "ぼくにいくらかお{金|かね}をくれないか。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -35401,6 +36187,30 @@
               ],
               "dictionaryEntryId": "1382980",
               "lemma": "積もり",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "695f051c5b1ba18e91acab9c": {
+      "sourceEnglish": "I'm about ready.",
+      "sourceJapanese": "ぼくは大体用意ができた。",
+      "references": [
+        {
+          "japanese": "ぼくは大体用意ができた。",
+          "furigana": "ぼくは{大体|だいたい}{用意|ようい}ができた。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -37134,6 +37944,18 @@
           "furigana": "わたしはコーヒーよりも{茶|ちゃ}をこのむ。",
           "spans": [
             {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 13,
               "end": 16,
               "surface": "このむ",
@@ -37771,6 +38593,18 @@
           "furigana": "ぼくは{知|し}らないし、{気|き}にもしない。",
           "spans": [
             {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 3,
               "end": 5,
               "surface": "知ら",
@@ -37881,6 +38715,18 @@
           "japanese": "生徒を罰することをなんとも思わなかった。",
           "furigana": "{生徒|せいと}を{罰|ばっ}することをなんとも{思|おも}わなかった。",
           "spans": [
+            {
+              "start": 9,
+              "end": 11,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 13,
               "end": 15,
@@ -38739,6 +39585,30 @@
               ],
               "dictionaryEntryId": "1605820",
               "lemma": "良い",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "744b91a25ab92f8fecb49080": {
+      "sourceEnglish": "But, I'm going steady.",
+      "sourceJapanese": "でも、わたしには恋人がいるの。",
+      "references": [
+        {
+          "japanese": "でも、わたしには恋人がいるの。",
+          "furigana": "でも、わたしには{恋人|こいびと}がいるの。",
+          "spans": [
+            {
+              "start": 3,
+              "end": 6,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -39899,6 +40769,18 @@
           "furigana": "だれがそれを{発見|はっけん}したのかと{思|おも}う。",
           "spans": [
             {
+              "start": 0,
+              "end": 2,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 13,
               "end": 15,
               "surface": "思う",
@@ -40429,6 +41311,30 @@
               ],
               "dictionaryEntryId": "1382980",
               "lemma": "積もり",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "791519dc0f2631c002d52b44": {
+      "sourceEnglish": "Leave my camera alone.",
+      "sourceJapanese": "ぼくのカメラに触らないでくれ。",
+      "references": [
+        {
+          "japanese": "ぼくのカメラに触らないでくれ。",
+          "furigana": "ぼくのカメラに{触|さわ}らないでくれ。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -41164,6 +42070,18 @@
           "furigana": "わたしは{貸家|かしや}をさがしている。",
           "spans": [
             {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 4,
               "end": 6,
               "surface": "貸家",
@@ -41616,6 +42534,30 @@
               ],
               "dictionaryEntryId": "1597780",
               "lemma": "捕まえる",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "7dd4c937b63d4bff009e2bfa": {
+      "sourceEnglish": "There was no objection on the part of the students.",
+      "sourceJapanese": "学生側にはなんの異論もなかった。",
+      "references": [
+        {
+          "japanese": "学生側にはなんの異論もなかった。",
+          "furigana": "{学生|がくせい}{側|がわ}にはなんの{異論|いろん}もなかった。",
+          "spans": [
+            {
+              "start": 5,
+              "end": 7,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -43153,6 +44095,30 @@
         }
       ]
     },
+    "82307ad06efd28caf95dfe3f": {
+      "sourceEnglish": "Who can put a bell on the cat?",
+      "sourceJapanese": "だれがその猫に鈴をつけられるか。",
+      "references": [
+        {
+          "japanese": "だれがその猫に鈴をつけられるか。",
+          "furigana": "だれがその{猫|ねこ}に{鈴|すず}をつけられるか。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "8237f9430cc8e3c8f442b73b": {
       "sourceEnglish": "He expressed it in the form of fiction.",
       "sourceJapanese": "彼はそれを小説の形式で表した。",
@@ -43728,6 +44694,30 @@
               ],
               "dictionaryEntryId": "1198180",
               "lemma": "会う",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "844fe2fbacc90704146048f1": {
+      "sourceEnglish": "He watered the soil.",
+      "sourceJapanese": "かれは土に水をやった。",
+      "references": [
+        {
+          "japanese": "かれは土に水をやった。",
+          "furigana": "かれは{土|つち}に{水|みず}をやった。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "かれ",
+              "reading": "かれ",
+              "spellings": [
+                "彼"
+              ],
+              "dictionaryEntryId": "1483070",
+              "lemma": "彼",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -44605,6 +45595,18 @@
           "japanese": "わたしの気を仕事からそらさないでください。",
           "furigana": "わたしの{気|き}を{仕事|しごと}からそらさないでください。",
           "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 16,
               "end": 20,
@@ -45761,6 +46763,30 @@
         }
       ]
     },
+    "89e884737f8b81246d5a813e": {
+      "sourceEnglish": "Who is your dance partner?",
+      "sourceJapanese": "あなたのダンスの相手はだれですか。",
+      "references": [
+        {
+          "japanese": "あなたのダンスの相手はだれですか。",
+          "furigana": "あなたのダンスの{相手|あいて}はだれですか。",
+          "spans": [
+            {
+              "start": 11,
+              "end": 13,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "89e8be765e70e91c4d4efb23": {
       "sourceEnglish": "All essays must be handed in on time.",
       "sourceJapanese": "すべてのレポートは期限を守って提出されなければならない。",
@@ -46386,6 +47412,18 @@
           "furigana": "ぼくにはまるでその{理由|りゆう}がわからない。",
           "spans": [
             {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 12,
               "end": 15,
               "surface": "わから",
@@ -46708,6 +47746,30 @@
         }
       ]
     },
+    "8dba27d22aeae3b3eb7404af": {
+      "sourceEnglish": "We took pride in our strength.",
+      "sourceJapanese": "われわれは体力を自慢した。",
+      "references": [
+        {
+          "japanese": "われわれは体力を自慢した。",
+          "furigana": "われわれは{体力|たいりょく}を{自慢|じまん}した。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "8dd265bc53907ca2eddaa456": {
       "sourceEnglish": "I found it easy to answer the question.",
       "sourceJapanese": "その問いに答えるのは容易だ。",
@@ -46740,6 +47802,18 @@
           "japanese": "人類のためになんでもするつもりだ。",
           "furigana": "{人類|じんるい}のためになんでもするつもりだ。",
           "spans": [
+            {
+              "start": 6,
+              "end": 8,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 12,
               "end": 15,
@@ -47324,6 +48398,18 @@
           "japanese": "急いだあまり私はだれか人に突き当たった。",
           "furigana": "{急|いそ}いだあまり{私|わたし}はだれか{人|ひと}に{突|つ}き{当|あ}たった。",
           "spans": [
+            {
+              "start": 8,
+              "end": 10,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 13,
               "end": 15,
@@ -48431,6 +49517,18 @@
           "furigana": "この{服|ふく}はわたしにはもったいない。",
           "spans": [
             {
+              "start": 4,
+              "end": 7,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 9,
               "end": 13,
               "surface": "もったい",
@@ -48616,6 +49714,30 @@
               ],
               "dictionaryEntryId": "1605820",
               "lemma": "良い",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "93c2ff04dcf06ad924d24cbd": {
+      "sourceEnglish": "Who is the woman dressed in pink?",
+      "sourceJapanese": "あのピンクの服を着た女性はだれですか。",
+      "references": [
+        {
+          "japanese": "あのピンクの服を着た女性はだれですか。",
+          "furigana": "あのピンクの{服|ふく}を{着|き}た{女性|じょせい}はだれですか。",
+          "spans": [
+            {
+              "start": 13,
+              "end": 15,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -48906,6 +50028,30 @@
         }
       ]
     },
+    "952307623b6cea81161e8ad1": {
+      "sourceEnglish": "He has given us indecent wages.",
+      "sourceJapanese": "彼はわたしらに少ない賃金しかくれなかった。",
+      "references": [
+        {
+          "japanese": "彼はわたしらに少ない賃金しかくれなかった。",
+          "furigana": "{彼|かれ}はわたしらに{少|すく}ない{賃金|ちんぎん}しかくれなかった。",
+          "spans": [
+            {
+              "start": 2,
+              "end": 5,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "9544caf0088a7be01f03a56a": {
       "sourceEnglish": "The match ended in victory for him.",
       "sourceJapanese": "試合は彼の勝ちに終わった。",
@@ -49116,6 +50262,30 @@
               ],
               "dictionaryEntryId": "1604570",
               "lemma": "見付ける",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "967900345b8fbd48a30a04c8": {
+      "sourceEnglish": "They bound his legs together.",
+      "sourceJapanese": "かれらは彼の両足を縛りあわせた。",
+      "references": [
+        {
+          "japanese": "かれらは彼の両足を縛りあわせた。",
+          "furigana": "かれらは{彼|かれ}の{両足|りょうあし}を{縛|しば}りあわせた。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "かれ",
+              "reading": "かれ",
+              "spellings": [
+                "彼"
+              ],
+              "dictionaryEntryId": "1483070",
+              "lemma": "彼",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -51240,6 +52410,30 @@
         }
       ]
     },
+    "9bf5cc81b1c413d8eb3ffb80": {
+      "sourceEnglish": "None of the girls are students.",
+      "sourceJapanese": "その娘たちのだれも学生ではない。",
+      "references": [
+        {
+          "japanese": "その娘たちのだれも学生ではない。",
+          "furigana": "その{娘|むすめ}たちのだれも{学生|がくせい}ではない。",
+          "spans": [
+            {
+              "start": 6,
+              "end": 8,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "9c013cbe4358e09cd54efc90": {
       "sourceEnglish": "We would often have a chat in this coffee shop.",
       "sourceJapanese": "この喫茶店でよくおしゃべりしたわね。",
@@ -51272,6 +52466,18 @@
           "japanese": "わたしはベスと大の仲良しです。",
           "furigana": "わたしはベスと{大|だい}の{仲良|なかよ}しです。",
           "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 9,
               "end": 12,
@@ -54611,6 +55817,18 @@
           "furigana": "なんだかめまいと{吐|は}き{気|け}がします。",
           "spans": [
             {
+              "start": 0,
+              "end": 2,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 4,
               "end": 7,
               "surface": "めまい",
@@ -55721,6 +56939,30 @@
         }
       ]
     },
+    "aa625167e04004bbbe08f842": {
+      "sourceEnglish": "What are you lining up for?",
+      "sourceJapanese": "あんた、なぜに並んでいるのだい。",
+      "references": [
+        {
+          "japanese": "あんた、なぜに並んでいるのだい。",
+          "furigana": "あんた、なぜに{並|なら}んでいるのだい。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "あんた",
+              "reading": "あんた",
+              "spellings": [
+                "貴方"
+              ],
+              "dictionaryEntryId": "1979920",
+              "lemma": "貴方",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "aa68df5adc99065d9b31432f": {
       "sourceEnglish": "You might as well chew your food well.",
       "sourceJapanese": "食べ物はよくかむほうがよい。",
@@ -55741,6 +56983,30 @@
               ],
               "dictionaryEntryId": "1605820",
               "lemma": "良い",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "aa697d07be4c64610ec1c1f9": {
+      "sourceEnglish": "How unlucky he is.",
+      "sourceJapanese": "彼はなんて不運なのだろう。",
+      "references": [
+        {
+          "japanese": "彼はなんて不運なのだろう。",
+          "furigana": "{彼|かれ}はなんて{不運|ふうん}なのだろう。",
+          "spans": [
+            {
+              "start": 2,
+              "end": 4,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -56590,6 +57856,30 @@
               ],
               "dictionaryEntryId": "1215260",
               "lemma": "間に合う",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "ad6984f4e9a53d79ff81d8a4": {
+      "sourceEnglish": "We must not laugh at the poor.",
+      "sourceJapanese": "われわれは貧しい人あざ笑ってはいけない。",
+      "references": [
+        {
+          "japanese": "われわれは貧しい人あざ笑ってはいけない。",
+          "furigana": "われわれは{貧|まず}しい{人|ひと}あざ{笑|わら}ってはいけない。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -57647,6 +58937,30 @@
         }
       ]
     },
+    "b0eca884f8bdad5eb2051334": {
+      "sourceEnglish": "What a stupid boy he is!",
+      "sourceJapanese": "なんてばかな子なんだ、あいつは！",
+      "references": [
+        {
+          "japanese": "なんてばかな子なんだ、あいつは！",
+          "furigana": "なんてばかな{子|こ}なんだ、あいつは！",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "b1179b01efd5bb2178a7062f": {
       "sourceEnglish": "She is gaining in weight.",
       "sourceJapanese": "彼女は目方がふえつつある。",
@@ -57897,6 +59211,18 @@
           "japanese": "ワシは獲物めがけて急降下した。",
           "furigana": "ワシは{獲物|えもの}めがけて{急降下|きゅうこうか}した。",
           "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "ワシ",
+              "reading": "わし",
+              "spellings": [
+                "儂"
+              ],
+              "dictionaryEntryId": "2015370",
+              "lemma": "わし",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 5,
               "end": 8,
@@ -59198,6 +60524,18 @@
           "furigana": "なにかおいしい{飲|の}み{物|もの}をください。",
           "spans": [
             {
+              "start": 0,
+              "end": 2,
+              "surface": "なに",
+              "reading": "なに",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "1577100",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 7,
               "end": 10,
               "surface": "飲み物",
@@ -59414,6 +60752,30 @@
               ],
               "dictionaryEntryId": "2534980",
               "lemma": "出る",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "b89d3e2efd5251825cceeca1": {
+      "sourceEnglish": "I am quite unhappy about it.",
+      "sourceJapanese": "わたしはそのことで全くみじめです。",
+      "references": [
+        {
+          "japanese": "わたしはそのことで全くみじめです。",
+          "furigana": "わたしはそのことで{全|まった}くみじめです。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -59926,6 +61288,30 @@
               ],
               "dictionaryEntryId": "1219510",
               "lemma": "嬉しい",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "b9fd9a0e228bbebf8571b5db": {
+      "sourceEnglish": "No sooner had we entered the hall than the ceremony began.",
+      "sourceJapanese": "ぼくたちが講堂に入るとすぐ式が始まった。",
+      "references": [
+        {
+          "japanese": "ぼくたちが講堂に入るとすぐ式が始まった。",
+          "furigana": "ぼくたちが{講堂|こうどう}に{入|はい}るとすぐ{式|しき}が{始|はじ}まった。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -60598,6 +61984,30 @@
         }
       ]
     },
+    "bc7fad8aa9b0588333d82198": {
+      "sourceEnglish": "How beautiful a sunrise is!",
+      "sourceJapanese": "なんと美しい日の出でしょう。",
+      "references": [
+        {
+          "japanese": "なんと美しい日の出でしょう。",
+          "furigana": "なんと{美|うつく}しい{日|ひ}の{出|で}でしょう。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "bc8eed9c7a50d70eafffec51": {
       "sourceEnglish": "Where is the sanitary section?",
       "sourceJapanese": "衛生用品売り場はどこですか。",
@@ -61035,6 +62445,30 @@
               ],
               "dictionaryEntryId": "1519990",
               "lemma": "膨らむ",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "bd8dafa8648ed90455469d62": {
+      "sourceEnglish": "You're respected by everybody.",
+      "sourceJapanese": "あなたはだれからも尊敬されている。",
+      "references": [
+        {
+          "japanese": "あなたはだれからも尊敬されている。",
+          "furigana": "あなたはだれからも{尊敬|そんけい}されている。",
+          "spans": [
+            {
+              "start": 4,
+              "end": 6,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -62870,6 +64304,18 @@
           "furigana": "ワシが{空|そら}を{飛|と}んでいる。",
           "spans": [
             {
+              "start": 0,
+              "end": 2,
+              "surface": "ワシ",
+              "reading": "わし",
+              "spellings": [
+                "儂"
+              ],
+              "dictionaryEntryId": "2015370",
+              "lemma": "わし",
+              "method": "unambiguous-dictionary"
+            },
+            {
               "start": 5,
               "end": 7,
               "surface": "飛ん",
@@ -63111,6 +64557,30 @@
               ],
               "dictionaryEntryId": "1327560",
               "lemma": "手元",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "c3d6e6b16612f7190fde8f67": {
+      "sourceEnglish": "Do you play a musical instrument?",
+      "sourceJapanese": "楽器をなにか演奏しますか。",
+      "references": [
+        {
+          "japanese": "楽器をなにか演奏しますか。",
+          "furigana": "{楽器|がっき}をなにか{演奏|えんそう}しますか。",
+          "spans": [
+            {
+              "start": 3,
+              "end": 5,
+              "surface": "なに",
+              "reading": "なに",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "1577100",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -63879,6 +65349,18 @@
           "japanese": "彼女はなんでもかんでも引き出しにほうりこんだ。",
           "furigana": "{彼女|かのじょ}はなんでもかんでも{引|ひ}き{出|だ}しにほうりこんだ。",
           "spans": [
+            {
+              "start": 3,
+              "end": 5,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            },
             {
               "start": 16,
               "end": 19,
@@ -65178,6 +66660,30 @@
               ],
               "dictionaryEntryId": "1383310",
               "lemma": "赤ん坊",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "cc12aa62ec37411255392eab": {
+      "sourceEnglish": "My bicycle has a flat tire.",
+      "sourceJapanese": "ぼくの自転車はパンクしている。",
+      "references": [
+        {
+          "japanese": "ぼくの自転車はパンクしている。",
+          "furigana": "ぼくの{自転車|じてんしゃ}はパンクしている。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "ぼく",
+              "reading": "ぼく",
+              "spellings": [
+                "僕"
+              ],
+              "dictionaryEntryId": "1521400",
+              "lemma": "僕",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -66740,6 +68246,30 @@
         }
       ]
     },
+    "cfa5dc1ac3b0ce6d553e221f": {
+      "sourceEnglish": "No, it's second hand.",
+      "sourceJapanese": "なに、中古だよ。",
+      "references": [
+        {
+          "japanese": "なに、中古だよ。",
+          "furigana": "なに、{中古|ちゅうこ}だよ。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "なに",
+              "reading": "なに",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "1577100",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "cfb767e7cddd2df539c7bfbd": {
       "sourceEnglish": "He'll clutch at any straw.",
       "sourceJapanese": "彼はどんな藁をもつかむだろう。",
@@ -66971,6 +68501,30 @@
               ],
               "dictionaryEntryId": "1363050",
               "lemma": "申し訳",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "d0972e646e3cd1c02b985823": {
+      "sourceEnglish": "What are you serving today?",
+      "sourceJapanese": "本日のランチの内容はなんですか。",
+      "references": [
+        {
+          "japanese": "本日のランチの内容はなんですか。",
+          "furigana": "{本日|ほんじつ}のランチの{内容|ないよう}はなんですか。",
+          "spans": [
+            {
+              "start": 10,
+              "end": 12,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -68682,6 +70236,30 @@
         }
       ]
     },
+    "d65dffdd86d25fd22e705e03": {
+      "sourceEnglish": "I envy your lifestyle - living day-to-day like that.",
+      "sourceJapanese": "なんかその日暮らしって感じで、羨ましい。",
+      "references": [
+        {
+          "japanese": "なんかその日暮らしって感じで、羨ましい。",
+          "furigana": "なんかその{日暮|ひぐ}らしって{感|かん}じで、{羨|うらや}ましい。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "d66d49e0880967651fa5dd86": {
       "sourceEnglish": "I agree with the opinion that real estate is overpriced.",
       "sourceJapanese": "不動産が高すぎるという意見に賛成だ。",
@@ -69000,6 +70578,30 @@
               ],
               "dictionaryEntryId": "1589350",
               "lemma": "思う",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "d7b854576f255ff72d39f882": {
+      "sourceEnglish": "Hold them there! Don't let them into the city!",
+      "sourceJapanese": "なんとかそこで支えよ。入市を許すな。",
+      "references": [
+        {
+          "japanese": "なんとかそこで支えよ。入市を許すな。",
+          "furigana": "なんとかそこで{支|ささ}えよ。{入市|にゅうし}を{許|ゆる}すな。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -69498,6 +71100,48 @@
               ],
               "dictionaryEntryId": "1589350",
               "lemma": "思う",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "d9d098da2e23ece5f9279d36": {
+      "sourceEnglish": "How brave of you to go alone into the primaeval forest!",
+      "sourceJapanese": "一人で原始林へ乗り込もうとは君はなんて勇ましいんだ。",
+      "references": [
+        {
+          "japanese": "一人で原始林へ乗り込もうとは君はなんて勇ましいんだ。",
+          "furigana": "{一人|ひとり}で{原始林|げんしりん}へ{乗|の}り{込|こ}もうとは{君|きみ}はなんて{勇|いさ}ましいんだ。",
+          "spans": [
+            {
+              "start": 16,
+              "end": 18,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        },
+        {
+          "japanese": "1人で原始林へ乗り込もうとは君はなんて勇ましいんだ。",
+          "furigana": "{1人|ひとり}で{原始林|げんしりん}へ{乗|の}り{込|こ}もうとは{君|きみ}はなんて{勇|いさ}ましいんだ。",
+          "spans": [
+            {
+              "start": 16,
+              "end": 18,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -74225,6 +75869,30 @@
         }
       ]
     },
+    "e8e20e709f6c0566d3c3fe62": {
+      "sourceEnglish": "I will do anything but that.",
+      "sourceJapanese": "その他のことならなんでもします。",
+      "references": [
+        {
+          "japanese": "その他のことならなんでもします。",
+          "furigana": "その{他|ほか}のことならなんでもします。",
+          "spans": [
+            {
+              "start": 8,
+              "end": 10,
+              "surface": "なん",
+              "reading": "なん",
+              "spellings": [
+                "何"
+              ],
+              "dictionaryEntryId": "2846738",
+              "lemma": "何",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "e8ed64e7816de33816d05298": {
       "sourceEnglish": "He even referred to the origin of life.",
       "sourceJapanese": "彼は生命の起源にまで説き及んだ。",
@@ -74545,6 +76213,18 @@
               ],
               "dictionaryEntryId": "1416690",
               "lemma": "辿る",
+              "method": "unambiguous-dictionary"
+            },
+            {
+              "start": 26,
+              "end": 29,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
               "method": "unambiguous-dictionary"
             },
             {
@@ -75402,6 +77082,32 @@
           "japanese": "わたしを川のむこうに渡してください。",
           "furigana": "わたしを{川|かわ}のむこうに{渡|わた}してください。",
           "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "surface": "わたし",
+              "reading": "わたし",
+              "spellings": [
+                "私"
+              ],
+              "dictionaryEntryId": "1311110",
+              "lemma": "私",
+              "method": "unambiguous-dictionary"
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "surface": "むこう",
+              "reading": "むこう",
+              "spellings": [
+                "向こう"
+              ],
+              "dictionaryEntryId": "1277140",
+              "lemma": "向こう",
+              "method": "reviewed-context",
+              "reviewer": "Codex",
+              "note": "川のむこう refers to the other side of the river, matching 向こう (JMdict 1277140). Homophones such as 無効 do not express this spatial destination."
+            },
             {
               "start": 13,
               "end": 17,
@@ -76272,6 +77978,30 @@
         }
       ]
     },
+    "efc493c09ee3971f7ba6690d": {
+      "sourceEnglish": "We narrowly missed the accident.",
+      "sourceJapanese": "われわれはかろうじて事故を免れた。",
+      "references": [
+        {
+          "japanese": "われわれはかろうじて事故を免れた。",
+          "furigana": "われわれはかろうじて{事故|じこ}を{免|まぬが}れた。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
     "efcd069a1d899f08ee883ea2": {
       "sourceEnglish": "My mother does her usual shopping on her way home from work.",
       "sourceJapanese": "母は勤めの帰りに買い物をします。",
@@ -76803,6 +78533,30 @@
               ],
               "dictionaryEntryId": "1589350",
               "lemma": "思う",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "f1a9ccb3481fb7fac8d0e6df": {
+      "sourceEnglish": "Somebody came to see me while I was out.",
+      "sourceJapanese": "出かけている間にだれか訪ねてきた。",
+      "references": [
+        {
+          "japanese": "出かけている間にだれか訪ねてきた。",
+          "furigana": "{出|で}かけている{間|あいだ}にだれか{訪|たず}ねてきた。",
+          "spans": [
+            {
+              "start": 8,
+              "end": 10,
+              "surface": "だれ",
+              "reading": "だれ",
+              "spellings": [
+                "誰"
+              ],
+              "dictionaryEntryId": "1416830",
+              "lemma": "誰",
               "method": "unambiguous-dictionary"
             }
           ]
@@ -81706,6 +83460,30 @@
               ],
               "dictionaryEntryId": "1184280",
               "lemma": "下さる",
+              "method": "unambiguous-dictionary"
+            }
+          ]
+        }
+      ]
+    },
+    "ffea74748829470e85518356": {
+      "sourceEnglish": "We respected him all the more.",
+      "sourceJapanese": "われわれは彼をますます尊敬した。",
+      "references": [
+        {
+          "japanese": "われわれは彼をますます尊敬した。",
+          "furigana": "われわれは{彼|かれ}をますます{尊敬|そんけい}した。",
+          "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "surface": "われわれ",
+              "reading": "われわれ",
+              "spellings": [
+                "我々"
+              ],
+              "dictionaryEntryId": "1607050",
+              "lemma": "我々",
               "method": "unambiguous-dictionary"
             }
           ]

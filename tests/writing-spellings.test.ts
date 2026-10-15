@@ -8,6 +8,7 @@ import {
 import { writingDifferences } from "../shared/writing-diff";
 import {
   verifiedSpellings,
+  spellingOptions,
   type SpellingBank,
 } from "../shared/writing-spellings";
 import { exerciseById, exercises } from "../server/utils/exercises";
@@ -17,6 +18,58 @@ import { createApp, toWebHandler } from "h3";
 import compareHandler from "../server/api/compare.post";
 
 const removal = exerciseById.get("6f089ad7d7e1f1da1398e9c9")!;
+
+test("displayed spelling options show approved words separately from alternative translations", () => {
+  const river = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
+  expect(spellingOptions(river)).toEqual([
+    { japanese: "わたし", kana: "わたし", spellings: ["私"] },
+    { japanese: "むこう", kana: "むこう", spellings: ["向こう"] },
+    { japanese: "ください", kana: "ください", spellings: ["下さい"] },
+  ]);
+  expect(river.acceptedAlternatives ?? []).toHaveLength(0);
+  expect(spellingOptions({ ...river, japanese: "別の文。" })).toEqual([]);
+});
+
+test("reviewed mukou spelling accepts the spatial word and rejects homophones", () => {
+  const river = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
+  const kanji = "わたしを川の向こうに渡してください。";
+  for (const alternatives of [false, true]) {
+    expect(
+      compare(river, kanji, Strictness.Flexible, alternatives).matched,
+    ).toBe(true);
+    expect(compare(river, kanji, Strictness.Exact, alternatives).matched).toBe(
+      false,
+    );
+  }
+  expect(compare(river, kanji, Strictness.Kana).matched).toBe(false);
+  expect(
+    compare(river, "わたしを川の無効に渡してください。", Strictness.Flexible)
+      .matched,
+  ).toBe(false);
+  expect(river.acceptedAlternatives ?? []).toHaveLength(0);
+});
+
+test("pronoun spellings combine with other verified words while preserving pronunciation", () => {
+  const river = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
+  for (const answer of [
+    "私を川のむこうに渡してください。",
+    "わたしを川のむこうに渡して下さい。",
+    "私を川の向こうに渡して下さい。",
+  ]) {
+    const result = compare(river, answer, Strictness.Flexible, false);
+    expect(result.matched).toBe(true);
+    expect(result.differences).toBeNull();
+    expect(compare(river, answer, Strictness.Exact).matched).toBe(false);
+  }
+  expect(
+    compare(river, "渡しを川の向こうに渡して下さい。", Strictness.Flexible)
+      .matched,
+  ).toBe(false);
+  const span = river.spellingVariants
+    ?.flatMap((reference) => reference.spans)
+    .find((part) => part.surface === "わたし");
+  expect(span).toMatchObject({ reading: "わたし", spellings: ["私"] });
+});
 
 test("the comparison API accepts recorded spellings with alternatives off and rejects wrong homophones", async () => {
   const app = createApp();

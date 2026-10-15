@@ -1,3 +1,18 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "sentenceId": "ed2c1d01698a754816d6a9ed",
+      "sourceEnglish": "Please take me across the river.",
+      "sourceJapanese": "わたしを川のむこうに渡してください。",
+      "furigana": "わたしを{川|かわ}のむこうに{渡|わた}してください。",
+      "start": 6,
+      "end": 9,
+      "surface": "むこう",
+      "reading": "むこう",
+      "dictionaryEntryId": "1277140",
+      "spellings": ["向こう"],
+      "reviewer": "Codex",
+      "note": "川のむこう refers to the other side of the river, matching 向こう (JMdict 1277140). Homophones such as 無効 do not express this spatial destination."
+    }
+  ]
 }

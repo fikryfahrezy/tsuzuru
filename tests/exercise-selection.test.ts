@@ -3,6 +3,7 @@ import { createApp, toWebHandler } from "h3";
 import exerciseHandler from "../server/api/exercises.get";
 import compareHandler from "../server/api/compare.post";
 import { HintSource, Strictness } from "../shared/practice";
+import { spellingOptions } from "../shared/writing-spellings";
 import { romajiHint } from "../shared/romaji";
 import { wordHints } from "../server/utils/word-hints";
 import { exerciseById } from "../server/utils/exercises";
@@ -46,6 +47,7 @@ test("sentence selection loads a dataset entry regardless of filters or previous
       wordHints: wordHints(selected),
       wordCount: selected.englishWordCount,
       poolSize: 1,
+      spellingOptions: spellingOptions(selected),
     });
   }
   const response = await handle(
@@ -86,6 +88,7 @@ test("invalid IDs fail explicitly and requests without IDs still select from the
   const question = await random.json();
   const candidate = exerciseById.get(question.id)!;
   expect(candidate).toBeDefined();
+  expect(question.spellingOptions).toEqual(spellingOptions(candidate));
   expect(question.answerBreakdown).toEqual(
     answerBreakdown(candidate, answerChips(candidate), question.wordHints),
   );
