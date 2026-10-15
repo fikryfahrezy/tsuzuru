@@ -157,9 +157,18 @@
     },
     "001e32e4d1b107427fe4c37c": {
       "sourceJapanese": "カエルが鳴いたら帰ろう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        },
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "002281ae423680a3f4e5aea5": {
       "sourceJapanese": "サーカスを見にみんなくりだした。",
@@ -790,9 +799,14 @@
     },
     "016b5539c1c23fe08eae726c": {
       "sourceJapanese": "お金がないので、プチッと旅行。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "node",
+          "level": "N4"
+        }
+      ]
     },
     "016c525e8583656c908c2321": {
       "sourceJapanese": "委員は全員出席している。",
@@ -1446,7 +1460,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        },
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "02547378c450720dabf50c23": {
       "sourceJapanese": "定義するのが難しい語もある。",
@@ -2035,7 +2058,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "0345686f398724d54effefed": {
       "sourceJapanese": "車が家の前に止まる音が聞こえた。",
@@ -2609,7 +2637,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "03da2896a3a5e07871bc2321": {
       "sourceJapanese": "来月タクシー料金があがります。",
@@ -3170,7 +3203,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "04b9c5e2238412cbfac69907": {
       "sourceJapanese": "その規則は絶対変更できない。",
@@ -3534,9 +3576,14 @@
     },
     "050c10ad9b1ed39e92e0db8a": {
       "sourceJapanese": "車はいつ返したらいいでしょうか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "05113dda29cf2f6bde17360a": {
       "sourceJapanese": "子供達は、足し算と引き算を習っている。",
@@ -3765,7 +3812,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "05756dbe0be43509c1d7d475": {
       "sourceJapanese": "その会合には出席されることが望ましい。",
@@ -4116,15 +4168,14 @@
     },
     "05e1f8793a93963be5aee2f9": {
       "sourceJapanese": "どこを見物すればいいでしょうか。",
-      "level": "N4",
-      "limitingWords": [
+      "level": "N3",
+      "limitingWords": [],
+      "limitingGrammar": [
         {
-          "surface": "見物",
-          "lemma": "見物",
-          "level": "N4"
+          "pattern": "ba-ii",
+          "level": "N3"
         }
-      ],
-      "limitingGrammar": []
+      ]
     },
     "05f36da44ee5f79f9531060f": {
       "sourceJapanese": "あなたはあの車をどう処理したのですか？",
@@ -4210,9 +4261,14 @@
     },
     "0619338b6b82ed2be95101a5": {
       "sourceJapanese": "ログアウトするんじゃなかったよ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "061a8900d6c176c7bd74d516": {
       "sourceJapanese": "住宅事情は全然望みがなさそうだった。",
@@ -4263,7 +4319,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "062482ec46b002ff117e3dd1": {
       "sourceJapanese": "お父さんがバスルームでひげを剃っている。",
@@ -4310,7 +4371,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "naide",
+          "level": "N4"
+        }
+      ]
     },
     "0633fcaf7dd5dc5e2c66191d": {
       "sourceJapanese": "車がトラックに激しくぶつかった。",
@@ -5574,9 +5640,14 @@
     },
     "0815a26e5e93f3ca6027deaa": {
       "sourceJapanese": "私はお風呂に入っているんだ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "0816f8e99b98ee49a962f34b": {
       "sourceJapanese": "妹はせっかちだからよく忘れ物をする。",
@@ -5624,7 +5695,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "rashii",
+          "level": "N4"
+        }
+      ]
     },
     "0831692a1db26aa99e68ba21": {
       "sourceJapanese": "私たちの学校は町の中心にある。",
@@ -6188,9 +6264,14 @@
     },
     "09161631ef5aa462da0bf9a0": {
       "sourceJapanese": "今晩はパーティーがあるのかなあ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kana",
+          "level": "N4"
+        }
+      ]
     },
     "091b04ec539e60971b2f70b0": {
       "sourceJapanese": "彼への愛はもう冷めてしまった。",
@@ -6786,7 +6867,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "09e1c8f0a07b0cecd30294e3": {
       "sourceJapanese": "彼らは大統領の暗殺を企てた。",
@@ -8379,7 +8465,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "0c40830b71ebb6ad5dc40ea1": {
       "sourceJapanese": "これらの標本はいくつかの種類に分類される。",
@@ -9052,7 +9143,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "made-ni",
+          "level": "N4"
+        }
+      ]
     },
     "0d3bf108012d83e485c505a3": {
       "sourceJapanese": "いすをもっと火の近くに寄せなさい。",
@@ -9353,7 +9449,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        }
+      ]
     },
     "0dcbfe5e03dacfad608c9a78": {
       "sourceJapanese": "彼は自分の非を認めましたか。",
@@ -9929,7 +10030,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        },
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "0ec2d75843866f78346fb778": {
       "sourceJapanese": "この本はあの本ほどやさしくない。",
@@ -11076,7 +11186,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "104f65e88f7b42cdda1df505": {
       "sourceJapanese": "私は一人のおばあさんに会った。",
@@ -11744,9 +11859,14 @@
     },
     "1177620d90847b9e4dc3aff7": {
       "sourceJapanese": "あっちにエレベーターがあるみたいだよ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "mitai",
+          "level": "N4"
+        }
+      ]
     },
     "1183fd2c6e66c1772acdd805": {
       "sourceJapanese": "試合は6対6で引き分けに終わった。",
@@ -12272,7 +12392,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        },
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "1256e9c3c166140b56e89740": {
       "sourceJapanese": "ついにその本を出版した。",
@@ -13164,7 +13293,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "13bb1ee78189a562f87f52dc": {
       "sourceJapanese": "彼らはみんなで迷子を探した。",
@@ -13200,7 +13334,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "13ce286973dfaf0bdb31ee73": {
       "sourceJapanese": "彼はやがてその事実をしるだろう。",
@@ -13720,7 +13859,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "14b12dbe4dab8ad091f22fbc": {
       "sourceJapanese": "あそこでは多くのタイプの食品や雑貨を売っている。",
@@ -14034,7 +14178,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "150ed3c4c1cb40e6ce901875": {
       "sourceJapanese": "心の奥からわきあがる。",
@@ -15228,7 +15377,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "16a55c4017ddac248f85ac2f": {
       "sourceJapanese": "このページをノートに写しておきなさい。",
@@ -15245,7 +15399,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-oku",
+          "level": "N4"
+        }
+      ]
     },
     "16a5b68e66872b0cac753496": {
       "sourceJapanese": "どうもごりっぱな言いわけだよ。",
@@ -15836,7 +15995,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "177e1fa021d63ade15563cae": {
       "sourceJapanese": "彼は話の要点がわからなかったようだ。",
@@ -16862,6 +17026,10 @@
         {
           "pattern": "te-miru",
           "level": "N4"
+        },
+        {
+          "pattern": "tara",
+          "level": "N4"
         }
       ]
     },
@@ -17485,7 +17653,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "1a27cdbc1dc2bdadaf3f9865": {
       "sourceJapanese": "衣料品がだぶついている。",
@@ -19552,7 +19725,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "1ce7a7b867b7e76111bd6034": {
       "sourceJapanese": "どうしてビルはエンジニアになる決心をしたのか。",
@@ -20483,7 +20661,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "1e480cfb4ff126ed7afd39f7": {
       "sourceJapanese": "いすをもっと机に近づけなさい。",
@@ -20563,7 +20746,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "1e69e76ecb58c484c09ae461": {
       "sourceJapanese": "道路はここから北へ延びている。",
@@ -20631,6 +20819,10 @@
       "limitingGrammar": [
         {
           "pattern": "te-itadaku-kudasaru",
+          "level": "N4"
+        },
+        {
+          "pattern": "n-desu",
           "level": "N4"
         }
       ]
@@ -20738,9 +20930,14 @@
     },
     "1e95d16f1c77e3cf6957dd25": {
       "sourceJapanese": "月曜日までにここに来ています。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "made-ni",
+          "level": "N4"
+        }
+      ]
     },
     "1e9d19e16455d769de73fdee": {
       "sourceJapanese": "刑事はその場で彼の口頭証言を書き取った。",
@@ -20886,7 +21083,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "1eec0b12d949c3a668f1ff8c": {
       "sourceJapanese": "車がぬかるみにはまって動けなくなった。",
@@ -21585,7 +21787,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "1fee9cd0688a56ec195558e8": {
       "sourceJapanese": "折り返し商品を郵送するべし。",
@@ -22099,7 +22306,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "2094c9a0577462f6ad508977": {
       "sourceJapanese": "いったん封を切るとそのテープは返品できません。",
@@ -22406,9 +22618,14 @@
     },
     "213d656d739d9a1fe27a41ca": {
       "sourceJapanese": "留学生も入れるのかしら。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kana",
+          "level": "N4"
+        }
+      ]
     },
     "21494403a4710a84743501c7": {
       "sourceJapanese": "ついに父は妥協した。",
@@ -22466,7 +22683,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "215e054e5ff254646a281cea": {
       "sourceJapanese": "赤十字は病院に血液を供給した。",
@@ -22531,7 +22753,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "2177221666769182b34547e3": {
       "sourceJapanese": "今、女の人が１人入っていきましたよ。",
@@ -22973,7 +23200,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-oku",
+          "level": "N4"
+        }
+      ]
     },
     "223e4d22f3b3f344cdae7f02": {
       "sourceJapanese": "戦争は誤った政策から起こった。",
@@ -23345,7 +23577,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "22dfd6dd3a5381fe972cd4aa": {
       "sourceJapanese": "１日おきに買い物に行く。",
@@ -23658,7 +23899,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "233a7a1ab336576dc0ec325c": {
       "sourceJapanese": "ここで降りましょう。",
@@ -23705,7 +23951,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "23440943781b50f33b60dd69": {
       "sourceJapanese": "警官は青いユニフォームを着ている。",
@@ -24880,7 +25131,12 @@
           "level": "N3"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba-ii",
+          "level": "N3"
+        }
+      ]
     },
     "24fdf99a3186a1a553be77c0": {
       "sourceJapanese": "調査が詳細を明らかにするだろう。",
@@ -25810,6 +26066,10 @@
         {
           "pattern": "te-itadaku-kudasaru",
           "level": "N4"
+        },
+        {
+          "pattern": "ba",
+          "level": "N4"
         }
       ]
     },
@@ -26199,9 +26459,18 @@
     },
     "2743b38a1a6731990a9db2b8": {
       "sourceJapanese": "バターが要るんだけど、いくらかありますか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        }
+      ]
     },
     "2743f4549790adc3d51a252c": {
       "sourceJapanese": "彼女は自分の仕事にぜんぜん熱意を示さない。",
@@ -26766,9 +27035,14 @@
     },
     "2817e132a481f1697a24f051": {
       "sourceJapanese": "車のカギをなくしちゃった。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-shimau",
+          "level": "N4"
+        }
+      ]
     },
     "28214638cf66fdf956854bec": {
       "sourceJapanese": "トムはずぶ濡れになって、風邪をひいた。",
@@ -27030,7 +27304,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "hou-ga-ii",
+          "level": "N4"
+        }
+      ]
     },
     "2863be7f2e72206c8f2c9382": {
       "sourceJapanese": "私はＸ—ファイル４シーズンを見ました。",
@@ -27305,7 +27584,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "28c99b102d430832616c1bc7": {
       "sourceJapanese": "作業員は新しい家に配線工事をしている。",
@@ -27839,9 +28123,14 @@
     },
     "2987c5885ae87dab7245068f": {
       "sourceJapanese": "赤いものもあれば白いのもある。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "298ac6862aad26dac648866b": {
       "sourceJapanese": "PC内部のタイマー用ボタン電池が切れた。",
@@ -27988,7 +28277,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "node",
+          "level": "N4"
+        }
+      ]
     },
     "29bb47e78d9ef9001e9fcc40": {
       "sourceJapanese": "私はおよそ３週間ここにいる。",
@@ -28139,9 +28433,18 @@
     },
     "29f86e8436f337972a33f34f": {
       "sourceJapanese": "これらは何と古い本なのだろう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "29fa1b007d9aa1a91d9235d7": {
       "sourceJapanese": "新入生向けのオリエンテーションを行う。",
@@ -30102,7 +30405,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "2c64cfa82e1592ce1fdbdc83": {
       "sourceJapanese": "体積が大きいからといって常に重量も重いとは限らない。",
@@ -30334,7 +30642,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-oku",
+          "level": "N4"
+        },
+        {
+          "pattern": "made-ni",
+          "level": "N4"
+        }
+      ]
     },
     "2cc3b551df2917d67d405879": {
       "sourceJapanese": "その国の将来の見通しは明るい。",
@@ -30399,7 +30716,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "2cd6def5d995c742dba69600": {
       "sourceJapanese": "まもなく野球シーズンが始まる。",
@@ -30912,7 +31234,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "2d77c7264e1b0f8df19be02c": {
       "sourceJapanese": "酢はすっぱい味がする。",
@@ -31190,7 +31521,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "2dded5c5606a9e220ef19a2b": {
       "sourceJapanese": "オウムは人の声を真似ることができる。",
@@ -31774,9 +32110,14 @@
     },
     "2ea247858a348eec24610f49": {
       "sourceJapanese": "熱いコーヒーを入れてあげましょう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "2ea395be7b12204ad4f8fa0e": {
       "sourceJapanese": "お礼の申し上げようもありません。",
@@ -31793,7 +32134,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "2ea9e3b130d129b165aa80ba": {
       "sourceJapanese": "ウイスキーを１本持っています。",
@@ -32211,15 +32557,25 @@
     },
     "2f457c6a552e1051f16b4903": {
       "sourceJapanese": "何があなたをここに来させたのか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "2f4bdc90d855740cc6e3b7a4": {
       "sourceJapanese": "この本を読むのに３日かかった。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "2f4c2316138ce0de741049a3": {
       "sourceJapanese": "その問題が彼らによって討議されています。",
@@ -32274,6 +32630,10 @@
       "limitingGrammar": [
         {
           "pattern": "passive-potential",
+          "level": "N4"
+        },
+        {
+          "pattern": "node",
           "level": "N4"
         }
       ]
@@ -34449,7 +34809,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "32f31f25248582831fbd26ff": {
       "sourceJapanese": "その色はピンクというより紫だ。",
@@ -35490,7 +35855,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        }
+      ]
     },
     "34a1da537f509747a2b59be2": {
       "sourceJapanese": "テストでは辞書をひいてはいけません。",
@@ -36163,7 +36533,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "35933f6b68fb7451e5824912": {
       "sourceJapanese": "その品物を１ダースにつき３ドルで買う。",
@@ -37344,7 +37719,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "3749c6ee115b00bc4676590a": {
       "sourceJapanese": "彼はその動物をとらえるためにわなをしかけた。",
@@ -37709,7 +38089,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "node",
+          "level": "N4"
+        },
+        {
+          "pattern": "hou-ga-ii",
+          "level": "N4"
+        }
+      ]
     },
     "37eb2f010cea9de859114316": {
       "sourceJapanese": "でもよー、オラのおとうさんは良い気しねーよ、きっと。",
@@ -38429,9 +38818,14 @@
     },
     "39251ea8a331dc95cf569acb": {
       "sourceJapanese": "映画を見に行こうではないですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "392cee2492657acc456d3612": {
       "sourceJapanese": "母は台所でせっせと料理しながら歌を口ずさんでいた。",
@@ -39414,9 +39808,14 @@
     },
     "3abda0a8072313cbeff1a00f": {
       "sourceJapanese": "写真はあまり撮らなかったんだ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "3abf71b0884cce08b806fb11": {
       "sourceJapanese": "酸素と水素から水ができる。",
@@ -40305,7 +40704,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "3c1c03024cf66766c666a0f7": {
       "sourceJapanese": "いずれにしてもスケジュールは変更できない。",
@@ -40416,7 +40820,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "hou-ga-ii",
+          "level": "N4"
+        }
+      ]
     },
     "3c40bf149b47aef3d29d7c61": {
       "sourceJapanese": "アイルランドは刺繍で有名である。",
@@ -40464,7 +40873,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "3c64e93921742967b5129e2c": {
       "sourceJapanese": "本能に従うと道を誤ることが多い。",
@@ -40768,7 +41182,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "3cd829393450f5724f473fc6": {
       "sourceJapanese": "これは掛けるのにたいそう頑丈ないすだ。",
@@ -41381,7 +41800,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        },
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "3dbe256c89fca6d3a568decd": {
       "sourceJapanese": "たとえ雨が降っても、その試合は行われるだろう。",
@@ -41964,7 +42392,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "3e86cd8be8f3e938a911ff39": {
       "sourceJapanese": "顕微鏡の焦点を合わせなさい。",
@@ -42384,9 +42817,14 @@
     },
     "3f196a5b9147b1a42032eb17": {
       "sourceJapanese": "次はいつ来ればいいのでしょうか。",
-      "level": "N5",
+      "level": "N3",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba-ii",
+          "level": "N3"
+        }
+      ]
     },
     "3f19aa8080bd005f5a8662d2": {
       "sourceJapanese": "諸設備の費用は払っていただきます。",
@@ -42437,7 +42875,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "3f1e80e13d9b1c56fd975eeb": {
       "sourceJapanese": "その市はやがて兵隊によって占領された。",
@@ -42998,9 +43441,14 @@
     },
     "40061f61d2de6c45ac712ec5": {
       "sourceJapanese": "なんてキレイな写真なんでしょう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "4009b140cd553dff8d6aad19": {
       "sourceJapanese": "ランドリーには洗剤がありますか。",
@@ -43082,7 +43530,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "4021fb2ad8249027e2dce8dc": {
       "sourceJapanese": "左に曲がるとガソリンスタンドがある。",
@@ -43134,9 +43587,18 @@
     },
     "40317a8f5ae934f94196a67f": {
       "sourceJapanese": "この花はなんてきれいなんだろう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "40351d242a8072ce09f3bad6": {
       "sourceJapanese": "コーヒーは薄いのが好きです。",
@@ -44651,9 +45113,14 @@
     },
     "4244ea36559b8a08f1a7c947": {
       "sourceJapanese": "この夏休みはどこかへ行くのですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "42459ef3b431cc9224c9d3cd": {
       "sourceJapanese": "人の出会いなんて、なんだかんだで、最初のインパクトで５０％以上は決まってしまっている。",
@@ -45440,7 +45907,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "4376fef15ab652917670b84f": {
       "sourceJapanese": "彼は壁にもたれていた。",
@@ -46444,7 +46920,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "44f25a993942e164ececd625": {
       "sourceJapanese": "よくくしゃみが出ます。",
@@ -46485,7 +46966,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "4503b630a42e774e5bdcb485": {
       "sourceJapanese": "内訳はどのようにしましょう？",
@@ -47243,7 +47729,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "463df8dfdefb83821b72d71b": {
       "sourceJapanese": "国連はその国際問題を扱うだろう。",
@@ -47380,9 +47871,14 @@
     },
     "467863204d38c365e3775bf3": {
       "sourceJapanese": "今すぐにも雨がふるかもしれない。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "467beb99baf1cd79c5a5b203": {
       "sourceJapanese": "奥さんのがみがみ小言にフレッドさんは大弱りの体であった。",
@@ -47786,7 +48282,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "4752352c422c178bfbf95d92": {
       "sourceJapanese": "この本の著者は誰ですか。",
@@ -48422,7 +48923,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "48182f06fcefdd920a103085": {
       "sourceJapanese": "私はその品物を半額で購入した。",
@@ -49560,6 +50066,10 @@
         {
           "pattern": "te-itadaku-kudasaru",
           "level": "N4"
+        },
+        {
+          "pattern": "causative",
+          "level": "N4"
         }
       ]
     },
@@ -49873,7 +50383,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "4a72b20b1f48964914435184": {
       "sourceJapanese": "彼らはレストランの奥の方に座った。",
@@ -50146,9 +50661,14 @@
     },
     "4b015ec09f26fe85d2faff33": {
       "sourceJapanese": "なんておいしい料理なんでしょう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "4b04625989bb01752e0bdc95": {
       "sourceJapanese": "彼は駅に早く着くように努めた。",
@@ -50664,7 +51184,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "4be4777ec1d6b99f40eb5e74": {
       "sourceJapanese": "彼の辞職で官僚の席に空きができた。",
@@ -50853,7 +51378,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "4c22d419ec3a533b1d1d7e7a": {
       "sourceJapanese": "彼女のねらいは教師になることである。",
@@ -53153,7 +53683,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "node",
+          "level": "N4"
+        }
+      ]
     },
     "4faa254f46fe344a399d323a": {
       "sourceJapanese": "生年月日は１９６０年２月１４日です。",
@@ -53734,7 +54269,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "50772913972dfee2d870e969": {
       "sourceJapanese": "彼は手を伸ばして小さな皮表紙の本をとった。",
@@ -54296,6 +54836,14 @@
         {
           "pattern": "passive-potential",
           "level": "N4"
+        },
+        {
+          "pattern": "noni",
+          "level": "N4"
+        },
+        {
+          "pattern": "tara",
+          "level": "N4"
         }
       ]
     },
@@ -54776,7 +55324,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kana",
+          "level": "N4"
+        }
+      ]
     },
     "51cacb1aa70d09c3b80dd95e": {
       "sourceJapanese": "新鮮な野菜は健康を増進する。",
@@ -55592,7 +56145,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "hou-ga-ii",
+          "level": "N4"
+        }
+      ]
     },
     "52f753cefa46ce053c4e1a79": {
       "sourceJapanese": "道が悪くてバスがガタガタ揺れた。",
@@ -56757,7 +57315,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-oku",
+          "level": "N4"
+        },
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "548fd8cda85758d5c951b766": {
       "sourceJapanese": "彼はご飯を丼で食べたよ。",
@@ -57493,7 +58060,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "558d827609ae21b02f6a3df6": {
       "sourceJapanese": "天皇は国家の象徴である。",
@@ -58104,9 +58676,14 @@
     },
     "567d953517d6f19fcf4d309a": {
       "sourceJapanese": "角のテーブルがいいのですが。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "569579d8c45c67d1786fa025": {
       "sourceJapanese": "私は課長に任命された。",
@@ -58234,7 +58811,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "56c4f525c7fbd05df673f221": {
       "sourceJapanese": "彼の力強い演説は聴衆をぐいぐいひっぱっていった。",
@@ -58321,7 +58903,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "56f370a2b487503ed7f0eb97": {
       "sourceJapanese": "切れた血管から血がどくどくと流れ出た。",
@@ -59765,7 +60352,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "590c1eb8bb99464dab2763c9": {
       "sourceJapanese": "君にそんなことをする権利はない。",
@@ -59816,6 +60408,14 @@
       "limitingGrammar": [
         {
           "pattern": "te-miru",
+          "level": "N4"
+        },
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "tara",
           "level": "N4"
         }
       ]
@@ -60149,7 +60749,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "5972f8a84dde04ef7d4ecbe6": {
       "sourceJapanese": "なぜコーヒーは濃いのがいいのか。",
@@ -61114,7 +61719,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "5b7a047ea9e2155c64046acf": {
       "sourceJapanese": "彼女は今のところおとなしくしている。",
@@ -61130,9 +61740,14 @@
     },
     "5b83d394bab2463045e88df5": {
       "sourceJapanese": "なぜあなたは毎日勉強するのですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "5b87a733efe7b7cb44b246ec": {
       "sourceJapanese": "彼女は小娘のように振る舞った。",
@@ -61662,9 +62277,14 @@
     },
     "5c273c81f51720feb567fe5b": {
       "sourceJapanese": "あちらに着いたら手紙をください。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "5c31188d93d51fd0bd00716a": {
       "sourceJapanese": "同時通訳が彼女の憧れだ。",
@@ -62683,9 +63303,14 @@
     },
     "5dc96a5a9511de6b14347023": {
       "sourceJapanese": "どういっても七時までにいかないと。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "made-ni",
+          "level": "N4"
+        }
+      ]
     },
     "5dd2ebdea5a527e11acd96da": {
       "sourceJapanese": "彼は正直の模範だ。",
@@ -63622,9 +64247,14 @@
     },
     "5f4b24599794acca501f3d49": {
       "sourceJapanese": "だから家の中にいたほうがいいよ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "hou-ga-ii",
+          "level": "N4"
+        }
+      ]
     },
     "5f4d686e5fd43f55cbb1bac9": {
       "sourceJapanese": "私は何気なくその雑誌を見た。",
@@ -63648,7 +64278,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "5f50d1449e80eb808dec85ea": {
       "sourceJapanese": "彼の話は単純そのものだった。",
@@ -63982,9 +64617,14 @@
     },
     "5fca4d3f99e5ad87cadcad0e": {
       "sourceJapanese": "話があったら電話をかけて下さい。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "5fcb7465a90217e618ce3abf": {
       "sourceJapanese": "彼らは、トムの新しい理論をけなしている。",
@@ -64390,7 +65030,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "608ea61e0f521209df399c16": {
       "sourceJapanese": "彼は畳の上に大の字になった。",
@@ -64774,9 +65419,14 @@
     },
     "6104a6417034a998c9b75fa2": {
       "sourceJapanese": "少なくとも地図ぐらいはあるだろう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "610a676fe0a920ce9639db5a": {
       "sourceJapanese": "セーターは洗ったら縮んだんだ。",
@@ -64810,9 +65460,14 @@
     },
     "610af81cb753c9b7e77616c6": {
       "sourceJapanese": "どうやってそのお金を手に入れたんですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "610fe1d300d294cb4ef63f26": {
       "sourceJapanese": "彼は私に起立するように命令した。",
@@ -65063,7 +65718,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "614d98f77c801f801fce3cf2": {
       "sourceJapanese": "台風で多くの悲惨な事態が生じた。",
@@ -65372,7 +66032,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "61af98775f5ae16163c01c5c": {
       "sourceJapanese": "あなたはリンゴが好きですか、それともオレンジが好きですか。",
@@ -66551,7 +67216,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "63536a5f44324a3eacd10ed9": {
       "sourceJapanese": "彼はすぐに全快するでしょうか。",
@@ -66650,7 +67320,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "6381c7707594f6750937ae10": {
       "sourceJapanese": "すみません、おまわりさん。ここはどこですか。",
@@ -66789,9 +67464,18 @@
     },
     "63a6865abedde07f157465b4": {
       "sourceJapanese": "今日が天気ならいいのに。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        },
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "63a7c398fa23f7c04e5720f7": {
       "sourceJapanese": "彼は彼女に注意して運転するようにと促した。",
@@ -67115,7 +67799,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        },
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "64076edb3927b9dfb3008482": {
       "sourceJapanese": "しげみちゃんを幼稚園に迎えに行けないの。",
@@ -67483,7 +68176,12 @@
           "level": "N3"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba-ii",
+          "level": "N3"
+        }
+      ]
     },
     "64a3cfacdbc43f0252cb5f92": {
       "sourceJapanese": "この旅行はいい思い出になるでしょう。",
@@ -67836,7 +68534,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "64fd344a2ee5ec2ae4a6fab3": {
       "sourceJapanese": "それらは西洋の風呂よりずっといいです。",
@@ -68988,7 +69691,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "node",
+          "level": "N4"
+        }
+      ]
     },
     "66a20b15a7096ec4ff3287ce": {
       "sourceJapanese": "姉は六月に出産の予定です。",
@@ -69569,7 +70277,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-oku",
+          "level": "N4"
+        }
+      ]
     },
     "676af1acc127d41ed535826e": {
       "sourceJapanese": "動物のうちで笑うのは人間だけだ。",
@@ -69746,7 +70459,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "67b5dcbe31ab28b999163cc1": {
       "sourceJapanese": "ごめんください、山田です。ご主人にお目にかかりたいのですが。",
@@ -69762,9 +70480,14 @@
     },
     "67b9144d04a511bd19b98b84": {
       "sourceJapanese": "これはなんと高い木なのでしょう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "67b9d3704f9fbf0377e81b13": {
       "sourceJapanese": "これが君の分のケーキだよ。",
@@ -70764,7 +71487,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "695f051c5b1ba18e91acab9c": {
       "sourceJapanese": "ぼくは大体用意ができた。",
@@ -70802,9 +71530,14 @@
     },
     "696514e0450fd61b1c4a9a35": {
       "sourceJapanese": "ドアのカギをなくしたので家に入れない。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "node",
+          "level": "N4"
+        }
+      ]
     },
     "696e3e8be75ce16077efa25c": {
       "sourceJapanese": "原子力が発電に使われている。",
@@ -71444,7 +72177,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "6a6f3ce5e6674749296f05d1": {
       "sourceJapanese": "脅かさないでよ。",
@@ -73817,7 +74555,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "6df3546b180712036037b524": {
       "sourceJapanese": "１９５５年にガンが再発し、彼女は１９５６年に４２歳で亡くなった。",
@@ -74141,9 +74884,14 @@
     },
     "6e448daea9b728a3a1bf145d": {
       "sourceJapanese": "このボタンを押せばいいのですよ。",
-      "level": "N5",
+      "level": "N3",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba-ii",
+          "level": "N3"
+        }
+      ]
     },
     "6e4acc4621a4a67635c2bb9d": {
       "sourceJapanese": "これは兄です。かっこいいですね。",
@@ -75822,7 +76570,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "70f769fe1baa61d1eee5d2c2": {
       "sourceJapanese": "父と話し合って、転職を決意した。",
@@ -76429,7 +77182,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "mitai",
+          "level": "N4"
+        }
+      ]
     },
     "71dbdc8fce49d5d06c9b4ffd": {
       "sourceJapanese": "パスポートを拝見してよろしいですか。",
@@ -78163,7 +78921,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "746679bed09fb53b6a602040": {
       "sourceJapanese": "私は煙のために息ができなかった。",
@@ -79911,9 +80674,14 @@
     },
     "769c3d83e6272db89eaa926c": {
       "sourceJapanese": "遅くとも午前０時までには家に帰る。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "made-ni",
+          "level": "N4"
+        }
+      ]
     },
     "76a0803394bda2ea74e4aed4": {
       "sourceJapanese": "食べるのにどうしてそんなに手間がかかるのか。",
@@ -80058,7 +80826,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "made-ni",
+          "level": "N4"
+        }
+      ]
     },
     "76f2c6f51b4b729d8e4bb716": {
       "sourceJapanese": "農夫たちは冬に備えて野菜を蓄える。",
@@ -80644,7 +81417,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "77eddbc9ce3ae86577fd938d": {
       "sourceJapanese": "このチョコレートはとっても甘くておいしい。",
@@ -81433,7 +82211,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        },
+        {
+          "pattern": "naide",
+          "level": "N4"
+        }
+      ]
     },
     "7918cb98cabd4bdf968aecfb": {
       "sourceJapanese": "木造建築物は火がつきやすい。",
@@ -82003,9 +82790,14 @@
     },
     "79e233cd163427b37ca761c3": {
       "sourceJapanese": "私はそのレコードを買うのに３０００円かかった。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "79e629b2d1451b1124f0b3c6": {
       "sourceJapanese": "彼は私の許しを願った。",
@@ -82423,7 +83215,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "7a770d5ffe9beea581ed3750": {
       "sourceJapanese": "火山は炎と溶岩を吹き出す。",
@@ -82539,7 +83336,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "7aadebbd6cb331ddafb7f374": {
       "sourceJapanese": "雨が正午前にはやむよう祈っていたのですが。",
@@ -83434,7 +84236,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "7c413de45c4db0ffffd1cdec": {
       "sourceJapanese": "彼女はストレスに対処できない。",
@@ -84137,7 +84944,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "7d7b0b25efe5d0c004e14bed": {
       "sourceJapanese": "それは全部で１００ドルでした。",
@@ -84535,7 +85347,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "7e2a36a050c1745e758f7634": {
       "sourceJapanese": "木の中でさえずっている鳥を見てごらん。",
@@ -84730,9 +85547,18 @@
     },
     "7e641abae380f8e5707b3427": {
       "sourceJapanese": "ちょっとの時間、電話を切らないでおいて下さい。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-oku",
+          "level": "N4"
+        },
+        {
+          "pattern": "naide",
+          "level": "N4"
+        }
+      ]
     },
     "7e652836112019a45346dcde": {
       "sourceJapanese": "彼はもはや思い出の人となってしまった。",
@@ -85728,6 +86554,10 @@
         {
           "pattern": "passive-potential",
           "level": "N4"
+        },
+        {
+          "pattern": "n-desu",
+          "level": "N4"
         }
       ]
     },
@@ -85970,7 +86800,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "804604707a23be7523502567": {
       "sourceJapanese": "ハイキングは中止にしたほうがいいわね。",
@@ -86971,7 +87806,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        },
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "8190ccd97222569410b2d83c": {
       "sourceJapanese": "ご援助できないのが残念に存じます。",
@@ -87388,7 +88232,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "827c4ff8fd9348d569b84b84": {
       "sourceJapanese": "私はひなびた温泉が好きだ。",
@@ -87826,9 +88675,14 @@
     },
     "8320bd47aa432a1594ac3e13": {
       "sourceJapanese": "もう～、なにやってんだよ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "83241d5bfb7b3d662b43a57b": {
       "sourceJapanese": "彼はフランス語を話せる、ましてや英語は無論のことだ。",
@@ -88612,7 +89466,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "8464e9e9865dd4b468c676f0": {
       "sourceJapanese": "母は夕食の支度をしています。",
@@ -89026,9 +89885,14 @@
     },
     "84e4488ee480be03e4b09537": {
       "sourceJapanese": "ブラウンさんを知らないのですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "84e521c39d1c6ddf92d6835a": {
       "sourceJapanese": "私が間違っていない事を証明しよう。",
@@ -89201,7 +90065,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "852f5fa9f68bf38888992741": {
       "sourceJapanese": "しかし、人間はちがっている。",
@@ -89506,9 +90375,14 @@
     },
     "859b714ee41b7899a1e7fabe": {
       "sourceJapanese": "窓を開けっぱなしにしておいたの？",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-oku",
+          "level": "N4"
+        }
+      ]
     },
     "859b80830577c6f86f016388": {
       "sourceJapanese": "彼は養うべき大家族を持っている。",
@@ -90114,9 +90988,14 @@
     },
     "866687d0067875b9396bbcbe": {
       "sourceJapanese": "パーティーを開いたらどうですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "8669a7d363ca6832edea5af0": {
       "sourceJapanese": "そのボートは動力にモーターを使用している。",
@@ -90531,7 +91410,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "8705dd196aee6ba2ee8a9171": {
       "sourceJapanese": "その子はおじの保護を受けている。",
@@ -91004,7 +91888,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "87c2a33d14af51f473e44ef7": {
       "sourceJapanese": "この件についてのあなたのお求めを了承します。",
@@ -91179,9 +92068,14 @@
     },
     "882aba9203a64225a7e60c9f": {
       "sourceJapanese": "どうして、こんなに暑いのですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "882cfc554416c757c8ae2cf1": {
       "sourceJapanese": "この木には毎年おいしい桃が実る。",
@@ -91972,7 +92866,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "894a340e8793467c049697ff": {
       "sourceJapanese": "その代わりにトランプをしようよ。",
@@ -92551,7 +93450,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "8a317a2136ac22c5df079231": {
       "sourceJapanese": "私はこの上なくさびしく、孤独だ。",
@@ -92887,9 +93791,14 @@
     },
     "8abd63e4018aa5cb589a0892": {
       "sourceJapanese": "今のアナウンスは何だったのですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "8acc2c49d462674dceee9902": {
       "sourceJapanese": "彼はゆっくりうなずいて了解の意を示した。",
@@ -93316,9 +94225,14 @@
     },
     "8b7e06e6a21c804ed226f728": {
       "sourceJapanese": "父がもっと長生きしていたらなあ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "8b84d63a3ee59ab4936a2e7e": {
       "sourceJapanese": "夕飯を食べているときに電話がかかってきた。",
@@ -94317,7 +95231,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "8d346921f1aa9e517cf4de6c": {
       "sourceJapanese": "衆議院の少数派の議席は、急速にむしばまれてきています。",
@@ -94421,7 +95340,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "8d4e62ee7a03303a7b0dcf8b": {
       "sourceJapanese": "その僧は子供たちの遊びに参加した。",
@@ -94457,7 +95381,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        }
+      ]
     },
     "8d602406854f2dc1703f32ad": {
       "sourceJapanese": "彼は特派員として海外に派遣された。",
@@ -94574,7 +95503,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "8d99f907c668e7adcf82cbed": {
       "sourceJapanese": "ポスト争いは厳しい。",
@@ -95682,15 +96616,14 @@
     },
     "8f62ed30e02787755889cb7f": {
       "sourceJapanese": "歌がうまければいいのになあ。",
-      "level": "N4",
-      "limitingWords": [
+      "level": "N3",
+      "limitingWords": [],
+      "limitingGrammar": [
         {
-          "surface": "うまけれ",
-          "lemma": "うまい",
-          "level": "N4"
+          "pattern": "ba-ii",
+          "level": "N3"
         }
-      ],
-      "limitingGrammar": []
+      ]
     },
     "8f63257f17044a127b57f04b": {
       "sourceJapanese": "そうですね。一概には言えませんね。",
@@ -96261,7 +97194,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "902f2f9703f9163d2ad04f7a": {
       "sourceJapanese": "彼女は美人でしかも知性も備わっている。",
@@ -96290,7 +97228,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "9045314765b328286c1f9324": {
       "sourceJapanese": "あなたのご研究は、いかがですか。",
@@ -98323,7 +99266,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        },
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "935510afd9c2f14c4bd6d133": {
       "sourceJapanese": "彼女はよく無断欠席をする。",
@@ -98527,6 +99479,10 @@
       "limitingGrammar": [
         {
           "pattern": "te-itadaku-kudasaru",
+          "level": "N4"
+        },
+        {
+          "pattern": "causative",
           "level": "N4"
         }
       ]
@@ -100370,7 +101326,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "96881d99e4585804ca3d447a": {
       "sourceJapanese": "彼女は行儀が極めて上品である。",
@@ -100564,9 +101525,14 @@
     },
     "96b39dd489180b1448ca5423": {
       "sourceJapanese": "悪魔がやってくるかもしれないよ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "96b9fa7c425bc5038965e82c": {
       "sourceJapanese": "彼の胸は期待に弾んだ。",
@@ -100612,7 +101578,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "96c481eed098780b6b085bf9": {
       "sourceJapanese": "その相違は私にはそれほど重要でない。",
@@ -100775,6 +101746,10 @@
         {
           "pattern": "passive-potential",
           "level": "N4"
+        },
+        {
+          "pattern": "nara",
+          "level": "N4"
         }
       ]
     },
@@ -100820,7 +101795,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "970924bbba421b304fdde656": {
       "sourceJapanese": "ヨーロッパはアジアより人口が少ない。",
@@ -102631,9 +103611,14 @@
     },
     "994ca27ae9c43e1633f25d24": {
       "sourceJapanese": "どこかは今五時だろう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "994d1b27839e9007664e0ec8": {
       "sourceJapanese": "私たちは昼は働き、夜は休息する。",
@@ -104057,7 +105042,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "9b5dbcc20b9d7b42663abf3a": {
       "sourceJapanese": "計算にいくらかの誤差を考慮に入れましたか。",
@@ -104844,7 +105834,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "9c6ffb0b1216f39b29dcdbdd": {
       "sourceJapanese": "車の多い通りの横断には油断するな！",
@@ -105155,7 +106150,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "9ce16de20d5934bf0fdc20e5": {
       "sourceJapanese": "その物音が私を眠りから覚まさせた。",
@@ -105646,7 +106646,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "node",
+          "level": "N4"
+        }
+      ]
     },
     "9da1ee72f871bbe382d43308": {
       "sourceJapanese": "私の前の彼はポルトガル育ちでした。",
@@ -105944,7 +106949,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "9e2fc50c2a20e96aa83a6385": {
       "sourceJapanese": "２つの意見に大した差はない。",
@@ -107357,7 +108367,12 @@
           "level": "N3"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba-ii",
+          "level": "N3"
+        }
+      ]
     },
     "a055ac2bc19b634c383710b2": {
       "sourceJapanese": "彼はがっくりひざをついた。",
@@ -107561,9 +108576,14 @@
     },
     "a09833f0d61e5799daaf0cca": {
       "sourceJapanese": "こっちへ来い、ぐずぐずしないで。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "naide",
+          "level": "N4"
+        }
+      ]
     },
     "a09b4e02cc37a925b5fa6aa1": {
       "sourceJapanese": "交通ルールを守ることは大切だ。",
@@ -107728,7 +108748,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "a0b4922756f8919c3c948626": {
       "sourceJapanese": "医学の革新は苦痛から私たちを取り除く最良の方法です。",
@@ -108066,9 +109091,14 @@
     },
     "a10806e15a297549b4de4353": {
       "sourceJapanese": "シカゴに着いたらすぐ電話します。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "a10878925a49839ce159a035": {
       "sourceJapanese": "サンプルは世界２００の医療機関から収集された。",
@@ -108694,9 +109724,14 @@
     },
     "a1fdf4bb1240e3f55d2ed2b6": {
       "sourceJapanese": "車に乗るかどうか聞いたのです。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "a20523372d21ee656b0d2dea": {
       "sourceJapanese": "ステレオにレコードをかけてください。",
@@ -109483,7 +110518,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "a34a8d3284ffa618bb7a79a7": {
       "sourceJapanese": "自由諸国の基盤は民主主義である。",
@@ -110045,7 +111085,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        }
+      ]
     },
     "a464e97e0365ec0b68ceff4f": {
       "sourceJapanese": "まず私に話させてください。",
@@ -110057,7 +111102,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "a46c364879d4b63bcc6e8622": {
       "sourceJapanese": "実質成長と名目成長率の差は物価上昇を意味する。",
@@ -110909,9 +111959,18 @@
     },
     "a5c2c48a9bf1df37572b6183": {
       "sourceJapanese": "ねえ、元気がないみたいだけど。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        },
+        {
+          "pattern": "mitai",
+          "level": "N4"
+        }
+      ]
     },
     "a5cb779600bde083f3ede224": {
       "sourceJapanese": "あのビルのとなりです。",
@@ -111671,6 +112730,10 @@
       "limitingGrammar": [
         {
           "pattern": "passive-potential",
+          "level": "N4"
+        },
+        {
+          "pattern": "node",
           "level": "N4"
         }
       ]
@@ -112790,7 +113853,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "a8b641ceadf77c92c0d162a7": {
       "sourceJapanese": "彼は口ひげを生やしている。",
@@ -113403,9 +114471,14 @@
     },
     "a9f0bedf3a81025876b7bcc8": {
       "sourceJapanese": "すみません、お待たせしました。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "a9f74c0c27b504c1d1ff7f25": {
       "sourceJapanese": "商売は、繁盛しているようですね。",
@@ -113656,9 +114729,14 @@
     },
     "aa625167e04004bbbe08f842": {
       "sourceJapanese": "あんた、なぜに並んでいるのだい。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "aa68df5adc99065d9b31432f": {
       "sourceJapanese": "食べ物はよくかむほうがよい。",
@@ -114010,7 +115088,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "aaeb4cdb3ca3d3e04e6dc3f3": {
       "sourceJapanese": "もし間違っていたら正して下さい。",
@@ -114510,7 +115593,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "ab825c082f87dfd087af07c0": {
       "sourceJapanese": "台風は多大の被害を与えた。",
@@ -115057,7 +116145,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "ac21680cfa4c617e2852bbb5": {
       "sourceJapanese": "彼女は記憶を新たにするためにその写真を見た。",
@@ -115143,9 +116236,14 @@
     },
     "ac33ac35c2c733e5873841b6": {
       "sourceJapanese": "新しい英語の先生、トム・クルーズ似のイケメンらしいよ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "rashii",
+          "level": "N4"
+        }
+      ]
     },
     "ac3ce58a2cfde371893a623b": {
       "sourceJapanese": "猫はにゃーにゃーいいつづけた。",
@@ -115390,9 +116488,14 @@
     },
     "acb3da7e01e1ef54af25f9d8": {
       "sourceJapanese": "トイレはどこにあるのでしょうか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "acbfe96a7aedc5956fc2fc7f": {
       "sourceJapanese": "いつゴルフを始めたのですか。",
@@ -115404,7 +116507,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "acc329bc6fbc7cd19c3f972d": {
       "sourceJapanese": "専門の図書館が芸術に関する文献を収集している。",
@@ -116777,9 +117885,14 @@
     },
     "aed3a735d462b1c0718657c4": {
       "sourceJapanese": "トイレが近いのです。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "aed3b60823082b661c377b84": {
       "sourceJapanese": "台所でお母さんの手伝いをしていたの。",
@@ -117193,7 +118306,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "af4af774cd4b87983badf390": {
       "sourceJapanese": "地球以外の天体に生物はいますか。",
@@ -117788,7 +118906,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "b01a83f1677cd087f192f342": {
       "sourceJapanese": "彼女、しばらく見ない間にげっそりと痩せちゃったけど、何か大きな病気でもしたのかな。",
@@ -120587,7 +121710,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "b465d47a663963bbe74f97e6": {
       "sourceJapanese": "１０項を参照して下さい。",
@@ -120865,9 +121993,14 @@
     },
     "b4d44267a3f06b22a493e590": {
       "sourceJapanese": "もう２、３ページ読みさえすればいい。",
-      "level": "N5",
+      "level": "N3",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba-ii",
+          "level": "N3"
+        }
+      ]
     },
     "b4d706fb5bfcb551643379d2": {
       "sourceJapanese": "動物園にはたくさんの種類の動物がいる。",
@@ -121133,7 +122266,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "b52f3d6f3895a1668f65d8ed": {
       "sourceJapanese": "彼は地に足がついていない。",
@@ -121149,9 +122287,14 @@
     },
     "b53cb4dc3e2b6021ca8999c4": {
       "sourceJapanese": "待たせてすまなかったな。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "causative",
+          "level": "N4"
+        }
+      ]
     },
     "b543ff148acb85c906da09aa": {
       "sourceJapanese": "この薬品は日光に当てないようにしなさい。",
@@ -121192,7 +122335,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "b552eb5ea5ee005621eee085": {
       "sourceJapanese": "市の産業はみんな好景気に沸いている。",
@@ -121732,9 +122880,14 @@
     },
     "b6356509c9950f94f640593a": {
       "sourceJapanese": "一千万円くらいかな？",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kana",
+          "level": "N4"
+        }
+      ]
     },
     "b6366ff5f002339e1f506ddf": {
       "sourceJapanese": "これらの感染病はミルクの汚染が原因だった。",
@@ -122515,7 +123668,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kana",
+          "level": "N4"
+        }
+      ]
     },
     "b795690596150e8663a7fff9": {
       "sourceJapanese": "その内訳は？",
@@ -123164,7 +124322,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "b8e94a366638fa6473582d43": {
       "sourceJapanese": "彼女は握手をしようと手を差し出した。",
@@ -123560,9 +124723,14 @@
     },
     "b99e40cbaed1586bd0f240eb": {
       "sourceJapanese": "地下鉄で行きたいのです。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "b9a058873b5a012e41ccd331": {
       "sourceJapanese": "デパートの屋上にアドバルーンが上がっている。",
@@ -125228,7 +126396,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "bbcbdf6d89eb19bf4bd246cc": {
       "sourceJapanese": "彼の目的はそのテストに合格することです。",
@@ -125846,7 +127019,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "bca498b027dc21a9fb6fca78": {
       "sourceJapanese": "何とか手配してあげましょう。",
@@ -126162,7 +127340,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "bd20461c07aeff61c5170af2": {
       "sourceJapanese": "なぜ、あなたの耳はそんなに大きいの？",
@@ -126572,7 +127755,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "bd99896794245adc367b88bf": {
       "sourceJapanese": "会議室は現在使用中です。",
@@ -126806,6 +127994,14 @@
       "limitingGrammar": [
         {
           "pattern": "passive-potential",
+          "level": "N4"
+        },
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "te-shimau",
           "level": "N4"
         }
       ]
@@ -127790,7 +128986,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "bf4f203531f013bf593bcd70": {
       "sourceJapanese": "彼がそのことを知らないとは驚きだ。",
@@ -128455,7 +129656,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "c096f9670e086f49e236707b": {
       "sourceJapanese": "あの人達の助力はあてにできないよ。",
@@ -128699,9 +129905,14 @@
     },
     "c0f8fa1a4b12fc97cf1fca90": {
       "sourceJapanese": "ちょうど今電話で話し中なんだ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "c10029365263cccb726ecf54": {
       "sourceJapanese": "真の歴史を形成するのは大衆である。",
@@ -129607,7 +130818,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "c1dde07485f3b992359e428d": {
       "sourceJapanese": "私たちはコロンブスの話を演じた。",
@@ -129657,9 +130873,14 @@
     },
     "c20229f59ef383bc3f2309a5": {
       "sourceJapanese": "コートを脱いだらどうですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "c208945f8efa16bea5c55b99": {
       "sourceJapanese": "医者は彼の折れた足をついだ。",
@@ -129858,9 +131079,14 @@
     },
     "c25607b77356719787bde419": {
       "sourceJapanese": "二人だけでお話ししたいのですが。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "c25be914b4de563d243833c5": {
       "sourceJapanese": "いい考えを思いついた。",
@@ -130250,7 +131476,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "noni",
+          "level": "N4"
+        }
+      ]
     },
     "c2e5618ed1b64c397549f953": {
       "sourceJapanese": "私は王子その人にあいました。",
@@ -130976,9 +132207,14 @@
     },
     "c424bf5bc9084eadadb865bc": {
       "sourceJapanese": "１０時までに来ます。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "made-ni",
+          "level": "N4"
+        }
+      ]
     },
     "c42593dfd45534e000cfd582": {
       "sourceJapanese": "彼は往復ともタクシーに乗った。",
@@ -131235,7 +132471,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "c470a6607dacd276b2d88215": {
       "sourceJapanese": "私はシェークスピア全集を持っている。",
@@ -131930,7 +133171,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "c58452274497abe558f9eef1": {
       "sourceJapanese": "１０年というのは、長い年月だ。",
@@ -131958,9 +133204,18 @@
     },
     "c5873c98d08b866cf04709fe": {
       "sourceJapanese": "なんてきれいな鳥なんだろう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "c58adaf140771fc97294152e": {
       "sourceJapanese": "彼は現代文学を研究しています。",
@@ -133069,7 +134324,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "c779d9841c986849b6e440a8": {
       "sourceJapanese": "そのために彼の注意がその光景からそれた。",
@@ -133203,9 +134463,14 @@
     },
     "c7a2cd3a05b4afb354a8de36": {
       "sourceJapanese": "「誰か車の中にいるのですか」「トムがいます」",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "c7a320f4cf0a5ccfaf342d82": {
       "sourceJapanese": "彼の発言はそのテーマとは何の関係もない。",
@@ -134987,7 +136252,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "naide",
+          "level": "N4"
+        }
+      ]
     },
     "ca7ba6445e42ec59045483c2": {
       "sourceJapanese": "水害被災者たちは数校に収容された。",
@@ -135073,9 +136343,14 @@
     },
     "cabbea41823b41a292bb2f1d": {
       "sourceJapanese": "なぜその絵を見なかったのですか。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "cabce5c52df3c857af4f2a09": {
       "sourceJapanese": "さんざん小言をいってやる。",
@@ -135689,9 +136964,14 @@
     },
     "cb7e7de98946b90d8063a4c0": {
       "sourceJapanese": "この帽子は１０００円なら安い。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "cb86b812b27c938e529f3fea": {
       "sourceJapanese": "金利が低下したことが自動車の市場を刺激した。",
@@ -136399,9 +137679,14 @@
     },
     "ccb5735329e0a62dedf5794d": {
       "sourceJapanese": "もう２週間たったら帰ります。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "ccb63f34e3a01427ce3b33e4": {
       "sourceJapanese": "どうしたらお金持ちになれるのかしら？",
@@ -137223,9 +138508,14 @@
     },
     "cda43a131e79573d922ba048": {
       "sourceJapanese": "さあ、パーティーをおしまいにしよう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "cda43e00e6319484f9295452": {
       "sourceJapanese": "父はのこぎりで木を切った。",
@@ -139152,7 +140442,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "d0c466dafe3539f3d85d5690": {
       "sourceJapanese": "彼は何をするにも消極的だ。",
@@ -140188,7 +141483,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "d25d7e8593c6dca8adb15e45": {
       "sourceJapanese": "すぐに治療しなければなりません。",
@@ -141089,7 +142389,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        },
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "d37ee0868ff942897c2dac95": {
       "sourceJapanese": "その迷信は彼らの間で今なお残っている。",
@@ -141195,9 +142504,14 @@
     },
     "d397d8076a44631112fdd8ee": {
       "sourceJapanese": "今すぐにコーラが飲みたいんだ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "d39ac51a75f98b4c88e06a31": {
       "sourceJapanese": "その博物館は一般に公開されている。",
@@ -142330,9 +143644,18 @@
     },
     "d5414c664794d2fb54fbefee": {
       "sourceJapanese": "ちょっと会いたいのだけれど。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        }
+      ]
     },
     "d5431cab031613651f11c588": {
       "sourceJapanese": "鼻が出ているよ。かみなさい。",
@@ -142610,9 +143933,14 @@
     },
     "d5e7690874a20efb973b8418": {
       "sourceJapanese": "いいや。あいつは水がキライなんだ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "d5ee56ebf663aa4f9a811fd2": {
       "sourceJapanese": "もう一度メニューを見せていただけますか。",
@@ -142724,9 +144052,14 @@
     },
     "d6118172f3e6a39fd1f60ff2": {
       "sourceJapanese": "書かねばならない手紙があります。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba",
+          "level": "N4"
+        }
+      ]
     },
     "d612f2128f96e8e296918284": {
       "sourceJapanese": "彼らはやむを得ず出発を延期した。",
@@ -142830,7 +144163,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "d62d16da55d0590a9101d4ba": {
       "sourceJapanese": "私たちは公園の回りを走った。",
@@ -144546,9 +145884,14 @@
     },
     "d8f0a7945bb0baaf7942cfbb": {
       "sourceJapanese": "耳がしもやけになったんだ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "d8f21f49f309fb2b1afe1c62": {
       "sourceJapanese": "政治に対する私の関心は専ら学問上のものです。",
@@ -145070,7 +146413,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "d9c7c87f3e1aa5dc90014136": {
       "sourceJapanese": "このレポートを終えたら休もうと思う。",
@@ -145204,7 +146556,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "da0e515d78b31a2949fd0aff": {
       "sourceJapanese": "そこに行く道がわかるように、近くの目印を教えて下さい。",
@@ -146395,9 +147752,14 @@
     },
     "dbc22e0e9af8e021c80bf175": {
       "sourceJapanese": "でも休みはとったほうがいいわよ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "hou-ga-ii",
+          "level": "N4"
+        }
+      ]
     },
     "dbc5a4d27d3708ebd0b0647a": {
       "sourceJapanese": "彼は法学修士の学位を得た。",
@@ -148017,15 +149379,29 @@
     },
     "dd9ce9289769064f022188d2": {
       "sourceJapanese": "先生はここで働いているのだろう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "dda587a3c91d44bcbe9cccd0": {
       "sourceJapanese": "あの二人はどうもできているらしい。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "rashii",
+          "level": "N4"
+        }
+      ]
     },
     "dda7b89c0de4d929d4765ea5": {
       "sourceJapanese": "彼女の立場からその問題をとらえるようにしなさい。",
@@ -148159,7 +149535,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "ddd75881937b57eb804548e4": {
       "sourceJapanese": "ついに病気で疲れた男たちは彼が待っている山岳都市に到着した。",
@@ -149516,9 +150897,14 @@
     },
     "dfc99200b74ed0add2121b24": {
       "sourceJapanese": "この切手のどちらでもあげよう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "dfc9e78767eb281747d6f60c": {
       "sourceJapanese": "インカ人は信心深い民族だった。",
@@ -150543,9 +151929,14 @@
     },
     "e0f5d43e9ca2dd779b2784fe": {
       "sourceJapanese": "昼はホットドッグを食べたんだ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "e0fea952939d152b57035380": {
       "sourceJapanese": "この交渉を打ち切りたい。",
@@ -150624,9 +152015,14 @@
     },
     "e110ec0e3be2cf1ddf646885": {
       "sourceJapanese": "ちょっとそこまで散歩に出よう。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "e11234a9a1cfb3fc126fd516": {
       "sourceJapanese": "いつこれを返していただけますか。",
@@ -150730,7 +152126,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kedo",
+          "level": "N4"
+        }
+      ]
     },
     "e14aab3af4f684162ebe25e7": {
       "sourceJapanese": "排卵の有無を調べる方法はありますか？",
@@ -151642,7 +153043,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "e2611de3d460cc7ce9abc4fc": {
       "sourceJapanese": "どういう所を見学したいですか。",
@@ -152290,7 +153696,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "nara",
+          "level": "N4"
+        }
+      ]
     },
     "e32cafe1cb25d91db20f9665": {
       "sourceJapanese": "彼女はあなたに何てささやいたの。",
@@ -152465,9 +153876,14 @@
     },
     "e38858de29da36c5753c521f": {
       "sourceJapanese": "ルーシーは箸が使えないんだ。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "e38a3d2238b795976351cf92": {
       "sourceJapanese": "彼女がここにいると仮定してみよう。",
@@ -153557,7 +154973,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "e5378ca41ad55682011aae69": {
       "sourceJapanese": "甥とは兄弟か姉妹の息子のことです。",
@@ -153661,7 +155082,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "e559c94bbbe1069569df18ee": {
       "sourceJapanese": "車に徐行するようにと合図した。",
@@ -154091,7 +155517,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "e63bbbee07ec221897c6d8a3": {
       "sourceJapanese": "全てを考慮してもやはり勝てない仕様になっています。",
@@ -154800,7 +156231,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "node",
+          "level": "N4"
+        }
+      ]
     },
     "e762b0239466b7ea6aad0eb7": {
       "sourceJapanese": "いかにもビルのやりそうなことだ。",
@@ -155909,7 +157345,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "e933f0efa451f9afefa0ccae": {
       "sourceJapanese": "持てば持つほど、欲張りになる。",
@@ -157242,7 +158683,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "hou-ga-ii",
+          "level": "N4"
+        }
+      ]
     },
     "eb19267040779cd0f59e9b57": {
       "sourceJapanese": "最初に、この実験で使用された触媒について吟味したい。",
@@ -157788,7 +159234,12 @@
           "level": "N3"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "ba-ii",
+          "level": "N3"
+        }
+      ]
     },
     "ebaef10d49692c98b30c852f": {
       "sourceJapanese": "政府はその島にヘリコプターで物資を輸送した。",
@@ -159262,7 +160713,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "tara",
+          "level": "N4"
+        }
+      ]
     },
     "edbf6c36edadff6c7407ab62": {
       "sourceJapanese": "私はいつもポケットに十分なちり紙を持っています。",
@@ -159477,7 +160933,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "ee25e5d5cf1a3537c2007dbe": {
       "sourceJapanese": "彼女は英語の点数がよい。",
@@ -159566,7 +161027,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "ee3f4296a482f1aca588543d": {
       "sourceJapanese": "お勤めはどちらですか。",
@@ -161493,7 +162959,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "f0f473cf69f99d9815020230": {
       "sourceJapanese": "どうやったら三角のおにぎりができるの？何度やっても丸いおにぎりしかできないよ。",
@@ -161887,7 +163358,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "hou-ga-ii",
+          "level": "N4"
+        }
+      ]
     },
     "f19582b707df7e2b85ebf914": {
       "sourceJapanese": "やっぱり何とかやってのけたね。",
@@ -162313,9 +163789,14 @@
     },
     "f2090b8ac921f1bf8c20c9db": {
       "sourceJapanese": "奥さんがどこかに出かけているらしいから。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "rashii",
+          "level": "N4"
+        }
+      ]
     },
     "f20e9b84678b644830c4ca7e": {
       "sourceJapanese": "我が家の家計は赤字だ。",
@@ -162349,7 +163830,16 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        },
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "f20f3c546f6fa6f8ac962391": {
       "sourceJapanese": "彼女は母親を見てにっこりと笑った。",
@@ -163674,7 +165164,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "f3dfb2617c9cadbdc704cdb4": {
       "sourceJapanese": "生徒はこの便所を使ってはならない。",
@@ -163780,7 +165275,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "kamo-shirenai",
+          "level": "N4"
+        }
+      ]
     },
     "f4079ae25c91fa46e8cfe73c": {
       "sourceJapanese": "本とノートをしまいなさい。",
@@ -163974,7 +165474,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "f43e3dd168ebfb8c8a149adc": {
       "sourceJapanese": "高等学校では英語と数学が重視されている。",
@@ -164973,7 +166478,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "darou",
+          "level": "N4"
+        }
+      ]
     },
     "f5ae438b64b3bf1542d0c38b": {
       "sourceJapanese": "あの絵画は印象派美術の傑作である。",
@@ -165846,9 +167356,14 @@
     },
     "f6cf0023b3717c531ae50c89": {
       "sourceJapanese": "トムはその高い木に登ろうとした。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "volitional",
+          "level": "N4"
+        }
+      ]
     },
     "f6d1c619c492ae6bdf494df1": {
       "sourceJapanese": "彼はいすの背にもたれている。",
@@ -166286,9 +167801,14 @@
     },
     "f78485b0fae7073ffd546f83": {
       "sourceJapanese": "これより小さいのはないんですか？",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "f790f1126e84233cc438a9ef": {
       "sourceJapanese": "できるあいだに人生を楽しみなさい。",
@@ -167738,9 +169258,14 @@
     },
     "f9f15c9760aa610131ce883e": {
       "sourceJapanese": "電話には出なかったからメールしておきました。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-oku",
+          "level": "N4"
+        }
+      ]
     },
     "fa009e7e584c2b95b18e6a21": {
       "sourceJapanese": "国民の怒りが噴出して騒動が繰り返された。",
@@ -168337,9 +169862,14 @@
     },
     "fab3db5215f42e61a1d0a274": {
       "sourceJapanese": "ねえあなたたち行かないで。",
-      "level": "N5",
+      "level": "N4",
       "limitingWords": [],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "naide",
+          "level": "N4"
+        }
+      ]
     },
     "fab512302bd1befcd545073d": {
       "sourceJapanese": "この方を玄関まで御案内しなさい。",
@@ -170298,7 +171828,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "n-desu",
+          "level": "N4"
+        }
+      ]
     },
     "fdba81a7ab550730e8d31b80": {
       "sourceJapanese": "彼女の目には涙が湧きあふれていた。",
@@ -170617,7 +172152,12 @@
           "level": "N4"
         }
       ],
-      "limitingGrammar": []
+      "limitingGrammar": [
+        {
+          "pattern": "te-ageru-kureru-morau",
+          "level": "N4"
+        }
+      ]
     },
     "fe789c61ec4499e5895d47bd": {
       "sourceJapanese": "石油を運ぶ船をオイル・タンカーという。",

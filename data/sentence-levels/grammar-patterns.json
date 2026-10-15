@@ -166,6 +166,219 @@
       ],
       "note": "どころ as a particle.",
       "reviewer": "Fikry Fahrezy (approved Claude's draft, 2026-10-15)"
+    },
+    {
+      "id": "n-desu",
+      "pattern": "〜んです / 〜のです (explanatory)",
+      "level": "N4",
+      "openjlpt": [
+        "n-desu-no-desu"
+      ],
+      "note": "の / ん after a predicate, then です / だ; possessive 私のです is excluded. Counted as N4 because learners must write it to match the reference.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "node",
+      "pattern": "〜ので (because)",
+      "level": "N4",
+      "openjlpt": [
+        "node"
+      ],
+      "note": "Excludes のではない / のでしょう.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "noni",
+      "pattern": "〜のに (although; for)",
+      "level": "N4",
+      "openjlpt": [
+        "noni-although",
+        "noni-purpose"
+      ],
+      "note": "の after a predicate + に.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "tara",
+      "pattern": "〜たら (if, when)",
+      "level": "N4",
+      "openjlpt": [
+        "tara"
+      ],
+      "note": "Includes だら after 読ん / 泳い.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "ba",
+      "pattern": "〜ば (conditional)",
+      "level": "N4",
+      "openjlpt": [
+        "ba"
+      ],
+      "note": "Excludes 〜なければならない (N5) and 〜ばいい.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "ba-ii",
+      "pattern": "〜ばいい (should, all you need is)",
+      "level": "N3",
+      "openjlpt": [
+        "ba-ii"
+      ],
+      "note": "Conditional ば + いい / よい.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "nara",
+      "pattern": "〜なら (if it's the case that)",
+      "level": "N4",
+      "openjlpt": [
+        "nara"
+      ],
+      "note": "Excludes さようなら and ならない.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "kedo",
+      "pattern": "〜けど / 〜けれども (but)",
+      "level": "N4",
+      "openjlpt": [
+        "kedo-keredomo"
+      ],
+      "note": "The conjunctions けど / けれど / けれども.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "volitional",
+      "pattern": "〜おう / 〜よう (volitional)",
+      "level": "N4",
+      "openjlpt": [
+        "ou-you"
+      ],
+      "note": "Verbs only; ましょう stays N5.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "darou",
+      "pattern": "〜だろう (probably)",
+      "level": "N4",
+      "openjlpt": [
+        "darou"
+      ],
+      "note": "でしょう stays N5.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "kamo-shirenai",
+      "pattern": "〜かもしれない (might)",
+      "level": "N4",
+      "openjlpt": [
+        "kamo-shirenai"
+      ],
+      "note": "か + も + しれる.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "te-shimau",
+      "pattern": "〜てしまう / 〜ちゃう",
+      "level": "N4",
+      "openjlpt": [
+        "te-shimau-chau"
+      ],
+      "note": "しまう after a て-form, or ちゃう / じゃう.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "te-oku",
+      "pattern": "〜ておく (do in advance)",
+      "level": "N4",
+      "openjlpt": [
+        "te-oku"
+      ],
+      "note": "おく after a て-form.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "te-ageru-kureru-morau",
+      "pattern": "〜てあげる / 〜てくれる / 〜てもらう",
+      "level": "N4",
+      "openjlpt": [
+        "te-ageru",
+        "te-kureru",
+        "te-morau"
+      ],
+      "note": "Giving verbs after a て-form; plain 花をあげる stays N5.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "causative",
+      "pattern": "〜せる / 〜させる (causative)",
+      "level": "N4",
+      "openjlpt": [
+        "seru-saseru"
+      ],
+      "note": "知らせる (\"inform\") is exempt as an ordinary verb.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "made-ni",
+      "pattern": "〜までに (by, deadline)",
+      "level": "N4",
+      "openjlpt": [
+        "made-ni"
+      ],
+      "note": "Plain 〜まで (until) stays N5.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "hou-ga-ii",
+      "pattern": "〜ほうがいい (had better)",
+      "level": "N4",
+      "openjlpt": [
+        "hou-ga-ii"
+      ],
+      "note": "After a verb; the comparison 犬のほうがいい stays N5.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "naide",
+      "pattern": "〜ないで (without; don't)",
+      "level": "N4",
+      "openjlpt": [
+        "naide"
+      ],
+      "note": "Excludes 〜ないでください (N5).",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "rashii",
+      "pattern": "〜らしい (I hear; apparently)",
+      "level": "N4",
+      "openjlpt": [
+        "rashii"
+      ],
+      "note": "The auxiliary only; かわいらしい is an adjective.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "mitai",
+      "pattern": "〜みたい (like, seems)",
+      "level": "N4",
+      "openjlpt": [
+        "mitai"
+      ],
+      "note": "見たい (\"want to see\") is excluded.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
+    },
+    {
+      "id": "kana",
+      "pattern": "〜かな / 〜かしら (I wonder)",
+      "level": "N4",
+      "openjlpt": [
+        "kana-kashira"
+      ],
+      "note": "Sentence-final かな / かなあ / かしら.",
+      "reviewer": "Fikry Fahrezy (approved Claude's round-2 draft, 2026-10-15)"
     }
   ]
 }

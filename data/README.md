@@ -169,7 +169,9 @@ level. Each entry keeps the words that set its level, so a grade can be
 explained.
 
 `sentence-levels/grammar-patterns.json` lists reviewed grammar patterns, such as
-the passive 〜れる / 〜られる, お〜になる, 〜てみる, 〜ほど〜ない, 〜べきだ, and 〜について.
+the passive 〜れる / 〜られる, お〜になる, 〜てみる, 〜ほど〜ない, 〜べきだ, 〜について,
+and common N4 grammar such as 〜んです, 〜ので, 〜たら, 〜ば, 〜てしまう, and the
+volitional 〜よう.
 A sentence's level is the harder of its vocabulary level and the highest level
 among the patterns it contains, and each entry keeps the patterns that set its
 level. `scripts/grammar_patterns.py` detects each pattern from Sudachi's words and
@@ -177,8 +179,11 @@ grammatical labels rather than from text, so 〜って does not match every て-
 Every pattern cites OpenJLPT grammar entries, and generation fails if a level
 differs from those entries, a pattern lacks a rule or reviewer, or a rule lacks
 an entry. The generator tests list sentences each pattern must and must not
-match. Common N4 grammar such as 〜ので, 〜たら, and 〜てしまう is not yet included,
-so N5 sentences may still use it.
+match. Many other N4 constructions, such as 〜と思う, 〜つもり, and 〜そうだ, are
+covered through vocabulary, because their key words are N4 vocabulary. Not
+included: 〜ていく / 〜てくる (usually plain motion, such as 入って来る), 〜ても
+(easily confused with どうしても and the N5 〜てもいい), and 〜ところだ (ところ
+"place" reads the same).
 
 ```sh
 bun run levels:generate

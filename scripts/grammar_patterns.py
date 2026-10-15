@@ -8,6 +8,9 @@ level and OpenJLPT entries.
 from sudachipy import SplitMode
 
 PREFIXES = ("お", "ご", "御")
+PREDICATE = ("動詞", "形容詞", "助動詞")
+# Causatives that became ordinary verbs: 知らせる means "inform".
+LEXICAL_CAUSATIVES = {"知る"}
 HONORIFIC_VERBS = {"いらっしゃる", "おっしゃる", "召し上がる", "召しあがる", "ご覧", "御覧"}
 
 
@@ -31,6 +34,28 @@ class Sentence:
         word = self.at(index)
         return (word is not None and word.pos == "助詞" and word.pos_detail == "接続助詞"
                 and word.surface in ("て", "で"))
+
+    def after_te(self, lemmas):
+        return any(self.is_te(i - 1) and w.lemma in lemmas for i, w in enumerate(self.words))
+
+    def explanatory_no(self, index):
+        """の / ん after a predicate (行くの, 静かなの); possessive 私の is a case particle."""
+        word, previous = self.at(index), self.at(index - 1)
+        return (word is not None and word.surface in ("の", "ん") and word.pos_detail == "準体助詞"
+                and previous is not None and previous.pos in PREDICATE)
+
+    def conditional_ba(self):
+        """Indexes of conditional ば, excluding N5 〜なければならない / いけない."""
+        for i, w in enumerate(self.words):
+            if w.surface == "ば" and w.pos_detail == "接続助詞":
+                previous, following = self.at(i - 1), self.at(i + 1)
+                if previous and previous.lemma == "ない" and following and following.lemma in ("なる", "いける"):
+                    continue
+                yield i
+
+    def ba_ii_at(self, index):
+        following = self.at(index + 1)
+        return following is not None and following.lemma in ("いい", "よい", "良い")
 
     def verb_stem(self, word):
         """A verb's ます-stem, which Sudachi may label a noun (帰り, 休み)."""
@@ -196,6 +221,127 @@ def dokoro(s):
                for w in s.words)
 
 
+def n_desu(s):
+    # の + で is 〜ので.
+    return any(s.explanatory_no(i) and s.at(i + 1) and s.at(i + 1).lemma in ("です", "だ")
+               and s.at(i + 1).surface != "で" for i in range(len(s.words)))
+
+
+def node(s):
+    for i in range(len(s.words)):
+        de, after = s.at(i + 1), s.at(i + 2)
+        # のではない / のでしょう / のでございます are not ので.
+        if (s.explanatory_no(i) and de and de.lemma == "だ" and de.surface == "で"
+                and not (after and (after.surface in ("は", "も") or after.lemma in ("ある", "ござる")))):
+            return True
+    return any(w.surface == "ので" for w in s.words)
+
+
+def noni(s):
+    return (any(s.explanatory_no(i) and s.at(i + 1) and s.at(i + 1).surface == "に"
+                for i in range(len(s.words)))
+            or any(w.surface == "のに" for w in s.words))
+
+
+def tara(s):
+    # After 読ん / 泳い the conditional is だら, which Sudachi files under だ.
+    return any(w.form.startswith("仮定形") and (w.lemma == "た" or (w.lemma == "だ" and w.surface == "だら"))
+               for w in s.words)
+
+
+def ba(s):
+    return any(not s.ba_ii_at(i) for i in s.conditional_ba())
+
+
+def ba_ii(s):
+    return any(s.ba_ii_at(i) for i in s.conditional_ba())
+
+
+def nara(s):
+    # The copula's conditional; さようなら and ならない are other words.
+    return any(w.lemma == "だ" and w.surface == "なら" for w in s.words)
+
+
+def kedo(s):
+    return any(w.surface in ("けど", "けれど", "けれども") and w.pos_detail == "接続助詞" for w in s.words)
+
+
+def volitional(s):
+    # Verbs only: ましょう is the volitional of ます and stays N5.
+    return any(w.pos == "動詞" and w.form == "意志推量形" for w in s.words)
+
+
+def darou(s):
+    # でしょう comes from です and stays N5.
+    return any(w.lemma == "だ" and w.form == "意志推量形" for w in s.words)
+
+
+def kamo_shirenai(s):
+    return any(w.surface == "か" and s.at(i + 1) and s.at(i + 1).surface == "も"
+               and s.at(i + 2) and s.at(i + 2).lemma in ("しれる", "知れる")
+               for i, w in enumerate(s.words))
+
+
+def te_shimau(s):
+    return s.after_te(("しまう", "仕舞う")) or any(w.lemma in ("ちゃう", "じゃう") for w in s.words)
+
+
+def te_oku(s):
+    return s.after_te(("おく", "置く"))
+
+
+def te_ageru_kureru_morau(s):
+    return s.after_te(("あげる", "くれる", "もらう", "貰う"))
+
+
+def causative(s):
+    return any(w.pos == "助動詞" and w.lemma in ("せる", "させる")
+               and not (s.at(i - 1) and s.at(i - 1).lemma in LEXICAL_CAUSATIVES)
+               for i, w in enumerate(s.words))
+
+
+def made_ni(s):
+    return any(w.surface == "まで" and s.at(i + 1) and s.at(i + 1).surface == "に"
+               for i, w in enumerate(s.words))
+
+
+def hou_ga_ii(s):
+    for i, w in enumerate(s.words):
+        previous = s.at(i - 1)
+        # After a verb (寝たほうがいい); のほうがいい is an N5 comparison.
+        if (w.surface in ("ほう", "方") and previous and previous.pos in ("動詞", "助動詞")
+                and s.at(i + 1) and s.at(i + 1).surface == "が"
+                and s.at(i + 2) and s.at(i + 2).lemma in ("いい", "よい", "良い")):
+            return True
+    return False
+
+
+def naide(s):
+    for i, w in enumerate(s.words):
+        following, after = s.at(i + 1), s.at(i + 2)
+        # 〜ないでください is N5.
+        if (w.lemma == "ない" and w.pos == "助動詞" and following and following.surface == "で"
+                and following.pos_detail == "接続助詞"
+                and not (after and after.lemma in ("くださる", "下さる"))):
+            return True
+    return False
+
+
+def rashii(s):
+    # The auxiliary only; かわいらしい is an adjective.
+    return any(w.lemma == "らしい" and w.pos == "助動詞" for w in s.words)
+
+
+def mitai(s):
+    return any(w.surface == "みたい" and w.pos_detail == "助動詞語幹" for w in s.words)
+
+
+def kana(s):
+    return any((w.surface == "か" and w.pos_detail == "終助詞" and s.at(i + 1)
+                and s.at(i + 1).surface in ("な", "なあ")) or w.surface == "かしら"
+               for i, w in enumerate(s.words))
+
+
 RULES = {
     "passive-potential": passive_potential,
     "o-ni-naru": o_ni_naru,
@@ -213,6 +359,27 @@ RULES = {
     "uchi-ni": uchi_ni,
     "wake": wake,
     "dokoro": dokoro,
+    "n-desu": n_desu,
+    "node": node,
+    "noni": noni,
+    "tara": tara,
+    "ba": ba,
+    "ba-ii": ba_ii,
+    "nara": nara,
+    "kedo": kedo,
+    "volitional": volitional,
+    "darou": darou,
+    "kamo-shirenai": kamo_shirenai,
+    "te-shimau": te_shimau,
+    "te-oku": te_oku,
+    "te-ageru-kureru-morau": te_ageru_kureru_morau,
+    "causative": causative,
+    "made-ni": made_ni,
+    "hou-ga-ii": hou_ga_ii,
+    "naide": naide,
+    "rashii": rashii,
+    "mitai": mitai,
+    "kana": kana,
 }
 
 
