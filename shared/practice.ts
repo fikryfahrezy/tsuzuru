@@ -70,6 +70,11 @@ export interface Question {
   wordCount: number;
   poolSize: number;
   alternativeCount: number;
+  wordBank: AnswerChip[];
+}
+export interface AnswerChip {
+  japanese: string;
+  kana: string;
 }
 export interface VocabularyHint {
   japanese: string;

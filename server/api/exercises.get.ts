@@ -3,6 +3,7 @@ import { randomInt } from "node:crypto";
 import { exercises, exerciseById } from "../utils/exercises";
 import { romajiHint } from "../../shared/romaji";
 import { wordHints } from "../utils/word-hints";
+import { shuffledAnswerChips } from "../utils/answer-chips";
 import {
   lengthOf,
   isLevel,
@@ -32,6 +33,7 @@ export default defineEventHandler((event): Question => {
       wordCount: selected.englishWordCount,
       poolSize: 1,
       alternativeCount: selected.acceptedAlternatives?.length ?? 0,
+      wordBank: shuffledAnswerChips(selected),
     };
   }
   if (!isLevel(query.level) || !isLength(query.length)) {
@@ -61,5 +63,6 @@ export default defineEventHandler((event): Question => {
     wordCount: row.englishWordCount,
     poolSize: pool.length,
     alternativeCount: row.acceptedAlternatives?.length ?? 0,
+    wordBank: shuffledAnswerChips(row),
   };
 });

@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, nextTick, ref, watch } from "vue";
+import { AnswerInput } from "~/utils/practice";
 import {
   DifferenceKind,
+  Strictness,
   type Question,
   type Comparison,
 } from "#shared/practice";
-defineProps<{
+const props = defineProps<{
   question: Question | null;
   result: Comparison | null;
   revealed: boolean;
@@ -13,9 +15,13 @@ defineProps<{
   checking: boolean;
   error: string;
   grammarOpen?: boolean;
+  mode: Strictness;
 }>();
 const answer = defineModel<string>("answer", { required: true });
 const showRomaji = defineModel<boolean>("showRomaji", { required: true });
+const answerInput = defineModel<AnswerInput>("answerInput", { required: true });
+const selected = defineModel<number[]>("chipSelection", { required: true });
+const typedDraft = defineModel<string>("typedDraft", { required: true });
 const emit = defineEmits<{
   grammar: [];
   another: [];
@@ -25,10 +31,64 @@ const emit = defineEmits<{
 }>();
 const grammarButton = ref<HTMLButtonElement | null>(null);
 const field = ref<HTMLTextAreaElement | null>(null);
+const chipField = ref<HTMLElement | null>(null);
 const resultStatus = ref<HTMLElement | null>(null);
+const chips = computed(() => props.question?.wordBank ?? []);
+const locked = computed(
+  () => props.loading || !props.question || props.checking || !!props.result,
+);
+function chipText(index: number) {
+  const chip = chips.value[index];
+  return (props.mode === Strictness.Kana ? chip?.kana : chip?.japanese) ?? "";
+}
+function updateChipAnswer() {
+  answer.value = selected.value.map(chipText).join("");
+}
+function addChip(index: number) {
+  if (locked.value || selected.value.includes(index)) return;
+  selected.value.push(index);
+  updateChipAnswer();
+}
+function removeChip(position: number) {
+  if (locked.value) return;
+  selected.value.splice(position, 1);
+  updateChipAnswer();
+}
+function clearChips() {
+  if (locked.value) return;
+  selected.value = [];
+  updateChipAnswer();
+}
+async function switchInput(value: AnswerInput) {
+  if (locked.value || answerInput.value === value) return;
+  if (value === AnswerInput.Chips) typedDraft.value = answer.value;
+  answerInput.value = value;
+  if (value === AnswerInput.Chips) updateChipAnswer();
+  else answer.value = typedDraft.value;
+  await nextTick();
+  focusAnswer();
+}
+function focusAnswer() {
+  if (answerInput.value === AnswerInput.Chips && !props.result)
+    chipField.value?.focus();
+  else field.value?.focus();
+}
+watch(
+  () => props.question,
+  () => {
+    selected.value = [];
+    typedDraft.value = "";
+  },
+);
+watch(
+  () => props.mode,
+  () => {
+    if (answerInput.value === AnswerInput.Chips) updateChipAnswer();
+  },
+);
 defineExpose({
   focusGrammar: () => grammarButton.value?.focus(),
-  focusAnswer: () => field.value?.focus(),
+  focusAnswer,
   focusResult: () => resultStatus.value?.focus(),
 });
 </script>
@@ -50,7 +110,15 @@ defineExpose({
     <form @submit.prevent="emit('submit', false)">
       <div class="writing-field">
         <div class="writing-tools">
-          <label class="paper-label" for="answer">YOUR JAPANESE</label>
+          <label
+            id="answer-label"
+            class="paper-label"
+            :for="
+              answerInput === AnswerInput.Type || result ? 'answer' : undefined
+            "
+          >
+            YOUR JAPANESE
+          </label>
           <button
             ref="grammarButton"
             type="button"
@@ -62,8 +130,84 @@ defineExpose({
             {{ grammarOpen ? "Close reference ×" : "Grammar reference ↗" }}
           </button>
         </div>
+        <div class="input-options" role="group" aria-label="Answer input">
+          <button
+            v-for="item in [
+              { value: AnswerInput.Type, label: 'Type' },
+              { value: AnswerInput.Chips, label: 'Word chips' },
+            ]"
+            :key="item.value"
+            type="button"
+            :aria-pressed="answerInput === item.value"
+            :disabled="locked"
+            @click="switchInput(item.value)"
+          >
+            {{ item.label }}
+          </button>
+        </div>
+        <div
+          v-if="answerInput === AnswerInput.Chips && !result"
+          class="chip-builder"
+        >
+          <div
+            ref="chipField"
+            class="chip-answer"
+            role="group"
+            aria-labelledby="answer-label"
+            aria-describedby="chip-help"
+            tabindex="0"
+          >
+            <p v-if="!selected.length" class="chip-placeholder">
+              Tap words below to build your sentence.
+            </p>
+            <button
+              v-for="(index, position) in selected"
+              :key="index"
+              type="button"
+              class="word-chip selected-chip"
+              lang="ja"
+              :disabled="locked"
+              :aria-label="`Remove ${chipText(index)}, word ${position + 1}`"
+              @click="removeChip(position)"
+            >
+              {{ chipText(index) }}
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div
+            class="chip-bank"
+            role="group"
+            aria-label="Available words"
+            lang="ja"
+          >
+            <button
+              v-for="(_, index) in chips"
+              :key="index"
+              type="button"
+              class="word-chip"
+              :class="{ 'used-chip': selected.includes(index) }"
+              :disabled="locked || selected.includes(index)"
+              :aria-label="`Add ${chipText(index)}`"
+              @click="addChip(index)"
+            >
+              {{ chipText(index) }}
+            </button>
+          </div>
+          <div class="chip-tools">
+            <p id="chip-help">
+              Tap an answer chip to remove it. Each mode keeps its draft.
+            </p>
+            <button
+              type="button"
+              :disabled="locked || !selected.length"
+              @click="clearChips"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
         <textarea
-          v-if="!result || revealed"
+          v-else-if="!result || revealed"
           id="answer"
           ref="field"
           v-model="answer"
@@ -378,6 +522,90 @@ defineExpose({
   background: transparent;
   color: var(--primary);
   padding: 9px 10px;
+  font-size: 11px;
+}
+.input-options {
+  display: flex;
+  gap: 4px;
+  margin-block: 16px;
+}
+.input-options button {
+  min-height: 36px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 11px;
+}
+.input-options button[aria-pressed="true"] {
+  border-color: var(--primary);
+  background: rgba(185, 51, 39, 0.07);
+  color: var(--primary);
+}
+.chip-builder {
+  flex: 1;
+  padding-bottom: 20px;
+}
+.chip-answer,
+.chip-bank {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px;
+  padding: 16px 0;
+}
+.chip-answer {
+  min-height: 120px;
+  border-block: 1px solid var(--line);
+}
+.chip-answer:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+.chip-placeholder,
+.chip-tools p {
+  margin: 0;
+  color: var(--secondary);
+  font:
+    12px/1.7 system-ui,
+    sans-serif;
+}
+.word-chip {
+  min-height: 44px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--line);
+  border-bottom-width: 3px;
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 8px 12px;
+  font:
+    20px/1.4 "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+}
+.selected-chip {
+  border-color: var(--green);
+}
+.selected-chip span {
+  color: var(--muted);
+  font:
+    12px system-ui,
+    sans-serif;
+}
+.used-chip {
+  visibility: hidden;
+}
+.chip-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.chip-tools button {
+  min-height: 36px;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--line);
   font-size: 11px;
 }
 </style>

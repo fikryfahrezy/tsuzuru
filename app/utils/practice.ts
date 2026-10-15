@@ -11,6 +11,11 @@ export enum PracticeTab {
   Journal = "journal",
 }
 
+export enum AnswerInput {
+  Type = "type",
+  Chips = "chips",
+}
+
 export type JournalEntry = {
   id: string;
   english: string;

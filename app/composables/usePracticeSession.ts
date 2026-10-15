@@ -16,6 +16,7 @@ import {
 } from "#shared/practice";
 import {
   JournalOutcome,
+  AnswerInput,
   PracticeTab,
   modes,
   type JournalEntry,
@@ -28,6 +29,7 @@ export function usePracticeSession() {
   const tab = ref<PracticeTab>(PracticeTab.Practice);
   const settingsOpen = ref(false);
   const showRomaji = ref(false);
+  const answerInput = ref<AnswerInput>(AnswerInput.Type);
   const acceptAlternatives = ref(false);
   const route = useRoute();
   const sentence = computed(() =>
@@ -39,6 +41,8 @@ export function usePracticeSession() {
   );
   const question = ref<Question | null>(null);
   const answer = ref("");
+  const chipSelection = ref<number[]>([]);
+  const typedDraft = ref("");
   const result = ref<Comparison | null>(null);
   const revealed = ref(false);
   const loading = ref(true);
@@ -68,6 +72,7 @@ export function usePracticeSession() {
           length: length.value,
           mode: mode.value,
           showRomaji: showRomaji.value,
+          answerInput: answerInput.value,
           acceptAlternatives: acceptAlternatives.value,
           journal: journal.value,
         }),
@@ -84,6 +89,8 @@ export function usePracticeSession() {
     question.value = null;
     result.value = null;
     answer.value = "";
+    chipSelection.value = [];
+    typedDraft.value = "";
     revealed.value = false;
     error.value = "";
     loading.value = true;
@@ -274,6 +281,8 @@ export function usePracticeSession() {
         if (isStrictness(saved.mode)) mode.value = saved.mode;
         if (typeof saved.showRomaji === "boolean")
           showRomaji.value = saved.showRomaji;
+        if (Object.values(AnswerInput).includes(saved.answerInput))
+          answerInput.value = saved.answerInput;
         if (typeof saved.acceptAlternatives === "boolean")
           acceptAlternatives.value = saved.acceptAlternatives;
         if (Array.isArray(saved.journal))
@@ -326,6 +335,7 @@ export function usePracticeSession() {
     }
   });
   watch(showRomaji, persist);
+  watch(answerInput, persist);
   watch(acceptAlternatives, () => {
     if (ready.value) {
       result.value = null;
@@ -344,10 +354,13 @@ export function usePracticeSession() {
     tab,
     settingsOpen,
     showRomaji,
+    answerInput,
     acceptAlternatives,
     sentence,
     question,
     answer,
+    chipSelection,
+    typedDraft,
     result,
     revealed,
     loading,

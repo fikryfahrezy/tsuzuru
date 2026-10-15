@@ -28,10 +28,13 @@ const {
   tab,
   settingsOpen,
   showRomaji,
+  answerInput,
   acceptAlternatives,
   sentence,
   question,
   answer,
+  chipSelection,
+  typedDraft,
   result,
   revealed,
   loading,
@@ -130,7 +133,11 @@ function selectTab(value: PracticeTab) {
         <PracticeWritingCard
           ref="writingCard"
           v-model:answer="answer"
+          v-model:chip-selection="chipSelection"
+          v-model:typed-draft="typedDraft"
           v-model:show-romaji="showRomaji"
+          v-model:answer-input="answerInput"
+          :mode="mode"
           :question="question"
           :result="result"
           :revealed="revealed"

@@ -6,6 +6,7 @@ import { HintSource, Strictness } from "../shared/practice";
 import { romajiHint } from "../shared/romaji";
 import { wordHints } from "../server/utils/word-hints";
 import { exerciseById } from "../server/utils/exercises";
+import { answerChips } from "../server/utils/answer-chips";
 
 function api() {
   const app = createApp();
@@ -26,7 +27,15 @@ test("sentence selection loads a dataset entry regardless of filters or previous
   ]) {
     const response = await handle(new Request(url + suffix));
     expect(response.status).toBe(200);
-    expect(await response.json()).toMatchObject({
+    const question = await response.json();
+    expect(
+      question.wordBank.map((chip: unknown) => JSON.stringify(chip)).sort(),
+    ).toEqual(
+      answerChips(selected)
+        .map((chip) => JSON.stringify(chip))
+        .sort(),
+    );
+    expect(question).toMatchObject({
       id: selected.id,
       english: selected.english,
       romaji: romajiHint(selected),
