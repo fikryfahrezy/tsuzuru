@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { JournalEntry } from "~/utils/practice";
+import type { AnswerBreakdownPart } from "#shared/practice";
 defineProps<{ journal: JournalEntry[] }>();
-const emit = defineEmits<{ clear: []; practice: [] }>();
+const emit = defineEmits<{
+  clear: [];
+  practice: [];
+  breakdown: [id: string, parts: AnswerBreakdownPart[]];
+}>();
 </script>
 
 <template>
@@ -23,6 +28,7 @@ const emit = defineEmits<{ clear: []; practice: [] }>();
       v-for="entry in journal"
       :key="entry.id"
       :entry="entry"
+      @breakdown="(id, parts) => emit('breakdown', id, parts)"
     />
   </section>
 </template>

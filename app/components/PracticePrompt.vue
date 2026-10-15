@@ -1,16 +1,24 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from "vue";
 import { HintSource, type Question } from "#shared/practice";
+import {
+  PracticeDifficulty,
+  PracticePermission,
+  hasPracticePermission,
+} from "#shared/practice-difficulty";
 const props = defineProps<{
   question: Question | null;
   loading: boolean;
   checking: boolean;
+  difficulty: PracticeDifficulty;
 }>();
 const emit = defineEmits<{ another: [] }>();
 const showRomaji = defineModel<boolean>("showRomaji", { required: true });
 const selectedWord = ref<number | null>(null);
+const canUse = (permission: PracticePermission) =>
+  hasPracticePermission(props.difficulty, permission);
 const activeWord = computed(() =>
-  selectedWord.value === null
+  !canUse(PracticePermission.WordHints) || selectedWord.value === null
     ? null
     : (props.question?.wordHints[selectedWord.value] ?? null),
 );
@@ -32,6 +40,12 @@ watch(
     selectedWord.value = null;
   },
 );
+watch(
+  () => props.difficulty,
+  () => {
+    if (!canUse(PracticePermission.WordHints)) selectedWord.value = null;
+  },
+);
 </script>
 
 <template>
@@ -40,7 +54,7 @@ watch(
     <h2 v-if="question" class="english-prompt">
       <template v-for="(part, index) in question.wordHints" :key="index">
         <button
-          v-if="part.isWord"
+          v-if="part.isWord && canUse(PracticePermission.WordHints)"
           type="button"
           class="prompt-word"
           :id="`prompt-word-${index}`"
@@ -121,6 +135,7 @@ watch(
     </section>
     <div v-if="question" class="prompt-meta">
       <button
+        v-if="canUse(PracticePermission.RomajiHint)"
         type="button"
         :aria-pressed="showRomaji"
         aria-controls="romaji-hint"
@@ -133,7 +148,7 @@ watch(
       </button>
     </div>
     <div
-      v-if="question"
+      v-if="question && canUse(PracticePermission.RomajiHint)"
       id="romaji-hint"
       class="romaji-hint"
       :hidden="!showRomaji"

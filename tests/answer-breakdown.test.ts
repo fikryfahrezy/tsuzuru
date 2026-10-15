@@ -3,9 +3,21 @@ import { answerBreakdown } from "../server/utils/answer-breakdown";
 import { answerChips } from "../server/utils/answer-chips";
 import { exerciseById } from "../server/utils/exercises";
 import { wordHints } from "../server/utils/word-hints";
-import type { Candidate } from "../shared/practice";
+import { isAnswerBreakdownPart, type Candidate } from "../shared/practice";
 
 const water = exerciseById.get("213aa0ae8044611b00c1ba95")!;
+
+test("journal breakdowns survive storage with sentence order and reject malformed saved details", () => {
+  const parts = answerBreakdown(water, answerChips(water), wordHints(water));
+  const saved = JSON.parse(JSON.stringify(parts));
+  expect(saved.every(isAnswerBreakdownPart)).toBe(true);
+  expect(saved).toEqual(parts);
+  expect(isAnswerBreakdownPart({ ...parts[0], meanings: "broken" })).toBe(
+    false,
+  );
+  expect(isAnswerBreakdownPart({ ...parts[0], wordTypes: [null] })).toBe(false);
+  expect(isAnswerBreakdownPart(null)).toBe(false);
+});
 
 test("breakdown explains the actual inflected answer with meanings, readings, and dictionary forms", () => {
   const breakdown = answerBreakdown(

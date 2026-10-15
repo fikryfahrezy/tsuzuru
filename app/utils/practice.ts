@@ -1,4 +1,10 @@
-import { Level, Length, Strictness, type Comparison } from "#shared/practice";
+import {
+  Level,
+  Length,
+  Strictness,
+  type AnswerBreakdownPart,
+  type Comparison,
+} from "#shared/practice";
 
 export enum JournalOutcome {
   Matched = "matched",
@@ -18,6 +24,8 @@ export enum AnswerInput {
 
 export type JournalEntry = {
   id: string;
+  sentenceId?: string;
+  answerBreakdown?: AnswerBreakdownPart[];
   english: string;
   answer: string;
   reference: string;

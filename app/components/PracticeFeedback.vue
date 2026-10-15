@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { normalize, type Comparison } from "#shared/practice";
-const props = defineProps<{ result: Comparison; revealed: boolean }>();
+import {
+  normalize,
+  type AnswerBreakdownPart,
+  type Comparison,
+} from "#shared/practice";
+const props = defineProps<{
+  result: Comparison;
+  revealed: boolean;
+  breakdown: AnswerBreakdownPart[];
+}>();
 const displayedReference = computed(() =>
   props.result?.differences && !props.revealed
     ? props.result.differences.expected.map((part) => part.text).join("")
@@ -17,7 +25,7 @@ const displayedReference = computed(() =>
   >
     <p class="eyebrow">
       {{
-        !revealed && !result.matched ? "EXPECTED WRITING" : "REFERENCE ANSWER"
+        !revealed && !result.matched ? "Expected writing" : "Reference answer"
       }}
     </p>
     <p v-if="!result.matched && !revealed" class="feedback-note">
@@ -57,6 +65,10 @@ const displayedReference = computed(() =>
     >
       Sentence &amp; contributors on Tatoeba ↗
     </a>
+    <details :key="result.reference" class="reference-breakdown">
+      <summary>Answer breakdown</summary>
+      <AnswerBreakdown :parts="breakdown" :shuffled="false" />
+    </details>
     <WritingExplanations
       v-if="!revealed && !result.matched"
       :explanations="result.explanations ?? []"
@@ -85,7 +97,19 @@ const displayedReference = computed(() =>
   color: var(--green);
 }
 .feedback .eyebrow {
-  margin-bottom: 12px;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+.reference-breakdown {
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+.reference-breakdown summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
 }
 .feedback-note {
   font:

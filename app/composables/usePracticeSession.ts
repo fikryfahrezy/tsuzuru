@@ -2,7 +2,14 @@ import { useRoute } from "#imports";
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { $fetch } from "ofetch";
 import {
+  PracticeDifficulty,
+  PracticePermission,
+  hasPracticePermission,
+  isPracticeDifficulty,
+} from "#shared/practice-difficulty";
+import {
   isAlternativeMethod,
+  isAnswerBreakdownPart,
   Level,
   isLevel,
   isLength,
@@ -13,6 +20,7 @@ import {
   type Question,
   type Comparison,
   type AlternativeAnswer,
+  type AnswerBreakdownPart,
 } from "#shared/practice";
 import {
   JournalOutcome,
@@ -26,6 +34,7 @@ export function usePracticeSession() {
   const level = ref<Level>(Level.N5);
   const length = ref<Length>(Length.Short);
   const mode = ref<Strictness>(Strictness.Flexible);
+  const difficulty = ref<PracticeDifficulty>(PracticeDifficulty.Guided);
   const tab = ref<PracticeTab>(PracticeTab.Practice);
   const settingsOpen = ref(false);
   const showRomaji = ref(false);
@@ -71,6 +80,7 @@ export function usePracticeSession() {
           level: level.value,
           length: length.value,
           mode: mode.value,
+          difficulty: difficulty.value,
           showRomaji: showRomaji.value,
           answerInput: answerInput.value,
           acceptAlternatives: acceptAlternatives.value,
@@ -144,6 +154,8 @@ export function usePracticeSession() {
       journal.value = [
         {
           id: `${current.id}-${Date.now()}`,
+          sentenceId: current.id,
+          answerBreakdown: current.answerBreakdown,
           english: current.english,
           answer: reveal ? "" : answer.value,
           reference: comparison.reference,
@@ -190,6 +202,12 @@ export function usePracticeSession() {
   }
   function resetJournal() {
     journal.value = [];
+    persist();
+  }
+  function saveJournalBreakdown(id: string, parts: AnswerBreakdownPart[]) {
+    const entry = journal.value.find((entry) => entry.id === id);
+    if (!entry) return;
+    entry.answerBreakdown = parts;
     persist();
   }
   function restoreAlternative(value: unknown): AlternativeAnswer | null {
@@ -279,6 +297,8 @@ export function usePracticeSession() {
         if (isLevel(saved.level)) level.value = saved.level;
         if (isLength(saved.length)) length.value = saved.length;
         if (isStrictness(saved.mode)) mode.value = saved.mode;
+        if (isPracticeDifficulty(saved.difficulty))
+          difficulty.value = saved.difficulty;
         if (typeof saved.showRomaji === "boolean")
           showRomaji.value = saved.showRomaji;
         if (Object.values(AnswerInput).includes(saved.answerInput))
@@ -303,6 +323,15 @@ export function usePracticeSession() {
             })
             .map((entry: JournalEntry) => ({
               ...entry,
+              sentenceId:
+                typeof entry.sentenceId === "string"
+                  ? entry.sentenceId
+                  : undefined,
+              answerBreakdown:
+                Array.isArray(entry.answerBreakdown) &&
+                entry.answerBreakdown.every(isAnswerBreakdownPart)
+                  ? entry.answerBreakdown
+                  : undefined,
               mode: modes.some((item) => item.value === entry.mode)
                 ? entry.mode
                 : undefined,
@@ -335,6 +364,11 @@ export function usePracticeSession() {
     }
   });
   watch(showRomaji, persist);
+  watch(difficulty, () => {
+    if (!hasPracticePermission(difficulty.value, PracticePermission.RomajiHint))
+      showRomaji.value = false;
+    persist();
+  });
   watch(answerInput, persist);
   watch(acceptAlternatives, () => {
     if (ready.value) {
@@ -351,6 +385,7 @@ export function usePracticeSession() {
     level,
     length,
     mode,
+    difficulty,
     tab,
     settingsOpen,
     showRomaji,
@@ -375,5 +410,6 @@ export function usePracticeSession() {
     nextSentence,
     shortcut,
     resetJournal,
+    saveJournalBreakdown,
   };
 }

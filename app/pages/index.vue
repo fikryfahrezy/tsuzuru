@@ -157,7 +157,7 @@ const faqs = [
             <img
               class="preview-screenshot"
               src="/app-screenshot.webp"
-              alt="Tsuzuru’s sentence practice app with vocabulary level, sentence length, and writing mode settings alongside a checked Japanese answer and a Grammar reference button."
+              alt="Tsuzuru’s sentence practice app with Guided difficulty, vocabulary and writing settings, typing and word chip controls, and a checked Japanese answer with an answer breakdown."
               width="2000"
               height="1600"
               fetchpriority="high"

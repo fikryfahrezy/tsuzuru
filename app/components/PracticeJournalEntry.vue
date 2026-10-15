@@ -1,7 +1,46 @@
 <script setup lang="ts">
-import { DifferenceKind } from "#shared/practice";
+import { computed, ref } from "vue";
+import { $fetch } from "ofetch";
+import {
+  DifferenceKind,
+  type AnswerBreakdownPart,
+  type Question,
+} from "#shared/practice";
 import { JournalOutcome, modes, type JournalEntry } from "~/utils/practice";
-defineProps<{ entry: JournalEntry }>();
+const props = defineProps<{ entry: JournalEntry }>();
+const emit = defineEmits<{
+  breakdown: [id: string, parts: AnswerBreakdownPart[]];
+}>();
+const fetchedBreakdown = ref<AnswerBreakdownPart[] | null>(null);
+const breakdown = computed(
+  () => props.entry.answerBreakdown ?? fetchedBreakdown.value,
+);
+const loadingBreakdown = ref(false);
+const breakdownError = ref("");
+async function loadBreakdown() {
+  if (breakdown.value !== null || loadingBreakdown.value) return;
+  loadingBreakdown.value = true;
+  breakdownError.value = "";
+  try {
+    const sentenceId =
+      props.entry.sentenceId ?? props.entry.id.replace(/-\d+$/u, "");
+    const question = await $fetch<Question>("/api/exercises", {
+      query: { sentence: sentenceId },
+    });
+    if (question.id !== sentenceId || question.english !== props.entry.english)
+      throw new Error("Sentence changed");
+    fetchedBreakdown.value = question.answerBreakdown;
+    emit("breakdown", props.entry.id, question.answerBreakdown);
+  } catch {
+    breakdownError.value =
+      "We couldn’t load this breakdown. Connect to the internet and try again; older sentences may no longer be available.";
+  } finally {
+    loadingBreakdown.value = false;
+  }
+}
+function toggleBreakdown(event: Event) {
+  if ((event.currentTarget as HTMLDetailsElement).open) void loadBreakdown();
+}
 </script>
 
 <template>
@@ -109,6 +148,21 @@ defineProps<{ entry: JournalEntry }>();
     >
       Tatoeba source ↗
     </a>
+    <details class="journal-breakdown" @toggle="toggleBreakdown">
+      <summary>Answer breakdown</summary>
+      <p v-if="loadingBreakdown" class="breakdown-message" role="status">
+        Loading breakdown…
+      </p>
+      <div v-else-if="breakdownError" class="breakdown-message" role="status">
+        <p>{{ breakdownError }}</p>
+        <button type="button" @click="loadBreakdown">Try again ↻</button>
+      </div>
+      <AnswerBreakdown
+        v-else-if="breakdown"
+        :parts="breakdown"
+        :shuffled="false"
+      />
+    </details>
     <WritingExplanations
       v-if="entry.outcome === JournalOutcome.Unmatched"
       :explanations="entry.comparison?.explanations ?? []"
@@ -130,6 +184,30 @@ defineProps<{ entry: JournalEntry }>();
 .journal-entry {
   padding: 25px 30px;
   border-bottom: 1px solid var(--line);
+}
+.journal-breakdown {
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+.journal-breakdown summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.breakdown-message {
+  margin-block: 14px;
+  color: var(--secondary);
+  font:
+    12px/1.7 system-ui,
+    sans-serif;
+}
+.breakdown-message button {
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 8px 10px;
+  color: var(--primary);
 }
 .journal-meta {
   display: flex;

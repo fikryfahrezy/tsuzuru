@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import type { AnswerBreakdownPart } from "#shared/practice";
-defineProps<{ parts: AnswerBreakdownPart[] }>();
+withDefaults(
+  defineProps<{ parts: AnswerBreakdownPart[]; shuffled?: boolean }>(),
+  { shuffled: true },
+);
 </script>
 
 <template>
-  <section
-    id="answer-breakdown"
-    class="answer-breakdown"
-    aria-label="Answer breakdown"
-  >
+  <section class="answer-breakdown" aria-label="Answer breakdown">
     <h3>Answer breakdown</h3>
     <p class="breakdown-help">
-      Words from the reference, in shuffled order. Meanings may vary with
+      Words from the reference, in
+      {{ shuffled ? "shuffled" : "sentence" }} order. Meanings may vary with
       context.
     </p>
     <ul>

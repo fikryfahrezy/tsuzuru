@@ -83,6 +83,25 @@ export interface AnswerBreakdownPart extends AnswerChip {
   note?: string;
 }
 
+export function isAnswerBreakdownPart(
+  value: unknown,
+): value is AnswerBreakdownPart {
+  if (!value || typeof value !== "object") return false;
+  const part = value as AnswerBreakdownPart;
+  return (
+    typeof part.japanese === "string" &&
+    typeof part.kana === "string" &&
+    typeof part.romaji === "string" &&
+    Array.isArray(part.meanings) &&
+    part.meanings.every((meaning) => typeof meaning === "string") &&
+    Array.isArray(part.wordTypes) &&
+    part.wordTypes.every((type) => typeof type === "string") &&
+    (part.dictionaryForm === undefined ||
+      typeof part.dictionaryForm === "string") &&
+    (part.note === undefined || typeof part.note === "string")
+  );
+}
+
 export interface AnswerChip {
   japanese: string;
   kana: string;

@@ -2,6 +2,7 @@ import { randomInt } from "node:crypto";
 import boundaries from "../../data/romaji/word-boundaries.json";
 import {
   hiragana,
+  normalize,
   parts,
   validReadings,
   type AnswerChip,
@@ -32,7 +33,17 @@ export function answerChips(candidate: Candidate): AnswerChip[] {
     }
   }
   if (chip.japanese) chips.push(chip);
-  return chips;
+  // Remove precisely the characters ignored by comparison, preserving original spelling.
+  const withoutIgnored = (text: string) =>
+    Array.from(text)
+      .filter((character) => normalize(character))
+      .join("");
+  return chips
+    .map((chip) => ({
+      japanese: withoutIgnored(chip.japanese),
+      kana: withoutIgnored(chip.kana),
+    }))
+    .filter((chip) => chip.japanese && chip.kana);
 }
 
 export function shuffledAnswerChips(candidate: Candidate): AnswerChip[] {

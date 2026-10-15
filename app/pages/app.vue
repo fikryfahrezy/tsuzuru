@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { definePageMeta, useHead, useSeoMeta } from "#imports";
-import { ref, nextTick } from "vue";
+import { ref, nextTick, watch } from "vue";
+import {
+  PracticePermission,
+  hasPracticePermission,
+  difficultyOptions,
+} from "#shared/practice-difficulty";
 import { PracticeTab } from "~/utils/practice";
 import { usePracticeSession } from "~/composables/usePracticeSession";
 definePageMeta({ alias: ["/practice"] });
@@ -25,6 +30,7 @@ const {
   level,
   length,
   mode,
+  difficulty,
   tab,
   settingsOpen,
   showRomaji,
@@ -49,6 +55,7 @@ const {
   nextSentence,
   shortcut,
   resetJournal,
+  saveJournalBreakdown,
 } = usePracticeSession();
 const grammarOpen = ref(false);
 const grammarVisited = ref(false);
@@ -59,6 +66,13 @@ async function closeSettings() {
   settingsToggle.value?.focus();
 }
 async function toggleGrammar() {
+  if (
+    !hasPracticePermission(
+      difficulty.value,
+      PracticePermission.GrammarReference,
+    )
+  )
+    return;
   if (grammarOpen.value) return closeGrammar();
   grammarVisited.value = true;
   grammarOpen.value = true;
@@ -75,6 +89,15 @@ function selectTab(value: PracticeTab) {
   tab.value = value;
   settingsOpen.value = false;
 }
+watch(difficulty, () => {
+  if (
+    !hasPracticePermission(
+      difficulty.value,
+      PracticePermission.GrammarReference,
+    )
+  )
+    grammarOpen.value = false;
+});
 </script>
 
 <template>
@@ -108,6 +131,11 @@ function selectTab(value: PracticeTab) {
                 : "Practice journal"
             }}
           </h1>
+          <span v-if="tab === PracticeTab.Practice" class="difficulty-label">
+            {{
+              difficultyOptions.find((item) => item.value === difficulty)?.label
+            }}
+          </span>
         </div>
       </header>
       <p v-if="storageNote" class="notice" role="status">{{ storageNote }}</p>
@@ -134,6 +162,7 @@ function selectTab(value: PracticeTab) {
           v-model:level="level"
           v-model:length="length"
           v-model:mode="mode"
+          v-model:difficulty="difficulty"
           v-model:accept-alternatives="acceptAlternatives"
           :sentence="sentence"
           :settings-open="settingsOpen"
@@ -150,6 +179,7 @@ function selectTab(value: PracticeTab) {
           v-model:show-romaji="showRomaji"
           v-model:answer-input="answerInput"
           :mode="mode"
+          :difficulty="difficulty"
           :question="question"
           :result="result"
           :revealed="revealed"
@@ -164,7 +194,13 @@ function selectTab(value: PracticeTab) {
           @shortcut="shortcut"
         />
         <GrammarReference
-          v-show="grammarOpen"
+          v-show="
+            grammarOpen &&
+            hasPracticePermission(
+              difficulty,
+              PracticePermission.GrammarReference,
+            )
+          "
           v-if="grammarVisited"
           id="practice-grammar-reference"
           :initial-level="level"
@@ -176,6 +212,7 @@ function selectTab(value: PracticeTab) {
         v-else
         :journal="journal"
         @clear="resetJournal"
+        @breakdown="saveJournalBreakdown"
         @practice="tab = PracticeTab.Practice"
       />
     </main>

@@ -6,6 +6,18 @@ Open `/app`, choose a vocabulary level and sentence length, then translate the
 English prompt into Japanese. **Ctrl / Command + Enter** checks your answer;
 press it again to continue.
 
+## Choose a practice difficulty
+
+Open **Settings** beside the page title and choose **Guided** or **Challenge**.
+Guided is the default and offers answer breakdowns, grammar reference, romaji
+hints, and clickable English word hints. Challenge hides these four aids during
+practice and closes any that were open. It keeps your draft and input mode.
+
+Both difficulties allow answer breakdowns after checking and in the journal.
+Your difficulty choice is saved in this browser. The available aids are defined
+by the permissions map in [practice-difficulty.ts](../shared/practice-difficulty.ts);
+new difficulty levels can choose their own permissions from that list.
+
 ## Choose a writing mode
 
 | Mode          | Accepted writing                                               |

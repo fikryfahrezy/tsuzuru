@@ -2,6 +2,11 @@
 import { computed, nextTick, ref, watch } from "vue";
 import { AnswerInput } from "~/utils/practice";
 import {
+  PracticeDifficulty,
+  PracticePermission,
+  hasPracticePermission,
+} from "#shared/practice-difficulty";
+import {
   DifferenceKind,
   Strictness,
   type Question,
@@ -16,6 +21,7 @@ const props = defineProps<{
   error: string;
   grammarOpen?: boolean;
   mode: Strictness;
+  difficulty: PracticeDifficulty;
 }>();
 const answer = defineModel<string>("answer", { required: true });
 const showRomaji = defineModel<boolean>("showRomaji", { required: true });
@@ -34,7 +40,17 @@ const field = ref<HTMLTextAreaElement | null>(null);
 const chipField = ref<HTMLElement | null>(null);
 const resultStatus = ref<HTMLElement | null>(null);
 const breakdownOpen = ref(false);
+const canUse = (permission: PracticePermission) =>
+  hasPracticePermission(props.difficulty, permission);
 const chips = computed(() => props.question?.wordBank ?? []);
+const shuffledBreakdown = computed(() =>
+  chips.value.flatMap((chip) => {
+    const part = props.question?.answerBreakdown.find(
+      (part) => part.japanese === chip.japanese && part.kana === chip.kana,
+    );
+    return part ? [part] : [];
+  }),
+);
 const locked = computed(
   () => props.loading || !props.question || props.checking || !!props.result,
 );
@@ -88,6 +104,13 @@ watch(
     if (answerInput.value === AnswerInput.Chips) updateChipAnswer();
   },
 );
+watch(
+  () => props.difficulty,
+  () => {
+    if (!canUse(PracticePermission.AnswerBreakdown))
+      breakdownOpen.value = false;
+  },
+);
 defineExpose({
   focusGrammar: () => grammarButton.value?.focus(),
   focusAnswer,
@@ -106,6 +129,7 @@ defineExpose({
       :question="question"
       :loading="loading"
       :checking="checking"
+      :difficulty="difficulty"
       v-model:show-romaji="showRomaji"
       @another="emit('another')"
     />
@@ -123,6 +147,7 @@ defineExpose({
           </label>
           <div class="reference-tools">
             <button
+              v-if="canUse(PracticePermission.AnswerBreakdown)"
               type="button"
               class="grammar-toggle"
               :aria-expanded="breakdownOpen"
@@ -133,6 +158,7 @@ defineExpose({
               {{ breakdownOpen ? "Hide breakdown ×" : "Answer breakdown ↗" }}
             </button>
             <button
+              v-if="canUse(PracticePermission.GrammarReference)"
               ref="grammarButton"
               type="button"
               class="grammar-toggle"
@@ -145,8 +171,13 @@ defineExpose({
           </div>
         </div>
         <AnswerBreakdown
-          v-if="breakdownOpen && question"
-          :parts="question.answerBreakdown"
+          v-if="
+            breakdownOpen &&
+            question &&
+            canUse(PracticePermission.AnswerBreakdown)
+          "
+          id="answer-breakdown"
+          :parts="shuffledBreakdown"
         />
         <div class="input-options" role="group" aria-label="Answer input">
           <button
@@ -307,7 +338,12 @@ defineExpose({
       {{ error }}
       <button v-if="!question" @click="emit('another')">Try again ↻</button>
     </div>
-    <PracticeFeedback v-if="result" :result="result" :revealed="revealed" />
+    <PracticeFeedback
+      v-if="result"
+      :result="result"
+      :revealed="revealed"
+      :breakdown="question?.answerBreakdown ?? []"
+    />
     <div v-else-if="question" class="below-paper">
       <button :disabled="checking" @click="emit('submit', true)">
         Show reference ↗

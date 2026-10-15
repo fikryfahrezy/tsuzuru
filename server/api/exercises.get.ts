@@ -3,7 +3,7 @@ import { randomInt } from "node:crypto";
 import { exercises, exerciseById } from "../utils/exercises";
 import { romajiHint } from "../../shared/romaji";
 import { wordHints } from "../utils/word-hints";
-import { shuffledAnswerChips } from "../utils/answer-chips";
+import { answerChips, shuffledAnswerChips } from "../utils/answer-chips";
 import { answerBreakdown } from "../utils/answer-breakdown";
 import {
   lengthOf,
@@ -37,7 +37,7 @@ export default defineEventHandler((event): Question => {
       poolSize: 1,
       alternativeCount: selected.acceptedAlternatives?.length ?? 0,
       wordBank: chips,
-      answerBreakdown: answerBreakdown(selected, chips, hints),
+      answerBreakdown: answerBreakdown(selected, answerChips(selected), hints),
     };
   }
   if (!isLevel(query.level) || !isLength(query.length)) {
@@ -70,6 +70,6 @@ export default defineEventHandler((event): Question => {
     poolSize: pool.length,
     alternativeCount: row.acceptedAlternatives?.length ?? 0,
     wordBank: chips,
-    answerBreakdown: answerBreakdown(row, chips, hints),
+    answerBreakdown: answerBreakdown(row, answerChips(row), hints),
   };
 });

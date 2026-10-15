@@ -2,6 +2,10 @@
 import { computed } from "vue";
 import { levels, Level, Length, Strictness } from "#shared/practice";
 import { lengthOptions, modes } from "~/utils/practice";
+import {
+  PracticeDifficulty,
+  difficultyOptions,
+} from "#shared/practice-difficulty";
 defineProps<{
   sentence?: string;
   settingsOpen: boolean;
@@ -12,6 +16,9 @@ const emit = defineEmits<{ close: [] }>();
 const level = defineModel<Level>("level", { required: true });
 const length = defineModel<Length>("length", { required: true });
 const mode = defineModel<Strictness>("mode", { required: true });
+const difficulty = defineModel<PracticeDifficulty>("difficulty", {
+  required: true,
+});
 const acceptAlternatives = defineModel<boolean>("acceptAlternatives", {
   required: true,
 });
@@ -36,6 +43,24 @@ const modeHelp = computed(
     :class="{ 'settings-open': settingsOpen }"
     aria-label="Practice settings"
   >
+    <fieldset :disabled="checking">
+      <legend>Practice difficulty</legend>
+      <div class="difficulty-options">
+        <button
+          v-for="item in difficultyOptions"
+          :key="item.value"
+          type="button"
+          :aria-pressed="difficulty === item.value"
+          :class="{ selected: difficulty === item.value }"
+          @click="difficulty = item.value"
+        >
+          {{ item.label }}
+        </button>
+      </div>
+      <p class="setting-note">
+        {{ difficultyOptions.find((item) => item.value === difficulty)?.note }}
+      </p>
+    </fieldset>
     <div v-if="sentence !== undefined" class="selected-sentence-note">
       <p class="setting-note">
         Practicing a selected sentence. Level and length apply to random
@@ -119,6 +144,22 @@ const modeHelp = computed(
 </template>
 
 <style scoped>
+.difficulty-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.difficulty-options button {
+  padding: 11px 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 11px;
+}
+.difficulty-options .selected {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(185, 51, 39, 0.07);
+}
 .alternatives-toggle {
   display: flex;
   justify-content: space-between;

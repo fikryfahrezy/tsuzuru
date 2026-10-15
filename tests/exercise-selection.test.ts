@@ -30,7 +30,7 @@ test("sentence selection loads a dataset entry regardless of filters or previous
     expect(response.status).toBe(200);
     const question = await response.json();
     expect(question.answerBreakdown).toEqual(
-      answerBreakdown(selected, question.wordBank, question.wordHints),
+      answerBreakdown(selected, answerChips(selected), question.wordHints),
     );
     expect(
       question.wordBank.map((chip: unknown) => JSON.stringify(chip)).sort(),
@@ -87,7 +87,7 @@ test("invalid IDs fail explicitly and requests without IDs still select from the
   const candidate = exerciseById.get(question.id)!;
   expect(candidate).toBeDefined();
   expect(question.answerBreakdown).toEqual(
-    answerBreakdown(candidate, question.wordBank, question.wordHints),
+    answerBreakdown(candidate, answerChips(candidate), question.wordHints),
   );
 });
 
