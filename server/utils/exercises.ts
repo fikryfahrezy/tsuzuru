@@ -4,6 +4,7 @@ import manifest from "../../data/manifest.json";
 import spellingBank from "../../data/spelling-variants/bank.json";
 import wordBoundaryBank from "../../data/romaji/word-boundaries.json";
 import referenceLexemeBank from "../../data/romaji/reference-lexemes.json";
+import sentenceLevelBank from "../../data/sentence-levels/bank.json";
 import {
   verifiedSpellings,
   type SpellingBank,
@@ -14,13 +15,14 @@ import {
   type AlternativeBank,
   type AlternativeDropReason,
 } from "../../shared/accepted-alternatives";
-import type { Candidate } from "../../shared/practice";
+import { isLevel, type Candidate, type Level } from "../../shared/practice";
 import {
   isNonEmpty,
   parseReadings,
   type ReadingBank,
   type ReferenceLexemeBank,
   type Sentence,
+  type SentenceLevelBank,
   type WordBoundaryBank,
 } from "../../shared/sentence";
 import {
@@ -37,6 +39,7 @@ export interface Banks {
   wordBoundaries?: WordBoundaryBank;
   referenceLexemes?: ReferenceLexemeBank;
   phraseHints?: PhraseHintBank;
+  sentenceLevels?: SentenceLevelBank;
   revision?: string;
 }
 
@@ -46,6 +49,7 @@ export const defaultBanks: Banks = {
   wordBoundaries: wordBoundaryBank as WordBoundaryBank,
   referenceLexemes: referenceLexemeBank as ReferenceLexemeBank,
   phraseHints: phraseHintBank(phraseHintEntries),
+  sentenceLevels: sentenceLevelBank as SentenceLevelBank,
   revision: manifest.revision,
 };
 
@@ -63,6 +67,40 @@ function generated<T>(
     : undefined;
 }
 
+type LevelDropReason =
+  | "stale-bank"
+  | "stale-entry"
+  | "invalid-level"
+  | "missing";
+
+// A sentence's level applies only while its source text still matches.
+function sentenceLevel(
+  row: Candidate,
+  bank: SentenceLevelBank | undefined,
+  revision: string,
+  drop: (reason: LevelDropReason) => void,
+): Level | null {
+  if (!bank) return null;
+  const entry = bank.entries[row.id];
+  const reason: LevelDropReason | null =
+    bank.version !== 1 || bank.sourceRevision !== revision
+      ? "stale-bank"
+      : !entry
+        ? "missing"
+        : entry.sourceJapanese !== row.japanese
+          ? "stale-entry"
+          : null;
+  if (reason || !entry) {
+    drop(reason ?? "missing");
+    return null;
+  }
+  if (!isLevel(entry.level)) {
+    drop("invalid-level");
+    return null;
+  }
+  return entry.level;
+}
+
 // Bank records whose sentence did not load are never validated.
 type OrphanReason = "sentence-dropped" | "unknown-sentence";
 
@@ -78,6 +116,7 @@ export interface LoadReport {
   alternatives: LoadTally<AlternativeDropReason | OrphanReason>;
   spellings: LoadTally<SpellingDropReason | OrphanReason>;
   phraseHints: LoadTally<PhraseHintDropReason | OrphanReason>;
+  levels: LoadTally<LevelDropReason>;
 }
 
 export function emptyLoadReport(): LoadReport {
@@ -86,6 +125,7 @@ export function emptyLoadReport(): LoadReport {
     alternatives: { loaded: 0, dropped: {} },
     spellings: { loaded: 0, dropped: {} },
     phraseHints: { loaded: 0, dropped: {} },
+    levels: { loaded: 0, dropped: {} },
   };
 }
 
@@ -130,6 +170,13 @@ export function loadSentence(
   }
   report.sentences.loaded++;
   const revision = banks.revision ?? manifest.revision;
+  const level = sentenceLevel(
+    row,
+    banks.sentenceLevels,
+    revision,
+    dropInto(report.levels),
+  );
+  if (level) report.levels.loaded++;
   const alternatives = banks.alternatives
     ? acceptedAlternatives(
         row,
@@ -173,6 +220,7 @@ export function loadSentence(
     english: row.english,
     englishWordCount: row.englishWordCount,
     targetVocabulary: row.targetVocabulary,
+    level,
     sourceUrl:
       row.sources.find((source) => source.tatoebaUrl)?.tatoebaUrl ?? null,
     reference,

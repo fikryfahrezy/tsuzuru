@@ -3,7 +3,8 @@
 [Back to README](../README.md)
 
 Open `/app`, choose a vocabulary level and sentence length, then translate the
-English prompt into Japanese. **Ctrl / Command + Enter** checks your answer;
+English prompt into Japanese. A level offers sentences whose vocabulary is at
+that level or easier; kanji and grammar are not graded. **Ctrl / Command + Enter** checks your answer;
 press it again to continue.
 
 ## Choose a practice difficulty

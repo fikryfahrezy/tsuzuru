@@ -3,7 +3,9 @@ import { exercises } from "../server/utils/exercises";
 import {
   compare,
   Strictness,
+  isWithinLevel,
   lengthOf,
+  levels,
   validReadings,
   type Candidate,
 } from "../shared/practice";
@@ -86,12 +88,13 @@ describe("reference writing comparison", () => {
 });
 
 test("the imported bank supports every level and length without missing readings", () => {
-  for (const level of ["N5", "N4", "N3", "N2", "N1"]) {
+  for (const level of levels) {
     for (const length of ["short", "medium", "long"]) {
       expect(
         exercises.some(
           (row) =>
-            row.targetVocabulary.some((target) => target.level === level) &&
+            row.level !== null &&
+            isWithinLevel(row.level, level) &&
             lengthOf(row.englishWordCount) === length,
         ),
       ).toBe(true);

@@ -75,7 +75,7 @@ and build commands generate public disclosure files from the original documents.
 ## Exercise API
 
 - `GET /api/exercises?level=N5&length=short` returns a random English prompt,
-  romaji, and vocabulary hints.
+  romaji, and vocabulary hints from sentences graded at that level or easier.
 - `POST /api/compare` accepts `{ id, answer, mode, acceptAlternatives? }` and
   returns a reference comparison. Invalid settings and unknown IDs are rejected.
 

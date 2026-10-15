@@ -2,11 +2,24 @@ import { expect, test } from "bun:test";
 import { createApp, toWebHandler } from "h3";
 import exerciseHandler from "../server/api/exercises.get";
 import compareHandler from "../server/api/compare.post";
-import { HintSource, Strictness } from "../shared/practice";
+import {
+  HintSource,
+  isWithinLevel,
+  lengthOf,
+  Level,
+  levels,
+  Strictness,
+} from "../shared/practice";
 import { spellingOptions } from "../shared/writing-spellings";
 import { romajiHint } from "../shared/romaji";
 import { wordHints } from "../server/utils/word-hints";
-import { exerciseById } from "../server/utils/exercises";
+import {
+  candidateById,
+  defaultBanks,
+  exerciseById,
+  exercises,
+  loadSentence,
+} from "../server/utils/exercises";
 import { answerChips } from "../server/utils/answer-chips";
 import { answerBreakdown } from "../server/utils/answer-breakdown";
 
@@ -128,4 +141,58 @@ test("sentence API delivers contextual and separated phrase hints", async () => 
       (part: { phrase?: string }) => part.phrase === "turn … on",
     ),
   ).toHaveLength(2);
+});
+
+test("random sentences never use vocabulary above the chosen level", async () => {
+  const handle = api();
+  for (const level of levels) {
+    for (let draw = 0; draw < 20; draw++) {
+      const response = await handle(
+        new Request(
+          `http://localhost/api/exercises?level=${level}&length=short`,
+        ),
+      );
+      const sentence = exerciseById.get((await response.json()).id)!;
+      expect(sentence.level).not.toBeNull();
+      expect(isWithinLevel(sentence.level!, level)).toBe(true);
+    }
+  }
+});
+
+test("levels are cumulative, so each pool contains every easier pool", async () => {
+  const handle = api();
+  const poolSize = async (level: string) =>
+    (
+      await (
+        await handle(
+          new Request(
+            `http://localhost/api/exercises?level=${level}&length=short`,
+          ),
+        )
+      ).json()
+    ).poolSize;
+  const sizes = await Promise.all(levels.map(poolSize));
+  expect(sizes).toEqual([...sizes].sort((a, b) => a - b));
+  expect(sizes.at(-1)).toBe(
+    exercises.filter((row) => lengthOf(row.englishWordCount) === "short")
+      .length,
+  );
+});
+
+test("a sentence graded above its vocabulary target leaves the lower pool", () => {
+  // 工作 is listed at N1, so this sentence is never offered at N5.
+  const handiwork = exerciseById.get("0000978f3525f2d6e60e600b")!;
+  expect(handiwork.level).toBe(Level.N1);
+  expect(isWithinLevel(handiwork.level!, Level.N5)).toBe(false);
+});
+
+test("a stale or missing grade keeps the sentence out of level selection", () => {
+  const record = candidateById.get("0000978f3525f2d6e60e600b")!;
+  expect(loadSentence(record, defaultBanks)?.level).toBe(Level.N1);
+  const bank = structuredClone(defaultBanks.sentenceLevels!);
+  bank.entries[record.id]!.sourceJapanese += "！";
+  expect(
+    loadSentence(record, { ...defaultBanks, sentenceLevels: bank })?.level,
+  ).toBeNull();
+  expect(loadSentence(record)?.level).toBeNull();
 });

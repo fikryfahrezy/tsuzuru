@@ -281,6 +281,11 @@ export function lengthOf(count: number): Length {
   return count <= 7 ? Length.Short : count <= 12 ? Length.Medium : Length.Long;
 }
 
+// Levels are cumulative: an N4 learner is also expected to know N5 words.
+export function isWithinLevel(sentence: Level, chosen: Level): boolean {
+  return levels.indexOf(sentence) <= levels.indexOf(chosen);
+}
+
 export function isLevel(value: unknown): value is Level {
   return Object.values(Level).some((item) => item === value);
 }

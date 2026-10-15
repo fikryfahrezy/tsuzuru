@@ -10,6 +10,7 @@ import {
   lengthOf,
   isLevel,
   isLength,
+  isWithinLevel,
   type Question,
 } from "../../shared/practice";
 import type { Sentence } from "../../shared/sentence";
@@ -52,9 +53,12 @@ export default defineEventHandler((event): Question => {
       statusMessage: "Choose a valid level and length.",
     });
   }
+  const level = query.level;
+  // A sentence is eligible when every listed word is at or below the level.
   const pool = exercises.filter(
     (row) =>
-      row.targetVocabulary.some((target) => target.level === query.level) &&
+      row.level !== null &&
+      isWithinLevel(row.level, level) &&
       lengthOf(row.englishWordCount) === query.length,
   );
   if (!pool.length)

@@ -3,6 +3,7 @@ import {
   normalize,
   parts,
   type AlternativeProvenance,
+  type Level,
   type VocabularyHint,
 } from "./practice";
 import type { SpellingReference } from "./writing-spellings";
@@ -29,6 +30,22 @@ export type ReadingBank<T> = Record<
   { sourceJapanese: string; readings: Record<string, T> }
 >;
 export type WordBoundaryBank = ReadingBank<number[]>;
+
+// Generated vocabulary grade per sentence: the highest JLPT level among its
+// listed content words. See scripts/generate-sentence-levels.py.
+export interface SentenceLevelBank {
+  version: number;
+  sourceRevision: string;
+  method: string;
+  entries: Record<
+    string,
+    {
+      sourceJapanese: string;
+      level: string;
+      limitingWords: { surface: string; lemma: string; level: string }[];
+    }
+  >;
+}
 export type ReferenceLexemeBank = ReadingBank<ReferenceLexeme[]>;
 
 // One validated pronunciation of a rendering, parsed once at load.
@@ -81,6 +98,9 @@ export interface Sentence {
   english: string;
   englishWordCount: number;
   targetVocabulary: { id: string; word: string; level: string }[];
+  // Vocabulary grade of the whole sentence; null when no current grade
+  // exists, which keeps the sentence out of level-based selection.
+  level: Level | null;
   sourceUrl: string | null;
   reference: Rendering;
   alternatives: Alternative[];

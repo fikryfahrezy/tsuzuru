@@ -5,6 +5,7 @@
 - `processed/sentence-candidates.json`: deduplicated vocabulary example pairs with provenance and length measurements. These are unreviewed candidates, not a graded exercise bank.
 - `phrase-hints/sentences.json`: maintained phrase spans with wording and readings from the Japanese reference. See [phrase hint maintenance](phrase-hints/README.md).
 - `hint-glossary/bank.json`: additional JMdict English senses for existing vocabulary, used with reference support. See [hint glossary generation](hint-glossary/README.md).
+- `sentence-levels/bank.json`: a vocabulary grade for each sentence, used to choose practice sentences by level. See [sentence levels](#sentence-levels).
 - `spelling-variants/bank.json`: verified word-position spelling variants generated from JMdict and Sudachi, separate from alternative translations. See [generation and review](spelling-variants/README.md).
 
 Read [DATA_DISCLOSURE.md](../DATA_DISCLOSURE.md) for credits, licenses, modifications, and educational limitations. Third-party data is not covered by the project's MIT software license.
@@ -132,6 +133,31 @@ English wording absent from OpenJLPT's abbreviated definitions. Idioms and
 meanings absent from both glossaries still need explicit mappings in
 `phrase-hints/sentences.json`. Dictionary fallback hints retain their existing
 dictionary-source note.
+
+## Sentence levels
+
+`sentence-levels/bank.json` gives each sentence the highest JLPT level among its
+content words, keyed by sentence ID and guarded by the source Japanese and
+OpenJLPT revision like the other banks. Practice at a level offers sentences
+graded at that level or easier, so an N4 session also includes N5 sentences.
+
+The generator splits each sentence with Sudachi and looks up each word's
+dictionary form in the OpenJLPT vocabulary lists. Kana readings identify a word
+only when the sentence writes it in kana, so a kanji spelling cannot match an
+easier homophone. Particles, auxiliaries, names, numerals, and counters after a
+numeral (３時) are not graded. Words absent from every list are recorded but do
+not raise the level; an unlisted compound falls back to its listed parts. Each
+entry keeps the words that set its level, so a grade can be explained. Kanji and
+grammar are not graded.
+
+```sh
+bun run levels:generate
+bun run levels:check
+bun run levels:test
+```
+
+CI regenerates the bank in check mode, and the load report test fails if any
+loaded sentence lacks a current grade.
 
 Only explicit entries in `phrase-hints/sentences.json` are labeled as sentence
 translations. Automatic glossary matches are labeled as possible reference

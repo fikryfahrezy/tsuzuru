@@ -89,14 +89,19 @@ useSeoMeta({
         <a href="/disclosures/spelling-variants.md">
           source and maintenance details
         </a>
-        .
+        . Sentence levels use the same tokenizer with OpenJLPT vocabulary; the
+        <a href="/disclosures/sentence-levels.json" download>
+          sentence level bank
+        </a>
+        is also available under CC BY-SA 4.0.
       </p>
       <h2>Reference practice, explained</h2>
       <p class="license-note">
         This is a beta exercise bank drawn from unreviewed sentence candidates.
-        The level selector chooses a target vocabulary level, not a certified
-        difficulty for the entire sentence. Some sentences contain harder
-        grammar or vocabulary.
+        The level selector offers sentences whose listed vocabulary is at that
+        level or easier. This is not a certified difficulty: kanji, grammar, and
+        words outside the JLPT lists are not graded, so some sentences still
+        contain harder kanji or grammar.
       </p>
       <p>
         The

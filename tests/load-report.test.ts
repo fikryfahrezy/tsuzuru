@@ -26,6 +26,7 @@ const limits: Record<
   alternatives: { minLoaded: 1335, maxDropped: 0 },
   spellings: { minLoaded: 3239, maxDropped: 0 },
   phraseHints: { minLoaded: 20, maxDropped: 0 },
+  levels: { minLoaded: 9597, maxDropped: 0 },
 };
 
 function violations(report: LoadReport): string[] {
@@ -97,6 +98,15 @@ describe("corrupting one bank record breaks the budget", () => {
       phraseHints: phraseHintBank(entries),
     });
     expect(report.phraseHints.dropped).toEqual({ "unverified-hint": 1 });
+    expect(violations(report)).not.toEqual([]);
+  });
+
+  test("sentence level whose source text changed", () => {
+    const bank = structuredClone(defaultBanks.sentenceLevels!);
+    const id = "0000978f3525f2d6e60e600b";
+    bank.entries[id]!.sourceJapanese += "！";
+    const report = load({ ...defaultBanks, sentenceLevels: bank });
+    expect(report.levels.dropped).toEqual({ "stale-entry": 1 });
     expect(violations(report)).not.toEqual([]);
   });
 });
