@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test";
 import { kanaToRomaji, romajiHint } from "../shared/romaji";
+import { compare, Strictness } from "../shared/practice";
 import {
   candidates,
   defaultBanks,
@@ -138,4 +139,20 @@ test("honorific prefixes stay with their nouns in sentence hints", () => {
   expect(romajiHint(exerciseById.get("0324d950cada541bfaeb25e2")!)).toBe(
     "kikimashita wa yo. goryoushin ga shakkin wo nokoshite jouhatsu shita sou desu wa ne.",
   );
+});
+
+test("sentences once annotated with JMdict entry numbers use the entry's reading", () => {
+  // Upstream annotated 前 as #1392580; see data/reading-repairs/repairs.json.
+  const speech = exerciseById.get("09b5499b1decb1d0d7b92193")!;
+  expect(romajiHint(speech)).toBe(
+    "kare ha takusan no hito no mae de enzetsu shita.",
+  );
+  expect(
+    compare(speech, "かれはたくさんのひとのまえでえんぜつした", Strictness.Kana)
+      .matched,
+  ).toBe(true);
+  for (const sentence of exercises)
+    for (const rendering of [sentence.reference, ...sentence.alternatives])
+      for (const reading of rendering.readings)
+        expect(reading.furigana).not.toMatch(/\|[#＃]/u);
 });

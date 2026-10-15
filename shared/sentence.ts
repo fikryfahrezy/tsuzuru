@@ -123,7 +123,10 @@ export function parseReading(
   const reading = segments.map((part) => part.reading).join("");
   if (
     normalize(surface) !== normalize(japanese) ||
-    /[\p{Script=Han}{}|]/u.test(reading)
+    // Upstream annotations have named a JMdict entry ({前|#1392580}) instead
+    // of a pronunciation, which would then be shown and compared. Readings
+    // can otherwise carry digits and punctuation over from the source text.
+    /[\p{Script=Han}{}|#＃]/u.test(reading)
   )
     return null;
   return { furigana, segments, kana: hiragana(reading) };

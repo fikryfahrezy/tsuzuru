@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "sourceRevision": "0d1d3410bec90bd4098a7c72de820543cb4f707c",
+  "jmdict": {
+    "url": "https://www.edrdg.org/pub/Nihongo/JMdict_e.gz",
+    "sha256": "38de0c1aa1fc6b2f1460189c06182589d03c2610511bbbbf9805b8d869ae9cec",
+    "license": "https://www.edrdg.org/edrdg/licence.html"
+  },
+  "note": "Upstream annotations that name a JMdict entry (#id) instead of a reading, each repaired from that entry's single reading for the annotated spelling. Applied when sentence candidates are built.",
+  "repairs": [
+    {
+      "entry": "1226960",
+      "spelling": "逆",
+      "reading": "ぎゃく",
+      "gloss": "reverse"
+    },
+    {
+      "entry": "1280250",
+      "spelling": "甲斐",
+      "reading": "かい",
+      "gloss": "result (that makes an act worthwhile)"
+    },
+    {
+      "entry": "1288340",
+      "spelling": "腰",
+      "reading": "こし",
+      "gloss": "lower back"
+    },
+    {
+      "entry": "1294330",
+      "spelling": "妻",
+      "reading": "つま",
+      "gloss": "wife"
+    },
+    {
+      "entry": "1392580",
+      "spelling": "前",
+      "reading": "まえ",
+      "gloss": "in front (of)"
+    },
+    {
+      "entry": "1445160",
+      "spelling": "度",
+      "reading": "ど",
+      "gloss": "degree (angle, temperature, scale, etc.)"
+    },
+    {
+      "entry": "2825953",
+      "spelling": "人手",
+      "reading": "ひとで",
+      "gloss": "someone else's hands"
+    }
+  ]
+}

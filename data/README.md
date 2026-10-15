@@ -24,6 +24,31 @@ python3 scripts/fetch_learning_data.py --revision <commit-sha>
 
 The script needs Python 3 and network access to GitHub. It checks upstream counts, leaves raw source text unchanged, and records hashes. Generated files are replaced on each import; keep exercise review decisions in separate files.
 
+Rebuild the candidates from the pinned snapshot without downloading, for example after changing reading repairs:
+
+```sh
+bun run data:rebuild
+```
+
+### Reading repairs
+
+Some upstream annotations name a JMdict entry instead of a reading, such as
+`{前|#1392580}`. `reading-repairs/repairs.json` maps each one to its entry's
+reading, generated from the JMdict snapshot recorded by the spelling bank: the
+entry must list the annotated spelling and allow exactly one reading for it,
+so no reading is guessed. Building candidates applies these repairs and stops
+if an entry annotation has no repair, so a new import cannot reintroduce them.
+The app also rejects any reading that names an entry.
+
+```sh
+bun run readings:generate
+bun run readings:check
+bun run readings:test
+```
+
+After changing repairs, rebuild the candidates and regenerate the banks keyed by
+furigana: alternatives, spelling variants, romaji, and sentence levels.
+
 ## Alternative answers
 
 `alternatives/answers.json` contains Tsuzuru additions to the imported references,

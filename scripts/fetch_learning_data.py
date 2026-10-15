@@ -11,6 +11,8 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = "evanclan/OpenJLPT"
+REPAIRS = ROOT / "data/reading-repairs/repairs.json"
+ENTRY_ANNOTATION = re.compile(r"\{([^{}|]+)\|#(\d+)\}")
 
 
 def fetch(url):
@@ -24,7 +26,29 @@ def save_json(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def build_candidates(snapshot, revision):
+def load_repairs(path=REPAIRS):
+    """(spelling, JMdict entry id) to reading; see scripts/generate-reading-repairs.py."""
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("version") != 1:
+        raise ValueError(f"Unsupported reading repair version: {path}")
+    return {(row["spelling"], row["entry"]): row["reading"] for row in data["repairs"]}
+
+
+def repair_furigana(furigana, repairs):
+    """Replace annotations that name a JMdict entry ({前|#1392580}) with the
+    entry's reading. An unrepaired entry annotation stops the import."""
+    def replace(match):
+        reading = repairs.get((match[1], match[2]))
+        if reading is None:
+            raise ValueError(f"Unrepaired entry annotation {match[0]}; run readings:generate.")
+        return f"{{{match[1]}|{reading}}}"
+    return ENTRY_ANNOTATION.sub(replace, furigana)
+
+
+def build_candidates(snapshot, revision, repairs=None):
+    repairs = load_repairs() if repairs is None else repairs
     pairs = {}
     counts = {}
     for category in ("vocab", "kanji", "grammar"):
@@ -55,8 +79,9 @@ def build_candidates(snapshot, revision):
                         "reviewStatus": "unreviewed",
                         "license": "CC-BY-SA-4.0",
                     })
-                    if example.get("furigana") and example["furigana"] not in candidate["furiganaVariants"]:
-                        candidate["furiganaVariants"].append(example["furigana"])
+                    furigana = repair_furigana(example.get("furigana") or "", repairs)
+                    if furigana and furigana not in candidate["furiganaVariants"]:
+                        candidate["furiganaVariants"].append(furigana)
                     target = {"id": row["id"], "word": row["word"], "level": row["level"]}
                     if target not in candidate["targetVocabulary"]:
                         candidate["targetVocabulary"].append(target)
@@ -78,10 +103,28 @@ def build_candidates(snapshot, revision):
     return counts, candidates
 
 
+def rebuild():
+    """Rebuild candidates from the pinned snapshot without downloading."""
+    manifest = json.loads((ROOT / "data/manifest.json").read_text(encoding="utf-8"))
+    _, candidates = build_candidates(ROOT / manifest["snapshotPath"], manifest["revision"])
+    candidate_path = ROOT / "data/processed/sentence-candidates.json"
+    save_json(candidate_path, candidates)
+    manifest["sentenceCandidateCount"] = len(candidates)
+    manifest["derivedFiles"] = [{"path": str(candidate_path.relative_to(ROOT)),
+                                 "sha256": hashlib.sha256(candidate_path.read_bytes()).hexdigest()}]
+    save_json(ROOT / "data/manifest.json", manifest)
+    print(json.dumps({"revision": manifest["revision"], "sentenceCandidates": len(candidates)}, indent=2))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--revision", default="main", help="Git commit SHA or ref; resolved to a commit before downloading")
+    parser.add_argument("--rebuild", action="store_true",
+                        help="Rebuild candidates from the pinned snapshot without downloading")
     args = parser.parse_args()
+    if args.rebuild:
+        rebuild()
+        return
     commit = json.loads(fetch(f"https://api.github.com/repos/{REPO}/commits/{args.revision}"))
     revision = commit["sha"]
     tree = json.loads(fetch(f"https://api.github.com/repos/{REPO}/git/trees/{revision}?recursive=1"))

@@ -30,6 +30,7 @@ jobs:
           bun run levels:check
           bun run levels:test
           bun run hints:test
+          bun run readings:test
       - run: bun run check
       - run: bun run build
       - run: docker compose config --quiet

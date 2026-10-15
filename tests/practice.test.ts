@@ -62,6 +62,14 @@ describe("reference writing comparison", () => {
     expect(compare(bridge, "箸です", Strictness.Flexible).matched).toBe(false);
     expect(compare(bridge, "はしです", Strictness.Flexible).matched).toBe(true);
   });
+  test("a JMdict entry number is never accepted as a reading", () => {
+    expect(
+      validReadings({
+        japanese: "前です。",
+        furiganaVariants: ["{前|#1392580}です。", "{前|まえ}です。"],
+      }),
+    ).toEqual(["{前|まえ}です。"]);
+  });
   test("mismatched annotations and incomplete readings are excluded", () => {
     expect(
       validReadings({

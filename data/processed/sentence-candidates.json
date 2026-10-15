@@ -4579,7 +4579,7 @@
     "english": "I heard a car stop in front of the house.",
     "japanese": "車が家の前に止まる音が聞こえた。",
     "furiganaVariants": [
-      "{車|くるま}が{家|いえ}の{前|#1392580}に{止|と}まる{音|おと}が{聞|き}こえた。"
+      "{車|くるま}が{家|いえ}の{前|まえ}に{止|と}まる{音|おと}が{聞|き}こえた。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 16,
@@ -10327,7 +10327,7 @@
     "english": "The front of the bus was not crowded.",
     "japanese": "バスの前の方は空いていた。",
     "furiganaVariants": [
-      "バスの{前|#1392580}の{方|ほう}は{空|す}いていた。"
+      "バスの{前|まえ}の{方|ほう}は{空|す}いていた。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 13,
@@ -12564,7 +12564,7 @@
     "english": "\"Clean up in front of the shop first.\" \"OK!\" \"Sprinkle some water out there too.\"",
     "japanese": "「とりあえず店の前、掃除しといてくれ」「了解！」「打ち水も頼む」",
     "furiganaVariants": [
-      "「とりあえず{店|みせ}の{前|#1392580}、{掃除|そうじ}しといてくれ」「{了解|りょうかい}！」「{打|う}ち{水|みず}も{頼|たの}む」"
+      "「とりあえず{店|みせ}の{前|まえ}、{掃除|そうじ}しといてくれ」「{了解|りょうかい}！」「{打|う}ち{水|みず}も{頼|たの}む」"
     ],
     "englishWordCount": 15,
     "japaneseCharacterCount": 32,
@@ -15186,7 +15186,7 @@
     "english": "He made a speech in front of many people.",
     "japanese": "彼はたくさんの人の前で演説した。",
     "furiganaVariants": [
-      "{彼|かれ}はたくさんの{人|ひと}の{前|#1392580}で{演説|えんぜつ}した。"
+      "{彼|かれ}はたくさんの{人|ひと}の{前|まえ}で{演説|えんぜつ}した。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 16,
@@ -15888,7 +15888,7 @@
     "english": "My father passed away two years ago.",
     "japanese": "父は２年前に亡くなった。",
     "furiganaVariants": [
-      "{父|ちち}は２{年|ねん}{前|#1392580}に{亡|な}くなった。"
+      "{父|ちち}は２{年|ねん}{前|まえ}に{亡|な}くなった。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 12,
@@ -22216,7 +22216,7 @@
     "english": "The earth came into existence about five thousand million years ago.",
     "japanese": "地球はおよそ５０億年前に生まれた。",
     "furiganaVariants": [
-      "{地球|ちきゅう}はおよそ５０{億|おく}{年|ねん}{前|#1392580}に{生|う}まれた。"
+      "{地球|ちきゅう}はおよそ５０{億|おく}{年|ねん}{前|まえ}に{生|う}まれた。"
     ],
     "englishWordCount": 11,
     "japaneseCharacterCount": 17,
@@ -24091,7 +24091,7 @@
     "english": "He mentioned the incident to his wife.",
     "japanese": "彼はその事件のことを妻に話した。",
     "furiganaVariants": [
-      "{彼|かれ}はその{事件|じけん}のことを{妻|#1294330}に{話|はな}した。"
+      "{彼|かれ}はその{事件|じけん}のことを{妻|つま}に{話|はな}した。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -26210,7 +26210,7 @@
     "english": "I wore several hats at my last office so I'd like to specialize this time.",
     "japanese": "前の会社では何でも屋に終始したので今度は専門職に就きたい。",
     "furiganaVariants": [
-      "{前|#1392580}の{会社|かいしゃ}では{何|なん}でも{屋|や}に{終始|しゅうし}したので{今度|こんど}は{専門職|せんもんしょく}に{就|つ}きたい。"
+      "{前|まえ}の{会社|かいしゃ}では{何|なん}でも{屋|や}に{終始|しゅうし}したので{今度|こんど}は{専門職|せんもんしょく}に{就|つ}きたい。"
     ],
     "englishWordCount": 15,
     "japaneseCharacterCount": 29,
@@ -31483,7 +31483,7 @@
     "english": "There is a bookstore in front of the department store.",
     "japanese": "そのデパートの前に書店がある。",
     "furiganaVariants": [
-      "そのデパートの{前|#1392580}に{書店|しょてん}がある。"
+      "そのデパートの{前|まえ}に{書店|しょてん}がある。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 15,
@@ -40086,7 +40086,7 @@
     "english": "I didn't want to be defeated in front of my friends.",
     "japanese": "私は友人の前で負けたくなかった。",
     "furiganaVariants": [
-      "{私|わたし}は{友人|ゆうじん}の{前|#1392580}で{負|ま}けたくなかった。"
+      "{私|わたし}は{友人|ゆうじん}の{前|まえ}で{負|ま}けたくなかった。"
     ],
     "englishWordCount": 11,
     "japaneseCharacterCount": 16,
@@ -43321,7 +43321,7 @@
     "english": "I came to Japan four years ago intending to stay for one year.",
     "japanese": "４年前に１年の予定で来日しました。",
     "furiganaVariants": [
-      "４{年|ねん}{前|#1392580}に１{年|とし}の{予定|よてい}で{来日|らいにち}しました。"
+      "４{年|ねん}{前|まえ}に１{年|とし}の{予定|よてい}で{来日|らいにち}しました。"
     ],
     "englishWordCount": 13,
     "japaneseCharacterCount": 17,
@@ -46236,7 +46236,7 @@
     "english": "I started doing this work 4 years ago.",
     "japanese": "私は４年前からこの仕事を手がけています。",
     "furiganaVariants": [
-      "{私|わたし}は４{年|ねん}{前|#1392580}からこの{仕事|しごと}を{手|て}がけています。"
+      "{私|わたし}は４{年|ねん}{前|まえ}からこの{仕事|しごと}を{手|て}がけています。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 20,
@@ -46766,7 +46766,7 @@
     "english": "He sat reading, with his wife knitting a pair of gloves beside him.",
     "japanese": "彼は読書をし、その傍らで妻が手袋を編んでいた。",
     "furiganaVariants": [
-      "{彼|かれ}は{読書|どくしょ}をし、その{傍|かたわ}らで{妻|#1294330}が{手袋|てぶくろ}を{編|あ}んでいた。"
+      "{彼|かれ}は{読書|どくしょ}をし、その{傍|かたわ}らで{妻|つま}が{手袋|てぶくろ}を{編|あ}んでいた。"
     ],
     "englishWordCount": 13,
     "japaneseCharacterCount": 23,
@@ -53477,7 +53477,7 @@
     "english": "I go by that church every day.",
     "japanese": "私は毎日その教会の前を通る。",
     "furiganaVariants": [
-      "{私|わたし}は{毎日|まいにち}その{教会|きょうかい}の{前|#1392580}を{通|とお}る。"
+      "{私|わたし}は{毎日|まいにち}その{教会|きょうかい}の{前|まえ}を{通|とお}る。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 14,
@@ -59677,7 +59677,7 @@
     "english": "Everybody is equal before the law.",
     "japanese": "すべての人は法の前に平等です。",
     "furiganaVariants": [
-      "すべての{人|ひと}は{法|ほう}の{前|#1392580}に{平等|びょうどう}です。"
+      "すべての{人|ひと}は{法|ほう}の{前|まえ}に{平等|びょうどう}です。"
     ],
     "englishWordCount": 6,
     "japaneseCharacterCount": 15,
@@ -65436,7 +65436,7 @@
     "english": "My wife is always complaining about something.",
     "japanese": "妻はいつも愚痴ばかりこぼしている。",
     "furiganaVariants": [
-      "{妻|#1294330}はいつも{愚痴|ぐち}ばかりこぼしている。"
+      "{妻|つま}はいつも{愚痴|ぐち}ばかりこぼしている。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 17,
@@ -71434,7 +71434,7 @@
     "english": "Some years ago, learning that one had tuberculosis amounted to hearing a sentence of death.",
     "japanese": "何年か前には、結核にかかっていると知らされることは死の宣告を聞くのに等しかった。",
     "furiganaVariants": [
-      "{何年|なんねん}か{前|#1392580}には、{結核|けっかく}にかかっていると{知|し}らされることは{死|し}の{宣告|せんこく}を{聞|き}くのに{等|ひと}しかった。"
+      "{何年|なんねん}か{前|まえ}には、{結核|けっかく}にかかっていると{知|し}らされることは{死|し}の{宣告|せんこく}を{聞|き}くのに{等|ひと}しかった。"
     ],
     "englishWordCount": 15,
     "japaneseCharacterCount": 40,
@@ -74623,7 +74623,7 @@
     "english": "There isn't anybody in front of the main gate yet.",
     "japanese": "正門前には、まだ人の姿もない。",
     "furiganaVariants": [
-      "{正門|せいもん}{前|#1392580}には、まだ{人|ひと}の{姿|すがた}もない。"
+      "{正門|せいもん}{前|まえ}には、まだ{人|ひと}の{姿|すがた}もない。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 15,
@@ -78438,7 +78438,7 @@
     "english": "The man took up with his wife.",
     "japanese": "その男は妻と交際し始めた。",
     "furiganaVariants": [
-      "その{男|おとこ}は{妻|#1294330}と{交際|こうさい}し{始|はじ}めた。"
+      "その{男|おとこ}は{妻|つま}と{交際|こうさい}し{始|はじ}めた。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 13,
@@ -80562,7 +80562,7 @@
     "english": "Many hands make light work.",
     "japanese": "人手が多ければ仕事は楽になるんだ。",
     "furiganaVariants": [
-      "{人手|#2825953}が{多|おお}ければ{仕事|しごと}は{楽|らく}になるんだ。"
+      "{人手|ひとで}が{多|おお}ければ{仕事|しごと}は{楽|らく}になるんだ。"
     ],
     "englishWordCount": 5,
     "japaneseCharacterCount": 17,
@@ -91523,7 +91523,7 @@
     "english": "The climbers awoke before daybreak.",
     "japanese": "登山者は夜明け前に目を覚ました。",
     "furiganaVariants": [
-      "{登山者|とざんしゃ}は{夜明|よあ}け{前|#1392580}に{目|め}を{覚|さ}ました。"
+      "{登山者|とざんしゃ}は{夜明|よあ}け{前|まえ}に{目|め}を{覚|さ}ました。"
     ],
     "englishWordCount": 5,
     "japaneseCharacterCount": 16,
@@ -93279,7 +93279,7 @@
     "english": "This waistcoat won't meet at the front.",
     "japanese": "このチョッキは前が合わない。",
     "furiganaVariants": [
-      "このチョッキは{前|#1392580}が{合|あ}わない。"
+      "このチョッキは{前|まえ}が{合|あ}わない。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 14,
@@ -105188,7 +105188,7 @@
     "english": "Move the knob at the side of the seat forwards, collapse the seat.",
     "japanese": "シート横にあるノブを前に動かし、シートを倒します。",
     "furiganaVariants": [
-      "シート{横|よこ}にあるノブを{前|#1392580}に{動|うご}かし、シートを{倒|たお}します。"
+      "シート{横|よこ}にあるノブを{前|まえ}に{動|うご}かし、シートを{倒|たお}します。"
     ],
     "englishWordCount": 13,
     "japaneseCharacterCount": 25,
@@ -108977,7 +108977,7 @@
     "english": "We got through the work just before ten.",
     "japanese": "１０時ちょっと前に仕事が済んだ。",
     "furiganaVariants": [
-      "１０{時|じ}ちょっと{前|#1392580}に{仕事|しごと}が{済|す}んだ。"
+      "１０{時|じ}ちょっと{前|まえ}に{仕事|しごと}が{済|す}んだ。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 16,
@@ -127696,7 +127696,7 @@
     "english": "That was well worth the trouble.",
     "japanese": "苦心の甲斐があった。",
     "furiganaVariants": [
-      "{苦心|くしん}の{甲斐|#1280250}があった。"
+      "{苦心|くしん}の{甲斐|かい}があった。"
     ],
     "englishWordCount": 6,
     "japaneseCharacterCount": 10,
@@ -129422,7 +129422,7 @@
     "english": "The train left before we got to the station.",
     "japanese": "駅に着く前に列車は発車していた。",
     "furiganaVariants": [
-      "{駅|えき}に{着|つ}く{前|#1392580}に{列車|れっしゃ}は{発車|はっしゃ}していた。"
+      "{駅|えき}に{着|つ}く{前|まえ}に{列車|れっしゃ}は{発車|はっしゃ}していた。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 16,
@@ -129997,7 +129997,7 @@
     "english": "Shake the bottle before using.",
     "japanese": "使用する前に瓶を振ってください。",
     "furiganaVariants": [
-      "{使用|しよう}する{前|#1392580}に{瓶|びん}を{振|ふ}ってください。"
+      "{使用|しよう}する{前|まえ}に{瓶|びん}を{振|ふ}ってください。"
     ],
     "englishWordCount": 5,
     "japaneseCharacterCount": 16,
@@ -130587,7 +130587,7 @@
     "english": "There is a fountain in front of the station.",
     "japanese": "駅の前に噴水があります。",
     "furiganaVariants": [
-      "{駅|えき}の{前|#1392580}に{噴水|ふんすい}があります。"
+      "{駅|えき}の{前|まえ}に{噴水|ふんすい}があります。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 12,
@@ -143676,7 +143676,7 @@
     "english": "Paul put on gloves before going out.",
     "japanese": "ポールは出かける前に手袋をした。",
     "furiganaVariants": [
-      "ポールは{出|で}かける{前|#1392580}に{手袋|てぶくろ}をした。"
+      "ポールは{出|で}かける{前|まえ}に{手袋|てぶくろ}をした。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -152230,7 +152230,7 @@
     "english": "Look forward, please.",
     "japanese": "まっすぐ前を見てください。",
     "furiganaVariants": [
-      "まっすぐ{前|#1392580}を{見|み}てください。"
+      "まっすぐ{前|まえ}を{見|み}てください。"
     ],
     "englishWordCount": 3,
     "japaneseCharacterCount": 13,
@@ -154582,7 +154582,7 @@
     "english": "You should go over a house before buying it.",
     "japanese": "家は買う前によく調べるべきだ。",
     "furiganaVariants": [
-      "{家|いえ}は{買|か}う{前|#1392580}によく{調|しら}べるべきだ。"
+      "{家|いえ}は{買|か}う{前|まえ}によく{調|しら}べるべきだ。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 15,
@@ -158268,7 +158268,7 @@
     "english": "He got so stout that his collar did not meet.",
     "japanese": "あまり太ったのでカラーの前が合わなかった。",
     "furiganaVariants": [
-      "あまり{太|ふと}ったのでカラーの{前|#1392580}が{合|あ}わなかった。"
+      "あまり{太|ふと}ったのでカラーの{前|まえ}が{合|あ}わなかった。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 21,
@@ -159730,7 +159730,7 @@
     "english": "I worked in my study after my wife had gone to bed.",
     "japanese": "妻が寝た後、書斎で仕事をした。",
     "furiganaVariants": [
-      "{妻|#1294330}が{寝|ね}た{後|あと}、{書斎|しょさい}で{仕事|しごと}をした。"
+      "{妻|つま}が{寝|ね}た{後|あと}、{書斎|しょさい}で{仕事|しごと}をした。"
     ],
     "englishWordCount": 12,
     "japaneseCharacterCount": 15,
@@ -160086,7 +160086,7 @@
     "english": "The government got their majority at the last election.",
     "japanese": "与党は前の選挙で過半数を占めた。",
     "furiganaVariants": [
-      "{与党|よとう}は{前|#1392580}の{選挙|せんきょ}で{過半数|かはんすう}を{占|し}めた。"
+      "{与党|よとう}は{前|まえ}の{選挙|せんきょ}で{過半数|かはんすう}を{占|し}めた。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 16,
@@ -160539,7 +160539,7 @@
     "english": "There was a long interval before he replied.",
     "japanese": "彼が答える前に長い時間の間隔があった。",
     "furiganaVariants": [
-      "{彼|かれ}が{答|こた}える{前|#1392580}に{長|なが}い{時間|じかん}の{間隔|かんかく}があった。"
+      "{彼|かれ}が{答|こた}える{前|まえ}に{長|なが}い{時間|じかん}の{間隔|かんかく}があった。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 19,
@@ -163859,7 +163859,7 @@
     "english": "The thermometer registered minus ten last night.",
     "japanese": "昨夜、温度計はマイナス１０度を示した。",
     "furiganaVariants": [
-      "{昨夜|ゆうべ}、{温度計|おんどけい}はマイナス１０{度|#1445160}を{示|しめ}した。"
+      "{昨夜|ゆうべ}、{温度計|おんどけい}はマイナス１０{度|ど}を{示|しめ}した。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 19,
@@ -166644,7 +166644,7 @@
     "english": "Wives usually outlive husbands.",
     "japanese": "妻は夫より長生きするものだ。",
     "furiganaVariants": [
-      "{妻|#1294330}は{夫|おっと}より{長生|ながい}きするものだ。"
+      "{妻|つま}は{夫|おっと}より{長生|ながい}きするものだ。"
     ],
     "englishWordCount": 4,
     "japaneseCharacterCount": 14,
@@ -169380,7 +169380,7 @@
     "english": "It's better to chill white wine before you serve it.",
     "japanese": "白ワインは出す前に冷やす方がいいよ。",
     "furiganaVariants": [
-      "{白|しろ}ワインは{出|だ}す{前|#1392580}に{冷|ひ}やす{方|ほう}がいいよ。"
+      "{白|しろ}ワインは{出|だ}す{前|まえ}に{冷|ひ}やす{方|ほう}がいいよ。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 18,
@@ -175037,7 +175037,7 @@
     "english": "Are there any stores with \"going out of business\" sales?",
     "japanese": "いま閉店前のセールをやっているとこがありますか。",
     "furiganaVariants": [
-      "いま{閉店|へいてん}{前|#1392580}のセールをやっているとこがありますか。"
+      "いま{閉店|へいてん}{前|まえ}のセールをやっているとこがありますか。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 24,
@@ -175344,7 +175344,7 @@
     "english": "My wife had a hard time getting into the swing of our new life in America.",
     "japanese": "妻はアメリカでの新しい生活のリズムに慣れるのにえらい苦労した。",
     "furiganaVariants": [
-      "{妻|#1294330}はアメリカでの{新|あたら}しい{生活|せいかつ}のリズムに{慣|な}れるのにえらい{苦労|くろう}した。"
+      "{妻|つま}はアメリカでの{新|あたら}しい{生活|せいかつ}のリズムに{慣|な}れるのにえらい{苦労|くろう}した。"
     ],
     "englishWordCount": 16,
     "japaneseCharacterCount": 31,
@@ -179303,7 +179303,7 @@
     "english": "I make an excellent wife for him.",
     "japanese": "私は優れた彼の妻になる素質がある。",
     "furiganaVariants": [
-      "{私|わたし}は{優|すぐ}れた{彼|かれ}の{妻|#1294330}になる{素質|そしつ}がある。"
+      "{私|わたし}は{優|すぐ}れた{彼|かれ}の{妻|つま}になる{素質|そしつ}がある。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 17,
@@ -180713,7 +180713,7 @@
     "english": "Take the skin off before you eat the apple.",
     "japanese": "リンゴを食べる前に皮をむきなさい。",
     "furiganaVariants": [
-      "リンゴを{食|た}べる{前|#1392580}に{皮|かわ}をむきなさい。"
+      "リンゴを{食|た}べる{前|まえ}に{皮|かわ}をむきなさい。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 17,
@@ -184117,7 +184117,7 @@
     "english": "Father established his business 40 years ago.",
     "japanese": "父はこの事業を４０年前に始めた。",
     "furiganaVariants": [
-      "{父|ちち}はこの{事業|じぎょう}を４０{年|ねん}{前|#1392580}に{始|はじ}めた。"
+      "{父|ちち}はこの{事業|じぎょう}を４０{年|ねん}{前|まえ}に{始|はじ}めた。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -185926,7 +185926,7 @@
     "english": "Fashions of thirty years ago have come back in style.",
     "japanese": "３０年前のファッションが復活した。",
     "furiganaVariants": [
-      "３０{年|ねん}{前|#1392580}のファッションが{復活|ふっかつ}した。"
+      "３０{年|ねん}{前|まえ}のファッションが{復活|ふっかつ}した。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 17,
@@ -186416,7 +186416,7 @@
     "english": "We had hoped that the rain would stop before noon.",
     "japanese": "雨が正午前にはやむよう祈っていたのですが。",
     "furiganaVariants": [
-      "{雨|あめ}が{正午|しょうご}{前|#1392580}にはやむよう{祈|いの}っていたのですが。"
+      "{雨|あめ}が{正午|しょうご}{前|まえ}にはやむよう{祈|いの}っていたのですが。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 21,
@@ -196859,7 +196859,7 @@
     "english": "Please pick me up by car in front of the hotel.",
     "japanese": "ホテルの前で私を車で拾ってください。",
     "furiganaVariants": [
-      "ホテルの{前|#1392580}で{私|わたし}を{車|くるま}で{拾|ひろ}ってください。"
+      "ホテルの{前|まえ}で{私|わたし}を{車|くるま}で{拾|ひろ}ってください。"
     ],
     "englishWordCount": 11,
     "japaneseCharacterCount": 18,
@@ -215010,7 +215010,7 @@
     "english": "I had bought it the week before.",
     "japanese": "それはその前の週に買ったものでした。",
     "furiganaVariants": [
-      "それはその{前|#1392580}の{週|しゅう}に{買|か}ったものでした。"
+      "それはその{前|まえ}の{週|しゅう}に{買|か}ったものでした。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 18,
@@ -218986,7 +218986,7 @@
     "english": "Turn off the light before you go to bed.",
     "japanese": "寝る前に電気を消してください。",
     "furiganaVariants": [
-      "{寝|ね}る{前|#1392580}に{電気|でんき}を{消|け}してください。"
+      "{寝|ね}る{前|まえ}に{電気|でんき}を{消|け}してください。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 15,
@@ -231623,7 +231623,7 @@
     "english": "Please knock on the door before you enter.",
     "japanese": "入る前にドアをノックして下さい。",
     "furiganaVariants": [
-      "{入|はい}る{前|#1392580}にドアをノックして{下|くだ}さい。"
+      "{入|はい}る{前|まえ}にドアをノックして{下|くだ}さい。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 16,
@@ -233085,7 +233085,7 @@
     "english": "Water boils at 100 degrees Celsius.",
     "japanese": "水は摂氏100度で沸騰する。",
     "furiganaVariants": [
-      "{水|みず}は{摂氏|せっし}100{度|#1445160}で{沸騰|ふっとう}する。"
+      "{水|みず}は{摂氏|せっし}100{度|ど}で{沸騰|ふっとう}する。"
     ],
     "englishWordCount": 6,
     "japaneseCharacterCount": 14,
@@ -233815,7 +233815,7 @@
     "english": "It might rain before evening.",
     "japanese": "ひょっとすると夕方前に雨になるかもしれない。",
     "furiganaVariants": [
-      "ひょっとすると{夕方|ゆうがた}{前|#1392580}に{雨|あめ}になるかもしれない。"
+      "ひょっとすると{夕方|ゆうがた}{前|まえ}に{雨|あめ}になるかもしれない。"
     ],
     "englishWordCount": 5,
     "japaneseCharacterCount": 22,
@@ -236605,7 +236605,7 @@
     "english": "He was raised to the rank of colonel two years ago.",
     "japanese": "彼は２年前に、大佐の階級に昇進した。",
     "furiganaVariants": [
-      "{彼|かれ}は２{年|ねん}{前|#1392580}に、{大佐|たいさ}の{階級|かいきゅう}に{昇進|しょうしん}した。"
+      "{彼|かれ}は２{年|ねん}{前|まえ}に、{大佐|たいさ}の{階級|かいきゅう}に{昇進|しょうしん}した。"
     ],
     "englishWordCount": 11,
     "japaneseCharacterCount": 18,
@@ -238208,7 +238208,7 @@
     "english": "It is characteristic of him to go to work before breakfast.",
     "japanese": "朝食前に出勤するなんていかにも彼らしい。",
     "furiganaVariants": [
-      "{朝食|ちょうしょく}{前|#1392580}に{出勤|しゅっきん}するなんていかにも{彼|かれ}らしい。"
+      "{朝食|ちょうしょく}{前|まえ}に{出勤|しゅっきん}するなんていかにも{彼|かれ}らしい。"
     ],
     "englishWordCount": 11,
     "japaneseCharacterCount": 20,
@@ -239420,7 +239420,7 @@
     "english": "Suddenly Jim pulled the car up in front of the bank.",
     "japanese": "急にジムは銀行の前で車を止めた。",
     "furiganaVariants": [
-      "{急|きゅう}にジムは{銀行|ぎんこう}の{前|#1392580}で{車|くるま}を{止|と}めた。"
+      "{急|きゅう}にジムは{銀行|ぎんこう}の{前|まえ}で{車|くるま}を{止|と}めた。"
     ],
     "englishWordCount": 11,
     "japaneseCharacterCount": 16,
@@ -239948,7 +239948,7 @@
     "english": "Many families now have two breadwinners with both husbands and wives working.",
     "japanese": "今では多くの家庭が共稼ぎで、夫と妻の両方が働いている。",
     "furiganaVariants": [
-      "{今|いま}では{多|おお}くの{家庭|かてい}が{共稼|ともかせ}ぎで、{夫|おっと}と{妻|#1294330}の{両方|りょうほう}が{働|はたら}いている。"
+      "{今|いま}では{多|おお}くの{家庭|かてい}が{共稼|ともかせ}ぎで、{夫|おっと}と{妻|つま}の{両方|りょうほう}が{働|はたら}いている。"
     ],
     "englishWordCount": 12,
     "japaneseCharacterCount": 27,
@@ -246386,7 +246386,7 @@
     "english": "You must consider it before you answer.",
     "japanese": "答える前によく考えねばならない。",
     "furiganaVariants": [
-      "{答|こた}える{前|#1392580}によく{考|かんが}えねばならない。"
+      "{答|こた}える{前|まえ}によく{考|かんが}えねばならない。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -256274,7 +256274,7 @@
     "english": "Through the lens the image was inverted.",
     "japanese": "レンズを通ると像は逆になった。",
     "furiganaVariants": [
-      "レンズを{通|とお}ると{像|ぞう}は{逆|#1226960}になった。"
+      "レンズを{通|とお}ると{像|ぞう}は{逆|ぎゃく}になった。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 15,
@@ -259050,7 +259050,7 @@
     "english": "She has to change clothes before tonight's party.",
     "japanese": "彼女は今夜のパーティーの前に着替えをしなければならない。",
     "furiganaVariants": [
-      "{彼女|かのじょ}は{今夜|こんや}のパーティーの{前|#1392580}に{着替|きが}えをしなければならない。"
+      "{彼女|かのじょ}は{今夜|こんや}のパーティーの{前|まえ}に{着替|きが}えをしなければならない。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 28,
@@ -260207,7 +260207,7 @@
     "english": "He founded the school five years ago.",
     "japanese": "彼は５年前にその学校を創立した。",
     "furiganaVariants": [
-      "{彼|かれ}は５{年|ねん}{前|#1392580}にその{学校|がっこう}を{創立|そうりつ}した。"
+      "{彼|かれ}は５{年|ねん}{前|まえ}にその{学校|がっこう}を{創立|そうりつ}した。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -261194,7 +261194,7 @@
     "english": "The gun went off while he was cleaning it, and the bullet almost struck his wife.",
     "japanese": "彼が鉄砲を掃除していたら暴発し、もう少しで妻に当たるところだった。",
     "furiganaVariants": [
-      "{彼|かれ}が{鉄砲|てっぽう}を{掃除|そうじ}していたら{暴発|ぼうはつ}し、もう{少|すこ}しで{妻|#1294330}に{当|あ}たるところだった。"
+      "{彼|かれ}が{鉄砲|てっぽう}を{掃除|そうじ}していたら{暴発|ぼうはつ}し、もう{少|すこ}しで{妻|つま}に{当|あ}たるところだった。"
     ],
     "englishWordCount": 16,
     "japaneseCharacterCount": 33,
@@ -277254,7 +277254,7 @@
     "english": "I entered this school two years ago.",
     "japanese": "私はこの学校に２年前に入学した。",
     "furiganaVariants": [
-      "{私|わたし}はこの{学校|がっこう}に２{年|ねん}{前|#1392580}に{入学|にゅうがく}した。"
+      "{私|わたし}はこの{学校|がっこう}に２{年|ねん}{前|まえ}に{入学|にゅうがく}した。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -279282,7 +279282,7 @@
     "english": "The shrine was built two hundred years ago.",
     "japanese": "その神社は２００年前に建てられた。",
     "furiganaVariants": [
-      "その{神社|じんじゃ}は２００{年|ねん}{前|#1392580}に{建|た}てられた。"
+      "その{神社|じんじゃ}は２００{年|ねん}{前|まえ}に{建|た}てられた。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 17,
@@ -287463,7 +287463,7 @@
     "english": "He frowns on his wife's wasting money.",
     "japanese": "彼は妻の無駄遣いに渋い顔をする。",
     "furiganaVariants": [
-      "{彼|かれ}は{妻|#1294330}の{無駄遣|むだづか}いに{渋|しぶ}い{顔|かお}をする。"
+      "{彼|かれ}は{妻|つま}の{無駄遣|むだづか}いに{渋|しぶ}い{顔|かお}をする。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -292556,7 +292556,7 @@
     "english": "I was woken up suddenly at dawn.",
     "japanese": "私は、突然夜明け前に起こされた。",
     "furiganaVariants": [
-      "{私|わたし}は、{突然|とつぜん}{夜明|よあ}け{前|#1392580}に{起|お}こされた。"
+      "{私|わたし}は、{突然|とつぜん}{夜明|よあ}け{前|まえ}に{起|お}こされた。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -294957,7 +294957,7 @@
     "english": "I've got to shave before leaving.",
     "japanese": "出かける前にヒゲを剃らなくては。",
     "furiganaVariants": [
-      "{出|で}かける{前|#1392580}にヒゲを{剃|そ}らなくては。"
+      "{出|で}かける{前|まえ}にヒゲを{剃|そ}らなくては。"
     ],
     "englishWordCount": 6,
     "japaneseCharacterCount": 16,
@@ -299075,7 +299075,7 @@
     "english": "Before he retired, he had handed over charge of his office.",
     "japanese": "退職する前に彼は事務を渡した。",
     "furiganaVariants": [
-      "{退職|たいしょく}する{前|#1392580}に{彼|かれ}は{事務|じむ}を{渡|わた}した。"
+      "{退職|たいしょく}する{前|まえ}に{彼|かれ}は{事務|じむ}を{渡|わた}した。"
     ],
     "englishWordCount": 11,
     "japaneseCharacterCount": 15,
@@ -302561,7 +302561,7 @@
     "english": "A young man is singing in front of the door.",
     "japanese": "若い男の人がドアの前で歌っています。",
     "furiganaVariants": [
-      "{若|わか}い{男|おとこ}の{人|ひと}がドアの{前|#1392580}で{歌|うた}っています。"
+      "{若|わか}い{男|おとこ}の{人|ひと}がドアの{前|まえ}で{歌|うた}っています。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 18,
@@ -304748,7 +304748,7 @@
     "english": "She was disqualified from the race for two false starts.",
     "japanese": "彼女は２度のフライングで失格した。",
     "furiganaVariants": [
-      "{彼女|かのじょ}は２{度|#1445160}のフライングで{失格|しっかく}した。"
+      "{彼女|かのじょ}は２{度|ど}のフライングで{失格|しっかく}した。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 17,
@@ -304963,7 +304963,7 @@
     "english": "The first edition was published ten years ago.",
     "japanese": "初版は１０年前に出版された。",
     "furiganaVariants": [
-      "{初版|しょはん}は１０{年|ねん}{前|#1392580}に{出版|しゅっぱん}された。"
+      "{初版|しょはん}は１０{年|ねん}{前|まえ}に{出版|しゅっぱん}された。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 14,
@@ -306047,7 +306047,7 @@
     "english": "This encyclopedia belongs to my wife.",
     "japanese": "この百科事典は、妻のものです。",
     "furiganaVariants": [
-      "この{百科事典|ひゃっかじてん}は、{妻|#1294330}のものです。"
+      "この{百科事典|ひゃっかじてん}は、{妻|つま}のものです。"
     ],
     "englishWordCount": 6,
     "japaneseCharacterCount": 15,
@@ -306684,7 +306684,7 @@
     "english": "The president made certain that he lined his pockets before he resigned.",
     "japanese": "大統領は辞任する前にお金に困らないように根回しした。",
     "furiganaVariants": [
-      "{大統領|だいとうりょう}は{辞任|じにん}する{前|#1392580}にお{金|かね}に{困|こま}らないように{根回|ねまわ}しした。"
+      "{大統領|だいとうりょう}は{辞任|じにん}する{前|まえ}にお{金|かね}に{困|こま}らないように{根回|ねまわ}しした。"
     ],
     "englishWordCount": 12,
     "japaneseCharacterCount": 26,
@@ -307023,7 +307023,7 @@
     "english": "You must get the job done before the deadline.",
     "japanese": "期限前にこの仕事を仕上げなさい。",
     "furiganaVariants": [
-      "{期限|きげん}{前|#1392580}にこの{仕事|しごと}を{仕上|しあ}げなさい。"
+      "{期限|きげん}{前|まえ}にこの{仕事|しごと}を{仕上|しあ}げなさい。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 16,
@@ -317218,7 +317218,7 @@
     "english": "He is not much of a companion for his wife.",
     "japanese": "彼は大して妻の話し相手にはならない。",
     "furiganaVariants": [
-      "{彼|かれ}は{大|たい}して{妻|#1294330}の{話|はな}し{相手|あいて}にはならない。"
+      "{彼|かれ}は{大|たい}して{妻|つま}の{話|はな}し{相手|あいて}にはならない。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 18,
@@ -323029,7 +323029,7 @@
     "english": "I remember seeing him before.",
     "japanese": "前に彼にあったのを覚えている。",
     "furiganaVariants": [
-      "{前|#1392580}に{彼|かれ}にあったのを{覚|おぼ}えている。"
+      "{前|まえ}に{彼|かれ}にあったのを{覚|おぼ}えている。"
     ],
     "englishWordCount": 5,
     "japaneseCharacterCount": 15,
@@ -327397,7 +327397,7 @@
     "english": "He hasn't got over the death of his wife yet.",
     "japanese": "彼は妻の死をまだ克服していない。",
     "furiganaVariants": [
-      "{彼|かれ}は{妻|#1294330}の{死|し}をまだ{克服|こくふく}していない。"
+      "{彼|かれ}は{妻|つま}の{死|し}をまだ{克服|こくふく}していない。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 16,
@@ -328362,7 +328362,7 @@
     "english": "Bill joined our company three years ago.",
     "japanese": "ビルは三年前にこの会社に入った。",
     "furiganaVariants": [
-      "ビルは{三年|さんねん}{前|#1392580}にこの{会社|かいしゃ}に{入|はい}った。"
+      "ビルは{三年|さんねん}{前|まえ}にこの{会社|かいしゃ}に{入|はい}った。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -329357,7 +329357,7 @@
     "english": "He did not even raise an eyebrow at the news of his wife's death.",
     "japanese": "妻の死の知らせを聞いてもまゆ一つ動かさなかった。",
     "furiganaVariants": [
-      "{妻|#1294330}の{死|し}の{知|し}らせを{聞|き}いてもまゆ{一|ひと}つ{動|うご}かさなかった。"
+      "{妻|つま}の{死|し}の{知|し}らせを{聞|き}いてもまゆ{一|ひと}つ{動|うご}かさなかった。"
     ],
     "englishWordCount": 14,
     "japaneseCharacterCount": 24,
@@ -330986,7 +330986,7 @@
     "english": "You must switch off the power before checking the circuit.",
     "japanese": "回路を調べる前に、電源のスイッチを切りなさい。",
     "furiganaVariants": [
-      "{回路|かいろ}を{調|しら}べる{前|#1392580}に、{電源|でんげん}のスイッチを{切|き}りなさい。"
+      "{回路|かいろ}を{調|しら}べる{前|まえ}に、{電源|でんげん}のスイッチを{切|き}りなさい。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 23,
@@ -331250,7 +331250,7 @@
     "english": "Sally lost the contact lenses she had bought the day before.",
     "japanese": "サリーは前の日に買ったコンタクトをなくした。",
     "furiganaVariants": [
-      "サリーは{前|#1392580}の{日|ひ}に{買|か}ったコンタクトをなくした。"
+      "サリーは{前|まえ}の{日|ひ}に{買|か}ったコンタクトをなくした。"
     ],
     "englishWordCount": 11,
     "japaneseCharacterCount": 22,
@@ -331705,7 +331705,7 @@
     "english": "Anyhow, lunch ... is where I wanted to go but I decided to go to the toilet first.",
     "japanese": "とにかくメシ・・・といきたいところだが、その前に用を足すことにした。",
     "furiganaVariants": [
-      "とにかくメシ・・・といきたいところだが、その{前|#1392580}に{用|よう}を{足|た}すことにした。"
+      "とにかくメシ・・・といきたいところだが、その{前|まえ}に{用|よう}を{足|た}すことにした。"
     ],
     "englishWordCount": 17,
     "japaneseCharacterCount": 34,
@@ -335794,7 +335794,7 @@
     "english": "She is wearing a leather belt around her waist.",
     "japanese": "彼女は腰に革のベルトをしている。",
     "furiganaVariants": [
-      "{彼女|かのじょ}は{腰|#1288340}に{革|かわ}のベルトをしている。"
+      "{彼女|かのじょ}は{腰|こし}に{革|かわ}のベルトをしている。"
     ],
     "englishWordCount": 9,
     "japaneseCharacterCount": 16,
@@ -336165,7 +336165,7 @@
     "english": "Japanese love to soak in a hot tub before bed.",
     "japanese": "日本人は寝る前に熱い湯につかるのが好きです。",
     "furiganaVariants": [
-      "{日本人|にほんじん}は{寝|ね}る{前|#1392580}に{熱|あつ}い{湯|ゆ}につかるのが{好|す}きです。"
+      "{日本人|にほんじん}は{寝|ね}る{前|まえ}に{熱|あつ}い{湯|ゆ}につかるのが{好|す}きです。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 22,
@@ -338874,7 +338874,7 @@
     "english": "He entered civil service 20 years ago right after college.",
     "japanese": "彼は２０年前、大学を卒業するとすぐに公務員になった。",
     "furiganaVariants": [
-      "{彼|かれ}は２０{年|ねん}{前|#1392580}、{大学|だいがく}を{卒業|そつぎょう}するとすぐに{公務員|こうむいん}になった。"
+      "{彼|かれ}は２０{年|ねん}{前|まえ}、{大学|だいがく}を{卒業|そつぎょう}するとすぐに{公務員|こうむいん}になった。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 26,
@@ -343365,7 +343365,7 @@
     "english": "I always take some exercise before breakfast.",
     "japanese": "朝食前にいつも体操をします。",
     "furiganaVariants": [
-      "{朝食|ちょうしょく}{前|#1392580}にいつも{体操|たいそう}をします。"
+      "{朝食|ちょうしょく}{前|まえ}にいつも{体操|たいそう}をします。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 14,
@@ -355534,7 +355534,7 @@
     "english": "An angle of 90 degrees is called a right angle.",
     "japanese": "９０度の角度は直角と呼ばれている。",
     "furiganaVariants": [
-      "９０{度|#1445160}の{角度|かくど}は{直角|ちょっかく}と{呼|よ}ばれている。"
+      "９０{度|ど}の{角度|かくど}は{直角|ちょっかく}と{呼|よ}ばれている。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 17,
@@ -357994,7 +357994,7 @@
     "english": "A wife's activities are confined to domestic matters.",
     "japanese": "妻の活動は家事に限られている。",
     "furiganaVariants": [
-      "{妻|#1294330}の{活動|かつどう}は{家事|かじ}に{限|かぎ}られている。"
+      "{妻|つま}の{活動|かつどう}は{家事|かじ}に{限|かぎ}られている。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 15,
@@ -364464,7 +364464,7 @@
     "english": "The old man retired from public life ten years ago.",
     "japanese": "その老人は１０年前に公の生活から引退した。",
     "furiganaVariants": [
-      "その{老人|ろうじん}は１０{年|ねん}{前|#1392580}に{公|おおやけ}の{生活|せいかつ}から{引退|いんたい}した。"
+      "その{老人|ろうじん}は１０{年|ねん}{前|まえ}に{公|おおやけ}の{生活|せいかつ}から{引退|いんたい}した。"
     ],
     "englishWordCount": 10,
     "japaneseCharacterCount": 21,
@@ -367009,7 +367009,7 @@
     "english": "She got a master's degree three years ago.",
     "japanese": "彼女は３年前に修士の学位をとりました。",
     "furiganaVariants": [
-      "{彼女|かのじょ}は３{年|ねん}{前|#1392580}に{修士|しゅうし}の{学位|がくい}をとりました。"
+      "{彼女|かのじょ}は３{年|ねん}{前|まえ}に{修士|しゅうし}の{学位|がくい}をとりました。"
     ],
     "englishWordCount": 8,
     "japaneseCharacterCount": 19,
@@ -375710,7 +375710,7 @@
     "english": "Comb your hair before you go out.",
     "japanese": "外出する前に髪を櫛でときなさい。",
     "furiganaVariants": [
-      "{外出|がいしゅつ}する{前|#1392580}に{髪|かみ}を{櫛|くし}でときなさい。"
+      "{外出|がいしゅつ}する{前|まえ}に{髪|かみ}を{櫛|くし}でときなさい。"
     ],
     "englishWordCount": 7,
     "japaneseCharacterCount": 16,
@@ -379315,7 +379315,7 @@
     "english": "Sometimes a verb is derived from a noun and sometimes it is the other way around.",
     "japanese": "名詞から動詞が派生していることもあれば、その逆のこともある。",
     "furiganaVariants": [
-      "{名詞|めいし}から{動詞|どうし}が{派生|はせい}していることもあれば、その{逆|#1226960}のこともある。"
+      "{名詞|めいし}から{動詞|どうし}が{派生|はせい}していることもあれば、その{逆|ぎゃく}のこともある。"
     ],
     "englishWordCount": 16,
     "japaneseCharacterCount": 30,
