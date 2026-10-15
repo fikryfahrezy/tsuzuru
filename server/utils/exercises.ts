@@ -72,11 +72,12 @@ function generated<T>(
     : undefined;
 }
 
-type LevelDropReason =
-  | "stale-bank"
-  | "stale-entry"
-  | "invalid-level"
-  | "missing";
+export enum LevelDropReason {
+  StaleBank = "stale-bank",
+  StaleEntry = "stale-entry",
+  InvalidLevel = "invalid-level",
+  Missing = "missing",
+}
 
 // A sentence's level applies only while its source text still matches.
 function sentenceLevel(
@@ -89,25 +90,34 @@ function sentenceLevel(
   const entry = bank.entries[row.id];
   const reason: LevelDropReason | null =
     bank.version !== 1 || bank.sourceRevision !== revision
-      ? "stale-bank"
+      ? LevelDropReason.StaleBank
       : !entry
-        ? "missing"
+        ? LevelDropReason.Missing
         : entry.sourceJapanese !== row.japanese
-          ? "stale-entry"
+          ? LevelDropReason.StaleEntry
           : null;
   if (reason || !entry) {
-    drop(reason ?? "missing");
+    drop(reason ?? LevelDropReason.Missing);
     return null;
   }
   if (!isLevel(entry.level)) {
-    drop("invalid-level");
+    drop(LevelDropReason.InvalidLevel);
     return null;
   }
   return entry.level;
 }
 
 // Bank records whose sentence did not load are never validated.
-type OrphanReason = "sentence-dropped" | "unknown-sentence";
+export enum OrphanReason {
+  SentenceDropped = "sentence-dropped",
+  UnknownSentence = "unknown-sentence",
+}
+
+export enum SentenceDropReason {
+  Malformed = "malformed",
+  DuplicateId = "duplicate-id",
+  NoValidReading = "no-valid-reading",
+}
 
 export interface LoadTally<Reason extends string> {
   loaded: number;
@@ -117,7 +127,7 @@ export interface LoadTally<Reason extends string> {
 // What validation kept and dropped: sentences and alternative records,
 // spelling references, and phrase-hint entries.
 export interface LoadReport {
-  sentences: LoadTally<"malformed" | "duplicate-id" | "no-valid-reading">;
+  sentences: LoadTally<SentenceDropReason>;
   alternatives: LoadTally<AlternativeDropReason | OrphanReason>;
   spellings: LoadTally<SpellingDropReason | OrphanReason>;
   phraseHints: LoadTally<PhraseHintDropReason | OrphanReason>;
@@ -155,7 +165,7 @@ export function loadSentence(
   report: LoadReport = emptyLoadReport(),
 ): Sentence | null {
   if (!isCandidate(row)) {
-    dropInto(report.sentences)("malformed");
+    dropInto(report.sentences)(SentenceDropReason.Malformed);
     return null;
   }
   const readings = parseReadings(row.japanese, row.furiganaVariants).map(
@@ -174,7 +184,7 @@ export function loadSentence(
     },
   );
   if (!isNonEmpty(readings)) {
-    dropInto(report.sentences)("no-valid-reading");
+    dropInto(report.sentences)(SentenceDropReason.NoValidReading);
     return null;
   }
   report.sentences.loaded++;
@@ -252,7 +262,7 @@ export function loadExercises(
     // A repeated ID would make lookups by ID return the wrong sentence.
     if (isCandidate(row)) {
       if (rowIds.has(row.id)) {
-        dropInto(report.sentences)("duplicate-id");
+        dropInto(report.sentences)(SentenceDropReason.DuplicateId);
         return [];
       }
       rowIds.add(row.id);
@@ -265,8 +275,8 @@ export function loadExercises(
     loaded.has(id)
       ? null
       : rowIds.has(id)
-        ? "sentence-dropped"
-        : "unknown-sentence";
+        ? OrphanReason.SentenceDropped
+        : OrphanReason.UnknownSentence;
   for (const [id, entry] of Object.entries(banks.alternatives?.entries ?? {})) {
     const reason = orphan(id);
     if (reason)

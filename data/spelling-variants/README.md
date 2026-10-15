@@ -31,16 +31,17 @@ conservative dictionary rules or an explicit context review.
 
 ## Generation
 
-Create an ignored local environment using Python 3.13 or another version with
-a compatible SudachiPy wheel:
+Create the ignored local environment in `.cache/spelling-tools`, using Python
+3.13 or another version with a compatible SudachiPy wheel:
 
 ```sh
-python3 -m venv .cache/spelling-tools
-.cache/spelling-tools/bin/python -m pip install -r scripts/spelling-requirements.txt
+bun run tools:setup
 ```
 
-If a Python launcher cannot create a working environment, use the actual Python
-executable reported by `python3 -c 'import sys; print(sys.executable)'`.
+Setup resolves `python3` through launchers and shims (pyenv, uv, Homebrew) to
+the real interpreter, and reuses an existing environment. Rerun it after
+`scripts/spelling-requirements.txt` changes; the `spellings:*`, `romaji:*`, and
+`levels:*` commands refuse to run with a missing or outdated environment.
 Download a snapshot and intentionally regenerate:
 
 ```sh

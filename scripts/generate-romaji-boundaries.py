@@ -2,7 +2,7 @@
 """Precompute romaji spacing with the existing Sudachi spelling-tools environment.
 
 Only word boundaries come from the tokenizer; pronunciations remain supplied
-furigana. Run with .cache/spelling-tools/bin/python, optionally with --check.
+furigana. Run through `bun run romaji:generate` or `romaji:check`.
 """
 import argparse
 import json

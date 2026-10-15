@@ -68,11 +68,12 @@ export function phraseHintBank(
   return Object.fromEntries(entries.map((entry) => [entry.sentenceId, entry]));
 }
 
-export type PhraseHintDropReason =
-  | "stale-entry"
-  | "empty-phrase"
-  | "invalid-span"
-  | "unverified-hint";
+export enum PhraseHintDropReason {
+  StaleEntry = "stale-entry",
+  EmptyPhrase = "empty-phrase",
+  InvalidSpan = "invalid-span",
+  UnverifiedHint = "unverified-hint",
+}
 
 // Validates an entry once at load. Any invalid phrase rejects the whole
 // entry; `drop` hears the reason.
@@ -88,7 +89,7 @@ export function sentencePhraseHints(
     entry.english !== sentence.english ||
     entry.japanese !== sentence.reference.japanese
   ) {
-    drop("stale-entry");
+    drop(PhraseHintDropReason.StaleEntry);
     return [];
   }
   const result: PhraseHintSpan[] = [];
@@ -102,7 +103,7 @@ export function sentencePhraseHints(
   );
   for (const phrase of entry.phrases) {
     if (!phrase.spans.length || !phrase.hints.length) {
-      drop("empty-phrase");
+      drop(PhraseHintDropReason.EmptyPhrase);
       return [];
     }
     let previousEnd = -1;
@@ -119,7 +120,7 @@ export function sentencePhraseHints(
           (existing) => existing.start < span.end && existing.end > span.start,
         )
       ) {
-        drop("invalid-span");
+        drop(PhraseHintDropReason.InvalidSpan);
         return [];
       }
       previousEnd = span.end;
@@ -134,7 +135,7 @@ export function sentencePhraseHints(
           hiragana(hint.reading),
         )
       ) {
-        drop("unverified-hint");
+        drop(PhraseHintDropReason.UnverifiedHint);
         return [];
       }
     }

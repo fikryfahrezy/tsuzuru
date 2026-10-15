@@ -98,8 +98,7 @@ and English prompt; each entry records the reviewer and reason.
 To regenerate after importing or editing sentences:
 
 ```sh
-python3 -m venv .cache/spelling-tools
-.cache/spelling-tools/bin/pip install -r scripts/spelling-requirements.txt
+bun run tools:setup
 bun run romaji:generate
 bun run romaji:check
 bun run romaji:test

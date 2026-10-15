@@ -111,11 +111,12 @@ function spellingPath(reference: SpellingReference): string[][] | null {
   return after ? [...path, ...after.options] : null;
 }
 
-export type SpellingDropReason =
-  | "stale-bank"
-  | "stale-entry"
-  | "unknown-reading"
-  | "invalid-spans";
+export enum SpellingDropReason {
+  StaleBank = "stale-bank",
+  StaleEntry = "stale-entry",
+  UnknownReading = "unknown-reading",
+  InvalidSpans = "invalid-spans",
+}
 
 // Validates a bank entry once at load; stale or malformed records are dropped
 // and `drop` hears each one and why.
@@ -132,10 +133,10 @@ export function verifiedSpellings(
     bank.version !== 1 ||
     bank.license !== "CC-BY-SA-4.0" ||
     bank.sourceRevision !== revision
-      ? "stale-bank"
+      ? SpellingDropReason.StaleBank
       : entry.sourceEnglish !== sentence.english ||
           entry.sourceJapanese !== sentence.japanese
-        ? "stale-entry"
+        ? SpellingDropReason.StaleEntry
         : null;
   if (stale) {
     entry.references.forEach(() => drop(stale));
@@ -151,11 +152,11 @@ export function verifiedSpellings(
           ),
       )
     ) {
-      drop("unknown-reading");
+      drop(SpellingDropReason.UnknownReading);
       return [];
     }
     const path = spellingPath(reference);
-    if (!path) drop("invalid-spans");
+    if (!path) drop(SpellingDropReason.InvalidSpans);
     return path ? [{ ...reference, path }] : [];
   });
 }

@@ -4,8 +4,7 @@
 A sentence's level is the highest JLPT level among its content words that
 appear in the OpenJLPT vocabulary lists. Words absent from every list (names,
 loanwords, rare compounds) are recorded but do not raise the level; kanji and
-grammar are not graded. Run with .cache/spelling-tools/bin/python, optionally
-with --check.
+grammar are not graded. Run through `bun run levels:generate` or `levels:check`.
 """
 import argparse
 import json

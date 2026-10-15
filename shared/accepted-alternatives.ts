@@ -26,13 +26,14 @@ export interface AlternativeBank {
   >;
 }
 
-export type AlternativeDropReason =
-  | "stale-bank"
-  | "stale-entry"
-  | "invalid-provenance"
-  | "empty-japanese"
-  | "duplicate"
-  | "no-valid-reading";
+export enum AlternativeDropReason {
+  StaleBank = "stale-bank",
+  StaleEntry = "stale-entry",
+  InvalidProvenance = "invalid-provenance",
+  EmptyJapanese = "empty-japanese",
+  Duplicate = "duplicate",
+  NoValidReading = "no-valid-reading",
+}
 
 // Records failing validation are skipped; `drop` hears each one and why.
 export function acceptedAlternatives(
@@ -49,10 +50,10 @@ export function acceptedAlternatives(
   if (!entry) return [];
   const stale =
     bank.license !== "CC-BY-SA-4.0" || bank.sourceRevision !== revision
-      ? "stale-bank"
+      ? AlternativeDropReason.StaleBank
       : entry.sourceEnglish !== candidate.english ||
           entry.sourceJapanese !== candidate.japanese
-        ? "stale-entry"
+        ? AlternativeDropReason.StaleEntry
         : null;
   if (stale) {
     entry.alternatives.forEach(() => drop(stale));
@@ -64,11 +65,11 @@ export function acceptedAlternatives(
       !alternative.provenance?.creator.trim() ||
       !alternative.provenance.note.trim() ||
       !isAlternativeMethod(alternative.provenance.method)
-        ? "invalid-provenance"
+        ? AlternativeDropReason.InvalidProvenance
         : !alternative.japanese.trim()
-          ? "empty-japanese"
+          ? AlternativeDropReason.EmptyJapanese
           : seen.has(normalize(alternative.japanese))
-            ? "duplicate"
+            ? AlternativeDropReason.Duplicate
             : null;
     if (reason) {
       drop(reason);
@@ -79,7 +80,7 @@ export function acceptedAlternatives(
       alternative.furiganaVariants,
     );
     if (!isNonEmpty(readings)) {
-      drop("no-valid-reading");
+      drop(AlternativeDropReason.NoValidReading);
       return [];
     }
     seen.add(normalize(alternative.japanese));

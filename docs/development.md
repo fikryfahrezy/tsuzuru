@@ -6,7 +6,8 @@
 
 - Bun **1.4.3** (pinned in `.bun-version`, `package.json`, and `Dockerfile`).
 - Docker with the Compose plugin for container development or deployment.
-- Python 3 only if you need to refresh the learning data.
+- Python 3 only if you need to refresh the learning data. Run `bun run tools:setup`
+  once to install the pinned Sudachi tools the data generators use.
 
 Install the pinned Bun version with the official installer:
 
