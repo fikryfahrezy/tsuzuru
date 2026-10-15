@@ -140,14 +140,29 @@ content words, keyed by sentence ID and guarded by the source Japanese and
 OpenJLPT revision like the other banks. Practice at a level offers sentences
 graded at that level or easier, so an N4 session also includes N5 sentences.
 
-The generator splits each sentence with Sudachi and looks up each word's
-dictionary form in the OpenJLPT vocabulary lists. Kana readings identify a word
-only when the sentence writes it in kana, so a kanji spelling cannot match an
-easier homophone. Particles, auxiliaries, names, numerals, and counters after a
-numeral (３時) are not graded. Words absent from every list are recorded but do
-not raise the level; an unlisted compound falls back to its listed parts. Each
-entry keeps the words that set its level, so a grade can be explained. Kanji and
-grammar are not graded.
+The generator splits each sentence with Sudachi and looks up each word in the
+OpenJLPT vocabulary lists, matching:
+
+- the dictionary form or Sudachi's normalized spelling (終わる for listed 終る);
+- the word without an honorific prefix (風呂 for listed お風呂, 主人 for 御主人);
+- for a kanji spelling, an entry the lists write in kana (出来る for できる);
+- for a kana spelling, a listed reading.
+
+A kanji spelling never matches a kanji homophone's reading. Particles,
+auxiliaries, names, numerals, and counters after a numeral (３時) are not graded,
+and an unlisted compound falls back to its listed parts.
+
+`sentence-levels/supplement.json` levels common words the lists lack, such as
+父, 母, and 顔. Each entry needs a reason and a reviewer, and generation fails if
+an entry duplicates a word the lists already reach by any spelling. Entries
+marked as awaiting review were proposed during development; check the level,
+then record your name as the reviewer.
+
+A word still unlisted after these steps counts as above every level when it is
+written with kanji (卒倒, 扮装), because such words are usually advanced. An
+unlisted kana word, usually a loanword such as チョコレート, does not raise the
+level. Each entry keeps the words that set its level, so a grade can be
+explained. Grammar is not graded.
 
 ```sh
 bun run levels:generate

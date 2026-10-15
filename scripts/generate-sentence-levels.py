@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Grade each sentence by the vocabulary it uses, with the Sudachi spelling-tools environment.
 
-A sentence's level is the highest JLPT level among its content words that
-appear in the OpenJLPT vocabulary lists. Words absent from every list (names,
-loanwords, rare compounds) are recorded but do not raise the level; kanji and
-grammar are not graded. Run through `bun run levels:generate` or `levels:check`.
+A sentence's level is the highest JLPT level among its content words, looked up
+in the OpenJLPT vocabulary lists plus a small reviewed supplement for common
+words the lists lack. An unlisted word written with kanji counts as above every
+level; unlisted kana words (mostly loanwords), names, and numerals do not raise
+the level. Grammar is not graded. Run through `bun run levels:generate` or
+`levels:check`.
 """
 import argparse
 import json
@@ -19,30 +21,90 @@ CONTENT = {"名詞", "代名詞", "動詞", "形容詞", "形状詞", "副詞", 
 # Names and numerals are not vocabulary a learner is expected to know by level.
 SKIPPED = {"固有名詞", "数詞"}
 KANA_ONLY = re.compile(r"^[\u3041-\u309f\u30a0-\u30ffー]+$")
+KANJI = re.compile(r"[\u3400-\u9fff]")
+HONORIFIC = ("お", "ご", "御")
 
 
-def vocabulary_levels(snapshot):
-    """Map each listed word, and separately each kana reading, to its lowest
-    JLPT level index."""
-    words, readings = {}, {}
+def hiragana(text):
+    return "".join(chr(ord(c) - 0x60) if "ァ" <= c <= "ヶ" else c for c in text)
+
+
+class Vocabulary:
+    """Lowest JLPT level index for each way a listed word can appear."""
+
+    def __init__(self, tokenizer, rows):
+        self.tokenizer = tokenizer
+        self.words = {}       # exact list spellings: 飲む, できる
+        self.variants = {}    # Sudachi-normalized spellings and お-less forms: 終る → 終わる, お風呂 → 風呂
+        self.readings = {}    # readings, for words a sentence writes in kana
+        self.kana_words = {}  # kana-only entries, for kanji spellings: できる ← 出来る
+        for index, word, reading in rows:
+            self._add(self.words, word, index)
+            self._add(self.readings, reading, index)
+            if KANA_ONLY.match(word):
+                self._add(self.kana_words, hiragana(word), index)
+            tokens = list(tokenizer.tokenize(word, SplitMode.C))
+            if len(tokens) == 1:
+                self._add(self.variants, tokens[0].normalized_form(), index)
+            if word.startswith(HONORIFIC) and KANJI.search(word[1:]):
+                self._add(self.variants, word[1:], index)
+
+    @staticmethod
+    def _add(table, key, index):
+        table[key] = min(table.get(key, index), index)
+
+    def reading_of(self, word):
+        tokens = list(self.tokenizer.tokenize(word, SplitMode.C))
+        return hiragana("".join(token.reading_form() for token in tokens))
+
+    def level(self, morpheme):
+        forms = (morpheme.dictionary_form(), morpheme.normalized_form(), morpheme.surface())
+        for table in (self.words, self.variants):
+            found = [table[form] for form in forms if form in table]
+            if found:
+                return min(found)
+        surface = morpheme.surface()
+        # A reading identifies a word only through its spelling class: kana
+        # in the sentence matches readings, and a kanji spelling matches only
+        # entries the lists themselves write in kana, never a kanji homophone.
+        if KANA_ONLY.match(surface):
+            found = [self.readings[form] for form in (morpheme.dictionary_form(), surface)
+                     if form in self.readings]
+            return min(found) if found else None
+        reading = self.reading_of(morpheme.dictionary_form())
+        return self.kana_words.get(reading)
+
+
+def list_rows(snapshot):
     for index, level in enumerate(LEVELS):
-        rows = json.loads((snapshot / f"data/json/vocab/{level.lower()}.json").read_text())
-        for row in rows:
-            for table, key in ((words, row["word"]), (readings, row["reading"])):
-                table[key] = min(table.get(key, index), index)
-    return words, readings
+        for row in json.loads((snapshot / f"data/json/vocab/{level.lower()}.json").read_text()):
+            yield index, row["word"], row["reading"]
 
 
-def listed_level(levels, morpheme):
-    words, readings = levels
-    forms = (morpheme.dictionary_form(), morpheme.normalized_form(), morpheme.surface())
-    found = [words[form] for form in forms if form in words]
-    # A reading identifies a word only when the sentence itself writes it in
-    # kana; a kanji spelling must not match an easier homophone's reading.
-    if not found and KANA_ONLY.match(morpheme.surface()):
-        found = [readings[form] for form in (morpheme.dictionary_form(), morpheme.surface())
-                 if form in readings]
-    return min(found) if found else None
+def supplement_rows(supplement, lists):
+    """Reviewed levels for common words absent from the lists. Every entry
+    needs a reason and reviewer, and must not override a word the lists
+    already reach, by any spelling."""
+    if supplement.get("version") != 1:
+        raise ValueError("Unsupported sentence-level supplement version.")
+    rows = []
+    for entry in supplement["entries"]:
+        word, reading = entry.get("word", ""), entry.get("reading", "")
+        if (not word or not KANA_ONLY.match(reading) or entry.get("level") not in LEVELS
+                or not entry.get("reason", "").strip() or not entry.get("reviewer", "").strip()):
+            raise ValueError(f"Invalid supplement entry: {word or entry}")
+        tokens = list(lists.tokenizer.tokenize(word, SplitMode.C))
+        if word in lists.words or (len(tokens) == 1 and lists.level(tokens[0]) is not None):
+            raise ValueError(f"Supplement entry is already listed by OpenJLPT: {word}")
+        rows.append((LEVELS.index(entry["level"]), word, reading))
+    return rows
+
+
+def vocabulary_levels(tokenizer, snapshot, supplement=None):
+    rows = list(list_rows(snapshot))
+    if supplement:
+        rows += supplement_rows(supplement, Vocabulary(tokenizer, rows))
+    return Vocabulary(tokenizer, rows)
 
 
 def content_words(tokenizer, text):
@@ -58,14 +120,14 @@ def content_words(tokenizer, text):
         previous = morpheme
 
 
-def word_levels(tokenizer, levels, text):
+def word_levels(tokenizer, vocabulary, text):
     """Level each content word. An unlisted compound falls back to its listed
     parts, so joining words cannot hide a harder one."""
     words = []
     for morpheme in content_words(tokenizer, text):
-        level = listed_level(levels, morpheme)
+        level = vocabulary.level(morpheme)
         if level is None:
-            parts = [listed_level(levels, part) for part in morpheme.split(SplitMode.A)]
+            parts = [vocabulary.level(part) for part in morpheme.split(SplitMode.A)]
             listed = [part for part in parts if part is not None]
             level = max(listed) if len(parts) > 1 and listed else None
         words.append({
@@ -76,9 +138,24 @@ def word_levels(tokenizer, levels, text):
     return words
 
 
+def unlisted_kanji(word):
+    return word["level"] is None and KANJI.search(word["surface"]) is not None
+
+
 def sentence_level(words):
-    listed = [LEVELS.index(word["level"]) for word in words if word["level"]]
-    return LEVELS[max(listed, default=0)]
+    ranks = [LEVELS.index(word["level"]) for word in words if word["level"]]
+    # An unknown kanji word is treated as harder than any listed level.
+    if any(unlisted_kanji(word) for word in words):
+        ranks.append(len(LEVELS) - 1)
+    return LEVELS[max(ranks, default=0)]
+
+
+def limiting_words(words, level):
+    """The words that set a sentence's level, so each grade can be explained."""
+    if level == "N5":
+        return []
+    return [word for word in words
+            if word["level"] == level or (level == LEVELS[-1] and unlisted_kanji(word))]
 
 
 def main():
@@ -86,26 +163,26 @@ def main():
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     manifest = json.loads((ROOT / "data/manifest.json").read_text())
-    levels = vocabulary_levels(ROOT / manifest["snapshotPath"])
     tokenizer = Dictionary(dict="core").create()
+    supplement = json.loads((ROOT / "data/sentence-levels/supplement.json").read_text())
+    try:
+        vocabulary = vocabulary_levels(tokenizer, ROOT / manifest["snapshotPath"], supplement)
+    except ValueError as error:
+        raise SystemExit(f"{error} Update data/sentence-levels/supplement.json.") from error
     candidates = json.loads((ROOT / "data/processed/sentence-candidates.json").read_text())
     entries = {}
     for candidate in candidates:
-        words = word_levels(tokenizer, levels, candidate["japanese"])
+        words = word_levels(tokenizer, vocabulary, candidate["japanese"])
         level = sentence_level(words)
         entries[candidate["id"]] = {
             "sourceJapanese": candidate["japanese"],
             "level": level,
-            # Only the words that set the level, so the bank stays small and
-            # each grade can be explained.
-            "limitingWords": [
-                word for word in words if level != "N5" and word["level"] == level
-            ],
+            "limitingWords": limiting_words(words, level),
         }
     bank = {
         "version": 1,
         "sourceRevision": manifest["revision"],
-        "method": "Highest OpenJLPT vocabulary level among Sudachi content words; unlisted words, names, and numerals do not raise the level.",
+        "method": "Highest vocabulary level among Sudachi content words, from OpenJLPT and the reviewed supplement; unlisted kanji words count as N1, while unlisted kana words, names, and numerals do not raise the level.",
         "entries": dict(sorted(entries.items())),
     }
     output = ROOT / "data/sentence-levels/bank.json"

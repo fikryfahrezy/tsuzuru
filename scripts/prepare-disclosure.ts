@@ -17,6 +17,7 @@ const documents = {
   "spelling-variants.md": "data/spelling-variants/README.md",
   "hint-glossary.json": "data/hint-glossary/bank.json",
   "sentence-levels.json": "data/sentence-levels/bank.json",
+  "sentence-level-supplement.json": "data/sentence-levels/supplement.json",
   "hint-glossary.md": "data/hint-glossary/README.md",
   "sudachi-legal.txt": "data/spelling-variants/SUDACHI-LEGAL.txt",
   "sudachi-license.txt": "data/spelling-variants/APACHE-2.0.txt",

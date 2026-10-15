@@ -98,10 +98,10 @@ useSeoMeta({
       <h2>Reference practice, explained</h2>
       <p class="license-note">
         This is a beta exercise bank drawn from unreviewed sentence candidates.
-        The level selector offers sentences whose listed vocabulary is at that
-        level or easier. This is not a certified difficulty: kanji, grammar, and
-        words outside the JLPT lists are not graded, so some sentences still
-        contain harder kanji or grammar.
+        The level selector offers sentences whose vocabulary is at that level or
+        easier. This is not a certified difficulty: grammar is not graded, and
+        kana words outside the JLPT lists, mostly loanwords, do not raise a
+        sentence's level, so some sentences still contain harder grammar.
       </p>
       <p>
         The

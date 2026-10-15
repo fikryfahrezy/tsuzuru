@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "note": "Levels for common words the OpenJLPT vocabulary lists lack. Each entry needs a reason and a reviewer; replace the reviewer after checking the level.",
+  "entries": [
+    {
+      "word": "父",
+      "reading": "ちち",
+      "level": "N4",
+      "reason": "Plain word for one's own father; OpenJLPT lists only お父さん (N5) and 父親 (N3).",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "母",
+      "reading": "はは",
+      "level": "N4",
+      "reason": "Plain word for one's own mother; OpenJLPT lists only お母さん (N5) and 母親 (N3).",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "顔",
+      "reading": "かお",
+      "level": "N5",
+      "reason": "Basic body word taught with 目 and 口; OpenJLPT lists only 笑顔 (N3) and 顔付き (N1).",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "夕食",
+      "reading": "ゆうしょく",
+      "level": "N4",
+      "reason": "Formal word for dinner, taught alongside 晩ご飯; absent from OpenJLPT.",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "朝食",
+      "reading": "ちょうしょく",
+      "level": "N4",
+      "reason": "Formal word for breakfast, taught alongside 朝ご飯; absent from OpenJLPT.",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "野球",
+      "reading": "やきゅう",
+      "level": "N4",
+      "reason": "Common sport word; absent from OpenJLPT.",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "早起き",
+      "reading": "はやおき",
+      "level": "N4",
+      "reason": "Compound of 早い and 起きる (both N5); Sudachi reads it as one word.",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "年上",
+      "reading": "としうえ",
+      "level": "N3",
+      "reason": "Older (in age); compound of 年 and 上, absent from OpenJLPT.",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "何語",
+      "reading": "なにご",
+      "level": "N5",
+      "reason": "What language; built from 何 and 語 (both N5), common in first lessons.",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    },
+    {
+      "word": "長生き",
+      "reading": "ながいき",
+      "level": "N3",
+      "reason": "Long life; compound of 長い and 生きる, absent from OpenJLPT.",
+      "reviewer": "Claude (proposed, awaiting maintainer review)"
+    }
+  ]
+}

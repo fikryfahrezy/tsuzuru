@@ -42,7 +42,8 @@ export interface SentenceLevelBank {
     {
       sourceJapanese: string;
       level: string;
-      limitingWords: { surface: string; lemma: string; level: string }[];
+      // A null level marks an unlisted kanji word, graded above every level.
+      limitingWords: { surface: string; lemma: string; level: string | null }[];
     }
   >;
 }
