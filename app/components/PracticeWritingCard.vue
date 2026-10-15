@@ -172,7 +172,7 @@ defineExpose({
   width: 100%;
   min-height: 185px;
   resize: vertical;
-  padding: 22px 0 32px;
+  padding: 22px 8px 32px;
   border: 0;
   background: repeating-linear-gradient(
     transparent,
@@ -303,7 +303,7 @@ defineExpose({
 .practice-shell .answer-review {
   flex: 1;
   min-height: 150px;
-  padding: 22px 0 32px;
+  padding: 22px 8px 32px;
   color: var(--ink);
   background: repeating-linear-gradient(
     transparent,
