@@ -52,6 +52,12 @@ const {
 } = usePracticeSession();
 const grammarOpen = ref(false);
 const grammarVisited = ref(false);
+const settingsToggle = ref<HTMLButtonElement | null>(null);
+async function closeSettings() {
+  settingsOpen.value = false;
+  await nextTick();
+  settingsToggle.value?.focus();
+}
 async function toggleGrammar() {
   if (grammarOpen.value) return closeGrammar();
   grammarVisited.value = true;
@@ -81,6 +87,20 @@ function selectTab(value: PracticeTab) {
     <main class="workspace practice-workspace">
       <header class="workspace-heading">
         <div>
+          <button
+            v-if="tab === PracticeTab.Practice"
+            ref="settingsToggle"
+            type="button"
+            class="settings-toggle"
+            :aria-expanded="settingsOpen"
+            aria-controls="practice-settings"
+            @click="
+              settingsOpen = !settingsOpen;
+              grammarOpen = false;
+            "
+          >
+            {{ settingsOpen ? "Close settings ×" : "Settings ☰" }}
+          </button>
           <h1>
             {{
               tab === PracticeTab.Practice
@@ -89,18 +109,6 @@ function selectTab(value: PracticeTab) {
             }}
           </h1>
         </div>
-        <button
-          v-if="tab === PracticeTab.Practice"
-          class="settings-toggle"
-          :aria-expanded="settingsOpen"
-          aria-controls="practice-settings"
-          @click="
-            settingsOpen = !settingsOpen;
-            grammarOpen = false;
-          "
-        >
-          {{ settingsOpen ? "Close settings ×" : "Settings ☰" }}
-        </button>
       </header>
       <p v-if="storageNote" class="notice" role="status">{{ storageNote }}</p>
       <p v-if="!online" class="notice" role="status">
@@ -110,16 +118,19 @@ function selectTab(value: PracticeTab) {
       <div
         v-if="tab === PracticeTab.Practice"
         class="practice-layout"
-        :class="{ 'with-reference': grammarOpen }"
+        :class="{
+          'with-reference': grammarOpen,
+          'settings-hidden': !settingsOpen,
+        }"
       >
         <button
           v-if="settingsOpen && !grammarOpen"
           class="settings-scrim"
           aria-label="Close settings"
-          @click="settingsOpen = false"
+          @click="closeSettings"
         ></button>
         <PracticeSettings
-          v-show="!grammarOpen"
+          v-show="settingsOpen && !grammarOpen"
           v-model:level="level"
           v-model:length="length"
           v-model:mode="mode"
@@ -128,7 +139,8 @@ function selectTab(value: PracticeTab) {
           :settings-open="settingsOpen"
           :checking="checking"
           :alternative-count="question?.alternativeCount"
-          @close="settingsOpen = false"
+          @close="closeSettings"
+          @keydown.esc.stop.prevent="closeSettings"
         />
         <PracticeWritingCard
           ref="writingCard"
@@ -216,7 +228,7 @@ function selectTab(value: PracticeTab) {
 }
 .workspace-heading {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 15px;
   flex-shrink: 0;
@@ -227,7 +239,8 @@ function selectTab(value: PracticeTab) {
 .workspace-heading > div {
   display: flex;
   align-items: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 .workspace-heading h1 {
   margin: 0;
@@ -253,7 +266,14 @@ function selectTab(value: PracticeTab) {
   gap: 0;
   align-items: stretch;
 }
-.settings-toggle,
+.settings-toggle {
+  display: block;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  background: rgba(251, 247, 232, 0.6);
+  padding: 9px;
+  font-size: 11px;
+}
 .settings-scrim {
   display: none;
 }
@@ -278,11 +298,6 @@ function selectTab(value: PracticeTab) {
     display: none;
   }
   .settings-toggle {
-    display: block;
-    flex-shrink: 0;
-    border: 1px solid var(--line);
-    background: rgba(251, 247, 232, 0.6);
-    padding: 9px;
     font-size: 10px;
   }
   .practice-shell .practice-layout {
@@ -300,6 +315,9 @@ function selectTab(value: PracticeTab) {
 </style>
 
 <style scoped>
+.practice-shell .practice-layout.settings-hidden {
+  grid-template-columns: minmax(0, 1fr);
+}
 .practice-shell .practice-layout.with-reference {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
 }
