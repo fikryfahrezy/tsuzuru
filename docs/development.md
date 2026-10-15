@@ -78,6 +78,9 @@ and build commands generate public disclosure files from the original documents.
 
 - `GET /api/exercises?level=N5&length=short` returns a random English prompt,
   romaji, and vocabulary hints from sentences graded at that level or easier.
+  `length` is `short`, `medium`, `long`, or `random` (any length). When fewer
+  than 20 sentences match, the pool includes harder levels until it is large
+  enough, and the response's `widened` field reports the level reached.
 - `POST /api/compare` accepts `{ id, answer, mode, acceptAlternatives? }` and
   returns a reference comparison. Invalid settings and unknown IDs are rejected.
 

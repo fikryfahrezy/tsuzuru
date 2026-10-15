@@ -75,7 +75,7 @@ class SentenceLevelTests(unittest.TestCase):
         self.assertEqual(self.lemmas("主人は留守です。")["主人"], "N4")  # listed as 御主人
 
     def test_supplement_levels_common_words_missing_from_the_lists(self):
-        self.assertEqual(self.lemmas("父は医者です。")["父"], "N4")
+        self.assertEqual(self.lemmas("父は医者です。")["父"], "N5")
         plain = generator.vocabulary_levels(self.tokenizer, self.snapshot)
         self.assertIsNone(
             generator.word_levels(self.tokenizer, plain, "父は医者です。")[0]["level"])

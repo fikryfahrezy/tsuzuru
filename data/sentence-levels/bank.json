@@ -1840,6 +1840,11 @@
       "level": "N3",
       "limitingWords": [
         {
+          "surface": "朝食",
+          "lemma": "朝食",
+          "level": "N3"
+        },
+        {
           "surface": "含ま",
           "lemma": "含む",
           "level": "N3"
@@ -2790,12 +2795,12 @@
     },
     "048542cf6ba46704a227607a": {
       "sourceJapanese": "夕食がテーブルに並べられた。",
-      "level": "N4",
+      "level": "N3",
       "limitingWords": [
         {
           "surface": "夕食",
           "lemma": "夕食",
-          "level": "N4"
+          "level": "N3"
         }
       ]
     },
@@ -2856,17 +2861,12 @@
     },
     "049a52eff5d651adc42ccddf": {
       "sourceJapanese": "朝食はたいてい軽くとります。",
-      "level": "N4",
+      "level": "N3",
       "limitingWords": [
         {
           "surface": "朝食",
           "lemma": "朝食",
-          "level": "N4"
-        },
-        {
-          "surface": "たいてい",
-          "lemma": "たいてい",
-          "level": "N4"
+          "level": "N3"
         }
       ]
     },
@@ -3313,6 +3313,11 @@
       "sourceJapanese": "メリーのにこやかな顔は彼女の幸せを表していた。",
       "level": "N3",
       "limitingWords": [
+        {
+          "surface": "顔",
+          "lemma": "顔",
+          "level": "N3"
+        },
         {
           "surface": "幸せ",
           "lemma": "幸せ",
@@ -4387,11 +4392,6 @@
       "sourceJapanese": "父が亡くなってから３年になります。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "亡くなっ",
           "lemma": "亡くなる",
@@ -6038,14 +6038,8 @@
     },
     "09748f8ea154fef6d9455a3f": {
       "sourceJapanese": "父はまだ休んでいる。",
-      "level": "N4",
-      "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "097a1d47b09bf5b089be72c2": {
       "sourceJapanese": "私に気付かれずに彼はそれをやった。",
@@ -6508,11 +6502,6 @@
       "sourceJapanese": "父は２年前に亡くなった。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "亡くなっ",
           "lemma": "亡くなる",
@@ -7109,6 +7098,11 @@
       "level": "N3",
       "limitingWords": [
         {
+          "surface": "顔",
+          "lemma": "顔",
+          "level": "N3"
+        },
+        {
           "surface": "跡",
           "lemma": "跡",
           "level": "N3"
@@ -7373,19 +7367,8 @@
     },
     "0b70e1146d72d3a69cecd207": {
       "sourceJapanese": "父と母は木の下に座っていました。",
-      "level": "N4",
-      "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
-        {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "0b77aea6e5e824279ccf4403": {
       "sourceJapanese": "実際に飛行機を操縦したのですか。",
@@ -10655,11 +10638,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
-        {
           "surface": "最近",
           "lemma": "最近",
           "level": "N4"
@@ -11329,17 +11307,12 @@
     },
     "12500f6d34212731f4d6d4c4": {
       "sourceJapanese": "朝食用のパンはぎりぎり足りる。",
-      "level": "N4",
+      "level": "N3",
       "limitingWords": [
         {
           "surface": "朝食",
           "lemma": "朝食",
-          "level": "N4"
-        },
-        {
-          "surface": "足りる",
-          "lemma": "足りる",
-          "level": "N4"
+          "level": "N3"
         }
       ]
     },
@@ -15269,14 +15242,8 @@
     },
     "189b2725520156f4aebcb65c": {
       "sourceJapanese": "父はちょうど帰ってきたところだ。",
-      "level": "N4",
-      "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "189c687c757c3e70a614a233": {
       "sourceJapanese": "その町の住人は全滅した。",
@@ -15633,6 +15600,11 @@
       "sourceJapanese": "私は野球チームから外された。",
       "level": "N3",
       "limitingWords": [
+        {
+          "surface": "野球",
+          "lemma": "野球",
+          "level": "N3"
+        },
         {
           "surface": "チーム",
           "lemma": "チーム",
@@ -24268,11 +24240,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
-        {
           "surface": "決して",
           "lemma": "決して",
           "level": "N4"
@@ -25952,11 +25919,6 @@
         {
           "surface": "ずっと",
           "lemma": "ずっと",
-          "level": "N3"
-        },
-        {
-          "surface": "年上",
-          "lemma": "年上",
           "level": "N3"
         }
       ]
@@ -33570,14 +33532,8 @@
     },
     "35ad71652fba9475a3dad1a4": {
       "sourceJapanese": "ここが父の生まれたところです。",
-      "level": "N4",
-      "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "35b01c5791b9cad0b1a67e11": {
       "sourceJapanese": "パスポートを見せてくれませんか。",
@@ -34512,6 +34468,11 @@
           "surface": "氷",
           "lemma": "氷",
           "level": "N3"
+        },
+        {
+          "surface": "顔",
+          "lemma": "顔",
+          "level": "N3"
         }
       ]
     },
@@ -34767,11 +34728,6 @@
       "sourceJapanese": "父は私にはとても厳しい。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "厳しい",
           "lemma": "厳しい",
@@ -35696,6 +35652,11 @@
       "level": "N3",
       "limitingWords": [
         {
+          "surface": "朝食",
+          "lemma": "朝食",
+          "level": "N3"
+        },
+        {
           "surface": "食卓",
           "lemma": "食卓",
           "level": "N3"
@@ -36488,11 +36449,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
-        {
           "surface": "わけ",
           "lemma": "わけ",
           "level": "N4"
@@ -36773,14 +36729,8 @@
     },
     "3b5ea68ada3ca9cb27ffd02d": {
       "sourceJapanese": "私はあなたのお兄さんより年上です。",
-      "level": "N3",
-      "limitingWords": [
-        {
-          "surface": "年上",
-          "lemma": "年上",
-          "level": "N3"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "3b5f318d1e2c0a895cfa7bda": {
       "sourceJapanese": "その当時、そこには未開民族が住んでいた。",
@@ -44735,11 +44685,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
-        {
           "surface": "こと",
           "lemma": "こと",
           "level": "N4"
@@ -44871,12 +44816,12 @@
     },
     "4839c8455a3bb610fffcdee1": {
       "sourceJapanese": "ヘレンはみんなにほめられて顔を赤くした。",
-      "level": "N4",
+      "level": "N3",
       "limitingWords": [
         {
-          "surface": "ほめ",
-          "lemma": "ほめる",
-          "level": "N4"
+          "surface": "顔",
+          "lemma": "顔",
+          "level": "N3"
         }
       ]
     },
@@ -48769,6 +48714,11 @@
       "level": "N3",
       "limitingWords": [
         {
+          "surface": "顔",
+          "lemma": "顔",
+          "level": "N3"
+        },
+        {
           "surface": "当たる",
           "lemma": "当たる",
           "level": "N3"
@@ -48903,6 +48853,11 @@
       "sourceJapanese": "私は顔が燃えているように感じた。",
       "level": "N3",
       "limitingWords": [
+        {
+          "surface": "顔",
+          "lemma": "顔",
+          "level": "N3"
+        },
         {
           "surface": "燃え",
           "lemma": "燃える",
@@ -49364,6 +49319,11 @@
       "sourceJapanese": "私達がよく野球をして遊んだ原は今すっかり家が建て込んでしまった。",
       "level": "N3",
       "limitingWords": [
+        {
+          "surface": "野球",
+          "lemma": "野球",
+          "level": "N3"
+        },
         {
           "surface": "しまっ",
           "lemma": "しまう",
@@ -54094,11 +54054,6 @@
       "sourceJapanese": "母はそのニュースを聞いて驚いた。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
         {
           "surface": "驚い",
           "lemma": "驚く",
@@ -61182,6 +61137,11 @@
           "surface": "母親",
           "lemma": "母親",
           "level": "N3"
+        },
+        {
+          "surface": "夕食",
+          "lemma": "夕食",
+          "level": "N3"
         }
       ]
     },
@@ -61981,11 +61941,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
-        {
           "surface": "もらっ",
           "lemma": "もらう",
           "level": "N4"
@@ -62777,14 +62732,8 @@
     },
     "6529048a6c38455c399af159": {
       "sourceJapanese": "父は銀行に勤めています。",
-      "level": "N4",
-      "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "6529518f4e472fa26446b404": {
       "sourceJapanese": "天気が良かったので、その野外コンサートは大成功だった。",
@@ -63685,11 +63634,6 @@
       "sourceJapanese": "父と私は日曜日にはテニスをした。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "テニス",
           "lemma": "テニス",
@@ -68169,12 +68113,17 @@
     },
     "6deacdc2b7678047ea074f26": {
       "sourceJapanese": "妻は夫より長生きするものだ。",
-      "level": "N3",
+      "level": "N4",
       "limitingWords": [
         {
-          "surface": "長生き",
-          "lemma": "長生き",
-          "level": "N3"
+          "surface": "妻",
+          "lemma": "妻",
+          "level": "N4"
+        },
+        {
+          "surface": "夫",
+          "lemma": "夫",
+          "level": "N4"
         }
       ]
     },
@@ -78097,11 +78046,6 @@
           "level": "N4"
         },
         {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
-        {
           "surface": "思い出す",
           "lemma": "思い出す",
           "level": "N4"
@@ -78771,11 +78715,6 @@
       "sourceJapanese": "母はいつも家で着物を着ている。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
         {
           "surface": "着物",
           "lemma": "着物",
@@ -79917,6 +79856,11 @@
       "sourceJapanese": "彼の顔は苦痛でいがんだ。",
       "level": "N3",
       "limitingWords": [
+        {
+          "surface": "顔",
+          "lemma": "顔",
+          "level": "N3"
+        },
         {
           "surface": "苦痛",
           "lemma": "苦痛",
@@ -81845,11 +81789,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
-        {
           "surface": "連れ",
           "lemma": "連れる",
           "level": "N4"
@@ -81858,22 +81797,12 @@
     },
     "8464e9e9865dd4b468c676f0": {
       "sourceJapanese": "母は夕食の支度をしています。",
-      "level": "N4",
+      "level": "N3",
       "limitingWords": [
-        {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
         {
           "surface": "夕食",
           "lemma": "夕食",
-          "level": "N4"
-        },
-        {
-          "surface": "支度",
-          "lemma": "支度",
-          "level": "N4"
+          "level": "N3"
         }
       ]
     },
@@ -83620,11 +83549,6 @@
       "sourceJapanese": "父は私にワープロを買ってくれた。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "ワープロ",
           "lemma": "ワープロ",
@@ -86205,14 +86129,8 @@
     },
     "8b7e06e6a21c804ed226f728": {
       "sourceJapanese": "父がもっと長生きしていたらなあ。",
-      "level": "N3",
-      "limitingWords": [
-        {
-          "surface": "長生き",
-          "lemma": "長生き",
-          "level": "N3"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "8b84d63a3ee59ab4936a2e7e": {
       "sourceJapanese": "夕飯を食べているときに電話がかかってきた。",
@@ -86748,11 +86666,6 @@
       "sourceJapanese": "父は自動車の運転がとても上手い。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "運転",
           "lemma": "運転",
@@ -89315,14 +89228,8 @@
     },
     "90c089a855f9871e34be2428": {
       "sourceJapanese": "父は毎週日曜日にゴルフをします。",
-      "level": "N4",
-      "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "90c26a138b90be84e3f94180": {
       "sourceJapanese": "こんなデカイのがチャリの荷台に乗るわけないだろ。",
@@ -90804,11 +90711,6 @@
       "sourceJapanese": "去年の夏、父の田舎に行きました。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "田舎",
           "lemma": "田舎",
@@ -95147,14 +95049,8 @@
     },
     "99b6e7424b88ba7a9843387f": {
       "sourceJapanese": "サリーはケンよりも二つ年上です。",
-      "level": "N3",
-      "limitingWords": [
-        {
-          "surface": "年上",
-          "lemma": "年上",
-          "level": "N3"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "99b787ce34f6af91d54258fa": {
       "sourceJapanese": "その光景を見てぎょっとした。",
@@ -96582,11 +96478,6 @@
       "sourceJapanese": "私がいるのは父のおかげです。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "おかげ",
           "lemma": "おかげ",
@@ -102391,6 +102282,11 @@
           "level": "N3"
         },
         {
+          "surface": "野球",
+          "lemma": "野球",
+          "level": "N3"
+        },
+        {
           "surface": "選手",
           "lemma": "選手",
           "level": "N3"
@@ -102873,11 +102769,6 @@
       "sourceJapanese": "母は優しい目で私を見た。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
         {
           "surface": "優しい",
           "lemma": "優しい",
@@ -105032,6 +104923,11 @@
       "sourceJapanese": "私はちょうど夕食の時刻についた。",
       "level": "N3",
       "limitingWords": [
+        {
+          "surface": "夕食",
+          "lemma": "夕食",
+          "level": "N3"
+        },
         {
           "surface": "時刻",
           "lemma": "時刻",
@@ -111883,11 +111779,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
-        {
           "surface": "そんな",
           "lemma": "そんな",
           "level": "N4"
@@ -111936,11 +111827,6 @@
       "sourceJapanese": "父は私に棚を作ってくれた。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "棚",
           "lemma": "棚",
@@ -112160,22 +112046,12 @@
     },
     "b5ad336900c8a774fafbb9d1": {
       "sourceJapanese": "家内は今、夕食の支度をしている。",
-      "level": "N4",
+      "level": "N3",
       "limitingWords": [
-        {
-          "surface": "家内",
-          "lemma": "家内",
-          "level": "N4"
-        },
         {
           "surface": "夕食",
           "lemma": "夕食",
-          "level": "N4"
-        },
-        {
-          "surface": "支度",
-          "lemma": "支度",
-          "level": "N4"
+          "level": "N3"
         }
       ]
     },
@@ -117026,14 +116902,8 @@
     },
     "bdd134a714d85a68eecb3f35": {
       "sourceJapanese": "フレッドは母に長い手紙を書いた。",
-      "level": "N4",
-      "limitingWords": [
-        {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        }
-      ]
+      "level": "N5",
+      "limitingWords": []
     },
     "bddc15aaacc6cc4f79173a60": {
       "sourceJapanese": "部長の都合が悪くなってしまったので、飲み会の日程は仕切り直しだね。",
@@ -118654,11 +118524,6 @@
       "sourceJapanese": "父は皆で電車を待とうといった。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "皆",
           "lemma": "皆",
@@ -120619,17 +120484,12 @@
     },
     "c36ee436b3cc27aecfc63977": {
       "sourceJapanese": "私はまだ朝食を済ませていません。",
-      "level": "N4",
+      "level": "N3",
       "limitingWords": [
         {
           "surface": "朝食",
           "lemma": "朝食",
-          "level": "N4"
-        },
-        {
-          "surface": "済ま",
-          "lemma": "済む",
-          "level": "N4"
+          "level": "N3"
         }
       ]
     },
@@ -121154,6 +121014,11 @@
         {
           "surface": "仏",
           "lemma": "仏",
+          "level": "N3"
+        },
+        {
+          "surface": "顔",
+          "lemma": "顔",
           "level": "N3"
         }
       ]
@@ -128986,11 +128851,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
-        {
           "surface": "絹",
           "lemma": "絹",
           "level": "N4"
@@ -129494,11 +129354,6 @@
         {
           "surface": "食事",
           "lemma": "食事",
-          "level": "N4"
-        },
-        {
-          "surface": "母",
-          "lemma": "母",
           "level": "N4"
         },
         {
@@ -134854,6 +134709,11 @@
           "surface": "プロ",
           "lemma": "プロ",
           "level": "N3"
+        },
+        {
+          "surface": "野球",
+          "lemma": "野球",
+          "level": "N3"
         }
       ]
     },
@@ -135632,6 +135492,11 @@
         {
           "surface": "既に",
           "lemma": "既に",
+          "level": "N3"
+        },
+        {
+          "surface": "朝食",
+          "lemma": "朝食",
           "level": "N3"
         }
       ]
@@ -138547,6 +138412,11 @@
       "level": "N3",
       "limitingWords": [
         {
+          "surface": "夕食",
+          "lemma": "夕食",
+          "level": "N3"
+        },
+        {
           "surface": "お客",
           "lemma": "お客",
           "level": "N3"
@@ -138816,11 +138686,6 @@
       "sourceJapanese": "私の父と兄はこの工場で働いている。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "工場",
           "lemma": "工場",
@@ -140791,6 +140656,11 @@
         {
           "surface": "太陽",
           "lemma": "太陽",
+          "level": "N3"
+        },
+        {
+          "surface": "顔",
+          "lemma": "顔",
           "level": "N3"
         }
       ]
@@ -144301,6 +144171,11 @@
           "level": "N3"
         },
         {
+          "surface": "朝食",
+          "lemma": "朝食",
+          "level": "N3"
+        },
+        {
           "surface": "含ま",
           "lemma": "含む",
           "level": "N3"
@@ -146550,11 +146425,6 @@
       "sourceJapanese": "父は、日曜日はたいてい家にいます。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "たいてい",
           "lemma": "たいてい",
@@ -150580,11 +150450,6 @@
       "level": "N4",
       "limitingWords": [
         {
-          "surface": "母",
-          "lemma": "母",
-          "level": "N4"
-        },
-        {
           "surface": "動きまわっ",
           "lemma": "動きまわる",
           "level": "N4"
@@ -151585,6 +151450,11 @@
       "sourceJapanese": "君は野球チームのメンバーですか。",
       "level": "N3",
       "limitingWords": [
+        {
+          "surface": "野球",
+          "lemma": "野球",
+          "level": "N3"
+        },
         {
           "surface": "チーム",
           "lemma": "チーム",
@@ -153292,11 +153162,6 @@
       "sourceJapanese": "父は毎週日曜日にテニスをする。",
       "level": "N4",
       "limitingWords": [
-        {
-          "surface": "父",
-          "lemma": "父",
-          "level": "N4"
-        },
         {
           "surface": "テニス",
           "lemma": "テニス",

@@ -4,7 +4,10 @@
 
 Open `/app`, choose a vocabulary level and sentence length, then translate the
 English prompt into Japanese. A level offers sentences whose vocabulary is at
-that level or easier; kanji and grammar are not graded. **Ctrl / Command + Enter** checks your answer;
+that level or easier; grammar is not graded. Choose **Random** length for a
+mix of short, medium, and long prompts. When fewer than 20 sentences match a
+level and length (such as N5 long), practice also includes the next harder
+level, and a note above the prompt says so. **Ctrl / Command + Enter** checks your answer;
 press it again to continue.
 
 ## Choose a practice difficulty

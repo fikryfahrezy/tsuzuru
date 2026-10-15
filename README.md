@@ -6,7 +6,7 @@ Built with Nuxt, Vue, and Bun. No account or AI service is required to practice.
 
 ## What you can do
 
-- Choose an N5–N1 level, graded by each sentence's vocabulary, and short, medium, or long prompts.
+- Choose an N5–N1 level, graded by each sentence's vocabulary, and short, medium, long, or random-length prompts.
 - Practice in kana only, kana + kanji, or exact writing mode.
 - Reveal romaji and vocabulary hints when you need them.
 - Look up N5–N1 grammar, formation rules, and examples alongside your draft.

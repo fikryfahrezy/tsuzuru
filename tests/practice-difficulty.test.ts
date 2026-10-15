@@ -13,7 +13,13 @@ import {
   hasPracticePermission,
   isPracticeDifficulty,
 } from "../shared/practice-difficulty";
-import { Strictness, type Comparison, type Question } from "../shared/practice";
+import {
+  Length,
+  Level,
+  Strictness,
+  type Comparison,
+  type Question,
+} from "../shared/practice";
 
 const directory = mkdtempSync(join(tmpdir(), "tsuzuru-difficulty-"));
 afterAll(() => rmSync(directory, { recursive: true, force: true }));
@@ -245,4 +251,18 @@ test("practice aids can be granted independently through the permissions map", a
   } finally {
     difficultyPermissions[PracticeDifficulty.Challenge] = previous;
   }
+});
+
+test("the prompt explains when a small pool includes harder vocabulary", async () => {
+  const note =
+    "Few N5 long sentences are available, so this set also includes N3 vocabulary.";
+  expect(
+    await renderPractice(PracticeDifficulty.Guided, null, {
+      ...question,
+      widened: { level: Level.N5, length: Length.Long, to: Level.N3 },
+    }),
+  ).toContain(note);
+  expect(await renderPractice(PracticeDifficulty.Guided)).not.toContain(
+    "Few N5",
+  );
 });

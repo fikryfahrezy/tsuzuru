@@ -15,6 +15,8 @@ export enum Length {
   Short = "short",
   Medium = "medium",
   Long = "long",
+  // Any of the above, chosen per sentence.
+  Random = "random",
 }
 
 export enum Strictness {
@@ -105,6 +107,9 @@ export interface Question {
   wordHints: PromptPart[];
   wordCount: number;
   poolSize: number;
+  // Set when too few sentences exist at the requested level and length, so
+  // the pool also includes harder sentences, up to level `to`.
+  widened?: { level: Level; length: Length; to: Level };
   alternativeCount: number;
   spellingOptions: SpellingOption[];
   wordBank: AnswerChip[];
@@ -314,6 +319,10 @@ export function compare(
     explanations: [],
     acceptedAlternative: result.alternatives![index],
   };
+}
+
+export function matchesLength(count: number, length: Length): boolean {
+  return length === Length.Random || lengthOf(count) === length;
 }
 
 export function lengthOf(count: number): Length {

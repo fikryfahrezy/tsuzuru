@@ -154,9 +154,13 @@ and an unlisted compound falls back to its listed parts.
 
 `sentence-levels/supplement.json` levels common words the lists lack, such as
 父, 母, and 顔. Each entry needs a reason and a reviewer, and generation fails if
-an entry duplicates a word the lists already reach by any spelling. Entries
-marked as awaiting review were proposed during development; check the level,
-then record your name as the reviewer.
+an entry duplicates a word the lists already reach by any spelling. There is no
+official JLPT vocabulary list, so a level follows a published word-level listing
+when one exists (such as JLPT Sensei's noun lists); otherwise it is at least the
+highest OpenJLPT level of the word's kanji, taking the harder rating when
+sources disagree. Each reason records its evidence. Current entries were
+cross-checked against these sources but not reviewed by a teacher or native
+speaker; a reviewer with that background should replace the reviewer field.
 
 A word still unlisted after these steps counts as above every level when it is
 written with kanji (卒倒, 扮装), because such words are usually advanced. An

@@ -1,76 +1,76 @@
 {
   "version": 1,
-  "note": "Levels for common words the OpenJLPT vocabulary lists lack. Each entry needs a reason and a reviewer; replace the reviewer after checking the level.",
+  "note": "Levels for common words the OpenJLPT vocabulary lists lack. No official JLPT vocabulary list exists, so each level follows a published word-level listing when one exists; otherwise it is at least the highest OpenJLPT level of the word's kanji, taking the harder rating when sources disagree. Each entry records its evidence and reviewer.",
   "entries": [
     {
       "word": "父",
       "reading": "ちち",
-      "level": "N4",
-      "reason": "Plain word for one's own father; OpenJLPT lists only お父さん (N5) and 父親 (N3).",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "level": "N5",
+      "reason": "JLPT Sensei's N5 noun list includes 父; OpenJLPT kanji levels: 父 N5. OpenJLPT lists only お父さん (N5) and 父親 (N3).",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "母",
       "reading": "はは",
-      "level": "N4",
-      "reason": "Plain word for one's own mother; OpenJLPT lists only お母さん (N5) and 母親 (N3).",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "level": "N5",
+      "reason": "JLPT Sensei's N5 noun list includes 母; OpenJLPT kanji levels: 母 N5. OpenJLPT lists only お母さん (N5) and 母親 (N3).",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "顔",
       "reading": "かお",
-      "level": "N5",
-      "reason": "Basic body word taught with 目 and 口; OpenJLPT lists only 笑顔 (N3) and 顔付き (N1).",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "level": "N3",
+      "reason": "No word-level listing found; OpenJLPT kanji levels and Jisho put the kanji 顔 at N3, so N3 is the floor.",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "夕食",
       "reading": "ゆうしょく",
-      "level": "N4",
-      "reason": "Formal word for dinner, taught alongside 晩ご飯; absent from OpenJLPT.",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "level": "N3",
+      "reason": "Absent from JLPT Sensei's N5 and N4 noun lists; third-party sites give N3 or N4; OpenJLPT kanji levels: 夕 N4, 食 N5. The harder rating is used.",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "朝食",
       "reading": "ちょうしょく",
-      "level": "N4",
-      "reason": "Formal word for breakfast, taught alongside 朝ご飯; absent from OpenJLPT.",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "level": "N3",
+      "reason": "Absent from JLPT Sensei's N5 and N4 noun lists, like 夕食; OpenJLPT kanji levels: 朝 N4, 食 N5. Graded with 夕食 at the harder rating.",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "野球",
       "reading": "やきゅう",
-      "level": "N4",
-      "reason": "Common sport word; absent from OpenJLPT.",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "level": "N3",
+      "reason": "Absent from JLPT Sensei's N5 and N4 noun lists; third-party sites give N5 or N3; OpenJLPT kanji levels: 野 N4, 球 N3, so N3 is the floor.",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "早起き",
       "reading": "はやおき",
       "level": "N4",
-      "reason": "Compound of 早い and 起きる (both N5); Sudachi reads it as one word.",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "reason": "No word-level listing found; OpenJLPT kanji levels: 早 N4, 起 N4. Compound of 早い and 起きる; Sudachi reads it as one word.",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "年上",
       "reading": "としうえ",
-      "level": "N3",
-      "reason": "Older (in age); compound of 年 and 上, absent from OpenJLPT.",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "level": "N5",
+      "reason": "No word-level listing found; OpenJLPT kanji levels: 年 N5, 上 N5. Transparent compound meaning older in age.",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "何語",
       "reading": "なにご",
       "level": "N5",
-      "reason": "What language; built from 何 and 語 (both N5), common in first lessons.",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "reason": "No word-level listing found; OpenJLPT kanji levels: 何 N5, 語 N5. Transparent compound meaning what language.",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     },
     {
       "word": "長生き",
       "reading": "ながいき",
-      "level": "N3",
-      "reason": "Long life; compound of 長い and 生きる, absent from OpenJLPT.",
-      "reviewer": "Claude (proposed, awaiting maintainer review)"
+      "level": "N5",
+      "reason": "No word-level listing found; OpenJLPT kanji levels: 長 N5, 生 N5. Transparent compound of 長い and 生きる.",
+      "reviewer": "Claude (sources cross-checked; not reviewed by a teacher or native speaker)"
     }
   ]
 }

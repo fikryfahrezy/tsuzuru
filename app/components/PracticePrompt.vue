@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from "vue";
-import { HintSource, type Question } from "#shared/practice";
+import { HintSource, Length, type Question } from "#shared/practice";
 import {
   PracticeDifficulty,
   PracticePermission,
@@ -30,6 +30,13 @@ function closeWordHint() {
       document.getElementById(`prompt-word-${previous}`)?.focus(),
     );
 }
+// Explains why a sentence may use vocabulary above the chosen level.
+const widenedNote = computed(() => {
+  const widened = props.question?.widened;
+  if (!widened) return null;
+  const length = widened.length === Length.Random ? "" : ` ${widened.length}`;
+  return `Few ${widened.level}${length} sentences are available, so this set also includes ${widened.to} vocabulary.`;
+});
 function hasKanji(text: string): boolean {
   return /\p{Script=Han}/u.test(text);
 }
@@ -51,6 +58,9 @@ watch(
 <template>
   <div class="prompt">
     <p class="paper-label">Translate into Japanese</p>
+    <p v-if="widenedNote" class="widened-note" role="note">
+      {{ widenedNote }}
+    </p>
     <h2 v-if="question" class="english-prompt">
       <template v-for="(part, index) in question.wordHints" :key="index">
         <button
@@ -191,6 +201,13 @@ watch(
 }
 .prompt > .paper-label {
   margin-bottom: 15px;
+}
+.widened-note {
+  margin: -6px 0 15px;
+  color: var(--muted);
+  font:
+    12px/1.5 system-ui,
+    sans-serif;
 }
 .prompt h2 {
   font:
