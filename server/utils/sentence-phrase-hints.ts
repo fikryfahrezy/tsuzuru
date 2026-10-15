@@ -1,4 +1,4 @@
-import bank from "../../data/phrase-hints/sentences.json";
+import bank from "../../data/answer-entries/sentences.json";
 import { hiragana } from "../../shared/practice";
 import {
   primaryRendering,
@@ -60,7 +60,39 @@ export function referenceReading(
   return readings;
 }
 
-export const phraseHintEntries: readonly SentencePhraseEntry[] = bank.entries;
+// Compatibility for dictionary tooling. Practice responses use answer entries
+// directly; contextual meaning and pronunciation are maintained only once.
+export const phraseHintEntries: readonly SentencePhraseEntry[] = (
+  bank.version === 1 ? bank.entries : []
+).flatMap((entry) => {
+  const answers = new Map(
+    entry.answerEntries.map((answer) => [answer.id, answer]),
+  );
+  if (
+    entry.hintMappings.some((mapping) =>
+      mapping.answerEntryIds.some((id) => !answers.has(id)),
+    )
+  )
+    return [];
+  return [
+    {
+      sentenceId: entry.sentenceId,
+      english: entry.english,
+      japanese: entry.japanese,
+      phrases: entry.hintMappings.map((mapping) => ({
+        spans: mapping.spans,
+        hints: mapping.answerEntryIds.map((id) => {
+          const answer = answers.get(id)!;
+          return {
+            japanese: answer.japanese,
+            reading: answer.reading,
+            meaning: answer.meaning,
+          };
+        }),
+      })),
+    },
+  ];
+});
 
 export function phraseHintBank(
   entries: readonly SentencePhraseEntry[],

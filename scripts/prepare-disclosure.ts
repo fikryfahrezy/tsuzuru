@@ -16,6 +16,10 @@ const documents = {
   "spelling-variants.json": "data/spelling-variants/bank.json",
   "spelling-variants.md": "data/spelling-variants/README.md",
   "hint-glossary.json": "data/hint-glossary/bank.json",
+  "hint-glossary-rules.json": "data/hint-glossary/rules.json",
+  "answer-entries.json": "data/answer-entries/sentences.json",
+  "answer-pronunciations.json": "data/answer-entries/pronunciations.json",
+  "answer-entries.md": "data/answer-entries/README.md",
   "sentence-levels.json": "data/sentence-levels/bank.json",
   "sentence-level-supplement.json": "data/sentence-levels/supplement.json",
   "sentence-grammar-patterns.json":

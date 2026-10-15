@@ -3,9 +3,8 @@ import { randomInt } from "node:crypto";
 import { exercises, exerciseById } from "../utils/exercises";
 import { practicePool } from "../utils/practice-pool";
 import { romajiHint } from "../../shared/romaji";
-import { wordHints } from "../utils/word-hints";
-import { answerChips, shuffledAnswerChips } from "../utils/answer-chips";
-import { answerBreakdown } from "../utils/answer-breakdown";
+import { shuffledAnswerChips } from "../utils/answer-chips";
+import { practiceDetails } from "../utils/practice-details";
 import { spellingOptions } from "../../shared/writing-spellings";
 import { isLevel, isLength, type Question } from "../../shared/practice";
 import type { Sentence } from "../../shared/sentence";
@@ -15,19 +14,17 @@ function toQuestion(
   poolSize: number,
   widened?: Question["widened"],
 ): Question {
-  const hints = wordHints(sentence);
   return {
     id: sentence.id,
     english: sentence.english,
     romaji: romajiHint(sentence),
-    wordHints: hints,
+    ...practiceDetails(sentence),
     wordCount: sentence.englishWordCount,
     poolSize,
     ...(widened && { widened }),
     alternativeCount: sentence.alternatives.length,
     spellingOptions: spellingOptions(sentence),
     wordBank: shuffledAnswerChips(sentence),
-    answerBreakdown: answerBreakdown(sentence, answerChips(sentence), hints),
   };
 }
 

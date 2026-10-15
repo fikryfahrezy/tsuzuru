@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test";
-import { vocabulary, wordHints } from "../server/utils/word-hints";
+import { wordHints } from "../server/utils/word-hints";
+import { vocabulary } from "../server/utils/vocabulary";
 import {
   candidateById,
   candidates,
@@ -10,7 +11,7 @@ import {
 } from "../server/utils/exercises";
 import { sentence as load } from "./sentences";
 import type { Candidate } from "../shared/practice";
-import phraseBank from "../data/phrase-hints/sentences.json";
+import { phraseHintEntries } from "../server/utils/sentence-phrase-hints";
 import { sentencePhraseHints } from "../server/utils/sentence-phrase-hints";
 import { referenceLexemes } from "../server/utils/reference-lexemes";
 import lexemeBank from "../data/romaji/reference-lexemes.json";
@@ -18,6 +19,7 @@ import { HintSource } from "../shared/practice";
 import type { ReferenceLexemeBank } from "../shared/sentence";
 import hintGlossary from "../data/hint-glossary/bank.json";
 import spellingBank from "../data/spelling-variants/bank.json";
+const phraseBank = { entries: phraseHintEntries };
 
 const waterRecord: Candidate = {
   ...candidates[0]!,
@@ -26,6 +28,74 @@ const waterRecord: Candidate = {
   furiganaVariants: ["{私|わたし}は{水|みず}を{飲|の}みます。"],
 };
 const water = load(waterRecord);
+
+test("ordinary prompt words cannot resolve inherited object properties as rules", () => {
+  const tokens = wordHints(load({ ...waterRecord, english: "constructor" }));
+  expect(tokens).toEqual([{ text: "constructor", isWord: true, hints: [] }]);
+});
+
+test("cross resolves cross-over vocabulary supplied by the reference", () => {
+  const candidate = exerciseById.get("6fa3eb49e0d88fff83ecc00e")!;
+  for (const [english, word] of [
+    [candidate.english, "cross"],
+    ["We cross here.", "cross"],
+    ["We crossed here.", "crossed"],
+    ["We are crossing here.", "crossing"],
+  ]) {
+    const hint = wordHints({ ...candidate, english, phraseHints: [] }).find(
+      (part) => part.text === word,
+    );
+    expect(hint).toMatchObject({
+      hintSource: HintSource.Reference,
+      hints: [
+        {
+          japanese: "渡りましょう",
+          reading: "わたりましょう",
+          romaji: "watarimashou",
+          meaning: "to cross over",
+        },
+      ],
+    });
+  }
+  const fallback = wordHints(load({ ...waterRecord, english: "cross" }))[0]!;
+  expect(fallback.hintSource).toBeUndefined();
+  expect(fallback.hints.some((hint) => hint.japanese === "渡る")).toBe(false);
+});
+
+test("reviewed verb paraphrases resolve real reference forms and require reference support", () => {
+  for (const [id, word, japanese] of [
+    ["0c71969d85bc1cde1ddf0609", "check", "調べ"],
+    ["1ddb66f2f9625191547744d3", "lit", "つけ"],
+    ["1e0eeea386aa584f2d06ccf7", "fogged", "曇っ"],
+  ]) {
+    const candidate = exerciseById.get(id!)!;
+    const token = wordHints({ ...candidate, phraseHints: [] }).find(
+      (part) => part.text === word,
+    );
+    expect(token?.hintSource).toBe(HintSource.Reference);
+    expect(token?.hints[0]?.japanese).toStartWith(japanese!);
+    const unsupported = wordHints(load({ ...waterRecord, english: word! }))[0]!;
+    expect(unsupported.hintSource).toBeUndefined();
+    expect(unsupported.hints.some((hint) => hint.meaning.endsWith(" up"))).toBe(
+      false,
+    );
+  }
+});
+
+test("unreviewed phrasal verbs cannot imply a different standalone verb meaning", () => {
+  const tokens = wordHints(
+    load({
+      ...waterRecord,
+      english: "make",
+      japanese: "分かる。",
+      furiganaVariants: ["{分|わ}かる。"],
+    }),
+  );
+  expect(tokens[0]?.hintSource).toBeUndefined();
+  expect(tokens[0]?.hints.some((hint) => hint.japanese === "分かる")).toBe(
+    false,
+  );
+});
 
 test("word hints include verified kanji spellings while retaining reference wording and reading", () => {
   const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
@@ -60,14 +130,14 @@ test("verified spelling hints preserve conjugated endings", () => {
 
 test("across resolves kana and kanji reference nouns without a sentence mapping", () => {
   const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
-  expect(candidate.phraseHints).toEqual([]);
   for (const english of [
     candidate.english,
     "Take me across the river, please.",
   ]) {
-    const token = wordHints(
-      load({ ...candidateById.get(candidate.id)!, english }, defaultBanks),
-    ).find((part) => part.text === "across");
+    const token = wordHints({
+      ...load({ ...candidateById.get(candidate.id)!, english }, defaultBanks),
+      phraseHints: [],
+    }).find((part) => part.text === "across");
     expect(token).toMatchObject({
       hintSource: HintSource.Reference,
       hints: [{ japanese: "むこう", reading: "むこう", romaji: "mukou" }],
@@ -217,7 +287,7 @@ test("dataset vocabulary is prioritized and articles do not acquire misleading d
     tokens
       .find((token) => token.text === "year")
       ?.hints.some((hint) => hint.japanese === "年中"),
-  ).toBe(true);
+  ).toBe(false);
 });
 
 test("contractions, hyphenated words, whitespace, and unknown words remain intact", () => {

@@ -5,24 +5,23 @@ import { candidateById, exerciseById } from "../server/utils/exercises";
 import { sentence } from "./sentences";
 import { wordHints } from "../server/utils/word-hints";
 import { isAnswerBreakdownPart } from "../shared/practice";
+import { practiceDetails } from "../server/utils/practice-details";
 
 const water = exerciseById.get("213aa0ae8044611b00c1ba95")!;
 
-test("kana pronouns retain dictionary meanings and supplied readings in breakdowns", () => {
+test("kana pronouns retain contextual meanings and supplied readings in breakdowns", () => {
   const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
   const hints = wordHints(candidate);
-  const pronoun = answerBreakdown(
-    candidate,
-    answerChips(candidate),
-    hints,
-  ).find((part) => part.japanese === "わたし");
+  const pronoun = practiceDetails(candidate).answerBreakdown.find(
+    (part) => part.japanese === "わたし",
+  );
   expect(pronoun).toMatchObject({
     dictionaryForm: "私",
     kana: "わたし",
     romaji: "watashi",
     wordTypes: ["Pronoun"],
   });
-  expect(pronoun?.meanings).toContain("(humble) I");
+  expect(pronoun?.meanings).toEqual(["me"]);
   expect(hints.find((part) => part.text === "me")?.hints[0]).toMatchObject({
     japanese: "わたし",
     reading: "わたし",
@@ -31,7 +30,7 @@ test("kana pronouns retain dictionary meanings and supplied readings in breakdow
 });
 
 test("journal breakdowns survive storage with sentence order and reject malformed saved details", () => {
-  const parts = answerBreakdown(water, answerChips(water), wordHints(water));
+  const parts = practiceDetails(water).answerBreakdown;
   const saved = JSON.parse(JSON.stringify(parts));
   expect(saved.every(isAnswerBreakdownPart)).toBe(true);
   expect(saved).toEqual(parts);
@@ -43,22 +42,19 @@ test("journal breakdowns survive storage with sentence order and reject malforme
 });
 
 test("breakdown explains the actual inflected answer with meanings, readings, and dictionary forms", () => {
-  const breakdown = answerBreakdown(
-    water,
-    answerChips(water),
-    wordHints(water),
-  );
+  const breakdown = answerBreakdown(water, answerChips(water));
   expect(breakdown.find((part) => part.japanese === "飲みます")).toMatchObject({
     kana: "のみます",
     romaji: "nomimasu",
     dictionaryForm: "飲む",
-    meanings: ["to drink"],
+    meanings: [],
+    dictionaryMeanings: ["to drink"],
     wordTypes: ["Verb"],
     note: "Polite non-past form: can describe the present, a habit, or the future.",
   });
-  expect(breakdown.find((part) => part.japanese === "水")?.meanings).toContain(
-    "water",
-  );
+  expect(
+    breakdown.find((part) => part.japanese === "水")?.dictionaryMeanings,
+  ).toContain("water");
   expect(breakdown.find((part) => part.japanese === "は")).toMatchObject({
     romaji: "wa",
     wordTypes: ["Particle"],
@@ -70,7 +66,7 @@ test("breakdown explains the actual inflected answer with meanings, readings, an
 
 test("breakdown follows only the supplied shuffled chip order, preserving repetitions and omitting punctuation", () => {
   const chips = answerChips(water).reverse();
-  const breakdown = answerBreakdown(water, chips, wordHints(water));
+  const breakdown = answerBreakdown(water, chips);
   expect(breakdown.map((part) => part.japanese)).toEqual(
     chips
       .filter((chip) => /[\p{L}\p{N}]/u.test(chip.japanese))
@@ -86,7 +82,7 @@ test("unsupported forms keep supplied readings without inventing a meaning", () 
     furiganaVariants: ["{架空語|かくうご}"],
   });
   expect(
-    answerBreakdown(candidate, [{ japanese: "架空語", kana: "かくうご" }], []),
+    answerBreakdown(candidate, [{ japanese: "架空語", kana: "かくうご" }]),
   ).toEqual([
     {
       japanese: "架空語",

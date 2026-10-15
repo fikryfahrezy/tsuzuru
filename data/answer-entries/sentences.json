@@ -1,0 +1,1913 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sentenceId": "45dee2bd33974022d4c206b8",
+      "english": "I got up at about six.",
+      "japanese": "６時ごろ起きた。",
+      "furigana": "６{時|じ}ごろ{起|お}きた。",
+      "answerEntries": [
+        {
+          "id": "ja-4-7",
+          "start": 4,
+          "end": 7,
+          "japanese": "起きた",
+          "reading": "おきた",
+          "meaning": "got up (past)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 2,
+              "end": 8,
+              "text": "got up"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-4-7"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "509e3885d6a95a1d8130ec56",
+      "english": "The dancers were beautifully got up.",
+      "japanese": "踊り子たちは美しく着飾っていた。",
+      "furigana": "{踊|おど}り{子|こ}たちは{美|うつく}しく{着飾|きかざ}っていた。",
+      "answerEntries": [
+        {
+          "id": "ja-9-15",
+          "start": 9,
+          "end": 15,
+          "japanese": "着飾っていた",
+          "reading": "きかざっていた",
+          "meaning": "were dressed up"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 29,
+              "end": 35,
+              "text": "got up"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-9-15"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "95a77aa2ecdbf7ea2734c8ff",
+      "english": "He got up late and was late for school.",
+      "japanese": "彼は朝寝坊して学校に遅れた。",
+      "furigana": "{彼|かれ}は{朝寝坊|あさねぼう}して{学校|がっこう}に{遅|おく}れた。",
+      "answerEntries": [
+        {
+          "id": "ja-2-7",
+          "start": 2,
+          "end": 7,
+          "japanese": "朝寝坊して",
+          "reading": "あさねぼうして",
+          "meaning": "overslept"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 3,
+              "end": 14,
+              "text": "got up late"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-2-7"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "efa5a7b6a9fe73f45005153f",
+      "english": "Would you be so kind as to turn the light on?",
+      "japanese": "電気をつけていただけませんか。",
+      "furigana": "{電気|でんき}をつけていただけませんか。",
+      "answerEntries": [
+        {
+          "id": "ja-3-6",
+          "start": 3,
+          "end": 6,
+          "japanese": "つけて",
+          "reading": "つけて",
+          "meaning": "turn on"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 27,
+              "end": 31,
+              "text": "turn"
+            },
+            {
+              "start": 42,
+              "end": 44,
+              "text": "on"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-3-6"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "31e341df9e4f745d83955d2c",
+      "english": "Turn on the light, please.",
+      "japanese": "どうか明かりをつけて下さい。",
+      "furigana": "どうか{明|あ}かりをつけて{下|くだ}さい。",
+      "answerEntries": [
+        {
+          "id": "ja-7-10",
+          "start": 7,
+          "end": 10,
+          "japanese": "つけて",
+          "reading": "つけて",
+          "meaning": "turn on"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 7,
+              "text": "Turn on"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-7-10"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "7275004427d4ac5a1c8f39cd",
+      "english": "Feeling hot, I turned on the fan.",
+      "japanese": "暑かったので扇風機をつけた。",
+      "furigana": "{暑|あつ}かったので{扇風機|せんぷうき}をつけた。",
+      "answerEntries": [
+        {
+          "id": "ja-10-13",
+          "start": 10,
+          "end": 13,
+          "japanese": "つけた",
+          "reading": "つけた",
+          "meaning": "turned on (past)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 15,
+              "end": 24,
+              "text": "turned on"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-10-13"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "bd737b33955583716f745a0e",
+      "english": "Lucy turned on the light switch.",
+      "japanese": "ルーシーは電灯のスイッチをつけた。",
+      "furigana": "ルーシーは{電灯|でんとう}のスイッチをつけた。",
+      "answerEntries": [
+        {
+          "id": "ja-13-16",
+          "start": 13,
+          "end": 16,
+          "japanese": "つけた",
+          "reading": "つけた",
+          "meaning": "turned on (past)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 5,
+              "end": 14,
+              "text": "turned on"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-13-16"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "b4b2a4b94ba7e0d81cf2f913",
+      "english": "It's common knowledge that the earth turns on its axis.",
+      "japanese": "地球が自転しているのは常識だ。",
+      "furigana": "{地球|ちきゅう}が{自転|じてん}しているのは{常識|じょうしき}だ。",
+      "answerEntries": [
+        {
+          "id": "ja-3-9",
+          "start": 3,
+          "end": 9,
+          "japanese": "自転している",
+          "reading": "じてんしている",
+          "meaning": "rotates on (its axis)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 37,
+              "end": 45,
+              "text": "turns on"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-3-9"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "d26d2ac602594b9dd5190d05",
+      "english": "I woke up at the sound of the alarm.",
+      "japanese": "私はめざましの音で目が覚めた。",
+      "furigana": "{私|わたし}はめざましの{音|おと}で{目|め}が{覚|さ}めた。",
+      "answerEntries": [
+        {
+          "id": "ja-9-14",
+          "start": 9,
+          "end": 14,
+          "japanese": "目が覚めた",
+          "reading": "めがさめた",
+          "meaning": "woke up (past)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 2,
+              "end": 9,
+              "text": "woke up"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-9-14"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "4e3ef1bb6ceed7c85b5a7f5c",
+      "english": "I am looking for an assistant.",
+      "japanese": "私は助手を探している。",
+      "furigana": "{私|わたし}は{助手|じょしゅ}を{探|さが}している。",
+      "answerEntries": [
+        {
+          "id": "ja-5-10",
+          "start": 5,
+          "end": 10,
+          "japanese": "探している",
+          "reading": "さがしている",
+          "meaning": "looking for"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 5,
+              "end": 16,
+              "text": "looking for"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-5-10"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "699142f2ccc48be6644fa8b2",
+      "english": "My brother is looking for an apartment.",
+      "japanese": "兄はアパートをさがしています。",
+      "furigana": "{兄|あに}はアパートをさがしています。",
+      "answerEntries": [
+        {
+          "id": "ja-7-14",
+          "start": 7,
+          "end": 14,
+          "japanese": "さがしています",
+          "reading": "さがしています",
+          "meaning": "looking for"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 14,
+              "end": 25,
+              "text": "looking for"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-7-14"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "50a2277c0f2200d168f0d196",
+      "english": "He gave up the attempt in despair.",
+      "japanese": "彼は絶望してその試みをあきらめた。",
+      "furigana": "{彼|かれ}は{絶望|ぜつぼう}してその{試|こころ}みをあきらめた。",
+      "answerEntries": [
+        {
+          "id": "ja-11-16",
+          "start": 11,
+          "end": 16,
+          "japanese": "あきらめた",
+          "reading": "あきらめた",
+          "meaning": "gave up (past)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 3,
+              "end": 10,
+              "text": "gave up"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-11-16"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "374ca7ea8067972d8291ab6e",
+      "english": "I gave up all hope of survival.",
+      "japanese": "もう助からないものと観念した。",
+      "furigana": "もう{助|たす}からないものと{観念|かんねん}した。",
+      "answerEntries": [
+        {
+          "id": "ja-0-14",
+          "start": 0,
+          "end": 14,
+          "japanese": "もう助からないものと観念した",
+          "reading": "もうたすからないものとかんねんした",
+          "meaning": "resigned oneself to not surviving"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 2,
+              "end": 30,
+              "text": "gave up all hope of survival"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-14"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "2eea6cfa2b131e3e0f78ed07",
+      "english": "She took off her glasses and put her contacts in.",
+      "japanese": "彼女はメガネをはずしてコンタクトをはめた。",
+      "furigana": "{彼女|かのじょ}はメガネをはずしてコンタクトをはめた。",
+      "answerEntries": [
+        {
+          "id": "ja-7-11",
+          "start": 7,
+          "end": 11,
+          "japanese": "はずして",
+          "reading": "はずして",
+          "meaning": "removed (glasses)"
+        },
+        {
+          "id": "ja-17-20",
+          "start": 17,
+          "end": 20,
+          "japanese": "はめた",
+          "reading": "はめた",
+          "meaning": "put in (contact lenses)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 12,
+              "text": "took off"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-7-11"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 29,
+              "end": 32,
+              "text": "put"
+            },
+            {
+              "start": 46,
+              "end": 48,
+              "text": "in"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-17-20"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "9bad32fc4247de9698be559b",
+      "english": "Tom took off his clothes and put on his pajamas.",
+      "japanese": "トムは服を脱いでパジャマを着た。",
+      "furigana": "トムは{服|ふく}を{脱|ぬ}いでパジャマを{着|き}た。",
+      "answerEntries": [
+        {
+          "id": "ja-5-8",
+          "start": 5,
+          "end": 8,
+          "japanese": "脱いで",
+          "reading": "ぬいで",
+          "meaning": "took off (clothes)"
+        },
+        {
+          "id": "ja-13-15",
+          "start": 13,
+          "end": 15,
+          "japanese": "着た",
+          "reading": "きた",
+          "meaning": "put on (clothes)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 12,
+              "text": "took off"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-5-8"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 29,
+              "end": 35,
+              "text": "put on"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "4fa60095a5a9eec11237f529",
+      "english": "I was late because my car broke down.",
+      "japanese": "車が故障したので遅れました。",
+      "furigana": "{車|くるま}が{故障|こしょう}したので{遅|おく}れました。",
+      "answerEntries": [
+        {
+          "id": "ja-2-6",
+          "start": 2,
+          "end": 6,
+          "japanese": "故障した",
+          "reading": "こしょうした",
+          "meaning": "broke down (stopped working)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 26,
+              "end": 36,
+              "text": "broke down"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-2-6"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "bc3183eb19754387b26be05c",
+      "english": "He's fed up with socializing.",
+      "japanese": "彼は人付き合いに辟易している。",
+      "furigana": "{彼|かれ}は{人付|ひとづ}き{合|あ}いに{辟易|へきえき}している。",
+      "answerEntries": [
+        {
+          "id": "ja-8-14",
+          "start": 8,
+          "end": 14,
+          "japanese": "辟易している",
+          "reading": "へきえきしている",
+          "meaning": "fed up with"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 5,
+              "end": 16,
+              "text": "fed up with"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-8-14"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "3320c06272a5b076bcac6c03",
+      "english": "The meeting was put off until next week.",
+      "japanese": "打ち合わせは来週に延期になった。",
+      "furigana": "{打|う}ち{合|あ}わせは{来週|らいしゅう}に{延期|えんき}になった。",
+      "answerEntries": [
+        {
+          "id": "ja-9-15",
+          "start": 9,
+          "end": 15,
+          "japanese": "延期になった",
+          "reading": "えんきになった",
+          "meaning": "was postponed"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 16,
+              "end": 23,
+              "text": "put off"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-9-15"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "1da7295f0006574b48b73277",
+      "english": "Do you have a laundry service?",
+      "japanese": "洗濯のサービスはありますか。",
+      "furigana": "{洗濯|せんたく}のサービスはありますか。",
+      "answerEntries": [
+        {
+          "id": "ja-0-2",
+          "start": 0,
+          "end": 2,
+          "japanese": "洗濯",
+          "reading": "せんたく",
+          "meaning": "laundry"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 14,
+              "end": 21,
+              "text": "laundry"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-2"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "00121c45c61969376c90e342",
+      "english": "She wore a diamond ring on her left third finger.",
+      "japanese": "彼女は左手の薬指にダイヤの指輪をはめていた。",
+      "furigana": "{彼女|かのじょ}は{左手|ひだりて}の{薬指|くすりゆび}にダイヤの{指輪|ゆびわ}をはめていた。",
+      "answerEntries": [
+        {
+          "id": "ja-3-5",
+          "start": 3,
+          "end": 5,
+          "japanese": "左手",
+          "reading": "ひだりて",
+          "meaning": "left hand"
+        },
+        {
+          "id": "ja-16-21",
+          "start": 16,
+          "end": 21,
+          "japanese": "はめていた",
+          "reading": "はめていた",
+          "meaning": "was wearing (a ring)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 8,
+              "text": "wore"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-16-21"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 31,
+              "end": 35,
+              "text": "left"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-3-5"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "4236b1cb3617d87daec8104f",
+      "english": "He moved into my neighborhood.",
+      "japanese": "彼が近所に越してきた。",
+      "furigana": "{彼|かれ}が{近所|きんじょ}に{越|こ}してきた。",
+      "answerEntries": [
+        {
+          "id": "ja-5-8",
+          "start": 5,
+          "end": 8,
+          "japanese": "越して",
+          "reading": "こして",
+          "meaning": "moved house"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 3,
+              "end": 8,
+              "text": "moved"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-5-8"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "47ebde1262026d00009aaa8c",
+      "english": "Where shall I hang this calendar?",
+      "japanese": "このカレンダーはどこにかけましょうか。",
+      "furigana": "このカレンダーはどこにかけましょうか。",
+      "answerEntries": [
+        {
+          "id": "ja-11-17",
+          "start": 11,
+          "end": 17,
+          "japanese": "かけましょう",
+          "reading": "かけましょう",
+          "meaning": "hang"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 14,
+              "end": 18,
+              "text": "hang"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-11-17"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "4250c9e8dd171fd074a3a9e3",
+      "english": "Can you put me up tonight?",
+      "japanese": "今夜お宅に泊めてもらえませんか。",
+      "furigana": "{今夜|こんや}お{宅|たく}に{泊|と}めてもらえませんか。",
+      "answerEntries": [
+        {
+          "id": "ja-5-8",
+          "start": 5,
+          "end": 8,
+          "japanese": "泊めて",
+          "reading": "とめて",
+          "meaning": "provide lodging"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 8,
+              "end": 11,
+              "text": "put"
+            },
+            {
+              "start": 15,
+              "end": 17,
+              "text": "up"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-5-8"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "46f63b67ca227c239354aa62",
+      "english": "Jack brushed the dust off his coat.",
+      "japanese": "ジャックはブラシで上着のほこりを払った。",
+      "furigana": "ジャックはブラシで{上着|うわぎ}のほこりを{払|はら}った。",
+      "answerEntries": [
+        {
+          "id": "ja-12-15",
+          "start": 12,
+          "end": 15,
+          "japanese": "ほこり",
+          "reading": "ほこり",
+          "meaning": "dust"
+        },
+        {
+          "id": "ja-16-19",
+          "start": 16,
+          "end": 19,
+          "japanese": "払った",
+          "reading": "はらった",
+          "meaning": "brushed off"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 5,
+              "end": 12,
+              "text": "brushed"
+            },
+            {
+              "start": 22,
+              "end": 25,
+              "text": "off"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-16-19"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 17,
+              "end": 21,
+              "text": "dust"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-12-15"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "7cb1c0e0057defa07a647217",
+      "english": "Please let me off here.",
+      "japanese": "このあたりで降ろしてください。",
+      "furigana": "このあたりで{降|お}ろしてください。",
+      "answerEntries": [
+        {
+          "id": "ja-0-5",
+          "start": 0,
+          "end": 5,
+          "japanese": "このあたり",
+          "reading": "このあたり",
+          "meaning": "here (this area)"
+        },
+        {
+          "id": "ja-6-10",
+          "start": 6,
+          "end": 10,
+          "japanese": "降ろして",
+          "reading": "おろして",
+          "meaning": "let off (allow to get out)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 7,
+              "end": 10,
+              "text": "let"
+            },
+            {
+              "start": 14,
+              "end": 17,
+              "text": "off"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-6-10"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 18,
+              "end": 22,
+              "text": "here"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-5"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "e521c64a17213c9ad387c180",
+      "english": "Does school start at eight-thirty?",
+      "japanese": "学校は８時半に始まりますか。",
+      "furigana": "{学校|がっこう}は８{時半|じはん}に{始|はじ}まりますか。",
+      "answerEntries": [
+        {
+          "id": "ja-3-6",
+          "start": 3,
+          "end": 6,
+          "japanese": "８時半",
+          "reading": "８じはん",
+          "meaning": "eight-thirty (8:30)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 21,
+              "end": 33,
+              "text": "eight-thirty"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-3-6"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "16b7cffe6d5cf68cd8ec958d",
+      "english": "Ted likes playing the trumpet.",
+      "japanese": "テッドはトランペットを吹くのが好きです。",
+      "furigana": "テッドはトランペットを{吹|ふ}くのが{好|す}きです。",
+      "answerEntries": [
+        {
+          "id": "ja-4-10",
+          "start": 4,
+          "end": 10,
+          "japanese": "トランペット",
+          "reading": "とらんぺっと",
+          "meaning": "trumpet"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 22,
+              "end": 29,
+              "text": "trumpet"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-4-10"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "f64a4195d8bfc56056184cfb",
+      "english": "Hi, Roger. I'm pretty good!",
+      "japanese": "こんにちは、ロジャー。とっても元気よ。",
+      "furigana": "こんにちは、ロジャー。とっても{元気|げんき}よ。",
+      "answerEntries": [
+        {
+          "id": "ja-0-5",
+          "start": 0,
+          "end": 5,
+          "japanese": "こんにちは",
+          "reading": "こんにちは",
+          "meaning": "hello"
+        },
+        {
+          "id": "ja-6-10",
+          "start": 6,
+          "end": 10,
+          "japanese": "ロジャー",
+          "reading": "ろじゃー",
+          "meaning": "Roger"
+        },
+        {
+          "id": "ja-11-15",
+          "start": 11,
+          "end": 15,
+          "japanese": "とっても",
+          "reading": "とっても",
+          "meaning": "very"
+        },
+        {
+          "id": "ja-15-17",
+          "start": 15,
+          "end": 17,
+          "japanese": "元気",
+          "reading": "げんき",
+          "meaning": "well; in good health"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "Hi"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-5"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 9,
+              "text": "Roger"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-6-10"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 15,
+              "end": 21,
+              "text": "pretty"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-11-15"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 22,
+              "end": 26,
+              "text": "good"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-15-17"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "3c9f65f613abd788046e243a",
+      "english": "One evening a man came to my house.",
+      "japanese": "ある夕方、一人の男がやってきた。",
+      "furigana": "ある{夕方|ゆうがた}、{一人|ひとり}の{男|おとこ}がやってきた。",
+      "answerEntries": [
+        {
+          "id": "ja-0-2",
+          "start": 0,
+          "end": 2,
+          "japanese": "ある",
+          "reading": "ある",
+          "meaning": "one; a certain",
+          "wordTypes": [
+            "Prenominal adjective"
+          ]
+        },
+        {
+          "id": "ja-2-4",
+          "start": 2,
+          "end": 4,
+          "japanese": "夕方",
+          "reading": "ゆうがた",
+          "meaning": "evening"
+        },
+        {
+          "id": "ja-5-9",
+          "start": 5,
+          "end": 9,
+          "japanese": "一人の男",
+          "reading": "ひとりのおとこ",
+          "meaning": "a man"
+        },
+        {
+          "id": "ja-10-15",
+          "start": 10,
+          "end": 15,
+          "japanese": "やってきた",
+          "reading": "やってきた",
+          "meaning": "came"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "text": "One"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-2"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 11,
+              "text": "evening"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-2-4"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 12,
+              "end": 17,
+              "text": "a man"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-5-9"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 18,
+              "end": 22,
+              "text": "came"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-10-15"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "3b5ea68ada3ca9cb27ffd02d",
+      "english": "I'm older than your brother.",
+      "japanese": "私はあなたのお兄さんより年上です。",
+      "furigana": "{私|わたし}はあなたのお{兄|にい}さんより{年上|としうえ}です。",
+      "answerEntries": [
+        {
+          "id": "ja-2-6",
+          "start": 2,
+          "end": 6,
+          "japanese": "あなたの",
+          "reading": "あなたの",
+          "meaning": "your"
+        },
+        {
+          "id": "ja-6-10",
+          "start": 6,
+          "end": 10,
+          "japanese": "お兄さん",
+          "reading": "おにいさん",
+          "meaning": "older brother"
+        },
+        {
+          "id": "ja-10-12",
+          "start": 10,
+          "end": 12,
+          "japanese": "より",
+          "reading": "より",
+          "meaning": "than"
+        },
+        {
+          "id": "ja-12-14",
+          "start": 12,
+          "end": 14,
+          "japanese": "年上",
+          "reading": "としうえ",
+          "meaning": "older"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 9,
+              "text": "older"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-12-14"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 10,
+              "end": 14,
+              "text": "than"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-10-12"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 15,
+              "end": 19,
+              "text": "your"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-2-6"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 20,
+              "end": 27,
+              "text": "brother"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-6-10"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "10c2500a48ed97e4312958f9",
+      "english": "Jim is coming to the party, too.",
+      "japanese": "ジムもまたパーティーに来ます。",
+      "furigana": "ジムもまたパーティーに{来|き}ます。",
+      "answerEntries": [
+        {
+          "id": "ja-0-2",
+          "start": 0,
+          "end": 2,
+          "japanese": "ジム",
+          "reading": "じむ",
+          "meaning": "Jim"
+        },
+        {
+          "id": "ja-2-5",
+          "start": 2,
+          "end": 5,
+          "japanese": "もまた",
+          "reading": "もまた",
+          "meaning": "also"
+        },
+        {
+          "id": "ja-5-10",
+          "start": 5,
+          "end": 10,
+          "japanese": "パーティー",
+          "reading": "ぱーてぃー",
+          "meaning": "party"
+        },
+        {
+          "id": "ja-11-14",
+          "start": 11,
+          "end": 14,
+          "japanese": "来ます",
+          "reading": "きます",
+          "meaning": "is coming"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "text": "Jim"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-2"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 13,
+              "text": "is coming"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-11-14"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 21,
+              "end": 26,
+              "text": "party"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-5-10"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 28,
+              "end": 31,
+              "text": "too"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-2-5"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "84f270754d526c50ea15a2c5",
+      "english": "I got out of the car at 40th Street.",
+      "japanese": "４０丁目で車を降りた。",
+      "furigana": "４０{丁目|ちょうめ}で{車|くるま}を{降|お}りた。",
+      "answerEntries": [
+        {
+          "id": "ja-5-6",
+          "start": 5,
+          "end": 6,
+          "japanese": "車",
+          "reading": "くるま",
+          "meaning": "car"
+        },
+        {
+          "id": "ja-7-10",
+          "start": 7,
+          "end": 10,
+          "japanese": "降りた",
+          "reading": "おりた",
+          "meaning": "got out of a vehicle"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 2,
+              "end": 9,
+              "text": "got out"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-7-10"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 17,
+              "end": 20,
+              "text": "car"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-5-6"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "ca3f69a111c1f8e0bc8e034b",
+      "english": "That is not your knife.",
+      "japanese": "それはあなたのナイフではない。",
+      "furigana": "それはあなたのナイフではない。",
+      "answerEntries": [
+        {
+          "id": "ja-0-2",
+          "start": 0,
+          "end": 2,
+          "japanese": "それ",
+          "reading": "それ",
+          "meaning": "that"
+        },
+        {
+          "id": "ja-3-7",
+          "start": 3,
+          "end": 7,
+          "japanese": "あなたの",
+          "reading": "あなたの",
+          "meaning": "your"
+        },
+        {
+          "id": "ja-7-10",
+          "start": 7,
+          "end": 10,
+          "japanese": "ナイフ",
+          "reading": "ないふ",
+          "meaning": "knife"
+        },
+        {
+          "id": "ja-10-14",
+          "start": 10,
+          "end": 14,
+          "japanese": "ではない",
+          "reading": "ではない",
+          "meaning": "is not"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "text": "That"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-2"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 5,
+              "end": 11,
+              "text": "is not"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-10-14"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 12,
+              "end": 16,
+              "text": "your"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-3-7"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 17,
+              "end": 22,
+              "text": "knife"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-7-10"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "6fa3eb49e0d88fff83ecc00e",
+      "english": "Let's cross here.",
+      "japanese": "ここを渡りましょう。",
+      "furigana": "ここを{渡|わた}りましょう。",
+      "answerEntries": [
+        {
+          "id": "ja-0-2",
+          "start": 0,
+          "end": 2,
+          "japanese": "ここ",
+          "reading": "ここ",
+          "meaning": "here"
+        },
+        {
+          "id": "ja-3-9",
+          "start": 3,
+          "end": 9,
+          "japanese": "渡りましょう",
+          "reading": "わたりましょう",
+          "meaning": "let’s cross"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 11,
+              "text": "Let's cross"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-3-9"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 12,
+              "end": 16,
+              "text": "here"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-2"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "79d603592cd8af6e83fd906f",
+      "english": "I am at home every evening.",
+      "japanese": "私は毎晩家にいます。",
+      "furigana": "{私|わたし}は{毎晩|まいばん}{家|いえ}にいます。",
+      "answerEntries": [
+        {
+          "id": "ja-0-1",
+          "start": 0,
+          "end": 1,
+          "japanese": "私",
+          "reading": "わたし",
+          "meaning": "I"
+        },
+        {
+          "id": "ja-2-4",
+          "start": 2,
+          "end": 4,
+          "japanese": "毎晩",
+          "reading": "まいばん",
+          "meaning": "every evening"
+        },
+        {
+          "id": "ja-4-5",
+          "start": 4,
+          "end": 5,
+          "japanese": "家",
+          "reading": "いえ",
+          "meaning": "home"
+        },
+        {
+          "id": "ja-6-9",
+          "start": 6,
+          "end": 9,
+          "japanese": "います",
+          "reading": "います",
+          "meaning": "be (at a place)"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "I"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-1"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 2,
+              "end": 4,
+              "text": "am"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-6-9"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 8,
+              "end": 12,
+              "text": "home"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-4-5"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 13,
+              "end": 26,
+              "text": "every evening"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-2-4"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "020f9ce7c0415f0544db2ab4",
+      "english": "They are very big apples.",
+      "japanese": "それらはとても大きなりんごです。",
+      "furigana": "それらはとても{大|おお}きなりんごです。",
+      "answerEntries": [
+        {
+          "id": "ja-7-10",
+          "start": 7,
+          "end": 10,
+          "japanese": "大きな",
+          "reading": "おおきな",
+          "meaning": "big"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 14,
+              "end": 17,
+              "text": "big"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-7-10"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "0758756ce6b11d174759db74",
+      "english": "This tape recorder is not new.",
+      "japanese": "このテープレコーダーは新しくない。",
+      "furigana": "このテープレコーダーは{新|あたら}しくない。",
+      "answerEntries": [
+        {
+          "id": "ja-11-14",
+          "start": 11,
+          "end": 14,
+          "japanese": "新しく",
+          "reading": "あたらしく",
+          "meaning": "new"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 26,
+              "end": 29,
+              "text": "new"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-11-14"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "213aa0ae8044611b00c1ba95",
+      "english": "Most Japanese drink water from the tap.",
+      "japanese": "たいていの日本人は水道の水を飲みます。",
+      "furigana": "たいていの{日本人|にほんじん}は{水道|すいどう}の{水|みず}を{飲|の}みます。",
+      "answerEntries": [
+        {
+          "id": "ja-0-4",
+          "start": 0,
+          "end": 4,
+          "japanese": "たいてい",
+          "reading": "たいてい",
+          "meaning": "most"
+        },
+        {
+          "id": "ja-5-8",
+          "start": 5,
+          "end": 8,
+          "japanese": "日本人",
+          "reading": "にほんじん",
+          "meaning": "Japanese people"
+        },
+        {
+          "id": "ja-9-11",
+          "start": 9,
+          "end": 11,
+          "japanese": "水道",
+          "reading": "すいどう",
+          "meaning": "water supply; tap"
+        },
+        {
+          "id": "ja-12-13",
+          "start": 12,
+          "end": 13,
+          "japanese": "水",
+          "reading": "みず",
+          "meaning": "water"
+        },
+        {
+          "id": "ja-14-18",
+          "start": 14,
+          "end": 18,
+          "japanese": "飲みます",
+          "reading": "のみます",
+          "meaning": "drink"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 4,
+              "text": "Most"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-4"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 5,
+              "end": 13,
+              "text": "Japanese"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-5-8"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 14,
+              "end": 19,
+              "text": "drink"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-14-18"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 20,
+              "end": 25,
+              "text": "water"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-12-13"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 35,
+              "end": 38,
+              "text": "tap"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-9-11"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "ed2c1d01698a754816d6a9ed",
+      "english": "Please take me across the river.",
+      "japanese": "わたしを川のむこうに渡してください。",
+      "furigana": "わたしを{川|かわ}のむこうに{渡|わた}してください。",
+      "answerEntries": [
+        {
+          "id": "ja-0-3",
+          "start": 0,
+          "end": 3,
+          "japanese": "わたし",
+          "reading": "わたし",
+          "meaning": "me"
+        },
+        {
+          "id": "ja-6-9",
+          "start": 6,
+          "end": 9,
+          "japanese": "むこう",
+          "reading": "むこう",
+          "meaning": "the other side"
+        },
+        {
+          "id": "ja-13-17",
+          "start": 13,
+          "end": 17,
+          "japanese": "ください",
+          "reading": "ください",
+          "meaning": "please"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 12,
+              "end": 14,
+              "text": "me"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-3"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 15,
+              "end": 21,
+              "text": "across"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-6-9"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 0,
+              "end": 6,
+              "text": "Please"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-13-17"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "0c71969d85bc1cde1ddf0609",
+      "english": "I will check what time the train arrives.",
+      "japanese": "列車は何時に着くか調べてみよう。",
+      "furigana": "{列車|れっしゃ}は{何時|なんじ}に{着|つ}くか{調|しら}べてみよう。",
+      "answerEntries": [
+        {
+          "id": "ja-9-12",
+          "start": 9,
+          "end": 12,
+          "japanese": "調べて",
+          "reading": "しらべて",
+          "meaning": "check"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 7,
+              "end": 12,
+              "text": "check"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-9-12"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "1ddb66f2f9625191547744d3",
+      "english": "The man lit a cigarette with a lighter.",
+      "japanese": "男はライターでたばこに火をつけた。",
+      "furigana": "{男|おとこ}はライターでたばこに{火|ひ}をつけた。",
+      "answerEntries": [
+        {
+          "id": "ja-13-16",
+          "start": 13,
+          "end": 16,
+          "japanese": "つけた",
+          "reading": "つけた",
+          "meaning": "lit"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 8,
+              "end": 11,
+              "text": "lit"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-13-16"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "1e0eeea386aa584f2d06ccf7",
+      "english": "The steam has fogged my glasses.",
+      "japanese": "蒸気でメガネが曇ってしまった。",
+      "furigana": "{蒸気|じょうき}でメガネが{曇|くも}ってしまった。",
+      "answerEntries": [
+        {
+          "id": "ja-7-10",
+          "start": 7,
+          "end": 10,
+          "japanese": "曇って",
+          "reading": "くもって",
+          "meaning": "fogged"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 14,
+              "end": 20,
+              "text": "fogged"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-7-10"
+          ]
+        }
+      ]
+    }
+  ]
+}

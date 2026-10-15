@@ -3,8 +3,9 @@
 - `manifest.json`: upstream revision, URLs, checksums, retrieval time, and actual counts.
 - `sources/openjlpt/<commit>/`: unmodified upstream JSON plus README, NOTICE, and LICENSE.
 - `processed/sentence-candidates.json`: deduplicated vocabulary example pairs with provenance and length measurements. These are unreviewed candidates, not a graded exercise bank.
-- `phrase-hints/sentences.json`: maintained phrase spans with wording and readings from the Japanese reference. See [phrase hint maintenance](phrase-hints/README.md).
+- `answer-entries/sentences.json`: maintained contextual answer entries and English span mappings shared by hints and breakdowns. See [answer entry maintenance](answer-entries/README.md).
 - `hint-glossary/bank.json`: additional JMdict English senses for existing vocabulary, used with reference support. See [hint glossary generation](hint-glossary/README.md).
+- `hint-glossary/rules.json`: maintained function words, pronoun mappings, and paraphrases used by hint lookup.
 - `sentence-levels/bank.json`: a vocabulary grade for each sentence, used to choose practice sentences by level. See [sentence levels](#sentence-levels).
 - `spelling-variants/bank.json`: verified word-position spelling variants generated from JMdict and Sudachi, separate from alternative translations. See [generation and review](spelling-variants/README.md).
 
@@ -174,18 +175,12 @@ The same generator produces `romaji/reference-lexemes.json`, keyed and guarded
 the same way, which connects
 dictionary forms of verbs and adjectives to their complete conjugated words in
 the reference. Endings and honorific prefixes use the romaji word boundaries;
-all readings come from the supplied furigana. Word hints use these forms before
-dictionary alternatives, so an English match for 飲む can display 飲みました
-with its supplied reading. Whole-word annotations containing a stem and endings
-are supported without splitting their reading; annotations spanning multiple
-lexical words are excluded. Repeated words retain their distinct reference
-forms and readings as hint alternatives, using the same primary furigana as
-the romaji hint. This handles inflection and complete kana nouns/pronouns normalized to
-dictionary forms. Additional senses from the pinned JMdict glossary resolve
-English wording absent from OpenJLPT's abbreviated definitions. Idioms and
-meanings absent from both glossaries still need explicit mappings in
-`phrase-hints/sentences.json`. Dictionary fallback hints retain their existing
-dictionary-source note.
+all readings come from the supplied furigana. Dictionary tooling uses these forms to connect inflections and complete kana
+nouns/pronouns to dictionary entries. Practice hints instead use explicit English
+spans pointing to contextual answer entries in `answer-entries/sentences.json`.
+Both hints and breakdowns read those entries; unannotated English words have no
+hint. Japanese occurrences have position-based IDs, and a phrase can cover
+several tokenizer words. See [answer entry maintenance](answer-entries/README.md).
 
 ## Sentence levels
 
@@ -248,8 +243,7 @@ bun run levels:test
 CI regenerates the bank in check mode, and the load report test fails if any
 loaded sentence lacks a current grade.
 
-Only explicit entries in `phrase-hints/sentences.json` are labeled as sentence
-translations. Automatic glossary matches are labeled as possible reference
-vocabulary: the spelling and reading occur in the reference, while dictionary
-meanings and English word pairing remain unconfirmed. Add a reviewed sentence
-mapping when a polysemous English word would otherwise suggest the wrong sense.
+Only maintained mappings in `answer-entries/sentences.json` publish practice
+hints. Automatic dictionary matches cannot establish sentence context. Dictionary
+senses are available separately in the breakdown and may not apply to the
+current sentence.

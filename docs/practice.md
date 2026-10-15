@@ -40,8 +40,10 @@ N5–N1 filters describe vocabulary focus, not the difficulty of the whole sente
 - Click an underlined English word or phrase for Japanese vocabulary and readings.
 - Press **Escape** to close a vocabulary hint.
 
-Hints may use dictionary forms or wording from the sentence reference. They are
-suggestions, not word-for-word translations.
+Hints use mapped words or phrases from the Japanese reference and share their
+readings and contextual meanings with the answer breakdown. Words without a
+maintained mapping show no hint. Optional dictionary senses in the breakdown
+are separate and may not apply to the sentence.
 
 ## Look up grammar while writing
 

@@ -1,18 +1,8 @@
-import n5 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n5.json";
-import n4 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n4.json";
-import n3 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n3.json";
-import n2 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n2.json";
-import n1 from "../../data/sources/openjlpt/0d1d3410bec90bd4098a7c72de820543cb4f707c/data/json/vocab/n1.json";
 import glossary from "../../data/hint-glossary/bank.json";
-import {
-  HintSource,
-  hiragana,
-  type PromptPart,
-  type VocabularyHint,
-} from "../../shared/practice";
+import rules from "../../data/hint-glossary/rules.json";
+import { HintSource, hiragana, type PromptPart } from "../../shared/practice";
 import { kanaToRomaji } from "../../shared/romaji";
 import {
-  primaryReading,
   primaryRendering,
   type PhraseHintSpan,
   type Sentence,
@@ -20,6 +10,8 @@ import {
 import lemmatize from "wink-lemmatizer";
 import { referenceLexemes } from "./reference-lexemes";
 import { referenceReading } from "./sentence-phrase-hints";
+import { vocabulary } from "./vocabulary";
+import { referenceSpellings } from "./reference-spellings";
 
 interface Entry {
   word: string;
@@ -34,30 +26,21 @@ const index = new Map<string, Entry[]>();
 const phraseIndex = new Map<string, Entry[]>();
 let longestPhrase = 1;
 // These gloss words usually describe grammar, rather than a standalone translation.
-const functionWords = new Set([
-  "a",
-  "an",
-  "the",
-  "to",
-  "of",
-  "and",
-  "or",
-  "in",
-  "on",
-  "at",
-  "by",
-  "with",
-  "for",
-  "from",
-  "as",
-]);
+const functionWords = new Set(rules.functionWords);
+const subjectPronouns = new Map(Object.entries(rules.subjectPronouns));
+const spatialParaphrases = new Map(Object.entries(rules.spatialParaphrases));
+const phraseParaphrases = new Map(Object.entries(rules.phraseParaphrases));
+const verbParaphrases = new Map(Object.entries(rules.verbParaphrases));
+
+for (const phrase of phraseParaphrases.keys()) {
+  longestPhrase = Math.max(longestPhrase, englishWords(phrase).length);
+}
+
 function englishWords(text: string): string[] {
   return (
     text.toLowerCase().match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu) ?? []
   );
 }
-
-export const vocabulary = [...n5, ...n4, ...n3, ...n2, ...n1];
 
 const extraSenses: Record<
   string,
@@ -99,9 +82,9 @@ for (const entry of vocabulary) {
       longestPhrase = Math.max(longestPhrase, terms.length);
     }
     for (const term of new Set(terms)) {
-      // Extra senses must match a complete gloss, not incidental words in a
+      // Single-word hints must match a complete gloss, not incidental words in a
       // definition such as "I think" in a quotation particle's explanation.
-      if (referenceOnly && !vocabulary.exact) continue;
+      if (!vocabulary.exact) continue;
       if (functionWords.has(term)) continue;
       const matches = index.get(term) ?? [];
       matches.push(vocabulary);
@@ -114,12 +97,7 @@ function lookup(word: string): Entry[] {
   const term = word.toLowerCase().replaceAll("’", "'");
   const verb = lemmatize.verb(term);
   const noun = lemmatize.noun(term);
-  const subjectPronoun = (
-    { me: "i", him: "he", her: "she", us: "we", them: "they" } as Record<
-      string,
-      string
-    >
-  )[term];
+  const subjectPronoun = subjectPronouns.get(term);
   return [
     ...(index.get(term) ?? []),
     ...(verb === term
@@ -137,14 +115,19 @@ function lookup(word: string): Entry[] {
       : []),
     // English spatial prepositions can correspond to Japanese nouns. These
     // dictionary paraphrases apply across sentences, only with reference support.
-    ...(term === "across"
-      ? ["other side", "opposite side"].flatMap((phrase) =>
-          (phraseIndex.get(phrase) ?? []).map((entry) => ({
-            ...entry,
-            referenceOnly: true,
-          })),
-        )
-      : []),
+    ...(spatialParaphrases.get(term) ?? []).flatMap((phrase) =>
+      (phraseIndex.get(phrase) ?? []).map((entry) => ({
+        ...entry,
+        referenceOnly: true,
+      })),
+    ),
+    // Only reviewed verb equivalences may omit a particle; never strip
+    // arbitrary phrasal verbs to infer a standalone meaning.
+    ...(verbParaphrases.get(verb) ?? []).flatMap((phrase) =>
+      (phraseIndex.get(phrase) ?? [])
+        .filter((entry) => entry.verb)
+        .map((entry) => ({ ...entry, referenceOnly: true })),
+    ),
   ];
 }
 
@@ -152,46 +135,18 @@ function lookupPhrase(words: string[]): Entry[] {
   const terms = words.map((word) => word.toLowerCase().replaceAll("’", "'"));
   return [
     ...(phraseIndex.get(terms.join(" ")) ?? []),
+    ...(phraseParaphrases.get(terms.join(" ")) ?? []).flatMap((phrase) =>
+      (phraseIndex.get(phrase) ?? []).map((entry) => ({
+        ...entry,
+        referenceOnly: true,
+      })),
+    ),
     ...(
       phraseIndex.get(
         [lemmatize.verb(terms[0]!), ...terms.slice(1)].join(" "),
       ) ?? []
     ).filter((entry) => entry.verb),
   ];
-}
-
-function hintSpellings(sentence: Sentence, hint: VocabularyHint): string[] {
-  const { reference } = sentence;
-  const primary = primaryReading(reference).furigana;
-  const primaryReference = primaryRendering(reference);
-  const variants = new Set<string>();
-  for (const spelling of reference.spellings) {
-    if (spelling.furigana !== primary) continue;
-    for (
-      let start = reference.japanese.indexOf(hint.japanese);
-      start !== -1;
-      start = reference.japanese.indexOf(hint.japanese, start + 1)
-    ) {
-      if (
-        !referenceReading(primaryReference, hint.japanese, start).includes(
-          hint.reading,
-        )
-      )
-        continue;
-      const end = start + hint.japanese.length;
-      for (const span of spelling.spans) {
-        if (span.start < start || span.end > end) continue;
-        for (const spelling of span.spellings) {
-          const word =
-            hint.japanese.slice(0, span.start - start) +
-            spelling +
-            hint.japanese.slice(span.end - start);
-          if (word !== hint.japanese) variants.add(word);
-        }
-      }
-    }
-  }
-  return [...variants].slice(0, 3);
 }
 
 export function wordHints(sentence: Sentence): PromptPart[] {
@@ -209,7 +164,10 @@ export function wordHints(sentence: Sentence): PromptPart[] {
     }
     return forms.get(entry.word)!;
   };
-  const inReference = (entry: Entry) => referenceForms(entry).length > 0;
+  // Reference presence confirms the Japanese form, not an incidental English
+  // word inside a longer gloss ("good" in "good day", for example).
+  const inReference = (entry: Entry) =>
+    entry.exact && referenceForms(entry).length > 0;
   const tokens =
     sentence.english.match(
       /[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*|[^\p{L}\p{N}]+/gu,
@@ -342,7 +300,9 @@ export function wordHints(sentence: Sentence): PromptPart[] {
     hints: part.hints.map((hint) => {
       // Only expose spellings already verified for the primary reference and
       // its supplied pronunciation; dictionary fallback hints stay unchanged.
-      const spellings = part.hintSource ? hintSpellings(sentence, hint) : [];
+      const spellings = part.hintSource
+        ? referenceSpellings(sentence, hint)
+        : [];
       return spellings.length ? { ...hint, spellings } : hint;
     }),
   }));

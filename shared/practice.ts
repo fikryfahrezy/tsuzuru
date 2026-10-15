@@ -121,8 +121,13 @@ export interface SpellingOption extends AnswerChip {
 }
 
 export interface AnswerBreakdownPart extends AnswerChip {
+  entryId?: string;
+  start?: number;
+  end?: number;
   romaji: string;
   meanings: string[];
+  dictionaryMeanings?: string[];
+  spellings?: string[];
   dictionaryForm?: string;
   wordTypes: string[];
   note?: string;
@@ -139,6 +144,13 @@ export function isAnswerBreakdownPart(
     typeof part.romaji === "string" &&
     Array.isArray(part.meanings) &&
     part.meanings.every((meaning) => typeof meaning === "string") &&
+    (part.dictionaryMeanings === undefined ||
+      isStringArray(part.dictionaryMeanings)) &&
+    (part.spellings === undefined || isStringArray(part.spellings)) &&
+    (part.entryId === undefined || typeof part.entryId === "string") &&
+    (part.start === undefined ||
+      (Number.isInteger(part.start) && part.start >= 0)) &&
+    (part.end === undefined || (Number.isInteger(part.end) && part.end >= 0)) &&
     Array.isArray(part.wordTypes) &&
     part.wordTypes.every((type) => typeof type === "string") &&
     (part.dictionaryForm === undefined ||
@@ -153,6 +165,7 @@ export interface AnswerChip {
 }
 
 export interface VocabularyHint {
+  answerEntryId?: string;
   japanese: string;
   reading: string;
   romaji: string;

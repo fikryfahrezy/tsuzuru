@@ -111,14 +111,18 @@ existing restrictions. Comparison and highlighting use the same allowed paths.
 
 ## Educational limitations
 
-The additional hint glossary in `data/hint-glossary/bank.json` extracts English
-senses for existing vocabulary from the same pinned JMdict snapshot. It retains
-JMdict copyright and CC BY-SA 4.0 attribution. Added senses require Japanese
-reference support; complete kana nouns can resolve through Sudachi lexical
-normalization using supplied readings. Shared spatial paraphrases connect
-“across” with “other side” and “opposite side”. These are possible dictionary
-matches, not reviewed sentence translations. See the
-[hint glossary README](data/hint-glossary/README.md) for generation and limits.
+Practice hints and contextual breakdown meanings share maintained entries in
+`data/answer-entries/sentences.json`. English spans point to Japanese occurrences
+by ID. Unmapped words have no hint, and dictionary senses are shown separately
+from contextual meanings. These AI-assisted development annotations retain source
+sentence attribution and CC BY-SA 4.0 terms; they are not independently reviewed
+translations. See [answer entry maintenance](data/answer-entries/README.md).
+
+The additional glossary in `data/hint-glossary/bank.json` extracts English senses
+from the pinned JMdict snapshot and retains its copyright and CC BY-SA 4.0
+attribution. It and `rules.json` support dictionary tooling; automatic matches do
+not establish contextual meanings or publish practice hints. See the
+[hint glossary README](data/hint-glossary/README.md).
 
 The [official JLPT FAQ](https://www.jlpt.jp/e/faq/) explains that current vocabulary, kanji, and grammar specifications are not published. Dataset level labels come from community resources and are not official certification. The JLPT itself does not include composition testing; Tsuzuru's writing exercises are its own practice format.
 

@@ -12,7 +12,7 @@ import {
 } from "../shared/practice";
 import { spellingOptions } from "../shared/writing-spellings";
 import { romajiHint } from "../shared/romaji";
-import { wordHints } from "../server/utils/word-hints";
+import { practiceDetails } from "../server/utils/practice-details";
 import {
   candidateById,
   defaultBanks,
@@ -21,7 +21,6 @@ import {
   loadSentence,
 } from "../server/utils/exercises";
 import { answerChips } from "../server/utils/answer-chips";
-import { answerBreakdown } from "../server/utils/answer-breakdown";
 
 function api() {
   const app = createApp();
@@ -44,7 +43,7 @@ test("sentence selection loads a dataset entry regardless of filters or previous
     expect(response.status).toBe(200);
     const question = await response.json();
     expect(question.answerBreakdown).toEqual(
-      answerBreakdown(selected, answerChips(selected), question.wordHints),
+      practiceDetails(selected).answerBreakdown,
     );
     expect(
       question.wordBank.map((chip: unknown) => JSON.stringify(chip)).sort(),
@@ -57,7 +56,7 @@ test("sentence selection loads a dataset entry regardless of filters or previous
       id: selected.id,
       english: selected.english,
       romaji: romajiHint(selected),
-      wordHints: wordHints(selected),
+      wordHints: practiceDetails(selected).wordHints,
       wordCount: selected.englishWordCount,
       poolSize: 1,
       spellingOptions: spellingOptions(selected),
@@ -103,7 +102,7 @@ test("invalid IDs fail explicitly and requests without IDs still select from the
   expect(candidate).toBeDefined();
   expect(question.spellingOptions).toEqual(spellingOptions(candidate));
   expect(question.answerBreakdown).toEqual(
-    answerBreakdown(candidate, answerChips(candidate), question.wordHints),
+    practiceDetails(candidate).answerBreakdown,
   );
 });
 
@@ -122,6 +121,7 @@ test("sentence API delivers contextual and separated phrase hints", async () => 
     hintSource: HintSource.Sentence,
     hints: [
       {
+        answerEntryId: "ja-4-7",
         japanese: "起きた",
         reading: "おきた",
         romaji: "okita",

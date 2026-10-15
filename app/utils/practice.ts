@@ -26,6 +26,7 @@ export type JournalEntry = {
   id: string;
   sentenceId?: string;
   answerBreakdown?: AnswerBreakdownPart[];
+  answerDetailsVersion?: string;
   english: string;
   answer: string;
   reference: string;

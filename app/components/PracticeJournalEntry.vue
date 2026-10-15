@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { $fetch } from "ofetch";
+import { currentAnswerBreakdown } from "#shared/answer-entries";
 import {
   DifferenceKind,
   type AnswerBreakdownPart,
@@ -13,7 +14,7 @@ const emit = defineEmits<{
 }>();
 const fetchedBreakdown = ref<AnswerBreakdownPart[] | null>(null);
 const breakdown = computed(
-  () => props.entry.answerBreakdown ?? fetchedBreakdown.value,
+  () => currentAnswerBreakdown(props.entry) ?? fetchedBreakdown.value,
 );
 const loadingBreakdown = ref(false);
 const breakdownError = ref("");

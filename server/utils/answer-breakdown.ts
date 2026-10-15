@@ -2,12 +2,17 @@ import {
   hiragana,
   type AnswerChip,
   type AnswerBreakdownPart,
-  type PromptPart,
 } from "../../shared/practice";
 import type { Sentence } from "../../shared/sentence";
 import { kanaToRomaji } from "../../shared/romaji";
 import { referenceLexemes } from "./reference-lexemes";
-import { vocabulary } from "./word-hints";
+import { vocabulary } from "./vocabulary";
+import pronunciations from "../../data/answer-entries/pronunciations.json";
+
+const particlePronunciations = new Map(
+  Object.entries(pronunciations.particles),
+);
+const wordPronunciations = new Map(Object.entries(pronunciations.words));
 
 const dictionary = new Map<string, (typeof vocabulary)[number][]>();
 for (const entry of vocabulary) {
@@ -74,7 +79,6 @@ function formNote(text: string): string | undefined {
 export function answerBreakdown(
   sentence: Sentence,
   chips: AnswerChip[],
-  hints: PromptPart[],
 ): AnswerBreakdownPart[] {
   const lexemes = referenceLexemes(sentence);
   return chips
@@ -88,18 +92,9 @@ export function answerBreakdown(
       const entries = (dictionary.get(dictionaryForm) ?? []).filter((entry) =>
         lexeme ? true : hiragana(entry.reading.normalize("NFKC")) === chip.kana,
       );
-      const contextual = hints
-        .flatMap((part) => (part.hintSource ? part.hints : []))
-        .filter(
-          (hint) =>
-            hint.japanese === chip.japanese && hint.reading === chip.kana,
-        );
       const grammarNote = particles[chip.japanese] ?? copulas[chip.japanese];
       const meanings = [
-        ...new Set([
-          ...contextual.map((hint) => hint.meaning),
-          ...entries.flatMap((entry) => entry.meanings),
-        ]),
+        ...new Set(entries.flatMap((entry) => entry.meanings)),
       ].slice(0, 4);
       const wordTypes = grammarNote
         ? [particles[chip.japanese] ? "Particle" : "Copula"]
@@ -110,13 +105,19 @@ export function answerBreakdown(
                 .filter((label): label is string => !!label),
             ),
           ];
+      const pronunciation =
+        (grammarNote ? particlePronunciations.get(chip.japanese) : undefined) ??
+        wordPronunciations.get(chip.japanese) ??
+        chip.kana;
       return {
         ...chip,
-        romaji:
-          ({ は: "wa", へ: "e", を: "o" } as Record<string, string>)[
-            chip.japanese
-          ] ?? kanaToRomaji(chip.kana),
-        meanings: grammarNote ? [] : meanings,
+        romaji: kanaToRomaji(pronunciation),
+        // Dictionary senses are optional reference material, not a claim about
+        // this occurrence. Context comes only from maintained answer entries.
+        meanings: [],
+        ...(grammarNote || !meanings.length
+          ? {}
+          : { dictionaryMeanings: meanings }),
         wordTypes,
         ...(dictionaryForm !== chip.japanese ? { dictionaryForm } : {}),
         ...(grammarNote

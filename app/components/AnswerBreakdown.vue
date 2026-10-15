@@ -34,9 +34,23 @@ withDefaults(
         <ul v-if="part.meanings.length" class="breakdown-meanings">
           <li v-for="meaning in part.meanings" :key="meaning">{{ meaning }}</li>
         </ul>
+        <details
+          v-if="part.dictionaryMeanings?.length"
+          class="breakdown-dictionary"
+        >
+          <summary>Dictionary senses</summary>
+          <ul class="breakdown-meanings">
+            <li v-for="meaning in part.dictionaryMeanings" :key="meaning">
+              {{ meaning }}
+            </li>
+          </ul>
+          <p class="breakdown-note">
+            General dictionary meanings; may not apply here.
+          </p>
+        </details>
         <p v-if="part.note" class="breakdown-note">{{ part.note }}</p>
         <p v-if="!part.meanings.length && !part.note" class="breakdown-note">
-          No dictionary meaning available for this form.
+          No contextual meaning available for this form.
         </p>
       </li>
     </ul>

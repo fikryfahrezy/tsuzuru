@@ -1,0 +1,38 @@
+{
+  "functionWords": [
+    "a",
+    "an",
+    "the",
+    "to",
+    "of",
+    "and",
+    "or",
+    "in",
+    "on",
+    "at",
+    "by",
+    "with",
+    "for",
+    "from",
+    "as"
+  ],
+  "subjectPronouns": {
+    "me": "i",
+    "him": "he",
+    "her": "she",
+    "us": "we",
+    "them": "they"
+  },
+  "spatialParaphrases": {
+    "across": ["other side", "opposite side"]
+  },
+  "phraseParaphrases": {
+    "every evening": ["every night"]
+  },
+  "verbParaphrases": {
+    "cross": ["cross over"],
+    "check": ["check up"],
+    "fog": ["fog up"],
+    "light": ["light up"]
+  }
+}

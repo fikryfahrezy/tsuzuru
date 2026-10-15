@@ -1,4 +1,8 @@
 import { useRoute } from "#imports";
+import {
+  answerDetailsVersion,
+  currentAnswerBreakdown,
+} from "#shared/answer-entries";
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { $fetch } from "ofetch";
 import {
@@ -9,7 +13,6 @@ import {
 } from "#shared/practice-difficulty";
 import {
   isAlternativeMethod,
-  isAnswerBreakdownPart,
   Level,
   isLevel,
   isLength,
@@ -156,6 +159,7 @@ export function usePracticeSession() {
           id: `${current.id}-${Date.now()}`,
           sentenceId: current.id,
           answerBreakdown: current.answerBreakdown,
+          answerDetailsVersion,
           english: current.english,
           answer: reveal ? "" : answer.value,
           reference: comparison.reference,
@@ -208,6 +212,7 @@ export function usePracticeSession() {
     const entry = journal.value.find((entry) => entry.id === id);
     if (!entry) return;
     entry.answerBreakdown = parts;
+    entry.answerDetailsVersion = answerDetailsVersion;
     persist();
   }
   function restoreAlternative(value: unknown): AlternativeAnswer | null {
@@ -327,11 +332,7 @@ export function usePracticeSession() {
                 typeof entry.sentenceId === "string"
                   ? entry.sentenceId
                   : undefined,
-              answerBreakdown:
-                Array.isArray(entry.answerBreakdown) &&
-                entry.answerBreakdown.every(isAnswerBreakdownPart)
-                  ? entry.answerBreakdown
-                  : undefined,
+              answerBreakdown: currentAnswerBreakdown(entry),
               mode: modes.some((item) => item.value === entry.mode)
                 ? entry.mode
                 : undefined,
