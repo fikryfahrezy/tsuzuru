@@ -52,7 +52,8 @@ application and Docker image, and smoke tests the container.
 Nuxt auto-imports are available in application and server code. The Oxlint
 configuration lists the globals used by the starter; add new Nuxt auto-imports
 there if a lint rule requires them. TypeScript checks run separately through
-Nuxt and Vue's type checker.
+Nuxt and Vue's type checker for the app and server, `tsconfig.scripts.json` for
+scripts, and `tsconfig.tests.json` for tests; `bun run typecheck` runs all three.
 
 ## Docker
 

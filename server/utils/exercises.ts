@@ -15,7 +15,12 @@ import {
   type AlternativeBank,
   type AlternativeDropReason,
 } from "../../shared/accepted-alternatives";
-import { isLevel, type Candidate, type Level } from "../../shared/practice";
+import {
+  isCandidate,
+  isLevel,
+  type Candidate,
+  type Level,
+} from "../../shared/practice";
 import {
   isNonEmpty,
   parseReadings,
@@ -112,7 +117,7 @@ export interface LoadTally<Reason extends string> {
 // What validation kept and dropped: sentences and alternative records,
 // spelling references, and phrase-hint entries.
 export interface LoadReport {
-  sentences: LoadTally<"no-valid-reading">;
+  sentences: LoadTally<"malformed" | "duplicate-id" | "no-valid-reading">;
   alternatives: LoadTally<AlternativeDropReason | OrphanReason>;
   spellings: LoadTally<SpellingDropReason | OrphanReason>;
   phraseHints: LoadTally<PhraseHintDropReason | OrphanReason>;
@@ -143,12 +148,16 @@ export function droppedCount(tally: LoadTally<string>): number {
 }
 
 // Validate and parse a stored record once; request handlers trust the result.
-// Returns null when the reference has no usable reading.
+// Returns null when the record is malformed or has no usable reading.
 export function loadSentence(
-  row: Candidate,
+  row: unknown,
   banks: Banks = {},
   report: LoadReport = emptyLoadReport(),
 ): Sentence | null {
+  if (!isCandidate(row)) {
+    dropInto(report.sentences)("malformed");
+    return null;
+  }
   const readings = parseReadings(row.japanese, row.furiganaVariants).map(
     (reading) => {
       const wordBoundaries = generated(
@@ -234,15 +243,23 @@ export function loadSentence(
 
 // Load every record and account for each one that validation dropped.
 export function loadExercises(
-  rows: Candidate[],
+  rows: readonly unknown[],
   banks: Banks = {},
 ): { exercises: Sentence[]; report: LoadReport } {
   const report = emptyLoadReport();
+  const rowIds = new Set<string>();
   const exercises = rows.flatMap((row) => {
+    // A repeated ID would make lookups by ID return the wrong sentence.
+    if (isCandidate(row)) {
+      if (rowIds.has(row.id)) {
+        dropInto(report.sentences)("duplicate-id");
+        return [];
+      }
+      rowIds.add(row.id);
+    }
     const sentence = loadSentence(row, banks, report);
     return sentence ? [sentence] : [];
   });
-  const rowIds = new Set(rows.map((row) => row.id));
   const loaded = new Map(exercises.map((sentence) => [sentence.id, sentence]));
   const orphan = (id: string): OrphanReason | null =>
     loaded.has(id)
@@ -279,9 +296,9 @@ export function summarizeLoadReport(report: LoadReport): string {
     .join("; ");
 }
 
-export const candidates = raw as Candidate[];
+export const candidates: Candidate[] = (raw as unknown[]).filter(isCandidate);
 export const candidateById = new Map(candidates.map((row) => [row.id, row]));
-const loaded = loadExercises(candidates, defaultBanks);
+const loaded = loadExercises(raw as unknown[], defaultBanks);
 export const exercises = loaded.exercises;
 export const loadReport = loaded.report;
 export const exerciseById = new Map(exercises.map((row) => [row.id, row]));

@@ -59,6 +59,45 @@ export interface Candidate {
   sources: { tatoebaUrl: string | null }[];
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return (
+    Array.isArray(value) && value.every((item) => typeof item === "string")
+  );
+}
+
+// The stored dataset is imported JSON, so check its shape before trusting it.
+export function isCandidate(value: unknown): value is Candidate {
+  return (
+    isRecord(value) &&
+    typeof value.id === "string" &&
+    !!value.id &&
+    typeof value.english === "string" &&
+    typeof value.japanese === "string" &&
+    isStringArray(value.furiganaVariants) &&
+    typeof value.englishWordCount === "number" &&
+    Number.isInteger(value.englishWordCount) &&
+    value.englishWordCount >= 0 &&
+    Array.isArray(value.targetVocabulary) &&
+    value.targetVocabulary.every(
+      (target) =>
+        isRecord(target) &&
+        typeof target.id === "string" &&
+        typeof target.word === "string" &&
+        typeof target.level === "string",
+    ) &&
+    Array.isArray(value.sources) &&
+    value.sources.every(
+      (source) =>
+        isRecord(source) &&
+        (source.tatoebaUrl === null || typeof source.tatoebaUrl === "string"),
+    )
+  );
+}
+
 export interface Question {
   id: string;
   english: string;

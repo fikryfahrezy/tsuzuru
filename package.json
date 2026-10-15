@@ -34,7 +34,7 @@
     "lint:fix": "bun --bun oxlint --fix .",
     "format": "bun --bun oxfmt --write .",
     "format:check": "bun --bun oxfmt --check .",
-    "typecheck": "bun --bun nuxt typecheck && bun --bun tsc --project tsconfig.scripts.json",
+    "typecheck": "bun --bun nuxt typecheck && bun --bun tsc --project tsconfig.scripts.json && bun --bun tsc --project tsconfig.tests.json",
     "check": "bun run lint && bun run format:check && bun run typecheck && bun run test"
   },
   "dependencies": {

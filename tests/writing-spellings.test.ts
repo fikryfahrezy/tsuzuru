@@ -13,6 +13,7 @@ import {
   exercises,
 } from "../server/utils/exercises";
 import { sentence } from "./sentences";
+import type { Sentence } from "../shared/sentence";
 import bank from "../data/spelling-variants/bank.json";
 import manifest from "../data/manifest.json";
 import { createApp, toWebHandler } from "h3";
@@ -283,7 +284,7 @@ test("every generated span loads and matches its recorded reference with consist
         (item) => item.japanese === reference.japanese,
       )!;
       // Compare against this rendering alone, restricted to the recorded reading.
-      const source = {
+      const source: Sentence = {
         ...candidate,
         reference: {
           japanese: rendering.japanese,

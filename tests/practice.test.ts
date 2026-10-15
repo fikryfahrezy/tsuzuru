@@ -4,6 +4,7 @@ import {
   compare,
   Strictness,
   isWithinLevel,
+  Length,
   lengthOf,
   levels,
   validReadings,
@@ -79,10 +80,10 @@ describe("reference writing comparison", () => {
   });
   test("length buckets include their boundaries", () => {
     expect([7, 8, 12, 13].map(lengthOf)).toEqual([
-      "short",
-      "medium",
-      "medium",
-      "long",
+      Length.Short,
+      Length.Medium,
+      Length.Medium,
+      Length.Long,
     ]);
   });
 });

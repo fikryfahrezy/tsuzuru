@@ -109,4 +109,20 @@ describe("corrupting one bank record breaks the budget", () => {
     expect(report.levels.dropped).toEqual({ "stale-entry": 1 });
     expect(violations(report)).not.toEqual([]);
   });
+
+  test("malformed and duplicate sentence rows", () => {
+    const [first, second] = candidates;
+    const rows: unknown[] = [
+      first,
+      { ...first },
+      { ...second, furiganaVariants: "not a list" },
+      null,
+    ];
+    const { exercises, report } = loadExercises(rows, defaultBanks);
+    expect(exercises.map((sentence) => sentence.id)).toEqual([first!.id]);
+    expect(report.sentences.dropped).toEqual({
+      "duplicate-id": 1,
+      malformed: 2,
+    });
+  });
 });

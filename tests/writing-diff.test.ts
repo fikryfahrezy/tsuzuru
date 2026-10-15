@@ -1,5 +1,10 @@
 import { describe, expect, test } from "bun:test";
-import { compare, Strictness, type Candidate } from "../shared/practice";
+import {
+  compare,
+  DifferenceKind,
+  Strictness,
+  type Candidate,
+} from "../shared/practice";
 import { sentence as load } from "./sentences";
 
 const record: Candidate = {
@@ -24,18 +29,18 @@ describe("character differences", () => {
       "みずを飲みまし",
       Strictness.Flexible,
     ).differences!;
-    expect(diff.answer.filter((part) => part.kind !== "same")).toEqual([
-      { text: "し", kind: "changed" },
-    ]);
-    expect(diff.expected.filter((part) => part.kind !== "same")).toEqual([
-      { text: "す", kind: "changed" },
-    ]);
+    expect(
+      diff.answer.filter((part) => part.kind !== DifferenceKind.Same),
+    ).toEqual([{ text: "し", kind: DifferenceKind.Changed }]);
+    expect(
+      diff.expected.filter((part) => part.kind !== DifferenceKind.Same),
+    ).toEqual([{ text: "す", kind: DifferenceKind.Changed }]);
   });
   test("marks missing characters at their insertion position", () => {
     const diff = compare(sentence, "水を飲ます", Strictness.Exact).differences!;
     expect(diff.answer[3]).toEqual({
       text: "□",
-      kind: "missing",
+      kind: DifferenceKind.Missing,
       expected: "み",
     });
     expect(diff.expected.map((part) => part.text).join("")).toBe(
@@ -48,10 +53,12 @@ describe("character differences", () => {
       "水をを飲みます",
       Strictness.Flexible,
     ).differences!;
-    expect(diff.answer.filter((part) => part.kind === "extra")).toEqual([
-      { text: "を", kind: "extra" },
-    ]);
-    expect(diff.answer.filter((part) => part.kind === "changed")).toEqual([]);
+    expect(
+      diff.answer.filter((part) => part.kind === DifferenceKind.Extra),
+    ).toEqual([{ text: "を", kind: DifferenceKind.Extra }]);
+    expect(
+      diff.answer.filter((part) => part.kind === DifferenceKind.Changed),
+    ).toEqual([]);
   });
   test("places missing final letters before ignored punctuation", () => {
     const diff = compare(
@@ -68,13 +75,13 @@ describe("character differences", () => {
     const diff = compare(sentence, answer, Strictness.Kana).differences!;
     expect(
       diff.answer
-        .filter((part) => part.kind !== "missing")
+        .filter((part) => part.kind !== DifferenceKind.Missing)
         .map((part) => part.text)
         .join(""),
     ).toBe(answer);
-    expect(diff.answer.filter((part) => part.kind === "changed")).toEqual([
-      { text: "ｼ", kind: "changed" },
-    ]);
+    expect(
+      diff.answer.filter((part) => part.kind === DifferenceKind.Changed),
+    ).toEqual([{ text: "ｼ", kind: DifferenceKind.Changed }]);
   });
   test("does not split a supplementary character or emoji", () => {
     const diff = compare(
@@ -82,7 +89,10 @@ describe("character differences", () => {
       "水を飲みます😀",
       Strictness.Exact,
     ).differences!;
-    expect(diff.answer.at(-1)).toEqual({ text: "😀", kind: "extra" });
+    expect(diff.answer.at(-1)).toEqual({
+      text: "😀",
+      kind: DifferenceKind.Extra,
+    });
   });
   test("uses the closest approved reading", () => {
     const tomorrow = load({
@@ -92,9 +102,9 @@ describe("character differences", () => {
     });
     const diff = compare(tomorrow, "あしだです", Strictness.Kana).differences!;
     expect(diff.expected.map((part) => part.text).join("")).toBe("あしたです");
-    expect(diff.answer.filter((part) => part.kind !== "same")).toEqual([
-      { text: "だ", kind: "changed" },
-    ]);
+    expect(
+      diff.answer.filter((part) => part.kind !== DifferenceKind.Same),
+    ).toEqual([{ text: "だ", kind: DifferenceKind.Changed }]);
   });
   test("handles many mixed alternatives without enumerating combinations", () => {
     const repeated = load({
@@ -107,9 +117,9 @@ describe("character differences", () => {
       "水みず".repeat(12) + "でし",
       Strictness.Flexible,
     ).differences!;
-    expect(diff.answer.filter((part) => part.kind !== "same")).toEqual([
-      { text: "し", kind: "changed" },
-    ]);
+    expect(
+      diff.answer.filter((part) => part.kind !== DifferenceKind.Same),
+    ).toEqual([{ text: "し", kind: DifferenceKind.Changed }]);
   });
   test("incorrect homophone kanji is highlighted", () => {
     const bridge = load({
@@ -119,6 +129,6 @@ describe("character differences", () => {
     });
     expect(
       compare(bridge, "箸です", Strictness.Flexible).differences!.answer[0],
-    ).toEqual({ text: "箸", kind: "changed" });
+    ).toEqual({ text: "箸", kind: DifferenceKind.Changed });
   });
 });

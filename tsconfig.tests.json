@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.scripts.json",
+  "compilerOptions": {
+    "resolveJsonModule": true
+  },
+  "include": ["tests/**/*.ts", "server/types/**/*.d.ts"]
+}
