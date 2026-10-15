@@ -62,6 +62,7 @@ export interface Candidate {
     provenance: AlternativeProvenance;
   }[];
 }
+
 export interface Question {
   id: string;
   english: string;
@@ -71,17 +72,29 @@ export interface Question {
   poolSize: number;
   alternativeCount: number;
   wordBank: AnswerChip[];
+  answerBreakdown: AnswerBreakdownPart[];
 }
+
+export interface AnswerBreakdownPart extends AnswerChip {
+  romaji: string;
+  meanings: string[];
+  dictionaryForm?: string;
+  wordTypes: string[];
+  note?: string;
+}
+
 export interface AnswerChip {
   japanese: string;
   kana: string;
 }
+
 export interface VocabularyHint {
   japanese: string;
   reading: string;
   romaji: string;
   meaning: string;
 }
+
 export interface PromptPart {
   text: string;
   isWord: boolean;
@@ -89,16 +102,19 @@ export interface PromptPart {
   phrase?: string;
   hintSource?: HintSource;
 }
+
 export interface DifferencePart {
   text: string;
   kind: DifferenceKind;
   expected?: string;
 }
+
 export interface AlternativeAnswer {
   japanese: string;
   kana: string;
   provenance: AlternativeProvenance;
 }
+
 export interface Comparison {
   matched: boolean;
   reference: string;
@@ -109,16 +125,19 @@ export interface Comparison {
   acceptedAlternative?: AlternativeAnswer;
   alternatives?: AlternativeAnswer[];
 }
+
 export interface WritingEdit {
   actual: string;
   expected: string;
   context: string;
 }
+
 export interface DifferenceDetails {
   answer: DifferencePart[];
   expected: DifferencePart[];
   edits?: WritingEdit[];
 }
+
 export interface WritingExplanation {
   title: string;
   detail: string;

@@ -33,6 +33,7 @@ const grammarButton = ref<HTMLButtonElement | null>(null);
 const field = ref<HTMLTextAreaElement | null>(null);
 const chipField = ref<HTMLElement | null>(null);
 const resultStatus = ref<HTMLElement | null>(null);
+const breakdownOpen = ref(false);
 const chips = computed(() => props.question?.wordBank ?? []);
 const locked = computed(
   () => props.loading || !props.question || props.checking || !!props.result,
@@ -78,6 +79,7 @@ watch(
   () => {
     selected.value = [];
     typedDraft.value = "";
+    breakdownOpen.value = false;
   },
 );
 watch(
@@ -119,17 +121,33 @@ defineExpose({
           >
             YOUR JAPANESE
           </label>
-          <button
-            ref="grammarButton"
-            type="button"
-            class="grammar-toggle"
-            :aria-expanded="grammarOpen"
-            aria-controls="practice-grammar-reference"
-            @click="emit('grammar')"
-          >
-            {{ grammarOpen ? "Close reference ×" : "Grammar reference ↗" }}
-          </button>
+          <div class="reference-tools">
+            <button
+              type="button"
+              class="grammar-toggle"
+              :aria-expanded="breakdownOpen"
+              aria-controls="answer-breakdown"
+              :disabled="loading || !question"
+              @click="breakdownOpen = !breakdownOpen"
+            >
+              {{ breakdownOpen ? "Hide breakdown ×" : "Answer breakdown ↗" }}
+            </button>
+            <button
+              ref="grammarButton"
+              type="button"
+              class="grammar-toggle"
+              :aria-expanded="grammarOpen"
+              aria-controls="practice-grammar-reference"
+              @click="emit('grammar')"
+            >
+              {{ grammarOpen ? "Close reference ×" : "Grammar reference ↗" }}
+            </button>
+          </div>
         </div>
+        <AnswerBreakdown
+          v-if="breakdownOpen && question"
+          :parts="question.answerBreakdown"
+        />
         <div class="input-options" role="group" aria-label="Answer input">
           <button
             v-for="item in [
@@ -513,6 +531,12 @@ defineExpose({
   justify-content: space-between;
   gap: 12px;
   padding-top: 16px;
+  flex-wrap: wrap;
+}
+.reference-tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 .writing-tools label {
   padding-top: 0;

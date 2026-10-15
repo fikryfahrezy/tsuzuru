@@ -7,6 +7,7 @@ import { romajiHint } from "../shared/romaji";
 import { wordHints } from "../server/utils/word-hints";
 import { exerciseById } from "../server/utils/exercises";
 import { answerChips } from "../server/utils/answer-chips";
+import { answerBreakdown } from "../server/utils/answer-breakdown";
 
 function api() {
   const app = createApp();
@@ -28,6 +29,9 @@ test("sentence selection loads a dataset entry regardless of filters or previous
     const response = await handle(new Request(url + suffix));
     expect(response.status).toBe(200);
     const question = await response.json();
+    expect(question.answerBreakdown).toEqual(
+      answerBreakdown(selected, question.wordBank, question.wordHints),
+    );
     expect(
       question.wordBank.map((chip: unknown) => JSON.stringify(chip)).sort(),
     ).toEqual(
@@ -79,7 +83,12 @@ test("invalid IDs fail explicitly and requests without IDs still select from the
     new Request("http://localhost/api/exercises?level=N5&length=short"),
   );
   expect(random.status).toBe(200);
-  expect(exerciseById.has((await random.json()).id)).toBe(true);
+  const question = await random.json();
+  const candidate = exerciseById.get(question.id)!;
+  expect(candidate).toBeDefined();
+  expect(question.answerBreakdown).toEqual(
+    answerBreakdown(candidate, question.wordBank, question.wordHints),
+  );
 });
 
 test("sentence API delivers contextual and separated phrase hints", async () => {

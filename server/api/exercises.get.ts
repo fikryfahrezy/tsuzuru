@@ -4,6 +4,7 @@ import { exercises, exerciseById } from "../utils/exercises";
 import { romajiHint } from "../../shared/romaji";
 import { wordHints } from "../utils/word-hints";
 import { shuffledAnswerChips } from "../utils/answer-chips";
+import { answerBreakdown } from "../utils/answer-breakdown";
 import {
   lengthOf,
   isLevel,
@@ -25,15 +26,18 @@ export default defineEventHandler((event): Question => {
         statusCode: 404,
         statusMessage: "This sentence is unavailable.",
       });
+    const hints = wordHints(selected);
+    const chips = shuffledAnswerChips(selected);
     return {
       id: selected.id,
       english: selected.english,
       romaji: romajiHint(selected),
-      wordHints: wordHints(selected),
+      wordHints: hints,
       wordCount: selected.englishWordCount,
       poolSize: 1,
       alternativeCount: selected.acceptedAlternatives?.length ?? 0,
-      wordBank: shuffledAnswerChips(selected),
+      wordBank: chips,
+      answerBreakdown: answerBreakdown(selected, chips, hints),
     };
   }
   if (!isLevel(query.level) || !isLength(query.length)) {
@@ -55,14 +59,17 @@ export default defineEventHandler((event): Question => {
   const alternatives = pool.filter((row) => row.id !== query.previous);
   const available = alternatives.length ? alternatives : pool;
   const row = available[randomInt(available.length)]!;
+  const hints = wordHints(row);
+  const chips = shuffledAnswerChips(row);
   return {
     id: row.id,
     english: row.english,
     romaji: romajiHint(row),
-    wordHints: wordHints(row),
+    wordHints: hints,
     wordCount: row.englishWordCount,
     poolSize: pool.length,
     alternativeCount: row.acceptedAlternatives?.length ?? 0,
-    wordBank: shuffledAnswerChips(row),
+    wordBank: chips,
+    answerBreakdown: answerBreakdown(row, chips, hints),
   };
 });

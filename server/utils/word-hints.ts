@@ -52,7 +52,10 @@ function englishWords(text: string): string[] {
     text.toLowerCase().match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu) ?? []
   );
 }
-for (const entry of [...n5, ...n4, ...n3, ...n2, ...n1]) {
+
+export const vocabulary = [...n5, ...n4, ...n3, ...n2, ...n1];
+
+for (const entry of vocabulary) {
   for (const meaning of entry.meanings) {
     const clean = meaning
       .replace(/\([^)]*\)/gu, "")
