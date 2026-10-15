@@ -9,6 +9,7 @@ Built with Nuxt, Vue, and Bun. No account or AI service is required to practice.
 - Choose an N5–N1 vocabulary focus and short, medium, or long prompts.
 - Practice in kana only, kana + kanji, or exact writing mode.
 - Reveal romaji and vocabulary hints when you need them.
+- Look up N5–N1 grammar, formation rules, and examples alongside your draft.
 - Review character differences and optionally accept pre-generated alternatives.
 - Save up to 100 journal entries in your browser.
 - Install the workspace as an app; view your saved journal offline.

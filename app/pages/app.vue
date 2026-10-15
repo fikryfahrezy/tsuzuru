@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { definePageMeta, useHead, useSeoMeta } from "#imports";
+import { ref, nextTick } from "vue";
 import { PracticeTab } from "~/utils/practice";
 import { usePracticeSession } from "~/composables/usePracticeSession";
 definePageMeta({ alias: ["/practice"] });
@@ -46,6 +47,21 @@ const {
   shortcut,
   resetJournal,
 } = usePracticeSession();
+const grammarOpen = ref(false);
+const grammarVisited = ref(false);
+async function toggleGrammar() {
+  if (grammarOpen.value) return closeGrammar();
+  grammarVisited.value = true;
+  grammarOpen.value = true;
+  settingsOpen.value = false;
+  await nextTick();
+  document.getElementById("grammar-search")?.focus();
+}
+async function closeGrammar() {
+  grammarOpen.value = false;
+  await nextTick();
+  writingCard.value?.focusGrammar();
+}
 function selectTab(value: PracticeTab) {
   tab.value = value;
   settingsOpen.value = false;
@@ -75,7 +91,10 @@ function selectTab(value: PracticeTab) {
           class="settings-toggle"
           :aria-expanded="settingsOpen"
           aria-controls="practice-settings"
-          @click="settingsOpen = !settingsOpen"
+          @click="
+            settingsOpen = !settingsOpen;
+            grammarOpen = false;
+          "
         >
           {{ settingsOpen ? "Close settings ×" : "Settings ☰" }}
         </button>
@@ -85,14 +104,19 @@ function selectTab(value: PracticeTab) {
         You’re offline. Your saved journal is available. Connect to load
         sentences and check answers.
       </p>
-      <div v-if="tab === PracticeTab.Practice" class="practice-layout">
+      <div
+        v-if="tab === PracticeTab.Practice"
+        class="practice-layout"
+        :class="{ 'with-reference': grammarOpen }"
+      >
         <button
-          v-if="settingsOpen"
+          v-if="settingsOpen && !grammarOpen"
           class="settings-scrim"
           aria-label="Close settings"
           @click="settingsOpen = false"
         ></button>
         <PracticeSettings
+          v-show="!grammarOpen"
           v-model:level="level"
           v-model:length="length"
           v-model:mode="mode"
@@ -112,11 +136,21 @@ function selectTab(value: PracticeTab) {
           :revealed="revealed"
           :loading="loading"
           :checking="checking"
+          :grammar-open="grammarOpen"
           :error="error"
+          @grammar="toggleGrammar"
           @another="loadQuestion"
           @submit="submit"
           @next="nextSentence"
           @shortcut="shortcut"
+        />
+        <GrammarReference
+          v-show="grammarOpen"
+          v-if="grammarVisited"
+          id="practice-grammar-reference"
+          :initial-level="level"
+          closable
+          @close="closeGrammar"
         />
       </div>
       <PracticeJournal
@@ -254,6 +288,25 @@ function selectTab(value: PracticeTab) {
     z-index: 4;
     background: rgba(31, 28, 23, 0.2);
     border: 0;
+  }
+}
+</style>
+
+<style scoped>
+.practice-shell .practice-layout.with-reference {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+}
+.with-reference > .grammar-reference {
+  border-left: 1px solid var(--line);
+}
+@media (max-width: 850px) {
+  .practice-shell .practice-layout.with-reference {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(200px, 45%) minmax(0, 1fr);
+  }
+  .with-reference > .grammar-reference {
+    border-left: 0;
+    border-top: 1px solid var(--line);
   }
 }
 </style>

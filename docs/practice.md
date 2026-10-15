@@ -26,6 +26,27 @@ N5–N1 filters describe vocabulary focus, not the difficulty of the whole sente
 Hints may use dictionary forms or wording from the sentence reference. They are
 suggestions, not word-for-word translations.
 
+## Look up grammar while writing
+
+Open **Grammar reference** beside the answer label to search without leaving your
+prompt or losing your draft. Search in English, Japanese, or romaji—for example,
+“want to”, “must”, or `〜たい`. The panel starts at your current vocabulary level;
+choose **All levels** to broaden your search. Use **Browse by topic** to find
+patterns for wishes, permission, time, conditions, and other purposes. Topic,
+level, and search filters work together. **All topics** is the default, and a
+pattern can appear in several groups. Topic labels are Tsuzuru browsing aids
+mapped from the source tags.
+
+Open a pattern to read its meaning, formation, usage notes, and examples with
+furigana and translations. Related patterns share topic tags. Close the panel or
+press **Escape** to return to writing; reopening retains your search and entry.
+The reference sits beside your answer on desktop and below it on smaller screens.
+
+The navigation's **Reference** link opens the standalone `/grammar` library in a
+new tab. Reference entries come from the imported OpenJLPT snapshot and have not
+been independently reviewed; JLPT labels are unofficial estimates. The panel is
+a general reference and does not identify the required grammar for a prompt.
+
 ## Understand your result
 
 Highlights show replaced or extra characters; `□` marks missing characters.

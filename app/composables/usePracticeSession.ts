@@ -52,6 +52,7 @@ export function usePracticeSession() {
     online.value = navigator.onLine;
   }
   const writingCard = ref<{
+    focusGrammar: () => void;
     focusAnswer: () => void;
     focusResult: () => void;
   } | null>(null);

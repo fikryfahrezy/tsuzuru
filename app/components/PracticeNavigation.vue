@@ -34,6 +34,15 @@ const emit = defineEmits<{ select: [tab: PracticeTab] }>();
           <span class="nav-count">{{ journalCount }}</span>
         </span>
       </button>
+      <NuxtLink
+        class="reference-nav"
+        to="/grammar"
+        target="_blank"
+        title="Open grammar library in a new tab"
+      >
+        <span class="rail-mark" lang="ja" aria-hidden="true">引</span>
+        <span>Reference</span>
+      </NuxtLink>
     </nav>
     <NuxtLink class="workspace-credits" to="/sources" title="Data and credits">
       <span aria-hidden="true">ⓘ</span>
@@ -68,6 +77,7 @@ const emit = defineEmits<{ select: [tab: PracticeTab] }>();
   gap: 10px;
   width: 100%;
 }
+.workspace-rail nav .reference-nav,
 .workspace-rail nav button,
 .workspace-credits {
   display: flex;
@@ -126,6 +136,7 @@ const emit = defineEmits<{ select: [tab: PracticeTab] }>();
     justify-content: space-evenly;
     gap: 8px;
   }
+  .workspace-rail nav .reference-nav,
   .workspace-rail nav button,
   .workspace-credits {
     min-height: 49px;

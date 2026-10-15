@@ -12,18 +12,22 @@ defineProps<{
   loading: boolean;
   checking: boolean;
   error: string;
+  grammarOpen?: boolean;
 }>();
 const answer = defineModel<string>("answer", { required: true });
 const showRomaji = defineModel<boolean>("showRomaji", { required: true });
 const emit = defineEmits<{
+  grammar: [];
   another: [];
   submit: [reveal: boolean];
   next: [];
   shortcut: [event: KeyboardEvent];
 }>();
+const grammarButton = ref<HTMLButtonElement | null>(null);
 const field = ref<HTMLTextAreaElement | null>(null);
 const resultStatus = ref<HTMLElement | null>(null);
 defineExpose({
+  focusGrammar: () => grammarButton.value?.focus(),
   focusAnswer: () => field.value?.focus(),
   focusResult: () => resultStatus.value?.focus(),
 });
@@ -45,7 +49,19 @@ defineExpose({
     />
     <form @submit.prevent="emit('submit', false)">
       <div class="writing-field">
-        <label class="paper-label" for="answer">YOUR JAPANESE</label>
+        <div class="writing-tools">
+          <label class="paper-label" for="answer">YOUR JAPANESE</label>
+          <button
+            ref="grammarButton"
+            type="button"
+            class="grammar-toggle"
+            :aria-expanded="grammarOpen"
+            aria-controls="practice-grammar-reference"
+            @click="emit('grammar')"
+          >
+            {{ grammarOpen ? "Close reference ×" : "Grammar reference ↗" }}
+          </button>
+        </div>
         <textarea
           v-if="!result || revealed"
           id="answer"
@@ -343,5 +359,25 @@ defineExpose({
   .practice-shell .answer-review {
     font-size: 23px;
   }
+}
+</style>
+
+<style scoped>
+.writing-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+}
+.writing-tools label {
+  padding-top: 0;
+}
+.grammar-toggle {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--primary);
+  padding: 9px 10px;
+  font-size: 11px;
 }
 </style>
