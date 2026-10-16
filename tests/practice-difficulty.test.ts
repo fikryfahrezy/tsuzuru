@@ -6,6 +6,10 @@ import { pathToFileURL } from "node:url";
 import { compileScript, parse } from "@vue/compiler-sfc";
 import { createSSRApp, h, type Component } from "vue";
 import { renderToString } from "@vue/server-renderer";
+import { exerciseById } from "../server/utils/exercises";
+import { practiceDetails } from "../server/utils/practice-details";
+import { spellingOptions } from "../shared/writing-spellings";
+import { answerDetailsVersion } from "../shared/answer-entries";
 import {
   PracticeDifficulty,
   PracticePermission,
@@ -28,6 +32,11 @@ afterAll(() => rmSync(directory, { recursive: true, force: true }));
 function writeModule(name: string, source: string) {
   const imports: Record<string, string> = {
     vue: import.meta.resolve("vue"),
+    ofetch: import.meta.resolve("ofetch"),
+    "#shared/answer-entries": new URL(
+      "../shared/answer-entries.ts",
+      import.meta.url,
+    ).href,
     "#shared/practice": new URL("../shared/practice.ts", import.meta.url).href,
     "#shared/practice-difficulty": new URL(
       "../shared/practice-difficulty.ts",
@@ -65,6 +74,9 @@ let Card: Component;
 let Feedback: Component;
 let Breakdown: Component;
 let Settings: Component;
+let Spellings: Component;
+let JournalEntry: Component;
+
 beforeAll(async () => {
   const modules = [
     "PracticePrompt",
@@ -72,10 +84,11 @@ beforeAll(async () => {
     "PracticeFeedback",
     "AnswerBreakdown",
     "PracticeSettings",
+    "AcceptedSpellings",
+    "PracticeJournalEntry",
   ].map(component);
-  [Prompt, Card, Feedback, Breakdown, Settings] = await Promise.all(
-    modules.map(async (url) => (await import(url)).default),
-  );
+  [Prompt, Card, Feedback, Breakdown, Settings, Spellings, JournalEntry] =
+    await Promise.all(modules.map(async (url) => (await import(url)).default));
 });
 
 const question: Question = {
@@ -133,6 +146,7 @@ async function renderPractice(
   app.component("PracticePrompt", Prompt);
   app.component("PracticeFeedback", Feedback);
   app.component("AnswerBreakdown", Breakdown);
+  app.component("AcceptedSpellings", Spellings);
   app.component("WritingExplanations", { render: () => null });
   app.component("AlternativeAnswers", { render: () => null });
   return renderToString(app);
@@ -179,8 +193,30 @@ test("accepted spellings appear after checking without revealing Challenge answe
     withSpellings,
   );
   expect(after).toContain("Accepted spelling variants (1 word)");
+  expect(after).toContain(
+    "Includes kana readings and verified kanji spellings.",
+  );
   expect(after).toContain("むこう → 向こう");
   expect(after).toContain("even when alternative translations are off");
+});
+
+test("cake feedback lists all three words with accepted kana and kanji choices", async () => {
+  const cake = exerciseById.get("551307def08bb8669ec2aced")!;
+  const html = await renderPractice(
+    PracticeDifficulty.Guided,
+    {
+      matched: true,
+      reference: cake.reference.japanese,
+      kana: cake.reference.readings[0].kana,
+      sourceUrl: null,
+      differences: null,
+    },
+    { ...question, spellingOptions: spellingOptions(cake) },
+  );
+  expect(html).toContain("Accepted spelling variants (3 words)");
+  expect(html).toContain("すこし → 少し");
+  expect(html).toContain("お菓子 → おかし");
+  expect(html).toContain("食べません → たべません");
 });
 
 test("sentence notes sit above Show reference and leave settings", async () => {
@@ -197,7 +233,7 @@ test("sentence notes sit above Show reference and leave settings", async () => {
     await renderPractice(PracticeDifficulty.Guided, null, withSpellings)
   ).replace(/\s+/gu, " ");
   expect(before).toContain("0 additional translations for this sentence");
-  expect(before).toContain("3 words have verified spelling variants");
+  expect(before).toContain("3 words have accepted spelling variants");
   expect(before.indexOf("additional translations")).toBeLessThan(
     before.indexOf("Show reference"),
   );
@@ -229,7 +265,7 @@ test("sentence notes sit above Show reference and leave settings", async () => {
   const settings = (await renderToString(app)).replace(/\s+/gu, " ");
   expect(settings).toContain("Alternative translations");
   expect(settings).not.toContain("additional translations for this sentence");
-  expect(settings).not.toContain("verified spelling variants. These");
+  expect(settings).not.toContain("accepted spelling variants");
 });
 
 test("Challenge renders plain English and removes every practice aid even with saved hints open", async () => {
@@ -247,6 +283,17 @@ test("Challenge renders plain English and removes every practice aid even with s
   expect(challenge).not.toContain("Answer breakdown");
   expect(challenge).not.toContain("romaji-hint");
   expect(challenge).not.toContain("prompt-word");
+});
+
+test("breakdown renders verified spelling alternatives for the cake sentence", async () => {
+  const cake = exerciseById.get("551307def08bb8669ec2aced")!;
+  const parts = practiceDetails(cake).answerBreakdown;
+  const html = await renderToString(
+    createSSRApp(Breakdown, { parts, shuffled: false }),
+  );
+  expect(html).toContain("Accepted spellings:");
+  expect(html).toContain('<span lang="ja">少し</span>');
+  expect(html).toContain("すこし");
 });
 
 test("Challenge retains the ordered reference breakdown after checking", async () => {
@@ -290,4 +337,40 @@ test("the prompt explains when a small pool includes harder vocabulary", async (
   expect(await renderPractice(PracticeDifficulty.Guided)).not.toContain(
     "Few N5",
   );
+});
+
+test("journey entries show the saved spelling list after a storage round trip", async () => {
+  const cake = exerciseById.get("551307def08bb8669ec2aced")!;
+  const entry = JSON.parse(
+    JSON.stringify({
+      id: `${cake.id}-123`,
+      sentenceId: cake.id,
+      english: cake.english,
+      reference: cake.reference.japanese,
+      answer: cake.reference.japanese,
+      outcome: "matched",
+      date: "2026-10-16T00:00:00Z",
+      level: Level.N5,
+      answerDetailsVersion,
+      answerBreakdown: practiceDetails(cake).answerBreakdown,
+      spellingOptions: spellingOptions(cake),
+    }),
+  );
+  const render = async () => {
+    const app = createSSRApp(JournalEntry, { entry });
+    app.component("AnswerBreakdown", Breakdown);
+    app.component("AcceptedSpellings", Spellings);
+    app.component("AlternativeAnswers", { render: () => null });
+    app.component("WritingExplanations", { render: () => null });
+    return renderToString(app);
+  };
+  const html = await render();
+  expect(html).toContain("Accepted spelling variants (3 words)");
+  expect(html).toContain("すこし → 少し");
+  expect(html).toContain("お菓子 → おかし");
+  expect(html).toContain("食べません → たべません");
+  delete entry.spellingOptions;
+  const legacy = await render();
+  expect(legacy).toContain("Accepted spelling variants");
+  expect(legacy).not.toContain("Accepted spelling variants (0 words)");
 });

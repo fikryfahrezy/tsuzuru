@@ -61,7 +61,7 @@ before distribution, as described by EDRDG's licence statement.
 
 ## Approval rules and review
 
-For each noun, pronoun, verb, or adjective, the generator checks the reference's supplied
+For each noun, pronoun, verb, adjective, or adverb, the generator checks the reference's supplied
 furigana against Sudachi's reading. It excludes unknown words and proper names.
 It uses permitted JMdict spelling/reading pairs, excluding unusual-spelling
 flags and kana-only readings. Kana references must identify a single compatible

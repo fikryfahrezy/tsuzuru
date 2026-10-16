@@ -4,6 +4,7 @@ import {
   Strictness,
   type AnswerBreakdownPart,
   type Comparison,
+  type SpellingOption,
 } from "#shared/practice";
 
 export enum JournalOutcome {
@@ -26,6 +27,7 @@ export type JournalEntry = {
   id: string;
   sentenceId?: string;
   answerBreakdown?: AnswerBreakdownPart[];
+  spellingOptions?: SpellingOption[];
   answerDetailsVersion?: string;
   english: string;
   answer: string;

@@ -9,6 +9,18 @@ import { practiceDetails } from "../server/utils/practice-details";
 
 const water = exerciseById.get("213aa0ae8044611b00c1ba95")!;
 
+test("unannotated breakdown words include their verified spelling alternatives", () => {
+  const cake = exerciseById.get("551307def08bb8669ec2aced")!;
+  const parts = practiceDetails(cake).answerBreakdown;
+  expect(parts.find((part) => part.japanese === "すこし")).toMatchObject({
+    kana: "すこし",
+    spellings: ["少し"],
+  });
+  expect(
+    parts.find((part) => part.japanese === "を")?.spellings,
+  ).toBeUndefined();
+});
+
 test("kana pronouns retain contextual meanings and supplied readings in breakdowns", () => {
   const candidate = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
   const hints = wordHints(candidate);

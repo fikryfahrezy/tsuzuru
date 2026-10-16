@@ -22,11 +22,44 @@ import compareHandler from "../server/api/compare.post";
 const removal = exerciseById.get("6f089ad7d7e1f1da1398e9c9")!;
 const removalRecord = candidateById.get(removal.id)!;
 
+test("sukoshi offers its kanji spelling and accepts it in the cake sentence", () => {
+  const cake = exerciseById.get("551307def08bb8669ec2aced")!;
+  expect(spellingOptions(cake)).toEqual([
+    { japanese: "すこし", kana: "すこし", spellings: ["少し"] },
+    { japanese: "お菓子", kana: "おかし", spellings: ["おかし"] },
+    { japanese: "食べません", kana: "たべません", spellings: ["たべません"] },
+  ]);
+  const answer = "もう少しお菓子を食べませんか。";
+  for (const alternatives of [false, true]) {
+    expect(
+      compare(cake, answer, Strictness.Flexible, alternatives).matched,
+    ).toBe(true);
+  }
+  expect(compare(cake, answer, Strictness.Exact).matched).toBe(false);
+  for (const amount of ["すこし", "少し"])
+    for (const sweets of ["お菓子", "おかし"])
+      for (const verb of ["食べません", "たべません"])
+        expect(
+          compare(
+            cake,
+            `もう${amount}${sweets}を${verb}か。`,
+            Strictness.Flexible,
+            false,
+          ).matched,
+        ).toBe(true);
+  expect(
+    compare(cake, "もう小しお菓子を食べませんか。", Strictness.Flexible)
+      .matched,
+  ).toBe(false);
+});
+
 test("displayed spelling options show approved words separately from alternative translations", () => {
   const river = exerciseById.get("ed2c1d01698a754816d6a9ed")!;
   expect(spellingOptions(river)).toEqual([
     { japanese: "わたし", kana: "わたし", spellings: ["私"] },
+    { japanese: "川", kana: "かわ", spellings: ["かわ"] },
     { japanese: "むこう", kana: "むこう", spellings: ["向こう"] },
+    { japanese: "渡して", kana: "わたして", spellings: ["わたして"] },
     { japanese: "ください", kana: "ください", spellings: ["下さい"] },
   ]);
   expect(river.alternatives).toHaveLength(0);
@@ -38,7 +71,9 @@ test("displayed spelling options show approved words separately from alternative
     },
     defaultBanks,
   );
-  expect(spellingOptions(changed)).toEqual([]);
+  expect(spellingOptions(changed)).toEqual([
+    { japanese: "別の文", kana: "べつのぶん", spellings: ["べつのぶん"] },
+  ]);
 });
 
 test("reviewed mukou spelling accepts the spatial word and rejects homophones", () => {

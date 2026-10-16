@@ -75,30 +75,11 @@ const displayedReference = computed(() =>
       v-if="!revealed && !result.matched"
       :explanations="result.explanations ?? []"
     />
-    <details
+    <AcceptedSpellings
       v-if="spellingOptions?.length"
       :key="`${result.reference}-spellings`"
-      class="reference-breakdown"
-    >
-      <summary>
-        Accepted spelling variants ({{ spellingOptions.length }}
-        {{ spellingOptions.length === 1 ? "word" : "words" }})
-      </summary>
-      <p class="feedback-note">
-        Accepted in Kana + kanji mode, even when alternative translations are
-        off.
-      </p>
-      <ul class="spelling-options">
-        <li
-          v-for="option in spellingOptions"
-          :key="`${option.japanese}-${option.kana}`"
-          lang="ja"
-        >
-          {{ option.japanese }} → {{ option.spellings.join(" / ") }}
-          <span class="spelling-reading">（{{ option.kana }}）</span>
-        </li>
-      </ul>
-    </details>
+      :options="spellingOptions"
+    />
     <AlternativeAnswers
       v-if="result.alternatives"
       :alternatives="result.alternatives"
@@ -142,15 +123,6 @@ const displayedReference = computed(() =>
     12px/1.6 system-ui,
     sans-serif;
   color: var(--secondary);
-}
-.spelling-options {
-  padding-left: 20px;
-  font-size: 15px;
-  line-height: 1.8;
-}
-.spelling-reading {
-  color: var(--muted);
-  font-size: 12px;
 }
 .reference-text {
   font:

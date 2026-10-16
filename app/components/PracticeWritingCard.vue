@@ -357,8 +357,9 @@ defineExpose({
           {{
             question.spellingOptions.length === 1 ? "word has" : "words have"
           }}
-          verified spelling variants. These are accepted in Kana + kanji mode
-          even when alternative translations are off.
+          accepted spelling variants, including kana readings and verified kanji
+          spellings. You can combine these in Kana + kanji mode, even when
+          alternative translations are off.
         </p>
       </div>
       <button :disabled="checking" @click="emit('submit', true)">

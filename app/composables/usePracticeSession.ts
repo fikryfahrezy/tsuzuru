@@ -2,6 +2,7 @@ import { useRoute } from "#imports";
 import {
   answerDetailsVersion,
   currentAnswerBreakdown,
+  currentSpellingOptions,
 } from "#shared/answer-entries";
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { $fetch } from "ofetch";
@@ -24,6 +25,7 @@ import {
   type Comparison,
   type AlternativeAnswer,
   type AnswerBreakdownPart,
+  type SpellingOption,
 } from "#shared/practice";
 import {
   JournalOutcome,
@@ -159,6 +161,7 @@ export function usePracticeSession() {
           id: `${current.id}-${Date.now()}`,
           sentenceId: current.id,
           answerBreakdown: current.answerBreakdown,
+          spellingOptions: current.spellingOptions,
           answerDetailsVersion,
           english: current.english,
           answer: reveal ? "" : answer.value,
@@ -208,10 +211,15 @@ export function usePracticeSession() {
     journal.value = [];
     persist();
   }
-  function saveJournalBreakdown(id: string, parts: AnswerBreakdownPart[]) {
+  function saveJournalBreakdown(
+    id: string,
+    parts: AnswerBreakdownPart[],
+    spellingOptions: SpellingOption[],
+  ) {
     const entry = journal.value.find((entry) => entry.id === id);
     if (!entry) return;
     entry.answerBreakdown = parts;
+    entry.spellingOptions = spellingOptions;
     entry.answerDetailsVersion = answerDetailsVersion;
     persist();
   }
@@ -333,6 +341,7 @@ export function usePracticeSession() {
                   ? entry.sentenceId
                   : undefined,
               answerBreakdown: currentAnswerBreakdown(entry),
+              spellingOptions: currentSpellingOptions(entry),
               mode: modes.some((item) => item.value === entry.mode)
                 ? entry.mode
                 : undefined,

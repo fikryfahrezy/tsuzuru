@@ -36,6 +36,9 @@ class SpellingGeneratorTests(unittest.TestCase):
         self.assertEqual(generator.unambiguous_entry([bridge]), bridge)
 
     def test_part_of_speech_does_not_confuse_adverbs_with_verbs(self):
+        self.assertTrue(generator.compatible("adverb (fukushi)", "副詞"))
+        self.assertFalse(generator.compatible("Godan verb with 'su' ending", "副詞"))
+        self.assertFalse(generator.compatible("noun (common)", "副詞"))
         self.assertTrue(generator.compatible("Godan verb with 'su' ending", "動詞"))
         self.assertFalse(generator.compatible("adverb (fukushi)", "動詞"))
         self.assertFalse(generator.compatible("auxiliary verb", "動詞"))

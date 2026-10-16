@@ -1,4 +1,5 @@
 import { hiragana, parts, Strictness, type SpellingOption } from "./practice";
+import { answerChips } from "./answer-chips";
 import {
   primaryReading,
   type Reading,
@@ -165,20 +166,33 @@ export function spellingOptions(sentence: Sentence): SpellingOption[] {
   const { reference } = sentence;
   const primary = primaryReading(reference).furigana;
   const options = new Map<string, SpellingOption>();
-  for (const spelling of reference.spellings) {
-    if (spelling.furigana !== primary) continue;
-    for (const span of spelling.spans) {
-      const key = `${span.surface}\0${span.reading}`;
-      const option = options.get(key) ?? {
-        japanese: span.surface,
-        kana: span.reading,
-        spellings: [],
-      };
-      option.spellings = [
-        ...new Set([...option.spellings, ...span.spellings]),
-      ].filter((word) => word !== span.surface);
-      if (option.spellings.length) options.set(key, option);
+  let cursor = 0;
+  for (const chip of answerChips(sentence)) {
+    const start = reference.japanese.indexOf(chip.japanese, cursor);
+    if (start < 0) continue;
+    const end = start + chip.japanese.length;
+    cursor = end;
+    const variants = new Set<string>();
+    if (chip.kana !== chip.japanese) variants.add(chip.kana);
+    for (const spelling of reference.spellings) {
+      if (spelling.furigana !== primary) continue;
+      for (const span of spelling.spans) {
+        if (span.start < start || span.end > end) continue;
+        for (const variant of span.spellings) {
+          variants.add(
+            chip.japanese.slice(0, span.start - start) +
+              variant +
+              chip.japanese.slice(span.end - start),
+          );
+        }
+      }
     }
+    variants.delete(chip.japanese);
+    if (!variants.size) continue;
+    const key = `${chip.japanese}\0${chip.kana}`;
+    const option = options.get(key) ?? { ...chip, spellings: [] };
+    option.spellings = [...new Set([...option.spellings, ...variants])];
+    options.set(key, option);
   }
   return [...options.values()];
 }

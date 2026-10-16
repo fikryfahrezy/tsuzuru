@@ -1,25 +1,42 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { $fetch } from "ofetch";
-import { currentAnswerBreakdown } from "#shared/answer-entries";
+import {
+  currentAnswerBreakdown,
+  currentSpellingOptions,
+} from "#shared/answer-entries";
 import {
   DifferenceKind,
+  normalize,
   type AnswerBreakdownPart,
   type Question,
+  type SpellingOption,
 } from "#shared/practice";
 import { JournalOutcome, modes, type JournalEntry } from "~/utils/practice";
 const props = defineProps<{ entry: JournalEntry }>();
 const emit = defineEmits<{
-  breakdown: [id: string, parts: AnswerBreakdownPart[]];
+  breakdown: [
+    id: string,
+    parts: AnswerBreakdownPart[],
+    spellings: SpellingOption[],
+  ];
 }>();
 const fetchedBreakdown = ref<AnswerBreakdownPart[] | null>(null);
+const fetchedSpellings = ref<SpellingOption[]>();
+const spellingOptions = computed(
+  () => currentSpellingOptions(props.entry) ?? fetchedSpellings.value,
+);
 const breakdown = computed(
   () => currentAnswerBreakdown(props.entry) ?? fetchedBreakdown.value,
 );
 const loadingBreakdown = ref(false);
 const breakdownError = ref("");
 async function loadBreakdown() {
-  if (breakdown.value !== null || loadingBreakdown.value) return;
+  if (
+    (breakdown.value !== null && spellingOptions.value !== undefined) ||
+    loadingBreakdown.value
+  )
+    return;
   loadingBreakdown.value = true;
   breakdownError.value = "";
   try {
@@ -28,13 +45,25 @@ async function loadBreakdown() {
     const question = await $fetch<Question>("/api/exercises", {
       query: { sentence: sentenceId },
     });
-    if (question.id !== sentenceId || question.english !== props.entry.english)
+    if (
+      question.id !== sentenceId ||
+      question.english !== props.entry.english ||
+      normalize(
+        question.answerBreakdown.map((part) => part.japanese).join(""),
+      ) !== normalize(props.entry.reference)
+    )
       throw new Error("Sentence changed");
     fetchedBreakdown.value = question.answerBreakdown;
-    emit("breakdown", props.entry.id, question.answerBreakdown);
+    fetchedSpellings.value = question.spellingOptions;
+    emit(
+      "breakdown",
+      props.entry.id,
+      question.answerBreakdown,
+      question.spellingOptions,
+    );
   } catch {
     breakdownError.value =
-      "We couldn’t load this breakdown. Connect to the internet and try again; older sentences may no longer be available.";
+      "We couldn’t load these sentence details. Connect to the internet and try again; older sentences may no longer be available.";
   } finally {
     loadingBreakdown.value = false;
   }
@@ -164,6 +193,13 @@ function toggleBreakdown(event: Event) {
         :shuffled="false"
       />
     </details>
+    <AcceptedSpellings
+      v-if="spellingOptions === undefined || spellingOptions.length"
+      :options="spellingOptions"
+      :loading="loadingBreakdown"
+      :error="breakdownError"
+      @load="loadBreakdown"
+    />
     <WritingExplanations
       v-if="entry.outcome === JournalOutcome.Unmatched"
       :explanations="entry.comparison?.explanations ?? []"

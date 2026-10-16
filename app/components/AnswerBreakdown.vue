@@ -31,6 +31,10 @@ withDefaults(
           Dictionary form:
           <span lang="ja">{{ part.dictionaryForm }}</span>
         </p>
+        <p v-if="part.spellings?.length" class="breakdown-base">
+          Accepted spellings:
+          <span lang="ja">{{ part.spellings.join(" / ") }}</span>
+        </p>
         <ul v-if="part.meanings.length" class="breakdown-meanings">
           <li v-for="meaning in part.meanings" :key="meaning">{{ meaning }}</li>
         </ul>

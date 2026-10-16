@@ -1,4 +1,8 @@
-import { isAnswerBreakdownPart, type AnswerBreakdownPart } from "./practice";
+import {
+  isAnswerBreakdownPart,
+  type AnswerBreakdownPart,
+  type SpellingOption,
+} from "./practice";
 
 export interface EnglishSpan {
   start: number;
@@ -37,7 +41,27 @@ export interface AnswerAnnotationBank {
 
 // Bump when contextual annotations or their interpretation change, so journal
 // entries refresh their saved breakdown on demand.
-export const answerDetailsVersion = "answer-entries-v1";
+export const answerDetailsVersion = "answer-entries-v2";
+
+export function currentSpellingOptions(entry: {
+  answerDetailsVersion?: unknown;
+  spellingOptions?: unknown;
+}): SpellingOption[] | undefined {
+  return entry.answerDetailsVersion === answerDetailsVersion &&
+    Array.isArray(entry.spellingOptions) &&
+    entry.spellingOptions.every(
+      (option) =>
+        option &&
+        typeof option.japanese === "string" &&
+        typeof option.kana === "string" &&
+        Array.isArray(option.spellings) &&
+        option.spellings.every(
+          (spelling: unknown) => typeof spelling === "string",
+        ),
+    )
+    ? entry.spellingOptions
+    : undefined;
+}
 
 export function currentAnswerBreakdown(entry: {
   answerDetailsVersion?: unknown;

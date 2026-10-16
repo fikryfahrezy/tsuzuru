@@ -46,8 +46,13 @@ function positionedEntries(sentence: Sentence): AnswerEntry[] {
     const end = offsets[offset + chip.japanese.length - 1]!.end;
     offset += chip.japanese.length;
     if (!/[\p{L}\p{N}]/u.test(chip.japanese)) continue;
+    const spellings = referenceSpellings(sentence, {
+      japanese: chip.japanese,
+      reading: chip.kana,
+    });
     entries.push({
       ...dictionary[dictionaryIndex++]!,
+      ...(spellings.length ? { spellings } : {}),
       entryId: `ja-${start}-${end}`,
       start,
       end,

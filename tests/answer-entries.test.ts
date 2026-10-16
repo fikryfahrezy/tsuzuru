@@ -10,9 +10,37 @@ import type { SentenceAnswerAnnotations } from "../shared/answer-entries";
 import {
   answerDetailsVersion,
   currentAnswerBreakdown,
+  currentSpellingOptions,
 } from "../shared/answer-entries";
 
 const arrival = exerciseById.get("10c2500a48ed97e4312958f9")!;
+
+test("saved journey spellings require current details and valid data", () => {
+  const spellingOptions = [
+    { japanese: "すこし", kana: "すこし", spellings: ["少し"] },
+  ];
+  expect(
+    currentSpellingOptions(
+      JSON.parse(JSON.stringify({ answerDetailsVersion, spellingOptions })),
+    ),
+  ).toEqual(spellingOptions);
+  expect(currentSpellingOptions({ spellingOptions })).toBeUndefined();
+  expect(
+    currentSpellingOptions({ answerDetailsVersion, spellingOptions: [] }),
+  ).toEqual([]);
+  for (const invalid of [
+    null,
+    {},
+    [{ japanese: "すこし", kana: "すこし", spellings: [null] }],
+  ]) {
+    expect(
+      currentSpellingOptions({
+        answerDetailsVersion,
+        spellingOptions: invalid,
+      }),
+    ).toBeUndefined();
+  }
+});
 const record = answerAnnotationRecords.find(
   (entry) => entry.sentenceId === arrival.id,
 )!;

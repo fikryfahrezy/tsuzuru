@@ -83,6 +83,8 @@ def load_dictionary(path):
 
 
 def compatible(pos, token_pos):
+    if token_pos == "副詞":
+        return re.search(r"\badverb\b", pos) is not None
     if token_pos == "代名詞":
         return re.search(r"\bpronoun\b", pos) is not None
     if token_pos == "動詞":
@@ -156,7 +158,7 @@ def generate(args):
                 spans = []
                 for index, token in enumerate(tokens):
                     pos = token.part_of_speech()
-                    if token.is_oov() or pos[0] not in ("動詞", "形容詞", "名詞", "代名詞") or pos[1] == "固有名詞":
+                    if token.is_oov() or pos[0] not in ("動詞", "形容詞", "名詞", "代名詞", "副詞") or pos[1] == "固有名詞":
                         continue
                     reading = slice_reading(segments, token.begin(), token.end())
                     if reading != hira(token.reading_form()):
