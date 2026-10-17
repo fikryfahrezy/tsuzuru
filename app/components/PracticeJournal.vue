@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { JournalEntry } from "~/utils/practice";
 import type { AnswerBreakdownPart, SpellingOption } from "#shared/practice";
-defineProps<{ journal: JournalEntry[] }>();
+defineProps<{ journal: JournalEntry[]; checking: boolean }>();
 const emit = defineEmits<{
   clear: [];
   practice: [];
+  retry: [entry: JournalEntry];
   breakdown: [
     id: string,
     parts: AnswerBreakdownPart[],
@@ -32,6 +33,8 @@ const emit = defineEmits<{
       v-for="entry in journal"
       :key="entry.id"
       :entry="entry"
+      :checking="checking"
+      @retry="emit('retry', entry)"
       @breakdown="
         (id, parts, spellings) => emit('breakdown', id, parts, spellings)
       "

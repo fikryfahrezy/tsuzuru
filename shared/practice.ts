@@ -1,3 +1,5 @@
+import type { GrammarExplanation } from "./grammar";
+import { isGrammarExplanation } from "./grammar";
 import { writingDifferences } from "./writing-diff";
 import { explainWriting } from "./writing-explanations";
 import { writingPaths } from "./writing-spellings";
@@ -131,6 +133,7 @@ export interface AnswerBreakdownPart extends AnswerChip {
   dictionaryForm?: string;
   wordTypes: string[];
   note?: string;
+  grammar?: GrammarExplanation[];
 }
 
 export function isAnswerBreakdownPart(
@@ -155,7 +158,9 @@ export function isAnswerBreakdownPart(
     part.wordTypes.every((type) => typeof type === "string") &&
     (part.dictionaryForm === undefined ||
       typeof part.dictionaryForm === "string") &&
-    (part.note === undefined || typeof part.note === "string")
+    (part.note === undefined || typeof part.note === "string") &&
+    (part.grammar === undefined ||
+      (Array.isArray(part.grammar) && part.grammar.every(isGrammarExplanation)))
   );
 }
 

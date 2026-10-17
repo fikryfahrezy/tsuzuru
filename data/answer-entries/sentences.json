@@ -29,6 +29,24 @@
             "ja-4-7"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 2,
+          "end": 4,
+          "japanese": "ごろ",
+          "grammarIds": [
+            "goro"
+          ]
+        },
+        {
+          "start": 4,
+          "end": 7,
+          "japanese": "起きた",
+          "grammarIds": [
+            "ta"
+          ]
+        }
       ]
     },
     {
@@ -59,6 +77,17 @@
             "ja-9-15"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 9,
+          "end": 15,
+          "japanese": "着飾っていた",
+          "grammarIds": [
+            "te-iru",
+            "ta"
+          ]
+        }
       ]
     },
     {
@@ -87,6 +116,24 @@
           ],
           "answerEntryIds": [
             "ja-2-7"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 2,
+          "end": 7,
+          "japanese": "朝寝坊して",
+          "grammarIds": [
+            "te-reason"
+          ]
+        },
+        {
+          "start": 10,
+          "end": 13,
+          "japanese": "遅れた",
+          "grammarIds": [
+            "ta"
           ]
         }
       ]
@@ -124,6 +171,16 @@
             "ja-3-6"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 3,
+          "end": 14,
+          "japanese": "つけていただけませんか",
+          "grammarIds": [
+            "te-kuremasen-ka-te-itadakemasen-ka"
+          ]
+        }
       ]
     },
     {
@@ -152,6 +209,16 @@
           ],
           "answerEntryIds": [
             "ja-7-10"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 7,
+          "end": 13,
+          "japanese": "つけて下さい",
+          "grammarIds": [
+            "te-kudasai"
           ]
         }
       ]
@@ -184,6 +251,24 @@
             "ja-10-13"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 0,
+          "end": 4,
+          "japanese": "暑かった",
+          "grammarIds": [
+            "ku-nai-katta-ku-nakatta"
+          ]
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "japanese": "ので",
+          "grammarIds": [
+            "node"
+          ]
+        }
       ]
     },
     {
@@ -212,6 +297,16 @@
           ],
           "answerEntryIds": [
             "ja-13-16"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 7,
+          "end": 8,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
           ]
         }
       ]
@@ -244,6 +339,32 @@
             "ja-3-9"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 2,
+          "end": 3,
+          "japanese": "が",
+          "grammarIds": [
+            "ga-subject"
+          ]
+        },
+        {
+          "start": 3,
+          "end": 9,
+          "japanese": "自転している",
+          "grammarIds": [
+            "te-iru"
+          ]
+        },
+        {
+          "start": 9,
+          "end": 10,
+          "japanese": "の",
+          "grammarIds": [
+            "no-koto-nominalizer"
+          ]
+        }
       ]
     },
     {
@@ -272,6 +393,24 @@
           ],
           "answerEntryIds": [
             "ja-9-14"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 6,
+          "end": 7,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 9,
+          "end": 14,
+          "japanese": "目が覚めた",
+          "grammarIds": [
+            "ta"
           ]
         }
       ]
@@ -304,6 +443,16 @@
             "ja-5-10"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 10,
+          "japanese": "探している",
+          "grammarIds": [
+            "te-iru"
+          ]
+        }
       ]
     },
     {
@@ -332,6 +481,17 @@
           ],
           "answerEntryIds": [
             "ja-7-14"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 7,
+          "end": 14,
+          "japanese": "さがしています",
+          "grammarIds": [
+            "te-iru",
+            "masu"
           ]
         }
       ]
@@ -364,6 +524,24 @@
             "ja-11-16"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 4,
+          "end": 6,
+          "japanese": "して",
+          "grammarIds": [
+            "te-reason"
+          ]
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "japanese": "その",
+          "grammarIds": [
+            "kono-sono-ano-dono"
+          ]
+        }
       ]
     },
     {
@@ -392,6 +570,24 @@
           ],
           "answerEntryIds": [
             "ja-0-14"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 2,
+          "end": 7,
+          "japanese": "助からない",
+          "grammarIds": [
+            "nai"
+          ]
+        },
+        {
+          "start": 10,
+          "end": 14,
+          "japanese": "観念した",
+          "grammarIds": [
+            "ta"
           ]
         }
       ]
@@ -449,6 +645,24 @@
             "ja-17-20"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 7,
+          "end": 11,
+          "japanese": "はずして",
+          "grammarIds": [
+            "te"
+          ]
+        },
+        {
+          "start": 17,
+          "end": 20,
+          "japanese": "はめた",
+          "grammarIds": [
+            "ta"
+          ]
+        }
       ]
     },
     {
@@ -499,6 +713,24 @@
             "ja-13-15"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 8,
+          "japanese": "脱いで",
+          "grammarIds": [
+            "te"
+          ]
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "japanese": "着た",
+          "grammarIds": [
+            "ta"
+          ]
+        }
       ]
     },
     {
@@ -527,6 +759,32 @@
           ],
           "answerEntryIds": [
             "ja-2-6"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 1,
+          "end": 2,
+          "japanese": "が",
+          "grammarIds": [
+            "ga-subject"
+          ]
+        },
+        {
+          "start": 2,
+          "end": 6,
+          "japanese": "故障した",
+          "grammarIds": [
+            "ta"
+          ]
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "japanese": "ので",
+          "grammarIds": [
+            "node"
           ]
         }
       ]
@@ -559,6 +817,16 @@
             "ja-8-14"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 8,
+          "end": 14,
+          "japanese": "辟易している",
+          "grammarIds": [
+            "te-iru"
+          ]
+        }
       ]
     },
     {
@@ -589,6 +857,25 @@
             "ja-9-15"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 8,
+          "end": 9,
+          "japanese": "に",
+          "grammarIds": [
+            "ni-time"
+          ]
+        },
+        {
+          "start": 9,
+          "end": 15,
+          "japanese": "延期になった",
+          "grammarIds": [
+            "ku-naru-ni-naru",
+            "ta"
+          ]
+        }
       ]
     },
     {
@@ -617,6 +904,24 @@
           ],
           "answerEntryIds": [
             "ja-0-2"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 2,
+          "end": 3,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 12,
+          "end": 13,
+          "japanese": "か",
+          "grammarIds": [
+            "ka-question"
           ]
         }
       ]
@@ -669,6 +974,33 @@
             "ja-3-5"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 6,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 12,
+          "end": 13,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 16,
+          "end": 21,
+          "japanese": "はめていた",
+          "grammarIds": [
+            "te-iru",
+            "ta"
+          ]
+        }
       ]
     },
     {
@@ -699,6 +1031,33 @@
             "ja-5-8"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 1,
+          "end": 2,
+          "japanese": "が",
+          "grammarIds": [
+            "ga-subject"
+          ]
+        },
+        {
+          "start": 4,
+          "end": 5,
+          "japanese": "に",
+          "grammarIds": [
+            "ni-destination"
+          ]
+        },
+        {
+          "start": 5,
+          "end": 10,
+          "japanese": "越してきた",
+          "grammarIds": [
+            "te-kuru",
+            "ta"
+          ]
+        }
       ]
     },
     {
@@ -727,6 +1086,24 @@
           ],
           "answerEntryIds": [
             "ja-11-17"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 0,
+          "end": 2,
+          "japanese": "この",
+          "grammarIds": [
+            "kono-sono-ano-dono"
+          ]
+        },
+        {
+          "start": 11,
+          "end": 18,
+          "japanese": "かけましょうか",
+          "grammarIds": [
+            "mashou-ka"
           ]
         }
       ]
@@ -762,6 +1139,27 @@
           ],
           "answerEntryIds": [
             "ja-5-8"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 4,
+          "end": 5,
+          "japanese": "に",
+          "grammarIds": [
+            "ni-location"
+          ]
+        },
+        {
+          "start": 5,
+          "end": 15,
+          "japanese": "泊めてもらえませんか",
+          "grammarIds": [
+            "te-morau",
+            "eru-rareru-potential",
+            "masen",
+            "ka-question"
           ]
         }
       ]
@@ -819,6 +1217,24 @@
             "ja-12-15"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 8,
+          "end": 9,
+          "japanese": "で",
+          "grammarIds": [
+            "de-means"
+          ]
+        },
+        {
+          "start": 11,
+          "end": 12,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
+          ]
+        }
       ]
     },
     {
@@ -874,6 +1290,24 @@
             "ja-0-5"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 6,
+          "japanese": "で",
+          "grammarIds": [
+            "de-place"
+          ]
+        },
+        {
+          "start": 6,
+          "end": 14,
+          "japanese": "降ろしてください",
+          "grammarIds": [
+            "te-kudasai"
+          ]
+        }
       ]
     },
     {
@@ -904,6 +1338,24 @@
             "ja-3-6"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 6,
+          "end": 7,
+          "japanese": "に",
+          "grammarIds": [
+            "ni-time"
+          ]
+        },
+        {
+          "start": 12,
+          "end": 13,
+          "japanese": "か",
+          "grammarIds": [
+            "ka-question"
+          ]
+        }
       ]
     },
     {
@@ -932,6 +1384,24 @@
           ],
           "answerEntryIds": [
             "ja-4-10"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 13,
+          "end": 14,
+          "japanese": "の",
+          "grammarIds": [
+            "no-koto-nominalizer"
+          ]
+        },
+        {
+          "start": 14,
+          "end": 17,
+          "japanese": "が好き",
+          "grammarIds": [
+            "ga-suki-ga-kirai"
           ]
         }
       ]
@@ -1117,6 +1587,33 @@
             "ja-10-15"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 9,
+          "japanese": "一人の男",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 9,
+          "end": 10,
+          "japanese": "が",
+          "grammarIds": [
+            "ga-subject"
+          ]
+        },
+        {
+          "start": 10,
+          "end": 15,
+          "japanese": "やってきた",
+          "grammarIds": [
+            "te-kuru",
+            "ta"
+          ]
+        }
       ]
     },
     {
@@ -1205,6 +1702,24 @@
           ],
           "answerEntryIds": [
             "ja-6-10"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 2,
+          "end": 6,
+          "japanese": "あなたの",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "japanese": "より",
+          "grammarIds": [
+            "yori"
           ]
         }
       ]
@@ -1297,6 +1812,24 @@
             "ja-2-5"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 2,
+          "end": 5,
+          "japanese": "もまた",
+          "grammarIds": [
+            "mo"
+          ]
+        },
+        {
+          "start": 10,
+          "end": 11,
+          "japanese": "に",
+          "grammarIds": [
+            "ni-destination"
+          ]
+        }
       ]
     },
     {
@@ -1345,6 +1878,16 @@
           ],
           "answerEntryIds": [
             "ja-5-6"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 4,
+          "end": 5,
+          "japanese": "で",
+          "grammarIds": [
+            "de-place"
           ]
         }
       ]
@@ -1437,6 +1980,32 @@
             "ja-7-10"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 0,
+          "end": 2,
+          "japanese": "それ",
+          "grammarIds": [
+            "kore-sore-are-dore"
+          ]
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "japanese": "あなたの",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 10,
+          "end": 14,
+          "japanese": "ではない",
+          "grammarIds": [
+            "de-wa-arimasen-ja-nai"
+          ]
+        }
       ]
     },
     {
@@ -1485,6 +2054,16 @@
           ],
           "answerEntryIds": [
             "ja-0-2"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 0,
+          "end": 2,
+          "japanese": "ここ",
+          "grammarIds": [
+            "koko-soko-asoko-doko"
           ]
         }
       ]
@@ -1577,6 +2156,16 @@
             "ja-2-4"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 6,
+          "japanese": "に",
+          "grammarIds": [
+            "ni-location"
+          ]
+        }
       ]
     },
     {
@@ -1635,6 +2224,24 @@
           ],
           "answerEntryIds": [
             "ja-11-14"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 0,
+          "end": 2,
+          "japanese": "この",
+          "grammarIds": [
+            "kono-sono-ano-dono"
+          ]
+        },
+        {
+          "start": 11,
+          "end": 16,
+          "japanese": "新しくない",
+          "grammarIds": [
+            "ku-nai-katta-ku-nakatta"
           ]
         }
       ]
@@ -1747,6 +2354,24 @@
             "ja-9-11"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 4,
+          "end": 5,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 11,
+          "end": 12,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
+          ]
+        }
       ]
     },
     {
@@ -1817,6 +2442,32 @@
             "ja-13-17"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 6,
+          "japanese": "の",
+          "grammarIds": [
+            "no"
+          ]
+        },
+        {
+          "start": 9,
+          "end": 10,
+          "japanese": "に",
+          "grammarIds": [
+            "ni-destination"
+          ]
+        },
+        {
+          "start": 10,
+          "end": 17,
+          "japanese": "渡してください",
+          "grammarIds": [
+            "te-kudasai"
+          ]
+        }
       ]
     },
     {
@@ -1845,6 +2496,33 @@
           ],
           "answerEntryIds": [
             "ja-9-12"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 6,
+          "japanese": "に",
+          "grammarIds": [
+            "ni-time"
+          ]
+        },
+        {
+          "start": 8,
+          "end": 9,
+          "japanese": "か",
+          "grammarIds": [
+            "ka-embedded-question"
+          ]
+        },
+        {
+          "start": 9,
+          "end": 15,
+          "japanese": "調べてみよう",
+          "grammarIds": [
+            "te-miru",
+            "ou-you"
           ]
         }
       ]
@@ -1877,6 +2555,16 @@
             "ja-13-16"
           ]
         }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 6,
+          "end": 7,
+          "japanese": "で",
+          "grammarIds": [
+            "de-means"
+          ]
+        }
       ]
     },
     {
@@ -1905,6 +2593,25 @@
           ],
           "answerEntryIds": [
             "ja-7-10"
+          ]
+        }
+      ],
+      "grammarAnnotations": [
+        {
+          "start": 6,
+          "end": 7,
+          "japanese": "が",
+          "grammarIds": [
+            "ga-subject"
+          ]
+        },
+        {
+          "start": 7,
+          "end": 14,
+          "japanese": "曇ってしまった",
+          "grammarIds": [
+            "te-shimau-chau",
+            "ta"
           ]
         }
       ]

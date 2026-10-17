@@ -32,6 +32,7 @@ afterAll(() => rmSync(directory, { recursive: true, force: true }));
 function writeModule(name: string, source: string) {
   const imports: Record<string, string> = {
     vue: import.meta.resolve("vue"),
+    sortablejs: import.meta.resolve("sortablejs"),
     ofetch: import.meta.resolve("ofetch"),
     "#shared/answer-entries": new URL(
       "../shared/answer-entries.ts",
@@ -373,4 +374,89 @@ test("journey entries show the saved spelling list after a storage round trip", 
   const legacy = await render();
   expect(legacy).toContain("Accepted spelling variants");
   expect(legacy).not.toContain("Accepted spelling variants (0 words)");
+});
+
+test("the journal keeps the latest attempt for each sentence regardless of outcome", async () => {
+  const { latestJournalEntries, JournalOutcome } = await import(
+    pathToFileURL(join(directory, "practice.ts")).href
+  );
+  const entry = {
+    id: "water-1",
+    sentenceId: "water",
+    english: "Water",
+    reference: "水",
+    answer: "水",
+    outcome: JournalOutcome.Matched,
+    date: "2026-10-16T00:00:00Z",
+    level: Level.N5,
+  };
+  const other = { ...entry, id: "tea-1", sentenceId: "tea", english: "Tea" };
+  for (const outcome of Object.values(JournalOutcome)) {
+    const latest = {
+      ...entry,
+      id: "water-2",
+      answer: "latest answer",
+      outcome,
+      date: "2026-10-17T00:00:00Z",
+    };
+    // Restoring existing duplicates and saving a repeat both keep the newest row.
+    expect(latestJournalEntries([entry, other, latest])).toEqual([
+      latest,
+      other,
+    ]);
+    expect(latestJournalEntries([latest, other, entry])).toEqual([
+      latest,
+      other,
+    ]);
+  }
+  expect(
+    latestJournalEntries([
+      { ...entry, sentenceId: undefined },
+      {
+        ...entry,
+        sentenceId: undefined,
+        id: "water-older",
+        date: "2026-10-15",
+      },
+    ]),
+  ).toHaveLength(0);
+  expect(
+    latestJournalEntries([
+      entry,
+      { ...entry, id: "different", sentenceId: "different" },
+    ]),
+  ).toHaveLength(2);
+  const many = Array.from({ length: 105 }, (_, index) => ({
+    ...entry,
+    id: `entry-${index}`,
+    sentenceId: `sentence-${index}`,
+  }));
+  expect(latestJournalEntries([entry, entry, ...many])).toHaveLength(100);
+});
+
+test("every journal outcome offers a retry action", async () => {
+  for (const outcome of ["matched", "unmatched", "revealed"]) {
+    const app = createSSRApp(JournalEntry, {
+      entry: {
+        id: "water-123",
+        sentenceId: "water",
+        english: "Water",
+        reference: "水",
+        answer: "水",
+        outcome,
+        date: "2026-10-17T00:00:00Z",
+        level: Level.N5,
+        answerDetailsVersion,
+        answerBreakdown: question.answerBreakdown,
+        spellingOptions: [],
+      },
+    });
+    app.component("AnswerBreakdown", Breakdown);
+    app.component("AcceptedSpellings", Spellings);
+    app.component("AlternativeAnswers", { render: () => null });
+    app.component("WritingExplanations", { render: () => null });
+    const html = await renderToString(app);
+    expect(html).toContain('aria-label="Retry: Water"');
+    expect(html).toContain("Retry ↻");
+  }
 });

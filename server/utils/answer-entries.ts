@@ -1,3 +1,7 @@
+import {
+  validGrammarAnnotations,
+  withBreakdownGrammar,
+} from "./breakdown-grammar";
 import bank from "../../data/answer-entries/sentences.json";
 import type { SentenceAnswerAnnotations } from "../../shared/answer-entries";
 import {
@@ -65,7 +69,11 @@ export function sentenceAnswerEntries(
   record: SentenceAnswerAnnotations | undefined = annotations.get(sentence.id),
 ) {
   const base = positionedEntries(sentence);
-  const fallback = { entries: base, hintMappings: [], validAnnotations: false };
+  const fallback = {
+    entries: withBreakdownGrammar(sentence, base, base),
+    hintMappings: [],
+    validAnnotations: false,
+  };
   if (
     !record ||
     record.sentenceId !== sentence.id ||
@@ -73,6 +81,8 @@ export function sentenceAnswerEntries(
     record.japanese !== sentence.reference.japanese ||
     record.furigana !== primaryReading(sentence.reference).furigana
   )
+    return fallback;
+  if (!validGrammarAnnotations(sentence, base, record.grammarAnnotations ?? []))
     return fallback;
   const replacements: AnswerEntry[] = [];
   const ids = new Set<string>();
@@ -157,15 +167,20 @@ export function sentenceAnswerEntries(
     }
   }
   return {
-    entries: [
-      ...base.filter(
-        (part) =>
-          !replacements.some(
-            (entry) => entry.start <= part.start && entry.end >= part.end,
-          ),
-      ),
-      ...replacements,
-    ].sort((a, b) => a.start - b.start),
+    entries: withBreakdownGrammar(
+      sentence,
+      [
+        ...base.filter(
+          (part) =>
+            !replacements.some(
+              (entry) => entry.start <= part.start && entry.end >= part.end,
+            ),
+        ),
+        ...replacements,
+      ].sort((a, b) => a.start - b.start),
+      base,
+      record.grammarAnnotations,
+    ),
     hintMappings: record.hintMappings,
     validAnnotations: true,
   };

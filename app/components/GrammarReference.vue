@@ -1,19 +1,34 @@
 <script setup lang="ts">
 import { computed, ref, watch, nextTick } from "vue";
 import { useFetch } from "#imports";
-import { Level } from "#shared/practice";
+import { Level, type Question } from "#shared/practice";
+import { GrammarScope } from "~/utils/grammar";
 import {
   grammarTopics,
+  grammarForBreakdown,
   topicsForGrammar,
   type GrammarTopic,
   furiganaParts,
   searchGrammar,
   type GrammarEntry,
 } from "#shared/grammar";
-const props = defineProps<{ initialLevel?: Level; closable?: boolean }>();
+const props = withDefaults(
+  defineProps<{
+    initialLevel?: Level;
+    closable?: boolean;
+    sentence?: Pick<Question, "id" | "answerBreakdown">;
+    open?: boolean;
+  }>(),
+  { open: true },
+);
 const emit = defineEmits<{ close: [] }>();
 const query = ref("");
-const level = ref<Level | "all">(props.initialLevel ?? "all");
+const scope = ref<GrammarScope>(
+  props.sentence ? GrammarScope.Sentence : GrammarScope.All,
+);
+const level = ref<Level | "all">(
+  props.sentence ? "all" : (props.initialLevel ?? "all"),
+);
 const topic = ref<GrammarTopic | "all">("all");
 const selected = ref<GrammarEntry | null>(null);
 const scrollArea = ref<HTMLElement | null>(null);
@@ -23,15 +38,37 @@ watch(selected, async (entry) => {
   scrollArea.value?.scrollTo({ top: 0 });
   if (entry) lessonHeading.value?.focus({ preventScroll: true });
   else
-    document.getElementById("grammar-search")?.focus({ preventScroll: true });
+    document
+      .getElementById(
+        scope.value === GrammarScope.Sentence
+          ? "grammar-sentence-scope"
+          : "grammar-search",
+      )
+      ?.focus({ preventScroll: true });
 });
 const { data, status, error, refresh } = useFetch<GrammarEntry[]>(
   "/api/grammar",
   { lazy: true },
 );
-const results = computed(() =>
-  searchGrammar(data.value ?? [], query.value, level.value, topic.value),
+const sentenceGrammar = computed(() =>
+  grammarForBreakdown(data.value ?? [], props.sentence?.answerBreakdown ?? []),
 );
+const results = computed(() =>
+  scope.value === GrammarScope.Sentence
+    ? sentenceGrammar.value
+    : searchGrammar(data.value ?? [], query.value, level.value, topic.value),
+);
+function changeScope(value: GrammarScope) {
+  scope.value = value;
+  query.value = "";
+  level.value = "all";
+  topic.value = "all";
+  selected.value = null;
+}
+watch([() => props.sentence?.id, () => props.open], () => {
+  if (props.open)
+    changeScope(props.sentence ? GrammarScope.Sentence : GrammarScope.All);
+});
 const related = computed(() =>
   selected.value
     ? (data.value ?? [])
@@ -68,52 +105,82 @@ const related = computed(() =>
     <div ref="scrollArea" class="reference-scroll">
       <template v-if="!selected">
         <p class="intro">
-          Find a way to say what you mean.
+          <template v-if="sentence && scope === GrammarScope.Sentence">
+            Explore grammar identified in your current sentence.
+          </template>
+          <template v-else>Find a way to say what you mean.</template>
           <template v-if="closable">
             Your writing stays right where you left it.
           </template>
         </p>
-        <label class="search-label" for="grammar-search">
-          Search in English or Japanese
-        </label>
-        <input
-          id="grammar-search"
-          v-model="query"
-          type="search"
-          placeholder="“want to”, “because”, 〜たい…"
-        />
-        <div class="reference-filters">
-          <div>
-            <label class="search-label" for="grammar-level">
-              Browse by level
-            </label>
-            <select id="grammar-level" v-model="level">
-              <option value="all">All levels</option>
-              <option v-for="item in Level" :key="item" :value="item">
-                {{ item }}
-              </option>
-            </select>
-          </div>
-          <div>
-            <label class="search-label" for="grammar-topic">
-              Browse by topic
-            </label>
-            <select id="grammar-topic" v-model="topic">
-              <option value="all">All topics</option>
-              <option
-                v-for="group in grammarTopics"
-                :key="group.id"
-                :value="group.id"
-              >
-                {{ group.label }}
-              </option>
-            </select>
-          </div>
+        <div
+          v-if="sentence"
+          class="reference-scopes"
+          role="group"
+          aria-label="Grammar scope"
+        >
+          <button
+            id="grammar-sentence-scope"
+            class="scope-button"
+            :aria-pressed="scope === GrammarScope.Sentence"
+            @click="changeScope(GrammarScope.Sentence)"
+          >
+            This sentence
+            <span v-if="status === 'success'">
+              ({{ sentenceGrammar.length }})
+            </span>
+          </button>
+          <button
+            class="scope-button"
+            :aria-pressed="scope === GrammarScope.All"
+            @click="changeScope(GrammarScope.All)"
+          >
+            All grammar
+          </button>
         </div>
-        <p class="search-tip">
-          Patterns can belong to more than one topic. Try all topics or all
-          levels to broaden your search.
-        </p>
+        <template v-if="scope === GrammarScope.All">
+          <label class="search-label" for="grammar-search">
+            Search in English or Japanese
+          </label>
+          <input
+            id="grammar-search"
+            v-model="query"
+            type="search"
+            placeholder="“want to”, “because”, 〜たい…"
+          />
+          <div class="reference-filters">
+            <div>
+              <label class="search-label" for="grammar-level">
+                Browse by level
+              </label>
+              <select id="grammar-level" v-model="level">
+                <option value="all">All levels</option>
+                <option v-for="item in Level" :key="item" :value="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label class="search-label" for="grammar-topic">
+                Browse by topic
+              </label>
+              <select id="grammar-topic" v-model="topic">
+                <option value="all">All topics</option>
+                <option
+                  v-for="group in grammarTopics"
+                  :key="group.id"
+                  :value="group.id"
+                >
+                  {{ group.label }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <p class="search-tip">
+            Patterns can belong to more than one topic. Try all topics or all
+            levels to broaden your search.
+          </p>
+        </template>
         <p v-if="status === 'pending'" role="status">Loading grammar…</p>
         <div v-else-if="error" role="alert">
           <p>Couldn’t load the reference. Check your connection.</p>
@@ -125,9 +192,23 @@ const related = computed(() =>
             {{ results.length === 1 ? "point" : "points" }}
           </p>
           <p v-if="!results.length" class="intro">
-            No matching patterns. Try a shorter phrase, all topics, or all
-            levels.
+            <template
+              v-if="scope === GrammarScope.Sentence && !sentenceGrammar.length"
+            >
+              No grammar points have been linked to this sentence yet.
+              <button
+                class="text-button"
+                @click="changeScope(GrammarScope.All)"
+              >
+                Browse all grammar
+              </button>
+            </template>
+            <template v-else>
+              No matching patterns. Try a shorter phrase, all topics, or all
+              levels.
+            </template>
             <button
+              v-if="scope === GrammarScope.All"
               class="text-button"
               @click="
                 query = '';
@@ -165,7 +246,8 @@ const related = computed(() =>
       </template>
       <article v-else class="grammar-lesson">
         <button class="text-button back-button" @click="selected = null">
-          ← Back to results
+          ← Back to
+          {{ scope === GrammarScope.Sentence ? "this sentence" : "results" }}
         </button>
         <span class="level-badge">{{ selected.level }}</span>
         <h3 ref="lessonHeading" tabindex="-1" lang="ja">
@@ -257,6 +339,26 @@ const related = computed(() =>
   height: 100%;
   background: var(--surface);
   color: var(--ink);
+}
+.reference-scopes {
+  display: flex;
+  gap: 8px;
+  margin: 18px 0;
+}
+.scope-button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--secondary);
+  padding: 9px 12px;
+  font:
+    12px system-ui,
+    sans-serif;
+  cursor: pointer;
+}
+.scope-button[aria-pressed="true"] {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--paper);
 }
 .reference-heading {
   display: flex;

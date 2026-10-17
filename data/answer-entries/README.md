@@ -52,3 +52,26 @@ so saved journal breakdowns refresh when opened. Run `bun test tests` and
 `bun run typecheck`. Tests include independent expected meanings for reported
 regressions, malformed and stale data, repeated occurrences, separated phrases,
 and a check that removing mappings leaves the breakdown unchanged.
+
+`grammarAnnotations` optionally links exact Japanese occurrences to any of the
+526 OpenJLPT lessons. Each annotation has `start`, `end`, exact `japanese`, and
+one or more `grammarIds` (the lesson IDs, unique across levels). Spans must start
+and end at base breakdown word boundaries and can cover multiple words. Unlike
+hint mappings, they do not require an English translation or change word grouping.
+Choose the lesson for the occurrence's actual role: for example `yori` for
+comparison, `no` for possession, and `no-koto-nominalizer` for nominalization.
+
+Breakdowns show the lesson's meaning, formation, usage notes, and first example.
+An explanation belongs to the entry containing the span's start; its full Japanese
+span is displayed even when the construction crosses several entries. Explicit
+spans replace automatic form explanations within that span. Grammar from base
+words survives grouping into maintained phrases. Common unambiguous particles
+and verified inflected verbs receive automatic lessons; ambiguous roles require
+annotations. This supports every lesson, but does not claim automatic recognition
+of all Japanese grammar in the sentence corpus. Missing or stale annotations
+must never be inferred from substring matches. Existing general particle notes
+remain available when the particular role has not been annotated.
+
+An unknown lesson ID or invalid grammar span rejects the sentence annotation in
+the same way as an invalid hint mapping. Bump `answerDetailsVersion` for changes
+to grammar annotations or automatic interpretation too.

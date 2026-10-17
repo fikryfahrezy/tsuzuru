@@ -1,4 +1,4 @@
-import type { Level } from "./practice";
+import type { AnswerBreakdownPart, Level } from "./practice";
 
 export interface GrammarEntry {
   id: string;
@@ -10,6 +10,59 @@ export interface GrammarEntry {
   notes?: string;
   tags: string[];
   examples: { ja: string; en: string; furigana?: string }[];
+}
+
+// A lesson linked to a particular occurrence in the reference answer.
+export interface GrammarExplanation {
+  id: string;
+  japanese: string;
+  start: number;
+  end: number;
+  pattern: string;
+  meaning: string;
+  formation: string;
+  notes?: string;
+  example?: { ja: string; en: string };
+}
+
+export function isGrammarExplanation(
+  value: unknown,
+): value is GrammarExplanation {
+  if (!value || typeof value !== "object") return false;
+  const entry = value as GrammarExplanation;
+  return (
+    [
+      entry.id,
+      entry.japanese,
+      entry.pattern,
+      entry.meaning,
+      entry.formation,
+    ].every((text) => typeof text === "string" && !!text.trim()) &&
+    Number.isInteger(entry.start) &&
+    entry.start >= 0 &&
+    Number.isInteger(entry.end) &&
+    entry.end > entry.start &&
+    (entry.notes === undefined || typeof entry.notes === "string") &&
+    (entry.example === undefined ||
+      (!!entry.example &&
+        typeof entry.example.ja === "string" &&
+        typeof entry.example.en === "string"))
+  );
+}
+
+// Preserve first occurrence order while showing each lesson only once.
+export function grammarForBreakdown(
+  entries: GrammarEntry[],
+  parts: AnswerBreakdownPart[],
+): GrammarEntry[] {
+  const byId = new Map(entries.map((entry) => [entry.id, entry]));
+  const ids = new Set(
+    parts.flatMap((part) => (part.grammar ?? []).map((entry) => entry.id)),
+  );
+  return [...ids].flatMap((id) => {
+    const entry = byId.get(id);
+    return entry ? [entry] : [];
+  });
 }
 
 // Tsuzuru browsing categories mapped from OpenJLPT's original topic tags.

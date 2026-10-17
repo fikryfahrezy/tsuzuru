@@ -38,6 +38,19 @@ export type JournalEntry = {
   mode?: Strictness;
   comparison?: Comparison | null;
 };
+
+export function latestJournalEntries(entries: JournalEntry[]): JournalEntry[] {
+  const seen = new Set<string>();
+  return [...entries]
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+    .filter((entry) => {
+      if (!entry.sentenceId || seen.has(entry.sentenceId)) return false;
+      seen.add(entry.sentenceId);
+      return true;
+    })
+    .slice(0, 100);
+}
+
 export const lengthOptions = [
   { value: Length.Short, label: "Short", note: "1–7 words" },
   { value: Length.Medium, label: "Medium", note: "8–12 words" },

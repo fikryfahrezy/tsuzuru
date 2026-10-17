@@ -12,9 +12,9 @@ withDefaults(
     <p class="breakdown-help">
       Words from the reference, in
       {{ shuffled ? "shuffled" : "sentence" }} order. Meanings may vary with
-      context.
+      context. Expand a grammar point for its formation and an example.
     </p>
-    <ul>
+    <ul tabindex="0" aria-label="Answer breakdown items">
       <li v-for="(part, index) in parts" :key="index">
         <div class="breakdown-heading">
           <span class="breakdown-word" lang="ja">{{ part.japanese }}</span>
@@ -53,11 +53,47 @@ withDefaults(
           </p>
         </details>
         <p v-if="part.note" class="breakdown-note">{{ part.note }}</p>
-        <p v-if="!part.meanings.length && !part.note" class="breakdown-note">
+        <details
+          v-for="grammar in part.grammar ?? []"
+          :key="`${grammar.id}-${grammar.start}-${grammar.end}`"
+          class="breakdown-grammar"
+        >
+          <summary>
+            <span class="grammar-label">
+              Grammar ·
+              <span lang="ja">{{ grammar.pattern }}</span>
+            </span>
+            <span class="grammar-meaning">{{ grammar.meaning }}</span>
+          </summary>
+          <p class="breakdown-base">
+            In this answer:
+            <span lang="ja">{{ grammar.japanese }}</span>
+          </p>
+          <p>
+            <strong>Formation:</strong>
+            {{ grammar.formation }}
+          </p>
+          <p v-if="grammar.notes">{{ grammar.notes }}</p>
+          <div v-if="grammar.example" class="grammar-example">
+            <p lang="ja">{{ grammar.example.ja }}</p>
+            <p>{{ grammar.example.en }}</p>
+          </div>
+        </details>
+        <p
+          v-if="!part.meanings.length && !part.note && !part.grammar?.length"
+          class="breakdown-note"
+        >
           No contextual meaning available for this form.
         </p>
       </li>
     </ul>
+    <p
+      v-if="parts.some((part) => part.grammar?.length)"
+      class="breakdown-credit"
+    >
+      Grammar lessons from OpenJLPT · CC BY-SA 4.0.
+      <NuxtLink to="/sources" target="_blank">Data &amp; credits ↗</NuxtLink>
+    </p>
     <p v-if="!parts.length" class="breakdown-help">
       No breakdown available for this sentence.
     </p>
@@ -66,6 +102,7 @@ withDefaults(
 
 <style scoped>
 .answer-breakdown {
+  min-width: 0;
   padding: 18px;
   border: 1px solid var(--line);
   background: rgba(251, 247, 232, 0.6);
@@ -85,11 +122,17 @@ h3 {
 }
 .answer-breakdown > ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: min(280px, 100%);
+  overflow-x: auto;
   gap: 12px;
-  padding: 0;
+  padding: 0 0 8px;
   margin: 0;
   list-style: none;
+}
+.answer-breakdown > ul:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 .answer-breakdown > ul > li {
   min-width: 0;
@@ -128,5 +171,33 @@ h3 {
 .breakdown-note {
   margin: 10px 0 0;
   color: var(--secondary);
+}
+.breakdown-grammar {
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.breakdown-grammar summary {
+  cursor: pointer;
+}
+.grammar-label {
+  color: var(--green);
+  font-weight: 600;
+}
+.grammar-meaning {
+  display: block;
+  margin-top: 4px;
+}
+.breakdown-grammar p {
+  margin: 8px 0;
+}
+.grammar-example {
+  border-left: 2px solid var(--line);
+  padding-left: 10px;
+}
+.breakdown-credit {
+  color: var(--secondary);
+  font-size: 11px;
+  margin: 16px 0 0;
 }
 </style>

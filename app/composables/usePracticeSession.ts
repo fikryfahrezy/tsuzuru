@@ -32,6 +32,7 @@ import {
   AnswerInput,
   PracticeTab,
   modes,
+  latestJournalEntries,
   type JournalEntry,
 } from "~/utils/practice";
 
@@ -64,6 +65,7 @@ export function usePracticeSession() {
   const error = ref("");
   const storageNote = ref("");
   const journal = ref<JournalEntry[]>([]);
+  const retryEntry = ref<JournalEntry | null>(null);
   const ready = ref(false);
   const online = ref(true);
   function updateConnection() {
@@ -100,6 +102,10 @@ export function usePracticeSession() {
 
   async function loadQuestion() {
     const sequence = ++request;
+    const selectedSentence = retryEntry.value
+      ? (retryEntry.value.sentenceId ??
+        retryEntry.value.id.replace(/-\d+$/u, ""))
+      : sentence.value;
     const previous = question.value?.id;
     question.value = null;
     result.value = null;
@@ -115,15 +121,16 @@ export function usePracticeSession() {
           level: level.value,
           length: length.value,
           previous,
-          sentence: sentence.value,
+          sentence: selectedSentence,
         },
       });
       if (sequence !== request) return;
       question.value = next;
     } catch {
       if (sequence === request)
-        error.value =
-          sentence.value !== undefined
+        error.value = retryEntry.value
+          ? "We couldn’t load this journal sentence. Please try again; older sentences may no longer be available."
+          : selectedSentence !== undefined
             ? "We couldn’t load the requested sentence. Check the sentence ID or return to random practice."
             : "We couldn’t load a sentence. Please try again.";
     } finally {
@@ -156,7 +163,7 @@ export function usePracticeSession() {
       if (sequence !== request || current.id !== question.value?.id) return;
       result.value = comparison;
       revealed.value = reveal;
-      journal.value = [
+      journal.value = latestJournalEntries([
         {
           id: `${current.id}-${Date.now()}`,
           sentenceId: current.id,
@@ -172,14 +179,14 @@ export function usePracticeSession() {
               ? JournalOutcome.Matched
               : JournalOutcome.Unmatched,
           date: new Date().toISOString(),
-          level: level.value,
+          level: retryEntry.value?.level ?? level.value,
           mode: mode.value,
           comparison: reveal
             ? { ...comparison, differences: null, explanations: [] }
             : comparison,
         },
         ...journal.value,
-      ].slice(0, 100);
+      ]);
       persist();
       await nextTick();
       if (sequence === request) writingCard.value?.focusResult();
@@ -192,6 +199,16 @@ export function usePracticeSession() {
   }
 
   async function nextSentence() {
+    retryEntry.value = null;
+    await loadQuestion();
+    await nextTick();
+    writingCard.value?.focusAnswer();
+  }
+  async function retryJournalEntry(entry: JournalEntry) {
+    if (checking.value) return;
+    retryEntry.value = entry;
+    tab.value = PracticeTab.Practice;
+    settingsOpen.value = false;
     await loadQuestion();
     await nextTick();
     writingCard.value?.focusAnswer();
@@ -319,41 +336,43 @@ export function usePracticeSession() {
         if (typeof saved.acceptAlternatives === "boolean")
           acceptAlternatives.value = saved.acceptAlternatives;
         if (Array.isArray(saved.journal))
-          journal.value = saved.journal
-            .filter((entry: unknown): entry is JournalEntry => {
-              if (!entry || typeof entry !== "object") return false;
-              const row = entry as JournalEntry;
-              return (
-                typeof row.id === "string" &&
-                typeof row.english === "string" &&
-                typeof row.answer === "string" &&
-                typeof row.reference === "string" &&
-                typeof row.date === "string" &&
-                Number.isFinite(Date.parse(row.date)) &&
-                isLevel(row.level) &&
-                Object.values(JournalOutcome).includes(row.outcome)
-              );
-            })
-            .map((entry: JournalEntry) => ({
-              ...entry,
-              sentenceId:
-                typeof entry.sentenceId === "string"
-                  ? entry.sentenceId
+          journal.value = latestJournalEntries(
+            saved.journal
+              .filter((entry: unknown): entry is JournalEntry => {
+                if (!entry || typeof entry !== "object") return false;
+                const row = entry as JournalEntry;
+                return (
+                  typeof row.id === "string" &&
+                  typeof row.english === "string" &&
+                  typeof row.answer === "string" &&
+                  typeof row.reference === "string" &&
+                  typeof row.date === "string" &&
+                  Number.isFinite(Date.parse(row.date)) &&
+                  isLevel(row.level) &&
+                  Object.values(JournalOutcome).includes(row.outcome)
+                );
+              })
+              .map((entry: JournalEntry) => ({
+                ...entry,
+                sentenceId:
+                  typeof entry.sentenceId === "string"
+                    ? entry.sentenceId
+                    : undefined,
+                answerBreakdown: currentAnswerBreakdown(entry),
+                spellingOptions: currentSpellingOptions(entry),
+                mode: modes.some((item) => item.value === entry.mode)
+                  ? entry.mode
                   : undefined,
-              answerBreakdown: currentAnswerBreakdown(entry),
-              spellingOptions: currentSpellingOptions(entry),
-              mode: modes.some((item) => item.value === entry.mode)
-                ? entry.mode
-                : undefined,
-              comparison: restoreComparison(entry.comparison),
-            }))
-            .slice(0, 100);
+                comparison: restoreComparison(entry.comparison),
+              })),
+          );
       }
     } catch {
       storageNote.value =
         "Saved progress couldn’t be read. You can keep practicing in this session.";
     }
     ready.value = true;
+    if (journal.value.length) persist();
     void loadQuestion();
   });
   onUnmounted(() => {
@@ -362,6 +381,7 @@ export function usePracticeSession() {
   });
   watch([level, length], () => {
     if (ready.value) {
+      retryEntry.value = null;
       persist();
       void loadQuestion();
     }
@@ -388,7 +408,10 @@ export function usePracticeSession() {
     }
   });
   watch(sentence, () => {
-    if (ready.value) void loadQuestion();
+    if (ready.value) {
+      retryEntry.value = null;
+      void loadQuestion();
+    }
   });
 
   return {
@@ -420,6 +443,7 @@ export function usePracticeSession() {
     nextSentence,
     shortcut,
     resetJournal,
+    retryJournalEntry,
     saveJournalBreakdown,
   };
 }

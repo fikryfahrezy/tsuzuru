@@ -48,12 +48,14 @@
   },
   "dependencies": {
     "nuxt": "4.6.1",
+    "sortablejs": "1.15.7",
     "vue": "3.5.43",
     "vue-router": "5.4.0",
     "wink-lemmatizer": "3.0.4"
   },
   "devDependencies": {
     "@types/bun": "1.4.3",
+    "@types/sortablejs": "1.15.9",
     "lefthook": "2.2.1",
     "oxfmt": "0.72.0",
     "oxlint": "1.87.0",

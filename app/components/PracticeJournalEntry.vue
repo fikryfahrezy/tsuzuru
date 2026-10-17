@@ -13,8 +13,9 @@ import {
   type SpellingOption,
 } from "#shared/practice";
 import { JournalOutcome, modes, type JournalEntry } from "~/utils/practice";
-const props = defineProps<{ entry: JournalEntry }>();
+const props = defineProps<{ entry: JournalEntry; checking?: boolean }>();
 const emit = defineEmits<{
+  retry: [];
   breakdown: [
     id: string,
     parts: AnswerBreakdownPart[],
@@ -109,6 +110,15 @@ function toggleBreakdown(event: Event) {
       </span>
     </div>
     <h2>{{ entry.english }}</h2>
+    <button
+      type="button"
+      class="journal-retry"
+      :disabled="checking"
+      :aria-label="`Retry: ${entry.english}`"
+      @click="emit('retry')"
+    >
+      Retry ↻
+    </button>
     <p v-if="entry.answer" class="journal-answer" lang="ja">
       <template
         v-if="
@@ -258,6 +268,13 @@ function toggleBreakdown(event: Event) {
   font:
     24px/1.4 Georgia,
     serif;
+}
+.journal-retry {
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 8px 12px;
+  color: var(--primary);
+  font-size: 12px;
 }
 .journal-answer {
   font:

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
+import Sortable from "sortablejs";
 import { AnswerInput } from "~/utils/practice";
 import {
   PracticeDifficulty,
@@ -38,6 +39,11 @@ const emit = defineEmits<{
 const grammarButton = ref<HTMLButtonElement | null>(null);
 const field = ref<HTMLTextAreaElement | null>(null);
 const chipField = ref<HTMLElement | null>(null);
+const chipBank = ref<HTMLElement | null>(null);
+const dragging = ref(false);
+const chipAnnouncement = ref("");
+let sortables: Sortable[] = [];
+let dragOrigin: { parent: HTMLElement; next: ChildNode | null } | null = null;
 const resultStatus = ref<HTMLElement | null>(null);
 const breakdownOpen = ref(false);
 const canUse = (permission: PracticePermission) =>
@@ -76,6 +82,97 @@ function clearChips() {
   selected.value = [];
   updateChipAnswer();
 }
+async function moveChip(event: KeyboardEvent, position: number) {
+  if (!event.altKey || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+  event.preventDefault();
+  event.stopPropagation();
+  if (locked.value) return;
+  const destination = position + (event.key === "ArrowLeft" ? -1 : 1);
+  const index = selected.value[position];
+  if (
+    index === undefined ||
+    destination < 0 ||
+    destination >= selected.value.length
+  )
+    return;
+  selected.value.splice(position, 1);
+  selected.value.splice(destination, 0, index);
+  updateChipAnswer();
+  chipAnnouncement.value = `${chipText(index)}, word ${destination + 1} of ${selected.value.length}.`;
+  await nextTick();
+  chipField.value
+    ?.querySelector<HTMLButtonElement>(`[data-chip-index="${index}"]`)
+    ?.focus();
+}
+function destroySortables() {
+  for (const sortable of sortables) sortable.destroy();
+  sortables = [];
+  dragging.value = false;
+  dragOrigin = null;
+}
+watch(
+  [chipField, chipBank],
+  ([answerElement, bankElement]) => {
+    destroySortables();
+    if (!answerElement || !bankElement) return;
+    // Both lists belong to this card only, even when multiple cards are mounted.
+    const group = {
+      name: "answer-chips",
+      put: (to: Sortable, from: Sortable) =>
+        sortables.includes(to) && sortables.includes(from),
+    };
+    const options: Sortable.Options = {
+      group,
+      draggable: ".word-chip:not(.used-chip)",
+      disabled: locked.value,
+      animation: 150,
+      delay: 180,
+      delayOnTouchOnly: true,
+      touchStartThreshold: 5,
+      fallbackTolerance: 5,
+      fallbackOnBody: true,
+      ghostClass: "chip-ghost",
+      chosenClass: "chip-chosen",
+      onStart(event) {
+        dragOrigin = { parent: event.from, next: event.item.nextSibling };
+        dragging.value = true;
+      },
+      onEnd(event) {
+        const order = Array.from(
+          answerElement.querySelectorAll<HTMLElement>(":scope > .word-chip"),
+        ).map((chip) => Number(chip.dataset.chipIndex));
+        // Undo Sortable's DOM move so Vue can reconcile its own keyed children.
+        if (dragOrigin) {
+          const { parent, next } = dragOrigin;
+          parent.insertBefore(
+            event.item,
+            next?.parentNode === parent ? next : null,
+          );
+        }
+        dragOrigin = null;
+        dragging.value = false;
+        if (locked.value) return;
+        selected.value = order;
+        updateChipAnswer();
+        const index = Number(event.item.dataset.chipIndex);
+        const position = order.indexOf(index);
+        chipAnnouncement.value =
+          position < 0
+            ? `${chipText(index)} returned to available words.`
+            : `${chipText(index)}, word ${position + 1} of ${order.length}.`;
+      },
+    };
+    sortables = [
+      new Sortable(answerElement, options),
+      new Sortable(bankElement, { ...options, sort: false }),
+    ];
+  },
+  { flush: "post" },
+);
+watch(locked, (value) => {
+  for (const sortable of sortables) sortable.option("disabled", value);
+});
+onBeforeUnmount(destroySortables);
 async function switchInput(value: AnswerInput) {
   if (locked.value || answerInput.value === value) return;
   if (value === AnswerInput.Chips) typedDraft.value = answer.value;
@@ -197,6 +294,7 @@ defineExpose({
         <div
           v-if="answerInput === AnswerInput.Chips && !result"
           class="chip-builder"
+          :class="{ 'chips-dragging': dragging }"
         >
           <div
             ref="chipField"
@@ -207,23 +305,26 @@ defineExpose({
             tabindex="0"
           >
             <p v-if="!selected.length" class="chip-placeholder">
-              Tap words below to build your sentence.
+              Tap or drag words below to build your sentence.
             </p>
             <button
               v-for="(index, position) in selected"
               :key="index"
               type="button"
               class="word-chip selected-chip"
+              :data-chip-index="index"
               lang="ja"
               :disabled="locked"
               :aria-label="`Remove ${chipText(index)}, word ${position + 1}`"
               @click="removeChip(position)"
+              @keydown="moveChip($event, position)"
             >
               {{ chipText(index) }}
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div
+            ref="chipBank"
             class="chip-bank"
             role="group"
             aria-label="Available words"
@@ -234,6 +335,7 @@ defineExpose({
               :key="index"
               type="button"
               class="word-chip"
+              :data-chip-index="index"
               :class="{ 'used-chip': selected.includes(index) }"
               :disabled="locked || selected.includes(index)"
               :aria-label="`Add ${chipText(index)}`"
@@ -244,7 +346,10 @@ defineExpose({
           </div>
           <div class="chip-tools">
             <p id="chip-help">
-              Tap an answer chip to remove it. Each mode keeps its draft.
+              Drag words to arrange them or return them below. Tap an answer
+              chip to remove it. Hold briefly to drag on touch screens. Use Alt
+              + ← / → to reorder a focused answer chip. Each mode keeps its
+              draft.
             </p>
             <button
               type="button"
@@ -254,6 +359,14 @@ defineExpose({
               Clear
             </button>
           </div>
+          <p
+            class="chip-announcement"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {{ chipAnnouncement }}
+          </p>
         </div>
         <textarea
           v-else-if="!result || revealed"
@@ -637,6 +750,26 @@ defineExpose({
   min-height: 120px;
   border-block: 1px solid var(--line);
 }
+.chip-bank {
+  min-height: 76px;
+}
+.chips-dragging .chip-answer,
+.chips-dragging .chip-bank {
+  outline: 1px dashed var(--green);
+  outline-offset: 4px;
+}
+.chip-placeholder {
+  pointer-events: none;
+}
+.chip-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 .chip-answer:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 4px;
@@ -650,6 +783,9 @@ defineExpose({
     sans-serif;
 }
 .word-chip {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
   min-height: 44px;
   max-width: 100%;
   overflow-wrap: anywhere;
@@ -662,6 +798,16 @@ defineExpose({
     20px/1.4 "Hiragino Mincho ProN",
     "Yu Mincho",
     serif;
+}
+.word-chip:disabled {
+  cursor: default;
+}
+.chip-chosen {
+  cursor: grabbing;
+}
+.chip-ghost {
+  opacity: 0.35;
+  border-style: dashed;
 }
 .selected-chip {
   border-color: var(--green);

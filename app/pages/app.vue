@@ -55,6 +55,7 @@ const {
   nextSentence,
   shortcut,
   resetJournal,
+  retryJournalEntry,
   saveJournalBreakdown,
 } = usePracticeSession();
 const grammarOpen = ref(false);
@@ -78,7 +79,10 @@ async function toggleGrammar() {
   grammarOpen.value = true;
   settingsOpen.value = false;
   await nextTick();
-  document.getElementById("grammar-search")?.focus();
+  (
+    document.getElementById("grammar-sentence-scope") ??
+    document.getElementById("grammar-search")
+  )?.focus();
 }
 async function closeGrammar() {
   grammarOpen.value = false;
@@ -187,7 +191,7 @@ watch(difficulty, () => {
           :grammar-open="grammarOpen"
           :error="error"
           @grammar="toggleGrammar"
-          @another="loadQuestion"
+          @another="question ? nextSentence() : loadQuestion()"
           @submit="submit"
           @next="nextSentence"
           @shortcut="shortcut"
@@ -203,6 +207,8 @@ watch(difficulty, () => {
           v-if="grammarVisited"
           id="practice-grammar-reference"
           :initial-level="level"
+          :sentence="question ?? undefined"
+          :open="grammarOpen"
           closable
           @close="closeGrammar"
         />
@@ -210,7 +216,9 @@ watch(difficulty, () => {
       <PracticeJournal
         v-else
         :journal="journal"
+        :checking="checking"
         @clear="resetJournal"
+        @retry="retryJournalEntry"
         @breakdown="saveJournalBreakdown"
         @practice="tab = PracticeTab.Practice"
       />

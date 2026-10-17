@@ -25,12 +25,20 @@ export interface HintMapping {
   answerEntryIds: string[];
 }
 
+export interface GrammarAnnotation {
+  start: number;
+  end: number;
+  japanese: string;
+  grammarIds: string[];
+}
+
 export interface SentenceAnswerAnnotations {
   sentenceId: string;
   english: string;
   japanese: string;
   furigana: string;
   answerEntries: AnswerAnnotation[];
+  grammarAnnotations?: GrammarAnnotation[];
   hintMappings: HintMapping[];
 }
 
@@ -41,7 +49,7 @@ export interface AnswerAnnotationBank {
 
 // Bump when contextual annotations or their interpretation change, so journal
 // entries refresh their saved breakdown on demand.
-export const answerDetailsVersion = "answer-entries-v2";
+export const answerDetailsVersion = "answer-entries-v3";
 
 export function currentSpellingOptions(entry: {
   answerDetailsVersion?: unknown;
