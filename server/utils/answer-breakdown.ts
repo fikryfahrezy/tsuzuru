@@ -48,8 +48,8 @@ const copulas: Record<string, string> = {
   だった: "Past form of the plain copula だ: ‘was’ or ‘were’.",
 };
 function wordType(code: string): string | undefined {
-  if (/^v[1-5s]/u.test(code)) return "Verb";
-  if (code === "adj-i") return "い-adjective";
+  if (/^v[1-5skz]/u.test(code)) return "Verb";
+  if (code === "adj-i" || code === "adj-ix") return "い-adjective";
   if (code === "adj-na") return "な-adjective";
   return (
     {
@@ -102,7 +102,8 @@ export function answerBreakdown(
             ...new Set(
               entries
                 .flatMap((entry) => (entry.pos ?? []).map(wordType))
-                .filter((label): label is string => !!label),
+                .filter((label): label is string => !!label)
+                .concat(lexeme?.verbClass ? ["Verb"] : []),
             ),
           ];
       const pronunciation =

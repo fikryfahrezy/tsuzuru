@@ -74,6 +74,19 @@ The processed sentence candidates are bundled into the server, not the browser.
 Docker builds include the data and disclosures needed for this. The development
 and build commands generate public disclosure files from the original documents.
 
+## Grammar coverage
+
+Run `bun run grammar:audit` after changing grammar handlers, annotations, corpus
+cases, or coverage probes. It rebuilds the [526-lesson inventory](grammar-coverage.md)
+and `data/grammar-coverage/report.json`. `bun run grammar:check` verifies that the
+reports are current and all reviewed corpus checks pass; it also runs through
+`bun run check` in CI.
+
+The inventory separates automatic rule references, observed corpus matches,
+maintained annotations, reviewed positive/negative cases, and candidates needing
+review. A rule reference does not establish complete or correct recognition.
+Probes are search tools and never publish grammar explanations or hints.
+
 ## Exercise API
 
 - `GET /api/exercises?level=N5&length=short` returns a random English prompt,
@@ -117,3 +130,7 @@ When upgrading, resolve stable versions explicitly, update the package pins and
 lockfile together, and run `bun run check`, `bun run build`, and the Docker smoke
 test. For Bun upgrades, also update `.bun-version`, `packageManager`, `engines`,
 the Docker image tag and digest, and the installation command above.
+
+See [breakdown grammar architecture](grammar-detection.md) before adding handlers
+or changing annotation/overlap precedence. Rule catalogs are separate from
+semantic matching, and the coverage audit includes both.

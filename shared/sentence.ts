@@ -21,6 +21,8 @@ export interface ReferenceLexeme {
   lemma: string;
   japanese: string;
   reading: string;
+  // Tokenizer conjugation class, retained independently of vocabulary coverage.
+  verbClass?: string;
 }
 
 // Generated per-reading data, keyed by sentence ID like the other banks. An

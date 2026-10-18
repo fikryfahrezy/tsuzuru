@@ -1,0 +1,20 @@
+[
+  { "lessonId": "ga-suki-ga-kirai", "pattern": "が(?:好き|嫌い)", "note": "Review liking versus other subject roles." },
+  { "lessonId": "ga-jouzu-ga-heta", "pattern": "が(?:上手|下手)", "note": "Review skill predicates." },
+  { "lessonId": "ga-aru-ga-iru", "pattern": "が(?:ある|あります|いる|います)", "note": "Review existence and possession." },
+  { "lessonId": "ni-iku", "pattern": "に(?:行く|行き|いく)", "note": "Distinguish verb-stem purpose from a place destination." },
+  { "lessonId": "ni-indirect-object", "pattern": "に.*(?:渡|教|あげ)", "note": "A later giving verb alone cannot establish a recipient; reject passive agents and locations." },
+  { "lessonId": "ni-frequency", "pattern": "に[^。？！]*[回度]", "note": "Review per-period frequency versus specific time." },
+  { "lessonId": "ka-dou-ka", "pattern": "かどうか", "note": "Review embedded whether-or-not questions." },
+  { "lessonId": "nara", "pattern": "なら", "note": "Reject obligation ならない and lexical substrings." },
+  { "lessonId": "kedo-keredomo", "pattern": "けど|けれど", "note": "Review concessive and softening clause links." },
+  { "lessonId": "o-kudasai", "pattern": "を(?:ください|下さい)", "note": "Review requests for things, separate from te-form action requests." },
+  { "lessonId": "masen-ka", "pattern": "ませんか", "note": "Distinguish invitations, negative questions, and polite action requests." },
+  { "lessonId": "dake", "pattern": "だけ", "note": "Review restriction versus larger constructions." },
+  { "lessonId": "shika-nai", "pattern": "しか[^。？！]*(?:ない|ません)", "note": "Require the correct negative predicate and reject lexical substrings." },
+  { "lessonId": "kamo-shirenai", "pattern": "かもしれ(?:ない|ません)", "note": "Review possibility constructions." },
+  { "lessonId": "te-aru", "pattern": "[てで]あ(?:る|ります|った)", "note": "Require a valid te-form and deliberate resulting state." },
+  { "lessonId": "te-iku", "pattern": "[てで](?:いく|行く|いきます)", "note": "Distinguish auxiliary progression from literal movement." },
+  { "lessonId": "te-kuru", "pattern": "[てで](?:くる|来る|きた)", "note": "Review movement and changes up to now." },
+  { "lessonId": "yasui-nikui", "pattern": "やすい|にくい", "note": "Require a verified verb stem, not a lexical adjective substring." }
+]

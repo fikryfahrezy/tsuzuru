@@ -3,9 +3,13 @@ import type { GrammarExplanation } from "../../shared/grammar";
 import type { Sentence } from "../../shared/sentence";
 import type { AnswerEntry } from "./answer-entries";
 import { grammarById } from "./grammar-reference";
+import { detectGrammar } from "./detect-grammar";
+import { resolveGrammarMatches } from "./grammar-matches";
 
-// Only unambiguous standalone forms belong here. の, が, に, で, と,
-// から and か need occurrence annotations to select their particular use.
+// Only unambiguous standalone forms belong here. Contextual handlers below
+// cover specific constructions (e.g. がほしい, てから, and question か).
+// Particle handlers use neighboring words, predicate roles, and lexical cues.
+// Ambiguous uses still need annotations; spelling alone cannot select a lesson.
 const standalone: Record<string, string> = {
   は: "wa",
   を: "o",
@@ -86,18 +90,22 @@ export function withBreakdownGrammar(
   base: AnswerEntry[],
   annotations: GrammarAnnotation[] = [],
 ): AnswerEntry[] {
-  // An explicit span replaces automatic guesses for that span, including when
-  // a construction (ている, てください) crosses several tokenizer words.
+  const contextual = resolveGrammarMatches(
+    detectGrammar(sentence, base),
+    annotations,
+  );
   const automatic = base
     .filter(
       (part) =>
-        !annotations.some(
+        !contextual.some(
           (annotation) =>
             annotation.start < part.end && annotation.end > part.start,
         ),
     )
     .map((part) => ({ ...part, grammarIds: formGrammar(part) }));
-  const matches = [...annotations, ...automatic];
+  const matches = [...contextual, ...automatic].sort(
+    (a, b) => a.start - b.start,
+  );
   const assigned = new Map<string, GrammarExplanation[]>();
   for (const match of matches) {
     const owner = entries.find(

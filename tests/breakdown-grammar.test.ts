@@ -54,6 +54,36 @@ test("multiword constructions explain the whole span once and suppress component
   );
 });
 
+test("laundry permission links the whole てもいい construction beneath やっても", () => {
+  const laundry = exerciseById.get("8781e50b14468843e9839443")!;
+  const parts = practiceDetails(laundry).answerBreakdown;
+  const entry = parts.find((part) => part.japanese === "やっても")!;
+  expect(entry.romaji).toBe("yattemo");
+  expect(entry.grammar).toHaveLength(1);
+  expect(entry.grammar![0]).toMatchObject({
+    id: "te-mo-ii",
+    japanese: "やってもいいです",
+    start: 5,
+    end: 13,
+    pattern: "〜てもいい",
+    meaning: "may; it's okay to",
+    formation: "Verb-te + もいい",
+    example: { ja: expect.any(String), en: expect.any(String) },
+  });
+  const lessons = grammarForBreakdown(grammarEntries, parts);
+  expect(lessons.map((lesson) => lesson.id)).toEqual([
+    "wa",
+    "te-mo-ii",
+    "ka-question",
+  ]);
+  expect(
+    currentAnswerBreakdown({
+      answerDetailsVersion: "answer-entries-v3",
+      answerBreakdown: parts,
+    }),
+  ).toBeUndefined();
+});
+
 test("grammar survives phrase grouping and distinguishes nominalization from possession", () => {
   const rotation = exerciseById.get("b4b2a4b94ba7e0d81cf2f913")!;
   const parts = practiceDetails(rotation).answerBreakdown;
@@ -114,16 +144,16 @@ test("every maintained annotation resolves against the shared library and actual
   }
 });
 
-test("invalid grammar IDs and partial word spans reject annotations; stale records publish no contextual grammar", () => {
+test("invalid annotations discard contextual meanings and grammar while retaining automatic lessons", () => {
   for (const mutate of [
     (copy: typeof record) => {
-      copy.grammarAnnotations![1]!.grammarIds = ["unknown"];
+      copy.grammarAnnotations![0]!.grammarIds = ["unknown"];
     },
     (copy: typeof record) => {
-      copy.grammarAnnotations![1]!.start++;
+      copy.grammarAnnotations![0]!.start++;
     },
     (copy: typeof record) => {
-      copy.grammarAnnotations![1]!.japanese = "other";
+      copy.grammarAnnotations![0]!.japanese = "other";
     },
     (copy: typeof record) => {
       copy.japanese += "！";
@@ -133,11 +163,20 @@ test("invalid grammar IDs and partial word spans reject annotations; stale recor
     mutate(copy);
     const details = sentenceAnswerEntries(comparison, copy);
     expect(details.validAnnotations).toBe(false);
+    expect(details.hintMappings).toEqual([]);
+    expect(
+      details.entries
+        .flatMap((entry) => entry.grammar ?? [])
+        .some((entry) => entry.id === "no"),
+    ).toBe(true);
+    expect(details.entries.every((entry) => entry.meanings.length === 0)).toBe(
+      true,
+    );
     expect(
       details.entries
         .flatMap((entry) => entry.grammar ?? [])
         .some((entry) => entry.id === "yori"),
-    ).toBe(false);
+    ).toBe(true);
   }
 });
 

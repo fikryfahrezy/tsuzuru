@@ -13,6 +13,33 @@ from sudachipy import Dictionary, SplitMode
 
 ROOT = Path(__file__).resolve().parents[1]
 ANNOTATION = re.compile(r"\{([^{}|]+)\|([^{}|]+)\}")
+LEXEME_REPAIRS = json.loads((ROOT / "data/romaji/lexeme-repairs.json").read_text())
+
+
+def verb_class(token):
+    pos = token.part_of_speech()
+    if pos[0] != "動詞":
+        return None
+    kind = pos[4]
+    if kind.startswith(("上一段", "下一段")):
+        return "v1"
+    if kind == "カ行変格":
+        return "vk"
+    if kind == "サ行変格":
+        return "vs-i" if token.dictionary_form().endswith("する") else None
+    if kind.startswith("五段"):
+        if token.normalized_form() in ("行く", "往く", "逝く"):
+            return "v5k-s"
+        if token.normalized_form() in ("問う", "請う", "乞う"):
+            return "v5u-s"
+        if token.dictionary_form() in ("ある", "有る", "在る"):
+            return "v5r-i"
+        if token.dictionary_form() in ("いらっしゃる", "おっしゃる", "なさる", "くださる", "ござる"):
+            return "v5aru"
+        return {"五段-ワア行": "v5u", "五段-カ行": "v5k", "五段-ガ行": "v5g",
+                "五段-サ行": "v5s", "五段-タ行": "v5t", "五段-ナ行": "v5n",
+                "五段-バ行": "v5b", "五段-マ行": "v5m", "五段-ラ行": "v5r"}.get(kind)
+    return None
 
 
 def hira(text):
@@ -154,11 +181,18 @@ def reference_lexemes(tokens, surface, offsets, furigana, boundaries):
                     or hira(supplied) != hira(token.reading_form())):
                 continue
             lemma = token.normalized_form()
-        # Emit only inflected or extended forms; exact forms already work.
-        if word == lemma:
+        conjugation = verb_class(token)
+        # Exact verbs also need morphology when absent from the vocabulary bank.
+        if word == lemma and conjugation is None:
             continue
         row = {"lemma": lemma, "japanese": word,
                "reading": kana[a * 2:b * 2].decode("utf-16-le")}
+        if conjugation:
+            row["verbClass"] = conjugation
+        for repair in LEXEME_REPAIRS:
+            if (row["japanese"] == repair["japanese"] and row["reading"] == repair["reading"]
+                    and row["lemma"] == repair["generatedLemma"]):
+                row.update(lemma=repair["lemma"], verbClass=repair["verbClass"])
         if row not in result:
             result.append(row)
     return result

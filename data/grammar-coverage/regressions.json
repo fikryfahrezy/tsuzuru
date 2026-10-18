@@ -1,0 +1,1878 @@
+[
+  {
+    "lessonId": "te-kuremasen-ka-te-itadakemasen-ka",
+    "sentenceId": "078e5755fcfd533c45eea667",
+    "japanese": "ていただけませんか",
+    "expect": "present",
+    "note": "Polite request spans the te-form and potential auxiliary."
+  },
+  {
+    "lessonId": "mae-ni",
+    "sentenceId": "5581e50578fc7d2a23682e03",
+    "japanese": "着く前に",
+    "expect": "present",
+    "note": "Dictionary verb before the temporal 前に construction."
+  },
+  {
+    "lessonId": "ato-de",
+    "sentenceId": "84ddf0da0ec41b0c0688fd78",
+    "japanese": "した後で",
+    "expect": "present",
+    "note": "Past verb followed by temporal 後で."
+  },
+  {
+    "lessonId": "no-koto-nominalizer",
+    "sentenceId": "02547378c450720dabf50c23",
+    "japanese": "するのが",
+    "expect": "present",
+    "note": "Nominalized verb is the subject of 難しい."
+  },
+  {
+    "lessonId": "ba",
+    "sentenceId": "00b0b4d7281d4f8143a5ac62",
+    "japanese": "くつろげば",
+    "expect": "present",
+    "note": "Godan conditional with its supplied lemma."
+  },
+  {
+    "lessonId": "te-hoshii",
+    "sentenceId": "5406db8758fd0ac3d7f3db7d",
+    "japanese": "認めてほしい",
+    "expect": "present",
+    "note": "Wanting an action, distinct from wanting a thing."
+  },
+  {
+    "lessonId": "nai-to-ikenai-nakucha",
+    "sentenceId": "288628363950600610dd2244",
+    "japanese": "守らないといけない",
+    "expect": "present",
+    "note": "Conversational obligation rather than a plain conditional と."
+  },
+  {
+    "lessonId": "nara",
+    "sentenceId": "02ff215569d265ccadd7fb97",
+    "japanese": "謝らなければならない",
+    "expect": "absent",
+    "note": "The なら in ならない belongs to an obligation, not conditional なら."
+  },
+  {
+    "lessonId": "ni-indirect-object",
+    "sentenceId": "62f614198b853aa9fd68a202",
+    "japanese": "彼女にだまされて",
+    "expect": "absent",
+    "note": "に marks a passive agent; a later 渡した does not establish a recipient."
+  },
+  {
+    "lessonId": "mae-ni",
+    "sentenceId": "0345686f398724d54effefed",
+    "japanese": "家の前に",
+    "expect": "absent",
+    "note": "Spatial in front of the house is not before doing an action."
+  },
+  {
+    "lessonId": "ato-de",
+    "sentenceId": "609efd8fd739f85df2023ce1",
+    "japanese": "最後で",
+    "expect": "absent",
+    "note": "A substring in 最後で is not the temporal 後で construction."
+  },
+  {
+    "lessonId": "ga-hoshii",
+    "sentenceId": "5406db8758fd0ac3d7f3db7d",
+    "japanese": "認めてほしい",
+    "expect": "absent",
+    "note": "An action wish must not be labeled as wanting a thing."
+  },
+  {
+    "lessonId": "ga-suki-ga-kirai",
+    "sentenceId": "03ce3e609cb81ef05d21b3c3",
+    "japanese": "自然科学が好きです",
+    "expect": "present",
+    "note": "A noun is the object of liking, not a generic subject-only explanation."
+  },
+  {
+    "lessonId": "ga-jouzu-ga-heta",
+    "sentenceId": "000459094742195f226bab0e",
+    "japanese": "踊りが上手だ",
+    "expect": "present",
+    "note": "The skill reading じょうず, distinct from stage direction かみて."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "02439f618b2ff72535405c23",
+    "japanese": "設備がある",
+    "expect": "present",
+    "note": "Existence of equipment with がある."
+  },
+  {
+    "lessonId": "ka-dou-ka",
+    "sentenceId": "011277728579d980704b526a",
+    "japanese": "来るかどうか",
+    "expect": "present",
+    "note": "Embedded whether-or-not construction, not a direct question."
+  },
+  {
+    "lessonId": "kamo-shirenai",
+    "sentenceId": "024de7875c8e422cf555b4c3",
+    "japanese": "変わるかもしれない",
+    "expect": "present",
+    "note": "Possibility after a complete predicate."
+  },
+  {
+    "lessonId": "o-kudasai",
+    "sentenceId": "2487e94cf0447d0992e123a9",
+    "japanese": "灰皿を下さい",
+    "expect": "present",
+    "note": "Request for a thing, distinct from a te-form action request."
+  },
+  {
+    "lessonId": "yasui-nikui",
+    "sentenceId": "04365296dbbfd8bc486f8b86",
+    "japanese": "かかりやすい",
+    "expect": "present",
+    "note": "A verified verb stem, even though its kana lemma lacks vocabulary metadata."
+  },
+  {
+    "lessonId": "te-aru",
+    "sentenceId": "37db45bd289ac014c4037c2c",
+    "japanese": "打ってある",
+    "expect": "present",
+    "note": "A transitive action deliberately left in a resulting state."
+  },
+  {
+    "lessonId": "ga-suki-ga-kirai",
+    "sentenceId": "048de98343198919228f67c7",
+    "japanese": "しゃぶるのが好きです",
+    "expect": "present",
+    "note": "Liking a nominalized action also uses this lesson."
+  },
+  {
+    "lessonId": "te-aru",
+    "sentenceId": "021f724a81bc1ebbb8a9f003",
+    "japanese": "レクリエーションである",
+    "expect": "absent",
+    "note": "Copular である is not a transitive te-form plus ある."
+  },
+  {
+    "lessonId": "yasui-nikui",
+    "sentenceId": "0765022f4b3889a16e25162b",
+    "japanese": "買うとやすい",
+    "expect": "absent",
+    "note": "Cheap やすい after a condition is not verb-stem + やすい."
+  },
+  {
+    "lessonId": "o-kudasai",
+    "sentenceId": "058e34034d9b09745fbfa2f9",
+    "japanese": "教えてください",
+    "expect": "absent",
+    "note": "An action request must retain its te-form request lesson."
+  },
+  {
+    "lessonId": "ka-dou-ka",
+    "sentenceId": "13cd4cbee16b1e57e05a3209",
+    "japanese": "どうかドア",
+    "expect": "absent",
+    "note": "Please どうか is not whether-or-not かどうか."
+  },
+  {
+    "lessonId": "ni-iku",
+    "sentenceId": "0a727d23df579ed10e7136e6",
+    "japanese": "集めに来る",
+    "expect": "present",
+    "note": "Verb-stem purpose rather than a place destination."
+  },
+  {
+    "lessonId": "te-iku",
+    "sentenceId": "01e8967c4b197043df7da2c1",
+    "japanese": "していく",
+    "expect": "present",
+    "note": "Change continuing forward."
+  },
+  {
+    "lessonId": "te-kuru",
+    "sentenceId": "008b8bb4762af4f907615633",
+    "japanese": "なってきた",
+    "expect": "present",
+    "note": "Change up to the present."
+  },
+  {
+    "lessonId": "te-kudasaru-te-itadaku",
+    "sentenceId": "04ee120bb8142f4b26c13447",
+    "japanese": "していただきました",
+    "expect": "present",
+    "note": "Humble favor, distinct from a request."
+  },
+  {
+    "lessonId": "nasai",
+    "sentenceId": "01c6372bee71a0cfa3e638e1",
+    "japanese": "覚えなさい",
+    "expect": "present",
+    "note": "Instruction after a verified verb stem."
+  },
+  {
+    "lessonId": "ta-bakari",
+    "sentenceId": "0b6a957cfc9a4d1fcf170714",
+    "japanese": "注したばかりだ",
+    "expect": "present",
+    "note": "Recent completion, not generic restriction."
+  },
+  {
+    "lessonId": "ba-yokatta",
+    "sentenceId": "04d0170d1a0104866b6f777a",
+    "japanese": "しなければよかった",
+    "expect": "present",
+    "note": "Regret about an action."
+  },
+  {
+    "lessonId": "tara-dou",
+    "sentenceId": "13fdba7217449a7b037489c2",
+    "japanese": "合わせたらどう",
+    "expect": "present",
+    "note": "Suggestion built on a conditional."
+  },
+  {
+    "lessonId": "koto-ni-suru",
+    "sentenceId": "0dc6cbeaabe76c8c3a2d26b8",
+    "japanese": "出かけることにした",
+    "expect": "present",
+    "note": "Deciding on an action."
+  },
+  {
+    "lessonId": "koto-ni-naru",
+    "sentenceId": "8ec82c2c054204cf1ed91d53",
+    "japanese": "阻害することになる",
+    "expect": "present",
+    "note": "Result of an action."
+  },
+  {
+    "lessonId": "koto-ga-aru",
+    "sentenceId": "2395afe7fb0f66d92b5fff62",
+    "japanese": "軽蔑することがある",
+    "expect": "present",
+    "note": "Sometimes doing, not past experience."
+  },
+  {
+    "lessonId": "yotei",
+    "sentenceId": "0275fc5937ba086c888564d4",
+    "japanese": "会う予定だった",
+    "expect": "present",
+    "note": "Scheduled action."
+  },
+  {
+    "lessonId": "nara",
+    "sentenceId": "0622f907f1289a4924ed04c8",
+    "japanese": "必要なら",
+    "expect": "present",
+    "note": "Conditional, distinct from obligation ならない."
+  },
+  {
+    "lessonId": "kedo-keredomo",
+    "sentenceId": "0dc6cbeaabe76c8c3a2d26b8",
+    "japanese": "悪かったけれど",
+    "expect": "present",
+    "note": "Concessive clause link."
+  },
+  {
+    "lessonId": "dake",
+    "sentenceId": "0a42441fccaa1c893005ca60",
+    "japanese": "神だけ",
+    "expect": "present",
+    "note": "Restrictive particle after a noun."
+  },
+  {
+    "lessonId": "deshou",
+    "sentenceId": "049b203a03982cf2d65ff145",
+    "japanese": "おさまるでしょう",
+    "expect": "present",
+    "note": "Conjecture joined to a verb chip."
+  },
+  {
+    "lessonId": "kore-sore-are-dore",
+    "sentenceId": "00c9cc568aa05fe27eca902f",
+    "japanese": "それ",
+    "expect": "present",
+    "note": "Standalone demonstrative."
+  },
+  {
+    "lessonId": "kono-sono-ano-dono",
+    "sentenceId": "007af134931cba98f852914b",
+    "japanese": "その山",
+    "expect": "present",
+    "note": "Demonstrative before a noun."
+  },
+  {
+    "lessonId": "koko-soko-asoko-doko",
+    "sentenceId": "00ca9b14f39400422c5f4d04",
+    "japanese": "ここ",
+    "expect": "present",
+    "note": "Location demonstrative."
+  },
+  {
+    "lessonId": "na-na-adjective",
+    "sentenceId": "06eb4fb66c1b100897da3c20",
+    "japanese": "善良な市民",
+    "expect": "present",
+    "note": "Na-adjective modifying a noun."
+  },
+  {
+    "lessonId": "goro",
+    "sentenceId": "45dee2bd33974022d4c206b8",
+    "japanese": "６時ごろ",
+    "expect": "present",
+    "note": "Approximate clock time."
+  },
+  {
+    "lessonId": "ni-frequency",
+    "sentenceId": "1f3442f0b4a3fe3bec9ee0d7",
+    "japanese": "年に一度",
+    "expect": "present",
+    "note": "Occurrences per period, not specific time."
+  },
+  {
+    "lessonId": "made-ni",
+    "sentenceId": "0670c10b491b390d9a400b34",
+    "japanese": "朝までに",
+    "expect": "present",
+    "note": "Deadline rather than continuous duration."
+  },
+  {
+    "lessonId": "toki",
+    "sentenceId": "051649b8f62ddf86245d4d62",
+    "japanese": "鳴っているとき",
+    "expect": "present",
+    "note": "When an action is in progress."
+  },
+  {
+    "lessonId": "ku-naru-ni-naru",
+    "sentenceId": "008b8bb4762af4f907615633",
+    "japanese": "明るくなって",
+    "expect": "present",
+    "note": "Change in an adjective quality."
+  },
+  {
+    "lessonId": "kute-de",
+    "sentenceId": "0ba563e2d3c113360d62498b",
+    "japanese": "大きくて黒い",
+    "expect": "present",
+    "note": "Linked adjective qualities."
+  },
+  {
+    "lessonId": "nado",
+    "sentenceId": "2933f148a7a5599a31e638f6",
+    "japanese": "石炭や材木など",
+    "expect": "present",
+    "note": "Non-exhaustive examples."
+  },
+  {
+    "lessonId": "ni-iku",
+    "sentenceId": "0a6077c79b98b0fc8307b4f7",
+    "japanese": "ここに来る",
+    "expect": "absent",
+    "note": "Location is not an action purpose."
+  },
+  {
+    "lessonId": "kedo-keredomo",
+    "sentenceId": "01383868101262357c5552f0",
+    "japanese": "やけどした",
+    "expect": "absent",
+    "note": "Burn is a lexical noun, not a concessive suffix."
+  },
+  {
+    "lessonId": "dake",
+    "sentenceId": "090bdd56eef8959c8769a432",
+    "japanese": "いただけます",
+    "expect": "absent",
+    "note": "A substring of an inflected verb is not restrictive だけ."
+  },
+  {
+    "lessonId": "ni-frequency",
+    "sentenceId": "02f4f3c3900ec48f4d71001b",
+    "japanese": "一時間に１０回転",
+    "expect": "absent",
+    "note": "回転 is revolutions, not the occurrence counter 回."
+  },
+  {
+    "lessonId": "koto-ga-aru",
+    "sentenceId": "84ddf0da0ec41b0c0688fd78",
+    "japanese": "譲歩した後で",
+    "expect": "absent",
+    "note": "No sometimes construction in this temporal phrase."
+  },
+  {
+    "lessonId": "ni-tsuite",
+    "sentenceId": "03c8a17472731ab33c4e2d3b",
+    "japanese": "戦争について",
+    "expect": "present",
+    "note": "Regarding a topic, not arriving somewhere."
+  },
+  {
+    "lessonId": "ni-yotte-ni-yoru",
+    "sentenceId": "00118d344232471f5ac14b42",
+    "japanese": "摩擦によって",
+    "expect": "present",
+    "note": "Cause of an action."
+  },
+  {
+    "lessonId": "ni-yoru-to-ni-yoreba",
+    "sentenceId": "329a9f7c63530669590377ec",
+    "japanese": "新聞によると",
+    "expect": "present",
+    "note": "Source of information."
+  },
+  {
+    "lessonId": "ni-taishite",
+    "sentenceId": "179d9b0b1bbe465da38900f8",
+    "japanese": "協力者に対して",
+    "expect": "present",
+    "note": "Target of a relation."
+  },
+  {
+    "lessonId": "ni-totte",
+    "sentenceId": "197cc943a58e1593b0b89b95",
+    "japanese": "初心者にとって",
+    "expect": "present",
+    "note": "Standpoint of a person."
+  },
+  {
+    "lessonId": "ni-kanshite-ni-kansuru",
+    "sentenceId": "1c473bb505c8cc56b78938e3",
+    "japanese": "日本文学に関して",
+    "expect": "present",
+    "note": "Regarding an explicit topic."
+  },
+  {
+    "lessonId": "ni-tsurete",
+    "sentenceId": "2d057ec1560a71246d30df28",
+    "japanese": "更けるにつれて",
+    "expect": "present",
+    "note": "Two changes progressing together."
+  },
+  {
+    "lessonId": "to-tomo-ni",
+    "sentenceId": "9678db475b8d9e92ea14784e",
+    "japanese": "太陽とともに",
+    "expect": "present",
+    "note": "Together with."
+  },
+  {
+    "lessonId": "ni-chigai-nai",
+    "sentenceId": "15f4dde4017db9e79d3ef712",
+    "japanese": "悪いに違いない",
+    "expect": "present",
+    "note": "Strong conjecture after a finite adjective."
+  },
+  {
+    "lessonId": "wake-de-wa-nai",
+    "sentenceId": "01ac112399596d049c0af3c8",
+    "japanese": "試みられたわけではない",
+    "expect": "present",
+    "note": "Not necessarily true."
+  },
+  {
+    "lessonId": "koto-ni-shite-iru",
+    "sentenceId": "4efff318c2c54f43256cbc9b",
+    "japanese": "することにしている",
+    "expect": "present",
+    "note": "Personal routine rather than a one-off decision."
+  },
+  {
+    "lessonId": "koto-ni-natte-iru",
+    "sentenceId": "2adde301526ccc4f0f6fa8c6",
+    "japanese": "することになっている",
+    "expect": "present",
+    "note": "Standing arrangement."
+  },
+  {
+    "lessonId": "dake-de-naku",
+    "sentenceId": "4581fd81540aa9bbe1b6d9e0",
+    "japanese": "寒いだけでなく",
+    "expect": "present",
+    "note": "Not only, rather than only."
+  },
+  {
+    "lessonId": "hazu-da",
+    "sentenceId": "0a6077c79b98b0fc8307b4f7",
+    "japanese": "来るはずです",
+    "expect": "present",
+    "note": "Expected state."
+  },
+  {
+    "lessonId": "hazu-ga-nai",
+    "sentenceId": "875b757e1a13ea8260b4f51a",
+    "japanese": "いるはずがない",
+    "expect": "present",
+    "note": "Impossible expectation."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "05f36da44ee5f79f9531060f",
+    "japanese": "したのです",
+    "expect": "present",
+    "note": "Explanatory predicate, not nominalization."
+  },
+  {
+    "lessonId": "to-shite",
+    "sentenceId": "03ccdd9a07436969d3ea31f1",
+    "japanese": "終わろうとしている",
+    "expect": "absent",
+    "note": "Volitional attempt is not a noun capacity."
+  },
+  {
+    "lessonId": "ni-yoru-to-ni-yoreba",
+    "sentenceId": "507e6ccf649cfed10835218f",
+    "japanese": "ことによると",
+    "expect": "absent",
+    "note": "Lexical maybe is not according to an information source."
+  },
+  {
+    "lessonId": "ni-tsurete",
+    "sentenceId": "4e489be293af79b68cea3434",
+    "japanese": "一緒につれてきた",
+    "expect": "absent",
+    "note": "Bringing somebody along is a lexical action, not parallel change."
+  },
+  {
+    "lessonId": "wake-de-wa-nai",
+    "sentenceId": "16a5b68e66872b0cac753496",
+    "japanese": "言いわけだ",
+    "expect": "absent",
+    "note": "Excuse is a lexical noun."
+  },
+  {
+    "lessonId": "ni-indirect-object",
+    "sentenceId": "09cf20c37d0c98aacbe95c5f",
+    "japanese": "私に送って",
+    "expect": "present",
+    "note": "An active transfer to a recipient."
+  },
+  {
+    "lessonId": "amari-nai",
+    "sentenceId": "04ed42899090da66c7498baa",
+    "japanese": "あまり交渉を持たない",
+    "expect": "present",
+    "note": "Limited degree paired with its first negative predicate."
+  },
+  {
+    "lessonId": "zenzen-nai",
+    "sentenceId": "06a634ad5219141dd0223143",
+    "japanese": "全然ない",
+    "expect": "present",
+    "note": "Complete negation, not positive colloquial 全然."
+  },
+  {
+    "lessonId": "nakanaka-nai",
+    "sentenceId": "14577b414901b627a1da7797",
+    "japanese": "なかなか飲み込めない",
+    "expect": "present",
+    "note": "Difficulty achieving an action."
+  },
+  {
+    "lessonId": "mada-te-inai",
+    "sentenceId": "173468362e84bcaa442bae3f",
+    "japanese": "まだつかまっていない",
+    "expect": "present",
+    "note": "Not yet with a verified negative progressive."
+  },
+  {
+    "lessonId": "shika-nai",
+    "sentenceId": "53306049912d8d1d9e3f8354",
+    "japanese": "成人しかみられない",
+    "expect": "present",
+    "note": "Restricted subject with a negative predicate."
+  },
+  {
+    "lessonId": "nani-mo-nai-dare-mo-nai",
+    "sentenceId": "02cb469b4193cbcf21c1460c",
+    "japanese": "何もありませんでした",
+    "expect": "present",
+    "note": "Nothing paired with negative existence."
+  },
+  {
+    "lessonId": "sou-da-appearance",
+    "sentenceId": "0a903e98dc8f1f7072879b42",
+    "japanese": "きつそうだった",
+    "expect": "present",
+    "note": "Adjective-stem appearance, distinct from hearsay."
+  },
+  {
+    "lessonId": "sou-da-hearsay",
+    "sentenceId": "47879dda2c7653dec77a8267",
+    "japanese": "辞職するそうだ",
+    "expect": "present",
+    "note": "Dictionary verb before hearsay そうだ."
+  },
+  {
+    "lessonId": "rashii",
+    "sentenceId": "082e0754c0b244276f116e7d",
+    "japanese": "いるらしい",
+    "expect": "present",
+    "note": "Conjecture after a finite verb, not typical-of a noun."
+  },
+  {
+    "lessonId": "you-da",
+    "sentenceId": "130f841ccaf65badbd9e2568",
+    "japanese": "いるようだ",
+    "expect": "present",
+    "note": "Appearance after a finite predicate."
+  },
+  {
+    "lessonId": "mitai",
+    "sentenceId": "1177620d90847b9e4dc3aff7",
+    "japanese": "あるみたいだ",
+    "expect": "present",
+    "note": "Casual seeming, not a desire to see."
+  },
+  {
+    "lessonId": "uchi-ni",
+    "sentenceId": "1477c57669844f75b2e8d67a",
+    "japanese": "ならないうちに",
+    "expect": "present",
+    "note": "Before the situation changes."
+  },
+  {
+    "lessonId": "tabi-ni",
+    "sentenceId": "2f28300a5c1ca3d87edcf4ef",
+    "japanese": "訪れるたびに",
+    "expect": "present",
+    "note": "Each occurrence of an action."
+  },
+  {
+    "lessonId": "goto-ni",
+    "sentenceId": "3e0c9e030db5d8ff6ff5eae8",
+    "japanese": "四半期ごとに",
+    "expect": "present",
+    "note": "Interval marker fused into the preceding chip."
+  },
+  {
+    "lessonId": "okage-de",
+    "sentenceId": "5ce86ecb1f05c8f60e98897f",
+    "japanese": "木のおかげで",
+    "expect": "present",
+    "note": "Beneficial cause after noun + の."
+  },
+  {
+    "lessonId": "sei-de",
+    "sentenceId": "811f38ebb663a1fe13d90e25",
+    "japanese": "雑音のせいで",
+    "expect": "present",
+    "note": "Blamed cause after noun + の."
+  },
+  {
+    "lessonId": "ta-totan-ta-totan-ni",
+    "sentenceId": "61ac6d94e0c945d9d84da1e9",
+    "japanese": "開いたとたんに",
+    "expect": "present",
+    "note": "An event immediately after a verified past verb."
+  },
+  {
+    "lessonId": "saichuu-ni",
+    "sentenceId": "ac79164327a004870ffd54b1",
+    "japanese": "スピーチの最中に",
+    "expect": "present",
+    "note": "In the middle of a named activity."
+  },
+  {
+    "lessonId": "sugiru",
+    "sentenceId": "02489648bb4a8f65a51e3084",
+    "japanese": "早すぎる",
+    "expect": "present",
+    "note": "Excessive adjective quality, not noun + にすぎない."
+  },
+  {
+    "lessonId": "hajimeru-owaru-tsuzukeru",
+    "sentenceId": "02ddb340744261ead6647944",
+    "japanese": "停滞し続けた",
+    "expect": "present",
+    "note": "Continuation attached to a verified verb stem."
+  },
+  {
+    "lessonId": "zu-ni",
+    "sentenceId": "24b8c0e484ba0d66a4b9b145",
+    "japanese": "濡らさずに",
+    "expect": "present",
+    "note": "Without doing, using the negative stem."
+  },
+  {
+    "lessonId": "naide",
+    "sentenceId": "3426ec44424f0eed7d3b389f",
+    "japanese": "帰らないで",
+    "expect": "present",
+    "note": "Without doing before a later action, not a standalone prohibition."
+  },
+  {
+    "lessonId": "zutsu",
+    "sentenceId": "01c6372bee71a0cfa3e638e1",
+    "japanese": "一つずつ",
+    "expect": "present",
+    "note": "Distribution by a counted amount."
+  },
+  {
+    "lessonId": "oki-ni",
+    "sentenceId": "47cd1a360bb8db6e1d3d8296",
+    "japanese": "４時間おきに",
+    "expect": "present",
+    "note": "Interval marker fused into a time chip."
+  },
+  {
+    "lessonId": "seru-saseru",
+    "sentenceId": "01a2937c09f23ac1f3fae767",
+    "japanese": "自首させた",
+    "expect": "present",
+    "note": "Irregular する causative."
+  },
+  {
+    "lessonId": "ou-you",
+    "sentenceId": "001e32e4d1b107427fe4c37c",
+    "japanese": "帰ろう",
+    "expect": "present",
+    "note": "Volitional, distinct from formal conjectural であろう."
+  },
+  {
+    "lessonId": "you-to-omou",
+    "sentenceId": "097cffa07cfe646dbac54dc6",
+    "japanese": "退治しようと思った",
+    "expect": "present",
+    "note": "An intention expressed with a volitional verb."
+  },
+  {
+    "lessonId": "e-ro",
+    "sentenceId": "0ad011472f29b2d20c57ca52",
+    "japanese": "黙れ",
+    "expect": "present",
+    "note": "Godan command, distinct from polite ください."
+  },
+  {
+    "lessonId": "noni-although",
+    "sentenceId": "23091d473d7703b9089d08a3",
+    "japanese": "金持ちなのに",
+    "expect": "present",
+    "note": "Nominal concessive なのに, not action-purpose のに."
+  },
+  {
+    "lessonId": "shi",
+    "sentenceId": "1dfd5a3e1ee2558bf20dbc43",
+    "japanese": "好きだし",
+    "expect": "present",
+    "note": "Listing predicate qualities."
+  },
+  {
+    "lessonId": "you-ni-suru",
+    "sentenceId": "89141d1757366983266437fa",
+    "japanese": "出さないようにした",
+    "expect": "present",
+    "note": "An effort to prevent an action."
+  },
+  {
+    "lessonId": "you-ni-naru",
+    "sentenceId": "06d9b9c1fb6d9a98448ec261",
+    "japanese": "泳げるようになる",
+    "expect": "present",
+    "note": "A change in ability."
+  },
+  {
+    "lessonId": "tagaru",
+    "sentenceId": "77466b67fa5b1ebba2bb5144",
+    "japanese": "飼いたがっています",
+    "expect": "present",
+    "note": "Third-person desire, distinct from lexical またがる."
+  },
+  {
+    "lessonId": "sasete-kudasai",
+    "sentenceId": "a464e97e0365ec0b68ceff4f",
+    "japanese": "話させてください",
+    "expect": "present",
+    "note": "Request to be allowed to act."
+  },
+  {
+    "lessonId": "ku-suru-ni-suru",
+    "sentenceId": "057ca860fbc6df888aaef285",
+    "japanese": "音を低くして",
+    "expect": "present",
+    "note": "Changing an adjective quality, not acting kindly."
+  },
+  {
+    "lessonId": "ga-suru",
+    "sentenceId": "0817ca81d648b3447a862e1e",
+    "japanese": "においがする",
+    "expect": "present",
+    "note": "Sensory perception, not an ordinary subject + do."
+  },
+  {
+    "lessonId": "kana-kashira",
+    "sentenceId": "3fd36b2f42b0aae4a553f28b",
+    "japanese": "降るかな",
+    "expect": "present",
+    "note": "Sentence-final uncertainty."
+  },
+  {
+    "lessonId": "you-to-suru",
+    "sentenceId": "03ccdd9a07436969d3ea31f1",
+    "japanese": "終わろうとしている",
+    "expect": "present",
+    "note": "Attempt or imminent action, not noun + として."
+  },
+  {
+    "lessonId": "zu-ni-wa-irarenai",
+    "sentenceId": "12e59b496841f31f144e6b9f",
+    "japanese": "からかわずにはいられない",
+    "expect": "present",
+    "note": "Irresistible urge, not ordinary without-doing."
+  },
+  {
+    "lessonId": "zu-ni-sumu-naide-sumu",
+    "sentenceId": "2b638db3acb2304f8645dc35",
+    "japanese": "広がらずにすんだ",
+    "expect": "present",
+    "note": "Being spared an event, not ordinary without-doing."
+  },
+  {
+    "lessonId": "ka-or",
+    "sentenceId": "88bbd8bcf7104104b0275748",
+    "japanese": "印鑑かサインを",
+    "expect": "present",
+    "note": "Two nominal alternatives before an object marker."
+  },
+  {
+    "lessonId": "no-hou-ga-yori",
+    "sentenceId": "04f56d5c3c75f5e45b96d2d2",
+    "japanese": "魚よりも肉の方が",
+    "expect": "present",
+    "note": "Both comparative markers in reversed order."
+  },
+  {
+    "lessonId": "to-to-dochira-ga",
+    "sentenceId": "d1b8e9861fd18be4d8dfcb4f",
+    "japanese": "トラとライオンとどちらが",
+    "expect": "present",
+    "note": "A choice between exactly two comparative alternatives."
+  },
+  {
+    "lessonId": "masen-ka",
+    "sentenceId": "66a6a7c657e4083a2b34c6f0",
+    "japanese": "見ませんか",
+    "expect": "present",
+    "note": "Invitation supported by a with-me cue."
+  },
+  {
+    "lessonId": "ni-suru",
+    "sentenceId": "5b0111f122314d23f46461be",
+    "japanese": "日替わり定食にしませんか",
+    "expect": "present",
+    "note": "Selection of a meal, not changing an object into a state."
+  },
+  {
+    "lessonId": "nani-ka-dare-ka-doko-ka",
+    "sentenceId": "c2d3aab9de6af0b1c896f640",
+    "japanese": "誰かが",
+    "expect": "present",
+    "note": "Indefinite someone before a subject marker."
+  },
+  {
+    "lessonId": "kata",
+    "sentenceId": "0ca8f50e95f546b0365098b4",
+    "japanese": "組み立て方",
+    "expect": "present",
+    "note": "Method with the かた reading, not comparative ほう."
+  },
+  {
+    "lessonId": "darou",
+    "sentenceId": "005f4d7a8076d62a69fb3c5a",
+    "japanese": "いただろう",
+    "expect": "present",
+    "note": "Conjecture attached to a past progressive auxiliary."
+  },
+  {
+    "lessonId": "ni-indirect-object",
+    "sentenceId": "073d39da35962e390e912e97",
+    "japanese": "私には借金を返す",
+    "expect": "absent",
+    "note": "The topic is the debtor, not the recipient of the repayment."
+  },
+  {
+    "lessonId": "e-ro",
+    "sentenceId": "0362bd071775c5234a93ec8f",
+    "japanese": "してください",
+    "expect": "absent",
+    "note": "Polite request is not a bare imperative."
+  },
+  {
+    "lessonId": "ou-you",
+    "sentenceId": "2bc7f7b825712125ccc026f6",
+    "japanese": "であろう",
+    "expect": "absent",
+    "note": "Formal conjecture is not a volitional invitation."
+  },
+  {
+    "lessonId": "ku-suru-ni-suru",
+    "sentenceId": "04ee120bb8142f4b26c13447",
+    "japanese": "親切にしていただきました",
+    "expect": "absent",
+    "note": "Acting kindly is not making an object kind."
+  },
+  {
+    "lessonId": "tagaru",
+    "sentenceId": "17a78eab731a124f915882b6",
+    "japanese": "またがる",
+    "expect": "absent",
+    "note": "A lexical verb is not a third-person desire suffix."
+  },
+  {
+    "lessonId": "goto-ni",
+    "sentenceId": "34932b7482454eae3999e06b",
+    "japanese": "みごとに",
+    "expect": "absent",
+    "note": "Splendidly is not an interval construction."
+  },
+  {
+    "lessonId": "sugiru",
+    "sentenceId": "11de786b02b9c6c73ff22bf5",
+    "japanese": "飾りにすぎない",
+    "expect": "absent",
+    "note": "Nothing more than is not excessive action or quality."
+  },
+  {
+    "lessonId": "hajimeru-owaru-tsuzukeru",
+    "sentenceId": "27f3f4f794e695885579b707",
+    "japanese": "貿易を始めた",
+    "expect": "absent",
+    "note": "A lexical start with an object is not attached to a verb stem."
+  },
+  {
+    "lessonId": "naide",
+    "sentenceId": "35e6037215b14ff6dcd03ed6",
+    "japanese": "つないでおいた",
+    "expect": "absent",
+    "note": "A voiced te-form of connect is not negative ないで."
+  },
+  {
+    "lessonId": "masen-ka",
+    "sentenceId": "2677f439998dcba0a6b82be4",
+    "japanese": "狂いませんか",
+    "expect": "absent",
+    "note": "A factual negative question is not an invitation."
+  },
+  {
+    "lessonId": "sou-da-appearance",
+    "sentenceId": "47879dda2c7653dec77a8267",
+    "japanese": "辞職するそうだ",
+    "expect": "absent",
+    "note": "Hearsay uses the dictionary verb, not the appearance stem."
+  },
+  {
+    "lessonId": "zu-ni",
+    "sentenceId": "12e59b496841f31f144e6b9f",
+    "japanese": "からかわずにはいられない",
+    "expect": "absent",
+    "note": "The complete irresistible-urge construction takes precedence."
+  },
+  {
+    "lessonId": "marude-you-da",
+    "sentenceId": "03899593b745a4b822ec8bb1",
+    "japanese": "まるで酔っているようだ",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-shite-wa",
+    "sentenceId": "ab427aae6b53a6ebf42fb18b",
+    "japanese": "春にしては",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-shite-mo",
+    "sentenceId": "a7f43ad97ab399ffed018465",
+    "japanese": "あるにしても",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-shitagatte",
+    "sentenceId": "0ea097e7a8439d68d8a5afa9",
+    "japanese": "すすめに従って",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "to-iu-no-wa",
+    "sentenceId": "15d1d480e22989338dda3a29",
+    "japanese": "倫理学というのは",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "to-iu-yori",
+    "sentenceId": "32f31f25248582831fbd26ff",
+    "japanese": "ピンクというより",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "kuse-ni",
+    "sentenceId": "d5762b35cd4e57a95b03949e",
+    "japanese": "いるくせに",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "kara-to-itte",
+    "sentenceId": "2c64cfa82e1592ce1fdbdc83",
+    "japanese": "大きいからといって",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "toori-ni-doori-ni",
+    "sentenceId": "03d014ab9da83f110ebe00bf",
+    "japanese": "おいたとおりに",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "darake",
+    "sentenceId": "0fdee8b5056106242d3a559f",
+    "japanese": "矛盾だらけ",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-motozuite",
+    "sentenceId": "2da28aa67e232176b851f8f6",
+    "japanese": "観察に基づいて",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-watatte",
+    "sentenceId": "2e266b726df45c99bdc4b0f1",
+    "japanese": "地域にわたって",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-sotte",
+    "sentenceId": "30967d002bbb8349864117f1",
+    "japanese": "通りに沿って",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-kakete-wa",
+    "sentenceId": "15a04b941e5eafec971485fb",
+    "japanese": "料理にかけては",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-sakidatte",
+    "sentenceId": "97c2dbd24af3850cffe3173f",
+    "japanese": "会に先立って",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-mo-kakawarazu",
+    "sentenceId": "e2e086c8c6ff915d17b86a0a",
+    "japanese": "大雪にもかかわらず",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-oite-ni-okeru",
+    "sentenceId": "02646c1d12c2d9e97e19b355",
+    "japanese": "実験において",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-kakawaru",
+    "sentenceId": "1cd84a134b03af994f0ed2df",
+    "japanese": "名誉にかかわる",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-mukete",
+    "sentenceId": "2c67490d0ce8893aec10a874",
+    "japanese": "国民に向けて",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "no-moto-de-no-moto-ni",
+    "sentenceId": "733688975a9f01f7edf8c9b2",
+    "japanese": "監督のもとに",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "o-komete",
+    "sentenceId": "5564321947d5a16f0b5e64d2",
+    "japanese": "憎しみをこめて",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "o-tsuujite-o-tooshite",
+    "sentenceId": "9d09a1ac63b694db0f87907c",
+    "japanese": "銀行制度を通じて",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "wa-tomokaku",
+    "sentenceId": "5bda0d755a1f347230265ebb",
+    "japanese": "顔はともかく",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "zaru-o-enai",
+    "sentenceId": "cb93125b63ad8b2fdaa015c4",
+    "japanese": "決断せざるを得ない",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "kanenai",
+    "sentenceId": "8cebf024a5f1ce71a0594de6",
+    "japanese": "しかねない",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "tsutsu-aru",
+    "sentenceId": "19f18df7d375cc1ff1cac026",
+    "japanese": "下りつつある",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ppanashi",
+    "sentenceId": "f5a58e130987f1a1acf43ca1",
+    "japanese": "散らかしっぱなし",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "you-ga-nai",
+    "sentenceId": "adf19943de2f53c9407e709a",
+    "japanese": "言いようがない",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "kko-nai",
+    "sentenceId": "7691cea347444e835ccdfb3b",
+    "japanese": "まちがいっこない",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-suginai",
+    "sentenceId": "af815c756bd9a0a68a238ac1",
+    "japanese": "農民に過ぎない",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "dokoro-ka",
+    "sentenceId": "543ad1abcf484fc27ec087d7",
+    "japanese": "読むどころか",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "to-wa-kagiranai",
+    "sentenceId": "12677cdaa1dfcc5347987d39",
+    "japanese": "黒いとは限らない",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "to-iu-mono-da",
+    "sentenceId": "57e05882245ee41db4d8025e",
+    "japanese": "順序というものだろう",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "to-itte-mo",
+    "sentenceId": "d4a733e8ed349d8bf10b45db",
+    "japanese": "先生といっても",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "osore-ga-aru",
+    "sentenceId": "abb434d837d304c46a4cc317",
+    "japanese": "再発するおそれがある",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "sei-ka",
+    "sentenceId": "667a6cd1c61b84bb7aeef7d8",
+    "japanese": "使ったせいか",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "bakari-ka",
+    "sentenceId": "6dc62a4dcf17aa53e65fc861",
+    "japanese": "であるばかりか",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "zukume",
+    "sentenceId": "0eeba6a091e19d29d248c77c",
+    "japanese": "黒ずくめ",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-atte",
+    "sentenceId": "1031db6b58aa72ed80bf06ed",
+    "japanese": "核時代にあっては",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-mo-mashite",
+    "sentenceId": "22bf5ac27636b8009a976b14",
+    "japanese": "以前にもまして",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "made-mo-nai",
+    "sentenceId": "e23efae38cf00b899c9e70bd",
+    "japanese": "言うまでもない",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "n-bakari",
+    "sentenceId": "49e47ac43b769508b01c03a7",
+    "japanese": "狂わんばかりだった",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-mo-hodo-ga-aru",
+    "sentenceId": "caa659206819c41609e9b2d8",
+    "japanese": "ふざけるにもほどがある",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "te-shikaru-beki-da",
+    "sentenceId": "605ea1c01dded525f079e02f",
+    "japanese": "あってしかるべきだ",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "te-bakari-iru",
+    "sentenceId": "3e0cd3e25ce2f96782a73a59",
+    "japanese": "こぼしてばかりいる",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ba-ii",
+    "sentenceId": "05e1f8793a93963be5aee2f9",
+    "japanese": "すればいいでしょうか",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "kiru-kirenai",
+    "sentenceId": "999c8061549428f40086f8f0",
+    "japanese": "使い切れない",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "beki-da-beki-de-wa-nai",
+    "sentenceId": "25431608a13d022e42359276",
+    "japanese": "入れるべきだった",
+    "expect": "present",
+    "note": "Reviewed formation in the supplied Japanese and English corpus context."
+  },
+  {
+    "lessonId": "ni-shite-wa",
+    "sentenceId": "8f34863e37ca6c4a195b14cd",
+    "japanese": "あてにしてはいけない",
+    "expect": "absent",
+    "note": "Literal relying plus prohibition is not an unexpected comparison."
+  },
+  {
+    "lessonId": "o-tsuujite-o-tooshite",
+    "sentenceId": "3d3073f372cf06dba3cdd95c",
+    "japanese": "目を通している",
+    "expect": "absent",
+    "note": "Skimming is a lexical action, not a medium."
+  },
+  {
+    "lessonId": "gatai",
+    "sentenceId": "d07cfb4dda535c38d8c9846c",
+    "japanese": "ありがたい",
+    "expect": "absent",
+    "note": "Grateful is lexical, not difficulty doing an action."
+  },
+  {
+    "lessonId": "kko-nai",
+    "sentenceId": "17a78eab731a124f915882b6",
+    "japanese": "またがる",
+    "expect": "absent",
+    "note": "A lexical verb does not establish an emphatic impossible suffix."
+  },
+  {
+    "lessonId": "nashi-ni-wa",
+    "sentenceId": "1522c891452eb22fcde4302c",
+    "japanese": "台なしにした",
+    "expect": "absent",
+    "note": "Ruining something is a lexical noun + make, not without."
+  },
+  {
+    "lessonId": "ni-atte",
+    "sentenceId": "81478539a3508c54d47d623f",
+    "japanese": "野球場にあたっていた",
+    "expect": "absent",
+    "note": "Light striking a field is a lexical verb, not a situation marker."
+  },
+  {
+    "lessonId": "kiru-kirenai",
+    "sentenceId": "65622097dcaedd2c2faab494",
+    "japanese": "切れない",
+    "expect": "absent",
+    "note": "Scissors not cutting is a lexical verb, not completing another action."
+  },
+  {
+    "lessonId": "ageru-kureru-morau",
+    "sentenceId": "0ae09bcefb9bddb9bffe6347",
+    "japanese": "くれました",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "chuu-juu",
+    "sentenceId": "004f3984827963025986b55a",
+    "japanese": "１年中",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "eru-rareru-potential",
+    "sentenceId": "00f67c149a56ca6369b50266",
+    "japanese": "使える",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "reru-rareru-passive",
+    "sentenceId": "0125dde88acf9cc26e33c2d7",
+    "japanese": "責められる",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "to",
+    "sentenceId": "4d97800e2459995a67ea7ddb",
+    "japanese": "鳴ると",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "noni-purpose",
+    "sentenceId": "1c54bad355b7ec48448316ef",
+    "japanese": "建てるのに",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "tame-ni",
+    "sentenceId": "03c47d5ab9f03d1fa4d89259",
+    "japanese": "台風のために",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "you-ni",
+    "sentenceId": "00f67c149a56ca6369b50266",
+    "japanese": "使えるように",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "garu",
+    "sentenceId": "265711c5458c59cad4a940aa",
+    "japanese": "嫌がった",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "ka-embedded-question",
+    "sentenceId": "0c71969d85bc1cde1ddf0609",
+    "japanese": "着くか",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "bakari",
+    "sentenceId": "100b3b762c2ca844117ac20f",
+    "japanese": "質問ばかり",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "dasu",
+    "sentenceId": "404389241af5b45677b1c8c6",
+    "japanese": "降り出して",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "hodo-nai",
+    "sentenceId": "65b182ac2afd5014f49dd797",
+    "japanese": "本ほど重くない",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "mo-emphasis",
+    "sentenceId": "03c47d5ab9f03d1fa4d89259",
+    "japanese": "一時間も",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "sonkeigo",
+    "sentenceId": "1070d2534cf7c31ce4f43280",
+    "japanese": "おっしゃる",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "kenjougo",
+    "sentenceId": "155dce557b2f04a410d5fac6",
+    "japanese": "申し上げます",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "o-ni-naru",
+    "sentenceId": "0e0c95de852f2d0e819cad52",
+    "japanese": "お話しになる",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "o-suru",
+    "sentenceId": "05264197ad3b0bbae43693a5",
+    "japanese": "お連れする",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "de-mo-suggestion",
+    "sentenceId": "24151ab3e02bd1289fdd3119",
+    "japanese": "お茶でも",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "sa",
+    "sentenceId": "01707ada87f525d634a3f83e",
+    "japanese": "高さ",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "me",
+    "sentenceId": "24c485e1adb1d70eaa898ba0",
+    "japanese": "３番目",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "ni-tsuki",
+    "sentenceId": "35933f6b68fb7451e5824912",
+    "japanese": "１ダースにつき",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "ppoi",
+    "sentenceId": "306bdd462c7220347716727f",
+    "japanese": "脂っぽい",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "teki",
+    "sentenceId": "2a585800ba9fe206835b5f45",
+    "japanese": "伝統的な",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "masu-you-ni",
+    "sentenceId": "1ad88c5bd7aff20eab9ff9b2",
+    "japanese": "できますように",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "hodo-wa-nai",
+    "sentenceId": "1fa991c63e816808ec8aa6ee",
+    "japanese": "ダイヤモンドほど硬いものはない",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "mono-da",
+    "sentenceId": "2b1878b2a6f63252cfdbe221",
+    "japanese": "いじめたものだ",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "rashii-typical-of",
+    "sentenceId": "44af37e1e83ccfa017e30e27",
+    "japanese": "メグらしい",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "you-na-you-ni-like",
+    "sentenceId": "00fa00747aae2a575f1edbcd",
+    "japanese": "レモンのような",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "hodo",
+    "sentenceId": "084511d71144548b7b2eb650",
+    "japanese": "狂うほど",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "kurai-gurai-extent",
+    "sentenceId": "480a20496f735ff131a79582",
+    "japanese": "認めるぐらい",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "tsuide-ni",
+    "sentenceId": "841eec572e01a61b59701f85",
+    "japanese": "買い物ついでに",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "to-sureba-to-shitara",
+    "sentenceId": "a1673606ae90e1385485042a",
+    "japanese": "起こったとすれば",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "to-shite-mo",
+    "sentenceId": "180b176bcdecc40d59ebd301",
+    "japanese": "あったとしても",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "to-iu-koto-da",
+    "sentenceId": "55016589e55c24f15c21c80a",
+    "japanese": "来ないということです",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "ni-kuwaete",
+    "sentenceId": "3f8e4c5664d31a2405470fb7",
+    "japanese": "材料に加えて",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "o-nozoite",
+    "sentenceId": "d81ed661d6b6d80b5d183a83",
+    "japanese": "価格を除いては",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "koto-naku",
+    "sentenceId": "d9088c4b71c74243708f8c42",
+    "japanese": "途切れることなく",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "ni-kagiru",
+    "sentenceId": "04e4cb1b01342cce05b41835",
+    "japanese": "ビールに限る",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "o-to-shite",
+    "sentenceId": "00f67c149a56ca6369b50266",
+    "japanese": "仕事場として",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "tatoe-te-mo",
+    "sentenceId": "3dbe256c89fca6d3a568decd",
+    "japanese": "たとえ雨が降っても",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "ni-itaru-ni-itatte-ni-itatte-wa",
+    "sentenceId": "cda8098b38fc339b246da7d5",
+    "japanese": "滅びに至る",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "de-are-de-are-de-are",
+    "sentenceId": "642d347fc738a2d44fbb54ea",
+    "japanese": "なんであれ",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "nari-ni-nari-no",
+    "sentenceId": "55c37a63b43cc9d3efadcbd8",
+    "japanese": "彼らなりの",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "kaneru",
+    "sentenceId": "9f86da1567fe7ab38c78eb76",
+    "japanese": "そいかねます",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "nagara-mo",
+    "sentenceId": "84903d4032bb3ac9d64a6f3b",
+    "japanese": "残念ながら",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "te-reason",
+    "sentenceId": "4198fad5e9439c84e3c49fbb",
+    "japanese": "いてうれしい",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "sae",
+    "sentenceId": "9e4ac1c07021aab68517f03e",
+    "japanese": "上空でさえ",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "sae-ba",
+    "sentenceId": "020d4a5bf198755ca7b6fd87",
+    "japanese": "洗いさえすれば",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "koso",
+    "sentenceId": "249919c38ea46e7f3fb4ec93",
+    "japanese": "今こそ",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "uru-enai",
+    "sentenceId": "9214c5bcf44f3d9797863bf3",
+    "japanese": "ありえない",
+    "expect": "present",
+    "note": "Reviewed corpus formation and sentence context."
+  },
+  {
+    "lessonId": "to",
+    "sentenceId": "14489828c857d911b15845f3",
+    "japanese": "ぴたりと止まった",
+    "expect": "absent",
+    "note": "Reviewed lexical or semantic counterexample; do not infer this lesson from the surface."
+  },
+  {
+    "lessonId": "me",
+    "sentenceId": "9a64608b23d6aa7b6cf30355",
+    "japanese": "二枚目",
+    "expect": "absent",
+    "note": "Reviewed lexical or semantic counterexample; do not infer this lesson from the surface."
+  },
+  {
+    "lessonId": "to-shite-mo",
+    "sentenceId": "0f9b4bb153fd00cce45d1ec2",
+    "japanese": "あざむこうとしても",
+    "expect": "absent",
+    "note": "Reviewed lexical or semantic counterexample; do not infer this lesson from the surface."
+  },
+  {
+    "lessonId": "ni-kagiru",
+    "sentenceId": "95ca35137f231e01514c3c14",
+    "japanese": "女性に限る",
+    "expect": "absent",
+    "note": "Reviewed lexical or semantic counterexample; do not infer this lesson from the surface."
+  },
+  {
+    "lessonId": "sae",
+    "sentenceId": "07f29ae0c24772d45555586b",
+    "japanese": "おさえた",
+    "expect": "absent",
+    "note": "Reviewed lexical or semantic counterexample; do not infer this lesson from the surface."
+  },
+  {
+    "lessonId": "koso",
+    "sentenceId": "73209127eabfedccbb9178fd",
+    "japanese": "引き起こそう",
+    "expect": "absent",
+    "note": "Reviewed lexical or semantic counterexample; do not infer this lesson from the surface."
+  },
+  {
+    "lessonId": "nuku",
+    "sentenceId": "e6ce484eef708ceb9e302c37",
+    "japanese": "撃ち抜いた",
+    "expect": "absent",
+    "note": "Reviewed lexical or semantic counterexample; do not infer this lesson from the surface."
+  },
+  {
+    "lessonId": "gatai",
+    "sentenceId": "5579e668f5228a3cb6ca56f0",
+    "japanese": "聞き取り難い",
+    "expect": "absent",
+    "note": "Reviewed lexical or semantic counterexample; do not infer this lesson from the surface."
+  },
+  {
+    "lessonId": "mama",
+    "sentenceId": "0c884ca3ce27fb7ba6499d12",
+    "japanese": "したまま",
+    "expect": "present",
+    "note": "Completed action remains in effect during sitting."
+  },
+  {
+    "lessonId": "baai-wa",
+    "sentenceId": "0ceec7261a12ce5413e5aeab",
+    "japanese": "雨天の場合は",
+    "expect": "present",
+    "note": "Noun-no formation introduces a contingency."
+  },
+  {
+    "lessonId": "gachi",
+    "sentenceId": "2adb4e49bbf5493a7809f3b0",
+    "japanese": "見下ろしがち",
+    "expect": "present",
+    "note": "Verified continuative stem expresses a tendency."
+  },
+  {
+    "lessonId": "te-hajimete",
+    "sentenceId": "57a3707635e3d10406908898",
+    "japanese": "かれて初めて",
+    "expect": "present",
+    "note": "Only once the well runs dry does its value become known."
+  },
+  {
+    "lessonId": "muki-muke",
+    "sentenceId": "29fa1b007d9aa1a91d9235d7",
+    "japanese": "新入生向け",
+    "expect": "present",
+    "note": "Orientation is intended for new students."
+  },
+  {
+    "lessonId": "muki-muke",
+    "sentenceId": "7b8696f9f954cbeb9b6d3b69",
+    "japanese": "若者向き",
+    "expect": "present",
+    "note": "Suitability for young people."
+  },
+  {
+    "lessonId": "au",
+    "sentenceId": "12b7280b517d320d0c5b5847",
+    "japanese": "愛し合う",
+    "expect": "present",
+    "note": "Reciprocal loving."
+  },
+  {
+    "lessonId": "au",
+    "sentenceId": "427d411034fdcf90ac2cbe68",
+    "japanese": "語り合った",
+    "expect": "present",
+    "note": "Talking together."
+  },
+  {
+    "lessonId": "naosu",
+    "sentenceId": "3281d6d47784cfb098c422d1",
+    "japanese": "書き直した",
+    "expect": "present",
+    "note": "Rewrite the manuscript."
+  },
+  {
+    "lessonId": "naosu",
+    "sentenceId": "2f02d5b9cbb4cd11e286daab",
+    "japanese": "出直します",
+    "expect": "present",
+    "note": "Return and try again tomorrow."
+  },
+  {
+    "lessonId": "mama",
+    "sentenceId": "5e73e9d4828df77be92dbbd8",
+    "japanese": "わがまま",
+    "expect": "absent",
+    "note": "Selfish is a lexical adjective."
+  },
+  {
+    "lessonId": "gachi",
+    "sentenceId": "61ad3f2e20ddc7b49519f22d",
+    "japanese": "雨がちょうど",
+    "expect": "absent",
+    "note": "Case particle plus just now is not tendency."
+  },
+  {
+    "lessonId": "muki-muke",
+    "sentenceId": "0402db7dd497197f295e8657",
+    "japanese": "後ろ向き",
+    "expect": "absent",
+    "note": "Physical direction is not audience suitability."
+  },
+  {
+    "lessonId": "au",
+    "sentenceId": "0bc76b352b609340538c23d9",
+    "japanese": "似合う",
+    "expect": "absent",
+    "note": "Suitability is not reciprocal action."
+  },
+  {
+    "lessonId": "naosu",
+    "sentenceId": "6072965fa40de493d6d1aaf0",
+    "japanese": "見直した",
+    "expect": "absent",
+    "note": "Reassessment of a person is not redoing a task."
+  },
+  {
+    "lessonId": "te-hajimete",
+    "sentenceId": "841880a7830be1dd4ec29006",
+    "japanese": "初めての",
+    "expect": "absent",
+    "note": "First-time nominal modifier has no preceding te-form."
+  }
+]

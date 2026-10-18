@@ -1713,14 +1713,6 @@
           "grammarIds": [
             "no"
           ]
-        },
-        {
-          "start": 10,
-          "end": 12,
-          "japanese": "より",
-          "grammarIds": [
-            "yori"
-          ]
         }
       ]
     },
@@ -2612,6 +2604,240 @@
           "grammarIds": [
             "te-shimau-chau",
             "ta"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "692a3025e0a7e3409c36d5d0",
+      "english": "My boss made me work overtime.",
+      "japanese": "上司に残業させられたんだよ。",
+      "furigana": "{上司|じょうし}に{残業|ざんぎょう}させられたんだよ。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 3,
+          "end": 10,
+          "japanese": "残業させられた",
+          "grammarIds": [
+            "serareru-saserareru"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "6d5df05cd1ddbcfbb3683299",
+      "english": "I'm always surprised by him.",
+      "japanese": "彼にはいつもびっくりさせられる。",
+      "furigana": "{彼|かれ}にはいつもびっくりさせられる。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 6,
+          "end": 15,
+          "japanese": "びっくりさせられる",
+          "grammarIds": [
+            "serareru-saserareru"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "d701073b9d5903ac5e91ba6f",
+      "english": "He was made to check his papers by the chief.",
+      "japanese": "彼は課長に書類を点検させられた。",
+      "furigana": "{彼|かれ}は{課長|かちょう}に{書類|しょるい}を{点検|てんけん}させられた。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 8,
+          "end": 15,
+          "japanese": "点検させられた",
+          "grammarIds": [
+            "serareru-saserareru"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "0c3b35ce35a4a03fea02d4c0",
+      "english": "Electric irons are heated by electricity.",
+      "japanese": "電気アイロンは電気で熱せられる。",
+      "furigana": "{電気|でんき}アイロンは{電気|でんき}で{熱|ねっ}せられる。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 10,
+          "end": 15,
+          "japanese": "熱せられる",
+          "grammarIds": [
+            "reru-rareru-passive"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "0e55f6f89971129e579fa3a5",
+      "english": "He was punished for child abuse.",
+      "japanese": "彼は幼児虐待で罰せられた。",
+      "furigana": "{彼|かれ}は{幼児|ようじ}{虐待|ぎゃくたい}で{罰|ばっ}せられた。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 7,
+          "end": 12,
+          "japanese": "罰せられた",
+          "grammarIds": [
+            "reru-rareru-passive"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "d1b550025fe404d2fc2ef34a",
+      "english": "Such an offence is punished by a fine and/or imprisonment.",
+      "japanese": "このような犯罪は罰金および投獄又はそのいずれかで罰せられる。",
+      "furigana": "このような{犯罪|はんざい}は{罰金|ばっきん}および{投獄|とうごく}{又|また}はそのいずれかで{罰|ばっ}せられる。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 24,
+          "end": 29,
+          "japanese": "罰せられる",
+          "grammarIds": [
+            "reru-rareru-passive"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "d1d7e898b3ac2a260a09cc44",
+      "english": "He was punished for his evil acts.",
+      "japanese": "彼は悪い行為のための罰せられた。",
+      "furigana": "{彼|かれ}は{悪|わる}い{行為|こうい}のための{罰|ばっ}せられた。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 10,
+          "end": 15,
+          "japanese": "罰せられた",
+          "grammarIds": [
+            "reru-rareru-passive"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "e9bfc218a932262ae14a7c41",
+      "english": "I was fined a dollar.",
+      "japanese": "１ドルの罰金を科せられた。",
+      "furigana": "１ドルの{罰金|ばっきん}を{科|か}せられた。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 7,
+          "end": 12,
+          "japanese": "科せられた",
+          "grammarIds": [
+            "reru-rareru-passive"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "c50d57cee069651770fcaae2",
+      "english": "A new tax was imposed on wine.",
+      "japanese": "新しい税金がワインにかせられた。",
+      "furigana": "{新|あたら}しい{税金|ぜいきん}がワインにかせられた。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 10,
+          "end": 15,
+          "japanese": "かせられた",
+          "grammarIds": [
+            "reru-rareru-passive"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "df34a2a95b698671e0117c89",
+      "english": "I'm going to meet a certain student.",
+      "japanese": "ある学生に会うところです。",
+      "furigana": "ある{学生|がくせい}に{会|あ}うところです。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 12,
+          "japanese": "会うところです",
+          "grammarIds": [
+            "tokoro-da"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "8dc33f7309576ce6a9bb373f",
+      "english": "The band has played a march.",
+      "japanese": "バンドが行進曲を終えたところです。",
+      "furigana": "バンドが{行進曲|こうしんきょく}を{終|お}えたところです。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 8,
+          "end": 16,
+          "japanese": "終えたところです",
+          "grammarIds": [
+            "tokoro-da"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "600b89c5d2da2028bbf9fd7c",
+      "english": "The boy was all but drowned.",
+      "japanese": "その少年は溺れ死ぬところだった。",
+      "furigana": "その{少年|しょうねん}は{溺|おぼ}れ{死|し}ぬところだった。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 5,
+          "end": 15,
+          "japanese": "溺れ死ぬところだった",
+          "grammarIds": [
+            "tokoro-datta"
+          ]
+        }
+      ]
+    },
+    {
+      "sentenceId": "73e47abe8550462272fa5744",
+      "english": "The baby almost choked on a piece of candy.",
+      "japanese": "お菓子で赤ちゃんが窒息するところだった。",
+      "furigana": "お{菓子|かし}で{赤|あか}ちゃんが{窒息|ちっそく}するところだった。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 9,
+          "end": 19,
+          "japanese": "窒息するところだった",
+          "grammarIds": [
+            "tokoro-datta"
           ]
         }
       ]

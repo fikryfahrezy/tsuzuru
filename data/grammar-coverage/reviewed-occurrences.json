@@ -1,0 +1,80 @@
+[
+  {
+    "sentenceId": "692a3025e0a7e3409c36d5d0",
+    "lessonId": "serareru-saserareru",
+    "japanese": "残業させられた",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "6d5df05cd1ddbcfbb3683299",
+    "lessonId": "serareru-saserareru",
+    "japanese": "びっくりさせられる",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "d701073b9d5903ac5e91ba6f",
+    "lessonId": "serareru-saserareru",
+    "japanese": "点検させられた",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "0c3b35ce35a4a03fea02d4c0",
+    "lessonId": "reru-rareru-passive",
+    "japanese": "熱せられる",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "0e55f6f89971129e579fa3a5",
+    "lessonId": "reru-rareru-passive",
+    "japanese": "罰せられた",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "d1b550025fe404d2fc2ef34a",
+    "lessonId": "reru-rareru-passive",
+    "japanese": "罰せられる",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "d1d7e898b3ac2a260a09cc44",
+    "lessonId": "reru-rareru-passive",
+    "japanese": "罰せられた",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "e9bfc218a932262ae14a7c41",
+    "lessonId": "reru-rareru-passive",
+    "japanese": "科せられた",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "c50d57cee069651770fcaae2",
+    "lessonId": "reru-rareru-passive",
+    "japanese": "かせられた",
+    "note": "The supplied translation and participant roles select passive or forced action; morphology alone also permits another voice reading."
+  },
+  {
+    "sentenceId": "df34a2a95b698671e0117c89",
+    "lessonId": "tokoro-da",
+    "japanese": "会うところです",
+    "note": "The supplied translation selects action phase or near-miss rather than a literal place; Japanese lacks a reliable general cue."
+  },
+  {
+    "sentenceId": "8dc33f7309576ce6a9bb373f",
+    "lessonId": "tokoro-da",
+    "japanese": "終えたところです",
+    "note": "The supplied translation selects action phase or near-miss rather than a literal place; Japanese lacks a reliable general cue."
+  },
+  {
+    "sentenceId": "600b89c5d2da2028bbf9fd7c",
+    "lessonId": "tokoro-datta",
+    "japanese": "溺れ死ぬところだった",
+    "note": "The supplied translation selects action phase or near-miss rather than a literal place; Japanese lacks a reliable general cue."
+  },
+  {
+    "sentenceId": "73e47abe8550462272fa5744",
+    "lessonId": "tokoro-datta",
+    "japanese": "窒息するところだった",
+    "note": "The supplied translation selects action phase or near-miss rather than a literal place; Japanese lacks a reliable general cue."
+  }
+]

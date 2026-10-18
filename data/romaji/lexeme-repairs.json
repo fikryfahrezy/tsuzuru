@@ -1,0 +1,10 @@
+[
+  {
+    "japanese": "つくろって",
+    "reading": "つくろって",
+    "generatedLemma": "つくる",
+    "lemma": "つくろう",
+    "verbClass": "v5u",
+    "reason": "The te-form of 繕う (mend) is つくろって. 作る has the te-form つくって. Preserve the supplied reading."
+  }
+]

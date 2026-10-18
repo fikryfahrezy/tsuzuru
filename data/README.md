@@ -172,7 +172,13 @@ review snapshots. CI also regenerates the bank in check mode and runs generator
 tests, so changes to source data or spacing rules require an updated bank.
 
 The same generator produces `romaji/reference-lexemes.json`, keyed and guarded
-the same way, which connects
+the same way. Verb rows retain their Sudachi conjugation class as `verbClass`,
+including exact dictionary forms. Breakdowns and grammar handlers can therefore
+recognize kana verbs and compounds absent from the vocabulary bank without
+guessing their class from word endings. `romaji/lexeme-repairs.json` maintains
+explicit tokenizer corrections guarded by exact surface, supplied reading, and
+generated lemma; corrections never invent or replace pronunciations.
+The bank connects
 dictionary forms of verbs and adjectives to their complete conjugated words in
 the reference. Endings and honorific prefixes use the romaji word boundaries;
 all readings come from the supplied furigana. Dictionary tooling uses these forms to connect inflections and complete kana

@@ -105,11 +105,34 @@ class RomajiGeneratorTests(unittest.TestCase):
                          ["がっこう", "では", "べんきょう", "する", "。"])
         self.assertEqual(self.words("はめていた。"), ["はめて", "いた", "。"])
 
-    def lexemes(self, furigana):
+    def lexemes(self, furigana, include_metadata=False):
         surface, offsets = generator.reading_offsets(furigana)
         tokens = list(self.tokenizer.tokenize(surface, SplitMode.C))
         boundaries = generator.word_boundaries(self.tokenizer, surface, offsets)
-        return generator.reference_lexemes(tokens, surface, offsets, furigana, boundaries)
+        rows = generator.reference_lexemes(tokens, surface, offsets, furigana, boundaries)
+        if include_metadata:
+            return rows
+        return [{key: value for key, value in row.items() if key != "verbClass"} for row in rows]
+
+    def test_verb_classes_survive_missing_vocabulary_and_kana_spellings(self):
+        for text, surface, reading, lemma, conjugation in [
+            ("きて", "きて", "きて", "くる", "vk"),
+            ("{書き直|かきなお}した", "書き直した", "かきなおした", "書き直す", "v5s"),
+            ("おいた", "おいた", "おいた", "おく", "v5k"),
+            ("いく", "いく", "いく", "いく", "v5k-s"),
+        ]:
+            with self.subTest(text=text):
+                self.assertEqual(self.lexemes(text, include_metadata=True), [
+                    {"lemma": lemma, "japanese": surface, "reading": reading, "verbClass": conjugation}
+                ])
+
+    def test_explicit_lemma_repairs_preserve_the_supplied_pronunciation(self):
+        self.assertEqual(self.lexemes("つくろって", include_metadata=True), [
+            {"lemma": "つくろう", "japanese": "つくろって", "reading": "つくろって", "verbClass": "v5u"}
+        ])
+        self.assertEqual(self.lexemes("つくって", include_metadata=True), [
+            {"lemma": "つくる", "japanese": "つくって", "reading": "つくって", "verbClass": "v5r"}
+        ])
 
     def test_inflected_forms_retain_supplied_readings_and_endings(self):
         self.assertEqual(self.lexemes("{水|みず}を{飲|の}みました。"),

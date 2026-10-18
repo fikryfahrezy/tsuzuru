@@ -66,12 +66,72 @@ An explanation belongs to the entry containing the span's start; its full Japane
 span is displayed even when the construction crosses several entries. Explicit
 spans replace automatic form explanations within that span. Grammar from base
 words survives grouping into maintained phrases. Common unambiguous particles
-and verified inflected verbs receive automatic lessons; ambiguous roles require
-annotations. This supports every lesson, but does not claim automatic recognition
-of all Japanese grammar in the sentence corpus. Missing or stale annotations
-must never be inferred from substring matches. Existing general particle notes
-remain available when the particular role has not been annotated.
+and verified inflected verbs receive automatic lessons. `server/utils/verb-grammar.ts`
+also recognizes common verb constructions across consecutive base words, using
+the supplied dictionary form and its vocabulary conjugation class. This includes
+permission, requests, prohibition, obligation, ongoing actions, trying an action,
+preparation, completion, sequence, concessions, wishes, and simultaneous actions.
+It also recognizes past experience (たことがある), ability (ことができる),
+advice (た / ないほうがいい), favors (てもらう / てあげる), and intentions
+(dictionary / ない form + つもり), including common polite and negative endings.
+Dictionary-form constructions can start at an uninflected verb without a stored
+inflection lexeme. Verb forms use the generated tokenizer conjugation class,
+falling back to the vocabulary class for older or manually supplied entries.
+This keeps kana spellings and compounds usable even when the vocabulary list
+does not include them. Unsupported spellings and conjugations still require annotations.
+Additional handlers cover favors with てくれる, offers with ましょうか,
+verb/adjective/noun conditions with たら, causal ので, wanting things with
+がほしい, action lists with たり, and casual てる / でる contractions of ている.
+Action lists require a final する (including common inflections), and one lesson
+spans the list. Joined ので relies on the maintained conjunction reviews;
+possessive の followed by で remains separate. Whole constructions take priority
+over component explanations, while partially overlapping constructions retain
+their separate lessons.
+`server/utils/comparison-grammar.ts` recognizes comparative より when its standard
+and a following adjective or comparative predicate establish the use. Source
+より ("from"), により, and ambiguous clauses do not establish a comparison.
+`server/utils/question-grammar.ts` recognizes standalone clause-ending question
+か after a predicate, including explanatory のか. It leaves internal choices,
+indefinite forms, embedded questions, and ambiguous noun fragments to annotations.
+`server/utils/particle-grammar.ts` recognizes clear roles for の, が, に, で,
+と, and から using positioned nouns, nearby predicates, and maintained lexical
+cues. This covers noun-to-noun possession/description; subject and clause-linking
+が; destination, existence location, and explicit time に; action-location and
+means で; compatible noun lists, companions, and quoted speech/thought と; and
+starting-point versus causal から. Place, transport, tool, language, and compatible
+list categories are intentionally limited. Nominalized clauses, purpose に,
+frequency expressions, copular で, conditional と, naming という, temporal
+うち, and unresolved readings do not receive a role just from their spelling.
+Predicate searches stop at sentence or quotation boundaries. Unsupported or
+ambiguous roles still need explicit annotations, which override these handlers.
+Matches must cover complete base words, retain punctuation and spacing, and use
+the longest recognized construction; explicit annotations take priority.
+Ambiguous roles and unsupported forms still require annotations. This supports
+every lesson, but does not claim automatic recognition of all Japanese grammar
+in the sentence corpus. Unrestricted substring matches must never establish a
+grammar lesson. Existing general particle notes remain available when the
+particular role has not been annotated.
 
 An unknown lesson ID or invalid grammar span rejects the sentence annotation in
 the same way as an invalid hint mapping. Bump `answerDetailsVersion` for changes
 to grammar annotations or automatic interpretation too.
+
+Coverage for all 526 lessons is tracked in [the generated inventory](../../docs/grammar-coverage.md).
+Run `bun run grammar:audit` after handler, annotation, or corpus changes, and
+`bun run grammar:check` to verify that the reports and reviewed positive/negative
+cases remain current. The inventory distinguishes rule presence, observed corpus
+matches, annotation-only lessons, and unverified search candidates.
+
+The current implementation separates rule catalogs, semantic handlers, exact
+span matching, precedence, and explanation attachment. See the
+[architecture guide](../../docs/grammar-detection.md) for module responsibilities,
+detection dependencies, and the procedure for adding coverage. Shared rules
+cover reviewed verb constructions, particles, comparisons, noun relations,
+contextual clauses, fused-word derivations, voice, and honorifics. Their recognition
+remains partial; lexical categories and clause context constrain each reading.
+
+Version `answer-entries-v14` refreshes saved journal breakdowns after the current
+interpretation changes. Reviewed contextual occurrences retain explicit
+annotations with the existing English, Japanese, and reading guards. See the
+[candidate review notes](../grammar-coverage/review-notes.md) for rejected
+lookalikes and source-lesson sense differences.

@@ -12,6 +12,8 @@
     "build": "bun scripts/prepare-disclosure.ts && bun --bun nuxt build",
     "generate": "bun scripts/prepare-disclosure.ts && bun --bun nuxt generate",
     "test": "bun test tests",
+    "grammar:audit": "bun scripts/audit-grammar.ts",
+    "grammar:check": "bun scripts/audit-grammar.ts --check",
     "alternatives:generate": "bun scripts/generate-alternatives.ts",
     "alternatives:check": "bun scripts/generate-alternatives.ts --check",
     "alternatives:prompts": "bun scripts/generate-alternatives.ts --prompts",
@@ -44,7 +46,7 @@
     "format": "bun --bun oxfmt --write .",
     "format:check": "bun --bun oxfmt --check .",
     "typecheck": "bun --bun nuxt typecheck && bun --bun tsc --project tsconfig.scripts.json && bun --bun tsc --project tsconfig.tests.json",
-    "check": "bun run lint && bun run format:check && bun run typecheck && bun run test"
+    "check": "bun run lint && bun run format:check && bun run typecheck && bun run test && bun run grammar:check"
   },
   "dependencies": {
     "nuxt": "4.6.1",

@@ -29,7 +29,8 @@ export interface AnswerEntry extends AnswerBreakdownPart {
   start: number;
   end: number;
 }
-function positionedEntries(sentence: Sentence): AnswerEntry[] {
+// Raw positioned words, before maintained meanings, grouping, or grammar links.
+export function baseAnswerEntries(sentence: Sentence): AnswerEntry[] {
   const chips = answerChips(sentence);
   const dictionary = answerBreakdown(sentence, chips);
   // Preserve source UTF-16 positions while chips omit comparison punctuation.
@@ -68,7 +69,7 @@ export function sentenceAnswerEntries(
   sentence: Sentence,
   record: SentenceAnswerAnnotations | undefined = annotations.get(sentence.id),
 ) {
-  const base = positionedEntries(sentence);
+  const base = baseAnswerEntries(sentence);
   const fallback = {
     entries: withBreakdownGrammar(sentence, base, base),
     hintMappings: [],
