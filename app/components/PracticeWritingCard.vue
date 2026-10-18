@@ -64,8 +64,8 @@ function chipText(index: number) {
   const chip = chips.value[index];
   return (props.mode === Strictness.Kana ? chip?.kana : chip?.japanese) ?? "";
 }
-function updateChipAnswer() {
-  answer.value = selected.value.map(chipText).join("");
+function updateChipAnswer(selection = selected.value) {
+  answer.value = selection.map(chipText).join("");
 }
 function addChip(index: number) {
   if (locked.value || selected.value.includes(index)) return;
@@ -80,7 +80,7 @@ function removeChip(position: number) {
 function clearChips() {
   if (locked.value) return;
   selected.value = [];
-  updateChipAnswer();
+  updateChipAnswer([]);
 }
 async function moveChip(event: KeyboardEvent, position: number) {
   if (!event.altKey || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
@@ -153,7 +153,8 @@ watch(
         dragging.value = false;
         if (locked.value) return;
         selected.value = order;
-        updateChipAnswer();
+        // Model replacements reach this component on the next parent render.
+        updateChipAnswer(order);
         const index = Number(event.item.dataset.chipIndex);
         const position = order.indexOf(index);
         chipAnnouncement.value =
