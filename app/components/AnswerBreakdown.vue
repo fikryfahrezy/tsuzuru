@@ -12,7 +12,8 @@ withDefaults(
     <p class="breakdown-help">
       Words from the reference, in
       {{ shuffled ? "shuffled" : "sentence" }} order. Meanings may vary with
-      context. Expand a grammar point for its formation and an example.
+      context. Grammar shows the full phrase it applies to. Expand a grammar
+      point for its formation and an example.
     </p>
     <ul tabindex="0" aria-label="Answer breakdown items">
       <li v-for="(part, index) in parts" :key="index">
@@ -63,12 +64,12 @@ withDefaults(
               Grammar ·
               <span lang="ja">{{ grammar.pattern }}</span>
             </span>
+            <span class="grammar-scope">
+              Applies to:
+              <span lang="ja">{{ grammar.japanese }}</span>
+            </span>
             <span class="grammar-meaning">{{ grammar.meaning }}</span>
           </summary>
-          <p class="breakdown-base">
-            In this answer:
-            <span lang="ja">{{ grammar.japanese }}</span>
-          </p>
           <p>
             <strong>Formation:</strong>
             {{ grammar.formation }}
@@ -187,6 +188,12 @@ h3 {
 .grammar-meaning {
   display: block;
   margin-top: 4px;
+}
+.grammar-scope {
+  display: block;
+  margin-top: 4px;
+  color: var(--secondary);
+  font-size: 12px;
 }
 .breakdown-grammar p {
   margin: 8px 0;
