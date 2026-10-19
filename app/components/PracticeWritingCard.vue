@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
 import Sortable from "sortablejs";
-import { AnswerInput } from "~/utils/practice";
+import { AnswerInput, modes, type JournalEntry } from "~/utils/practice";
 import {
   PracticeDifficulty,
   PracticePermission,
@@ -15,6 +15,7 @@ import {
 } from "#shared/practice";
 const props = defineProps<{
   question: Question | null;
+  previousAttempt?: JournalEntry | null;
   result: Comparison | null;
   revealed: boolean;
   loading: boolean;
@@ -231,6 +232,29 @@ defineExpose({
       v-model:show-romaji="showRomaji"
       @another="emit('another')"
     />
+    <p v-if="question && !loading" class="attempt-history">
+      <template v-if="previousAttempt">
+        Previously tried · Last attempt:
+        <PracticeAttemptOutcome :entry="previousAttempt" />
+        <template v-if="previousAttempt.mode">
+          ·
+          {{ modes.find((item) => item.value === previousAttempt.mode)?.label }}
+        </template>
+        ·
+        <time :datetime="previousAttempt.date">
+          {{
+            new Date(previousAttempt.date).toLocaleString("en", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+            })
+          }}
+        </time>
+      </template>
+      <template v-else>No previous attempt in your journal.</template>
+    </p>
     <form @submit.prevent="emit('submit', false)">
       <div class="writing-field">
         <div class="writing-tools">
@@ -484,6 +508,15 @@ defineExpose({
 </template>
 
 <style scoped>
+.attempt-history {
+  margin: 0;
+  padding: 10px 27px;
+  border-bottom: 1px solid var(--line);
+  color: var(--secondary);
+  font:
+    11px/1.6 system-ui,
+    sans-serif;
+}
 .writing-card {
   border: 1px solid var(--line);
   background: rgba(251, 247, 232, 0.87);
@@ -587,6 +620,9 @@ defineExpose({
   }
 }
 @media (max-width: 640px) {
+  .attempt-history {
+    padding-inline: 20px;
+  }
   .card-actions {
     padding-inline: 20px;
   }

@@ -35,6 +35,11 @@ import {
   latestJournalEntries,
   type JournalEntry,
 } from "~/utils/practice";
+import {
+  readJournal,
+  writeJournalEntry,
+  clearJournal,
+} from "~/utils/journal-storage";
 
 export function usePracticeSession() {
   const level = ref<Level>(Level.N5);
@@ -65,6 +70,7 @@ export function usePracticeSession() {
   const error = ref("");
   const storageNote = ref("");
   const journal = ref<JournalEntry[]>([]);
+  const previousAttempt = ref<JournalEntry | null>(null);
   const retryEntry = ref<JournalEntry | null>(null);
   const ready = ref(false);
   const online = ref(true);
@@ -77,6 +83,7 @@ export function usePracticeSession() {
     focusResult: () => void;
   } | null>(null);
   let request = 0;
+  let disposed = false;
 
   function persist() {
     if (!ready.value) return;
@@ -91,13 +98,20 @@ export function usePracticeSession() {
           showRomaji: showRomaji.value,
           answerInput: answerInput.value,
           acceptAlternatives: acceptAlternatives.value,
-          journal: journal.value,
         }),
       );
     } catch {
       storageNote.value =
-        "Browser storage is unavailable. Your progress will last for this session only.";
+        "Your settings couldn’t be saved. Changes will last for this session only.";
     }
+  }
+
+  function saveEntry(entry: JournalEntry) {
+    if (!ready.value) return;
+    void writeJournalEntry(entry).catch(() => {
+      storageNote.value =
+        "Your latest journal changes couldn’t be saved. You can keep practicing in this session.";
+    });
   }
 
   async function loadQuestion() {
@@ -108,6 +122,7 @@ export function usePracticeSession() {
       : sentence.value;
     const previous = question.value?.id;
     question.value = null;
+    previousAttempt.value = null;
     result.value = null;
     answer.value = "";
     chipSelection.value = [];
@@ -126,6 +141,8 @@ export function usePracticeSession() {
       });
       if (sequence !== request) return;
       question.value = next;
+      previousAttempt.value =
+        journal.value.find((entry) => entry.sentenceId === next.id) ?? null;
     } catch {
       if (sequence === request)
         error.value = retryEntry.value
@@ -163,31 +180,29 @@ export function usePracticeSession() {
       if (sequence !== request || current.id !== question.value?.id) return;
       result.value = comparison;
       revealed.value = reveal;
-      journal.value = latestJournalEntries([
-        {
-          id: `${current.id}-${Date.now()}`,
-          sentenceId: current.id,
-          answerBreakdown: current.answerBreakdown,
-          spellingOptions: current.spellingOptions,
-          answerDetailsVersion,
-          english: current.english,
-          answer: reveal ? "" : answer.value,
-          reference: comparison.reference,
-          outcome: reveal
-            ? JournalOutcome.Revealed
-            : comparison.matched
-              ? JournalOutcome.Matched
-              : JournalOutcome.Unmatched,
-          date: new Date().toISOString(),
-          level: retryEntry.value?.level ?? level.value,
-          mode: mode.value,
-          comparison: reveal
-            ? { ...comparison, differences: null, explanations: [] }
-            : comparison,
-        },
-        ...journal.value,
-      ]);
-      persist();
+      const entry: JournalEntry = {
+        id: `${current.id}-${Date.now()}`,
+        sentenceId: current.id,
+        answerBreakdown: current.answerBreakdown,
+        spellingOptions: current.spellingOptions,
+        answerDetailsVersion,
+        english: current.english,
+        answer: reveal ? "" : answer.value,
+        reference: comparison.reference,
+        outcome: reveal
+          ? JournalOutcome.Revealed
+          : comparison.matched
+            ? JournalOutcome.Matched
+            : JournalOutcome.Unmatched,
+        date: new Date().toISOString(),
+        level: retryEntry.value?.level ?? level.value,
+        mode: mode.value,
+        comparison: reveal
+          ? { ...comparison, differences: null, explanations: [] }
+          : comparison,
+      };
+      journal.value = latestJournalEntries([entry, ...journal.value]);
+      saveEntry(entry);
       await nextTick();
       if (sequence === request) writingCard.value?.focusResult();
     } catch {
@@ -226,7 +241,11 @@ export function usePracticeSession() {
   }
   function resetJournal() {
     journal.value = [];
-    persist();
+    if (!ready.value) return;
+    void clearJournal().catch(() => {
+      storageNote.value =
+        "The saved journal couldn’t be cleared. Its entries may return when you reopen the app.";
+    });
   }
   function saveJournalBreakdown(
     id: string,
@@ -238,7 +257,7 @@ export function usePracticeSession() {
     entry.answerBreakdown = parts;
     entry.spellingOptions = spellingOptions;
     entry.answerDetailsVersion = answerDetailsVersion;
-    persist();
+    saveEntry(entry);
   }
   function restoreAlternative(value: unknown): AlternativeAnswer | null {
     if (!value || typeof value !== "object") return null;
@@ -315,7 +334,7 @@ export function usePracticeSession() {
           : null,
     };
   }
-  onMounted(() => {
+  onMounted(async () => {
     updateConnection();
     window.addEventListener("online", updateConnection);
     window.addEventListener("offline", updateConnection);
@@ -335,47 +354,54 @@ export function usePracticeSession() {
           answerInput.value = saved.answerInput;
         if (typeof saved.acceptAlternatives === "boolean")
           acceptAlternatives.value = saved.acceptAlternatives;
-        if (Array.isArray(saved.journal))
-          journal.value = latestJournalEntries(
-            saved.journal
-              .filter((entry: unknown): entry is JournalEntry => {
-                if (!entry || typeof entry !== "object") return false;
-                const row = entry as JournalEntry;
-                return (
-                  typeof row.id === "string" &&
-                  typeof row.english === "string" &&
-                  typeof row.answer === "string" &&
-                  typeof row.reference === "string" &&
-                  typeof row.date === "string" &&
-                  Number.isFinite(Date.parse(row.date)) &&
-                  isLevel(row.level) &&
-                  Object.values(JournalOutcome).includes(row.outcome)
-                );
-              })
-              .map((entry: JournalEntry) => ({
-                ...entry,
-                sentenceId:
-                  typeof entry.sentenceId === "string"
-                    ? entry.sentenceId
-                    : undefined,
-                answerBreakdown: currentAnswerBreakdown(entry),
-                spellingOptions: currentSpellingOptions(entry),
-                mode: modes.some((item) => item.value === entry.mode)
-                  ? entry.mode
-                  : undefined,
-                comparison: restoreComparison(entry.comparison),
-              })),
-          );
       }
     } catch {
       storageNote.value =
         "Saved progress couldn’t be read. You can keep practicing in this session.";
     }
+    try {
+      const entries = await readJournal();
+      journal.value = latestJournalEntries(
+        entries
+          .filter((entry: unknown): entry is JournalEntry => {
+            if (!entry || typeof entry !== "object") return false;
+            const row = entry as JournalEntry;
+            return (
+              typeof row.id === "string" &&
+              typeof row.english === "string" &&
+              typeof row.answer === "string" &&
+              typeof row.reference === "string" &&
+              typeof row.date === "string" &&
+              Number.isFinite(Date.parse(row.date)) &&
+              isLevel(row.level) &&
+              Object.values(JournalOutcome).includes(row.outcome)
+            );
+          })
+          .map((entry: JournalEntry) => ({
+            ...entry,
+            sentenceId:
+              typeof entry.sentenceId === "string"
+                ? entry.sentenceId
+                : undefined,
+            answerBreakdown: currentAnswerBreakdown(entry),
+            spellingOptions: currentSpellingOptions(entry),
+            mode: modes.some((item) => item.value === entry.mode)
+              ? entry.mode
+              : undefined,
+            comparison: restoreComparison(entry.comparison),
+          })),
+      );
+    } catch {
+      storageNote.value =
+        "Journal storage is unavailable. Your writing will last for this session only.";
+    }
+    if (disposed) return;
     ready.value = true;
-    if (journal.value.length) persist();
+    persist(); // Re-save settings without the discarded localStorage journal.
     void loadQuestion();
   });
   onUnmounted(() => {
+    disposed = true;
     window.removeEventListener("online", updateConnection);
     window.removeEventListener("offline", updateConnection);
   });
@@ -436,6 +462,7 @@ export function usePracticeSession() {
     error,
     storageNote,
     journal,
+    previousAttempt,
     online,
     writingCard,
     loadQuestion,

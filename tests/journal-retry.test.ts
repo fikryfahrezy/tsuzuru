@@ -3,7 +3,9 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { createSSRApp, nextTick } from "vue";
+import { createRenderer, createSSRApp, nextTick } from "vue";
+import { IDBFactory } from "fake-indexeddb";
+import { clearJournal, readJournal } from "../app/utils/journal-storage";
 import { renderToString } from "@vue/server-renderer";
 import { Level, Strictness, type Question } from "../shared/practice";
 
@@ -11,6 +13,10 @@ const directory = mkdtempSync(join(tmpdir(), "tsuzuru-retry-"));
 afterAll(() => rmSync(directory, { recursive: true, force: true }));
 const imports: Record<string, string> = {
   vue: import.meta.resolve("vue"),
+  "~/utils/journal-storage": new URL(
+    "../app/utils/journal-storage.ts",
+    import.meta.url,
+  ).href,
   "#imports": pathToFileURL(join(directory, "route.ts")).href,
   ofetch: pathToFileURL(join(directory, "fetch.ts")).href,
   "~/utils/practice": pathToFileURL(join(directory, "practice.ts")).href,
@@ -121,9 +127,11 @@ test("retry opens the same sentence with an empty answer for every journal outco
     expect(state.result.value).toBeNull();
     expect(state.revealed.value).toBe(false);
     expect(state.journal.value).toEqual([saved]);
+    expect(state.previousAttempt.value).toEqual(saved);
     expect(focused).toBe(true);
     state.answer.value = "水";
     await state.submit();
+    expect(state.previousAttempt.value).toEqual(saved);
     expect(state.journal.value).toHaveLength(1);
     expect(state.journal.value[0]).toMatchObject({
       sentenceId: "water",
@@ -132,6 +140,7 @@ test("retry opens the same sentence with an empty answer for every journal outco
       outcome: "matched",
     });
     await state.nextSentence();
+    expect(state.previousAttempt.value).toBeNull();
     expect(calls.at(-1).query.sentence).toBe("linked-sentence");
   }
 });
@@ -159,4 +168,98 @@ test("retry waits for an answer comparison to finish", async () => {
   await nextTick();
   expect(calls).toHaveLength(0);
   expect(state.question.value?.id).toBe("current");
+});
+
+test("a fresh IndexedDB journal discards old history, preserves settings, and survives reopening", async () => {
+  const previousIDB = globalThis.indexedDB;
+  const previousWindow = globalThis.window;
+  const previousStorage = globalThis.localStorage;
+  const values = new Map<string, string>([
+    [
+      "tsuzuru.practice.v1",
+      JSON.stringify({ level: Level.N3, journal: [entry("matched")] }),
+    ],
+  ]);
+  Object.defineProperty(globalThis, "indexedDB", {
+    configurable: true,
+    writable: true,
+    value: new IDBFactory(),
+  });
+  Object.defineProperty(globalThis, "window", {
+    configurable: true,
+    writable: true,
+    value: { addEventListener() {}, removeEventListener() {} },
+  });
+  Object.defineProperty(globalThis, "localStorage", {
+    configurable: true,
+    writable: true,
+    value: {
+      getItem: (key: string) => values.get(key) ?? null,
+      setItem: (key: string, value: string) => values.set(key, value),
+    },
+  });
+  const renderer = createRenderer<object, object>({
+    patchProp() {},
+    insert() {},
+    remove() {},
+    setText() {},
+    setElementText() {},
+    createElement: () => ({}),
+    createText: () => ({}),
+    createComment: () => ({}),
+    parentNode: () => null,
+    nextSibling: () => null,
+  });
+  async function mount() {
+    let state!: ReturnType<typeof usePracticeSession>;
+    const app = renderer.createApp({
+      setup() {
+        state = usePracticeSession();
+        return () => null;
+      },
+    });
+    app.mount({});
+    for (let attempts = 0; attempts < 100 && !state.question.value; attempts++)
+      await new Promise((resolve) => setTimeout(resolve, 1));
+    expect(state.question.value).not.toBeNull();
+    return { app, state };
+  }
+  let unmount = () => {};
+  try {
+    const first = await mount();
+    unmount = () => first.app.unmount();
+    expect(first.state.level.value).toBe(Level.N3);
+    expect(first.state.journal.value).toEqual([]);
+    expect(
+      JSON.parse(values.get("tsuzuru.practice.v1")!).journal,
+    ).toBeUndefined();
+    first.state.answer.value = "水";
+    await first.state.submit();
+    expect(await readJournal()).toHaveLength(1);
+    unmount();
+    const second = await mount();
+    unmount = () => second.app.unmount();
+    expect(second.state.journal.value).toHaveLength(1);
+    expect(second.state.journal.value[0].answer).toBe("水");
+    second.state.saveJournalBreakdown(second.state.journal.value[0].id, [], []);
+    expect((await readJournal())[0].answerDetailsVersion).toBeDefined();
+    second.state.resetJournal();
+    expect(await readJournal()).toEqual([]);
+    expect(second.state.journal.value).toEqual([]);
+  } finally {
+    unmount();
+    await clearJournal();
+    const deletion = globalThis.indexedDB.deleteDatabase("tsuzuru.journal");
+    await new Promise<void>((resolve, reject) => {
+      deletion.onsuccess = () => resolve();
+      deletion.onerror = () => reject(deletion.error);
+    });
+    globalThis.indexedDB = previousIDB;
+    globalThis.window = previousWindow;
+    Object.defineProperty(globalThis, "localStorage", {
+      configurable: true,
+      writable: true,
+      value: previousStorage,
+    });
+  }
 });

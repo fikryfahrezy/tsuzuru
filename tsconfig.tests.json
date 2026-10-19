@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.scripts.json",
   "compilerOptions": {
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": { "#shared/*": ["./shared/*"] }
   },
   "include": ["tests/**/*.ts", "server/types/**/*.d.ts"]
 }

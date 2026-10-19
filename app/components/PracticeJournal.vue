@@ -1,7 +1,23 @@
 <script setup lang="ts">
-import type { JournalEntry } from "~/utils/practice";
+import { computed, ref, watch } from "vue";
+import { JournalOutcome, type JournalEntry } from "~/utils/practice";
 import type { AnswerBreakdownPart, SpellingOption } from "#shared/practice";
-defineProps<{ journal: JournalEntry[]; checking: boolean }>();
+const props = defineProps<{ journal: JournalEntry[]; checking: boolean }>();
+const visibleCount = ref(50);
+const unmatchedOnly = ref(false);
+const filteredEntries = computed(() =>
+  unmatchedOnly.value
+    ? props.journal.filter(
+        (entry) => entry.outcome === JournalOutcome.Unmatched,
+      )
+    : props.journal,
+);
+const visibleEntries = computed(() =>
+  filteredEntries.value.slice(0, visibleCount.value),
+);
+watch(unmatchedOnly, () => {
+  visibleCount.value = 50;
+});
 const emit = defineEmits<{
   clear: [];
   practice: [];
@@ -17,10 +33,14 @@ const emit = defineEmits<{
 <template>
   <section class="journal-panel">
     <div class="card-heading">
-      <span class="eyebrow">YOUR LAST 100 SENTENCES</span>
-      <button v-if="journal.length" @click="emit('clear')">
-        Clear journal
-      </button>
+      <span class="eyebrow">Your sentences</span>
+      <div v-if="journal.length" class="journal-actions">
+        <label class="journal-filter">
+          <input v-model="unmatchedOnly" type="checkbox" />
+          Unmatched only
+        </label>
+        <button @click="emit('clear')">Clear journal</button>
+      </div>
     </div>
     <div v-if="!journal.length" class="empty-journal">
       <h2>No journal entries yet.</h2>
@@ -29,8 +49,15 @@ const emit = defineEmits<{
         Start writing →
       </button>
     </div>
+    <div v-else-if="!filteredEntries.length" class="empty-journal">
+      <h2>No unmatched sentences.</h2>
+      <p>There are no unmatched attempts in your journal.</p>
+      <button class="primary-button" @click="unmatchedOnly = false">
+        Show all sentences
+      </button>
+    </div>
     <PracticeJournalEntry
-      v-for="entry in journal"
+      v-for="entry in visibleEntries"
       :key="entry.id"
       :entry="entry"
       :checking="checking"
@@ -39,10 +66,21 @@ const emit = defineEmits<{
         (id, parts, spellings) => emit('breakdown', id, parts, spellings)
       "
     />
+    <button
+      v-if="visibleCount < filteredEntries.length"
+      class="load-more"
+      @click="visibleCount += 50"
+    >
+      Show more sentences
+    </button>
   </section>
 </template>
 
 <style scoped>
+.load-more {
+  display: block;
+  margin: 20px auto;
+}
 .journal-panel {
   border: 1px solid var(--line);
   background: rgba(251, 247, 232, 0.87);
@@ -51,15 +89,34 @@ const emit = defineEmits<{
 }
 .card-heading {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
   padding: 19px 27px;
   border-bottom: 1px solid var(--line);
 }
+.journal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+.journal-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--secondary);
+  font-size: 11px;
+  cursor: pointer;
+}
+.journal-filter input {
+  accent-color: var(--primary);
+}
 .card-heading .eyebrow {
   margin: 0;
   font-size: 9px;
+  text-transform: uppercase;
 }
 .journal-panel .card-heading button {
   border: 0;

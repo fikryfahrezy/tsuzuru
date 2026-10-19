@@ -80,8 +80,12 @@ alternatives—including AI-authored additions—may contain errors.
 
 ## Keep your practice
 
-The journal saves up to 100 entries, including comparison results, in this
-browser. Settings are saved here too. Clearing browser storage removes them.
+The journal saves the latest attempt for each sentence, including comparison
+results, in this browser’s IndexedDB with no fixed entry limit. The journal
+displays 50 sentences at a time; use **Show more sentences** to see older entries.
+Settings stay in localStorage. Previous localStorage journals are discarded.
+Clearing browser storage removes saved entries and settings. Browser storage
+quotas still apply, and private browsing or browser eviction can remove data.
 Answers are checked on the server without being stored there.
 
 Use your browser's install action or **Add to Home Screen** to install the

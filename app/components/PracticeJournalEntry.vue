@@ -91,23 +91,7 @@ function toggleBreakdown(event: Event) {
           })
         }}
       </span>
-      <span
-        class="journal-outcome"
-        :class="{
-          'success-text': entry.outcome === JournalOutcome.Matched,
-          unmatched: entry.outcome === JournalOutcome.Unmatched,
-        }"
-      >
-        {{
-          entry.outcome === JournalOutcome.Matched
-            ? entry.comparison?.acceptedAlternative
-              ? "✓ Matches a pre-generated alternative"
-              : "✓ Matches the reference"
-            : entry.outcome === JournalOutcome.Revealed
-              ? "Reference viewed"
-              : "× Does not match the reference"
-        }}
-      </span>
+      <PracticeAttemptOutcome :entry="entry" />
     </div>
     <h2>{{ entry.english }}</h2>
     <button
@@ -326,9 +310,6 @@ function toggleBreakdown(event: Event) {
 .journal-reference .journal-reference-text span {
   margin-left: 0;
   font: inherit;
-}
-.journal-outcome.unmatched {
-  color: var(--primary);
 }
 .journal-legacy-note {
   color: var(--muted);

@@ -77,6 +77,7 @@ let Breakdown: Component;
 let Settings: Component;
 let Spellings: Component;
 let JournalEntry: Component;
+let AttemptOutcome: Component;
 
 beforeAll(async () => {
   const modules = [
@@ -87,9 +88,20 @@ beforeAll(async () => {
     "PracticeSettings",
     "AcceptedSpellings",
     "PracticeJournalEntry",
+    "PracticeAttemptOutcome",
   ].map(component);
-  [Prompt, Card, Feedback, Breakdown, Settings, Spellings, JournalEntry] =
-    await Promise.all(modules.map(async (url) => (await import(url)).default));
+  [
+    Prompt,
+    Card,
+    Feedback,
+    Breakdown,
+    Settings,
+    Spellings,
+    JournalEntry,
+    AttemptOutcome,
+  ] = await Promise.all(
+    modules.map(async (url) => (await import(url)).default),
+  );
 });
 
 const question: Question = {
@@ -148,6 +160,7 @@ async function renderPractice(
   app.component("PracticeFeedback", Feedback);
   app.component("AnswerBreakdown", Breakdown);
   app.component("AcceptedSpellings", Spellings);
+  app.component("PracticeAttemptOutcome", AttemptOutcome);
   app.component("WritingExplanations", { render: () => null });
   app.component("AlternativeAnswers", { render: () => null });
   return renderToString(app);
@@ -361,6 +374,7 @@ test("journey entries show the saved spelling list after a storage round trip", 
     const app = createSSRApp(JournalEntry, { entry });
     app.component("AnswerBreakdown", Breakdown);
     app.component("AcceptedSpellings", Spellings);
+    app.component("PracticeAttemptOutcome", AttemptOutcome);
     app.component("AlternativeAnswers", { render: () => null });
     app.component("WritingExplanations", { render: () => null });
     return renderToString(app);
@@ -431,7 +445,7 @@ test("the journal keeps the latest attempt for each sentence regardless of outco
     id: `entry-${index}`,
     sentenceId: `sentence-${index}`,
   }));
-  expect(latestJournalEntries([entry, entry, ...many])).toHaveLength(100);
+  expect(latestJournalEntries([entry, entry, ...many])).toHaveLength(106);
 });
 
 test("every journal outcome offers a retry action", async () => {
@@ -453,6 +467,7 @@ test("every journal outcome offers a retry action", async () => {
     });
     app.component("AnswerBreakdown", Breakdown);
     app.component("AcceptedSpellings", Spellings);
+    app.component("PracticeAttemptOutcome", AttemptOutcome);
     app.component("AlternativeAnswers", { render: () => null });
     app.component("WritingExplanations", { render: () => null });
     const html = await renderToString(app);

@@ -47,8 +47,7 @@ export function latestJournalEntries(entries: JournalEntry[]): JournalEntry[] {
       if (!entry.sentenceId || seen.has(entry.sentenceId)) return false;
       seen.add(entry.sentenceId);
       return true;
-    })
-    .slice(0, 100);
+    });
 }
 
 export const lengthOptions = [

@@ -48,6 +48,7 @@ const {
   error,
   storageNote,
   journal,
+  previousAttempt,
   online,
   writingCard,
   loadQuestion,
@@ -184,6 +185,7 @@ watch(difficulty, () => {
           :mode="mode"
           :difficulty="difficulty"
           :question="question"
+          :previous-attempt="previousAttempt"
           :result="result"
           :revealed="revealed"
           :loading="loading"
