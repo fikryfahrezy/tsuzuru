@@ -1,10 +1,7 @@
 import type { GrammarAnnotation } from "../../shared/answer-entries";
 
-// Derivations still explain an action inside advice, wishes, etc. Most nested
-// matches are component readings of the outer construction and are suppressed.
-const independentDerivations = new Set(["au", "naosu"]);
-const overlaps = (left: GrammarAnnotation, right: GrammarAnnotation) =>
-  left.start < right.end && left.end > right.start;
+import { retainsNestedDerivation } from "./grammar-policy";
+import { overlaps } from "./grammar-matcher";
 
 export function resolveGrammarMatches(
   detected: GrammarAnnotation[],
@@ -19,7 +16,7 @@ export function resolveGrammarMatches(
     ...annotations,
     ...automatic.filter(
       (match) =>
-        match.grammarIds.some((id) => independentDerivations.has(id)) ||
+        retainsNestedDerivation(match) ||
         !automatic.some(
           (other) =>
             other.start <= match.start &&

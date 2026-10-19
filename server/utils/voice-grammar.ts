@@ -5,39 +5,15 @@ import type { AnswerEntry } from "./answer-entries";
 import { verbForms } from "./verb-forms";
 import { finite, humans } from "./grammar-context";
 import { referenceLexemes } from "./reference-lexemes";
-
-const eRow: Record<string, string> = {
-  う: "え",
-  く: "け",
-  ぐ: "げ",
-  す: "せ",
-  つ: "て",
-  ぬ: "ね",
-  ぶ: "べ",
-  む: "め",
-  る: "れ",
-};
-// Restrict potential readings to verbs without a competing lexical intransitive
-// sense. 切れる / 折れる / 売れる / 解ける / 開ける need more context.
-const potentialVerbs = [
-  "読む",
-  "書く",
-  "話す",
-  "泳ぐ",
-  "飲む",
-  "走る",
-  "買う",
-  "待つ",
-  "使う",
-  "会う",
-  "聞く",
-  "持つ",
-  "呼ぶ",
-  "遊ぶ",
-  "渡る",
-  "戻る",
-  "通る",
-];
+import { potentialDerivation } from "./potential-forms";
+import { potentialEndings } from "./grammar-rules/voice";
+import { rareruForm } from "./rareru-forms";
+import {
+  voiceMatches,
+  type VoiceAnalysis,
+  type VoiceEvidence,
+  type VoiceRole,
+} from "./voice-analysis";
 const passiveVerbs = new Set([
   "褒める",
   "ほめる",
@@ -68,61 +44,87 @@ const endings = [
   "ませんでした",
   "て",
 ];
-const honorific = new Map([
-  ["いらっしゃる", "sonkeigo"],
-  ["おっしゃる", "sonkeigo"],
-  ["なさる", "sonkeigo"],
-  ["召し上がる", "sonkeigo"],
-  ["伺う", "kenjougo"],
-  ["申す", "kenjougo"],
-  ["申し上げる", "kenjougo"],
+const honorific = new Map<string, { id: string; role: VoiceRole }>([
+  ["いらっしゃる", { id: "sonkeigo", role: "honorific" }],
+  ["おっしゃる", { id: "sonkeigo", role: "honorific" }],
+  ["なさる", { id: "sonkeigo", role: "honorific" }],
+  ["召し上がる", { id: "sonkeigo", role: "honorific" }],
+  ["伺う", { id: "kenjougo", role: "humble" }],
+  ["申す", { id: "kenjougo", role: "humble" }],
+  ["申し上げる", { id: "kenjougo", role: "humble" }],
 ]);
 
-export function voiceGrammar(
+export function analyzeVoice(
   sentence: Sentence,
   base: AnswerEntry[],
-): GrammarAnnotation[] {
+): VoiceAnalysis[] {
+  const analyses: VoiceAnalysis[] = [];
   const text = sentence.reference.japanese;
   const lexemes = referenceLexemes(sentence);
-  const { matches, longest } = grammarMatcher(sentence, base);
+  const { longest } = grammarMatcher(sentence, base);
+  function record(
+    match: GrammarAnnotation | undefined,
+    entry: AnswerEntry,
+    role: VoiceRole,
+    evidence: VoiceEvidence,
+    derivedLemma?: string,
+  ) {
+    if (match || derivedLemma)
+      analyses.push({
+        start: entry.start,
+        originalLemma: entry.dictionaryForm,
+        derivedLemma,
+        role,
+        evidence,
+        match,
+      });
+  }
   for (const [index, entry] of base.entries()) {
-    for (const original of potentialVerbs) {
-      if (!verbForms(original).length) continue;
-      const root = original.slice(0, -1) + eRow[original.at(-1)!];
-      const derived = root + "る";
-      if (
-        entry.wordTypes.includes("Verb") &&
-        (!entry.dictionaryForm ||
-          [original, derived].includes(entry.dictionaryForm))
-      )
+    const potential = potentialDerivation(entry, text.slice(entry.start));
+    if (potential)
+      record(
         longest(
           entry.start,
-          endings.map((ending) => root + ending),
+          potentialEndings.map((ending) => potential.slice(0, -1) + ending),
           "eru-rareru-potential",
-        );
-    }
+        ),
+        entry,
+        "potential",
+        { kind: "reviewed-potential" },
+        potential,
+      );
     const lemma = entry.dictionaryForm ?? entry.japanese;
     const lesson = honorific.get(lemma);
     if (lesson && entry.wordTypes.includes("Verb"))
       for (const forms of verbForms(lemma))
-        longest(
-          entry.start,
-          [
-            lemma,
-            forms.te,
-            forms.te.replace(/て$/u, "た").replace(/で$/u, "だ"),
-            forms.stem + "ます",
-            forms.stem + "ました",
-            forms.stem + "ません",
-            forms.negative + "い",
-          ],
-          lesson,
+        record(
+          longest(
+            entry.start,
+            [
+              lemma,
+              forms.te,
+              forms.te.replace(/て$/u, "た").replace(/で$/u, "だ"),
+              forms.stem + "ます",
+              forms.stem + "ました",
+              forms.stem + "ません",
+              forms.negative + "い",
+            ],
+            lesson.id,
+          ),
+          entry,
+          lesson.role,
+          { kind: "lexical-register" },
         );
     if (entry.japanese === "拝見")
-      longest(
-        entry.start,
-        ["拝見する", "拝見します", "拝見した", "拝見しました", "拝見して"],
-        "kenjougo",
+      record(
+        longest(
+          entry.start,
+          ["拝見する", "拝見します", "拝見した", "拝見しました", "拝見して"],
+          "kenjougo",
+        ),
+        entry,
+        "humble",
+        { kind: "lexical-register" },
       );
     if (
       entry.japanese !== "に" ||
@@ -142,27 +144,38 @@ export function voiceGrammar(
         continue;
       }
       const original = predicate.dictionaryForm ?? predicate.japanese;
+      const verbClass = lexemes.find(
+        (word) =>
+          word.japanese === predicate.japanese &&
+          word.reading === predicate.kana,
+      )?.verbClass;
       if (passiveVerbs.has(original))
-        for (const forms of verbForms(
-          original,
-          lexemes.find(
-            (word) =>
-              word.japanese === predicate.japanese &&
-              word.reading === predicate.kana,
-          )?.verbClass,
-        )) {
+        for (const forms of verbForms(original, verbClass)) {
           const root =
             forms.stem === original.slice(0, -1)
               ? forms.stem + "られ"
               : forms.negative.slice(0, -1) + "れ";
-          longest(
-            predicate.start,
-            endings.map((ending) => root + ending),
-            "reru-rareru-passive",
+          record(
+            longest(
+              predicate.start,
+              endings.map((ending) => root + ending),
+              "reru-rareru-passive",
+            ),
+            predicate,
+            "passive",
+            { kind: "human-agent" },
+            rareruForm(predicate, verbClass)?.lemma,
           );
         }
       break;
     }
   }
-  return matches;
+  return analyses;
+}
+
+export function voiceGrammar(
+  sentence: Sentence,
+  base: AnswerEntry[],
+): GrammarAnnotation[] {
+  return voiceMatches(analyzeVoice(sentence, base));
 }

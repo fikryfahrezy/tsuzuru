@@ -8,10 +8,14 @@ export type Word = [
   lemma?: string,
   kana?: string,
 ];
-export function lessons(words: Word[]) {
+export function lessons(words: Word[], english?: string) {
   const source = exerciseById.get("8781e50b14468843e9839443")!;
   const japanese = words.map(([word]) => word).join("");
-  const sentence = { ...source, reference: { ...source.reference, japanese } };
+  const sentence = {
+    ...source,
+    ...(english === undefined ? {} : { english }),
+    reference: { ...source.reference, japanese },
+  };
   let offset = 0;
   const base: AnswerEntry[] = words.flatMap(
     ([word, wordTypes = [], dictionaryForm, kana = word]) => {

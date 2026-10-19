@@ -7,6 +7,8 @@ import { vocabulary } from "./vocabulary";
 import { hiragana } from "../../shared/practice";
 import { constructions, type ConstructionForm } from "./grammar-rules/verb";
 import { validAdvancedTail } from "./grammar-rules/advanced";
+import { potentialDerivation } from "./potential-forms";
+import type { VoiceAnalysis } from "./voice-analysis";
 
 // てある requires a transitive action. Missing transitivity metadata leaves the
 // occurrence for review rather than inferring it from the spelling alone.
@@ -66,6 +68,7 @@ function constructionBase(
 export function verbGrammar(
   sentence: Sentence,
   base: AnswerEntry[],
+  voices?: VoiceAnalysis[],
 ): GrammarAnnotation[] {
   const text = sentence.reference.japanese;
   const lexemes = referenceLexemes(sentence);
@@ -73,13 +76,18 @@ export function verbGrammar(
   const matches: GrammarAnnotation[] = [];
   for (const entry of base) {
     if (!entry.wordTypes.includes("Verb")) continue;
-    const lemma = entry.dictionaryForm ?? entry.japanese;
     let best: GrammarAnnotation | undefined;
     const verbClass = lexemes.find(
       (lexeme) =>
         lexeme.japanese === entry.japanese && lexeme.reading === entry.kana,
     )?.verbClass;
-    for (const forms of verbForms(lemma, verbClass)) {
+    const derived = voices
+      ? voices.find(
+          (voice) => voice.start === entry.start && voice.derivedLemma,
+        )?.derivedLemma
+      : potentialDerivation(entry, text.slice(entry.start));
+    const lemma = derived ?? entry.dictionaryForm ?? entry.japanese;
+    for (const forms of verbForms(lemma, derived ? "v1" : verbClass)) {
       for (const rule of constructions) {
         if (
           rule.id === "te-aru" &&

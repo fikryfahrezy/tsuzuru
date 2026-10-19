@@ -2,6 +2,7 @@ import { grammarMatcher } from "./grammar-matcher";
 import type { GrammarAnnotation } from "../../shared/answer-entries";
 import type { Sentence } from "../../shared/sentence";
 import type { AnswerEntry } from "./answer-entries";
+import { nominal } from "./grammar-context";
 
 export function clauseGrammar(
   sentence: Sentence,
@@ -14,6 +15,32 @@ export function clauseGrammar(
     add,
   } = grammarMatcher(sentence, base);
   for (const [index, entry] of base.entries()) {
+    // Existential ない in a negative condition, rather than an obligation.
+    // Keep the condition separate from the following predicate's inflections.
+    if (entry.japanese === "なくて" && entry.dictionaryForm === "ない") {
+      const subject = base[index - 2];
+      const ga = base[index - 1];
+      const wa = base[index + 1];
+      const predicate = base[index + 2];
+      if (
+        nominal(subject) &&
+        subject?.end === ga?.start &&
+        ga?.japanese === "が" &&
+        ga.wordTypes.includes("Particle") &&
+        ga.end === entry.start &&
+        wa?.japanese === "は" &&
+        wa.wordTypes.includes("Particle") &&
+        wa.start === entry.end &&
+        predicate &&
+        /^[、,]*$/u.test(text.slice(wa.end, predicate.start)) &&
+        predicate.wordTypes.includes("Verb") &&
+        /(?:ない|ません|なかった|ませんでした)$/u.test(predicate.japanese) &&
+        !/^(?:いけ(?:ない|ません|なかった|ませんでした)|なら(?:ない|なかった)|なりません(?:でした)?)$/u.test(
+          predicate.japanese,
+        )
+      )
+        add(entry.start, "なくては", "nakute-wa-condition");
+    }
     // Joined ので has already been distinguished from possessive の + で
     // by the maintained conjunction reviews used to generate word boundaries.
     if (entry.japanese === "ので" && base[index - 1]?.end === entry.start)

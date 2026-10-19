@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "lessons": 526,
+  "lessons": 528,
   "sentences": 10312,
   "statusCounts": {
-    "automatic": 297,
+    "automatic": 299,
     "annotation-only": 1,
     "unsupported": 228
   },
@@ -14,7 +14,7 @@
       "unsupported": 0
     },
     "N4": {
-      "automatic": 97,
+      "automatic": 99,
       "annotation-only": 1,
       "unsupported": 0
     },
@@ -35,8 +35,8 @@
     }
   },
   "regressionSummary": {
-    "total": 268,
-    "passed": 268,
+    "total": 275,
+    "passed": 275,
     "failed": 0
   },
   "entries": [
@@ -47,13 +47,13 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 14
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 12
         }
       ],
       "automatic": {
         "sentences": 6884,
-        "occurrences": 7175,
+        "occurrences": 7174,
         "examples": [
           {
             "sentenceId": "0000978f3525f2d6e60e600b",
@@ -130,8 +130,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 15
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 13
         }
       ],
       "automatic": {
@@ -443,8 +443,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 16
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 14
         }
       ],
       "automatic": {
@@ -653,8 +653,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 18
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 16
         }
       ],
       "automatic": {
@@ -734,8 +734,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 17
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 15
         }
       ],
       "automatic": {
@@ -859,8 +859,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 19
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 17
         }
       ],
       "automatic": {
@@ -942,8 +942,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 20
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 18
         }
       ],
       "automatic": {
@@ -978,8 +978,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 21
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 19
         }
       ],
       "automatic": {
@@ -1164,8 +1164,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 22
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 20
         }
       ],
       "automatic": {
@@ -1200,8 +1200,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 24
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 22
         }
       ],
       "automatic": {
@@ -1236,16 +1236,16 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 23
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 24
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
           "line": 25
-        },
-        {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 26
-        },
-        {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 27
         }
       ],
       "automatic": {
@@ -1275,8 +1275,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 23
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 21
         }
       ],
       "automatic": {
@@ -1311,13 +1311,13 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 41
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 40
         }
       ],
       "automatic": {
-        "sentences": 413,
-        "occurrences": 416,
+        "sentences": 431,
+        "occurrences": 434,
         "examples": [
           {
             "sentenceId": "004f3984827963025986b55a",
@@ -1353,13 +1353,13 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 40
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 39
         }
       ],
       "automatic": {
-        "sentences": 119,
-        "occurrences": 119,
+        "sentences": 123,
+        "occurrences": 123,
         "examples": [
           {
             "sentenceId": "0362ee35285058847f69f5e2",
@@ -1395,13 +1395,13 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 39
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 38
         }
       ],
       "automatic": {
-        "sentences": 180,
-        "occurrences": 180,
+        "sentences": 182,
+        "occurrences": 182,
         "examples": [
           {
             "sentenceId": "010a33c40a5b65135dd33d72",
@@ -1431,13 +1431,13 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 38
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 37
         }
       ],
       "automatic": {
-        "sentences": 13,
-        "occurrences": 13,
+        "sentences": 14,
+        "occurrences": 14,
         "examples": [
           {
             "sentenceId": "16a75b6a45b8133491a42fb4",
@@ -1467,13 +1467,17 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 43
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 35
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 42
         }
       ],
       "automatic": {
-        "sentences": 346,
-        "occurrences": 349,
+        "sentences": 473,
+        "occurrences": 478,
         "examples": [
           {
             "sentenceId": "0091f2803f8abdf12e351631",
@@ -1488,13 +1492,18 @@
         ]
       },
       "annotations": {
-        "sentences": 1,
-        "occurrences": 1,
+        "sentences": 2,
+        "occurrences": 2,
         "examples": [
           {
             "sentenceId": "374ca7ea8067972d8291ab6e",
             "japanese": "もう助からないものと観念した。",
             "english": "I gave up all hope of survival."
+          },
+          {
+            "sentenceId": "969ac5c4d3947313daf33d2e",
+            "japanese": "このカレーは辛すぎて食べられない。",
+            "english": "This curry is too hot to eat."
           }
         ]
       },
@@ -1508,14 +1517,6 @@
       "pattern": "〜た",
       "status": "automatic",
       "ruleReferences": [
-        {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 44
-        },
-        {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 45
-        },
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 7
@@ -1569,13 +1570,25 @@
           "line": 687
         },
         {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 35
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 43
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 44
+        },
+        {
           "file": "server/utils/verb-grammar.ts",
-          "line": 57
+          "line": 59
         }
       ],
       "automatic": {
-        "sentences": 2697,
-        "occurrences": 2810,
+        "sentences": 2699,
+        "occurrences": 2812,
         "examples": [
           {
             "sentenceId": "0000e8f8c0565c3fbcea0a4c",
@@ -1616,8 +1629,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 42
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 41
         }
       ],
       "automatic": {
@@ -1699,7 +1712,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 123
+          "line": 131
         }
       ],
       "automatic": {
@@ -1794,7 +1807,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 77
+          "line": 104
         }
       ],
       "automatic": {
@@ -2133,8 +2146,8 @@
         }
       ],
       "automatic": {
-        "sentences": 1378,
-        "occurrences": 1382,
+        "sentences": 1379,
+        "occurrences": 1383,
         "examples": [
           {
             "sentenceId": "00121c45c61969376c90e342",
@@ -2174,14 +2187,6 @@
       "pattern": "〜て",
       "status": "automatic",
       "ruleReferences": [
-        {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 46
-        },
-        {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 47
-        },
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 97
@@ -2273,11 +2278,19 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 847
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 45
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 46
         }
       ],
       "automatic": {
-        "sentences": 997,
-        "occurrences": 1028,
+        "sentences": 1001,
+        "occurrences": 1033,
         "examples": [
           {
             "sentenceId": "005f4d7a8076d62a69fb3c5a",
@@ -2359,15 +2372,15 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 180
-        },
-        {
-          "file": "server/utils/verb-grammar.ts",
-          "line": 206
+          "line": 188
         },
         {
           "file": "server/utils/verb-grammar.ts",
           "line": 214
+        },
+        {
+          "file": "server/utils/verb-grammar.ts",
+          "line": 222
         }
       ],
       "automatic": {
@@ -3600,8 +3613,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/breakdown-grammar.ts",
-          "line": 56
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 55
         }
       ],
       "automatic": {
@@ -4209,7 +4222,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 85
+          "line": 93
         }
       ],
       "automatic": {
@@ -4684,7 +4697,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 145
+          "line": 153
         }
       ],
       "automatic": {
@@ -4992,13 +5005,21 @@
           "line": 488
         },
         {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 11
+        },
+        {
+          "file": "server/utils/rareru-grammar.ts",
+          "line": 16
+        },
+        {
           "file": "server/utils/voice-grammar.ts",
-          "line": 101
+          "line": 89
         }
       ],
       "automatic": {
-        "sentences": 37,
-        "occurrences": 38,
+        "sentences": 129,
+        "occurrences": 131,
         "examples": [
           {
             "sentenceId": "00f67c149a56ca6369b50266",
@@ -5006,20 +5027,25 @@
             "english": "I adapted the garage for use as a workshop."
           },
           {
-            "sentenceId": "08b463aab77a0b3c75928ba1",
-            "japanese": "私は財布をなくしてしまっていた、それでそのカセットが買えなかった。",
-            "english": "I had lost my purse, so I couldn't buy the cassette."
+            "sentenceId": "04b9c5e2238412cbfac69907",
+            "japanese": "その規則は絶対変更できない。",
+            "english": "The rule is utterly inflexible."
           }
         ]
       },
       "annotations": {
-        "sentences": 1,
-        "occurrences": 1,
+        "sentences": 2,
+        "occurrences": 2,
         "examples": [
           {
             "sentenceId": "4250c9e8dd171fd074a3a9e3",
             "japanese": "今夜お宅に泊めてもらえませんか。",
             "english": "Can you put me up tonight?"
+          },
+          {
+            "sentenceId": "969ac5c4d3947313daf33d2e",
+            "japanese": "このカレーは辛すぎて食べられない。",
+            "english": "This curry is too hot to eat."
           }
         ]
       },
@@ -5030,6 +5056,30 @@
           "japanese": "使える",
           "expect": "present",
           "note": "Reviewed corpus formation and sentence context.",
+          "passed": true
+        },
+        {
+          "lessonId": "eru-rareru-potential",
+          "sentenceId": "24407a96629a73335cbce783",
+          "japanese": "見つけられる",
+          "expect": "present",
+          "note": "The aligned can always find translation establishes ability.",
+          "passed": true
+        },
+        {
+          "lessonId": "eru-rareru-potential",
+          "sentenceId": "2c15a86ec095c490e0517c67",
+          "japanese": "曲げられません",
+          "expect": "present",
+          "note": "The aligned can't bend translation resolves the potential reading.",
+          "passed": true
+        },
+        {
+          "lessonId": "eru-rareru-potential",
+          "sentenceId": "43beadb953c0b997e226c1ae",
+          "japanese": "来られなかった",
+          "expect": "present",
+          "note": "Verified 来る morphology and the aligned couldn't come translation establish inability.",
           "passed": true
         }
       ],
@@ -5043,13 +5093,21 @@
       "status": "automatic",
       "ruleReferences": [
         {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 15
+        },
+        {
+          "file": "server/utils/rareru-grammar.ts",
+          "line": 17
+        },
+        {
           "file": "server/utils/voice-grammar.ts",
-          "line": 161
+          "line": 162
         }
       ],
       "automatic": {
-        "sentences": 5,
-        "occurrences": 5,
+        "sentences": 10,
+        "occurrences": 10,
         "examples": [
           {
             "sentenceId": "0125dde88acf9cc26e33c2d7",
@@ -5057,9 +5115,9 @@
             "english": "He was absolved from blame."
           },
           {
-            "sentenceId": "2167fa372dec970f54f792c8",
-            "japanese": "あなたは先生にしかられましたか。",
-            "english": "Were you scolded by your teacher?"
+            "sentenceId": "03047c05150c414f0ac252ba",
+            "japanese": "このデパートは７時に閉められる。",
+            "english": "This department store is closed at seven."
           }
         ]
       },
@@ -5086,6 +5144,38 @@
           "japanese": "責められる",
           "expect": "present",
           "note": "Reviewed corpus formation and sentence context.",
+          "passed": true
+        },
+        {
+          "lessonId": "reru-rareru-passive",
+          "sentenceId": "03047c05150c414f0ac252ba",
+          "japanese": "閉められる",
+          "expect": "present",
+          "note": "The aligned is closed translation and absence of a direct object support passive.",
+          "passed": true
+        },
+        {
+          "lessonId": "reru-rareru-passive",
+          "sentenceId": "048542cf6ba46704a227607a",
+          "japanese": "並べられた",
+          "expect": "present",
+          "note": "The unique aligned was laid action establishes passive rather than potential.",
+          "passed": true
+        },
+        {
+          "lessonId": "reru-rareru-passive",
+          "sentenceId": "47a61a1b7abc586a00fa4e0b",
+          "japanese": "見られなかった",
+          "expect": "absent",
+          "note": "Was to be seen does not distinguish Japanese potential from passive.",
+          "passed": true
+        },
+        {
+          "lessonId": "reru-rareru-passive",
+          "sentenceId": "c7bc3a4238fb1691124f6a7b",
+          "japanese": "見られた",
+          "expect": "absent",
+          "note": "An English infinitive passive in not fit to be seen is insufficient evidence.",
           "passed": true
         }
       ],
@@ -5180,7 +5270,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 121
+          "line": 129
         }
       ],
       "automatic": {
@@ -5288,7 +5378,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 136
+          "line": 144
         }
       ],
       "automatic": {
@@ -5345,7 +5435,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 153
+          "line": 161
         }
       ],
       "automatic": {
@@ -5426,7 +5516,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 28
+          "line": 55
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
@@ -5479,11 +5569,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 26
+          "line": 53
         },
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 53
+          "line": 80
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
@@ -5664,7 +5754,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 120
+          "line": 128
         }
       ],
       "automatic": {
@@ -5794,7 +5884,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 20
+          "line": 47
         }
       ],
       "automatic": {
@@ -5845,18 +5935,18 @@
         }
       ],
       "automatic": {
-        "sentences": 14,
-        "occurrences": 14,
+        "sentences": 17,
+        "occurrences": 17,
         "examples": [
+          {
+            "sentenceId": "16d95b795375b739b32cd085",
+            "japanese": "私は恥ずかしくてそれができない。",
+            "english": "I am too ashamed to do it."
+          },
           {
             "sentenceId": "29d2c2ea18fb9b23c095074a",
             "japanese": "彼は金がうんとあって使えない。",
             "english": "He has more money than he can use."
-          },
-          {
-            "sentenceId": "4198fad5e9439c84e3c49fbb",
-            "japanese": "よい友達がたくさんいてうれしい。",
-            "english": "I am happy to have so many good friends."
           }
         ]
       },
@@ -7066,7 +7156,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 103
+          "line": 111
         }
       ],
       "automatic": {
@@ -7483,19 +7573,19 @@
       "ruleReferences": [
         {
           "file": "server/utils/voice-grammar.ts",
-          "line": 72
+          "line": 48
         },
         {
           "file": "server/utils/voice-grammar.ts",
-          "line": 73
+          "line": 49
         },
         {
           "file": "server/utils/voice-grammar.ts",
-          "line": 74
+          "line": 50
         },
         {
           "file": "server/utils/voice-grammar.ts",
-          "line": 75
+          "line": 51
         }
       ],
       "automatic": {
@@ -7540,19 +7630,19 @@
       "ruleReferences": [
         {
           "file": "server/utils/voice-grammar.ts",
-          "line": 76
+          "line": 52
         },
         {
           "file": "server/utils/voice-grammar.ts",
-          "line": 77
+          "line": 53
         },
         {
           "file": "server/utils/voice-grammar.ts",
-          "line": 78
+          "line": 54
         },
         {
           "file": "server/utils/voice-grammar.ts",
-          "line": 125
+          "line": 123
         }
       ],
       "automatic": {
@@ -7748,7 +7838,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 46
+          "line": 73
         }
       ],
       "automatic": {
@@ -8397,7 +8487,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 156
+          "line": 164
         }
       ],
       "automatic": {
@@ -9546,7 +9636,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 155
+          "line": 163
         }
       ],
       "automatic": {
@@ -9733,7 +9823,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 94
+          "line": 102
         }
       ],
       "automatic": {
@@ -11047,7 +11137,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 115
+          "line": 123
         }
       ],
       "automatic": {
@@ -18482,6 +18572,72 @@
         "sentences": 0,
         "occurrences": 0,
         "examples": []
+      },
+      "reviewedCases": [],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "nakute-wa-condition",
+      "level": "N4",
+      "pattern": "〜なくては（条件）",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/clause-grammar.ts",
+          "line": 42
+        }
+      ],
+      "automatic": {
+        "sentences": 1,
+        "occurrences": 1,
+        "examples": [
+          {
+            "sentenceId": "f59d6acae2b73b0a0aa0ded9",
+            "japanese": "私はメガネがなくては読めない。",
+            "english": "I cannot read without glasses."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "reru-rareru-honorific",
+      "level": "N4",
+      "pattern": "〜れる / 〜られる（尊敬）",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 17
+        },
+        {
+          "file": "server/utils/rareru-grammar.ts",
+          "line": 18
+        }
+      ],
+      "automatic": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "annotations": {
+        "sentences": 1,
+        "occurrences": 1,
+        "examples": [
+          {
+            "sentenceId": "1d669c742cd2631ef03fdba3",
+            "japanese": "早くよくなられるように祈っています。",
+            "english": "I hope you'll get well soon."
+          }
+        ]
       },
       "reviewedCases": [],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",

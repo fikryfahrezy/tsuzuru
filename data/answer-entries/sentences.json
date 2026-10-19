@@ -2841,6 +2841,36 @@
           ]
         }
       ]
+    },
+    {
+      "sentenceId": "969ac5c4d3947313daf33d2e",
+      "english": "This curry is too hot to eat.",
+      "japanese": "このカレーは辛すぎて食べられない。",
+      "furigana": "このカレーは{辛|から}すぎて{食|た}べられない。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [
+        {
+          "start": 10,
+          "end": 16,
+          "japanese": "食べられない",
+          "grammarIds": ["eru-rareru-potential", "nai"]
+        }
+      ]
+    },
+    {
+      "sentenceId": "1d669c742cd2631ef03fdba3",
+      "english": "I hope you'll get well soon.",
+      "japanese": "早くよくなられるように祈っています。",
+      "furigana": "{早|はや}くよくなられるように{祈|いの}っています。",
+      "answerEntries": [],
+      "hintMappings": [],
+      "grammarAnnotations": [{
+        "start": 4,
+        "end": 8,
+        "japanese": "なられる",
+        "grammarIds": ["reru-rareru-honorific"]
+      }]
     }
   ]
 }

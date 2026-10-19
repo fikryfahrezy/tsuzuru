@@ -13,17 +13,24 @@ import { scopeGrammar } from "./scope-grammar";
 import { nominalGrammar } from "./nominal-grammar";
 import { derivationGrammar } from "./derivation-grammar";
 import { contextGrammar } from "./context-grammar";
-import { voiceGrammar } from "./voice-grammar";
+import { analyzeVoice } from "./voice-grammar";
 import { emphaticGrammar } from "./emphatic-grammar";
+import { analyzeRareruVoice } from "./rareru-grammar";
+import { voiceMatches } from "./voice-analysis";
 
-// Dependencies between passes are explicit: scope needs verb matches, context
-// needs voice matches, and emphatic wrappers inspect the initial detections.
+// Dependencies between passes are explicit: verb constructions and context
+// need voice evidence, scope needs verb matches, and emphatic wrappers inspect
+// the initial detections.
 export function detectGrammar(
   sentence: Sentence,
   base: AnswerEntry[],
 ): GrammarAnnotation[] {
-  const verbs = verbGrammar(sentence, base);
-  const voices = voiceGrammar(sentence, base);
+  const voiceAnalyses = [
+    ...analyzeVoice(sentence, base),
+    ...analyzeRareruVoice(sentence, base),
+  ];
+  const voices = voiceMatches(voiceAnalyses);
+  const verbs = verbGrammar(sentence, base, voiceAnalyses);
   const rawDetected = [
     ...verbs,
     ...questionGrammar(sentence, base),

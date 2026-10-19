@@ -1,4 +1,8 @@
-import { grammarForBreakdown, searchGrammar } from "../shared/grammar";
+import {
+  grammarForBreakdown,
+  searchGrammar,
+  topicsForGrammar,
+} from "../shared/grammar";
 import { expect, test } from "bun:test";
 import {
   answerAnnotationRecords,
@@ -12,11 +16,38 @@ import {
   currentAnswerBreakdown,
 } from "../shared/answer-entries";
 import { isAnswerBreakdownPart } from "../shared/practice";
+import { baseAnswerEntries } from "../server/utils/answer-entries";
+import { withBreakdownGrammar } from "../server/utils/breakdown-grammar";
 
 const comparison = exerciseById.get("3b5ea68ada3ca9cb27ffd02d")!;
 const record = answerAnnotationRecords.find(
   (entry) => entry.sentenceId === comparison.id,
 )!;
+
+test("glasses explains the negative condition and both layers of cannot read", () => {
+  const sentence = exerciseById.get("f59d6acae2b73b0a0aa0ded9")!;
+  const parts = practiceDetails(sentence).answerBreakdown;
+  expect(parts.find((part) => part.japanese === "なくて")!.grammar).toEqual([
+    expect.objectContaining({
+      id: "nakute-wa-condition",
+      japanese: "なくては",
+      start: 6,
+      end: 10,
+    }),
+  ]);
+  expect(parts.find((part) => part.start === 9)!.grammar).toBeUndefined();
+  expect(
+    parts
+      .find((part) => part.japanese === "読めない")!
+      .grammar!.map((g) => g.id),
+  ).toEqual(["eru-rareru-potential", "nai"]);
+  expect(grammarForBreakdown(grammarEntries, parts).map((g) => g.id)).toContain(
+    "nakute-wa-condition",
+  );
+  expect(
+    topicsForGrammar(grammarById.get("nakute-wa-condition")!).map((g) => g.id),
+  ).toContain("condition");
+});
 
 test("comparison より explains the standard of comparison and how to form it", () => {
   const entry = practiceDetails(comparison).answerBreakdown.find(
@@ -33,6 +64,62 @@ test("comparison より explains the standard of comparison and how to form it",
     example: { ja: expect.any(String), en: expect.any(String) },
   });
   expect(entry.grammar![0]!.meaning).toContain("comparison");
+});
+
+test("context establishes the curry sentence's potential reading", () => {
+  const parts = practiceDetails(
+    exerciseById.get("969ac5c4d3947313daf33d2e")!,
+  ).answerBreakdown;
+  expect(
+    parts.find((p) => p.japanese === "食べられない")!.grammar!.map((g) => g.id),
+  ).toEqual(["eru-rareru-potential", "nai"]);
+});
+
+test("maintained passive interpretations retain the past tense in the existing corpus", () => {
+  for (const id of [
+    "0e55f6f89971129e579fa3a5",
+    "d1d7e898b3ac2a260a09cc44",
+    "e9bfc218a932262ae14a7c41",
+    "c50d57cee069651770fcaae2",
+  ]) {
+    const parts = practiceDetails(exerciseById.get(id)!).answerBreakdown;
+    const passive = parts.find((p) =>
+      p.grammar?.some((g) => g.id === "reru-rareru-passive"),
+    )!;
+    expect(passive.grammar!.map((g) => g.id)).toEqual([
+      "reru-rareru-passive",
+      "ta",
+    ]);
+  }
+});
+
+test("explicit voice interpretations retain inflections without replacing their reviewed reading", () => {
+  const sentence = exerciseById.get("f59d6acae2b73b0a0aa0ded9")!;
+  const base = baseAnswerEntries(sentence);
+  const parts = withBreakdownGrammar(sentence, base, base, [
+    {
+      start: 10,
+      end: 14,
+      japanese: "読めない",
+      grammarIds: ["eru-rareru-potential"],
+    },
+  ]);
+  expect(
+    parts.find((p) => p.japanese === "読めない")!.grammar!.map((g) => g.id),
+  ).toEqual(["eru-rareru-potential", "nai"]);
+  const overridden = withBreakdownGrammar(sentence, base, base, [
+    {
+      start: 10,
+      end: 14,
+      japanese: "読めない",
+      grammarIds: ["nai"],
+    },
+  ]);
+  expect(
+    overridden
+      .find((p) => p.japanese === "読めない")!
+      .grammar!.map((g) => g.id),
+  ).toEqual(["nai"]);
 });
 
 test("multiword constructions explain the whole span once and suppress component guesses", () => {
@@ -120,7 +207,7 @@ test("verified conjugations get lessons even without a maintained grammar annota
 });
 
 test("every maintained annotation resolves against the shared library and actual word boundaries", () => {
-  expect(grammarEntries).toHaveLength(526);
+  expect(grammarEntries).toHaveLength(528);
   expect(grammarById.size).toBe(grammarEntries.length);
   for (const record of answerAnnotationRecords) {
     const sentence = exerciseById.get(record.sentenceId)!;

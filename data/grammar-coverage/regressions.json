@@ -1874,5 +1874,54 @@
     "japanese": "初めての",
     "expect": "absent",
     "note": "First-time nominal modifier has no preceding te-form."
+  },
+  {
+    "lessonId": "eru-rareru-potential",
+    "sentenceId": "43beadb953c0b997e226c1ae",
+    "japanese": "来られなかった",
+    "expect": "present",
+    "note": "Verified 来る morphology and the aligned couldn't come translation establish inability."
+  },
+  {
+    "lessonId": "eru-rareru-potential",
+    "sentenceId": "2c15a86ec095c490e0517c67",
+    "japanese": "曲げられません",
+    "expect": "present",
+    "note": "The aligned can't bend translation resolves the potential reading."
+  },
+  {
+    "lessonId": "eru-rareru-potential",
+    "sentenceId": "24407a96629a73335cbce783",
+    "japanese": "見つけられる",
+    "expect": "present",
+    "note": "The aligned can always find translation establishes ability."
+  },
+  {
+    "lessonId": "reru-rareru-passive",
+    "sentenceId": "048542cf6ba46704a227607a",
+    "japanese": "並べられた",
+    "expect": "present",
+    "note": "The unique aligned was laid action establishes passive rather than potential."
+  },
+  {
+    "lessonId": "reru-rareru-passive",
+    "sentenceId": "03047c05150c414f0ac252ba",
+    "japanese": "閉められる",
+    "expect": "present",
+    "note": "The aligned is closed translation and absence of a direct object support passive."
+  },
+  {
+    "lessonId": "reru-rareru-passive",
+    "sentenceId": "47a61a1b7abc586a00fa4e0b",
+    "japanese": "見られなかった",
+    "expect": "absent",
+    "note": "Was to be seen does not distinguish Japanese potential from passive."
+  },
+  {
+    "lessonId": "reru-rareru-passive",
+    "sentenceId": "c7bc3a4238fb1691124f6a7b",
+    "japanese": "見られた",
+    "expect": "absent",
+    "note": "An English infinitive passive in not fit to be seen is insufficient evidence."
   }
 ]

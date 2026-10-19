@@ -43,6 +43,13 @@ The raw snapshot is unchanged. The local importer creates [sentence-candidates.j
 English word count uses a documented regular expression in the importer. Japanese character count counts Unicode code points except whitespace, including punctuation; it is not a Japanese word count. Length buckets have not yet been assigned.
 
 The raw import creates no accepted-answer variants or automatic semantic judgments.
+
+[Grammar supplements](data/grammar-supplements.json) add locally authored lesson
+explanations without changing the imported grammar files. The glasses example
+is adapted from the imported [Tatoeba sentence 158805](https://tatoeba.org/sentences/show/158805)
+(the initial 私は is omitted) and retains the imported CC BY-SA 4.0 terms. The
+supplements' JLPT levels are unofficial estimates. The respectful 〜られる
+lesson and its teacher/sushi example are locally authored.
 Source grammar examples remain in their original grammar files and are not merged
 into the vocabulary sentence-candidate file.
 

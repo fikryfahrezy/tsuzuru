@@ -1,0 +1,34 @@
+[
+  {
+    "id": "nakute-wa-condition",
+    "pattern": "〜なくては（条件）",
+    "romaji": "nakute wa",
+    "level": "N4",
+    "meaning": "without; if there is no …",
+    "formation": "Noun + がなくては + negative predicate",
+    "notes": "なくて is the te-form of ない (not exist). Together with は it sets a condition: without the noun, the following action is impossible. The は here belongs to the conditional construction. Distinguish this from 〜なくてはいけない / 〜なくてはならない, which express obligation.",
+    "tags": ["condition", "negation"],
+    "examples": [
+      {
+        "ja": "メガネがなくては読めない。",
+        "furigana": "メガネがなくては{読|よ}めない。",
+        "en": "I cannot read without glasses."
+      }
+    ]
+  },
+  {
+    "id": "reru-rareru-honorific",
+    "pattern": "〜れる / 〜られる（尊敬）",
+    "romaji": "reru / rareru (honorific)",
+    "level": "N4",
+    "meaning": "respectfully describes someone else's action",
+    "formation": "Godan verb negative stem + れる / Ichidan verb stem + られる / 来る → 来られる / する → される",
+    "notes": "These forms can also express passive or potential meanings. The sentence context and intended meaning determine the reading. Honorific use raises the action of a teacher, customer, or other respected person; it is not used to raise the speaker's own action. Tense, negation, and politeness follow the derived verb.",
+    "tags": ["honorific", "politeness"],
+    "examples": [{
+      "ja": "先生は寿司を食べられます。",
+      "furigana": "{先生|せんせい}は{寿司|すし}を{食|た}べられます。",
+      "en": "The teacher eats sushi. (Respectful.)"
+    }]
+  }
+]

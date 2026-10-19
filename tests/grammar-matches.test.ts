@@ -33,6 +33,11 @@ test("whole constructions suppress components while retaining independent deriva
     derivation,
     outer,
   ]);
+  const potential = match(0, 4, "eru-rareru-potential");
+  expect(resolveGrammarMatches([component, potential, outer], [])).toEqual([
+    potential,
+    outer,
+  ]);
 });
 
 test("partial overlaps and equal spans can express distinct grammar readings", () => {

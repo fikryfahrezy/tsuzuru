@@ -5,58 +5,7 @@ import type { AnswerEntry } from "./answer-entries";
 import { grammarById } from "./grammar-reference";
 import { detectGrammar } from "./detect-grammar";
 import { resolveGrammarMatches } from "./grammar-matches";
-
-// Only unambiguous standalone forms belong here. Contextual handlers below
-// cover specific constructions (e.g. がほしい, てから, and question か).
-// Particle handlers use neighboring words, predicate roles, and lexical cues.
-// Ambiguous uses still need annotations; spelling alone cannot select a lesson.
-const standalone: Record<string, string> = {
-  は: "wa",
-  を: "o",
-  へ: "e",
-  も: "mo",
-  や: "ya",
-  まで: "made",
-  ね: "ne",
-  よ: "yo",
-  です: "desu",
-  でした: "deshita",
-  だ: "da",
-  ではない: "de-wa-arimasen-ja-nai",
-  じゃない: "de-wa-arimasen-ja-nai",
-  ではありません: "de-wa-arimasen-ja-nai",
-};
-
-function formGrammar(entry: AnswerEntry): string[] {
-  const id = standalone[entry.japanese];
-  if (id) return [id];
-  // A suffix alone does not establish grammar (e.g. 頭 is not a past verb).
-  if (!entry.dictionaryForm || entry.dictionaryForm === entry.japanese)
-    return [];
-  if (entry.wordTypes.includes("Verb")) {
-    for (const [ending, grammarId] of [
-      ["ませんでした", "masen-deshita"],
-      ["ました", "mashita"],
-      ["ません", "masen"],
-      ["ます", "masu"],
-      ["ましょう", "mashou"],
-      ["ない", "nai"],
-      ["た", "ta"],
-      ["だ", "ta"],
-      ["て", "te"],
-      ["で", "te"],
-    ] as const) {
-      if (entry.japanese.endsWith(ending)) return [grammarId];
-    }
-  }
-  if (
-    entry.wordTypes.includes("い-adjective") &&
-    /(?:くない|かった|くなかった)$/u.test(entry.japanese)
-  ) {
-    return ["ku-nai-katta-ku-nakatta"];
-  }
-  return [];
-}
+import { inflectionGrammar } from "./inflection-grammar";
 
 export function validGrammarAnnotations(
   sentence: Sentence,
@@ -94,16 +43,7 @@ export function withBreakdownGrammar(
     detectGrammar(sentence, base),
     annotations,
   );
-  const automatic = base
-    .filter(
-      (part) =>
-        !contextual.some(
-          (annotation) =>
-            annotation.start < part.end && annotation.end > part.start,
-        ),
-    )
-    .map((part) => ({ ...part, grammarIds: formGrammar(part) }));
-  const matches = [...contextual, ...automatic].sort(
+  const matches = [...contextual, ...inflectionGrammar(base, contextual)].sort(
     (a, b) => a.start - b.start,
   );
   const assigned = new Map<string, GrammarExplanation[]>();
