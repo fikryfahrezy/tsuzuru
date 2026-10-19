@@ -1923,5 +1923,40 @@
     "japanese": "見られた",
     "expect": "absent",
     "note": "An English infinitive passive in not fit to be seen is insufficient evidence."
+  },
+  {
+    "lessonId": "nai",
+    "sentenceId": "3dec770e61de264aa6559126",
+    "japanese": "とらなかった",
+    "expect": "present",
+    "note": "Nobody scopes the clause without hiding the verb's negation."
+  },
+  {
+    "lessonId": "ta",
+    "sentenceId": "3dec770e61de264aa6559126",
+    "japanese": "とらなかった",
+    "expect": "present",
+    "note": "The negative past predicate retains its tense within a nobody clause."
+  },
+  {
+    "lessonId": "o",
+    "sentenceId": "3dec770e61de264aa6559126",
+    "japanese": "を",
+    "expect": "present",
+    "note": "A clause-wide negative quantifier does not consume the object marker."
+  },
+  {
+    "lessonId": "mo",
+    "sentenceId": "3dec770e61de264aa6559126",
+    "japanese": "も",
+    "expect": "absent",
+    "note": "The opening quantifier marker belongs to nobody, not an independent also lesson."
+  },
+  {
+    "lessonId": "de-wa-context",
+    "sentenceId": "3dec770e61de264aa6559126",
+    "japanese": "では",
+    "expect": "present",
+    "note": "The test establishes the setting and topic of the following action."
   }
 ]

@@ -2,16 +2,14 @@ import type { GrammarAnnotation } from "../../shared/answer-entries";
 import type { Sentence } from "../../shared/sentence";
 import type { AnswerEntry } from "./answer-entries";
 import { finite, nominal } from "./grammar-context";
+import { negativeQuantifiers, scopeAdverbs } from "./grammar-rules/scope";
 
 const negative = /(?:ない|なかった|ません|ませんでした)(?:です)?$/u;
-const adverbs: Record<string, string> = {
-  あまり: "amari-nai",
-  余り: "amari-nai",
-  全然: "zenzen-nai",
-  ぜんぜん: "zenzen-nai",
-  なかなか: "nakanaka-nai",
-  中々: "nakanaka-nai",
-};
+const adverbs: Record<string, string> = Object.fromEntries(
+  scopeAdverbs.flatMap(([id, markers]) =>
+    markers.map((marker) => [marker, id]),
+  ),
+);
 
 export function scopeGrammar(
   sentence: Sentence,
@@ -38,7 +36,7 @@ export function scopeGrammar(
       markerEnd = entry.start + 2;
     }
     if (!id) {
-      const form = ["何も", "誰も", "だれも", "なにも"].find(
+      const form = negativeQuantifiers.find(
         (word) =>
           text.startsWith(word, entry.start) &&
           ends.has(entry.start + word.length),

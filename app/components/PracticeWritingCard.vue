@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
 import Sortable from "sortablejs";
+import { breakdownForChips } from "~/utils/answer-breakdown";
 import { AnswerInput, modes, type JournalEntry } from "~/utils/practice";
 import {
   PracticeDifficulty,
@@ -51,12 +52,7 @@ const canUse = (permission: PracticePermission) =>
   hasPracticePermission(props.difficulty, permission);
 const chips = computed(() => props.question?.wordBank ?? []);
 const shuffledBreakdown = computed(() =>
-  chips.value.flatMap((chip) => {
-    const part = props.question?.answerBreakdown.find(
-      (part) => part.japanese === chip.japanese && part.kana === chip.kana,
-    );
-    return part ? [part] : [];
-  }),
+  breakdownForChips(chips.value, props.question?.answerBreakdown ?? []),
 );
 const locked = computed(
   () => props.loading || !props.question || props.checking || !!props.result,

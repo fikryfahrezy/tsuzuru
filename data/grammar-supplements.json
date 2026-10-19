@@ -30,5 +30,20 @@
       "furigana": "{先生|せんせい}は{寿司|すし}を{食|た}べられます。",
       "en": "The teacher eats sushi. (Respectful.)"
     }]
+  },
+  {
+    "id": "de-wa-context",
+    "pattern": "〜では（場面・対比）",
+    "romaji": "de wa (context)",
+    "level": "N5",
+    "meaning": "in; at; as for (a setting or contrast)",
+    "formation": "Noun + で + は + statement about what happens in that setting",
+    "notes": "で establishes the setting and は makes it the topic or contrasts it with other settings. This is different from the negative copula ではない, meaning ‘is not’.",
+    "tags": ["particle", "topic", "contrast"],
+    "examples": [{
+      "ja": "学校では日本語を勉強します。",
+      "furigana": "{学校|がっこう}では{日本語|にほんご}を{勉強|べんきょう}します。",
+      "en": "At school, I study Japanese."
+    }]
   }
 ]

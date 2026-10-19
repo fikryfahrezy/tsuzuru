@@ -396,6 +396,27 @@ export function particleGrammar(
     }
     if (!adjacent) continue;
     const predicate = nextPredicate(index);
+    const deWaEnd =
+      entry.japanese === "では"
+        ? entry.end
+        : entry.japanese === "で" &&
+            next?.japanese === "は" &&
+            followingAdjacent &&
+            next.wordTypes.includes("Particle")
+          ? next.end
+          : undefined;
+    if (
+      deWaEnd !== undefined &&
+      nominal(previous) &&
+      predicate?.wordTypes.includes("Verb") &&
+      !has(existence, predicate) &&
+      !/^では(?:ない|なかった|なく|なけれ|ありません)/u.test(
+        text.slice(entry.start),
+      )
+    ) {
+      add(entry, "de-wa-context", deWaEnd);
+      continue;
+    }
     if (entry.japanese === "が") {
       if (nominal(previous) && predicate && !has(desire, predicate))
         add(entry, "ga-subject");

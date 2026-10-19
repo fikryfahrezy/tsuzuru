@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "lessons": 528,
+  "lessons": 529,
   "sentences": 10312,
   "statusCounts": {
-    "automatic": 299,
+    "automatic": 300,
     "annotation-only": 1,
     "unsupported": 228
   },
   "byLevel": {
     "N5": {
-      "automatic": 81,
+      "automatic": 82,
       "annotation-only": 0,
       "unsupported": 0
     },
@@ -35,8 +35,8 @@
     }
   },
   "regressionSummary": {
-    "total": 275,
-    "passed": 275,
+    "total": 280,
+    "passed": 280,
     "failed": 0
   },
   "entries": [
@@ -48,12 +48,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 12
+          "line": 15
         }
       ],
       "automatic": {
         "sentences": 6884,
-        "occurrences": 7174,
+        "occurrences": 7175,
         "examples": [
           {
             "sentenceId": "0000978f3525f2d6e60e600b",
@@ -84,12 +84,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 401
+          "line": 422
         }
       ],
       "automatic": {
-        "sentences": 1675,
-        "occurrences": 1739,
+        "sentences": 1676,
+        "occurrences": 1740,
         "examples": [
           {
             "sentenceId": "0000978f3525f2d6e60e600b",
@@ -131,12 +131,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 13
+          "line": 16
         }
       ],
       "automatic": {
-        "sentences": 3992,
-        "occurrences": 4215,
+        "sentences": 4001,
+        "occurrences": 4224,
         "examples": [
           {
             "sentenceId": "00110190dcb7bfdba58f46c4",
@@ -155,7 +155,16 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "o",
+          "sentenceId": "3dec770e61de264aa6559126",
+          "japanese": "を",
+          "expect": "present",
+          "note": "A clause-wide negative quantifier does not consume the object marker.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -167,7 +176,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 409
+          "line": 430
         }
       ],
       "automatic": {
@@ -214,7 +223,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 419
+          "line": 440
         }
       ],
       "automatic": {
@@ -261,7 +270,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 420
+          "line": 441
         }
       ],
       "automatic": {
@@ -308,7 +317,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 417
+          "line": 438
         }
       ],
       "automatic": {
@@ -444,7 +453,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 14
+          "line": 17
         }
       ],
       "automatic": {
@@ -480,7 +489,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 449
+          "line": 470
         }
       ],
       "automatic": {
@@ -527,15 +536,15 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 430
+          "line": 451
         },
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 435
+          "line": 456
         },
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 448
+          "line": 469
         }
       ],
       "automatic": {
@@ -654,7 +663,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 16
+          "line": 19
         }
       ],
       "automatic": {
@@ -735,7 +744,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 15
+          "line": 18
         }
       ],
       "automatic": {
@@ -765,7 +774,16 @@
           }
         ]
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "mo",
+          "sentenceId": "3dec770e61de264aa6559126",
+          "japanese": "も",
+          "expect": "absent",
+          "note": "The opening quantifier marker belongs to nobody, not an independent also lesson.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -781,8 +799,8 @@
         }
       ],
       "automatic": {
-        "sentences": 2302,
-        "occurrences": 2513,
+        "sentences": 2304,
+        "occurrences": 2516,
         "examples": [
           {
             "sentenceId": "00110190dcb7bfdba58f46c4",
@@ -824,7 +842,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 460
+          "line": 481
         }
       ],
       "automatic": {
@@ -860,7 +878,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 17
+          "line": 20
         }
       ],
       "automatic": {
@@ -943,7 +961,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 18
+          "line": 21
         }
       ],
       "automatic": {
@@ -979,7 +997,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 19
+          "line": 22
         }
       ],
       "automatic": {
@@ -1165,7 +1183,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 20
+          "line": 23
         }
       ],
       "automatic": {
@@ -1201,7 +1219,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 22
+          "line": 25
         }
       ],
       "automatic": {
@@ -1237,15 +1255,15 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 23
+          "line": 26
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 24
+          "line": 27
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 25
+          "line": 28
         }
       ],
       "automatic": {
@@ -1276,7 +1294,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 21
+          "line": 24
         }
       ],
       "automatic": {
@@ -1312,7 +1330,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 40
+          "line": 43
         }
       ],
       "automatic": {
@@ -1354,12 +1372,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 39
+          "line": 42
         }
       ],
       "automatic": {
-        "sentences": 123,
-        "occurrences": 123,
+        "sentences": 128,
+        "occurrences": 128,
         "examples": [
           {
             "sentenceId": "0362ee35285058847f69f5e2",
@@ -1396,7 +1414,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 38
+          "line": 41
         }
       ],
       "automatic": {
@@ -1432,22 +1450,22 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 37
+          "line": 40
         }
       ],
       "automatic": {
-        "sentences": 14,
-        "occurrences": 14,
+        "sentences": 17,
+        "occurrences": 17,
         "examples": [
           {
-            "sentenceId": "16a75b6a45b8133491a42fb4",
-            "japanese": "セレモニーには出席できませんでした。",
-            "english": "I couldn't attend the ceremony."
+            "sentenceId": "02cb469b4193cbcf21c1460c",
+            "japanese": "その箱には何もありませんでした。",
+            "english": "There was nothing in the box."
           },
           {
-            "sentenceId": "1b1e230b62d096d0e68193d9",
-            "japanese": "彼女はみすぼらしい小さいおうちを見ましたが急いで通り過ぎてしまいませんでした。",
-            "english": "She saw the shabby little house, but she didn't hurry by."
+            "sentenceId": "0731df9acbba8f2ce78cb506",
+            "japanese": "春先だから客もあまりいませんでした。",
+            "english": "It was early spring, so there weren't many customers."
           }
         ]
       },
@@ -1468,16 +1486,16 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 35
+          "line": 38
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 42
+          "line": 45
         }
       ],
       "automatic": {
-        "sentences": 473,
-        "occurrences": 478,
+        "sentences": 506,
+        "occurrences": 511,
         "examples": [
           {
             "sentenceId": "0091f2803f8abdf12e351631",
@@ -1507,7 +1525,16 @@
           }
         ]
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "nai",
+          "sentenceId": "3dec770e61de264aa6559126",
+          "japanese": "とらなかった",
+          "expect": "present",
+          "note": "Nobody scopes the clause without hiding the verb's negation.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -1571,15 +1598,15 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 35
+          "line": 38
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 43
+          "line": 46
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 44
+          "line": 47
         },
         {
           "file": "server/utils/verb-grammar.ts",
@@ -1587,8 +1614,8 @@
         }
       ],
       "automatic": {
-        "sentences": 2699,
-        "occurrences": 2812,
+        "sentences": 2707,
+        "occurrences": 2820,
         "examples": [
           {
             "sentenceId": "0000e8f8c0565c3fbcea0a4c",
@@ -1618,7 +1645,16 @@
           }
         ]
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "ta",
+          "sentenceId": "3dec770e61de264aa6559126",
+          "japanese": "とらなかった",
+          "expect": "present",
+          "note": "The negative past predicate retains its tense within a nobody clause.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -1630,7 +1666,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 41
+          "line": 44
         }
       ],
       "automatic": {
@@ -2034,8 +2070,8 @@
         }
       ],
       "automatic": {
-        "sentences": 46,
-        "occurrences": 46,
+        "sentences": 49,
+        "occurrences": 49,
         "examples": [
           {
             "sentenceId": "0656f98af9c01c609e237530",
@@ -2142,12 +2178,12 @@
         },
         {
           "file": "server/utils/scope-grammar.ts",
-          "line": 79
+          "line": 77
         }
       ],
       "automatic": {
-        "sentences": 1379,
-        "occurrences": 1383,
+        "sentences": 1396,
+        "occurrences": 1400,
         "examples": [
           {
             "sentenceId": "00121c45c61969376c90e342",
@@ -2281,16 +2317,16 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 45
+          "line": 48
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 46
+          "line": 49
         }
       ],
       "automatic": {
-        "sentences": 1001,
-        "occurrences": 1033,
+        "sentences": 1004,
+        "occurrences": 1036,
         "examples": [
           {
             "sentenceId": "005f4d7a8076d62a69fb3c5a",
@@ -2783,8 +2819,8 @@
         }
       ],
       "automatic": {
-        "sentences": 295,
-        "occurrences": 295,
+        "sentences": 299,
+        "occurrences": 299,
         "examples": [
           {
             "sentenceId": "016b5539c1c23fe08eae726c",
@@ -2835,7 +2871,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 451
+          "line": 472
         }
       ],
       "automatic": {
@@ -2871,7 +2907,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 402
+          "line": 423
         }
       ],
       "automatic": {
@@ -3058,12 +3094,16 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/scope-grammar.ts",
-          "line": 52
+          "file": "server/utils/grammar-rules/scope.ts",
+          "line": 20
         },
         {
           "file": "server/utils/scope-grammar.ts",
-          "line": 76
+          "line": 50
+        },
+        {
+          "file": "server/utils/scope-grammar.ts",
+          "line": 74
         }
       ],
       "automatic": {
@@ -3132,12 +3172,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/scope-grammar.ts",
-          "line": 8
-        },
-        {
-          "file": "server/utils/scope-grammar.ts",
-          "line": 9
+          "file": "server/utils/grammar-rules/scope.ts",
+          "line": 2
         }
       ],
       "automatic": {
@@ -3181,12 +3217,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/scope-grammar.ts",
-          "line": 10
-        },
-        {
-          "file": "server/utils/scope-grammar.ts",
-          "line": 11
+          "file": "server/utils/grammar-rules/scope.ts",
+          "line": 3
         }
       ],
       "automatic": {
@@ -3365,8 +3397,12 @@
       "status": "automatic",
       "ruleReferences": [
         {
+          "file": "server/utils/grammar-rules/scope.ts",
+          "line": 18
+        },
+        {
           "file": "server/utils/scope-grammar.ts",
-          "line": 48
+          "line": 46
         }
       ],
       "automatic": {
@@ -3614,7 +3650,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 55
+          "line": 58
         }
       ],
       "automatic": {
@@ -5006,7 +5042,7 @@
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
-          "line": 11
+          "line": 20
         },
         {
           "file": "server/utils/rareru-grammar.ts",
@@ -5094,7 +5130,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
-          "line": 15
+          "line": 24
         },
         {
           "file": "server/utils/rareru-grammar.ts",
@@ -6841,8 +6877,12 @@
       "status": "automatic",
       "ruleReferences": [
         {
+          "file": "server/utils/grammar-rules/scope.ts",
+          "line": 19
+        },
+        {
           "file": "server/utils/scope-grammar.ts",
-          "line": 37
+          "line": 35
         }
       ],
       "automatic": {
@@ -7245,12 +7285,8 @@
       "status": "automatic",
       "ruleReferences": [
         {
-          "file": "server/utils/scope-grammar.ts",
-          "line": 12
-        },
-        {
-          "file": "server/utils/scope-grammar.ts",
-          "line": 13
+          "file": "server/utils/grammar-rules/scope.ts",
+          "line": 4
         }
       ],
       "automatic": {
@@ -8293,8 +8329,8 @@
         }
       ],
       "automatic": {
-        "sentences": 11,
-        "occurrences": 11,
+        "sentences": 12,
+        "occurrences": 12,
         "examples": [
           {
             "sentenceId": "057ca860fbc6df888aaef285",
@@ -18616,7 +18652,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
-          "line": 17
+          "line": 26
         },
         {
           "file": "server/utils/rareru-grammar.ts",
@@ -18640,6 +18676,51 @@
         ]
       },
       "reviewedCases": [],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "de-wa-context",
+      "level": "N5",
+      "pattern": "〜では（場面・対比）",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/particle-grammar.ts",
+          "line": 417
+        }
+      ],
+      "automatic": {
+        "sentences": 83,
+        "occurrences": 83,
+        "examples": [
+          {
+            "sentenceId": "0028ff5e1ccfd69a615c5240",
+            "japanese": "私は数学では彼より劣っている。",
+            "english": "I am inferior to him in mathematics."
+          },
+          {
+            "sentenceId": "0091f2803f8abdf12e351631",
+            "japanese": "恋愛と戦争では手段を選ばない。",
+            "english": "All's fair in love and war."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "de-wa-context",
+          "sentenceId": "3dec770e61de264aa6559126",
+          "japanese": "では",
+          "expect": "present",
+          "note": "The test establishes the setting and topic of the following action.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     }

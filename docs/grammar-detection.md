@@ -64,6 +64,20 @@ independent capabilities in `grammar-rules/lesson-policy.ts`. This preserves the
 existing distinction between potential, passive, and register lessons rather
 than treating all voice lessons as interchangeable.
 
+Clause scopes have a separate `clauseContentAfter` capability. The reviewed
+markers in `grammar-rules/scope.ts` delimit the construction's opening marker;
+words after it retain their own grammar. Thus 誰も本を読まなかった keeps the
+誰も〜ない lesson, object-marker を, and negative/past inflections. The opening
+も still belongs to 誰も〜ない and does not acquire an unrelated "also" lesson.
+Its particle note is contextualized accordingly. Maintained clause-scope
+annotations use the same rule. Inner verb constructions keep their own
+precedence, so scope transparency does not expose component guesses beneath
+requests or prohibitions.
+
+Joined or split では gets the setting/contrast lesson when a preceding noun and
+a following action predicate establish that role. Negative copula forms such
+as ではない and ではなくて remain excluded.
+
 Inflected predicates retain complementary lessons: 読めない links potential and
 negative, 読めました links potential and polite past, and 食べなかった links
 negative and past. Negative できる forms also link potential, while affirmative

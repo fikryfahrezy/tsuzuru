@@ -26,6 +26,10 @@ const imports: Record<string, string> = {
   vue: import.meta.resolve("vue"),
   sortablejs: pathToFileURL(sortablePath).href,
   "~/utils/practice": pathToFileURL(join(directory, "practice.ts")).href,
+  "~/utils/answer-breakdown": new URL(
+    "../app/utils/answer-breakdown.ts",
+    import.meta.url,
+  ).href,
   "#shared/practice": new URL("../shared/practice.ts", import.meta.url).href,
   "#shared/practice-difficulty": new URL(
     "../shared/practice-difficulty.ts",

@@ -1,8 +1,45 @@
 <script setup lang="ts">
 import type { AnswerBreakdownPart } from "#shared/practice";
-withDefaults(
+import type { GrammarExplanation } from "#shared/grammar";
+import { ref, watch } from "vue";
+
+const props = withDefaults(
   defineProps<{ parts: AnswerBreakdownPart[]; shuffled?: boolean }>(),
   { shuffled: true },
+);
+const highlightedGrammar = ref<GrammarExplanation | null>(null);
+
+function isSelected(grammar: GrammarExplanation) {
+  const selected = highlightedGrammar.value;
+  return (
+    selected?.id === grammar.id &&
+    selected.start === grammar.start &&
+    selected.end === grammar.end
+  );
+}
+
+function coversPart(grammar: GrammarExplanation, part: AnswerBreakdownPart) {
+  return (
+    typeof part.start === "number" &&
+    typeof part.end === "number" &&
+    part.start < grammar.end &&
+    part.end > grammar.start
+  );
+}
+
+function canHighlight(grammar: GrammarExplanation) {
+  return props.parts.some((part) => coversPart(grammar, part));
+}
+
+function toggleHighlight(grammar: GrammarExplanation) {
+  highlightedGrammar.value = isSelected(grammar) ? null : grammar;
+}
+
+watch(
+  () => props.parts,
+  () => {
+    highlightedGrammar.value = null;
+  },
 );
 </script>
 
@@ -13,10 +50,29 @@ withDefaults(
       Words from the reference, in
       {{ shuffled ? "shuffled" : "sentence" }} order. Meanings may vary with
       context. Grammar shows the full phrase it applies to. Expand a grammar
-      point for its formation and an example.
+      point for its formation and an example. Tap “Applies to” to highlight the
+      words it covers.
+    </p>
+    <p v-if="highlightedGrammar" class="highlight-status" role="status">
+      Highlighted phrase:
+      <span lang="ja">{{ highlightedGrammar.japanese }}</span>
+      <button
+        type="button"
+        class="clear-highlight"
+        @click="highlightedGrammar = null"
+      >
+        Clear highlight
+      </button>
     </p>
     <ul tabindex="0" aria-label="Answer breakdown items">
-      <li v-for="(part, index) in parts" :key="index">
+      <li
+        v-for="(part, index) in parts"
+        :key="index"
+        :class="{
+          'is-highlighted':
+            highlightedGrammar && coversPart(highlightedGrammar, part),
+        }"
+      >
         <div class="breakdown-heading">
           <span class="breakdown-word" lang="ja">{{ part.japanese }}</span>
           <span v-if="part.wordTypes.length" class="breakdown-type">
@@ -58,13 +114,26 @@ withDefaults(
           v-for="grammar in part.grammar ?? []"
           :key="`${grammar.id}-${grammar.start}-${grammar.end}`"
           class="breakdown-grammar"
+          :class="{ 'is-selected': isSelected(grammar) }"
         >
           <summary>
             <span class="grammar-label">
               Grammar ·
               <span lang="ja">{{ grammar.pattern }}</span>
             </span>
-            <span class="grammar-scope">
+            <button
+              v-if="canHighlight(grammar)"
+              type="button"
+              class="grammar-scope grammar-scope-toggle"
+              :aria-pressed="isSelected(grammar)"
+              :aria-label="`${isSelected(grammar) ? 'Clear highlight for' : 'Highlight breakdown words for'} ${grammar.japanese}`"
+              @click.stop="toggleHighlight(grammar)"
+              @keydown.stop
+            >
+              Applies to:
+              <span lang="ja">{{ grammar.japanese }}</span>
+            </button>
+            <span v-else class="grammar-scope">
               Applies to:
               <span lang="ja">{{ grammar.japanese }}</span>
             </span>
@@ -142,6 +211,29 @@ h3 {
   background: var(--surface);
   overflow-wrap: anywhere;
 }
+.answer-breakdown > ul > li.is-highlighted {
+  border-color: var(--green);
+  background: color-mix(in srgb, var(--green) 12%, var(--surface));
+  box-shadow: inset 0 3px var(--green);
+}
+.highlight-status {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 12px;
+  color: var(--green);
+  font-size: 12px;
+}
+.clear-highlight {
+  padding: 2px 4px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
 .breakdown-heading {
   display: flex;
   align-items: baseline;
@@ -194,6 +286,32 @@ h3 {
   margin-top: 4px;
   color: var(--secondary);
   font-size: 12px;
+}
+.grammar-scope-toggle {
+  width: 100%;
+  padding: 5px 7px;
+  border: 1px dashed var(--line);
+  border-radius: 3px;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+.grammar-scope-toggle:hover,
+.breakdown-grammar.is-selected .grammar-scope-toggle {
+  border-color: var(--green);
+  background: color-mix(in srgb, var(--green) 10%, var(--surface));
+  color: var(--green);
+}
+.breakdown-grammar.is-selected .grammar-label {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.grammar-scope-toggle:focus-visible,
+.clear-highlight:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
 }
 .breakdown-grammar p {
   margin: 8px 0;

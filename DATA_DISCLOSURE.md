@@ -49,7 +49,8 @@ explanations without changing the imported grammar files. The glasses example
 is adapted from the imported [Tatoeba sentence 158805](https://tatoeba.org/sentences/show/158805)
 (the initial 私は is omitted) and retains the imported CC BY-SA 4.0 terms. The
 supplements' JLPT levels are unofficial estimates. The respectful 〜られる
-lesson and its teacher/sushi example are locally authored.
+lesson and its teacher/sushi example, and the setting/contrast では lesson and
+its school example, are locally authored.
 Source grammar examples remain in their original grammar files and are not merged
 into the vocabulary sentence-candidate file.
 

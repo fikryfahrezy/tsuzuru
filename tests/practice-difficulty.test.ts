@@ -44,6 +44,10 @@ function writeModule(name: string, source: string) {
       import.meta.url,
     ).href,
     "~/utils/practice": pathToFileURL(join(directory, "practice.ts")).href,
+    "~/utils/answer-breakdown": new URL(
+      "../app/utils/answer-breakdown.ts",
+      import.meta.url,
+    ).href,
   };
   const rewritten = source.replace(
     /from (["'])([^"']+)\1/gu,

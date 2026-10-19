@@ -6,6 +6,7 @@ import { grammarById } from "./grammar-reference";
 import { detectGrammar } from "./detect-grammar";
 import { resolveGrammarMatches } from "./grammar-matches";
 import { inflectionGrammar } from "./inflection-grammar";
+import { contextualParticleNote } from "./grammar-policy";
 
 export function validGrammarAnnotations(
   sentence: Sentence,
@@ -84,6 +85,11 @@ export function withBreakdownGrammar(
   }
   return entries.map((part) => {
     const grammar = assigned.get(part.entryId);
-    return { ...part, ...(grammar ? { grammar } : {}) };
+    const note = contextualParticleNote(part, contextual);
+    return {
+      ...part,
+      ...(note ? { note } : {}),
+      ...(grammar ? { grammar } : {}),
+    };
   });
 }

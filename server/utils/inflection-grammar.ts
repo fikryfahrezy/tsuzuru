@@ -1,7 +1,10 @@
 import type { GrammarAnnotation } from "../../shared/answer-entries";
 import type { AnswerEntry } from "./answer-entries";
 import { potentialDerivation } from "./potential-forms";
-import { allowsPredicateInflection } from "./grammar-policy";
+import {
+  allowsPredicateInflection,
+  permitsClauseContent,
+} from "./grammar-policy";
 import { overlaps } from "./grammar-matcher";
 
 // Only unambiguous standalone forms belong here. Contextual handlers
@@ -88,7 +91,12 @@ export function inflectionGrammar(
     });
   const automatic = base
     .filter(
-      (part) => !contextual.some((annotation) => overlaps(annotation, part)),
+      (part) =>
+        !contextual.some(
+          (annotation) =>
+            overlaps(annotation, part) &&
+            !permitsClauseContent(annotation, part),
+        ),
     )
     .map((part) => ({ ...part, grammarIds: formGrammar(part) }));
   return [...inflections, ...automatic];
