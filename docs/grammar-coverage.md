@@ -320,42 +320,42 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 
 | Lesson ID                         | Pattern                                 | Status    | Automatic sentences | Annotated sentences | Reviewed checks |
 | --------------------------------- | --------------------------------------- | --------- | ------------------- | ------------------- | --------------- |
-| wa                                | 〜は                                    | automatic | 6884                | 0                   | 0/0             |
-| ga-subject                        | 〜が（subject）                         | automatic | 1676                | 5                   | 0/0             |
-| o                                 | 〜を                                    | automatic | 4001                | 0                   | 1/1             |
+| wa                                | 〜は                                    | automatic | 6882                | 0                   | 0/0             |
+| ga-subject                        | 〜が（subject）                         | automatic | 1764                | 5                   | 0/0             |
+| o                                 | 〜を                                    | automatic | 4000                | 0                   | 1/1             |
 | ni-time                           | 〜に（time）                            | automatic | 21                  | 3                   | 0/0             |
 | ni-destination                    | 〜に（destination）                     | automatic | 27                  | 3                   | 0/0             |
 | ni-location                       | 〜に（place of existence）              | automatic | 61                  | 2                   | 0/0             |
 | ni-indirect-object                | 〜に（indirect object）                 | automatic | 13                  | 0                   | 3/3             |
 | ni-frequency                      | 〜に（frequency）                       | automatic | 5                   | 0                   | 2/2             |
 | e                                 | 〜へ                                    | automatic | 93                  | 0                   | 0/0             |
-| de-place                          | 〜で（place of action）                 | automatic | 61                  | 2                   | 0/0             |
+| de-place                          | 〜で（place of action）                 | automatic | 63                  | 2                   | 0/0             |
 | de-means                          | 〜で（means）                           | automatic | 10                  | 2                   | 0/0             |
 | to-and                            | 〜と（and）                             | automatic | 5                   | 0                   | 0/0             |
 | to-with                           | 〜と（with）                            | automatic | 5                   | 0                   | 0/0             |
 | ya                                | 〜や                                    | automatic | 41                  | 0                   | 0/0             |
-| ka-or                             | 〜か（or）                              | automatic | 2                   | 0                   | 1/1             |
-| mo                                | 〜も                                    | automatic | 321                 | 1                   | 1/1             |
-| no                                | 〜の（possessive）                      | automatic | 2304                | 10                  | 0/0             |
-| kara-from                         | 〜から（from）                          | automatic | 32                  | 0                   | 0/0             |
+| ka-or                             | 〜か（or）                              | automatic | 4                   | 0                   | 1/1             |
+| mo                                | 〜も                                    | automatic | 320                 | 1                   | 1/1             |
+| no                                | 〜の（possessive）                      | automatic | 2647                | 10                  | 0/0             |
+| kara-from                         | 〜から（from）                          | automatic | 33                  | 0                   | 0/0             |
 | made                              | 〜まで（until）                         | automatic | 104                 | 0                   | 0/0             |
 | ka-question                       | 〜か（question）                        | automatic | 637                 | 3                   | 0/0             |
 | ne                                | 〜ね                                    | automatic | 135                 | 0                   | 0/0             |
 | yo                                | 〜よ                                    | automatic | 255                 | 0                   | 0/0             |
-| yori                              | 〜より                                  | automatic | 38                  | 0                   | 0/0             |
-| no-hou-ga-yori                    | 〜の方が〜より                          | automatic | 8                   | 0                   | 1/1             |
+| yori                              | 〜より                                  | automatic | 40                  | 0                   | 0/0             |
+| no-hou-ga-yori                    | 〜の方が〜より                          | automatic | 9                   | 0                   | 1/1             |
 | to-to-dochira-ga                  | 〜と〜とどちらが                        | automatic | 1                   | 0                   | 1/1             |
 | no-naka-de-ga-ichiban             | 〜の中で〜が一番                        | automatic | 0                   | 0                   | 0/0             |
-| desu                              | 〜です                                  | automatic | 451                 | 0                   | 0/0             |
-| da                                | 〜だ                                    | automatic | 679                 | 0                   | 0/0             |
+| desu                              | 〜です                                  | automatic | 448                 | 0                   | 0/0             |
+| da                                | 〜だ                                    | automatic | 678                 | 0                   | 0/0             |
 | de-wa-arimasen-ja-nai             | 〜ではありません / 〜じゃない           | automatic | 0                   | 1                   | 0/0             |
 | deshita                           | 〜でした                                | automatic | 34                  | 0                   | 0/0             |
-| masu                              | 〜ます                                  | automatic | 431                 | 1                   | 0/0             |
-| masen                             | 〜ません                                | automatic | 128                 | 1                   | 0/0             |
+| masu                              | 〜ます                                  | automatic | 423                 | 1                   | 0/0             |
+| masen                             | 〜ません                                | automatic | 127                 | 1                   | 0/0             |
 | mashita                           | 〜ました                                | automatic | 182                 | 0                   | 0/0             |
 | masen-deshita                     | 〜ませんでした                          | automatic | 17                  | 0                   | 0/0             |
-| nai                               | 〜ない                                  | automatic | 506                 | 2                   | 1/1             |
-| ta                                | 〜た                                    | automatic | 2707                | 13                  | 1/1             |
+| nai                               | 〜ない                                  | automatic | 504                 | 2                   | 1/1             |
+| ta                                | 〜た                                    | automatic | 2698                | 13                  | 1/1             |
 | mashou                            | 〜ましょう                              | automatic | 44                  | 0                   | 0/0             |
 | mashou-ka                         | 〜ましょうか                            | automatic | 15                  | 1                   | 0/0             |
 | masen-ka                          | 〜ませんか                              | automatic | 1                   | 0                   | 2/2             |
@@ -377,31 +377,31 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | ato-de                            | 〜後で                                  | automatic | 2                   | 0                   | 2/2             |
 | nagara                            | 〜ながら（while）                       | automatic | 12                  | 0                   | 0/0             |
 | ni-iku                            | 〜に行く                                | automatic | 10                  | 0                   | 2/2             |
-| ga-suki-ga-kirai                  | 〜が好き / 〜が嫌い                     | automatic | 48                  | 1                   | 2/2             |
+| ga-suki-ga-kirai                  | 〜が好き / 〜が嫌い                     | automatic | 49                  | 1                   | 2/2             |
 | ga-jouzu-ga-heta                  | 〜が上手 / 〜が下手                     | automatic | 4                   | 0                   | 1/1             |
-| ga-aru-ga-iru                     | 〜がある / 〜がいる                     | automatic | 299                 | 0                   | 1/1             |
-| kara-reason                       | 〜から（reason）                        | automatic | 47                  | 0                   | 0/0             |
-| ga-but                            | 〜が（but）                             | automatic | 66                  | 0                   | 0/0             |
-| deshou                            | 〜でしょう                              | automatic | 46                  | 0                   | 1/1             |
-| ku-naru-ni-naru                   | 〜くなる / 〜になる                     | automatic | 217                 | 1                   | 1/1             |
+| ga-aru-ga-iru                     | 〜がある / 〜がいる                     | automatic | 308                 | 0                   | 1/1             |
+| kara-reason                       | 〜から（reason）                        | automatic | 48                  | 0                   | 0/0             |
+| ga-but                            | 〜が（but）                             | automatic | 70                  | 0                   | 0/0             |
+| deshou                            | 〜でしょう                              | automatic | 47                  | 0                   | 1/1             |
+| ku-naru-ni-naru                   | 〜くなる / 〜になる                     | automatic | 249                 | 1                   | 1/1             |
 | ni-suru                           | 〜にする（decide）                      | automatic | 1                   | 0                   | 1/1             |
 | mada-te-inai                      | まだ〜ていない                          | automatic | 13                  | 0                   | 1/1             |
 | mou-ta                            | もう〜た                                | automatic | 0                   | 0                   | 0/0             |
 | amari-nai                         | あまり〜ない                            | automatic | 20                  | 0                   | 1/1             |
 | zenzen-nai                        | 全然〜ない                              | automatic | 9                   | 0                   | 1/1             |
-| dake                              | 〜だけ                                  | automatic | 34                  | 0                   | 2/2             |
+| dake                              | 〜だけ                                  | automatic | 35                  | 0                   | 2/2             |
 | kurai-gurai                       | 〜くらい / 〜ぐらい（approximately）    | automatic | 0                   | 0                   | 0/0             |
 | goro                              | 〜ごろ                                  | automatic | 1                   | 1                   | 1/1             |
 | nani-mo-nai-dare-mo-nai           | 何も〜ない / 誰も〜ない                 | automatic | 16                  | 0                   | 1/1             |
 | nani-ka-dare-ka-doko-ka           | 何か / 誰か / どこか                    | automatic | 5                   | 0                   | 1/1             |
 | kore-sore-are-dore                | これ / それ / あれ / どれ               | automatic | 312                 | 1                   | 1/1             |
-| kono-sono-ano-dono                | この / その / あの / どの               | automatic | 1877                | 3                   | 1/1             |
+| kono-sono-ano-dono                | この / その / あの / どの               | automatic | 1914                | 3                   | 1/1             |
 | koko-soko-asoko-doko              | ここ / そこ / あそこ / どこ             | automatic | 208                 | 1                   | 1/1             |
-| ku-nai-katta-ku-nakatta           | 〜くない / 〜かった / 〜くなかった      | automatic | 44                  | 2                   | 0/0             |
-| na-na-adjective                   | 〜な（na-adjective）                    | automatic | 95                  | 0                   | 1/1             |
-| kute-de                           | 〜くて / 〜で                           | automatic | 7                   | 0                   | 1/1             |
+| ku-nai-katta-ku-nakatta           | 〜くない / 〜かった / 〜くなかった      | automatic | 53                  | 2                   | 0/0             |
+| na-na-adjective                   | 〜な（na-adjective）                    | automatic | 134                 | 0                   | 1/1             |
+| kute-de                           | 〜くて / 〜で                           | automatic | 10                  | 0                   | 1/1             |
 | to-iu-named                       | 〜という（named）                       | automatic | 0                   | 0                   | 0/0             |
-| de-wa-context                     | 〜では（場面・対比）                    | automatic | 83                  | 0                   | 1/1             |
+| de-wa-context                     | 〜では（場面・対比）                    | automatic | 88                  | 0                   | 1/1             |
 
 ## N4 inventory
 
@@ -418,12 +418,12 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | te-oku                             | 〜ておく                                | automatic       | 23                  | 0                   | 0/0             |
 | te-miru                            | 〜てみる                                | automatic       | 24                  | 1                   | 0/0             |
 | te-aru                             | 〜てある                                | automatic       | 8                   | 0                   | 2/2             |
-| toki                               | 〜とき                                  | automatic       | 57                  | 0                   | 1/1             |
+| toki                               | 〜とき                                  | automatic       | 60                  | 0                   | 1/1             |
 | aida-aida-ni                       | 〜間 / 〜間に                           | automatic       | 5                   | 0                   | 0/0             |
 | sou-da-appearance                  | 〜そうだ（appearance）                  | automatic       | 21                  | 0                   | 2/2             |
 | sou-da-hearsay                     | 〜そうだ（hearsay）                     | automatic       | 12                  | 0                   | 1/1             |
 | rashii                             | 〜らしい（hearsay/conjecture）          | automatic       | 3                   | 0                   | 1/1             |
-| you-da                             | 〜ようだ                                | automatic       | 29                  | 0                   | 1/1             |
+| you-da                             | 〜ようだ                                | automatic       | 30                  | 0                   | 1/1             |
 | mitai                              | 〜みたい                                | automatic       | 4                   | 0                   | 1/1             |
 | sugiru                             | 〜すぎる                                | automatic       | 34                  | 0                   | 2/2             |
 | kata                               | 〜方                                    | automatic       | 20                  | 0                   | 1/1             |
@@ -444,16 +444,16 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | nasai                              | 〜なさい                                | automatic       | 199                 | 0                   | 1/1             |
 | ba                                 | 〜ば                                    | automatic       | 74                  | 0                   | 1/1             |
 | tara                               | 〜たら                                  | automatic       | 65                  | 0                   | 0/0             |
-| nara                               | 〜なら                                  | automatic       | 21                  | 0                   | 2/2             |
+| nara                               | 〜なら                                  | automatic       | 23                  | 0                   | 2/2             |
 | to                                 | 〜と（conditional）                     | automatic       | 2                   | 0                   | 2/2             |
 | te-mo-de-mo                        | 〜ても / 〜でも                         | automatic       | 51                  | 0                   | 0/0             |
 | noni-although                      | 〜のに（although）                      | automatic       | 2                   | 0                   | 1/1             |
 | noni-purpose                       | 〜のに（purpose）                       | automatic       | 9                   | 0                   | 1/1             |
 | node                               | 〜ので                                  | automatic       | 60                  | 2                   | 0/0             |
 | te-reason                          | 〜て（reason）                          | automatic       | 17                  | 2                   | 1/1             |
-| shi                                | 〜し                                    | automatic       | 8                   | 0                   | 1/1             |
+| shi                                | 〜し                                    | automatic       | 9                   | 0                   | 1/1             |
 | kedo-keredomo                      | 〜けど / 〜けれども                     | automatic       | 22                  | 0                   | 2/2             |
-| tame-ni                            | 〜ために                                | automatic       | 77                  | 0                   | 1/1             |
+| tame-ni                            | 〜ために                                | automatic       | 80                  | 0                   | 1/1             |
 | you-ni                             | 〜ように（purpose）                     | automatic       | 12                  | 0                   | 1/1             |
 | you-ni-suru                        | 〜ようにする                            | automatic       | 1                   | 0                   | 1/1             |
 | you-ni-naru                        | 〜ようになる                            | automatic       | 7                   | 0                   | 1/1             |
@@ -464,13 +464,13 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | darou                              | 〜だろう                                | automatic       | 77                  | 0                   | 1/1             |
 | hazu-da                            | 〜はずだ                                | automatic       | 4                   | 0                   | 1/1             |
 | hazu-ga-nai                        | 〜はずがない                            | automatic       | 2                   | 0                   | 1/1             |
-| n-desu-no-desu                     | 〜んです / 〜のです                     | automatic       | 121                 | 0                   | 1/1             |
+| n-desu-no-desu                     | 〜んです / 〜のです                     | automatic       | 123                 | 0                   | 1/1             |
 | ka-dou-ka                          | 〜かどうか                              | automatic       | 12                  | 0                   | 2/2             |
 | ka-embedded-question               | 〜か（embedded question）               | automatic       | 15                  | 1                   | 1/1             |
-| to-omou                            | 〜と思う                                | automatic       | 54                  | 0                   | 0/0             |
-| to-iu-say                          | 〜と言う                                | automatic       | 14                  | 0                   | 0/0             |
-| shika-nai                          | 〜しか〜ない                            | automatic       | 13                  | 0                   | 1/1             |
-| bakari                             | 〜ばかり                                | automatic       | 12                  | 0                   | 1/1             |
+| to-omou                            | 〜と思う                                | automatic       | 55                  | 0                   | 0/0             |
+| to-iu-say                          | 〜と言う                                | automatic       | 13                  | 0                   | 0/0             |
+| shika-nai                          | 〜しか〜ない                            | automatic       | 14                  | 0                   | 1/1             |
+| bakari                             | 〜ばかり                                | automatic       | 13                  | 0                   | 1/1             |
 | ta-bakari                          | 〜たばかり                              | automatic       | 3                   | 0                   | 1/1             |
 | tokoro-da                          | 〜ところだ                              | automatic       | 12                  | 2                   | 0/0             |
 | yasui-nikui                        | 〜やすい / 〜にくい                     | automatic       | 23                  | 0                   | 2/2             |
@@ -486,23 +486,23 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | sasete-kudasai                     | 〜させてください                        | automatic       | 3                   | 0                   | 1/1             |
 | sonkeigo                           | 尊敬語                                  | automatic       | 15                  | 0                   | 1/1             |
 | kenjougo                           | 謙譲語                                  | automatic       | 8                   | 0                   | 1/1             |
-| o-ni-naru                          | お〜になる                              | automatic       | 5                   | 0                   | 1/1             |
+| o-ni-naru                          | お〜になる                              | automatic       | 8                   | 0                   | 1/1             |
 | o-suru                             | お〜する                                | automatic       | 20                  | 0                   | 1/1             |
 | de-gozaimasu                       | 〜でございます                          | automatic       | 0                   | 0                   | 0/0             |
 | te-mo-kamawanai                    | 〜ても構わない                          | automatic       | 5                   | 0                   | 0/0             |
-| no-koto-nominalizer                | 〜の / 〜こと（nominalizer）            | automatic       | 344                 | 2                   | 1/1             |
+| no-koto-nominalizer                | 〜の / 〜こと（nominalizer）            | automatic       | 345                 | 2                   | 1/1             |
 | ba-yokatta                         | 〜ばよかった                            | automatic       | 2                   | 0                   | 1/1             |
 | tara-dou                           | 〜たらどう                              | automatic       | 6                   | 0                   | 1/1             |
 | hou-ga-ii                          | 〜ほうがいい                            | automatic       | 22                  | 0                   | 0/0             |
 | toka-toka                          | 〜とか〜とか                            | automatic       | 0                   | 0                   | 0/0             |
-| nado                               | 〜など                                  | automatic       | 17                  | 0                   | 1/1             |
+| nado                               | 〜など                                  | automatic       | 18                  | 0                   | 1/1             |
 | de-mo-suggestion                   | 〜でも（suggestion）                    | automatic       | 1                   | 0                   | 1/1             |
 | sa                                 | 〜さ                                    | automatic       | 54                  | 0                   | 1/1             |
 | me                                 | 〜目                                    | automatic       | 4                   | 0                   | 2/2             |
 | oki-ni                             | 〜おきに                                | automatic       | 2                   | 0                   | 1/1             |
-| ku-suru-ni-suru                    | 〜くする / 〜にする（make）             | automatic       | 12                  | 0                   | 2/2             |
+| ku-suru-ni-suru                    | 〜くする / 〜にする（make）             | automatic       | 13                  | 0                   | 2/2             |
 | ga-suru                            | 〜がする                                | automatic       | 10                  | 0                   | 1/1             |
-| kana-kashira                       | 〜かな / 〜かしら                       | automatic       | 8                   | 0                   | 1/1             |
+| kana-kashira                       | 〜かな / 〜かしら                       | automatic       | 9                   | 0                   | 1/1             |
 | te-kuremasen-ka-te-itadakemasen-ka | 〜てくれませんか / 〜ていただけませんか | automatic       | 23                  | 1                   | 1/1             |
 | naide                              | 〜ないで                                | automatic       | 8                   | 0                   | 2/2             |
 | nakute-wa-condition                | 〜なくては（条件）                      | automatic       | 1                   | 0                   | 0/0             |
@@ -530,9 +530,9 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | sou-ni-nai-sou-mo-nai            | 〜そうにない / 〜そうもない          | automatic   | 0                   | 0                   | 0/0             |
 | ippou-da                         | 〜一方だ                             | unsupported | 0                   | 0                   | 0/0             |
 | ippou-de                         | 〜一方で                             | unsupported | 0                   | 0                   | 0/0             |
-| ni-taishite                      | 〜に対して                           | automatic   | 32                  | 0                   | 1/1             |
+| ni-taishite                      | 〜に対して                           | automatic   | 33                  | 0                   | 1/1             |
 | ni-tsuite                        | 〜について                           | automatic   | 13                  | 0                   | 1/1             |
-| ni-yotte-ni-yoru                 | 〜によって / 〜による                | automatic   | 47                  | 0                   | 1/1             |
+| ni-yotte-ni-yoru                 | 〜によって / 〜による                | automatic   | 48                  | 0                   | 1/1             |
 | ni-yoru-to-ni-yoreba             | 〜によると / 〜によれば              | automatic   | 4                   | 0                   | 2/2             |
 | bakari-de-naku                   | 〜ばかりでなく                       | unsupported | 0                   | 0                   | 0/0             |
 | dake-de-naku                     | 〜だけでなく                         | automatic   | 4                   | 0                   | 1/1             |
@@ -540,13 +540,13 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | rashii-typical-of                | 〜らしい（typical of）               | automatic   | 3                   | 0                   | 1/1             |
 | ppoi                             | 〜っぽい                             | automatic   | 3                   | 0                   | 1/1             |
 | teki                             | 〜的                                 | automatic   | 3                   | 0                   | 1/1             |
-| you-na-you-ni-like               | 〜ような / 〜ように（like）          | automatic   | 43                  | 0                   | 1/1             |
+| you-na-you-ni-like               | 〜ような / 〜ように（like）          | automatic   | 45                  | 0                   | 1/1             |
 | marude-you-da                    | まるで〜ようだ                       | automatic   | 2                   | 0                   | 1/1             |
 | ni-chigai-nai                    | 〜に違いない                         | automatic   | 10                  | 0                   | 1/1             |
 | ni-kimatte-iru                   | 〜に決まっている                     | unsupported | 0                   | 0                   | 0/0             |
 | ki-ga-suru                       | 〜気がする                           | unsupported | 0                   | 0                   | 0/0             |
 | zu-ni                            | 〜ずに                               | automatic   | 10                  | 0                   | 2/2             |
-| mama                             | 〜まま                               | automatic   | 14                  | 0                   | 2/2             |
+| mama                             | 〜まま                               | automatic   | 15                  | 0                   | 2/2             |
 | uchi-ni                          | 〜うちに                             | automatic   | 17                  | 0                   | 1/1             |
 | tokoro-ni-tokoro-e-tokoro-o      | 〜ところに / 〜ところへ / 〜ところを | unsupported | 0                   | 0                   | 0/0             |
 | ba-hodo                          | 〜ば〜ほど                           | automatic   | 4                   | 0                   | 0/0             |
@@ -554,7 +554,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | kurai-gurai-extent               | 〜くらい / 〜ぐらい（extent）        | automatic   | 2                   | 0                   | 1/1             |
 | sae                              | 〜さえ                               | automatic   | 3                   | 0                   | 2/2             |
 | sae-ba                           | 〜さえ〜ば                           | automatic   | 4                   | 0                   | 1/1             |
-| koso                             | 〜こそ                               | automatic   | 6                   | 0                   | 2/2             |
+| koso                             | 〜こそ                               | automatic   | 8                   | 0                   | 2/2             |
 | to-shite                         | 〜として                             | automatic   | 38                  | 0                   | 1/1             |
 | ni-totte                         | 〜にとって                           | automatic   | 10                  | 0                   | 1/1             |
 | ni-shite-wa                      | 〜にしては                           | automatic   | 2                   | 0                   | 2/2             |
@@ -581,7 +581,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | te-hajimete                      | 〜てはじめて                         | automatic   | 1                   | 0                   | 2/2             |
 | te-bakari-iru                    | 〜てばかりいる                       | automatic   | 4                   | 0                   | 1/1             |
 | ba-ii                            | 〜ばいい                             | automatic   | 14                  | 0                   | 1/1             |
-| baai-wa                          | 〜場合（は）                         | automatic   | 5                   | 0                   | 1/1             |
+| baai-wa                          | 〜場合（は）                         | automatic   | 7                   | 0                   | 1/1             |
 | to-sureba-to-shitara             | 〜とすれば / 〜としたら              | automatic   | 2                   | 0                   | 1/1             |
 | to-shite-mo                      | 〜としても                           | automatic   | 4                   | 0                   | 2/2             |
 | toka-hearsay                     | 〜とか（hearsay）                    | unsupported | 0                   | 0                   | 0/0             |
@@ -599,19 +599,19 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | muki-muke                        | 〜向き / 〜向け                      | automatic   | 9                   | 0                   | 3/3             |
 | gachi                            | 〜がち                               | automatic   | 1                   | 0                   | 2/2             |
 | gimi                             | 〜気味                               | unsupported | 0                   | 0                   | 0/0             |
-| darake                           | 〜だらけ                             | automatic   | 8                   | 0                   | 1/1             |
+| darake                           | 〜だらけ                             | automatic   | 7                   | 0                   | 1/1             |
 | kiru-kirenai                     | 〜切る / 〜切れない                  | automatic   | 2                   | 0                   | 2/2             |
 | kakeru                           | 〜かける                             | unsupported | 0                   | 0                   | 0/0             |
-| au                               | 〜合う                               | automatic   | 10                  | 0                   | 3/3             |
+| au                               | 〜合う                               | automatic   | 13                  | 0                   | 3/3             |
 | naosu                            | 〜直す                               | automatic   | 3                   | 0                   | 3/3             |
 | zurai                            | 〜づらい                             | unsupported | 0                   | 0                   | 0/0             |
 | beki-da-beki-de-wa-nai           | 〜べきだ / 〜べきではない            | automatic   | 40                  | 0                   | 1/1             |
-| hodo-wa-nai                      | 〜ほど〜はない                       | automatic   | 3                   | 0                   | 1/1             |
+| hodo-wa-nai                      | 〜ほど〜はない                       | automatic   | 4                   | 0                   | 1/1             |
 | shika-nai-no-choice              | 〜しかない                           | automatic   | 2                   | 0                   | 0/0             |
 | made-even                        | 〜まで（even）                       | unsupported | 0                   | 0                   | 0/0             |
 | tokoro-datta                     | 〜ところだった                       | automatic   | 4                   | 2                   | 0/0             |
 | kara-to-itte                     | 〜からといって                       | automatic   | 3                   | 0                   | 1/1             |
-| toori-ni-doori-ni                | 〜とおりに / 〜どおりに              | automatic   | 4                   | 0                   | 1/1             |
+| toori-ni-doori-ni                | 〜とおりに / 〜どおりに              | automatic   | 3                   | 0                   | 1/1             |
 | nanka-nante                      | 〜なんか / 〜なんて                  | automatic   | 29                  | 0                   | 0/0             |
 
 ## N2 inventory
@@ -714,7 +714,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | o-moto-ni                    | 〜をもとに                    | unsupported | 0                   | 0                   | 0/0             |
 | o-towazu                     | 〜を問わず                    | unsupported | 0                   | 0                   | 0/0             |
 | o-hajime                     | 〜をはじめ                    | unsupported | 0                   | 0                   | 0/0             |
-| o-to-shite                   | 〜を〜として                  | automatic   | 10                  | 0                   | 1/1             |
+| o-to-shite                   | 〜を〜として                  | automatic   | 11                  | 0                   | 1/1             |
 | ka-to-iu-to                  | 〜かというと                  | unsupported | 0                   | 0                   | 0/0             |
 | ka-to-omottara-ka-to-omou-to | 〜かと思ったら / 〜かと思うと | unsupported | 0                   | 0                   | 0/0             |
 | ka-nai-ka-no-uchi-ni         | 〜か〜ないかのうちに          | unsupported | 0                   | 0                   | 0/0             |
@@ -723,7 +723,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | kko-nai                      | 〜っこない                    | automatic   | 1                   | 0                   | 2/2             |
 | dokoro-ka                    | 〜どころか                    | automatic   | 3                   | 0                   | 1/1             |
 | dokoro-de-wa-nai             | 〜どころではない              | unsupported | 0                   | 0                   | 0/0             |
-| to-wa-kagiranai              | 〜とは限らない                | automatic   | 11                  | 0                   | 1/1             |
+| to-wa-kagiranai              | 〜とは限らない                | automatic   | 12                  | 0                   | 1/1             |
 | to-iu-mono-da                | 〜というものだ                | automatic   | 1                   | 0                   | 1/1             |
 | to-iu-mono-de-wa-nai         | 〜というものではない          | unsupported | 0                   | 0                   | 0/0             |
 | to-itte-mo                   | 〜といっても                  | automatic   | 2                   | 0                   | 1/1             |
@@ -913,7 +913,6 @@ Distinguish verb-stem purpose from a place destination.
 Review liking versus other subject roles.
 
 - `56f75c4793a670281a4f71ef`: 私はクラシックが好きではない。 — I don't like classical music.
-- `bab06f904c9a74df299f28d0`: 彼女は花を生けるのが好きです。 — She likes to arrange flowers.
 
 ### ga-jouzu-ga-heta
 

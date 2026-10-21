@@ -52,8 +52,8 @@
         }
       ],
       "automatic": {
-        "sentences": 6884,
-        "occurrences": 7175,
+        "sentences": 6882,
+        "occurrences": 7172,
         "examples": [
           {
             "sentenceId": "0000978f3525f2d6e60e600b",
@@ -84,12 +84,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 422
+          "line": 428
         }
       ],
       "automatic": {
-        "sentences": 1676,
-        "occurrences": 1740,
+        "sentences": 1764,
+        "occurrences": 1836,
         "examples": [
           {
             "sentenceId": "0000978f3525f2d6e60e600b",
@@ -135,8 +135,8 @@
         }
       ],
       "automatic": {
-        "sentences": 4001,
-        "occurrences": 4224,
+        "sentences": 4000,
+        "occurrences": 4223,
         "examples": [
           {
             "sentenceId": "00110190dcb7bfdba58f46c4",
@@ -176,7 +176,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 430
+          "line": 436
         }
       ],
       "automatic": {
@@ -223,7 +223,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 440
+          "line": 446
         }
       ],
       "automatic": {
@@ -270,7 +270,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 441
+          "line": 447
         }
       ],
       "automatic": {
@@ -317,7 +317,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 438
+          "line": 444
         }
       ],
       "automatic": {
@@ -389,7 +389,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 268
+          "line": 288
         }
       ],
       "automatic": {
@@ -489,12 +489,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 470
+          "line": 476
         }
       ],
       "automatic": {
-        "sentences": 61,
-        "occurrences": 61,
+        "sentences": 63,
+        "occurrences": 63,
         "examples": [
           {
             "sentenceId": "07a012563df7bf7595156fdc",
@@ -536,15 +536,15 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 451
+          "line": 457
         },
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 456
+          "line": 462
         },
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 469
+          "line": 475
         }
       ],
       "automatic": {
@@ -591,7 +591,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 393
+          "line": 399
         }
       ],
       "automatic": {
@@ -627,7 +627,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 382
+          "line": 388
         }
       ],
       "automatic": {
@@ -703,18 +703,18 @@
         }
       ],
       "automatic": {
-        "sentences": 2,
-        "occurrences": 2,
+        "sentences": 4,
+        "occurrences": 4,
         "examples": [
+          {
+            "sentenceId": "68a3eac323b3e84d332c98d8",
+            "japanese": "ぼくにいくらかお金をくれないか。",
+            "english": "Can you give me some money?"
+          },
           {
             "sentenceId": "88bbd8bcf7104104b0275748",
             "japanese": "こちらに印鑑かサインをお願いします。",
             "english": "Your seal or signature here, please."
-          },
-          {
-            "sentenceId": "c8fffc6c6fd06dbe20075758",
-            "japanese": "ペンか鉛筆を持っていますか。",
-            "english": "Do you have a pen or a pencil?"
           }
         ]
       },
@@ -748,8 +748,8 @@
         }
       ],
       "automatic": {
-        "sentences": 321,
-        "occurrences": 343,
+        "sentences": 320,
+        "occurrences": 342,
         "examples": [
           {
             "sentenceId": "00b0b4d7281d4f8143a5ac62",
@@ -795,12 +795,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 356
+          "line": 362
         }
       ],
       "automatic": {
-        "sentences": 2304,
-        "occurrences": 2516,
+        "sentences": 2647,
+        "occurrences": 2928,
         "examples": [
           {
             "sentenceId": "00110190dcb7bfdba58f46c4",
@@ -842,12 +842,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 481
+          "line": 487
         }
       ],
       "automatic": {
-        "sentences": 32,
-        "occurrences": 32,
+        "sentences": 33,
+        "occurrences": 33,
         "examples": [
           {
             "sentenceId": "148240c12148b02bc64e6797",
@@ -1041,8 +1041,8 @@
         }
       ],
       "automatic": {
-        "sentences": 38,
-        "occurrences": 38,
+        "sentences": 40,
+        "occurrences": 40,
         "examples": [
           {
             "sentenceId": "0028ff5e1ccfd69a615c5240",
@@ -1077,8 +1077,8 @@
         }
       ],
       "automatic": {
-        "sentences": 8,
-        "occurrences": 8,
+        "sentences": 9,
+        "occurrences": 9,
         "examples": [
           {
             "sentenceId": "04f56d5c3c75f5e45b96d2d2",
@@ -1187,8 +1187,8 @@
         }
       ],
       "automatic": {
-        "sentences": 451,
-        "occurrences": 462,
+        "sentences": 448,
+        "occurrences": 459,
         "examples": [
           {
             "sentenceId": "0205e2b4335a154f531b3b65",
@@ -1223,8 +1223,8 @@
         }
       ],
       "automatic": {
-        "sentences": 679,
-        "occurrences": 688,
+        "sentences": 678,
+        "occurrences": 687,
         "examples": [
           {
             "sentenceId": "008b8bb4762af4f907615633",
@@ -1334,8 +1334,8 @@
         }
       ],
       "automatic": {
-        "sentences": 431,
-        "occurrences": 434,
+        "sentences": 423,
+        "occurrences": 426,
         "examples": [
           {
             "sentenceId": "004f3984827963025986b55a",
@@ -1376,8 +1376,8 @@
         }
       ],
       "automatic": {
-        "sentences": 128,
-        "occurrences": 128,
+        "sentences": 127,
+        "occurrences": 127,
         "examples": [
           {
             "sentenceId": "0362ee35285058847f69f5e2",
@@ -1494,8 +1494,8 @@
         }
       ],
       "automatic": {
-        "sentences": 506,
-        "occurrences": 511,
+        "sentences": 504,
+        "occurrences": 509,
         "examples": [
           {
             "sentenceId": "0091f2803f8abdf12e351631",
@@ -1614,8 +1614,8 @@
         }
       ],
       "automatic": {
-        "sentences": 2707,
-        "occurrences": 2820,
+        "sentences": 2698,
+        "occurrences": 2810,
         "examples": [
           {
             "sentenceId": "0000e8f8c0565c3fbcea0a4c",
@@ -2698,8 +2698,8 @@
         }
       ],
       "automatic": {
-        "sentences": 48,
-        "occurrences": 49,
+        "sentences": 49,
+        "occurrences": 50,
         "examples": [
           {
             "sentenceId": "03ce3e609cb81ef05d21b3c3",
@@ -2748,11 +2748,6 @@
           "sentenceId": "56f75c4793a670281a4f71ef",
           "japanese": "私はクラシックが好きではない。",
           "english": "I don't like classical music."
-        },
-        {
-          "sentenceId": "bab06f904c9a74df299f28d0",
-          "japanese": "彼女は花を生けるのが好きです。",
-          "english": "She likes to arrange flowers."
         }
       ]
     },
@@ -2819,18 +2814,18 @@
         }
       ],
       "automatic": {
-        "sentences": 299,
-        "occurrences": 299,
+        "sentences": 308,
+        "occurrences": 308,
         "examples": [
+          {
+            "sentenceId": "00d25494325d78b81ca46ee2",
+            "japanese": "あの女のおしゃべりはまったくきりがない。",
+            "english": "How that woman runs on!"
+          },
           {
             "sentenceId": "016b5539c1c23fe08eae726c",
             "japanese": "お金がないので、プチッと旅行。",
             "english": "As I don't have the money, it'll just be a short trip."
-          },
-          {
-            "sentenceId": "02439f618b2ff72535405c23",
-            "japanese": "この美術館には防火の設備がある。",
-            "english": "This museum is equipped with a fire prevention system."
           }
         ]
       },
@@ -2871,12 +2866,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 472
+          "line": 478
         }
       ],
       "automatic": {
-        "sentences": 47,
-        "occurrences": 47,
+        "sentences": 48,
+        "occurrences": 48,
         "examples": [
           {
             "sentenceId": "0731df9acbba8f2ce78cb506",
@@ -2907,12 +2902,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 423
+          "line": 429
         }
       ],
       "automatic": {
-        "sentences": 66,
-        "occurrences": 66,
+        "sentences": 70,
+        "occurrences": 70,
         "examples": [
           {
             "sentenceId": "065360e4f598bee4d77edd98",
@@ -2951,16 +2946,16 @@
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 204
+          "line": 224
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 247
+          "line": 267
         }
       ],
       "automatic": {
-        "sentences": 46,
-        "occurrences": 46,
+        "sentences": 47,
+        "occurrences": 47,
         "examples": [
           {
             "sentenceId": "049b203a03982cf2d65ff145",
@@ -3000,16 +2995,16 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 184
+          "line": 204
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 227
+          "line": 247
         }
       ],
       "automatic": {
-        "sentences": 217,
-        "occurrences": 219,
+        "sentences": 249,
+        "occurrences": 251,
         "examples": [
           {
             "sentenceId": "0070d0fc9771660b850fc3d8",
@@ -3263,12 +3258,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 253
+          "line": 273
         }
       ],
       "automatic": {
-        "sentences": 34,
-        "occurrences": 34,
+        "sentences": 35,
+        "occurrences": 35,
         "examples": [
           {
             "sentenceId": "0a42441fccaa1c893005ca60",
@@ -3327,7 +3322,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 262
+          "line": 282
         }
       ],
       "automatic": {
@@ -3352,7 +3347,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 257
+          "line": 277
         }
       ],
       "automatic": {
@@ -3492,7 +3487,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 87
+          "line": 102
         }
       ],
       "automatic": {
@@ -3543,12 +3538,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 98
+          "line": 113
         }
       ],
       "automatic": {
-        "sentences": 1877,
-        "occurrences": 1909,
+        "sentences": 1914,
+        "occurrences": 1947,
         "examples": [
           {
             "sentenceId": "0019e7d40b07e997977344ef",
@@ -3599,7 +3594,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 92
+          "line": 107
         }
       ],
       "automatic": {
@@ -3654,8 +3649,8 @@
         }
       ],
       "automatic": {
-        "sentences": 44,
-        "occurrences": 44,
+        "sentences": 53,
+        "occurrences": 53,
         "examples": [
           {
             "sentenceId": "010a33c40a5b65135dd33d72",
@@ -3697,22 +3692,22 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 102
+          "line": 122
         }
       ],
       "automatic": {
-        "sentences": 95,
-        "occurrences": 97,
+        "sentences": 134,
+        "occurrences": 136,
         "examples": [
+          {
+            "sentenceId": "036c684479363bffc2c0d107",
+            "japanese": "そんなささいなことで私を悩まさないでくれ。",
+            "english": "Don't bother me with such trifles."
+          },
           {
             "sentenceId": "06eb4fb66c1b100897da3c20",
             "japanese": "善良な市民は法律に従う。",
             "english": "A good citizen obeys the laws."
-          },
-          {
-            "sentenceId": "07954fa02567d56a8875b770",
-            "japanese": "彼女はベッドにきれいなシーツを敷いた。",
-            "english": "She put clean sheets on the bed."
           }
         ]
       },
@@ -3742,12 +3737,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 200
+          "line": 220
         }
       ],
       "automatic": {
-        "sentences": 7,
-        "occurrences": 7,
+        "sentences": 10,
+        "occurrences": 10,
         "examples": [
           {
             "sentenceId": "0ba563e2d3c113360d62498b",
@@ -3755,9 +3750,9 @@
             "english": "It was a big black American warship."
           },
           {
-            "sentenceId": "42f41816bdbb0480da804ff7",
-            "japanese": "私は、うれしくて夢中だった。",
-            "english": "I was beside myself with joy."
+            "sentenceId": "39563a12bbbe3a8037429a0c",
+            "japanese": "パーティーが待ち遠しくて仕方ない。",
+            "english": "I just can't wait for the party."
           }
         ]
       },
@@ -4322,12 +4317,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 283
+          "line": 305
         }
       ],
       "automatic": {
-        "sentences": 57,
-        "occurrences": 57,
+        "sentences": 60,
+        "occurrences": 60,
         "examples": [
           {
             "sentenceId": "051649b8f62ddf86245d4d62",
@@ -4411,11 +4406,11 @@
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 108
+          "line": 128
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 160
+          "line": 180
         }
       ],
       "automatic": {
@@ -4480,11 +4475,11 @@
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 130
+          "line": 150
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 165
+          "line": 185
         }
       ],
       "automatic": {
@@ -4582,8 +4577,8 @@
         }
       ],
       "automatic": {
-        "sentences": 29,
-        "occurrences": 29,
+        "sentences": 30,
+        "occurrences": 30,
         "examples": [
           {
             "sentenceId": "04c1f4a02d2abc9c5b143fa1",
@@ -4672,7 +4667,7 @@
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 179
+          "line": 199
         }
       ],
       "automatic": {
@@ -5665,12 +5660,12 @@
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 235
+          "line": 255
         }
       ],
       "automatic": {
-        "sentences": 21,
-        "occurrences": 21,
+        "sentences": 23,
+        "occurrences": 23,
         "examples": [
           {
             "sentenceId": "0622f907f1289a4924ed04c8",
@@ -6027,8 +6022,8 @@
         }
       ],
       "automatic": {
-        "sentences": 8,
-        "occurrences": 8,
+        "sentences": 9,
+        "occurrences": 9,
         "examples": [
           {
             "sentenceId": "1dfd5a3e1ee2558bf20dbc43",
@@ -6068,7 +6063,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 240
+          "line": 260
         }
       ],
       "automatic": {
@@ -6136,8 +6131,8 @@
         }
       ],
       "automatic": {
-        "sentences": 77,
-        "occurrences": 77,
+        "sentences": 80,
+        "occurrences": 80,
         "examples": [
           {
             "sentenceId": "03c47d5ab9f03d1fa4d89259",
@@ -6657,8 +6652,8 @@
         }
       ],
       "automatic": {
-        "sentences": 121,
-        "occurrences": 121,
+        "sentences": 123,
+        "occurrences": 123,
         "examples": [
           {
             "sentenceId": "05f36da44ee5f79f9531060f",
@@ -6806,12 +6801,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 367
+          "line": 373
         }
       ],
       "automatic": {
-        "sentences": 54,
-        "occurrences": 54,
+        "sentences": 55,
+        "occurrences": 55,
         "examples": [
           {
             "sentenceId": "000459094742195f226bab0e",
@@ -6842,12 +6837,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 372
+          "line": 378
         }
       ],
       "automatic": {
-        "sentences": 14,
-        "occurrences": 14,
+        "sentences": 13,
+        "occurrences": 13,
         "examples": [
           {
             "sentenceId": "19803fd4db52b461e9cf0606",
@@ -6886,8 +6881,8 @@
         }
       ],
       "automatic": {
-        "sentences": 13,
-        "occurrences": 13,
+        "sentences": 14,
+        "occurrences": 14,
         "examples": [
           {
             "sentenceId": "165916e7388d7b51df03466a",
@@ -6942,8 +6937,8 @@
         }
       ],
       "automatic": {
-        "sentences": 12,
-        "occurrences": 12,
+        "sentences": 13,
+        "occurrences": 13,
         "examples": [
           {
             "sentenceId": "100b3b762c2ca844117ac20f",
@@ -7331,7 +7326,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 213
+          "line": 233
         }
       ],
       "automatic": {
@@ -7421,7 +7416,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 274
+          "line": 296
         }
       ],
       "automatic": {
@@ -7724,11 +7719,15 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 161
+        },
+        {
+          "file": "server/utils/structural-grammar.ts",
+          "line": 247
         }
       ],
       "automatic": {
-        "sentences": 5,
-        "occurrences": 5,
+        "sentences": 8,
+        "occurrences": 8,
         "examples": [
           {
             "sentenceId": "0e0c95de852f2d0e819cad52",
@@ -7736,9 +7735,9 @@
             "english": "This is the man for you to speak to."
           },
           {
-            "sentenceId": "264429e066ec8cabd3924203",
-            "japanese": "彼らは女王がおいでになるので旗を掲げた。",
-            "english": "They hung out the flag for the Queen's visit."
+            "sentenceId": "21a02804e38a8823afd74cb0",
+            "japanese": "散歩にお出かけになりませんか。",
+            "english": "Won't you go for a walk?"
           }
         ]
       },
@@ -7878,8 +7877,8 @@
         }
       ],
       "automatic": {
-        "sentences": 344,
-        "occurrences": 345,
+        "sentences": 345,
+        "occurrences": 346,
         "examples": [
           {
             "sentenceId": "021f724a81bc1ebbb8a9f003",
@@ -8089,12 +8088,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 255
+          "line": 275
         }
       ],
       "automatic": {
-        "sentences": 17,
-        "occurrences": 17,
+        "sentences": 18,
+        "occurrences": 18,
         "examples": [
           {
             "sentenceId": "0a8ead8eef0efdccb41bf649",
@@ -8272,11 +8271,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 72
+          "line": 87
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 219
+          "line": 239
         }
       ],
       "automatic": {
@@ -8329,8 +8328,8 @@
         }
       ],
       "automatic": {
-        "sentences": 12,
-        "occurrences": 12,
+        "sentences": 13,
+        "occurrences": 13,
         "examples": [
           {
             "sentenceId": "057ca860fbc6df888aaef285",
@@ -8338,9 +8337,9 @@
             "english": "Please turn down the radio."
           },
           {
-            "sentenceId": "1c94f545361811eb9afaf035",
-            "japanese": "彼女はハンバーグの肉をたたいて平たくした。",
-            "english": "She patted the hamburger meat into a flat shape."
+            "sentenceId": "19f65a492f988910a4b23ff4",
+            "japanese": "彼は生産率を良くする案を出した。",
+            "english": "He put forward a plan for improving the rate of production."
           }
         ]
       },
@@ -8427,8 +8426,8 @@
         }
       ],
       "automatic": {
-        "sentences": 8,
-        "occurrences": 8,
+        "sentences": 9,
+        "occurrences": 9,
         "examples": [
           {
             "sentenceId": "3fd36b2f42b0aae4a553f28b",
@@ -9073,8 +9072,8 @@
         }
       ],
       "automatic": {
-        "sentences": 32,
-        "occurrences": 32,
+        "sentences": 33,
+        "occurrences": 33,
         "examples": [
           {
             "sentenceId": "05c882ca73fe26bc450ad9c0",
@@ -9167,8 +9166,8 @@
         }
       ],
       "automatic": {
-        "sentences": 47,
-        "occurrences": 48,
+        "sentences": 48,
+        "occurrences": 49,
         "examples": [
           {
             "sentenceId": "00118d344232471f5ac14b42",
@@ -9497,8 +9496,8 @@
         }
       ],
       "automatic": {
-        "sentences": 43,
-        "occurrences": 43,
+        "sentences": 45,
+        "occurrences": 45,
         "examples": [
           {
             "sentenceId": "00fa00747aae2a575f1edbcd",
@@ -9729,8 +9728,8 @@
         }
       ],
       "automatic": {
-        "sentences": 14,
-        "occurrences": 14,
+        "sentences": 15,
+        "occurrences": 15,
         "examples": [
           {
             "sentenceId": "0c884ca3ce27fb7ba6499d12",
@@ -10099,8 +10098,8 @@
         }
       ],
       "automatic": {
-        "sentences": 6,
-        "occurrences": 6,
+        "sentences": 8,
+        "occurrences": 8,
         "examples": [
           {
             "sentenceId": "249919c38ea46e7f3fb4ec93",
@@ -10108,9 +10107,9 @@
             "english": "Now is the time to clinch the deal."
           },
           {
-            "sentenceId": "3b94543b4573b0442bc1529b",
-            "japanese": "今度こそは彼女を逃がさないぞ。",
-            "english": "I will not let her escape this time."
+            "sentenceId": "28fcc44faeea2dd8d30ed29a",
+            "japanese": "こちらこそ、はじめまして。",
+            "english": "Nice to meet you too."
           }
         ]
       },
@@ -10681,7 +10680,7 @@
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 81
+          "line": 96
         }
       ],
       "automatic": {
@@ -11012,11 +11011,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 116
+          "line": 136
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 150
+          "line": 170
         }
       ],
       "automatic": {
@@ -11041,11 +11040,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 123
+          "line": 143
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 143
+          "line": 163
         }
       ],
       "automatic": {
@@ -11222,8 +11221,8 @@
         }
       ],
       "automatic": {
-        "sentences": 5,
-        "occurrences": 5,
+        "sentences": 7,
+        "occurrences": 7,
         "examples": [
           {
             "sentenceId": "0ceec7261a12ce5413e5aeab",
@@ -11882,8 +11881,8 @@
         }
       ],
       "automatic": {
-        "sentences": 8,
-        "occurrences": 8,
+        "sentences": 7,
+        "occurrences": 7,
         "examples": [
           {
             "sentenceId": "0fdee8b5056106242d3a559f",
@@ -12016,8 +12015,8 @@
         }
       ],
       "automatic": {
-        "sentences": 10,
-        "occurrences": 10,
+        "sentences": 13,
+        "occurrences": 13,
         "examples": [
           {
             "sentenceId": "12b7280b517d320d0c5b5847",
@@ -12207,8 +12206,8 @@
         }
       ],
       "automatic": {
-        "sentences": 3,
-        "occurrences": 3,
+        "sentences": 4,
+        "occurrences": 4,
         "examples": [
           {
             "sentenceId": "05820235872e3c058620a699",
@@ -12404,8 +12403,8 @@
         }
       ],
       "automatic": {
-        "sentences": 4,
-        "occurrences": 4,
+        "sentences": 3,
+        "occurrences": 3,
         "examples": [
           {
             "sentenceId": "03d014ab9da83f110ebe00bf",
@@ -15119,8 +15118,8 @@
         }
       ],
       "automatic": {
-        "sentences": 10,
-        "occurrences": 10,
+        "sentences": 11,
+        "occurrences": 11,
         "examples": [
           {
             "sentenceId": "00f67c149a56ca6369b50266",
@@ -15381,8 +15380,8 @@
         }
       ],
       "automatic": {
-        "sentences": 11,
-        "occurrences": 11,
+        "sentences": 12,
+        "occurrences": 12,
         "examples": [
           {
             "sentenceId": "11d67635c81bdffeb78a23b8",
@@ -18687,12 +18686,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/particle-grammar.ts",
-          "line": 417
+          "line": 423
         }
       ],
       "automatic": {
-        "sentences": 83,
-        "occurrences": 83,
+        "sentences": 88,
+        "occurrences": 88,
         "examples": [
           {
             "sentenceId": "0028ff5e1ccfd69a615c5240",

@@ -25,6 +25,8 @@ const documents = {
   "sentence-grammar-patterns.json":
     "data/sentence-levels/grammar-patterns.json",
   "hint-glossary.md": "data/hint-glossary/README.md",
+  "reference-glosses.json": "data/reference-glosses/bank.json",
+  "reference-glosses.md": "data/reference-glosses/README.md",
   "sudachi-legal.txt": "data/spelling-variants/SUDACHI-LEGAL.txt",
   "sudachi-license.txt": "data/spelling-variants/APACHE-2.0.txt",
 };

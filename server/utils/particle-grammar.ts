@@ -325,8 +325,8 @@ export function particleGrammar(
         return word;
       }
       if (word.wordTypes.includes("な-adjective")) {
-        if (following?.japanese === "な" || following?.japanese === "の")
-          continue;
+        // な/の modify a noun; adverbial に (滅多に) modifies the predicate.
+        if (["な", "の", "に"].includes(following?.japanese ?? "")) continue;
         return word;
       }
       if (
@@ -352,7 +352,13 @@ export function particleGrammar(
     const adjacent = previous.end === entry.start;
     const followingAdjacent = next?.start === entry.end;
     if (entry.japanese === "の") {
-      if (adjacent && followingAdjacent && nominal(previous) && nominal(next))
+      // A 的 adjective can start the modified noun phrase (の理論的原形).
+      if (
+        adjacent &&
+        followingAdjacent &&
+        nominal(previous) &&
+        (!!next?.japanese.endsWith("的") || nominal(next))
+      )
         add(entry, "no");
       continue;
     }

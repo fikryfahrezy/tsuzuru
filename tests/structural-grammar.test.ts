@@ -656,3 +656,35 @@ test("invitations require a shared action cue, distinct from negative questions 
     ]).some((g) => g.id === "masen-ka"),
   ).toBe(false);
 });
+
+test("お + verb stem before になる is honorific, not a change of state", () => {
+  const honorific = lessons([
+    ["お出かけ", ["Noun"]],
+    ["に", ["Particle"]],
+    ["なります", ["Verb"], "なる"],
+  ]);
+  expect(honorific).toContainEqual(
+    expect.objectContaining({
+      id: "o-ni-naru",
+      japanese: "お出かけになります",
+    }),
+  );
+  expect(honorific.some((g) => g.id === "ku-naru-ni-naru")).toBe(false);
+  expect(
+    lessons([
+      ["お金", ["Noun"]],
+      ["に", ["Particle"]],
+      ["なる", ["Verb"], "なる"],
+    ]),
+  ).toContainEqual(expect.objectContaining({ id: "ku-naru-ni-naru" }));
+});
+
+test("参考までに is a set phrase, not a deadline", () => {
+  expect(
+    lessons([
+      ["ご参考", ["Noun"]],
+      ["まで", ["Particle"]],
+      ["に", ["Particle"]],
+    ]).some((g) => g.id === "made-ni"),
+  ).toBe(false);
+});

@@ -43,7 +43,11 @@ N5–N1 filters describe vocabulary focus, not the difficulty of the whole sente
 Hints use mapped words or phrases from the Japanese reference and share their
 readings and contextual meanings with the answer breakdown. Words without a
 maintained mapping show no hint. Optional dictionary senses in the breakdown
-are separate and may not apply to the sentence.
+are separate and may not apply to the sentence. A kana word such as もって finds
+its senses through the verified spelling's dictionary entry (持つ). Words missing from
+OpenJLPT, such as 私 read わたし, use [JMdict reference glosses](../data/reference-glosses/README.md).
+Listed [fixed expressions](../data/expressions/README.md) such as もってこい
+appear as one breakdown entry.
 
 ## Look up grammar while writing
 

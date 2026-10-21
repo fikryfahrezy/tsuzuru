@@ -132,6 +132,12 @@ attribution. It and `rules.json` support dictionary tooling; automatic matches d
 not establish contextual meanings or publish practice hints. See the
 [hint glossary README](data/hint-glossary/README.md).
 
+`data/reference-glosses/bank.json` extracts English senses and part-of-speech
+codes from the same pinned JMdict snapshot for reference-sentence words that the
+OpenJLPT vocabulary does not list, and retains its copyright and CC BY-SA 4.0
+attribution. The breakdown shows them only as optional dictionary senses. See
+the [reference glosses README](data/reference-glosses/README.md).
+
 The [official JLPT FAQ](https://www.jlpt.jp/e/faq/) explains that current vocabulary, kanji, and grammar specifications are not published. Dataset level labels come from community resources and are not official certification. The JLPT itself does not include composition testing; Tsuzuru's writing exercises are its own practice format.
 
 A vocabulary level describes the target word, not all vocabulary and grammar in an accompanying sentence. Sentences can also require context, differ in register, or have multiple valid translations. Neither the source data nor this import guarantees exhaustive accepted answers or error-free readings and translations.

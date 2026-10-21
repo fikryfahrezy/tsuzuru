@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "expressions": [
+    {
+      "dictionaryForm": "もってこい",
+      "reading": "もってこい",
+      "forms": ["もってこい", "持って来い", "持ってこい"],
+      "meanings": ["ideal", "perfect (for)", "just right"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "気をつける",
+      "reading": "きをつけ",
+      "forms": ["気をつけ", "気を付け"],
+      "meanings": ["to be careful", "to pay attention", "to take care"],
+      "wordTypes": ["Expression", "Verb"]
+    },
+    {
+      "dictionaryForm": "どうしても",
+      "reading": "どうしても",
+      "forms": ["どうしても"],
+      "meanings": [
+        "no matter what",
+        "at any cost",
+        "(with a negative) just cannot"
+      ],
+      "wordTypes": ["Expression", "Adverb"]
+    },
+    {
+      "dictionaryForm": "とんでもない",
+      "reading": "とんでもない",
+      "forms": ["とんでもない"],
+      "meanings": ["absurd", "outrageous", "far from it (strong denial)"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "しょうがない",
+      "reading": "しょうがない",
+      "forms": ["しょうがない", "仕様がない"],
+      "meanings": ["it can't be helped", "there's nothing to be done", "hopeless"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "たまらない",
+      "reading": "たまらない",
+      "forms": ["たまらない", "堪らない"],
+      "meanings": [
+        "irresistible",
+        "unbearable",
+        "(after a て-form) dying to, can't help"
+      ],
+      "wordTypes": ["Expression"]
+    }
+  ]
+}

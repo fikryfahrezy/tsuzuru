@@ -4,7 +4,9 @@
 - `sources/openjlpt/<commit>/`: unmodified upstream JSON plus README, NOTICE, and LICENSE.
 - `processed/sentence-candidates.json`: deduplicated vocabulary example pairs with provenance and length measurements. These are unreviewed candidates, not a graded exercise bank.
 - `answer-entries/sentences.json`: maintained contextual answer entries and English span mappings shared by hints and breakdowns. See [answer entry maintenance](answer-entries/README.md).
+- `expressions/bank.json`: maintained fixed expressions (such as もってこい) that the breakdown groups into one entry. See [fixed expressions](expressions/README.md).
 - `hint-glossary/bank.json`: additional JMdict English senses for existing vocabulary, used with reference support. See [hint glossary generation](hint-glossary/README.md).
+- `reference-glosses/bank.json`: JMdict English senses for reference words missing from OpenJLPT, shown as breakdown dictionary senses. See [reference glosses](reference-glosses/README.md).
 - `hint-glossary/rules.json`: maintained function words, pronoun mappings, and paraphrases used by hint lookup.
 - `sentence-levels/bank.json`: a vocabulary grade for each sentence, used to choose practice sentences by level. See [sentence levels](#sentence-levels).
 - `spelling-variants/bank.json`: verified word-position spelling variants generated from JMdict and Sudachi, separate from alternative translations. See [generation and review](spelling-variants/README.md).

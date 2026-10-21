@@ -5,6 +5,8 @@ import type { AnswerEntry } from "./answer-entries";
 
 import { finite, nominal } from "./grammar-context";
 import { appearanceForms } from "./grammar-rules/construction";
+import { verbForms } from "./verb-forms";
+import { vocabulary } from "./vocabulary";
 
 const lemma = (word: AnswerEntry) => word.dictionaryForm ?? word.japanese;
 const demonstrativeLemmas = new Set([
@@ -34,6 +36,19 @@ const change = [
   "なりませんでした",
   "なって",
 ];
+// お + a verb stem before になる is honorific お〜になる (お出かけになる), even
+// when the tokenizer keeps it as one dictionary noun such as お出掛け.
+const honorificStems = new Set(
+  vocabulary.flatMap((entry) =>
+    (entry.pos ?? [])
+      .filter((code) => /^v[15k]/u.test(code))
+      .flatMap((code) => [
+        ...verbForms(entry.word, code),
+        ...verbForms(entry.reading, code),
+      ])
+      .map((forms) => "お" + forms.stem),
+  ),
+);
 const number = "[0-9０-９一二三四五六七八九十百千万半]+";
 const amount = new RegExp(
   `^${number}(?:分|時間|日|週間|か月|ヶ月|年|円|人|個|つ|枚|本|冊|杯|台|回|度|キロ|メートル)$`,
@@ -98,7 +113,12 @@ export function structuralGrammar(
       add(word.start, word.japanese, "kono-sono-ano-dono");
     if (word.wordTypes.includes("な-adjective") && next && following) {
       const after = base[index + 2];
-      if (next.japanese === "な" && after?.start === next.end && nominal(after))
+      // A 的 adjective can sit between な and its noun (重要な社会的結果).
+      if (
+        next.japanese === "な" &&
+        after?.start === next.end &&
+        (nominal(after) || after.japanese.endsWith("的"))
+      )
         add(word.start, word.japanese + "な", "na-na-adjective");
     }
     if (word.wordTypes.includes("な-adjective"))
@@ -224,7 +244,7 @@ export function structuralGrammar(
       longest(
         previous.start,
         change.map((ending) => previous.japanese + "に" + ending),
-        "ku-naru-ni-naru",
+        honorificStems.has(previous.japanese) ? "o-ni-naru" : "ku-naru-ni-naru",
       );
     if (
       word.japanese === "なら" &&
@@ -267,8 +287,10 @@ export function structuralGrammar(
       if (count)
         add(previous.start, previous.japanese + "に" + count, "ni-frequency");
     }
+    // (ご)参考までに is "for reference", not a deadline.
     if (
       word.japanese === "まで" &&
+      !previous.japanese.endsWith("参考") &&
       (nominal(previous) || finite(previous) || point.test(previous.japanese))
     )
       add(word.start, "までに", "made-ni");

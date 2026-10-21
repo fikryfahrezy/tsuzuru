@@ -49,7 +49,7 @@ export interface AnswerAnnotationBank {
 
 // Bump when contextual annotations or their interpretation change, so journal
 // entries refresh their saved breakdown on demand.
-export const answerDetailsVersion = "answer-entries-v19";
+export const answerDetailsVersion = "answer-entries-v23";
 
 export function currentSpellingOptions(entry: {
   answerDetailsVersion?: unknown;

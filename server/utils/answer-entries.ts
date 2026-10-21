@@ -3,19 +3,19 @@ import {
   withBreakdownGrammar,
 } from "./breakdown-grammar";
 import bank from "../../data/answer-entries/sentences.json";
-import type { SentenceAnswerAnnotations } from "../../shared/answer-entries";
-import {
-  hiragana,
-  normalize,
-  type AnswerBreakdownPart,
-} from "../../shared/practice";
+import type {
+  GrammarAnnotation,
+  SentenceAnswerAnnotations,
+} from "../../shared/answer-entries";
+import { hiragana, type AnswerBreakdownPart } from "../../shared/practice";
 import {
   primaryReading,
   primaryRendering,
   type Sentence,
 } from "../../shared/sentence";
-import { answerBreakdown } from "./answer-breakdown";
+import { answerBreakdown, chipPositions } from "./answer-breakdown";
 import { answerChips } from "./answer-chips";
+import { withExpressions, withoutExpressionGrammar } from "./expressions";
 import { referenceReading } from "./sentence-phrase-hints";
 import { referenceSpellings } from "./reference-spellings";
 
@@ -32,24 +32,12 @@ export interface AnswerEntry extends AnswerBreakdownPart {
 // Raw positioned words, before maintained meanings, grouping, or grammar links.
 export function baseAnswerEntries(sentence: Sentence): AnswerEntry[] {
   const chips = answerChips(sentence);
-  const dictionary = answerBreakdown(sentence, chips);
-  // Preserve source UTF-16 positions while chips omit comparison punctuation.
-  const offsets: { start: number; end: number }[] = [];
-  let rawOffset = 0;
-  for (const character of sentence.reference.japanese) {
-    if (normalize(character)) {
-      for (let i = 0; i < character.length; i++)
-        offsets.push({ start: rawOffset, end: rawOffset + character.length });
-    }
-    rawOffset += character.length;
-  }
+  const positions = chipPositions(sentence, chips);
+  const dictionary = answerBreakdown(sentence, chips, positions);
   const entries: AnswerEntry[] = [];
-  let offset = 0;
   let dictionaryIndex = 0;
-  for (const chip of chips) {
-    const start = offsets[offset]!.start;
-    const end = offsets[offset + chip.japanese.length - 1]!.end;
-    offset += chip.japanese.length;
+  for (const [index, chip] of chips.entries()) {
+    const { start, end } = positions[index]!;
     if (!/[\p{L}\p{N}]/u.test(chip.japanese)) continue;
     const spellings = referenceSpellings(sentence, {
       japanese: chip.japanese,
@@ -65,13 +53,32 @@ export function baseAnswerEntries(sentence: Sentence): AnswerEntry[] {
   }
   return entries;
 }
+// Fixed expressions group the remaining words before grammar is attached.
+function withGrammar(
+  sentence: Sentence,
+  entries: AnswerEntry[],
+  base: AnswerEntry[],
+  grammarAnnotations?: GrammarAnnotation[],
+) {
+  const expressions = withExpressions(sentence, entries);
+  return withoutExpressionGrammar(
+    withBreakdownGrammar(
+      sentence,
+      expressions.entries,
+      base,
+      grammarAnnotations,
+    ),
+    expressions.groups,
+    grammarAnnotations,
+  );
+}
 export function sentenceAnswerEntries(
   sentence: Sentence,
   record: SentenceAnswerAnnotations | undefined = annotations.get(sentence.id),
 ) {
   const base = baseAnswerEntries(sentence);
   const fallback = {
-    entries: withBreakdownGrammar(sentence, base, base),
+    entries: withGrammar(sentence, base, base),
     hintMappings: [],
     validAnnotations: false,
   };
@@ -168,7 +175,7 @@ export function sentenceAnswerEntries(
     }
   }
   return {
-    entries: withBreakdownGrammar(
+    entries: withGrammar(
       sentence,
       [
         ...base.filter(
