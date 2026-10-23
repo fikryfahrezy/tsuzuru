@@ -4,7 +4,7 @@ import { useSeoMeta } from "#imports";
 useSeoMeta({
   title: "Tsuzuru — Japanese, one sentence at a time",
   description:
-    "Build a Japanese writing habit with English sentence prompts, N5–N1 vocabulary practice, flexible kana and kanji comparison, and a personal practice journal. No account needed.",
+    "Build a Japanese writing habit with English sentence prompts, N5–N1 vocabulary practice, Guided or Challenge difficulty, a built-in grammar reference, answer breakdowns, and a personal practice journal. No account needed.",
   ogTitle: "Tsuzuru — Japanese, one sentence at a time",
   ogDescription:
     "A calm place to turn English sentences into Japanese. Choose your pace, write your answer, and learn from the reference.",
@@ -25,15 +25,39 @@ const features = [
     title: "Make time for one sentence.",
     description:
       "Pick a short prompt for a spare moment, or a longer sentence when you want to stretch. Your pace, your page.",
-    note: "SHORT / MEDIUM / LONG",
+    note: "SHORT / MEDIUM / LONG / RANDOM",
   },
   {
     number: "03",
     mark: "字",
     title: "Write the way you’re learning.",
     description:
-      "Start with kana, mix in kanji, or practice the exact reference spelling. Compare your writing without losing your train of thought.",
-    note: "KANA / MIXED / EXACT",
+      "Start with kana, mix in kanji, or practice the exact reference spelling. Type with your keyboard, or build the sentence from word chips.",
+    note: "KANA ONLY / KANA + KANJI / EXACT",
+  },
+  {
+    number: "04",
+    mark: "導",
+    title: "Lean on hints, or go without.",
+    description:
+      "Guided practice offers romaji, tap-to-reveal English word hints, and grammar help. Switch to Challenge when you want a blank page.",
+    note: "GUIDED / CHALLENGE",
+  },
+  {
+    number: "05",
+    mark: "引",
+    title: "Look up grammar mid-sentence.",
+    description:
+      "Search patterns in English, Japanese, or romaji beside your prompt, then return to your draft right where you left it.",
+    note: "SEARCH / BROWSE BY TOPIC",
+  },
+  {
+    number: "06",
+    mark: "解",
+    title: "See how the sentence fits together.",
+    description:
+      "After checking, a breakdown walks through each word’s reading and meaning, with the grammar that ties them together.",
+    note: "READINGS / MEANINGS / GRAMMAR",
   },
 ];
 const steps = [
@@ -41,41 +65,51 @@ const steps = [
     number: "01",
     title: "Set your pace",
     description:
-      "Choose a vocabulary level, sentence length, and writing mode.",
+      "Choose a vocabulary level, sentence length, writing mode, and difficulty.",
   },
   {
     number: "02",
     title: "Find the Japanese",
     description:
-      "Read the English prompt. Type your answer with your Japanese keyboard.",
+      "Read the English prompt. Type your answer, or arrange word chips. Reach for a hint or the grammar reference when you need one.",
   },
   {
     number: "03",
     title: "Compare. Keep going.",
     description:
-      "See the reference and its kana reading. Revisit your writing in your journal.",
+      "See what differs, explore the answer breakdown, and retry any sentence from your journal.",
   },
 ];
 const faqs = [
   {
     question: "Do I need an account?",
     answer:
-      "No. Open the app and start practicing. Your preferences and latest 100 journal entries are saved in this browser.",
+      "No. Open the app and start practicing. Your preferences and your latest attempt at each sentence are saved in this browser.",
   },
   {
     question: "Can I write entirely in hiragana or katakana?",
     answer:
-      "Yes. Kana-only mode accepts either script. Flexible mode lets you mix the reference kanji with their supplied kana readings. Exact mode asks you to match the reference’s spelling. Spaces and common sentence punctuation are ignored in every mode.",
+      "Yes. Kana only accepts either script. Kana + kanji lets you mix the reference kanji, their kana readings, and verified spelling variants. Exact writing asks you to match the reference’s spelling. Spaces and common sentence punctuation are ignored in every mode.",
   },
   {
     question: "Does a different answer mean my Japanese is wrong?",
     answer:
-      "No. Japanese often has more than one valid translation. Tsuzuru compares your writing to a supplied reference and its readings; it does not judge every possible translation.",
+      "No. Japanese often has more than one valid translation. Tsuzuru compares your writing to a supplied reference and its readings; it does not judge every possible translation. Turn on pre-generated alternatives to accept more listed answers.",
+  },
+  {
+    question: "What changes in Challenge mode?",
+    answer:
+      "Challenge hides romaji, English word hints, and the grammar reference while you practice. Answer breakdowns stay available after you check and in your journal.",
+  },
+  {
+    question: "Can I practice offline?",
+    answer:
+      "Install Tsuzuru from your browser or add it to your home screen. Once loaded online, it reopens with your journal offline. New prompts and answer checks still need a connection.",
   },
   {
     question: "Are the N5–N1 levels official?",
     answer:
-      "The labels are community estimates for target vocabulary. They are not certified difficulty levels for whole sentences, and examples may contain harder grammar. The exercise bank is currently in beta and still needs language review.",
+      "The labels are community estimates based on each sentence’s vocabulary and a reviewed set of grammar patterns. They are not certified difficulty levels, and the exercise bank is currently in beta and still needs language review.",
   },
   {
     question: "Can I draw characters by hand?",
@@ -272,9 +306,9 @@ const faqs = [
         </div>
         <div>
           <p>
-            Your journal keeps your latest 100 entries, so you can look back at
-            your writing and learn from the references. No account to set up. No
-            streak to protect.
+            Your journal keeps your latest attempt at every sentence, so you can
+            look back at your writing, revisit breakdowns, and retry what didn’t
+            land. No account to set up. No streak to protect.
           </p>
           <p class="journal-promo-note">
             History stays in this browser. Answers go to the app server for
@@ -572,8 +606,12 @@ const faqs = [
   padding: 28px 30px 30px;
   border-right: 1px solid var(--line);
 }
+.feature-card:nth-child(3n),
 .feature-card:last-child {
-  border: 0;
+  border-right: 0;
+}
+.feature-card:nth-child(n + 4) {
+  border-top: 1px solid var(--line);
 }
 .feature-number {
   font-size: 9px;
@@ -871,6 +909,12 @@ const faqs = [
     padding: 25px;
     border-right: 0;
     border-bottom: 1px solid var(--line);
+  }
+  .feature-card:nth-child(n + 4) {
+    border-top: 0;
+  }
+  .feature-card:last-child {
+    border-bottom: 0;
   }
   .feature-mark {
     margin: 22px 0;
