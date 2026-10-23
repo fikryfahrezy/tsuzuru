@@ -6,6 +6,39 @@ import {
   permitsClauseContent,
 } from "./grammar-policy";
 import { overlaps } from "./grammar-matcher";
+import { grammarById } from "./grammar-reference";
+
+// Lessons built on the た form, where た is not past tense: 見たことがある,
+// 食べたら, 食べたり, 行ったほうがいい, 見たまま. Lessons that only follow a
+// past verb (食べたんでしょう, 行ったはず) keep its tense.
+const taBased = new Set([
+  "ta-koto-ga-aru",
+  "tara",
+  "tara-dou",
+  "tari-tari-suru",
+  "hou-ga-ii",
+  "ato-de",
+  "ta-bakari",
+  "ta-totan-ta-totan-ni",
+  "mama",
+  // Hypothetical: あったとしても, 起こったとすれば.
+  "to-shite-mo",
+  "to-sureba-to-shitara",
+]);
+const pattern = (id: string) => grammarById.get(id)?.pattern ?? "";
+// Forms a larger lesson leaves to the verb, each with a test for the
+// lessons built on it: なければならない and かもしれない contain ない, and
+// 〜てくれませんか and 〜ますように contain their polite form.
+const keptForms: Record<string, (owner: string) => boolean> = {
+  ta: (owner) => taBased.has(owner),
+  nai: (owner) => /ない|なく|ず|ません/u.test(pattern(owner)),
+  masu: (owner) => /ます/u.test(pattern(owner)),
+  mashita: (owner) => /ました/u.test(pattern(owner)),
+  // ません is a polite negative, so a negative lesson already explains half
+  // of it (してはいけません, かもしれません).
+  masen: (owner) => /ない|なく|ず|ませ/u.test(pattern(owner)),
+  "masen-deshita": (owner) => /ない|なく|ず|ませ/u.test(pattern(owner)),
+};
 
 // Only unambiguous standalone forms belong here. Contextual handlers
 // cover specific constructions (e.g. がほしい, てから, and question か).
@@ -48,7 +81,12 @@ function formGrammar(entry: AnswerEntry): string[] {
       ["て", "te"],
       ["で", "te"],
     ] as const) {
-      if (entry.japanese.endsWith(ending)) return [grammarId];
+      if (!entry.japanese.endsWith(ending)) continue;
+      // Voiced past and て forms follow ん or い (読んだ, 泳いで); すべきだ and
+      // すべきで end in a copula.
+      if (/^[だで]$/u.test(ending) && !/[んい][だで]$/u.test(entry.japanese))
+        continue;
+      return [grammarId];
     }
   }
   if (
@@ -89,15 +127,33 @@ export function inflectionGrammar(
         : undefined;
       return { ...match, grammarIds: entry ? formGrammar(entry) : [] };
     });
-  const automatic = base
-    .filter(
-      (part) =>
-        !contextual.some(
-          (annotation) =>
-            overlaps(annotation, part) &&
-            !permitsClauseContent(annotation, part),
+  const automatic = base.flatMap((part) => {
+    const owners = contextual.filter(
+      (annotation) =>
+        overlaps(annotation, part) && !permitsClauseContent(annotation, part),
+    );
+    if (!owners.length) return [{ ...part, grammarIds: formGrammar(part) }];
+    // Tense, negation and politeness inside a larger lesson are still shown
+    // (なってきた, 満たしていない, 座っていました), unless that lesson is built
+    // on the form or its span already explains it.
+    const kept = formGrammar(part).filter(
+      (id) =>
+        Object.hasOwn(keptForms, id) &&
+        !owners.some((owner) =>
+          owner.grammarIds.some((ownerId) => keptForms[id]!(ownerId)),
+        ) &&
+        !inflections.some(
+          (match) => overlaps(match, part) && match.grammarIds.includes(id),
+        ) &&
+        // した + まえ is the imperative たまえ (出さないようにしたまえ).
+        !(
+          id === "ta" &&
+          base.some(
+            (word) => word.start === part.end && word.japanese === "まえ",
+          )
         ),
-    )
-    .map((part) => ({ ...part, grammarIds: formGrammar(part) }));
+    );
+    return kept.length ? [{ ...part, grammarIds: kept }] : [];
+  });
   return [...inflections, ...automatic];
 }

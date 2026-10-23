@@ -164,7 +164,7 @@ test("nominalization requires a complete verb and case marking, distinct from po
   }
 });
 
-test("lists span their verbs and final する once, while offers suppress component question lessons", () => {
+test("lists span their verbs and final する once, keeping only its politeness, while offers suppress component question lessons", () => {
   const { sentence, base } = fixture([
     ["食べ", ["Verb"], "食べる"],
     ["たり"],
@@ -178,6 +178,7 @@ test("lists span their verbs and final する once, while offers suppress compon
       id: "tari-tari-suru",
       japanese: "食べたり飲んだりします",
     }),
+    expect.objectContaining({ id: "masu", japanese: "します" }),
   ]);
   const offer = fixture([
     ["食べましょう", ["Verb"], "食べる"],

@@ -43,7 +43,11 @@ test("constructions span split words and suppress component lessons", () => {
       end: 7,
     }),
   );
-  expect(found.some((g) => ["te", "mashita"].includes(g.id))).toBe(false);
+  // The て of 〜てくる belongs to the construction; its polite past does not.
+  expect(found.some((g) => g.id === "te")).toBe(false);
+  expect(found).toContainEqual(
+    expect.objectContaining({ id: "mashita", japanese: "来ました" }),
+  );
   const request = lessons([
     ["教えて", ["Verb"], "教える"],
     ["いただけません", ["Verb"], "いただける"],

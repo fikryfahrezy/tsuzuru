@@ -511,6 +511,90 @@
     "note": "Explanatory predicate, not nominalization."
   },
   {
+    "lessonId": "nai",
+    "sentenceId": "06fe4050db34361b15017f3d",
+    "japanese": "いない",
+    "expect": "present",
+    "note": "Negative inside 〜ている."
+  },
+  {
+    "lessonId": "masu",
+    "sentenceId": "01c69158129ce18245671fd7",
+    "japanese": "います",
+    "expect": "present",
+    "note": "Polite form inside 〜ている."
+  },
+  {
+    "lessonId": "mashita",
+    "sentenceId": "0b70e1146d72d3a69cecd207",
+    "japanese": "いました",
+    "expect": "present",
+    "note": "Polite past inside 〜ている."
+  },
+  {
+    "lessonId": "masen",
+    "sentenceId": "03f1344f4cf3ce0147813f93",
+    "japanese": "いません",
+    "expect": "present",
+    "note": "Polite negative inside 〜ている."
+  },
+  {
+    "lessonId": "masen",
+    "sentenceId": "13f88e37224685c9d38ab279",
+    "japanese": "いけません",
+    "expect": "absent",
+    "note": "てはいけない already explains the negative."
+  },
+  {
+    "lessonId": "nai",
+    "sentenceId": "02ff215569d265ccadd7fb97",
+    "japanese": "ならない",
+    "expect": "absent",
+    "note": "Part of なければならない."
+  },
+  {
+    "lessonId": "masen",
+    "sentenceId": "06b38547f2ec4726756909ca",
+    "japanese": "しれません",
+    "expect": "absent",
+    "note": "Part of かもしれない."
+  },
+  {
+    "lessonId": "ta",
+    "sentenceId": "008b8bb4762af4f907615633",
+    "japanese": "きた",
+    "expect": "present",
+    "note": "Past tense inside 〜てくる."
+  },
+  {
+    "lessonId": "ta",
+    "sentenceId": "6e1e2eab7f0df1922dff6132",
+    "japanese": "食べた",
+    "expect": "present",
+    "note": "Past tense inside 〜んでしょう."
+  },
+  {
+    "lessonId": "ta",
+    "sentenceId": "69431eb4da5187f45458c047",
+    "japanese": "見た",
+    "expect": "absent",
+    "note": "た of たことがない is not past tense."
+  },
+  {
+    "lessonId": "ta",
+    "sentenceId": "a1673606ae90e1385485042a",
+    "japanese": "起こった",
+    "expect": "absent",
+    "note": "Hypothetical 〜たとすれば."
+  },
+  {
+    "lessonId": "ta",
+    "sentenceId": "89141d1757366983266437fa",
+    "japanese": "したまえ",
+    "expect": "absent",
+    "note": "Imperative たまえ, not past tense."
+  },
+  {
     "lessonId": "de-wa-arimasen-ja-nai",
     "sentenceId": "b1ba6b9b40833139351b05cf",
     "japanese": "じゃなくて",

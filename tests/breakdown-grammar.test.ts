@@ -325,3 +325,48 @@ test("practice grammar includes only linked lessons, deduplicates repeats, and f
   expect(grammarForBreakdown(grammarEntries, [])).toEqual([]);
   expect(grammarForBreakdown([], parts)).toEqual([]);
 });
+
+test("a past verb inside a larger lesson still shows 〜た, unless た is not past", () => {
+  const lessonsOf = (id: string) =>
+    Object.fromEntries(
+      practiceDetails(exerciseById.get(id)!).answerBreakdown.map((part) => [
+        part.japanese,
+        (part.grammar ?? []).map((entry) => entry.id),
+      ]),
+    );
+  // なってきた (〜てくる), 進んでいった (〜ていく), 食べたんでしょう (〜んでしょう).
+  expect(lessonsOf("008b8bb4762af4f907615633").きた).toEqual(["ta"]);
+  expect(lessonsOf("0cc3c923493c5be7050ba36b").いった).toEqual(["ta"]);
+  expect(lessonsOf("6e1e2eab7f0df1922dff6132").食べた).toContain("ta");
+  // 見たことのない and 起こったとすれば are built on た; したまえ is a command.
+  expect(lessonsOf("69431eb4da5187f45458c047").見た).not.toContain("ta");
+  expect(lessonsOf("a1673606ae90e1385485042a").起こった).not.toContain("ta");
+  expect(
+    Object.values(lessonsOf("89141d1757366983266437fa")).flat(),
+  ).not.toContain("ta");
+});
+
+test("negative and polite forms inside a larger lesson are shown unless it is built on them", () => {
+  const lessonsOf = (id: string) =>
+    Object.fromEntries(
+      practiceDetails(exerciseById.get(id)!).answerBreakdown.map((part) => [
+        part.japanese,
+        (part.grammar ?? []).map((entry) => entry.id),
+      ]),
+    );
+  // 満たしていない, 出血をしています, 座っていました, 持っていません (〜ている).
+  expect(lessonsOf("06fe4050db34361b15017f3d").いない).toContain("nai");
+  expect(lessonsOf("01c69158129ce18245671fd7").います).toContain("masu");
+  expect(lessonsOf("0b70e1146d72d3a69cecd207").いました).toContain("mashita");
+  expect(lessonsOf("03f1344f4cf3ce0147813f93").いません).toContain("masen");
+  // てはいけない, なければならない and かもしれない contain the negative.
+  expect(lessonsOf("13f88e37224685c9d38ab279").いけません ?? []).not.toContain(
+    "masen",
+  );
+  expect(lessonsOf("02ff215569d265ccadd7fb97").ならない ?? []).not.toContain(
+    "nai",
+  );
+  expect(lessonsOf("06b38547f2ec4726756909ca").しれません ?? []).not.toContain(
+    "masen",
+  );
+});

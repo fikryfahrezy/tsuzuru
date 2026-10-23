@@ -55,9 +55,15 @@ per rule and then checks its suffixes and contextual restrictions.
 6. Add inflection lessons over resolved voice/register spans (potential,
    passive, honorific, or humble), including maintained interpretations and
    predicates split across tokenizer words. A containing construction still
-   suppresses its component inflections. Apply standalone-form fallbacks to
-   words with no contextual match, then assign each explanation to the
-   breakdown entry containing its start.
+   suppresses its component inflections, except tense, negation and
+   politeness: 〜た, 〜ない, 〜ます, 〜ました, 〜ません and 〜ませんでした stay
+   (なってきた, 満たしていない, 座っていました). A form is still suppressed
+   when the construction is built on it: its lesson pattern contains the form
+   (なければならない, かもしれない, 〜ますように), a negative lesson covers
+   〜ません (してはいけません), た belongs to the construction (見たことがある,
+   食べたら, たとしても), or the verb is imperative たまえ.
+   Apply standalone-form fallbacks to words with no contextual match, then
+   assign each explanation to the breakdown entry containing its start.
 
 Nested-derivation retention and permission to explain predicate inflections are
 independent capabilities in `grammar-rules/lesson-policy.ts`. This preserves the

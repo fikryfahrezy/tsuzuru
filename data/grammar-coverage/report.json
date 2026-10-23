@@ -35,8 +35,8 @@
     }
   },
   "regressionSummary": {
-    "total": 339,
-    "passed": 339,
+    "total": 351,
+    "passed": 351,
     "failed": 0
   },
   "entries": [
@@ -48,7 +48,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 15
+          "line": 47
         }
       ],
       "automatic": {
@@ -131,7 +131,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 16
+          "line": 48
         }
       ],
       "automatic": {
@@ -453,7 +453,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 17
+          "line": 49
         }
       ],
       "automatic": {
@@ -663,7 +663,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 19
+          "line": 51
         }
       ],
       "automatic": {
@@ -744,7 +744,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 18
+          "line": 50
         }
       ],
       "automatic": {
@@ -878,7 +878,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 20
+          "line": 52
         }
       ],
       "automatic": {
@@ -982,7 +982,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 21
+          "line": 53
         }
       ],
       "automatic": {
@@ -1018,7 +1018,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 22
+          "line": 54
         }
       ],
       "automatic": {
@@ -1204,7 +1204,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 23
+          "line": 55
         }
       ],
       "automatic": {
@@ -1240,7 +1240,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 25
+          "line": 57
         }
       ],
       "automatic": {
@@ -1276,15 +1276,15 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 26
+          "line": 58
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 27
+          "line": 59
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 28
+          "line": 60
         },
         {
           "file": "server/utils/structural-grammar.ts",
@@ -1435,7 +1435,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 24
+          "line": 56
         }
       ],
       "automatic": {
@@ -1471,22 +1471,22 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 43
+          "line": 75
         }
       ],
       "automatic": {
-        "sentences": 422,
-        "occurrences": 425,
+        "sentences": 761,
+        "occurrences": 764,
         "examples": [
+          {
+            "sentenceId": "000459094742195f226bab0e",
+            "japanese": "私は彼女は踊りが上手だと思います。",
+            "english": "I think she is a good dancer."
+          },
           {
             "sentenceId": "004f3984827963025986b55a",
             "japanese": "私は１年中テニスをします。",
             "english": "I play tennis all the year around."
-          },
-          {
-            "sentenceId": "00ea66573f1cdafc5a7aa650",
-            "japanese": "彼女はそこらにいますか。",
-            "english": "Is she anywhere about?"
           }
         ]
       },
@@ -1501,7 +1501,16 @@
           }
         ]
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "masu",
+          "sentenceId": "01c69158129ce18245671fd7",
+          "japanese": "います",
+          "expect": "present",
+          "note": "Polite form inside 〜ている.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -1513,12 +1522,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 42
+          "line": 74
         }
       ],
       "automatic": {
-        "sentences": 104,
-        "occurrences": 104,
+        "sentences": 135,
+        "occurrences": 136,
         "examples": [
           {
             "sentenceId": "0362ee35285058847f69f5e2",
@@ -1526,9 +1535,9 @@
             "english": "The box is too heavy to carry."
           },
           {
-            "sentenceId": "05cc8b160dd943ea79213a94",
-            "japanese": "今ははっきりとはわかりません。",
-            "english": "I'm not sure right now."
+            "sentenceId": "03f1344f4cf3ce0147813f93",
+            "japanese": "外国人労働者に偏見は持っていません。",
+            "english": "I don't have a prejudice against foreign workers."
           }
         ]
       },
@@ -1543,7 +1552,32 @@
           }
         ]
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "masen",
+          "sentenceId": "03f1344f4cf3ce0147813f93",
+          "japanese": "いません",
+          "expect": "present",
+          "note": "Polite negative inside 〜ている.",
+          "passed": true
+        },
+        {
+          "lessonId": "masen",
+          "sentenceId": "06b38547f2ec4726756909ca",
+          "japanese": "しれません",
+          "expect": "absent",
+          "note": "Part of かもしれない.",
+          "passed": true
+        },
+        {
+          "lessonId": "masen",
+          "sentenceId": "13f88e37224685c9d38ab279",
+          "japanese": "いけません",
+          "expect": "absent",
+          "note": "てはいけない already explains the negative.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -1555,12 +1589,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 41
+          "line": 73
         }
       ],
       "automatic": {
-        "sentences": 182,
-        "occurrences": 182,
+        "sentences": 237,
+        "occurrences": 237,
         "examples": [
           {
             "sentenceId": "010a33c40a5b65135dd33d72",
@@ -1579,7 +1613,16 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "mashita",
+          "sentenceId": "0b70e1146d72d3a69cecd207",
+          "japanese": "いました",
+          "expect": "present",
+          "note": "Polite past inside 〜ている.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -1591,12 +1634,16 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 40
+          "line": 39
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 72
         }
       ],
       "automatic": {
-        "sentences": 15,
-        "occurrences": 15,
+        "sentences": 16,
+        "occurrences": 16,
         "examples": [
           {
             "sentenceId": "02cb469b4193cbcf21c1460c",
@@ -1627,16 +1674,16 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 38
+          "line": 70
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 45
+          "line": 77
         }
       ],
       "automatic": {
-        "sentences": 487,
-        "occurrences": 492,
+        "sentences": 617,
+        "occurrences": 622,
         "examples": [
           {
             "sentenceId": "0091f2803f8abdf12e351631",
@@ -1667,6 +1714,22 @@
         ]
       },
       "reviewedCases": [
+        {
+          "lessonId": "nai",
+          "sentenceId": "02ff215569d265ccadd7fb97",
+          "japanese": "ならない",
+          "expect": "absent",
+          "note": "Part of なければならない.",
+          "passed": true
+        },
+        {
+          "lessonId": "nai",
+          "sentenceId": "06fe4050db34361b15017f3d",
+          "japanese": "いない",
+          "expect": "present",
+          "note": "Negative inside 〜ている.",
+          "passed": true
+        },
         {
           "lessonId": "nai",
           "sentenceId": "3dec770e61de264aa6559126",
@@ -1739,15 +1802,19 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 38
+          "line": 70
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 46
+          "line": 78
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 47
+          "line": 79
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 149
         },
         {
           "file": "server/utils/verb-grammar.ts",
@@ -1755,8 +1822,8 @@
         }
       ],
       "automatic": {
-        "sentences": 2652,
-        "occurrences": 2762,
+        "sentences": 3425,
+        "occurrences": 3592,
         "examples": [
           {
             "sentenceId": "0000e8f8c0565c3fbcea0a4c",
@@ -1789,6 +1856,14 @@
       "reviewedCases": [
         {
           "lessonId": "ta",
+          "sentenceId": "008b8bb4762af4f907615633",
+          "japanese": "きた",
+          "expect": "present",
+          "note": "Past tense inside 〜てくる.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta",
           "sentenceId": "3dec770e61de264aa6559126",
           "japanese": "とらなかった",
           "expect": "present",
@@ -1797,10 +1872,42 @@
         },
         {
           "lessonId": "ta",
+          "sentenceId": "69431eb4da5187f45458c047",
+          "japanese": "見た",
+          "expect": "absent",
+          "note": "た of たことがない is not past tense.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta",
+          "sentenceId": "6e1e2eab7f0df1922dff6132",
+          "japanese": "食べた",
+          "expect": "present",
+          "note": "Past tense inside 〜んでしょう.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta",
+          "sentenceId": "89141d1757366983266437fa",
+          "japanese": "したまえ",
+          "expect": "absent",
+          "note": "Imperative たまえ, not past tense.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta",
           "sentenceId": "9cf5e1af5a1cfa9784133edf",
           "japanese": "するべきだ",
           "expect": "absent",
           "note": "するべきだ ends in だ but is not a past tense.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta",
+          "sentenceId": "a1673606ae90e1385485042a",
+          "japanese": "起こった",
+          "expect": "absent",
+          "note": "Hypothetical 〜たとすれば.",
           "passed": true
         }
       ],
@@ -1815,7 +1922,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 44
+          "line": 76
         }
       ],
       "automatic": {
@@ -2037,7 +2144,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/predicate-grammar.ts",
-          "line": 195
+          "line": 193
         }
       ],
       "automatic": {
@@ -2479,16 +2586,16 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 48
+          "line": 80
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 49
+          "line": 81
         }
       ],
       "automatic": {
-        "sentences": 1004,
-        "occurrences": 1036,
+        "sentences": 998,
+        "occurrences": 1030,
         "examples": [
           {
             "sentenceId": "005f4d7a8076d62a69fb3c5a",
@@ -2569,6 +2676,10 @@
           "line": 650
         },
         {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 17
+        },
+        {
           "file": "server/utils/verb-grammar.ts",
           "line": 190
         },
@@ -2615,6 +2726,10 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 669
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 14
         }
       ],
       "automatic": {
@@ -2721,6 +2836,10 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 603
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 19
         }
       ],
       "automatic": {
@@ -2993,11 +3112,11 @@
         },
         {
           "file": "server/utils/predicate-grammar.ts",
-          "line": 162
+          "line": 160
         },
         {
           "file": "server/utils/predicate-grammar.ts",
-          "line": 179
+          "line": 177
         }
       ],
       "automatic": {
@@ -3924,7 +4043,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 58
+          "line": 95
         },
         {
           "file": "server/utils/structural-grammar.ts",
@@ -5933,6 +6052,10 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 649
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 15
         }
       ],
       "automatic": {
@@ -6814,7 +6937,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/predicate-grammar.ts",
-          "line": 212
+          "line": 210
         }
       ],
       "automatic": {
@@ -7162,7 +7285,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/predicate-grammar.ts",
-          "line": 202
+          "line": 200
         }
       ],
       "automatic": {
@@ -7456,6 +7579,10 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 495
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 20
         }
       ],
       "automatic": {
@@ -8456,6 +8583,10 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 521
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 16
         }
       ],
       "automatic": {
@@ -8505,6 +8636,10 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 699
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 18
         }
       ],
       "automatic": {
@@ -10283,6 +10418,10 @@
         {
           "file": "server/utils/context-grammar.ts",
           "line": 163
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 22
         }
       ],
       "automatic": {
@@ -11465,6 +11604,10 @@
         {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 327
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 21
         }
       ],
       "automatic": {
@@ -11825,6 +11968,10 @@
         {
           "file": "server/utils/grammar-rules/advanced.ts",
           "line": 38
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 25
         }
       ],
       "automatic": {
@@ -11874,6 +12021,10 @@
         {
           "file": "server/utils/grammar-rules/advanced.ts",
           "line": 42
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 24
         }
       ],
       "automatic": {
