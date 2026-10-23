@@ -553,7 +553,7 @@ test("formal よう without に and はずない without が", () => {
 });
 
 test("verb + ように follows its predicate: request, effort or likeness", () => {
-  const you = [["よう"], ["に", ["Particle"]]] as const;
+  const you: Word[] = [["よう"], ["に", ["Particle"]]];
   // Reported requests, including split する verbs (命令 + した).
   expect(
     hasLesson(

@@ -7,7 +7,7 @@ const targets = new Map<string, Target>();
 for (const sentence of exercises)
   for (const target of glossTargets(sentence)) {
     const key = glossKey(target, target.lemma);
-    const found = targets.get(key) ?? target;
+    const found: Target = targets.get(key) ?? target;
     // A katakana word's translations confirm its sense (サッカー: soccer).
     if (/^[ァ-ヶー・]+$/u.test(target.japanese))
       found.english = [...(found.english ?? []), sentence.english];

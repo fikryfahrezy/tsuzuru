@@ -60,13 +60,15 @@ function matchAt(entries: AnswerEntry[], index: number) {
         kana.startsWith(hiragana(expression.reading)) &&
         (!expression.wholeWords || japanese === form) &&
         (!expression.before ||
-          (next?.start === entries[index + count - 1]?.end &&
+          (next &&
+            next.start === entries[index + count - 1]?.end &&
             next.wordTypes.some((type) =>
               expression.before!.includes(type),
             ))) &&
         !(
           expression.notAfter &&
-          previous?.end === entries[index]?.start &&
+          previous &&
+          previous.end === entries[index]?.start &&
           previous.wordTypes.some((type) => expression.notAfter!.includes(type))
         )
       )

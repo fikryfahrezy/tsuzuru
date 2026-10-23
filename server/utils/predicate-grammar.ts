@@ -137,7 +137,7 @@ export function predicateGrammar(
       entry.wordTypes.includes("Particle") &&
       // 必要 is often tagged only as a な-adjective; an adjective's own
       // negative takes では, so は / も + ない marks its noun use.
-      (noun(previous) || previous.wordTypes.includes("な-adjective")) &&
+      (previous.wordTypes.includes("な-adjective") || noun(previous)) &&
       // 何も / 誰も ない is its own lesson; ことはない is experience
       // (見たことはない) or "no need" (行くことはない), not existence.
       !["何", "なに", "なん", "誰", "だれ", "こと", "事"].includes(
@@ -172,7 +172,7 @@ export function predicateGrammar(
       const after = base[index + 2];
       if (
         after?.start === next.end &&
-        (noun(after) || after.japanese === "よう")
+        (after.japanese === "よう" || noun(after))
       )
         longest(entry, ["のない", "のなかった"], "ga-aru-ga-iru");
     } else if (
