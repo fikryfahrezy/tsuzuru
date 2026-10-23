@@ -23,6 +23,15 @@ export const appearanceForms = [
 ];
 // Fixed constructions still require the formation recorded by the lesson.
 // A surface substring alone cannot establish a noun role or a finite clause.
+// A bare の explains only at the end of a sentence, optionally before a
+// question か (行くの？, 暮らしていたのか。). Inside one, の nominalizes
+// (行くのが好き) or embeds a question (何をしたのか分からない). As with のですか,
+// か keeps its own lesson. `matched` is the matched text.
+export function explanatoryTail(id: string, matched: string, tail: string) {
+  if (id !== "n-desu-no-desu" || !matched.endsWith("の")) return true;
+  return /^(?:よね|よ|ね|かな|かしら|か)?(?:[。．？?！!」』）)]|$)/u.test(tail);
+}
+
 export const predicateConstructions: Rule[] = [
   ...advancedPredicateConstructions,
   { id: "sou-da-hearsay", forms: ["そうだ", "そうです"], prefix: "finite" },
@@ -66,7 +75,17 @@ export const predicateConstructions: Rule[] = [
   },
   {
     id: "hazu-ga-nai",
-    forms: ["はずがない", "はずがありません", "筈がない", "筈がありません"],
+    forms: ["はず", "筈"].flatMap((word) =>
+      // はずない drops the particle in speech.
+      [
+        "がない",
+        "がありません",
+        "はない",
+        "はありません",
+        "ない",
+        "ありません",
+      ].map((ending) => word + ending),
+    ),
     prefix: "adnominal",
   },
   {
@@ -85,7 +104,24 @@ export const predicateConstructions: Rule[] = [
   },
   {
     id: "n-desu-no-desu",
-    forms: ["んです", "のです", "んでした", "のでした"],
+    // Plain forms (生きているんだ) explain just like the polite ones.
+    forms: [
+      "んです",
+      "のです",
+      "んでした",
+      "のでした",
+      "んだ",
+      "のだ",
+      "んだろう",
+      "のだろう",
+      "んでしょう",
+      "のでしょう",
+      // いいんじゃない (isn't it?), 食べるんじゃなかった (shouldn't have).
+      "んじゃない",
+      "んじゃなかった",
+      // Only at the end of a sentence; see explanatoryTail.
+      "の",
+    ],
     prefix: "adnominal",
   },
   {

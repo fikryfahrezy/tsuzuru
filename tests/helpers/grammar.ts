@@ -41,3 +41,6 @@ export function lessons(words: Word[], english?: string) {
     (part) => part.grammar ?? [],
   );
 }
+
+export const hasLesson = (words: Word[], id: string) =>
+  lessons(words).some((lesson) => lesson.id === id);

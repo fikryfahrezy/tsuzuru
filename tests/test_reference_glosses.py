@@ -81,6 +81,62 @@ class CompoundTests(unittest.TestCase):
         self.assertIsNone(self.meanings("ご家族", "ごかぞく"))
         self.assertIsNone(self.meanings("たくさん駅", "たくさんえき"))
 
+    def test_kana_verbs_are_not_split_after_an_honorific_prefix(self):
+        index = {**INDEX, "お": [entry("<r_ele><reb>お</reb></r_ele><sense><pos>prefix</pos>"
+                                     "<gloss>honorific prefix</gloss></sense>")],
+                 "って": [entry("<r_ele><reb>って</reb></r_ele><sense><pos>noun (common) (futsuumeishi)</pos>"
+                                        "<gloss>you said</gloss></sense>")]}
+        # おって from おる is a verb form, not お + って.
+        self.assertIsNone(generator.compound(index, CODES, "おって", "おって", verb=True))
+        self.assertEqual(
+            generator.compound(index, CODES, "おって", "おって")[0][1][4], "って",
+        )
+
+
+CODES.update({"Kuru verb - special class": "vk", "Ichidan verb": "v1"})
+VERBS = {
+    "くる": [entry("<k_ele><keb>来る</keb></k_ele><r_ele><reb>くる</reb><re_pri>ichi1</re_pri></r_ele>"
+                  "<sense><pos>Kuru verb - special class</pos><gloss>to come</gloss></sense>"),
+            entry("<k_ele><keb>繰る</keb></k_ele><r_ele><reb>くる</reb></r_ele>"
+                  "<sense><pos>Godan verb with 'u' ending</pos><gloss>to reel</gloss></sense>")],
+    "やめる": [entry("<k_ele><keb>止める</keb></k_ele><r_ele><reb>やめる</reb><re_pri>ichi1</re_pri></r_ele>"
+                    "<sense><pos>Ichidan verb</pos><gloss>to stop</gloss></sense>"),
+              entry("<k_ele><keb>辞める</keb></k_ele><r_ele><reb>やめる</reb><re_pri>ichi1</re_pri></r_ele>"
+                    "<sense><pos>Ichidan verb</pos><gloss>to resign</gloss></sense>")],
+}
+
+
+class KanaVerbTests(unittest.TestCase):
+    def test_a_kana_verb_uses_its_single_common_verb_of_that_class(self):
+        found = generator.kana_verb(VERBS, CODES, "くる", "vk")
+        self.assertEqual(found[1:], (["to come"], ["vk"]))
+        # 繰る is another class and uncommon.
+        self.assertIsNone(generator.kana_verb(VERBS, CODES, "くる", "v5u"))
+
+    def test_several_common_verbs_are_ambiguous(self):
+        self.assertIsNone(generator.kana_verb(VERBS, CODES, "やめる", "v1"))
+
+
+def katakana(gloss, common=True):
+    pri = "<re_pri>gai1</re_pri>" if common else ""
+    return entry(f"<r_ele><reb>サッカー</reb>{pri}</r_ele><sense><gloss>{gloss}</gloss></sense>")
+
+
+class KatakanaTests(unittest.TestCase):
+    def test_glosses_must_appear_in_the_translation_in_the_same_case(self):
+        self.assertTrue(generator.translated(["soccer"], "He plays soccer."))
+        self.assertTrue(generator.translated(["email"], "Thanks for your e-mail."))
+        self.assertFalse(generator.translated(["frank"], "Tom and Frank are friends."))
+        self.assertTrue(generator.translated(["Florida"], "They flew to Florida."))
+
+    def test_a_single_common_entry_needs_every_translation(self):
+        index = {"サッカー": [katakana("soccer"), katakana("seersucker", common=False)]}
+        found = generator.confirmed_katakana(index, CODES, "サッカー", ["I like soccer.", "Soccer is fun."])
+        self.assertEqual(found[1], ["soccer"])
+        self.assertIsNone(generator.confirmed_katakana(index, CODES, "サッカー", ["I like soccer.", "Paul came."]))
+        two = {"サッカー": [katakana("soccer"), katakana("sucker")]}
+        self.assertIsNone(generator.confirmed_katakana(two, CODES, "サッカー", ["I like soccer."]))
+
 
 if __name__ == "__main__":
     unittest.main()

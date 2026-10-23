@@ -30,7 +30,76 @@ const results = new Set([
   "終わる",
 ]);
 const giving = new Set(["あげる", "くれる", "もらう"]);
+// What follows Verb + ように selects its lesson: a reported request
+// (するように頼んだ), an effort or purpose (遅れないように注意した), or a
+// likeness (疲れているように見える).
+const requests = new Set([
+  "言う",
+  "いう",
+  "頼む",
+  "命じる",
+  "命ずる",
+  "命令する",
+  "依頼する",
+  "要請する",
+  "要求する",
+  "勧める",
+  "促す",
+  "説得する",
+  "合図する",
+  "教える",
+  "強制する",
+  "説きつける",
+  "ときつける",
+]);
+const efforts = new Set([
+  "取り計らう",
+  "気をつける",
+  "注意する",
+  "心がける",
+  "心掛ける",
+  "努める",
+  "努力する",
+  "用心する",
+  "祈る",
+  "期待する",
+]);
+const likenesses = new Set([
+  "見える",
+  "思える",
+  "思われる",
+  "感じる",
+  "感ずる",
+  "思う",
+]);
 const count = "[0-9０-９一二三四五六七八九十百千万半]+";
+
+// The lesson of Verb + ように, from the verb before it and the predicate
+// after it. `reported` marks ようにとの指示 and similar nouns.
+function youNiLesson(
+  verb: AnswerEntry,
+  predicate: string | undefined,
+  uncontrollable: boolean,
+  reported: boolean,
+) {
+  if (!verb.wordTypes.includes("Verb") || verb.japanese.endsWith("ます"))
+    return;
+  // A past verb before ように is "as" (言ったように), never a request.
+  if (
+    !/(?:た|だ)$/u.test(verb.japanese) &&
+    (requests.has(predicate ?? "") || reported)
+  )
+    return "you-ni-iu-you-ni-tanomu";
+  if (!predicate) return;
+  // Something the subject cannot control (通れる, 遅れない) is the goal of
+  // any following action; ようになる is its own lesson.
+  if (
+    efforts.has(predicate) ||
+    (uncontrollable && !likenesses.has(predicate) && predicate !== "なる")
+  )
+    return "you-ni";
+  if (likenesses.has(predicate) && finite(verb)) return "you-na-you-ni-like";
+}
 
 export function contextGrammar(
   sentence: Sentence,
@@ -59,6 +128,21 @@ export function contextGrammar(
         return word;
       if (necessity.has(word.japanese)) return word;
     }
+  }
+  // A predicate's dictionary form, joining split する verbs (命令 + した)
+  // and 気 + を + つける.
+  function predicateKey(word: AnswerEntry) {
+    const index = base.indexOf(word);
+    const lemma = word.dictionaryForm ?? word.japanese;
+    const before = base[index - 1];
+    if (lemma === "する" && before?.end === word.start && nominal(before))
+      return before.japanese + "する";
+    if (
+      ["つける", "付ける"].includes(lemma) &&
+      text.slice(0, word.start).endsWith("気を")
+    )
+      return "気をつける";
+    return lemma;
   }
   for (const [index, entry] of base.entries()) {
     const previous = base[index - 1];
@@ -267,8 +351,17 @@ export function contextGrammar(
         }
       }
     }
-    if (entry.japanese === "よう" && text.startsWith("ように", entry.start)) {
-      const end = entry.start + 3;
+    // Formal writing drops に after a verb: 整うよう取り計らいます. ようだ,
+    // ような, ようがない and the like keep their own lessons.
+    const bare =
+      entry.japanese === "よう" &&
+      previous.wordTypes.includes("Verb") &&
+      !/^(?:に|な|だ|で|の|か|が|も|と|は)/u.test(text.slice(entry.end));
+    if (
+      entry.japanese === "よう" &&
+      (text.startsWith("ように", entry.start) || bare)
+    ) {
+      const end = bare ? entry.end : entry.start + 3;
       if (
         previous.wordTypes.includes("Verb") &&
         previous.japanese.endsWith("ます") &&
@@ -278,32 +371,29 @@ export function contextGrammar(
       const uncontrollable =
         previous.wordTypes.includes("Verb") &&
         (/(?:ない|ません)$/u.test(previous.japanese) ||
-          ["分かる", "わかる", "見える", "聞こえる"].includes(lemma) ||
+          [
+            "分かる",
+            "わかる",
+            "見える",
+            "聞こえる",
+            "合う",
+            "間に合う",
+          ].includes(lemma) ||
           voices.some(
             (match) =>
               match.grammarIds.includes("eru-rareru-potential") &&
               match.end === previous.end,
           ));
       const niIndex = base.findIndex((part) => part.end === end);
-      if (uncontrollable && niIndex >= 0) {
-        const purpose = firstPredicate(niIndex);
-        if (
-          purpose &&
-          [
-            "する",
-            "改造する",
-            "作る",
-            "話す",
-            "祈る",
-            "頼む",
-            "言う",
-            "練習する",
-            "書く",
-            "努力する",
-          ].includes(purpose.dictionaryForm ?? purpose.japanese)
-        )
-          add(entry.start, end, "you-ni");
-      }
+      // A comma may separate a purpose from its action (覚まさないように、歩いた).
+      const purpose = niIndex >= 0 ? firstPredicate(niIndex, true) : undefined;
+      const lesson = youNiLesson(
+        previous,
+        purpose && predicateKey(purpose),
+        uncontrollable,
+        /^との(?:指示|命令|依頼|要請)/u.test(text.slice(end)),
+      );
+      if (lesson) add(entry.start, end, lesson);
     }
     if (
       entry.japanese === "ところ" &&

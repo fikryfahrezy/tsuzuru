@@ -23,7 +23,16 @@ copula. For each word, generation:
 - for a kana word, uses only entries without a kanji spelling or senses marked
   as usually written in kana, so 私 senses never reach a kana homophone;
 - for an inflected word (下さい), falls back to its kanji dictionary form;
-- skips the word when more than one entry matches;
+- for a kana verb (きた from くる), uses the one entry that lists the kana
+  dictionary form as a common reading (JMdict priority tags) with the
+  tokenizer's verb class: くる → 来る, but やめる (止める, 辞める) is skipped.
+  Uncommon homographs are ignored, so a sense can still be wrong when the
+  intended verb lacks a priority tag (いける reads as 活ける, not 行ける);
+- for a katakana word with several entries (サッカー: soccer, seersucker),
+  uses the one common entry (JMdict priority tags) only when every English
+  translation of its sentences uses one of its gloss words in the same case,
+  so ポール (mostly Paul) and フランク ("Tom and Frank") stay unexplained;
+- otherwise skips the word when more than one entry matches;
 - keeps up to eight English glosses and the matching senses' part-of-speech
   codes, dropping `vs` (takes する) because the word itself is the noun.
 
@@ -47,7 +56,9 @@ The breakdown shows each part with its reading and romaji
 readings.
 
 Each whole-word entry records `japanese`, `kana`, `dictionaryEntryId`, `meanings`
-and `pos`.
+and `pos`. Entries also record the tokenizer `lemma` when it differs from the
+spelling, since one chip can come from different verbs (いった: 行く, 言う);
+the breakdown looks entries up by spelling, reading and lemma.
 Senses are general and can miss the sentence's sense; for example, katakana
 オラ (dialect “I”) only matches the Spanish greeting in JMdict.
 

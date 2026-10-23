@@ -5,10 +5,28 @@ import type { AnswerEntry } from "./answer-entries";
 
 import { finite, nominal } from "./grammar-context";
 import { appearanceForms } from "./grammar-rules/construction";
+import { bekiEndings } from "./grammar-rules/verb";
 import { verbForms } from "./verb-forms";
 import { vocabulary } from "./vocabulary";
 
 const lemma = (word: AnswerEntry) => word.dictionaryForm ?? word.japanese;
+// Negative endings after では / じゃ / でも and an い-adjective's く form,
+// which the tokenizer splits off (重要 + では + ない, よく + ない). It keeps
+// ないでしょう and ないだろう as one word.
+const negativeEndings = [
+  "ない",
+  "ないです",
+  "なかった",
+  "なかったです",
+  "ありません",
+  "ありませんでした",
+  // ではなく(て): not A but B.
+  "なく",
+  "なくて",
+  "ないでしょう",
+  "ないだろう",
+  "ないだろ",
+];
 const demonstrativeLemmas = new Set([
   "此れ",
   "是",
@@ -224,6 +242,46 @@ export function structuralGrammar(
         "deshou",
       );
     }
+    // The tokenizer often splits an い-adjective's negative (よく + ない). A
+    // verb's たく + ない is "not want to", and まったく is an adverb.
+    if (
+      word.japanese.endsWith("く") &&
+      !word.wordTypes.includes("Verb") &&
+      (word.wordTypes.includes("い-adjective") ||
+        word.dictionaryForm?.slice(0, -1) + "く" === word.japanese) &&
+      following
+    )
+      longest(
+        word.start,
+        negativeEndings.map((ending) => word.japanese + ending),
+        "ku-nai-katta-ku-nakatta",
+      );
+    // このような / どのように: "like this", "in what way". うそのようだ is
+    // 嘘 + のようだ split as う + その, so only ような / ように qualify.
+    if (
+      ["この", "その", "あの", "どの"].includes(word.japanese) &&
+      next?.japanese === "よう" &&
+      following
+    )
+      longest(
+        word.start,
+        ["ような", "ように"].map((ending) => word.japanese + ending),
+        "you-na-you-ni-like",
+      );
+    // The tokenizer keeps すべき / するべき apart from a する noun
+    // (利用 + すべきだ), and gives the classical す as the lemma, so the verb
+    // rule never sees these.
+    if (
+      word.dictionaryForm === "する" &&
+      /^(?:す|する)べき/u.test(word.japanese)
+    )
+      longest(
+        word.start,
+        ["す", "する"].flatMap((stem) =>
+          bekiEndings.map((ending) => stem + ending),
+        ),
+        "beki-da-beki-de-wa-nai",
+      );
     if (!previous || !adjacent) continue;
     if (
       word.japanese === "ずつ" &&
@@ -245,6 +303,60 @@ export function structuralGrammar(
         previous.start,
         change.map((ending) => previous.japanese + "に" + ending),
         honorificStems.has(previous.japanese) ? "o-ni-naru" : "ku-naru-ni-naru",
+      );
+    // The tokenizer splits では + ない, so the standalone ではない form never
+    // appears as one word. の covers explanatory のではない.
+    if (
+      ["では", "じゃ"].includes(word.japanese) &&
+      previous &&
+      (nominal(previous) ||
+        previous.wordTypes.includes("な-adjective") ||
+        previous.japanese === "の")
+    )
+      longest(
+        word.start,
+        negativeEndings.map((ending) => word.japanese + ending),
+        "de-wa-arimasen-ja-nai",
+      );
+    // Written Japanese also negates the copula as でない (遊びばかりでない,
+    // 自由でない時代), and requires a state with でなければならない. The
+    // form must end at a word boundary, so で + 泣いて (木の上でないていた)
+    // and 出ない never match.
+    if (
+      word.japanese === "で" &&
+      word.wordTypes.includes("Particle") &&
+      (nominal(previous) ||
+        previous.wordTypes.includes("な-adjective") ||
+        previous.japanese === "ばかり")
+    ) {
+      longest(
+        word.start,
+        ["でない", "でなかった", "でなく"],
+        "de-wa-arimasen-ja-nai",
+      );
+      longest(
+        word.start,
+        [
+          "でなければならない",
+          "でなければいけない",
+          "でなくてはならない",
+          "でなくてはいけない",
+        ],
+        "nakereba-naranai-nakute-wa-ikenai",
+      );
+    }
+    // でもない is the same copula negative with も: 善でも悪でもない
+    // (neither ... nor), そうでもない. After どんな, でも means "any"
+    // (どんなベッドでもないよりはよい: any bed is better than none).
+    if (
+      word.japanese === "でも" &&
+      (nominal(previous) || previous.wordTypes.includes("な-adjective")) &&
+      !/どんな[^、。！？!?]*$/u.test(text.slice(0, word.start))
+    )
+      longest(
+        word.start,
+        negativeEndings.map((ending) => word.japanese + ending),
+        "de-wa-arimasen-ja-nai",
       );
     if (
       word.japanese === "なら" &&
@@ -277,7 +389,8 @@ export function structuralGrammar(
       add(previous.start, previous.japanese + word.japanese, "goro");
     if (
       ["くらい", "ぐらい"].includes(word.japanese) &&
-      amount.test(previous.japanese)
+      // 同じくらい: about the same.
+      (amount.test(previous.japanese) || previous.japanese === "同じ")
     )
       add(previous.start, previous.japanese + word.japanese, "kurai-gurai");
     if (word.japanese === "に" && period.test(previous.japanese)) {

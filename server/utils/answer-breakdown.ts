@@ -52,14 +52,18 @@ function verifiedEntries(
 }
 
 // JMdict senses for reference words missing from OpenJLPT, keyed by the exact
-// chip spelling and reading (私 read わたし). Generated; see its README.
-const glossKey = (chip: AnswerChip) => `${chip.japanese}\u0000${chip.kana}`;
+// chip spelling and reading (私 read わたし), plus the lemma when it differs
+// (いった from 行く or 言う). Generated; see its README.
+export const glossKey = (chip: AnswerChip, lemma?: string) =>
+  `${chip.japanese}\u0000${chip.kana}\u0000${lemma ?? ""}`;
 const glosses = new Map(
   (glossBank.version === 1 ? glossBank.entries : []).map((entry) => [
-    glossKey(entry),
+    glossKey(entry, "lemma" in entry ? entry.lemma : undefined),
     entry,
   ]),
 );
+const glossLemma = (chip: AnswerChip, lexeme?: { lemma: string }) =>
+  lexeme && lexeme.lemma !== chip.japanese ? lexeme.lemma : undefined;
 
 // Source UTF-16 positions of each chip; chips omit comparison punctuation.
 export function chipPositions(sentence: Sentence, chips: AnswerChip[]) {
@@ -159,9 +163,16 @@ function lookedUpWords(
       // Grammar derives verb forms from this lemma, so a verified entry adds
       // senses without replacing it (つかまる, not 捕まる).
       const dictionaryForm = lexeme?.lemma ?? chip.japanese;
-      const listed = (dictionary.get(dictionaryForm) ?? []).filter((entry) =>
-        lexeme ? true : hiragana(entry.reading.normalize("NFKC")) === chip.kana,
+      const sameReading = (entry: (typeof vocabulary)[number]) =>
+        hiragana(entry.reading.normalize("NFKC")) === chip.kana;
+      const byLemma = (dictionary.get(dictionaryForm) ?? []).filter((entry) =>
+        lexeme ? true : sameReading(entry),
       );
+      // OpenJLPT may list a kana word under its kana spelling (あなた) while the
+      // lemma is a kanji spelling (貴方); fall back to the chip as written.
+      const listed = byLemma.length
+        ? byLemma
+        : (dictionary.get(chip.japanese) ?? []).filter(sameReading);
       const entries =
         listed.length || !position
           ? listed
@@ -171,18 +182,34 @@ function lookedUpWords(
     });
 }
 
+// The dictionary form worth showing, if any. The tokenizer gives classical す
+// for すべき and すまい; learners look up する. A katakana word's hiragana
+// lemma (バラ: ばら) is the same word, not a dictionary form.
+function shownForm(chip: AnswerChip, dictionaryForm: string) {
+  const form =
+    dictionaryForm === "す" && chip.japanese.startsWith("す")
+      ? "する"
+      : dictionaryForm;
+  return form === chip.japanese || hiragana(chip.japanese) === form
+    ? undefined
+    : form;
+}
+
 // Words that OpenJLPT cannot explain; the gloss generator looks these up.
 export function glossTargets(sentence: Sentence) {
   const chips = answerChips(sentence);
   return lookedUpWords(sentence, chips, chipPositions(sentence, chips))
     .filter(({ entries, grammarNote }) => !entries.length && !grammarNote)
-    .map(({ chip, lexeme }) => ({
-      japanese: chip.japanese,
-      kana: chip.kana,
-      ...(lexeme && lexeme.lemma !== chip.japanese
-        ? { lemma: lexeme.lemma }
-        : {}),
-    }));
+    .map(({ chip, lexeme }) => {
+      const lemma = glossLemma(chip, lexeme);
+      return {
+        japanese: chip.japanese,
+        kana: chip.kana,
+        ...(lemma ? { lemma } : {}),
+        // Lets a kana verb (きた) be read as its one common verb (来る).
+        ...(lexeme?.verbClass ? { verbClass: lexeme.verbClass } : {}),
+      };
+    });
 }
 
 export function answerBreakdown(
@@ -192,7 +219,7 @@ export function answerBreakdown(
 ): AnswerBreakdownPart[] {
   return lookedUpWords(sentence, chips, positions).map(
     ({ chip, lexeme, dictionaryForm, entries: listed, grammarNote }) => {
-      const gloss = glosses.get(glossKey(chip));
+      const gloss = glosses.get(glossKey(chip, glossLemma(chip, lexeme)));
       const entries =
         listed.length || grammarNote || !gloss
           ? listed
@@ -221,6 +248,7 @@ export function answerBreakdown(
                 .concat(lexeme?.verbClass ? ["Verb"] : []),
             ),
           ];
+      const shown = shownForm(chip, dictionaryForm);
       const pronunciation =
         (grammarNote ? particlePronunciations.get(chip.japanese) : undefined) ??
         wordPronunciations.get(chip.japanese) ??
@@ -235,7 +263,7 @@ export function answerBreakdown(
           ? {}
           : { dictionaryMeanings: meanings }),
         wordTypes,
-        ...(dictionaryForm !== chip.japanese ? { dictionaryForm } : {}),
+        ...(shown ? { dictionaryForm: shown } : {}),
         ...(grammarNote
           ? { note: grammarNote }
           : lexeme &&

@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { lessons, type Word } from "./helpers/grammar";
+import { hasLesson, lessons, type Word } from "./helpers/grammar";
 
 test("purpose, movement, favors, decisions and advice use verified conjugations", () => {
   const cases: [string, string, string][] = [
@@ -211,6 +211,12 @@ test("fixed clause constructions distinguish routines, arrangements, expectation
     ["来たわけではない", "来る", "wake-de-wa-nai"],
     ["食べるだけでなく", "食べる", "dake-de-naku"],
     ["食べるんです", "食べる", "n-desu-no-desu"],
+    ["食べるんだ", "食べる", "n-desu-no-desu"],
+    ["食べるのだろう", "食べる", "n-desu-no-desu"],
+    ["食べるんでしょう", "食べる", "n-desu-no-desu"],
+    ["食べるのでしょう", "食べる", "n-desu-no-desu"],
+    ["食べるんじゃない", "食べる", "n-desu-no-desu"],
+    ["食べるんじゃなかった", "食べる", "n-desu-no-desu"],
     ["行くだろう", "行く", "darou"],
     ["来るに違いない", "来る", "ni-chigai-nai"],
     ["開いたとたんに", "開く", "ta-totan-ta-totan-ni"],
@@ -222,12 +228,429 @@ test("fixed clause constructions distinguish routines, arrangements, expectation
   expect(lessons([["学生", ["Noun"]], ["な"], ["んです"]])).toContainEqual(
     expect.objectContaining({ id: "n-desu-no-desu" }),
   );
+  expect(lessons([["学生", ["Noun"]], ["な"], ["んだ"]])).toContainEqual(
+    expect.objectContaining({ id: "n-desu-no-desu" }),
+  );
   expect(
     lessons([
       ["学生", ["Noun"]],
       ["の", ["Particle"]],
       ["です", ["Copula"]],
     ]).some((g) => g.id === "n-desu-no-desu"),
+  ).toBe(false);
+  // Possessive の + だ (私のだ, "it's mine") is not explanatory.
+  expect(
+    lessons([
+      ["私", ["Pronoun"]],
+      ["の", ["Particle"]],
+      ["だ", ["Copula"]],
+    ]).some((g) => g.id === "n-desu-no-desu"),
+  ).toBe(false);
+  // A bare の explains only at the end of a sentence.
+  expect(lessons([["行く", ["Verb"], "行く"], ["の"], ["？"]])).toContainEqual(
+    expect.objectContaining({ id: "n-desu-no-desu", japanese: "行くの" }),
+  );
+  // As with のですか, か keeps its own lesson.
+  const question = lessons([
+    ["行く", ["Verb"], "行く"],
+    ["の"],
+    ["か", ["Particle"]],
+    ["。"],
+  ]);
+  expect(question).toContainEqual(
+    expect.objectContaining({ id: "n-desu-no-desu", japanese: "行くの" }),
+  );
+  expect(question).toContainEqual(
+    expect.objectContaining({ id: "ka-question" }),
+  );
+  for (const tail of ["が", "か"])
+    expect(
+      lessons([
+        ["行く", ["Verb"], "行く"],
+        ["の"],
+        [tail, ["Particle"]],
+        ["好き", ["な-adjective"]],
+      ]).some((g) => g.id === "n-desu-no-desu"),
+      `行くの${tail}好き`,
+    ).toBe(false);
+  // A godan past tense (飲んだ) contains ん but is one word.
+  expect(
+    lessons([["飲んだ", ["Verb"], "飲む"]]).some(
+      (g) => g.id === "n-desu-no-desu",
+    ),
+  ).toBe(false);
+});
+
+test("ほとんど between the particle and ない / いない is still existence", () => {
+  const has = (words: Word[]) => hasLesson(words, "ga-aru-ga-iru");
+  for (const [particle, verb] of [
+    ["が", "ない"],
+    ["は", "ない"],
+    ["は", "いない"],
+  ])
+    expect(
+      has([
+        ["時間", ["Noun"]],
+        [particle!, ["Particle"]],
+        ["ほとんど", ["Adverb"]],
+        [verb!],
+      ]),
+      `時間${particle}ほとんど${verb}`,
+    ).toBe(true);
+  // ほとんど before a verb's negative is not existence.
+  expect(
+    has([
+      ["中国語", ["Noun"]],
+      ["を", ["Particle"]],
+      ["ほとんど", ["Adverb"]],
+      ["話せない", ["Verb"], "話す"],
+    ]),
+  ).toBe(false);
+});
+
+test("subject の + ない before a noun is negated existence", () => {
+  const pot = [["手", ["Noun"]], ["の", ["Particle"]], ["ない"]] as Parameters<
+    typeof lessons
+  >[0];
+  expect(hasLesson([...pot, ["ナベ", ["Noun"]]], "ga-aru-ga-iru")).toBe(true);
+  // Without a following noun, ない does not form a relative clause here.
+  expect(hasLesson([...pot, ["。"]], "ga-aru-ga-iru")).toBe(false);
+  expect(
+    hasLesson(
+      [
+        ["見たことのない", ["Verb"], "見る"],
+        ["景色", ["Noun"]],
+      ],
+      "ta-koto-ga-aru",
+    ),
+  ).toBe(true);
+});
+
+test("split い-adjective negatives (よく + ない) are recognized", () => {
+  const has = (words: Word[]) => hasLesson(words, "ku-nai-katta-ku-nakatta");
+  for (const ending of ["ない", "なかった", "ありません"])
+    expect(
+      has([["よく", ["い-adjective"], "よい"], [ending]]),
+      "よく" + ending,
+    ).toBe(true);
+  // No word type, but its dictionary form is the same stem.
+  expect(has([["芳しく", [], "芳しい"], ["ない"]])).toBe(true);
+  // Verb たく + ない (not want to) and the adverb まったく are not adjectives.
+  expect(has([["論じたく", ["Verb"], "論ずる"], ["ない"]])).toBe(false);
+  expect(has([["まったく", ["Adverb"]], ["ない"]])).toBe(false);
+});
+
+test("demonstrative + ような / ように is likeness, even at the start", () => {
+  for (const [first, ending] of [
+    ["この", "な"],
+    ["その", "な"],
+    ["どの", "に"],
+  ])
+    expect(
+      lessons([[first!], ["よう"], [ending!], ["問題", ["Noun"]]]),
+    ).toContainEqual(
+      expect.objectContaining({
+        id: "you-na-you-ni-like",
+        japanese: first + "よう" + ending,
+      }),
+    );
+  // その + ようだ (a mis-split うそのようだ) is not this pattern.
+  expect(
+    lessons([["その"], ["よう"], ["だ", ["Copula"]]]).some(
+      (g) => g.id === "you-na-you-ni-like",
+    ),
+  ).toBe(false);
+});
+
+test("negated existence takes は and も, but not after こと or before a noun", () => {
+  for (const [word, types, particle] of [
+    ["時間", ["Noun"], "は"],
+    ["時間", ["Noun"], "も"],
+    ["必要", ["な-adjective"], "は"],
+  ] as const)
+    expect(
+      hasLesson(
+        [[word, [...types]], [particle, ["Particle"]], ["ない"]],
+        "ga-aru-ga-iru",
+      ),
+      word + particle + "ない",
+    ).toBe(true);
+  // 行くことはない is "no need to go"; 見たことはない is experience.
+  expect(
+    hasLesson(
+      [
+        ["行く", ["Verb"], "行く"],
+        ["こと", ["Noun"]],
+        ["は", ["Particle"]],
+        ["ない"],
+      ],
+      "ga-aru-ga-iru",
+    ),
+  ).toBe(false);
+  expect(
+    hasLesson([["見たことはない", ["Verb"], "見る"]], "ta-koto-ga-aru"),
+  ).toBe(true);
+  // ない modifying a noun after a topic は is not the predicate.
+  expect(
+    hasLesson(
+      [["息子", ["Noun"]], ["は", ["Particle"]], ["ない"], ["もの", ["Noun"]]],
+      "ga-aru-ga-iru",
+    ),
+  ).toBe(false);
+  expect(hasLesson([["来るはずはない", ["Verb"], "来る"]], "hazu-ga-nai")).toBe(
+    true,
+  );
+});
+
+test("では / じゃ also take なくて and ないでしょう", () => {
+  for (const [first, ending] of [
+    ["じゃ", "なくて"],
+    ["では", "ないでしょう"],
+  ])
+    expect(
+      lessons([["仕事", ["Noun"]], [first!, ["Particle"]], [ending!]]),
+    ).toContainEqual(
+      expect.objectContaining({
+        id: "de-wa-arimasen-ja-nai",
+        japanese: first! + ending,
+      }),
+    );
+});
+
+test("split すべき, ではなく, かい / だい, 同じくらい and でしかない", () => {
+  // 利用 + すべきだ: the tokenizer's lemma is する, and だ is not past.
+  const should = lessons([
+    ["利用", ["Noun"]],
+    ["すべきだ", [], "する"],
+  ]);
+  expect(should).toContainEqual(
+    expect.objectContaining({
+      id: "beki-da-beki-de-wa-nai",
+      japanese: "すべきだ",
+    }),
+  );
+  expect(should.some((g) => g.id === "ta")).toBe(false);
+  expect(
+    hasLesson(
+      [
+        ["人造", ["Noun"]],
+        ["では", ["Particle"]],
+        ["なく"],
+        ["本物", ["Noun"]],
+      ],
+      "de-wa-arimasen-ja-nai",
+    ),
+  ).toBe(true);
+  for (const [first, types] of [
+    ["か", ["Particle"]],
+    ["だ", ["Copula"]],
+  ] as const)
+    expect(
+      lessons([["本気", ["Noun"]], [first, [...types]], ["い"], ["。"]]),
+    ).toContainEqual(
+      expect.objectContaining({ id: "ka-question", japanese: first + "い" }),
+    );
+  expect(
+    hasLesson(
+      [["同じ", ["な-adjective"]], ["くらい"], ["だ", ["Copula"]]],
+      "kurai-gurai",
+    ),
+  ).toBe(true);
+  expect(
+    hasLesson(
+      [
+        ["未成年", ["Noun"]],
+        ["で", ["Particle"]],
+        ["しか", ["Particle"]],
+        ["ない"],
+      ],
+      "shika-nai",
+    ),
+  ).toBe(true);
+});
+
+test("written でない negates the copula, and でなければならない is must-be", () => {
+  expect(
+    hasLesson(
+      [["自由", ["な-adjective"]], ["で", ["Particle"]], ["ない"]],
+      "de-wa-arimasen-ja-nai",
+    ),
+  ).toBe(true);
+  expect(
+    hasLesson(
+      [
+        ["公平", ["な-adjective"]],
+        ["で", ["Particle"]],
+        ["なければ"],
+        ["ならない", ["Verb"], "なる"],
+      ],
+      "nakereba-naranai-nakute-wa-ikenai",
+    ),
+  ).toBe(true);
+  // で (on) + 泣いて written ないて is not the copula.
+  expect(
+    hasLesson(
+      [
+        ["上", ["Noun"]],
+        ["で", ["Particle"]],
+        ["ないて"],
+        ["いた", ["Verb"], "いる"],
+      ],
+      "de-wa-arimasen-ja-nai",
+    ),
+  ).toBe(false);
+  // 出ない is the verb 出る.
+  expect(
+    hasLesson(
+      [
+        ["乳", ["Noun"]],
+        ["が", ["Particle"]],
+        ["出ない", ["Verb"], "出る"],
+      ],
+      "de-wa-arimasen-ja-nai",
+    ),
+  ).toBe(false);
+});
+
+test("formal よう without に and はずない without が", () => {
+  expect(
+    hasLesson(
+      [
+        ["入れない", ["Verb"], "入れる"],
+        ["よう"],
+        ["窓", ["Noun"]],
+        ["を", ["Particle"]],
+        ["閉めた", ["Verb"], "閉める"],
+      ],
+      "you-ni",
+    ),
+  ).toBe(true);
+  expect(
+    hasLesson(
+      [["入る", ["Verb"], "入る"], ["よう"], ["頼んだ", ["Verb"], "頼む"]],
+      "you-ni-iu-you-ni-tanomu",
+    ),
+  ).toBe(true);
+  // ようだ is appearance, not a bare purpose よう.
+  expect(
+    hasLesson(
+      [
+        ["酔って", ["Verb"], "酔う"],
+        ["いる", ["Verb"], "いる"],
+        ["よう"],
+        ["だ", ["Copula"]],
+      ],
+      "you-ni",
+    ),
+  ).toBe(false);
+  expect(hasLesson([["来るはずない", ["Verb"], "来る"]], "hazu-ga-nai")).toBe(
+    true,
+  );
+});
+
+test("verb + ように follows its predicate: request, effort or likeness", () => {
+  const you = [["よう"], ["に", ["Particle"]]] as const;
+  // Reported requests, including split する verbs (命令 + した).
+  expect(
+    hasLesson(
+      [["する", ["Verb"], "する"], ...you, ["頼んだ", ["Verb"], "頼む"]],
+      "you-ni-iu-you-ni-tanomu",
+    ),
+  ).toBe(true);
+  expect(
+    hasLesson(
+      [
+        ["集合", ["Noun"]],
+        ["する", ["Verb"], "する"],
+        ...you,
+        ["命令", ["Noun"]],
+        ["した", ["Verb"], "する"],
+      ],
+      "you-ni-iu-you-ni-tanomu",
+    ),
+  ).toBe(true);
+  // A past verb before ように is "as", not a request.
+  expect(
+    hasLesson(
+      [["言った", ["Verb"], "言う"], ...you, ["頼んだ", ["Verb"], "頼む"]],
+      "you-ni-iu-you-ni-tanomu",
+    ),
+  ).toBe(false);
+  // Effort (気 + を + つける) and the goal of any action after an
+  // uncontrollable verb, across a comma.
+  expect(
+    hasLesson(
+      [
+        ["転ばない", ["Verb"], "転ぶ"],
+        ...you,
+        ["気", ["Noun"]],
+        ["を", ["Particle"]],
+        ["つけ", ["Verb"], "つける"],
+      ],
+      "you-ni",
+    ),
+  ).toBe(true);
+  expect(
+    hasLesson(
+      [
+        ["通れる", ["Verb"], "通れる"],
+        ...you,
+        ["、"],
+        ["退いた", ["Verb"], "退く"],
+      ],
+      "you-ni",
+    ),
+  ).toBe(true);
+  expect(
+    hasLesson(
+      [
+        ["疲れて", ["Verb"], "疲れる"],
+        ["いる", ["Verb"], "いる"],
+        ...you,
+        ["見える", ["Verb"], "見える"],
+      ],
+      "you-na-you-ni-like",
+    ),
+  ).toBe(true);
+});
+
+test("split copula negatives (では + ない) are recognized", () => {
+  for (const [first, second, japanese] of [
+    ["では", "ない", "ではない"],
+    ["じゃ", "ない", "じゃない"],
+    ["では", "ありません", "ではありません"],
+    ["では", "なかった", "ではなかった"],
+  ])
+    expect(
+      lessons([["重要", ["な-adjective"]], [first!, ["Particle"]], [second!]]),
+    ).toContainEqual(
+      expect.objectContaining({ id: "de-wa-arimasen-ja-nai", japanese }),
+    );
+  // でもない is the same negative with も (善でも悪でもない: neither ... nor).
+  expect(
+    lessons([["善", ["Noun"]], ["でも", ["Particle"]], ["ない"]]),
+  ).toContainEqual(
+    expect.objectContaining({
+      id: "de-wa-arimasen-ja-nai",
+      japanese: "でもない",
+    }),
+  );
+  // After どんな, でも is "any": どんなベッドでもないよりはよい.
+  expect(
+    lessons([
+      ["どんな"],
+      ["ベッド", ["Noun"]],
+      ["でも", ["Particle"]],
+      ["ない"],
+    ]).some((g) => g.id === "de-wa-arimasen-ja-nai"),
+  ).toBe(false);
+  // では after a verb is not a copula (行っては).
+  expect(
+    lessons([
+      ["行って", ["Verb"], "行く"],
+      ["は", ["Particle"]],
+      ["ない"],
+    ]).some((g) => g.id === "de-wa-arimasen-ja-nai"),
   ).toBe(false);
 });
 

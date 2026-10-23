@@ -41,6 +41,32 @@ test("kana pronouns retain contextual meanings and supplied readings in breakdow
   });
 });
 
+test("kana words listed under their kana spelling keep meanings when the lemma is kanji", () => {
+  // The lemma is 貴方, but OpenJLPT lists the word as あなた.
+  const bag = exerciseById.get("ca212b105c63187766702690")!;
+  const pronoun = practiceDetails(bag).answerBreakdown.find(
+    (part) => part.japanese === "あなた",
+  );
+  expect(pronoun).toMatchObject({
+    dictionaryForm: "貴方",
+    kana: "あなた",
+    wordTypes: ["Pronoun"],
+  });
+  expect(pronoun?.dictionaryMeanings).toContain("you");
+});
+
+test("dictionary forms show する for すべき and hide katakana words' hiragana lemmas", () => {
+  const should = practiceDetails(
+    exerciseById.get("27707eb1d276cc101d712014")!,
+  ).answerBreakdown.find((part) => part.japanese === "すべきだ");
+  expect(should?.dictionaryForm).toBe("する");
+  const rose = practiceDetails(
+    exerciseById.get("0b26934519393bd19b6b3785")!,
+  ).answerBreakdown.find((part) => part.japanese === "バラ");
+  expect(rose).toBeDefined();
+  expect(rose?.dictionaryForm).toBeUndefined();
+});
+
 test("journal breakdowns survive storage with sentence order and reject malformed saved details", () => {
   const parts = practiceDetails(water).answerBreakdown;
   const saved = JSON.parse(JSON.stringify(parts));

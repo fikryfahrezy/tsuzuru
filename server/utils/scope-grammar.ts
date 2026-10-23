@@ -30,7 +30,11 @@ export function scopeGrammar(
       text.startsWith("しか", entry.start) &&
       ends.has(entry.start + 2) &&
       previous?.end === entry.start &&
-      nominal(previous)
+      (nominal(previous) ||
+        // 未成年でしかない, 理屈の上でしか知らない.
+        (previous.japanese === "で" &&
+          base[index - 2]?.end === previous.start &&
+          nominal(base[index - 2])))
     ) {
       id = "shika-nai";
       markerEnd = entry.start + 2;
@@ -65,7 +69,8 @@ export function scopeGrammar(
         (candidate.wordTypes.some((type) =>
           ["Verb", "い-adjective", "Copula"].includes(type),
         ) ||
-          /^(?:ない|なかった|ないです|なかったです)$/u.test(
+          // ２つしかなく、: the continuative negative.
+          /^(?:ない|なかった|ないです|なかったです|なく)$/u.test(
             candidate.japanese,
           ));
       if (!isNegative && !finite(candidate)) continue;

@@ -67,6 +67,17 @@ const existence = [
   "いなかった",
   "いなかったです",
 ];
+// Negated existence after は / も: ある may be adnominal 或る (彼はある日)
+// and はいる may be 入る, so only ない / ありません qualify.
+const absent = existence.filter((ending) => /^(?:な|ありません)/u.test(ending));
+// "Hardly any" (時間がほとんどない, 人はほとんどいない). With ほとんど between,
+// はいる cannot be 入る, so いない / いません qualify too.
+const hardlyAbsent = (particle: string) =>
+  ["ほとんど", "殆ど"].flatMap((adverb) =>
+    existence
+      .filter((ending) => /^(?:な|いな|ありません|いません)/u.test(ending))
+      .map((ending) => particle + adverb + ending),
+  );
 
 export function predicateGrammar(
   sentence: Sentence,
@@ -113,11 +124,57 @@ export function predicateGrammar(
           : [""];
       longest(
         entry,
-        counters.flatMap((counter) =>
-          existence.map((ending) => "が" + counter + ending),
-        ),
+        [
+          ...counters.flatMap((counter) =>
+            existence.map((ending) => "が" + counter + ending),
+          ),
+          ...hardlyAbsent("が"),
+        ],
         "ga-aru-ga-iru",
       );
+    } else if (
+      ["は", "も"].includes(entry.japanese) &&
+      entry.wordTypes.includes("Particle") &&
+      // 必要 is often tagged only as a な-adjective; an adjective's own
+      // negative takes では, so は / も + ない marks its noun use.
+      (noun(previous) || previous.wordTypes.includes("な-adjective")) &&
+      // 何も / 誰も ない is its own lesson; ことはない is experience
+      // (見たことはない) or "no need" (行くことはない), not existence.
+      !["何", "なに", "なん", "誰", "だれ", "こと", "事"].includes(
+        previous.japanese,
+      )
+    ) {
+      // Negated existence (必要はない, 時間もない).
+      const after = base[index + 2];
+      // After a topic は, an ない that modifies a noun is not the predicate
+      // (息子はないものねだり); 特徴もない町 still lacks features.
+      if (
+        !(entry.japanese === "は" && after?.start === next?.end && noun(after))
+      )
+        longest(
+          entry,
+          [
+            ...absent.map((ending) => entry.japanese + ending),
+            ...hardlyAbsent(entry.japanese),
+          ],
+          "ga-aru-ga-iru",
+        );
+    } else if (
+      entry.japanese === "の" &&
+      entry.wordTypes.includes("Particle") &&
+      noun(previous) &&
+      !["こと", "事", "何", "なに", "なん"].includes(previous.japanese) &&
+      next?.start === entry.end &&
+      ["ない", "なかった"].includes(next.japanese)
+    ) {
+      // In a relative clause の marks the subject: 手のないナベ, 家のない人々.
+      // A noun (or ような) must follow, so ない modifies it.
+      const after = base[index + 2];
+      if (
+        after?.start === next.end &&
+        (noun(after) || after.japanese === "よう")
+      )
+        longest(entry, ["のない", "のなかった"], "ga-aru-ga-iru");
     } else if (
       entry.japanese === "を" &&
       entry.wordTypes.includes("Particle") &&

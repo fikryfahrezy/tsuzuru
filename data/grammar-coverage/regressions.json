@@ -511,6 +511,419 @@
     "note": "Explanatory predicate, not nominalization."
   },
   {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "b1ba6b9b40833139351b05cf",
+    "japanese": "じゃなくて",
+    "expect": "present",
+    "note": "Not A but B, with the て form."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "cc7e92f889698965af349e69",
+    "japanese": "ではないでしょう",
+    "expect": "present",
+    "note": "The tokenizer keeps ないでしょう as one word."
+  },
+  {
+    "lessonId": "beki-da-beki-de-wa-nai",
+    "sentenceId": "27707eb1d276cc101d712014",
+    "japanese": "すべきだ",
+    "expect": "present",
+    "note": "する noun + すべきだ, split by the tokenizer."
+  },
+  {
+    "lessonId": "ta",
+    "sentenceId": "9cf5e1af5a1cfa9784133edf",
+    "japanese": "するべきだ",
+    "expect": "absent",
+    "note": "するべきだ ends in だ but is not a past tense."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "449e3217b0052efe14efcd8b",
+    "japanese": "ではなく",
+    "expect": "present",
+    "note": "Not A but B."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "e6808b2f0f63f11d2338fec3",
+    "japanese": "ではなく",
+    "expect": "absent",
+    "note": "だけではなく is not only, not a copula negative."
+  },
+  {
+    "lessonId": "ka-question",
+    "sentenceId": "9bdc1e09d5ab5e1381be4cca",
+    "japanese": "かい",
+    "expect": "present",
+    "note": "Casual question かい after a noun."
+  },
+  {
+    "lessonId": "ka-question",
+    "sentenceId": "0d12f6814b4bda084985a993",
+    "japanese": "だい",
+    "expect": "present",
+    "note": "Casual question だい."
+  },
+  {
+    "lessonId": "kurai-gurai",
+    "sentenceId": "ecc7a1b3d05a762754ee4bf2",
+    "japanese": "同じくらい",
+    "expect": "present",
+    "note": "About the same."
+  },
+  {
+    "lessonId": "shika-nai",
+    "sentenceId": "651eb1f2cc8b2099eee0c287",
+    "japanese": "しかない",
+    "expect": "present",
+    "note": "でしかない: only."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "26ca32bdbe7d53281eb50e6b",
+    "japanese": "でない",
+    "expect": "present",
+    "note": "Written copula negative でない."
+  },
+  {
+    "lessonId": "nakereba-naranai-nakute-wa-ikenai",
+    "sentenceId": "0319a850bc9266132158d86f",
+    "japanese": "でなければならない",
+    "expect": "present",
+    "note": "Must be: でなければならない after a noun."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "62ebb15c0a88bf1784affb1e",
+    "japanese": "でない",
+    "expect": "absent",
+    "note": "で (on) + ないて (crying), not a copula negative."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "32ec6651870e4030bb809b63",
+    "japanese": "出ない",
+    "expect": "absent",
+    "note": "出ない is the verb 出る."
+  },
+  {
+    "lessonId": "hazu-ga-nai",
+    "sentenceId": "253ec5e0c385b25d63f5aad8",
+    "japanese": "はずない",
+    "expect": "present",
+    "note": "はずない without が."
+  },
+  {
+    "lessonId": "you-ni",
+    "sentenceId": "d63fe07e00fcf781c98594c7",
+    "japanese": "よう",
+    "expect": "present",
+    "note": "Purpose よう without に."
+  },
+  {
+    "lessonId": "you-ni-iu-you-ni-tanomu",
+    "sentenceId": "fd3b906856f8db324b85fdc6",
+    "japanese": "よう",
+    "expect": "present",
+    "note": "Request よう without に."
+  },
+  {
+    "lessonId": "you-ni",
+    "sentenceId": "03899593b745a4b822ec8bb1",
+    "japanese": "ようだ",
+    "expect": "absent",
+    "note": "ようだ is appearance, not purpose."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "d2088ef7b1d49c7d4aba5d27",
+    "japanese": "がほとんどない",
+    "expect": "present",
+    "note": "Hardly any: ほとんど between が and ない."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "0f4a5fcbcbc9aad9d24b828c",
+    "japanese": "はほとんどいない",
+    "expect": "present",
+    "note": "Hardly anyone: ほとんど between は and いない."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "59b9d0bbe6e66b2d900b05f1",
+    "japanese": "をほとんど話せない",
+    "expect": "absent",
+    "note": "ほとんど with a verb negative is not existence."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "0931a72bbcc92b27a6d01bde",
+    "japanese": "のない",
+    "expect": "present",
+    "note": "Subject の in a relative clause: a pot without a handle."
+  },
+  {
+    "lessonId": "ta-koto-ga-aru",
+    "sentenceId": "69431eb4da5187f45458c047",
+    "japanese": "見たことのない",
+    "expect": "present",
+    "note": "Experience with subject の before a noun."
+  },
+  {
+    "lessonId": "ku-nai-katta-ku-nakatta",
+    "sentenceId": "92b1e978138cccc218948efe",
+    "japanese": "よくない",
+    "expect": "present",
+    "note": "い-adjective negative split into よく + ない."
+  },
+  {
+    "lessonId": "ku-nai-katta-ku-nakatta",
+    "sentenceId": "08aa9ff51f56c9ba33f85d69",
+    "japanese": "遠くありません",
+    "expect": "present",
+    "note": "Polite い-adjective negative split into 遠く + ありません."
+  },
+  {
+    "lessonId": "ku-nai-katta-ku-nakatta",
+    "sentenceId": "5c48cfa2261ae174772bcac1",
+    "japanese": "芳しくない",
+    "expect": "present",
+    "note": "An い-adjective without a word type, recognized by its dictionary form."
+  },
+  {
+    "lessonId": "ku-nai-katta-ku-nakatta",
+    "sentenceId": "11c1722de86117bb0045c58c",
+    "japanese": "論じたくない",
+    "expect": "absent",
+    "note": "Verb たく + ない is not wanting to, not an adjective negative."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "40061f61d2de6c45ac712ec5",
+    "japanese": "んでしょう",
+    "expect": "present",
+    "note": "Exclamatory explanatory なんでしょう."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "acb3da7e01e1ef54af25f9d8",
+    "japanese": "あるのでしょう",
+    "expect": "present",
+    "note": "Polite explanatory question."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "5916c8667afa3d5f57e35a8d",
+    "japanese": "んじゃない",
+    "expect": "present",
+    "note": "Suggestion: isn't it good to …?"
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "0619338b6b82ed2be95101a5",
+    "japanese": "するんじゃなかった",
+    "expect": "present",
+    "note": "Regret: shouldn't have done."
+  },
+  {
+    "lessonId": "you-na-you-ni-like",
+    "sentenceId": "8318c733c147076a809179e6",
+    "japanese": "このような",
+    "expect": "present",
+    "note": "Demonstrative + ような at the start of a sentence."
+  },
+  {
+    "lessonId": "you-na-you-ni-like",
+    "sentenceId": "ddd15865301a48fbfe92d6c4",
+    "japanese": "どのように",
+    "expect": "present",
+    "note": "どのように: in what way."
+  },
+  {
+    "lessonId": "you-na-you-ni-like",
+    "sentenceId": "e5f46dae06b837924c16c970",
+    "japanese": "そのようだ",
+    "expect": "absent",
+    "note": "うそ + のようだ, mis-split as う + その."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "0743e6d774b861185596c55c",
+    "japanese": "はない",
+    "expect": "present",
+    "note": "Negated existence after 必要, tagged as a な-adjective."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "0125dde88acf9cc26e33c2d7",
+    "japanese": "はない",
+    "expect": "present",
+    "note": "Negated existence with は."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "4c776731a0b33bfe4c3a13f0",
+    "japanese": "もない",
+    "expect": "present",
+    "note": "Negated existence with も."
+  },
+  {
+    "lessonId": "hazu-ga-nai",
+    "sentenceId": "011cba3f3e750568974ecfac",
+    "japanese": "はずはない",
+    "expect": "present",
+    "note": "はずはない variant of はずがない."
+  },
+  {
+    "lessonId": "ta-koto-ga-aru",
+    "sentenceId": "263c58123c61c3cd9212af8d",
+    "japanese": "目覚めたことはない",
+    "expect": "present",
+    "note": "Experience with ことはない."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "2d8bc32ce3adb9cc0792c9d2",
+    "japanese": "はない",
+    "expect": "absent",
+    "note": "ない modifies もの; 息子は is the topic."
+  },
+  {
+    "lessonId": "ga-aru-ga-iru",
+    "sentenceId": "af67668c798b26c6ad7cf529",
+    "japanese": "はなかった",
+    "expect": "absent",
+    "note": "ことはなかった is not existence."
+  },
+  {
+    "lessonId": "you-ni-iu-you-ni-tanomu",
+    "sentenceId": "6331991c4defab2a28165304",
+    "japanese": "ように",
+    "expect": "present",
+    "note": "Reported request with 頼む."
+  },
+  {
+    "lessonId": "you-ni-iu-you-ni-tanomu",
+    "sentenceId": "6fdc6981959b893f05c8a7e2",
+    "japanese": "ように",
+    "expect": "present",
+    "note": "Reported command with split 命令 + した."
+  },
+  {
+    "lessonId": "you-ni",
+    "sentenceId": "92aebda111a14838abdab256",
+    "japanese": "ように",
+    "expect": "present",
+    "note": "Effort with 気をつける."
+  },
+  {
+    "lessonId": "you-ni",
+    "sentenceId": "30672a0051e27415bc75afd2",
+    "japanese": "ように",
+    "expect": "present",
+    "note": "Goal of an action after a potential verb."
+  },
+  {
+    "lessonId": "you-na-you-ni-like",
+    "sentenceId": "a373c2b6350f32cc99d5a667",
+    "japanese": "ように",
+    "expect": "present",
+    "note": "Appearance: seems as if."
+  },
+  {
+    "lessonId": "you-ni",
+    "sentenceId": "36f4d6b2bdbb98552bc0e967",
+    "japanese": "ように",
+    "expect": "absent",
+    "note": "Just as: a comparison, not a purpose."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "011277728579d980704b526a",
+    "japanese": "ではない",
+    "expect": "present",
+    "note": "Copula negative split by the tokenizer into では + ない."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "9e02e887f7d608baeaf37085",
+    "japanese": "じゃない",
+    "expect": "present",
+    "note": "Casual copula negative after a な-adjective."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "08794cda6567466acad9aff3",
+    "japanese": "でもない",
+    "expect": "present",
+    "note": "Neither ... nor: the copula negative with も in place of は."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "e41f8286e694f8f0a1df3c5a",
+    "japanese": "でもない",
+    "expect": "present",
+    "note": "そうでもない: not really so."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ja-nai",
+    "sentenceId": "6ade39086631af46ee943365",
+    "japanese": "でもない",
+    "expect": "absent",
+    "note": "どんな ... でも is any; ない here is nothing."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "033f573b0667c63fea1bb0d6",
+    "japanese": "いるんだ",
+    "expect": "present",
+    "note": "Plain explanatory predicate."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "1edbc08ca204e69b9a685345",
+    "japanese": "のだ",
+    "expect": "present",
+    "note": "Plain explanatory predicate after a な-adjective."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "117317c4d206896e3422ee15",
+    "japanese": "やんだ",
+    "expect": "absent",
+    "note": "Godan past tense, not explanatory ん."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "0ce2ea51bb96be2f7a988f8c",
+    "japanese": "いるの",
+    "expect": "present",
+    "note": "Sentence-final explanatory question の."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "023f242b6284104afd8878ce",
+    "japanese": "いたの",
+    "expect": "present",
+    "note": "Sentence-final のか; か keeps its question lesson."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "02547378c450720dabf50c23",
+    "japanese": "するの",
+    "expect": "absent",
+    "note": "Nominalizer の before が."
+  },
+  {
+    "lessonId": "n-desu-no-desu",
+    "sentenceId": "0625abb78e52aedb2a1f50e2",
+    "japanese": "したの",
+    "expect": "absent",
+    "note": "Embedded question のか inside the sentence."
+  },
+  {
     "lessonId": "to-shite",
     "sentenceId": "03ccdd9a07436969d3ea31f1",
     "japanese": "終わろうとしている",

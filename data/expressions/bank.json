@@ -41,6 +41,299 @@
       "wordTypes": ["Expression"]
     },
     {
+      "dictionaryForm": "どのくらい",
+      "reading": "どのくらい",
+      "forms": ["どのくらい", "どの位"],
+      "meanings": ["how much", "how long", "how many", "to what extent"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "どのぐらい",
+      "reading": "どのぐらい",
+      "forms": ["どのぐらい"],
+      "meanings": ["how much", "how long", "how many", "to what extent"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "どれくらい",
+      "reading": "どれくらい",
+      "forms": ["どれくらい", "どれ位"],
+      "meanings": ["how much", "how long", "how many", "to what extent"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "どれぐらい",
+      "reading": "どれぐらい",
+      "forms": ["どれぐらい"],
+      "meanings": ["how much", "how long", "how many", "to what extent"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "申し訳ない",
+      "reading": "もうしわけない",
+      "forms": ["申し訳ない", "申しわけない"],
+      "meanings": ["I'm sorry", "I feel terrible (about it)", "inexcusable"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "申し訳ない",
+      "reading": "もうしわけ",
+      "forms": ["申し訳ありません", "申し訳ございません"],
+      "meanings": ["I'm very sorry (polite)", "I apologize"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "もったいない",
+      "reading": "もったいない",
+      "forms": ["もったいない", "勿体ない", "勿体無い"],
+      "meanings": ["wasteful", "what a waste", "too good (for someone)"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "必ずしも",
+      "reading": "かならずしも",
+      "forms": ["必ずしも", "かならずしも"],
+      "meanings": ["(with a negative) not necessarily", "not always"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "間もなく",
+      "reading": "まもなく",
+      "forms": ["間もなく", "まもなく"],
+      "meanings": ["soon", "before long", "shortly"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "少なくとも",
+      "reading": "すくなくとも",
+      "forms": ["少なくとも", "すくなくとも"],
+      "meanings": ["at least"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "なんて",
+      "reading": "なんて",
+      "forms": ["なんて", "何て"],
+      "meanings": ["what a …!", "how …!"],
+      "wordTypes": ["Expression", "Adverb"],
+      "before": ["い-adjective", "な-adjective"],
+      "notAfter": ["Verb", "い-adjective", "Auxiliary verb", "Copula"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "嫌",
+      "reading": "いや",
+      "forms": ["いやだ", "いやです", "いやな"],
+      "meanings": ["unpleasant", "disagreeable", "(I) don't want to"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "いや",
+      "reading": "いや",
+      "forms": ["いや"],
+      "meanings": ["no", "well, actually (correcting oneself)"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "まし",
+      "reading": "まし",
+      "forms": ["まし"],
+      "meanings": ["better (than)", "preferable", "less bad"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "様々",
+      "reading": "さまざま",
+      "forms": ["さまざま"],
+      "meanings": ["various", "diverse", "all sorts of"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "一つ一つ",
+      "reading": "ひとつひとつ",
+      "forms": ["ひとつひとつ", "一つ一つ"],
+      "meanings": ["one by one", "each one"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "一つ",
+      "reading": "ひとつ",
+      "forms": ["ひとつ"],
+      "meanings": ["one", "one (thing)"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "今や",
+      "reading": "いまや",
+      "forms": ["いまや", "今や"],
+      "meanings": ["now (at last)", "by now"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "今",
+      "reading": "いま",
+      "forms": ["いま"],
+      "meanings": ["now", "at the moment"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "どのような",
+      "reading": "どのような",
+      "forms": ["どのような"],
+      "meanings": ["what kind of", "what sort of"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "やむを得ない",
+      "reading": "やむをえ",
+      "forms": ["やむをえ", "やむを得", "止むを得"],
+      "meanings": ["unavoidable", "(do) reluctantly, having no choice"],
+      "wordTypes": ["Expression"]
+    },
+    {
+      "dictionaryForm": "なしで",
+      "reading": "なし",
+      "forms": ["なしでは", "なしで"],
+      "meanings": ["without"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "おい",
+      "reading": "おい",
+      "forms": ["おい"],
+      "meanings": ["hey!", "oi!"],
+      "wordTypes": ["Expression"],
+      "notAfter": ["Particle"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "ほら",
+      "reading": "ほら",
+      "forms": ["ほら"],
+      "meanings": ["look!", "there!", "see?"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "よし",
+      "reading": "よし",
+      "forms": ["よし"],
+      "meanings": ["all right!", "OK!", "good (literary)"],
+      "wordTypes": ["Expression"],
+      "notAfter": ["Particle", "Verb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "さっと",
+      "reading": "さっと",
+      "forms": ["さっと"],
+      "meanings": ["quickly", "swiftly", "briefly (a glance)"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "ぐっと",
+      "reading": "ぐっと",
+      "forms": ["ぐっと"],
+      "meanings": ["firmly (holding back)", "much more", "sharply"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "ひょいと",
+      "reading": "ひょいと",
+      "forms": ["ひょいと"],
+      "meanings": ["lightly", "nimbly", "suddenly"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "ぐるっと",
+      "reading": "ぐるっと",
+      "forms": ["ぐるっと"],
+      "meanings": ["all the way around", "in a circle"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "滅多に",
+      "reading": "めったに",
+      "forms": ["めったに"],
+      "meanings": ["(with a negative) rarely", "seldom"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "くれぐれも",
+      "reading": "くれぐれも",
+      "forms": ["くれぐれも", "呉々も"],
+      "meanings": ["(please) be sure to", "sincerely"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "一体",
+      "reading": "いったい",
+      "forms": ["いったい"],
+      "meanings": ["(what, why …) on earth", "exactly"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "油断なく",
+      "reading": "ゆだんなく",
+      "forms": ["油断なく"],
+      "meanings": ["watchfully", "carefully"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "何気なく",
+      "reading": "なにげなく",
+      "forms": ["何気なく", "なにげなく"],
+      "meanings": ["casually", "without thinking"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "皆さん",
+      "reading": "みなさん",
+      "forms": ["みなさん"],
+      "meanings": ["everyone", "everybody"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "我が",
+      "reading": "わが",
+      "forms": ["わが"],
+      "meanings": ["our", "my"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "且つ",
+      "reading": "かつ",
+      "forms": ["かつ"],
+      "meanings": ["and also", "moreover"],
+      "wordTypes": ["Expression"],
+      "notAfter": ["Particle", "Noun", "Pronoun"],
+      "wholeWords": true
+    },
+    {
       "dictionaryForm": "たまらない",
       "reading": "たまらない",
       "forms": ["たまらない", "堪らない"],

@@ -1,6 +1,19 @@
 import type { VerbForms } from "../verb-forms";
 import { predicateConstructions, appearanceForms } from "./construction";
 
+// Shared with the split する noun + すべき rule in structural-grammar.ts.
+export const bekiEndings = [
+  "べき",
+  "べきだ",
+  "べきです",
+  "べきだった",
+  "べきでした",
+  "べきである",
+  "べきでしょう",
+  "べきではない",
+  "べきではありません",
+];
+
 export type ConstructionForm =
   | keyof VerbForms
   | "dictionary"
@@ -68,20 +81,7 @@ export const constructions: Construction[] = [
     endings: ["んばかり", "んばかりだ", "んばかりだった", "んばかりの"],
     id: "n-bakari",
   },
-  {
-    form: "beki",
-    endings: [
-      "べき",
-      "べきだ",
-      "べきです",
-      "べきだった",
-      "べきでした",
-      "べきである",
-      "べきではない",
-      "べきではありません",
-    ],
-    id: "beki-da-beki-de-wa-nai",
-  },
+  { form: "beki", endings: bekiEndings, id: "beki-da-beki-de-wa-nai" },
   {
     form: "dictionary",
     endings: ["までもない", "までもありません"],
@@ -236,6 +236,8 @@ export const constructions: Construction[] = [
       "ようにしました",
       "ようにしている",
       "ようにしています",
+      "ようにしなさい",
+      "ようにしてください",
     ],
     id: "you-ni-suru",
   },
@@ -257,6 +259,8 @@ export const constructions: Construction[] = [
       "ようになった",
       "ようになりました",
       "ようになっている",
+      "ようになるだろう",
+      "ようになるでしょう",
     ],
     id: "you-ni-naru",
   },
@@ -656,7 +660,11 @@ export const constructions: Construction[] = [
         "ありません",
         "なかった",
         "ありませんでした",
-      ].map((ending) => `${word}が${ending}`),
+      ].flatMap((ending) =>
+        // 見たことはない / 見たこともない / 見たことのない景色 are the same
+        // experience.
+        ["が", "は", "も", "の"].map((particle) => word + particle + ending),
+      ),
     ),
     id: "ta-koto-ga-aru",
   },

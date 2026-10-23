@@ -18,13 +18,13 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | ----- | ------------------- | --------------- | ----------- |
 | N5    | 82                  | 0               | 0           |
 | N4    | 99                  | 1               | 0           |
-| N3    | 69                  | 0               | 32          |
+| N3    | 70                  | 0               | 31          |
 | N2    | 39                  | 0               | 84          |
 | N1    | 11                  | 0               | 112         |
 
 ## Reviewed corpus checks
 
-280/280 passing. Add reviewed cases in `data/grammar-coverage/regressions.json`.
+339/339 passing. Add reviewed cases in `data/grammar-coverage/regressions.json`.
 
 | Check | Lesson                             | Sentence ID                | Japanese region                | Expected |
 | ----- | ---------------------------------- | -------------------------- | ------------------------------ | -------- |
@@ -44,6 +44,9 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | o-to-shite                         | `00f67c149a56ca6369b50266` | 仕事場として                   | present  |
 | [x]   | you-na-you-ni-like                 | `00fa00747aae2a575f1edbcd` | レモンのような                 | present  |
 | [x]   | ka-dou-ka                          | `011277728579d980704b526a` | 来るかどうか                   | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `011277728579d980704b526a` | ではない                       | present  |
+| [x]   | hazu-ga-nai                        | `011cba3f3e750568974ecfac` | はずはない                     | present  |
+| [x]   | ga-aru-ga-iru                      | `0125dde88acf9cc26e33c2d7` | はない                         | present  |
 | [x]   | reru-rareru-passive                | `0125dde88acf9cc26e33c2d7` | 責められる                     | present  |
 | [x]   | kedo-keredomo                      | `01383868101262357c5552f0` | やけどした                     | absent   |
 | [x]   | sa                                 | `01707ada87f525d634a3f83e` | 高さ                           | present  |
@@ -54,10 +57,12 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | te-iku                             | `01e8967c4b197043df7da2c1` | していく                       | present  |
 | [x]   | sae-ba                             | `020d4a5bf198755ca7b6fd87` | 洗いさえすれば                 | present  |
 | [x]   | te-aru                             | `021f724a81bc1ebbb8a9f003` | レクリエーションである         | absent   |
+| [x]   | n-desu-no-desu                     | `023f242b6284104afd8878ce` | いたの                         | present  |
 | [x]   | ga-aru-ga-iru                      | `02439f618b2ff72535405c23` | 設備がある                     | present  |
 | [x]   | sugiru                             | `02489648bb4a8f65a51e3084` | 早すぎる                       | present  |
 | [x]   | kamo-shirenai                      | `024de7875c8e422cf555b4c3` | 変わるかもしれない             | present  |
 | [x]   | no-koto-nominalizer                | `02547378c450720dabf50c23` | するのが                       | present  |
+| [x]   | n-desu-no-desu                     | `02547378c450720dabf50c23` | するの                         | absent   |
 | [x]   | ni-oite-ni-okeru                   | `02646c1d12c2d9e97e19b355` | 実験において                   | present  |
 | [x]   | yotei                              | `0275fc5937ba086c888564d4` | 会う予定だった                 | present  |
 | [x]   | nani-mo-nai-dare-mo-nai            | `02cb469b4193cbcf21c1460c` | 何もありませんでした           | present  |
@@ -65,8 +70,11 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | ni-frequency                       | `02f4f3c3900ec48f4d71001b` | 一時間に１０回転               | absent   |
 | [x]   | nara                               | `02ff215569d265ccadd7fb97` | 謝らなければならない           | absent   |
 | [x]   | reru-rareru-passive                | `03047c05150c414f0ac252ba` | 閉められる                     | present  |
+| [x]   | nakereba-naranai-nakute-wa-ikenai  | `0319a850bc9266132158d86f` | でなければならない             | present  |
+| [x]   | n-desu-no-desu                     | `033f573b0667c63fea1bb0d6` | いるんだ                       | present  |
 | [x]   | mae-ni                             | `0345686f398724d54effefed` | 家の前に                       | absent   |
 | [x]   | e-ro                               | `0362bd071775c5234a93ec8f` | してください                   | absent   |
+| [x]   | you-ni                             | `03899593b745a4b822ec8bb1` | ようだ                         | absent   |
 | [x]   | marude-you-da                      | `03899593b745a4b822ec8bb1` | まるで酔っているようだ         | present  |
 | [x]   | tame-ni                            | `03c47d5ab9f03d1fa4d89259` | 台風のために                   | present  |
 | [x]   | mo-emphasis                        | `03c47d5ab9f03d1fa4d89259` | 一時間も                       | present  |
@@ -92,19 +100,25 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | o-kudasai                          | `058e34034d9b09745fbfa2f9` | 教えてください                 | absent   |
 | [x]   | ba-ii                              | `05e1f8793a93963be5aee2f9` | すればいいでしょうか           | present  |
 | [x]   | n-desu-no-desu                     | `05f36da44ee5f79f9531060f` | したのです                     | present  |
+| [x]   | n-desu-no-desu                     | `0619338b6b82ed2be95101a5` | するんじゃなかった             | present  |
 | [x]   | nara                               | `0622f907f1289a4924ed04c8` | 必要なら                       | present  |
+| [x]   | n-desu-no-desu                     | `0625abb78e52aedb2a1f50e2` | したの                         | absent   |
 | [x]   | made-ni                            | `0670c10b491b390d9a400b34` | 朝までに                       | present  |
 | [x]   | zenzen-nai                         | `06a634ad5219141dd0223143` | 全然ない                       | present  |
 | [x]   | you-ni-naru                        | `06d9b9c1fb6d9a98448ec261` | 泳げるようになる               | present  |
 | [x]   | na-na-adjective                    | `06eb4fb66c1b100897da3c20` | 善良な市民                     | present  |
 | [x]   | ni-indirect-object                 | `073d39da35962e390e912e97` | 私には借金を返す               | absent   |
+| [x]   | ga-aru-ga-iru                      | `0743e6d774b861185596c55c` | はない                         | present  |
 | [x]   | yasui-nikui                        | `0765022f4b3889a16e25162b` | 買うとやすい                   | absent   |
 | [x]   | te-kuremasen-ka-te-itadakemasen-ka | `078e5755fcfd533c45eea667` | ていただけませんか             | present  |
 | [x]   | sae                                | `07f29ae0c24772d45555586b` | おさえた                       | absent   |
 | [x]   | ga-suru                            | `0817ca81d648b3447a862e1e` | においがする                   | present  |
 | [x]   | rashii                             | `082e0754c0b244276f116e7d` | いるらしい                     | present  |
 | [x]   | hodo                               | `084511d71144548b7b2eb650` | 狂うほど                       | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `08794cda6567466acad9aff3` | でもない                       | present  |
+| [x]   | ku-nai-katta-ku-nakatta            | `08aa9ff51f56c9ba33f85d69` | 遠くありません                 | present  |
 | [x]   | dake                               | `090bdd56eef8959c8769a432` | いただけます                   | absent   |
+| [x]   | ga-aru-ga-iru                      | `0931a72bbcc92b27a6d01bde` | のない                         | present  |
 | [x]   | you-to-omou                        | `097cffa07cfe646dbac54dc6` | 退治しようと思った             | present  |
 | [x]   | ni-indirect-object                 | `09cf20c37d0c98aacbe95c5f` | 私に送って                     | present  |
 | [x]   | dake                               | `0a42441fccaa1c893005ca60` | 神だけ                         | present  |
@@ -120,18 +134,23 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | ka-embedded-question               | `0c71969d85bc1cde1ddf0609` | 着くか                         | present  |
 | [x]   | mama                               | `0c884ca3ce27fb7ba6499d12` | したまま                       | present  |
 | [x]   | kata                               | `0ca8f50e95f546b0365098b4` | 組み立て方                     | present  |
+| [x]   | n-desu-no-desu                     | `0ce2ea51bb96be2f7a988f8c` | いるの                         | present  |
 | [x]   | baai-wa                            | `0ceec7261a12ce5413e5aeab` | 雨天の場合は                   | present  |
+| [x]   | ka-question                        | `0d12f6814b4bda084985a993` | だい                           | present  |
 | [x]   | koto-ni-suru                       | `0dc6cbeaabe76c8c3a2d26b8` | 出かけることにした             | present  |
 | [x]   | kedo-keredomo                      | `0dc6cbeaabe76c8c3a2d26b8` | 悪かったけれど                 | present  |
 | [x]   | o-ni-naru                          | `0e0c95de852f2d0e819cad52` | お話しになる                   | present  |
 | [x]   | ni-shitagatte                      | `0ea097e7a8439d68d8a5afa9` | すすめに従って                 | present  |
 | [x]   | zukume                             | `0eeba6a091e19d29d248c77c` | 黒ずくめ                       | present  |
+| [x]   | ga-aru-ga-iru                      | `0f4a5fcbcbc9aad9d24b828c` | はほとんどいない               | present  |
 | [x]   | to-shite-mo                        | `0f9b4bb153fd00cce45d1ec2` | あざむこうとしても             | absent   |
 | [x]   | darake                             | `0fdee8b5056106242d3a559f` | 矛盾だらけ                     | present  |
 | [x]   | bakari                             | `100b3b762c2ca844117ac20f` | 質問ばかり                     | present  |
 | [x]   | ni-atte                            | `1031db6b58aa72ed80bf06ed` | 核時代にあっては               | present  |
 | [x]   | sonkeigo                           | `1070d2534cf7c31ce4f43280` | おっしゃる                     | present  |
+| [x]   | n-desu-no-desu                     | `117317c4d206896e3422ee15` | やんだ                         | absent   |
 | [x]   | mitai                              | `1177620d90847b9e4dc3aff7` | あるみたいだ                   | present  |
+| [x]   | ku-nai-katta-ku-nakatta            | `11c1722de86117bb0045c58c` | 論じたくない                   | absent   |
 | [x]   | sugiru                             | `11de786b02b9c6c73ff22bf5` | 飾りにすぎない                 | absent   |
 | [x]   | to-wa-kagiranai                    | `12677cdaa1dfcc5347987d39` | 黒いとは限らない               | present  |
 | [x]   | au                                 | `12b7280b517d320d0c5b5847` | 愛し合う                       | present  |
@@ -161,6 +180,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | noni-purpose                       | `1c54bad355b7ec48448316ef` | 建てるのに                     | present  |
 | [x]   | ni-kakawaru                        | `1cd84a134b03af994f0ed2df` | 名誉にかかわる                 | present  |
 | [x]   | shi                                | `1dfd5a3e1ee2558bf20dbc43` | 好きだし                       | present  |
+| [x]   | n-desu-no-desu                     | `1edbc08ca204e69b9a685345` | のだ                           | present  |
 | [x]   | ni-frequency                       | `1f3442f0b4a3fe3bec9ee0d7` | 年に一度                       | present  |
 | [x]   | hodo-wa-nai                        | `1fa991c63e816808ec8aa6ee` | ダイヤモンドほど硬いものはない | present  |
 | [x]   | ni-mo-mashite                      | `22bf5ac27636b8009a976b14` | 以前にもまして                 | present  |
@@ -172,9 +192,13 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | koso                               | `249919c38ea46e7f3fb4ec93` | 今こそ                         | present  |
 | [x]   | zu-ni                              | `24b8c0e484ba0d66a4b9b145` | 濡らさずに                     | present  |
 | [x]   | me                                 | `24c485e1adb1d70eaa898ba0` | ３番目                         | present  |
+| [x]   | hazu-ga-nai                        | `253ec5e0c385b25d63f5aad8` | はずない                       | present  |
 | [x]   | beki-da-beki-de-wa-nai             | `25431608a13d022e42359276` | 入れるべきだった               | present  |
+| [x]   | ta-koto-ga-aru                     | `263c58123c61c3cd9212af8d` | 目覚めたことはない             | present  |
 | [x]   | garu                               | `265711c5458c59cad4a940aa` | 嫌がった                       | present  |
 | [x]   | masen-ka                           | `2677f439998dcba0a6b82be4` | 狂いませんか                   | absent   |
+| [x]   | de-wa-arimasen-ja-nai              | `26ca32bdbe7d53281eb50e6b` | でない                         | present  |
+| [x]   | beki-da-beki-de-wa-nai             | `27707eb1d276cc101d712014` | すべきだ                       | present  |
 | [x]   | hajimeru-owaru-tsuzukeru           | `27f3f4f794e695885579b707` | 貿易を始めた                   | absent   |
 | [x]   | nai-to-ikenai-nakucha              | `288628363950600610dd2244` | 守らないといけない             | present  |
 | [x]   | nado                               | `2933f148a7a5599a31e638f6` | 石炭や材木など                 | present  |
@@ -189,19 +213,23 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | kara-to-itte                       | `2c64cfa82e1592ce1fdbdc83` | 大きいからといって             | present  |
 | [x]   | ni-mukete                          | `2c67490d0ce8893aec10a874` | 国民に向けて                   | present  |
 | [x]   | ni-tsurete                         | `2d057ec1560a71246d30df28` | 更けるにつれて                 | present  |
+| [x]   | ga-aru-ga-iru                      | `2d8bc32ce3adb9cc0792c9d2` | はない                         | absent   |
 | [x]   | ni-motozuite                       | `2da28aa67e232176b851f8f6` | 観察に基づいて                 | present  |
 | [x]   | ni-watatte                         | `2e266b726df45c99bdc4b0f1` | 地域にわたって                 | present  |
 | [x]   | naosu                              | `2f02d5b9cbb4cd11e286daab` | 出直します                     | present  |
 | [x]   | tabi-ni                            | `2f28300a5c1ca3d87edcf4ef` | 訪れるたびに                   | present  |
+| [x]   | you-ni                             | `30672a0051e27415bc75afd2` | ように                         | present  |
 | [x]   | ppoi                               | `306bdd462c7220347716727f` | 脂っぽい                       | present  |
 | [x]   | ni-sotte                           | `30967d002bbb8349864117f1` | 通りに沿って                   | present  |
 | [x]   | naosu                              | `3281d6d47784cfb098c422d1` | 書き直した                     | present  |
 | [x]   | ni-yoru-to-ni-yoreba               | `329a9f7c63530669590377ec` | 新聞によると                   | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `32ec6651870e4030bb809b63` | 出ない                         | absent   |
 | [x]   | to-iu-yori                         | `32f31f25248582831fbd26ff` | ピンクというより               | present  |
 | [x]   | naide                              | `3426ec44424f0eed7d3b389f` | 帰らないで                     | present  |
 | [x]   | goto-ni                            | `34932b7482454eae3999e06b` | みごとに                       | absent   |
 | [x]   | ni-tsuki                           | `35933f6b68fb7451e5824912` | １ダースにつき                 | present  |
 | [x]   | naide                              | `35e6037215b14ff6dcd03ed6` | つないでおいた                 | absent   |
+| [x]   | you-ni                             | `36f4d6b2bdbb98552bc0e967` | ように                         | absent   |
 | [x]   | te-aru                             | `37db45bd289ac014c4037c2c` | 打ってある                     | present  |
 | [x]   | o-tsuujite-o-tooshite              | `3d3073f372cf06dba3cdd95c` | 目を通している                 | absent   |
 | [x]   | tatoe-te-mo                        | `3dbe256c89fca6d3a568decd` | たとえ雨が降っても             | present  |
@@ -214,10 +242,12 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | te-bakari-iru                      | `3e0cd3e25ce2f96782a73a59` | こぼしてばかりいる             | present  |
 | [x]   | ni-kuwaete                         | `3f8e4c5664d31a2405470fb7` | 材料に加えて                   | present  |
 | [x]   | kana-kashira                       | `3fd36b2f42b0aae4a553f28b` | 降るかな                       | present  |
+| [x]   | n-desu-no-desu                     | `40061f61d2de6c45ac712ec5` | んでしょう                     | present  |
 | [x]   | dasu                               | `404389241af5b45677b1c8c6` | 降り出して                     | present  |
 | [x]   | te-reason                          | `4198fad5e9439c84e3c49fbb` | いてうれしい                   | present  |
 | [x]   | au                                 | `427d411034fdcf90ac2cbe68` | 語り合った                     | present  |
 | [x]   | eru-rareru-potential               | `43beadb953c0b997e226c1ae` | 来られなかった                 | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `449e3217b0052efe14efcd8b` | ではなく                       | present  |
 | [x]   | rashii-typical-of                  | `44af37e1e83ccfa017e30e27` | メグらしい                     | present  |
 | [x]   | dake-de-naku                       | `4581fd81540aa9bbe1b6d9e0` | 寒いだけでなく                 | present  |
 | [x]   | goro                               | `45dee2bd33974022d4c206b8` | ６時ごろ                       | present  |
@@ -227,6 +257,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | oki-ni                             | `47cd1a360bb8db6e1d3d8296` | ４時間おきに                   | present  |
 | [x]   | kurai-gurai-extent                 | `480a20496f735ff131a79582` | 認めるぐらい                   | present  |
 | [x]   | n-bakari                           | `49e47ac43b769508b01c03a7` | 狂わんばかりだった             | present  |
+| [x]   | ga-aru-ga-iru                      | `4c776731a0b33bfe4c3a13f0` | もない                         | present  |
 | [x]   | to                                 | `4d97800e2459995a67ea7ddb` | 鳴ると                         | present  |
 | [x]   | ni-tsurete                         | `4e489be293af79b68cea3434` | 一緒につれてきた               | absent   |
 | [x]   | koto-ni-shite-iru                  | `4efff318c2c54f43256cbc9b` | することにしている             | present  |
@@ -242,8 +273,11 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | nari-ni-nari-no                    | `55c37a63b43cc9d3efadcbd8` | 彼らなりの                     | present  |
 | [x]   | te-hajimete                        | `57a3707635e3d10406908898` | かれて初めて                   | present  |
 | [x]   | to-iu-mono-da                      | `57e05882245ee41db4d8025e` | 順序というものだろう           | present  |
+| [x]   | n-desu-no-desu                     | `5916c8667afa3d5f57e35a8d` | んじゃない                     | present  |
+| [x]   | ga-aru-ga-iru                      | `59b9d0bbe6e66b2d900b05f1` | をほとんど話せない             | absent   |
 | [x]   | ni-suru                            | `5b0111f122314d23f46461be` | 日替わり定食にしませんか       | present  |
 | [x]   | wa-tomokaku                        | `5bda0d755a1f347230265ebb` | 顔はともかく                   | present  |
+| [x]   | ku-nai-katta-ku-nakatta            | `5c48cfa2261ae174772bcac1` | 芳しくない                     | present  |
 | [x]   | okage-de                           | `5ce86ecb1f05c8f60e98897f` | 木のおかげで                   | present  |
 | [x]   | mama                               | `5e73e9d4828df77be92dbbd8` | わがまま                       | absent   |
 | [x]   | te-shikaru-beki-da                 | `605ea1c01dded525f079e02f` | あってしかるべきだ             | present  |
@@ -251,13 +285,19 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | ato-de                             | `609efd8fd739f85df2023ce1` | 最後で                         | absent   |
 | [x]   | ta-totan-ta-totan-ni               | `61ac6d94e0c945d9d84da1e9` | 開いたとたんに                 | present  |
 | [x]   | gachi                              | `61ad3f2e20ddc7b49519f22d` | 雨がちょうど                   | absent   |
+| [x]   | de-wa-arimasen-ja-nai              | `62ebb15c0a88bf1784affb1e` | でない                         | absent   |
 | [x]   | ni-indirect-object                 | `62f614198b853aa9fd68a202` | 彼女にだまされて               | absent   |
+| [x]   | you-ni-iu-you-ni-tanomu            | `6331991c4defab2a28165304` | ように                         | present  |
 | [x]   | de-are-de-are-de-are               | `642d347fc738a2d44fbb54ea` | なんであれ                     | present  |
+| [x]   | shika-nai                          | `651eb1f2cc8b2099eee0c287` | しかない                       | present  |
 | [x]   | kiru-kirenai                       | `65622097dcaedd2c2faab494` | 切れない                       | absent   |
 | [x]   | hodo-nai                           | `65b182ac2afd5014f49dd797` | 本ほど重くない                 | present  |
 | [x]   | sei-ka                             | `667a6cd1c61b84bb7aeef7d8` | 使ったせいか                   | present  |
 | [x]   | masen-ka                           | `66a6a7c657e4083a2b34c6f0` | 見ませんか                     | present  |
+| [x]   | ta-koto-ga-aru                     | `69431eb4da5187f45458c047` | 見たことのない                 | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `6ade39086631af46ee943365` | でもない                       | absent   |
 | [x]   | bakari-ka                          | `6dc62a4dcf17aa53e65fc861` | であるばかりか                 | present  |
+| [x]   | you-ni-iu-you-ni-tanomu            | `6fdc6981959b893f05c8a7e2` | ように                         | present  |
 | [x]   | koso                               | `73209127eabfedccbb9178fd` | 引き起こそう                   | absent   |
 | [x]   | no-moto-de-no-moto-ni              | `733688975a9f01f7edf8c9b2` | 監督のもとに                   | present  |
 | [x]   | kko-nai                            | `7691cea347444e835ccdfb3b` | まちがいっこない               | present  |
@@ -265,6 +305,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | muki-muke                          | `7b8696f9f954cbeb9b6d3b69` | 若者向き                       | present  |
 | [x]   | sei-de                             | `811f38ebb663a1fe13d90e25` | 雑音のせいで                   | present  |
 | [x]   | ni-atte                            | `81478539a3508c54d47d623f` | 野球場にあたっていた           | absent   |
+| [x]   | you-na-you-ni-like                 | `8318c733c147076a809179e6` | このような                     | present  |
 | [x]   | te-hajimete                        | `841880a7830be1dd4ec29006` | 初めての                       | absent   |
 | [x]   | tsuide-ni                          | `841eec572e01a61b59701f85` | 買い物ついでに                 | present  |
 | [x]   | nagara-mo                          | `84903d4032bb3ac9d64a6f3b` | 残念ながら                     | present  |
@@ -277,37 +318,55 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | koto-ni-naru                       | `8ec82c2c054204cf1ed91d53` | 阻害することになる             | present  |
 | [x]   | ni-shite-wa                        | `8f34863e37ca6c4a195b14cd` | あてにしてはいけない           | absent   |
 | [x]   | uru-enai                           | `9214c5bcf44f3d9797863bf3` | ありえない                     | present  |
+| [x]   | you-ni                             | `92aebda111a14838abdab256` | ように                         | present  |
+| [x]   | ku-nai-katta-ku-nakatta            | `92b1e978138cccc218948efe` | よくない                       | present  |
 | [x]   | ni-kagiru                          | `95ca35137f231e01514c3c14` | 女性に限る                     | absent   |
 | [x]   | to-tomo-ni                         | `9678db475b8d9e92ea14784e` | 太陽とともに                   | present  |
 | [x]   | ni-sakidatte                       | `97c2dbd24af3850cffe3173f` | 会に先立って                   | present  |
 | [x]   | kiru-kirenai                       | `999c8061549428f40086f8f0` | 使い切れない                   | present  |
 | [x]   | me                                 | `9a64608b23d6aa7b6cf30355` | 二枚目                         | absent   |
+| [x]   | ka-question                        | `9bdc1e09d5ab5e1381be4cca` | かい                           | present  |
+| [x]   | ta                                 | `9cf5e1af5a1cfa9784133edf` | するべきだ                     | absent   |
 | [x]   | o-tsuujite-o-tooshite              | `9d09a1ac63b694db0f87907c` | 銀行制度を通じて               | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `9e02e887f7d608baeaf37085` | じゃない                       | present  |
 | [x]   | sae                                | `9e4ac1c07021aab68517f03e` | 上空でさえ                     | present  |
 | [x]   | kaneru                             | `9f86da1567fe7ab38c78eb76` | そいかねます                   | present  |
 | [x]   | to-sureba-to-shitara               | `a1673606ae90e1385485042a` | 起こったとすれば               | present  |
+| [x]   | you-na-you-ni-like                 | `a373c2b6350f32cc99d5a667` | ように                         | present  |
 | [x]   | sasete-kudasai                     | `a464e97e0365ec0b68ceff4f` | 話させてください               | present  |
 | [x]   | ni-shite-mo                        | `a7f43ad97ab399ffed018465` | あるにしても                   | present  |
 | [x]   | ni-shite-wa                        | `ab427aae6b53a6ebf42fb18b` | 春にしては                     | present  |
 | [x]   | osore-ga-aru                       | `abb434d837d304c46a4cc317` | 再発するおそれがある           | present  |
 | [x]   | saichuu-ni                         | `ac79164327a004870ffd54b1` | スピーチの最中に               | present  |
+| [x]   | n-desu-no-desu                     | `acb3da7e01e1ef54af25f9d8` | あるのでしょう                 | present  |
 | [x]   | you-ga-nai                         | `adf19943de2f53c9407e709a` | 言いようがない                 | present  |
+| [x]   | ga-aru-ga-iru                      | `af67668c798b26c6ad7cf529` | はなかった                     | absent   |
 | [x]   | ni-suginai                         | `af815c756bd9a0a68a238ac1` | 農民に過ぎない                 | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `b1ba6b9b40833139351b05cf` | じゃなくて                     | present  |
 | [x]   | nani-ka-dare-ka-doko-ka            | `c2d3aab9de6af0b1c896f640` | 誰かが                         | present  |
 | [x]   | reru-rareru-passive                | `c7bc3a4238fb1691124f6a7b` | 見られた                       | absent   |
 | [x]   | ni-mo-hodo-ga-aru                  | `caa659206819c41609e9b2d8` | ふざけるにもほどがある         | present  |
 | [x]   | zaru-o-enai                        | `cb93125b63ad8b2fdaa015c4` | 決断せざるを得ない             | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `cc7e92f889698965af349e69` | ではないでしょう               | present  |
 | [x]   | ni-itaru-ni-itatte-ni-itatte-wa    | `cda8098b38fc339b246da7d5` | 滅びに至る                     | present  |
 | [x]   | gatai                              | `d07cfb4dda535c38d8c9846c` | ありがたい                     | absent   |
 | [x]   | to-to-dochira-ga                   | `d1b8e9861fd18be4d8dfcb4f` | トラとライオンとどちらが       | present  |
+| [x]   | ga-aru-ga-iru                      | `d2088ef7b1d49c7d4aba5d27` | がほとんどない                 | present  |
 | [x]   | to-itte-mo                         | `d4a733e8ed349d8bf10b45db` | 先生といっても                 | present  |
 | [x]   | kuse-ni                            | `d5762b35cd4e57a95b03949e` | いるくせに                     | present  |
+| [x]   | you-ni                             | `d63fe07e00fcf781c98594c7` | よう                           | present  |
 | [x]   | o-nozoite                          | `d81ed661d6b6d80b5d183a83` | 価格を除いては                 | present  |
 | [x]   | koto-naku                          | `d9088c4b71c74243708f8c42` | 途切れることなく               | present  |
+| [x]   | you-na-you-ni-like                 | `ddd15865301a48fbfe92d6c4` | どのように                     | present  |
 | [x]   | made-mo-nai                        | `e23efae38cf00b899c9e70bd` | 言うまでもない                 | present  |
 | [x]   | ni-mo-kakawarazu                   | `e2e086c8c6ff915d17b86a0a` | 大雪にもかかわらず             | present  |
+| [x]   | de-wa-arimasen-ja-nai              | `e41f8286e694f8f0a1df3c5a` | でもない                       | present  |
+| [x]   | you-na-you-ni-like                 | `e5f46dae06b837924c16c970` | そのようだ                     | absent   |
+| [x]   | de-wa-arimasen-ja-nai              | `e6808b2f0f63f11d2338fec3` | ではなく                       | absent   |
 | [x]   | nuku                               | `e6ce484eef708ceb9e302c37` | 撃ち抜いた                     | absent   |
+| [x]   | kurai-gurai                        | `ecc7a1b3d05a762754ee4bf2` | 同じくらい                     | present  |
 | [x]   | ppanashi                           | `f5a58e130987f1a1acf43ca1` | 散らかしっぱなし               | present  |
+| [x]   | you-ni-iu-you-ni-tanomu            | `fd3b906856f8db324b85fdc6` | よう                           | present  |
 
 ## Next batches
 
@@ -320,8 +379,8 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 
 | Lesson ID                         | Pattern                                 | Status    | Automatic sentences | Annotated sentences | Reviewed checks |
 | --------------------------------- | --------------------------------------- | --------- | ------------------- | ------------------- | --------------- |
-| wa                                | 〜は                                    | automatic | 6882                | 0                   | 0/0             |
-| ga-subject                        | 〜が（subject）                         | automatic | 1764                | 5                   | 0/0             |
+| wa                                | 〜は                                    | automatic | 6846                | 0                   | 0/0             |
+| ga-subject                        | 〜が（subject）                         | automatic | 1762                | 5                   | 0/0             |
 | o                                 | 〜を                                    | automatic | 4000                | 0                   | 1/1             |
 | ni-time                           | 〜に（time）                            | automatic | 21                  | 3                   | 0/0             |
 | ni-destination                    | 〜に（destination）                     | automatic | 27                  | 3                   | 0/0             |
@@ -335,54 +394,54 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | to-with                           | 〜と（with）                            | automatic | 5                   | 0                   | 0/0             |
 | ya                                | 〜や                                    | automatic | 41                  | 0                   | 0/0             |
 | ka-or                             | 〜か（or）                              | automatic | 4                   | 0                   | 1/1             |
-| mo                                | 〜も                                    | automatic | 320                 | 1                   | 1/1             |
-| no                                | 〜の（possessive）                      | automatic | 2647                | 10                  | 0/0             |
+| mo                                | 〜も                                    | automatic | 307                 | 1                   | 1/1             |
+| no                                | 〜の（possessive）                      | automatic | 2649                | 10                  | 0/0             |
 | kara-from                         | 〜から（from）                          | automatic | 33                  | 0                   | 0/0             |
 | made                              | 〜まで（until）                         | automatic | 104                 | 0                   | 0/0             |
-| ka-question                       | 〜か（question）                        | automatic | 637                 | 3                   | 0/0             |
+| ka-question                       | 〜か（question）                        | automatic | 650                 | 3                   | 2/2             |
 | ne                                | 〜ね                                    | automatic | 135                 | 0                   | 0/0             |
 | yo                                | 〜よ                                    | automatic | 255                 | 0                   | 0/0             |
-| yori                              | 〜より                                  | automatic | 40                  | 0                   | 0/0             |
+| yori                              | 〜より                                  | automatic | 41                  | 0                   | 0/0             |
 | no-hou-ga-yori                    | 〜の方が〜より                          | automatic | 9                   | 0                   | 1/1             |
 | to-to-dochira-ga                  | 〜と〜とどちらが                        | automatic | 1                   | 0                   | 1/1             |
 | no-naka-de-ga-ichiban             | 〜の中で〜が一番                        | automatic | 0                   | 0                   | 0/0             |
 | desu                              | 〜です                                  | automatic | 448                 | 0                   | 0/0             |
-| da                                | 〜だ                                    | automatic | 678                 | 0                   | 0/0             |
-| de-wa-arimasen-ja-nai             | 〜ではありません / 〜じゃない           | automatic | 0                   | 1                   | 0/0             |
+| da                                | 〜だ                                    | automatic | 584                 | 0                   | 0/0             |
+| de-wa-arimasen-ja-nai             | 〜ではありません / 〜じゃない           | automatic | 109                 | 1                   | 12/12           |
 | deshita                           | 〜でした                                | automatic | 34                  | 0                   | 0/0             |
-| masu                              | 〜ます                                  | automatic | 423                 | 1                   | 0/0             |
-| masen                             | 〜ません                                | automatic | 127                 | 1                   | 0/0             |
+| masu                              | 〜ます                                  | automatic | 422                 | 1                   | 0/0             |
+| masen                             | 〜ません                                | automatic | 104                 | 1                   | 0/0             |
 | mashita                           | 〜ました                                | automatic | 182                 | 0                   | 0/0             |
-| masen-deshita                     | 〜ませんでした                          | automatic | 17                  | 0                   | 0/0             |
-| nai                               | 〜ない                                  | automatic | 504                 | 2                   | 1/1             |
-| ta                                | 〜た                                    | automatic | 2698                | 13                  | 1/1             |
+| masen-deshita                     | 〜ませんでした                          | automatic | 15                  | 0                   | 0/0             |
+| nai                               | 〜ない                                  | automatic | 487                 | 2                   | 1/1             |
+| ta                                | 〜た                                    | automatic | 2652                | 13                  | 2/2             |
 | mashou                            | 〜ましょう                              | automatic | 44                  | 0                   | 0/0             |
 | mashou-ka                         | 〜ましょうか                            | automatic | 15                  | 1                   | 0/0             |
 | masen-ka                          | 〜ませんか                              | automatic | 1                   | 0                   | 2/2             |
 | tai                               | 〜たい                                  | automatic | 93                  | 0                   | 0/0             |
 | ga-hoshii                         | 〜がほしい                              | automatic | 6                   | 0                   | 1/1             |
 | o-kudasai                         | 〜をください                            | automatic | 12                  | 0                   | 2/2             |
-| te-kudasai                        | 〜てください                            | automatic | 184                 | 3                   | 0/0             |
+| te-kudasai                        | 〜てください                            | automatic | 183                 | 3                   | 0/0             |
 | naide-kudasai                     | 〜ないでください                        | automatic | 14                  | 0                   | 0/0             |
 | te-mo-ii                          | 〜てもいい                              | automatic | 20                  | 0                   | 0/0             |
 | te-wa-ikenai                      | 〜てはいけない                          | automatic | 49                  | 0                   | 0/0             |
-| nakereba-naranai-nakute-wa-ikenai | 〜なければならない / 〜なくてはいけない | automatic | 67                  | 0                   | 0/0             |
+| nakereba-naranai-nakute-wa-ikenai | 〜なければならない / 〜なくてはいけない | automatic | 70                  | 0                   | 1/1             |
 | nakute-mo-ii                      | 〜なくてもいい                          | automatic | 3                   | 0                   | 0/0             |
 | te-iru                            | 〜ている                                | automatic | 1396                | 6                   | 0/0             |
 | te                                | 〜て                                    | automatic | 1004                | 2                   | 0/0             |
 | te-kara                           | 〜てから                                | automatic | 11                  | 0                   | 0/0             |
 | tari-tari-suru                    | 〜たり〜たりする                        | automatic | 9                   | 0                   | 0/0             |
-| ta-koto-ga-aru                    | 〜たことがある                          | automatic | 14                  | 0                   | 0/0             |
+| ta-koto-ga-aru                    | 〜たことがある                          | automatic | 20                  | 0                   | 2/2             |
 | mae-ni                            | 〜前に                                  | automatic | 16                  | 0                   | 2/2             |
 | ato-de                            | 〜後で                                  | automatic | 2                   | 0                   | 2/2             |
 | nagara                            | 〜ながら（while）                       | automatic | 12                  | 0                   | 0/0             |
 | ni-iku                            | 〜に行く                                | automatic | 10                  | 0                   | 2/2             |
 | ga-suki-ga-kirai                  | 〜が好き / 〜が嫌い                     | automatic | 49                  | 1                   | 2/2             |
 | ga-jouzu-ga-heta                  | 〜が上手 / 〜が下手                     | automatic | 4                   | 0                   | 1/1             |
-| ga-aru-ga-iru                     | 〜がある / 〜がいる                     | automatic | 308                 | 0                   | 1/1             |
+| ga-aru-ga-iru                     | 〜がある / 〜がいる                     | automatic | 387                 | 0                   | 10/10           |
 | kara-reason                       | 〜から（reason）                        | automatic | 48                  | 0                   | 0/0             |
 | ga-but                            | 〜が（but）                             | automatic | 70                  | 0                   | 0/0             |
-| deshou                            | 〜でしょう                              | automatic | 47                  | 0                   | 1/1             |
+| deshou                            | 〜でしょう                              | automatic | 46                  | 0                   | 1/1             |
 | ku-naru-ni-naru                   | 〜くなる / 〜になる                     | automatic | 249                 | 1                   | 1/1             |
 | ni-suru                           | 〜にする（decide）                      | automatic | 1                   | 0                   | 1/1             |
 | mada-te-inai                      | まだ〜ていない                          | automatic | 13                  | 0                   | 1/1             |
@@ -390,14 +449,14 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | amari-nai                         | あまり〜ない                            | automatic | 20                  | 0                   | 1/1             |
 | zenzen-nai                        | 全然〜ない                              | automatic | 9                   | 0                   | 1/1             |
 | dake                              | 〜だけ                                  | automatic | 35                  | 0                   | 2/2             |
-| kurai-gurai                       | 〜くらい / 〜ぐらい（approximately）    | automatic | 0                   | 0                   | 0/0             |
+| kurai-gurai                       | 〜くらい / 〜ぐらい（approximately）    | automatic | 5                   | 0                   | 1/1             |
 | goro                              | 〜ごろ                                  | automatic | 1                   | 1                   | 1/1             |
 | nani-mo-nai-dare-mo-nai           | 何も〜ない / 誰も〜ない                 | automatic | 16                  | 0                   | 1/1             |
 | nani-ka-dare-ka-doko-ka           | 何か / 誰か / どこか                    | automatic | 5                   | 0                   | 1/1             |
 | kore-sore-are-dore                | これ / それ / あれ / どれ               | automatic | 312                 | 1                   | 1/1             |
 | kono-sono-ano-dono                | この / その / あの / どの               | automatic | 1914                | 3                   | 1/1             |
 | koko-soko-asoko-doko              | ここ / そこ / あそこ / どこ             | automatic | 208                 | 1                   | 1/1             |
-| ku-nai-katta-ku-nakatta           | 〜くない / 〜かった / 〜くなかった      | automatic | 53                  | 2                   | 0/0             |
+| ku-nai-katta-ku-nakatta           | 〜くない / 〜かった / 〜くなかった      | automatic | 79                  | 2                   | 4/4             |
 | na-na-adjective                   | 〜な（na-adjective）                    | automatic | 134                 | 0                   | 1/1             |
 | kute-de                           | 〜くて / 〜で                           | automatic | 10                  | 0                   | 1/1             |
 | to-iu-named                       | 〜という（named）                       | automatic | 0                   | 0                   | 0/0             |
@@ -441,7 +500,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | you-to-omou                        | 〜(よ)うと思う                          | automatic       | 10                  | 0                   | 1/1             |
 | e-ro                               | 〜え / 〜ろ                             | automatic       | 17                  | 0                   | 2/2             |
 | na-prohibition                     | 〜な（prohibition）                     | automatic       | 46                  | 0                   | 0/0             |
-| nasai                              | 〜なさい                                | automatic       | 199                 | 0                   | 1/1             |
+| nasai                              | 〜なさい                                | automatic       | 193                 | 0                   | 1/1             |
 | ba                                 | 〜ば                                    | automatic       | 74                  | 0                   | 1/1             |
 | tara                               | 〜たら                                  | automatic       | 65                  | 0                   | 0/0             |
 | nara                               | 〜なら                                  | automatic       | 23                  | 0                   | 2/2             |
@@ -454,22 +513,22 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | shi                                | 〜し                                    | automatic       | 9                   | 0                   | 1/1             |
 | kedo-keredomo                      | 〜けど / 〜けれども                     | automatic       | 22                  | 0                   | 2/2             |
 | tame-ni                            | 〜ために                                | automatic       | 80                  | 0                   | 1/1             |
-| you-ni                             | 〜ように（purpose）                     | automatic       | 12                  | 0                   | 1/1             |
-| you-ni-suru                        | 〜ようにする                            | automatic       | 1                   | 0                   | 1/1             |
-| you-ni-naru                        | 〜ようになる                            | automatic       | 7                   | 0                   | 1/1             |
+| you-ni                             | 〜ように（purpose）                     | automatic       | 40                  | 0                   | 6/6             |
+| you-ni-suru                        | 〜ようにする                            | automatic       | 8                   | 0                   | 1/1             |
+| you-ni-naru                        | 〜ようになる                            | automatic       | 9                   | 0                   | 1/1             |
 | te-hoshii                          | 〜てほしい                              | automatic       | 7                   | 0                   | 1/1             |
 | tagaru                             | 〜たがる                                | automatic       | 4                   | 0                   | 2/2             |
 | garu                               | 〜がる                                  | automatic       | 5                   | 0                   | 1/1             |
 | kamo-shirenai                      | 〜かもしれない                          | automatic       | 24                  | 0                   | 1/1             |
-| darou                              | 〜だろう                                | automatic       | 77                  | 0                   | 1/1             |
+| darou                              | 〜だろう                                | automatic       | 76                  | 0                   | 1/1             |
 | hazu-da                            | 〜はずだ                                | automatic       | 4                   | 0                   | 1/1             |
-| hazu-ga-nai                        | 〜はずがない                            | automatic       | 2                   | 0                   | 1/1             |
-| n-desu-no-desu                     | 〜んです / 〜のです                     | automatic       | 123                 | 0                   | 1/1             |
+| hazu-ga-nai                        | 〜はずがない                            | automatic       | 6                   | 0                   | 3/3             |
+| n-desu-no-desu                     | 〜んです / 〜のです                     | automatic       | 354                 | 0                   | 12/12           |
 | ka-dou-ka                          | 〜かどうか                              | automatic       | 12                  | 0                   | 2/2             |
 | ka-embedded-question               | 〜か（embedded question）               | automatic       | 15                  | 1                   | 1/1             |
 | to-omou                            | 〜と思う                                | automatic       | 55                  | 0                   | 0/0             |
 | to-iu-say                          | 〜と言う                                | automatic       | 13                  | 0                   | 0/0             |
-| shika-nai                          | 〜しか〜ない                            | automatic       | 14                  | 0                   | 1/1             |
+| shika-nai                          | 〜しか〜ない                            | automatic       | 16                  | 0                   | 2/2             |
 | bakari                             | 〜ばかり                                | automatic       | 13                  | 0                   | 1/1             |
 | ta-bakari                          | 〜たばかり                              | automatic       | 3                   | 0                   | 1/1             |
 | tokoro-da                          | 〜ところだ                              | automatic       | 12                  | 2                   | 0/0             |
@@ -490,7 +549,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | o-suru                             | お〜する                                | automatic       | 20                  | 0                   | 1/1             |
 | de-gozaimasu                       | 〜でございます                          | automatic       | 0                   | 0                   | 0/0             |
 | te-mo-kamawanai                    | 〜ても構わない                          | automatic       | 5                   | 0                   | 0/0             |
-| no-koto-nominalizer                | 〜の / 〜こと（nominalizer）            | automatic       | 345                 | 2                   | 1/1             |
+| no-koto-nominalizer                | 〜の / 〜こと（nominalizer）            | automatic       | 340                 | 2                   | 1/1             |
 | ba-yokatta                         | 〜ばよかった                            | automatic       | 2                   | 0                   | 1/1             |
 | tara-dou                           | 〜たらどう                              | automatic       | 6                   | 0                   | 1/1             |
 | hou-ga-ii                          | 〜ほうがいい                            | automatic       | 22                  | 0                   | 0/0             |
@@ -525,7 +584,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | koto-ni-shite-iru                | 〜ことにしている                     | automatic   | 1                   | 0                   | 1/1             |
 | koto-ni-natte-iru                | 〜ことになっている                   | automatic   | 5                   | 0                   | 1/1             |
 | koto-instruction                 | 〜こと（instruction）                | unsupported | 0                   | 0                   | 0/0             |
-| you-ni-iu-you-ni-tanomu          | 〜ように言う / 〜ように頼む          | unsupported | 0                   | 0                   | 0/0             |
+| you-ni-iu-you-ni-tanomu          | 〜ように言う / 〜ように頼む          | automatic   | 21                  | 0                   | 3/3             |
 | you-to-suru                      | 〜ようとする                         | automatic   | 28                  | 0                   | 1/1             |
 | sou-ni-nai-sou-mo-nai            | 〜そうにない / 〜そうもない          | automatic   | 0                   | 0                   | 0/0             |
 | ippou-da                         | 〜一方だ                             | unsupported | 0                   | 0                   | 0/0             |
@@ -540,7 +599,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | rashii-typical-of                | 〜らしい（typical of）               | automatic   | 3                   | 0                   | 1/1             |
 | ppoi                             | 〜っぽい                             | automatic   | 3                   | 0                   | 1/1             |
 | teki                             | 〜的                                 | automatic   | 3                   | 0                   | 1/1             |
-| you-na-you-ni-like               | 〜ような / 〜ように（like）          | automatic   | 45                  | 0                   | 1/1             |
+| you-na-you-ni-like               | 〜ような / 〜ように（like）          | automatic   | 74                  | 0                   | 5/5             |
 | marude-you-da                    | まるで〜ようだ                       | automatic   | 2                   | 0                   | 1/1             |
 | ni-chigai-nai                    | 〜に違いない                         | automatic   | 10                  | 0                   | 1/1             |
 | ni-kimatte-iru                   | 〜に決まっている                     | unsupported | 0                   | 0                   | 0/0             |
@@ -605,7 +664,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | au                               | 〜合う                               | automatic   | 13                  | 0                   | 3/3             |
 | naosu                            | 〜直す                               | automatic   | 3                   | 0                   | 3/3             |
 | zurai                            | 〜づらい                             | unsupported | 0                   | 0                   | 0/0             |
-| beki-da-beki-de-wa-nai           | 〜べきだ / 〜べきではない            | automatic   | 40                  | 0                   | 1/1             |
+| beki-da-beki-de-wa-nai           | 〜べきだ / 〜べきではない            | automatic   | 66                  | 0                   | 2/2             |
 | hodo-wa-nai                      | 〜ほど〜はない                       | automatic   | 4                   | 0                   | 1/1             |
 | shika-nai-no-choice              | 〜しかない                           | automatic   | 2                   | 0                   | 0/0             |
 | made-even                        | 〜まで（even）                       | unsupported | 0                   | 0                   | 0/0             |

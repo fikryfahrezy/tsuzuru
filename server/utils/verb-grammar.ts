@@ -7,6 +7,7 @@ import { vocabulary } from "./vocabulary";
 import { hiragana } from "../../shared/practice";
 import { constructions, type ConstructionForm } from "./grammar-rules/verb";
 import { validAdvancedTail } from "./grammar-rules/advanced";
+import { explanatoryTail } from "./grammar-rules/construction";
 import { potentialDerivation } from "./potential-forms";
 import type { VoiceAnalysis } from "./voice-analysis";
 
@@ -108,6 +109,7 @@ export function verbGrammar(
             !boundaries.has(end) ||
             !text.startsWith(japanese, entry.start) ||
             !validAdvancedTail(rule.id, text.slice(end)) ||
+            !explanatoryTail(rule.id, japanese, text.slice(end)) ||
             (rule.id === "dasu" &&
               ![
                 "泣く",

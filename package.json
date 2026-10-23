@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "packageManager": "bun@1.4.3",
+  "packageManager": "bun@1.4.4",
   "engines": {
-    "bun": "1.4.3"
+    "bun": "1.4.4"
   },
   "scripts": {
     "dev": "bun scripts/prepare-disclosure.ts && bun --bun nuxt dev",

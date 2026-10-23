@@ -113,6 +113,44 @@ def part(index, codes, spelling, kana, roles=None):
     return found[0] if len(found) == 1 else None
 
 
+def kana_verb(index, codes, lemma, verb_class):
+    """The one common verb a kana lemma (くる) is read as, with its senses for
+    that verb class. Several common verbs (やめる: 止める, 辞める) are skipped."""
+    found = []
+    for element in index.get(lemma, []):
+        if not any(item.findtext("reb") == lemma and item.findall("re_pri") for item in element.findall("r_ele")):
+            continue
+        for spelling in [item.findtext("keb") for item in element.findall("k_ele")] or [lemma]:
+            glosses, pos = senses(element, codes, spelling, lemma, {verb_class})
+            if glosses:
+                found.append((element, glosses, pos))
+                break
+    return found[0] if len(found) == 1 else None
+
+
+def translated(glosses, english):
+    """Whether an English translation uses one of the glosses' words, in the
+    same case: a capitalized "Frank" is a name, not "frank"."""
+    text = english.replace("-", "")
+    for word in {w for gloss in glosses for w in re.findall(r"[A-Za-z]{3,}", re.sub(r"\(.*?\)", "", gloss))}:
+        for found in re.finditer(r"(?<![A-Za-z])" + re.escape(word), text, re.IGNORECASE):
+            if found.group() == word or found.start() == 0:
+                return True
+    return False
+
+
+def confirmed_katakana(index, codes, word, english):
+    """The one common entry for a katakana word whose senses every
+    translation of its sentences uses. ポール is Paul in most sentences, not
+    a pole, so it is skipped; メール is email in all of them."""
+    found = [
+        (element, *senses(element, codes, word, word)) for element in index.get(word, [])
+        if any(item.findtext("reb") == word and item.findall("re_pri") for item in element.findall("r_ele"))
+    ]
+    found = match(found)
+    return found if found and english and all(translated(found[1], line) for line in english) else None
+
+
 def head(index, codes, spelling, kana):
     """A compound's final part, preferring its suffix senses, and whether
     those were found."""
@@ -122,11 +160,12 @@ def head(index, codes, spelling, kana):
     return part(index, codes, spelling, kana, NOUN), False
 
 
-def compound(index, codes, word, kana):
+def compound(index, codes, word, kana, verb=False):
     """Explain a word missing from JMdict from unambiguous known parts.
 
     Returns (parts, pos), where each part is (spelling, kana, entry, glosses,
-    label), or None. A word with several possible splits is skipped.
+    label), or None. A word with several possible splits is skipped. `verb`
+    marks a chip the tokenizer read as a verb form.
     """
     # A kana base (ひける: 引く, 弾く or 轢く) is too ambiguous to guess.
     if len(word) > 2 and KANJI.search(word) and word[-1] == "る" == kana[-1] and word[-2] == kana[-2] in POTENTIAL:
@@ -140,7 +179,8 @@ def compound(index, codes, word, kana):
         count_kana = kana[len(number[1]):]
         found = part(index, codes, number[2], count_kana, COUNTER) or part(index, codes, number[2], count_kana, NOUN)
         return ([(number[2], count_kana, found[0], found[1], number[2])], ["n"]) if found else None
-    if word[0] in "おご御" and kana[0] in "おご" and len(word) > 1:
+    # A kana verb starting with お (おって from おる) is not お + a word.
+    if word[0] in "おご御" and kana[0] in "おご" and len(word) > 1 and not (verb and KANA_ONLY.match(word)):
         prefix = part(index, codes, word[0], kana[0], {"pref"})
         base = part(index, codes, word[1:], kana[1:])
         if prefix and base:
@@ -219,13 +259,23 @@ def main():
             found = match([
                 (element, *senses(element, codes, target["lemma"])) for element in by_spelling.get(target["lemma"], [])
             ])
+        lemma = target.get("lemma", word)
+        if not found and "verbClass" in target and KANA_ONLY.match(lemma):
+            # A kana verb (きた from くる) is read as its single common verb.
+            found = kana_verb(by_spelling, codes, lemma, target["verbClass"])
+        if not found and re.fullmatch("[ァ-ヶー・]+", word):
+            # Several katakana entries (サッカー: soccer, seersucker).
+            found = confirmed_katakana(by_spelling, codes, word, target.get("english"))
+        # The same chip can come from different lemmas (いった: 行く, 言う).
+        keyed = {"lemma": target["lemma"]} if "lemma" in target else {}
         if not found:
-            explained = compound(by_spelling, codes, word, kana)
+            explained = compound(by_spelling, codes, word, kana, "verbClass" in target)
             if explained:
                 parts, pos = explained
                 entries.append({
                     "japanese": word,
                     "kana": kana,
+                    **keyed,
                     "parts": [
                         {"japanese": spelling, "kana": part_kana, "dictionaryEntryId": element.findtext("ent_seq"),
                          "label": label, "meanings": glosses[:3]}
@@ -242,6 +292,7 @@ def main():
             entries.append({
                 "japanese": word,
                 "kana": kana,
+                **keyed,
                 "dictionaryEntryId": element.findtext("ent_seq"),
                 "meanings": glosses[:8],
                 "pos": pos,

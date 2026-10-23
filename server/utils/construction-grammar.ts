@@ -11,6 +11,7 @@ import {
 import {
   predicateConstructions,
   nounConstructions,
+  explanatoryTail,
 } from "./grammar-rules/construction";
 
 const topics = new Set([
@@ -263,6 +264,11 @@ export function constructionGrammar(
           (form) =>
             text.startsWith(form, entry.start) &&
             validAdvancedTail(rule.id, text.slice(entry.start + form.length)) &&
+            explanatoryTail(
+              rule.id,
+              form,
+              text.slice(entry.start + form.length),
+            ) &&
             ends.has(entry.start + form.length),
         )
         .sort((a, b) => b.length - a.length)[0];

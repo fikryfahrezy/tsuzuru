@@ -12,10 +12,18 @@ export interface Expression {
   forms: string[];
   meanings: string[];
   wordTypes: string[];
+  // Word types the next word must have, for an expression with another use:
+  // exclamatory なんて needs an adjective (なんておいしい), unlike あるなんて.
+  before?: string[];
+  // Word types the previous word must not have: するなんて奇妙だ is "that
+  // she would do", not "what a".
+  notAfter?: string[];
+  // The form must end at a word boundary, so いま never matches います.
+  wholeWords?: boolean;
 }
 
 export const expressions: readonly Expression[] =
-  bank.version === 1 ? bank.expressions : [];
+  bank.version === 1 ? (bank.expressions as Expression[]) : [];
 
 interface ExpressionGroup {
   start: number;
@@ -45,9 +53,22 @@ function matchAt(entries: AnswerEntry[], index: number) {
         kana += entry.kana;
         count++;
       }
+      const next = entries[index + count];
+      const previous = entries[index - 1];
       if (
         japanese.startsWith(form) &&
-        kana.startsWith(hiragana(expression.reading))
+        kana.startsWith(hiragana(expression.reading)) &&
+        (!expression.wholeWords || japanese === form) &&
+        (!expression.before ||
+          (next?.start === entries[index + count - 1]?.end &&
+            next.wordTypes.some((type) =>
+              expression.before!.includes(type),
+            ))) &&
+        !(
+          expression.notAfter &&
+          previous?.end === entries[index]?.start &&
+          previous.wordTypes.some((type) => expression.notAfter!.includes(type))
+        )
       )
         best = { expression, form, count };
     }

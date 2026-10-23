@@ -26,13 +26,32 @@ export function questionGrammar(
   base: AnswerEntry[],
 ): GrammarAnnotation[] {
   const text = sentence.reference.japanese;
+  const clauseEnd = (end: number) =>
+    /^\s*(?:$|[。？！?!」』”"）)])/u.test(text.slice(end));
   return base.flatMap((entry, index) => {
+    // Casual questions end in い: 本気かい, どうだい. い alone marks the
+    // question, so no predicate is needed before it.
+    const next = base[index + 1];
+    const casual =
+      next?.japanese === "い" &&
+      next.start === entry.end &&
+      clauseEnd(next.end) &&
+      ((entry.japanese === "か" && entry.wordTypes.includes("Particle")) ||
+        (entry.japanese === "だ" && entry.wordTypes.includes("Copula")));
+    if (casual)
+      return [
+        {
+          start: entry.start,
+          end: next.end,
+          japanese: entry.japanese + "い",
+          grammarIds: ["ka-question"],
+        },
+      ];
     if (entry.japanese !== "か" || !entry.wordTypes.includes("Particle"))
       return [];
     // Only clause-ending questions. Internal choices, indefinite forms, and
     // embedded questions (かどうか, か分からない) need other handlers.
-    const after = text.slice(entry.end);
-    if (!/^\s*(?:$|[。？！?!」』”"）)])/u.test(after)) return [];
+    if (!clauseEnd(entry.end)) return [];
     let previous = base[index - 1];
     if (!previous || previous.end !== entry.start) return [];
     // Explanatory のか / んか still requires a predicate before の / ん.

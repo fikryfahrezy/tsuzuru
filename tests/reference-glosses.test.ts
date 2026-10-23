@@ -20,6 +20,45 @@ test("words missing from OpenJLPT show JMdict reference senses", () => {
   ).toEqual(["(honorable) older brother"]);
 });
 
+test("kana verbs use their single common JMdict verb, per lemma", () => {
+  const came = practiceDetails(
+    exerciseById.get("008b8bb4762af4f907615633")!,
+  ).answerBreakdown.find((part) => part.japanese === "きた");
+  expect(came?.dictionaryForm).toBe("くる");
+  expect(came?.wordTypes).toContain("Verb");
+  expect(came?.dictionaryMeanings).toContain(
+    "to come (spatially or temporally)",
+  );
+  // The same chip keeps the meaning of its own lemma in each sentence.
+  const went = practiceDetails(
+    exerciseById.get("0cc3c923493c5be7050ba36b")!,
+  ).answerBreakdown.find((part) => part.japanese === "いった");
+  expect(went?.dictionaryForm).toBe("いく");
+  expect(went?.dictionaryMeanings).toContain("to go");
+  expect(went?.dictionaryMeanings).not.toContain("to say");
+  // やめる is read as 止める or 辞める, so it stays unexplained.
+  expect(
+    practiceDetails(
+      exerciseById.get("115dacdece8d7529d5710fa0")!,
+    ).answerBreakdown.find((part) => part.japanese === "やめた")
+      ?.dictionaryMeanings,
+  ).toBeUndefined();
+});
+
+test("katakana words take a common entry only when every translation uses it", () => {
+  const soccer = practiceDetails(
+    exerciseById.get("483d08f66f4c6132b81e4ce0")!,
+  ).answerBreakdown.find((part) => part.japanese === "サッカー");
+  expect(soccer?.dictionaryMeanings).toContain("soccer");
+  // "Tom and Frank": a name, not "frank".
+  expect(
+    practiceDetails(
+      exerciseById.get("d8cd6e9aa3d6734b0d2e136c")!,
+    ).answerBreakdown.find((part) => part.japanese === "フランク")
+      ?.dictionaryMeanings,
+  ).toBeUndefined();
+});
+
 test("compounds missing from JMdict are explained from their parts", () => {
   const parts = practiceDetails(
     exerciseById.get("46cc23c49187642f1ad5c36c")!,
@@ -40,10 +79,11 @@ test("compounds missing from JMdict are explained from their parts", () => {
   ).toBeUndefined();
 });
 
-test("reference glosses are keyed by exact spelling and reading", () => {
+test("reference glosses are keyed by exact spelling, reading and lemma", () => {
   const keys = new Set<string>();
   for (const entry of glossBank.entries) {
-    const key = `${entry.japanese}\u0000${entry.kana}`;
+    const lemma = "lemma" in entry ? entry.lemma : "";
+    const key = `${entry.japanese}\u0000${entry.kana}\u0000${lemma}`;
     expect(keys.has(key)).toBe(false);
     keys.add(key);
     expect(entry.meanings.length).toBeGreaterThan(0);

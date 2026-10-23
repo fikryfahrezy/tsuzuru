@@ -13,6 +13,17 @@ Each expression contains:
   expressions list the stem shared by their inflections.
 - `meanings`: general English senses.
 - `wordTypes`: breakdown categories. Include `Verb` when the expression inflects.
+- `before` (optional): word types the next word must have. An expression with
+  another use lists it, so exclamatory なんて (“what a …!”) needs an adjective
+  (なんておいしい), unlike あるなんて (“such a thing as”).
+- `notAfter` (optional): word types the previous word must not have:
+  するなんて奇妙だ is “that she would do …”, not “what a …”.
+- `wholeWords` (optional): the form ends at a word boundary. Set it for a
+  short form that begins longer words: いま is not います, まし is not まして.
+
+A kana form starts with the reading. When forms of one word differ in meaning,
+list the longer forms in their own expression: いやだ (嫌, “unpleasant”) wins over
+a bare いや (“no”), because the longest matching form is used.
 
 The breakdown groups consecutive words when their text starts with a form and
 their kana starts with the reading. A match starts at a word boundary, never
