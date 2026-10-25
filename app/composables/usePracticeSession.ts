@@ -219,6 +219,21 @@ export function usePracticeSession() {
     await nextTick();
     writingCard.value?.focusAnswer();
   }
+  async function retrySentence() {
+    const current = question.value;
+    if (!current || checking.value || !result.value) return;
+    // Keep the loaded sentence; the attempt just saved becomes the last one.
+    previousAttempt.value =
+      journal.value.find((entry) => entry.sentenceId === current.id) ?? null;
+    result.value = null;
+    revealed.value = false;
+    answer.value = "";
+    chipSelection.value = [];
+    typedDraft.value = "";
+    error.value = "";
+    await nextTick();
+    writingCard.value?.focusAnswer();
+  }
   async function retryJournalEntry(entry: JournalEntry) {
     if (checking.value) return;
     retryEntry.value = entry;
@@ -468,6 +483,7 @@ export function usePracticeSession() {
     loadQuestion,
     submit,
     nextSentence,
+    retrySentence,
     shortcut,
     resetJournal,
     retryJournalEntry,

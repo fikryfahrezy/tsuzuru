@@ -263,3 +263,30 @@ test("a fresh IndexedDB journal discards old history, preserves settings, and su
     });
   }
 });
+
+test("retrying after a check keeps the sentence and clears the answer", async () => {
+  const state = await session();
+  await state.nextSentence();
+  state.answer.value = "水";
+  await state.submit();
+  expect(state.result.value).not.toBeNull();
+  calls.length = 0;
+  let focused = false;
+  state.writingCard.value = {
+    focusAnswer: () => {
+      focused = true;
+    },
+  };
+  state.chipSelection.value = [1];
+  state.typedDraft.value = "draft";
+  await state.retrySentence();
+  expect(calls).toHaveLength(0);
+  expect(state.question.value?.id).toBe("linked-sentence");
+  expect(state.answer.value).toBe("");
+  expect(state.chipSelection.value).toEqual([]);
+  expect(state.typedDraft.value).toBe("");
+  expect(state.result.value).toBeNull();
+  expect(state.revealed.value).toBe(false);
+  expect(state.previousAttempt.value).toEqual(state.journal.value[0]);
+  expect(focused).toBe(true);
+});

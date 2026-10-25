@@ -36,6 +36,7 @@ const emit = defineEmits<{
   another: [];
   submit: [reveal: boolean];
   next: [];
+  retry: [];
   shortcut: [event: KeyboardEvent];
 }>();
 const grammarButton = ref<HTMLButtonElement | null>(null);
@@ -457,15 +458,15 @@ defineExpose({
           {{ checking ? "Comparing…" : "Check writing" }}
           <span>→</span>
         </button>
-        <button
-          v-else
-          class="primary-button"
-          type="button"
-          @click="emit('next')"
-        >
-          Next sentence
-          <span>→</span>
-        </button>
+        <div v-else class="result-actions">
+          <button class="retry-button" type="button" @click="emit('retry')">
+            Retry ↻
+          </button>
+          <button class="primary-button" type="button" @click="emit('next')">
+            Next sentence
+            <span>→</span>
+          </button>
+        </div>
       </div>
     </form>
     <div v-if="error" class="error-message" role="alert">
@@ -589,6 +590,22 @@ defineExpose({
   color: var(--muted);
   font-size: 10px;
 }
+.result-actions {
+  display: flex;
+  gap: 10px;
+}
+.retry-button {
+  min-height: 44px;
+  padding: 13px 17px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--secondary);
+  font-size: 10px;
+}
+.retry-button:hover {
+  border-color: var(--action);
+  color: var(--action);
+}
 .below-paper {
   display: flex;
   flex-direction: column;
@@ -613,6 +630,9 @@ defineExpose({
   .card-actions {
     align-items: stretch;
     flex-direction: column;
+  }
+  .result-actions .primary-button {
+    flex: 1;
   }
 }
 @media (max-width: 640px) {

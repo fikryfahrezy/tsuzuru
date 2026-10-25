@@ -54,6 +54,7 @@ const {
   loadQuestion,
   submit,
   nextSentence,
+  retrySentence,
   shortcut,
   resetJournal,
   retryJournalEntry,
@@ -196,6 +197,7 @@ watch(difficulty, () => {
           @another="question ? nextSentence() : loadQuestion()"
           @submit="submit"
           @next="nextSentence"
+          @retry="retrySentence"
           @shortcut="shortcut"
         />
         <GrammarReference
