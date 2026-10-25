@@ -33,7 +33,7 @@ const limits: Record<
   { minLoaded: number; maxDropped: number }
 > = {
   sentences: { minLoaded: 10312, maxDropped: 2303 },
-  alternatives: { minLoaded: 1385, maxDropped: 0 },
+  alternatives: { minLoaded: 11058, maxDropped: 0 },
   spellings: { minLoaded: 3491, maxDropped: 0 },
   phraseHints: { minLoaded: 20, maxDropped: 0 },
   levels: { minLoaded: 10312, maxDropped: 0 },

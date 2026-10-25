@@ -2,6 +2,7 @@ import type { SentenceAnswerAnnotations } from "../../shared/answer-entries";
 import { HintSource, type PromptPart } from "../../shared/practice";
 import type { Sentence } from "../../shared/sentence";
 import { sentenceAnswerEntries } from "./answer-entries";
+import { finalPredicate } from "./politeness-forms";
 
 export function practiceDetails(
   sentence: Sentence,
@@ -56,5 +57,14 @@ export function practiceDetails(
     offset = span.end;
   }
   unmapped(sentence.english.slice(offset));
-  return { wordHints: hints, answerBreakdown: entries };
+  // The forms belong to the word that ends the predicate (ない in では + ない).
+  const predicate = finalPredicate(sentence);
+  const answerBreakdown = predicate
+    ? entries.map((entry) =>
+        entry.start < predicate.end && entry.end >= predicate.end
+          ? { ...entry, politenessForms: predicate.forms }
+          : entry,
+      )
+    : entries;
+  return { wordHints: hints, answerBreakdown };
 }

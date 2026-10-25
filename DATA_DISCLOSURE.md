@@ -62,9 +62,14 @@ The adapted bank is distributed under CC BY-SA 4.0 with the original source
 attribution retained. Added wording is a Tsuzuru adaptation, not a translation
 supplied or endorsed by the original sentence contributors.
 
-Alternatives are produced by rules that omit explicit first-person topics or
-vary integer spellings, and by AI-authored wording added during development.
+Alternatives are produced by rules that omit explicit first-person topics,
+vary integer spellings, or switch the sentence-final predicate between plain
+and polite forms, and by AI-authored wording added during development.
 Subject omission relies on the speaker being implied by the English prompt.
+Politeness variants change only the kana ending of the final verb, adjective,
+or copula and keep its tense and negation; they skip keigo verbs, set phrases,
+references with several sentences, and plain endings after an earlier polite
+clause. Keigo forms are never derived.
 Integer variants preserve numeric values and supplied reading annotations;
 when the source represents a number with digits and provides no pronunciation,
 the reading retains those digits. The generator excludes unsupported number

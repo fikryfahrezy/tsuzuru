@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AnswerBreakdownPart } from "#shared/practice";
+import { Politeness, type AnswerBreakdownPart } from "#shared/practice";
 import type { GrammarExplanation } from "#shared/grammar";
 import { ref, watch } from "vue";
 
@@ -8,6 +8,12 @@ const props = withDefaults(
   { shuffled: true },
 );
 const highlightedGrammar = ref<GrammarExplanation | null>(null);
+
+// Keigo is not derived, so only plain and polite forms are listed.
+const politenessGroups = [
+  { politeness: Politeness.Plain, label: "Casual (plain)" },
+  { politeness: Politeness.Polite, label: "Semi-formal (polite)" },
+];
 
 function isSelected(grammar: GrammarExplanation) {
   const selected = highlightedGrammar.value;
@@ -110,6 +116,42 @@ watch(
           </p>
         </details>
         <p v-if="part.note" class="breakdown-note">{{ part.note }}</p>
+        <details
+          v-if="part.politenessForms?.length"
+          class="breakdown-politeness"
+        >
+          <summary class="politeness-title">Politeness forms</summary>
+          <dl>
+            <template v-for="group in politenessGroups" :key="group.politeness">
+              <dt>{{ group.label }}</dt>
+              <dd
+                v-for="form in part.politenessForms.filter(
+                  (item) => item.politeness === group.politeness,
+                )"
+                :key="form.japanese"
+                :class="{ 'is-current': form.current }"
+              >
+                <span lang="ja">{{ form.japanese }}</span>
+                <span
+                  v-if="form.kana !== form.japanese"
+                  class="politeness-kana"
+                  lang="ja"
+                >
+                  {{ form.kana }}
+                </span>
+                <span v-if="form.current" class="politeness-current">
+                  this sentence
+                </span>
+                <span v-if="form.note" class="politeness-note">
+                  {{ form.note }}
+                </span>
+              </dd>
+            </template>
+          </dl>
+          <p class="breakdown-note">
+            Formal (keigo) forms depend on who acts, so they are not listed.
+          </p>
+        </details>
         <details
           v-for="grammar in part.grammar ?? []"
           :key="`${grammar.id}-${grammar.start}-${grammar.end}`"
@@ -264,6 +306,43 @@ h3 {
 .breakdown-note {
   margin: 10px 0 0;
   color: var(--secondary);
+}
+.breakdown-politeness {
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.politeness-title {
+  color: var(--green);
+  font-weight: 600;
+  cursor: pointer;
+}
+.breakdown-politeness dl {
+  margin: 6px 0 0;
+}
+.breakdown-politeness dt {
+  margin-top: 6px;
+  color: var(--secondary);
+  font-size: 12px;
+}
+.breakdown-politeness dd {
+  margin: 2px 0 0;
+  padding-left: 8px;
+  border-left: 2px solid transparent;
+}
+.breakdown-politeness dd.is-current {
+  border-left-color: var(--green);
+}
+.politeness-kana,
+.politeness-note {
+  margin-left: 6px;
+  color: var(--secondary);
+  font-size: 12px;
+}
+.politeness-current {
+  margin-left: 6px;
+  color: var(--green);
+  font-size: 11px;
 }
 .breakdown-grammar {
   margin-top: 12px;

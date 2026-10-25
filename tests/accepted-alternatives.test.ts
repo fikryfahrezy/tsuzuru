@@ -59,7 +59,7 @@ test("results include every alternative regardless of matching or the toggle", (
       "１年中テニスをします。",
     ]) {
       const result = compare(tennis, answer, Strictness.Flexible, accept);
-      expect(result.alternatives).toHaveLength(5);
+      expect(result.alternatives).toHaveLength(9);
       expect(result.alternatives?.[0]?.kana).toBe(
         "１ねんじゅうてにすをします。",
       );
@@ -70,14 +70,14 @@ test("results include every alternative regardless of matching or the toggle", (
       );
     }
   }
-  const cephas = exerciseById.get("1d2b4c9edb416bf9f39e95af")!;
+  const naruhodo = exerciseById.get("021b5b382719f4b4624083f9")!;
   expect(
-    compare(cephas, "__reveal__", Strictness.Flexible).alternatives,
+    compare(naruhodo, "__reveal__", Strictness.Flexible).alternatives,
   ).toEqual([]);
 });
 
 test("pre-generated alternatives are opt-in and preserve the original reference and attribution", () => {
-  expect(tennis.alternatives.length).toBe(5);
+  expect(tennis.alternatives.length).toBe(9);
   expect(
     compare(tennis, "１年中テニスをします。", Strictness.Flexible).matched,
   ).toBe(false);
@@ -204,7 +204,7 @@ test("the comparison API validates the toggle and only activates listed alternat
 });
 
 test("all generated answers are active with source provenance", () => {
-  expect(Object.keys(bank.entries)).toHaveLength(976);
+  expect(Object.keys(bank.entries)).toHaveLength(7480);
   let count = 0;
   for (const [id, entry] of Object.entries(bank.entries)) {
     const candidate = exerciseById.get(id)!;
@@ -219,7 +219,7 @@ test("all generated answers are active with source provenance", () => {
       count++;
     }
   }
-  expect(count).toBe(1385);
+  expect(count).toBe(11058);
 });
 
 test("listed number spellings preserve quantity, readings, and the alternatives toggle", () => {

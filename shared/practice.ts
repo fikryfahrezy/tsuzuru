@@ -43,6 +43,7 @@ export enum AlternativeMethod {
   OmitFirstPersonTopic = "omit-first-person-topic",
   NumberSpelling = "number-spelling",
   Authored = "authored",
+  PolitenessForm = "politeness-form",
 }
 
 export interface AlternativeProvenance {
@@ -134,6 +135,34 @@ export interface AnswerBreakdownPart extends AnswerChip {
   wordTypes: string[];
   note?: string;
   grammar?: GrammarExplanation[];
+  // Plain and polite forms of the sentence-final predicate, on its last word.
+  politenessForms?: PolitenessForm[];
+}
+
+export enum Politeness {
+  Plain = "plain",
+  Polite = "polite",
+}
+
+export interface PolitenessForm {
+  japanese: string;
+  kana: string;
+  politeness: Politeness;
+  note?: string;
+  // The form the reference uses.
+  current?: true;
+}
+
+function isPolitenessForm(value: unknown): value is PolitenessForm {
+  if (!value || typeof value !== "object") return false;
+  const form = value as PolitenessForm;
+  return (
+    typeof form.japanese === "string" &&
+    typeof form.kana === "string" &&
+    Object.values(Politeness).includes(form.politeness) &&
+    (form.note === undefined || typeof form.note === "string") &&
+    (form.current === undefined || form.current === true)
+  );
 }
 
 export function isAnswerBreakdownPart(
@@ -160,7 +189,11 @@ export function isAnswerBreakdownPart(
       typeof part.dictionaryForm === "string") &&
     (part.note === undefined || typeof part.note === "string") &&
     (part.grammar === undefined ||
-      (Array.isArray(part.grammar) && part.grammar.every(isGrammarExplanation)))
+      (Array.isArray(part.grammar) &&
+        part.grammar.every(isGrammarExplanation))) &&
+    (part.politenessForms === undefined ||
+      (Array.isArray(part.politenessForms) &&
+        part.politenessForms.every(isPolitenessForm)))
   );
 }
 
