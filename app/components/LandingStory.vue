@@ -498,6 +498,7 @@ defineExpose({ jump });
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  will-change: opacity;
   background: linear-gradient(
     90deg,
     var(--paper) 0%,
