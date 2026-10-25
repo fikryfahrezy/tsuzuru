@@ -113,7 +113,10 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
     <footer class="page-footer landing-container">
       <span>綴る · TSUZURU</span>
       <span>JAPANESE, ONE SENTENCE AT A TIME.</span>
-      <NuxtLink to="/sources">DATA &amp; CREDITS ↗</NuxtLink>
+      <nav aria-label="Footer navigation">
+        <NuxtLink to="/sources">DATA &amp; CREDITS ↗</NuxtLink>
+        <NuxtLink to="/app">OPEN APP ↗</NuxtLink>
+      </nav>
     </footer>
   </div>
 </template>
@@ -128,12 +131,14 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
 }
 .skip-link {
   position: fixed;
-  z-index: 30;
-  top: 10px;
-  left: 10px;
-  padding: 12px;
-  background: var(--surface);
-  transform: translateY(-200%);
+  z-index: 1000;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: var(--surface);
+  text-decoration: none;
+  transform: translateY(-150%);
 }
 .skip-link:focus {
   transform: translateY(0);
@@ -151,6 +156,9 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
 }
 .landing-brand {
   font-size: 16px;
+}
+.skip-link:hover {
+  color: var(--surface);
 }
 .landing-brand .brand-mark {
   width: 40px;
@@ -192,11 +200,10 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
 }
 .landing-faq {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 80px;
-  padding-block: 110px 96px;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 100px;
+  padding-block: 110px;
   border-top: 1px solid var(--line);
-  scroll-margin-top: 80px;
 }
 .landing-faq h2 {
   margin: 0;
@@ -211,6 +218,9 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
 .landing-faq h2 em {
   color: var(--primary);
   font-style: normal;
+}
+.text-action:hover {
+  color: var(--primary);
 }
 .text-action {
   display: inline-flex;
@@ -227,18 +237,23 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
 }
 .faq-list details {
   border-bottom: 1px solid var(--line);
-  padding-block: 20px;
 }
 .faq-list summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  min-height: 72px;
+  padding-block: 18px;
   cursor: pointer;
   list-style: none;
   font:
     15px/1.5 system-ui,
     sans-serif;
+}
+.faq-list summary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
 }
 .faq-list summary::-webkit-details-marker {
   display: none;
@@ -254,24 +269,60 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
   transform: rotate(45deg);
 }
 .faq-list p {
-  margin: 15px 30px 0 0;
+  max-width: 620px;
+  margin: -3px 0 24px;
+  padding-right: 45px;
   font:
-    14px/1.8 system-ui,
+    13px/1.75 system-ui,
     sans-serif;
   color: var(--secondary);
 }
 .faq-list .primary-button {
   margin-top: 36px;
-  min-height: 50px;
-  padding-inline: 20px;
+  min-height: 52px;
+  padding-inline: 22px;
+  gap: 36px;
+  font-weight: 500;
   background: var(--ink);
   border-color: var(--ink);
   font-size: 11px;
   text-decoration: none;
+  transition:
+    background 0.25s,
+    border-color 0.25s;
+}
+.faq-list .primary-button span {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.faq-list .primary-button:hover span {
+  transform: translateX(4px);
 }
 .faq-list .primary-button:hover {
   background: var(--primary);
   border-color: var(--primary);
+}
+.landing-shell .page-footer {
+  align-items: center;
+  gap: 18px 24px;
+  padding: 28px 0 36px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+.landing-shell .page-footer nav {
+  display: flex;
+  gap: 24px;
+}
+.landing-shell .page-footer a {
+  color: var(--secondary);
+}
+.landing-shell .page-footer a:hover {
+  color: var(--primary);
+}
+@media (max-width: 980px) {
+  .landing-faq {
+    grid-template-columns: 1fr;
+    gap: 52px;
+  }
 }
 @media (max-width: 760px) {
   .landing-container {
@@ -288,12 +339,27 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
     margin-left: auto;
   }
   .landing-faq {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding-block: 64px;
+    padding-block: 80px;
+  }
+  .faq-list summary {
+    font-size: 14px;
+  }
+  .landing-shell .page-footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
   .landing-shell .page-footer > span:nth-child(2) {
-    display: none;
+    display: inline;
   }
+}
+</style>
+
+<style>
+html:has(.landing-shell) {
+  scroll-behavior: smooth;
+}
+.landing-shell .eyebrow {
+  margin-bottom: 20px;
+  font-size: 10px;
 }
 </style>

@@ -97,6 +97,9 @@ p {
   font-size: 18px;
   letter-spacing: -0.04em;
 }
+.brand:hover {
+  color: inherit;
+}
 .brand-mark {
   display: grid;
   place-items: center;

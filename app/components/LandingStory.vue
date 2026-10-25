@@ -233,7 +233,10 @@ defineExpose({ jump });
           visibility: heroOut >= 1 ? 'hidden' : 'visible',
         }"
       >
-        <p class="eyebrow">綴る / A LITTLE PRACTICE, EVERY DAY</p>
+        <p class="eyebrow">
+          <span lang="ja">綴る</span>
+          / A LITTLE PRACTICE, EVERY DAY
+        </p>
         <h1 id="hero-title">
           <span class="line"><span>Japanese,</span></span>
           <span class="line"><em>one sentence</em></span>
@@ -414,6 +417,7 @@ defineExpose({ jump });
   pointer-events: none;
   border: calc(2px * var(--inverse, 1)) solid var(--primary);
   box-shadow: 0 0 0 200vmax rgba(31, 28, 23, 0.32);
+  opacity: 0;
   transition:
     transform 0.5s cubic-bezier(0.65, 0, 0.35, 1),
     width 0.5s cubic-bezier(0.65, 0, 0.35, 1),
@@ -514,9 +518,13 @@ defineExpose({ jump });
   position: absolute;
   top: 50%;
   left: max(24px, calc((100vw - 1180px) / 2));
-  width: min(520px, 42vw);
-  margin-top: -40px;
+  width: min(540px, 42vw);
+  margin-top: -10px;
   translate: 0 -50%;
+}
+.hero .eyebrow span {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  letter-spacing: 0.3em;
 }
 .line {
   display: block;
@@ -539,13 +547,13 @@ defineExpose({ jump });
   }
 }
 .hero h1 {
-  font-size: clamp(50px, 6.4vw, 96px);
+  font-size: clamp(50px, 6.2vw, 94px);
   line-height: 0.96;
   margin-bottom: 26px;
 }
 .hero-lede {
   max-width: 440px;
-  margin-bottom: 26px;
+  margin: 0 0 28px;
   color: var(--secondary);
   font:
     15px/1.8 system-ui,
@@ -569,10 +577,24 @@ defineExpose({ jump });
   min-height: 52px;
   padding-inline: 22px;
   gap: 36px;
+  font-weight: 500;
   background: var(--ink);
   border-color: var(--ink);
   font-size: 11px;
   text-decoration: none;
+  transition:
+    background 0.25s,
+    border-color 0.25s;
+}
+.primary-button:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.primary-button span {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.primary-button:hover span {
+  transform: translateX(4px);
 }
 .text-action {
   display: inline-flex;
@@ -584,12 +606,15 @@ defineExpose({ jump });
   color: var(--secondary);
   font-size: 10px;
 }
+.text-action:hover {
+  color: var(--primary);
+}
 .hero-notes {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
   list-style: none;
-  margin: 24px 0 0;
+  margin: 26px 0 0;
   padding: 0;
   color: var(--secondary);
   font-size: 9px;
@@ -761,8 +786,9 @@ defineExpose({ jump });
   place-items: center;
   width: 30px;
   height: 30px;
+  padding: 0;
   border: 1px solid var(--line);
-  background: var(--paper);
+  background: var(--surface);
   color: var(--muted);
   font:
     14px "Hiragino Mincho ProN",
@@ -772,6 +798,10 @@ defineExpose({ jump });
     background 0.3s,
     color 0.3s,
     border-color 0.3s;
+}
+.chapters button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
 }
 .chapters button.active {
   border-color: var(--primary);
@@ -838,10 +868,6 @@ defineExpose({ jump });
   transition-duration: 0.8s;
   transition-delay: 0.3s;
 }
-.finale .primary-button:hover {
-  background: var(--primary);
-  border-color: var(--primary);
-}
 .finale > p:last-child {
   margin: 18px 0 0;
   color: var(--secondary);
@@ -857,7 +883,7 @@ defineExpose({ jump });
     );
   }
   .hero {
-    top: 92px;
+    top: 84px;
     left: 16px;
     width: calc(100% - 32px);
     margin: 0;
