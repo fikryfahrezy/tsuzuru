@@ -61,14 +61,14 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
   <div class="landing-shell">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="landing-nav">
-      <NuxtLink class="brand" to="/" aria-label="Tsuzuru home">
-        <span class="brand-mark" lang="ja">綴</span>
-        <span>
+      <NuxtLink class="brand landing-brand" to="/" aria-label="Tsuzuru home">
+        <span class="brand-mark" lang="ja" aria-hidden="true">綴</span>
+        <span class="brand-name">
           tsuzuru
           <span class="brand-caption">JAPANESE WRITING PRACTICE</span>
         </span>
       </NuxtLink>
-      <nav aria-label="Main navigation">
+      <nav class="landing-links" aria-label="Main navigation">
         <button type="button" @click="story?.jump(1.5)">How it works</button>
         <a href="#faq">FAQ</a>
       </nav>
@@ -139,31 +139,43 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
   transform: translateY(0);
 }
 .landing-nav {
-  position: fixed;
+  position: absolute;
   z-index: 20;
   top: 0;
-  left: 50%;
+  right: 0;
+  left: 0;
   display: flex;
   align-items: center;
-  gap: 20px;
-  width: min(1180px, calc(100% - 48px));
-  height: 80px;
-  translate: -50% 0;
+  gap: 28px;
+  padding: 22px max(24px, calc((100% - 1180px) / 2));
 }
-.landing-nav nav {
+.landing-brand {
+  font-size: 16px;
+}
+.landing-brand .brand-mark {
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  line-height: 1;
+}
+.landing-links {
   display: flex;
-  gap: 26px;
+  align-items: center;
+  gap: 30px;
   margin-left: auto;
-  font-size: 11px;
 }
-.landing-nav nav a,
-.landing-nav nav button {
-  padding: 8px 0;
+.landing-links a,
+.landing-links button {
+  padding: 0;
   border: 0;
   background: none;
   color: var(--secondary);
   font-size: 11px;
   text-decoration: none;
+}
+.landing-links a:hover,
+.landing-links button:hover {
+  color: var(--primary);
 }
 .landing-open {
   display: inline-flex;
@@ -171,14 +183,12 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
   gap: 22px;
   padding: 12px 15px;
   border: 1px solid var(--ink);
-  background: rgba(227, 222, 208, 0.7);
-  backdrop-filter: blur(8px);
-  text-decoration: none;
   font-size: 10px;
+  text-decoration: none;
 }
 .landing-open:hover {
-  background: var(--ink);
-  color: var(--surface);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 .landing-faq {
   display: grid;
@@ -264,21 +274,18 @@ const story = ref<InstanceType<typeof LandingStory> | null>(null);
   border-color: var(--primary);
 }
 @media (max-width: 760px) {
-  .landing-container,
-  .landing-nav {
+  .landing-container {
     width: calc(100% - 32px);
   }
   .landing-nav {
-    height: 64px;
+    padding: 14px 16px;
   }
-  .landing-nav nav,
-  .brand-caption {
+  .brand-name,
+  .landing-links {
     display: none;
   }
   .landing-open {
-    padding: 10px 11px;
-    font-size: 9px;
-    gap: 12px;
+    margin-left: auto;
   }
   .landing-faq {
     grid-template-columns: 1fr;
