@@ -231,6 +231,7 @@ export function verbGrammar(
             // ありがたい "grateful" is lexical.
             (rule.id === "gatai" && ["ある", "有る"].includes(lemma)) ||
             (rule.id === "ta-tokoro" && !/^[、,]/u.test(text.slice(end))) ||
+            (rule.id === "nari" && /^[のに]/u.test(text.slice(end))) ||
             // こと closes the sentence; elsewhere it is a nominalizer.
             (rule.id === "koto-instruction" &&
               !/^(?:[。！!」』]|$)/u.test(text.slice(end))) ||

@@ -239,6 +239,17 @@ export function constructionGrammar(
         ],
         prefix: "lexical",
       });
+    // A stage reached: 40歳にして, 一夜にして.
+    if (
+      /^(?:[0-9０-９一二三四五六七八九十百]+(?:歳|才|年|代)|今|一瞬|一夜|一日)$/u.test(
+        previous.japanese,
+      )
+    )
+      rules.push({
+        id: "ni-shite",
+        forms: ["にして", "にして初めて", "にしてようやく"],
+        prefix: "noun",
+      });
     if (humans.has(previous.japanese))
       rules.push({
         id: "ni-sureba-ni-shitara",
@@ -363,6 +374,9 @@ export function constructionGrammar(
         rule.id === "ka-to-iu-to" &&
         ["どちら", "どっち"].includes(previous.japanese)
       )
+        continue;
+      // それゆえ is the conjunction "therefore".
+      if (rule.id === "yue-ni" && ["それ", "これ"].includes(previous.japanese))
         continue;
       // 身にこたえる: "tell on (one's health)".
       if (rule.id === "ni-kotaete" && previous.japanese === "身") continue;

@@ -1367,3 +1367,195 @@ test("N2 noun and clause constructions require their preceding role", () => {
   ] as [Word[], string][])
     expect(hasLesson(words, id), id).toBe(false);
 });
+
+test("N1 noun and clause constructions require their preceding role", () => {
+  const cases: [Word[], string, string][] = [
+    [
+      [
+        ["断る", ["Verb"]],
+        ["と", ["Particle"]],
+        ["は", ["Particle"]],
+        ["大胆", ["な-adjective"]],
+        ["だ", ["Copula"]],
+      ],
+      "to-wa",
+      "とは",
+    ],
+    [[["来る", ["Verb"]], ["上は"]], "ue-wa", "上は"],
+    [
+      [["晴れる", ["Verb"]], ["かと思いきや"]],
+      "ka-to-omoikiya",
+      "かと思いきや",
+    ],
+    [[["子供", ["Noun"]], ["といえども"]], "to-iedomo", "といえども"],
+    [
+      [["春", ["Noun"]], ["とはいえ"], ["、"], ["寒い", ["い-adjective"]]],
+      "to-wa-ie",
+      "とはいえ",
+    ],
+    [[["怠ける", ["Verb"]], ["きらいがある"]], "kirai-ga-aru", "きらいがある"],
+    [[["連休", ["Noun"]], ["とあって"]], "to-atte", "とあって"],
+    [[["仕事", ["Noun"]], ["とあれば"]], "to-areba", "とあれば"],
+    [
+      [["八割", ["Noun"]], ["といったところだ"]],
+      "to-itta-tokoro-da",
+      "といったところだ",
+    ],
+    [
+      [["寒い", ["い-adjective"]], ["といったらない"]],
+      "to-ittara-nai",
+      "といったらない",
+    ],
+    [
+      [["彼", ["Pronoun"]], ["にしたところで"]],
+      "to-shita-tokoro-de-ni-shita-tokoro-de",
+      "にしたところで",
+    ],
+    [[["今だ", ["Copula"]], ["とばかりに"]], "to-bakari-ni", "とばかりに"],
+    [
+      [["見る", ["Verb"]], ["ともなく"]],
+      "to-mo-naku-to-mo-nashi-ni",
+      "ともなく",
+    ],
+    [[["子供", ["Noun"]], ["ならまだしも"]], "nara-mada-shimo", "ならまだしも"],
+    [
+      [["驚く", ["Verb"]], ["には当たらない"]],
+      "ni-wa-ataranai",
+      "には当たらない",
+    ],
+    [[["鑑賞", ["Noun"]], ["に堪える"]], "ni-taeru-ni-taenai", "に堪える"],
+    [[["信頼", ["Noun"]], ["に足る"]], "ni-taru", "に足る"],
+    [[["国内", ["Noun"]], ["にとどまらず"]], "ni-todomarazu", "にとどまらず"],
+    [[["兄", ["Noun"]], ["にひきかえ"]], "ni-hikikae", "にひきかえ"],
+    [[["日本", ["Noun"]], ["のみならず"]], "nomi-narazu", "のみならず"],
+    [[["言った", ["Verb"], "言う"], ["ものを"], ["。"]], "mono-o", "ものを"],
+    [[["若さ", ["Noun"]], ["ゆえに"]], "yue-ni", "ゆえに"],
+    [[["働く", ["Verb"]], ["かたわら"]], "katawara", "かたわら"],
+    [[["約束した", ["Verb"], "する"], ["手前"]], "temae", "手前"],
+    [
+      [["子供", ["Noun"]], ["じゃあるまいし"]],
+      "de-wa-aru-mai-shi",
+      "じゃあるまいし",
+    ],
+    [[["嬉しい", ["い-adjective"]], ["限りだ"]], "kagiri-da", "限りだ"],
+    [
+      [["忙しい", ["い-adjective"]], ["ことこの上ない"]],
+      "koto-kono-ue-nai",
+      "ことこの上ない",
+    ],
+    [[["燃える", ["Verb"]], ["がごとく"]], "gotoki-gotoku", "がごとく"],
+    [
+      [["疲れた", ["Verb"], "疲れる"], ["とみえる"]],
+      "to-mieru-to-miete",
+      "とみえる",
+    ],
+    [[["散歩", ["Noun"]], ["がてら"]], "gatera", "がてら"],
+    [[["お礼", ["Noun"]], ["かたがた"]], "katagata", "かたがた"],
+    [[["子供", ["Noun"]], ["ですら"]], "sura", "ですら"],
+    [[["天候", ["Noun"]], ["と相まって"]], "to-aimatte", "と相まって"],
+    [[["京都", ["Noun"]], ["ならではの"]], "nara-de-wa", "ならではの"],
+    [[["同情", ["Noun"]], ["を禁じ得ない"]], "o-kinjienai", "を禁じ得ない"],
+    [
+      [["中止", ["Noun"]], ["を余儀なくされた"]],
+      "o-yogi-naku-sareru",
+      "を余儀なくされた",
+    ],
+    [[["お客様", ["Noun"]], ["あっての"]], "atte-no", "あっての"],
+    [[["結果", ["Noun"]], ["いかんで"]], "ikan-de-ikan-ni-yorazu", "いかんで"],
+    [[["感激", ["Noun"]], ["の極み"]], "no-kiwami", "の極み"],
+    [
+      [["失礼", ["な-adjective"]], ["極まりない"]],
+      "kiwamaru-kiwamari-nai",
+      "極まりない",
+    ],
+    [[["光栄", ["Noun"]], ["の至り"]], "no-itari", "の至り"],
+    [[["一日", ["Noun"]], ["たりとも"]], "tari-tomo", "たりとも"],
+    [[["努力", ["Noun"]], ["なくして"]], "nakushite-wa", "なくして"],
+    [[["事実", ["Noun"]], ["に即して"]], "ni-sokushite", "に即して"],
+    [
+      [["漢字", ["Noun"]], ["はおろか"], ["ひらがなも"]],
+      "wa-oroka",
+      "はおろか",
+    ],
+    [[["泥", ["Noun"]], ["まみれ"]], "mamire", "まみれ"],
+    [
+      [["味", ["Noun"]], ["もさることながら"]],
+      "mo-saru-koto-nagara",
+      "もさることながら",
+    ],
+    [
+      [["彼", ["Pronoun"]], ["をおいて"], ["ほかに"], ["いない"]],
+      "o-oite",
+      "をおいて",
+    ],
+    [[["東京", ["Noun"]], ["を皮切りに"]], "o-kawakiri-ni", "を皮切りに"],
+    [[["退職", ["Noun"]], ["を機に"]], "o-ki-ni", "を機に"],
+    [[["今日", ["Noun"]], ["を限りに"]], "o-kagiri-ni", "を限りに"],
+    [[["書面", ["Noun"]], ["をもって"], ["通知"]], "o-motte", "をもって"],
+    [
+      [["怪我", ["Noun"]], ["をものともせず"]],
+      "o-mono-tomo-sezu",
+      "をものともせず",
+    ],
+    [[["心配", ["Noun"]], ["をよそに"]], "o-yoso-ni", "をよそに"],
+    [[["教師", ["Noun"]], ["ともあろう"]], "tomo-arou", "ともあろう"],
+    [[["仕事", ["Noun"]], ["にかこつけて"]], "ni-kakotsukete", "にかこつけて"],
+    [[["彼", ["Pronoun"]], ["に言わせれば"]], "ni-iwasereba", "に言わせれば"],
+    [[["遊び", ["Noun"]], ["にかまけて"]], "ni-kamakete", "にかまけて"],
+    [[["町", ["Noun"]], ["きっての"]], "kitte-no", "きっての"],
+    [[["子供", ["Noun"]], ["じみた"]], "jimiru-jimita", "じみた"],
+    [[["家族", ["Noun"]], ["ぐるみ"]], "gurumi", "ぐるみ"],
+    [[["留守", ["Noun"]], ["をいいことに"]], "o-ii-koto-ni", "をいいことに"],
+    [[["法律", ["Noun"]], ["に則って"]], "ni-nottotte", "に則って"],
+    [[["結果", ["Noun"]], ["を踏まえて"]], "o-fumaete", "を踏まえて"],
+    [[["うちの子", ["Noun"]], ["ときたら"]], "to-kitara", "ときたら"],
+    [[["教師", ["Noun"]], ["にあるまじき"]], "majiki", "にあるまじき"],
+    [[["４０歳", ["Noun"]], ["にして"]], "ni-shite", "にして"],
+    [
+      [
+        ["高い", ["い-adjective"]],
+        ["だの"],
+        ["狭い", ["い-adjective"]],
+        ["だの"],
+      ],
+      "dano-dano",
+      "だの",
+    ],
+    [[["謎めいた", ["Verb"]]], "meku", "謎めいた"],
+  ];
+  for (const [words, id, span] of cases)
+    expect(
+      lessons(words).some(
+        (lesson) => lesson.id === id && lesson.japanese.endsWith(span),
+      ),
+      span,
+    ).toBe(true);
+  for (const [words, id] of [
+    [
+      [
+        ["辞めたい", ["Verb"], "辞める"],
+        ["と", ["Particle"]],
+        ["は", ["Particle"]],
+        ["思わない", ["Verb"], "思う"],
+      ],
+      "to-wa",
+    ],
+    [
+      [
+        ["愛", ["Noun"]],
+        ["と", ["Particle"]],
+        ["は", ["Particle"]],
+        ["夢", ["Noun"]],
+        ["だ", ["Copula"]],
+      ],
+      "to-wa",
+    ],
+    [[["科学", ["Noun"]], ["とはいえ"], ["ない"]], "to-wa-ie"],
+    [[["信号", ["Noun"]], ["の"], ["手前"]], "temae"],
+    [[["それ", ["Pronoun"]], ["ゆえ"]], "yue-ni"],
+    [[["傘", ["Noun"]], ["をもって"], ["いく"]], "o-motte"],
+    [[["言った", ["Verb"], "言う"], ["ものを"], ["見た"]], "mono-o"],
+    [[["日本", ["Noun"]], ["にして"], ["ください"]], "ni-shite"],
+  ] as [Word[], string][])
+    expect(hasLesson(words, id), id).toBe(false);
+});

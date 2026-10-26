@@ -602,9 +602,49 @@ export function structuralGrammar(
       !/^[がはも]/u.test(text.slice(word.end))
     )
       add(previous.start, previous.japanese + word.japanese, "kiri");
+    // すべく "in order to" after a する noun (逮捕すべく).
+    if (word.japanese === "すべく" && word.dictionaryForm === "する")
+      add(word.start, word.japanese, "beku");
+    // Showing signs of: 秋めいて, 謎めいた. Only these nouns take めく.
+    const meku = word.japanese.match(
+      /^(?:春|秋|夏|冬|謎|皮肉|冗談|言い訳|時代|古)め(?:く|いて|いた|かす|い)$/u,
+    );
+    if (meku) {
+      const next = base[index + 1];
+      add(
+        word.start,
+        word.japanese +
+          (word.japanese.endsWith("い") &&
+          next?.start === word.end &&
+          ["て", "た"].includes(next.japanese)
+            ? next.japanese
+            : ""),
+        "meku",
+      );
+    }
     // すまい is the classical negative will of する (勉強すまい).
     if (word.japanese === "すまい" && word.dictionaryForm === "する")
       add(word.start, word.japanese, "mai");
+    // 〜だの〜だの: 部屋が狭いだの汚いだの.
+    if (
+      word.japanese === "だの" &&
+      previous?.end === word.start &&
+      (nominal(previous) || finite(previous))
+    ) {
+      const second = base.find(
+        (part) =>
+          part.start > word.end &&
+          part.japanese === "だの" &&
+          !/[。！？?!]/u.test(text.slice(word.end, part.start)),
+      );
+      const earlier = base.some(
+        (part) =>
+          part.end < word.start &&
+          part.japanese === "だの" &&
+          !/[。！？?!]/u.test(text.slice(part.end, word.start)),
+      );
+      if (second && !earlier) span(word.start, second.end, "dano-dano");
+    }
     // 〜やら〜やら: 風やら雨やら.
     if (
       word.japanese === "やら" &&

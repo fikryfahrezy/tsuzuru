@@ -2,7 +2,7 @@ import { grammarMatcher } from "./grammar-matcher";
 import type { GrammarAnnotation } from "../../shared/answer-entries";
 import type { Sentence } from "../../shared/sentence";
 import type { AnswerEntry } from "./answer-entries";
-import { nominal } from "./grammar-context";
+import { finite, nominal } from "./grammar-context";
 
 export function clauseGrammar(
   sentence: Sentence,
@@ -40,6 +40,43 @@ export function clauseGrammar(
         )
       )
         add(entry.start, "なくては", "nakute-wa-condition");
+    }
+    // Surprise とは after a clause: 断るとは大胆だ, 会えるとは思わなかった.
+    // A noun before とは defines it (誕生日とは…), and とは思わない
+    // "don't think that" is a plain quotation.
+    if (entry.japanese === "と" && entry.wordTypes.includes("Particle")) {
+      const previous = base[index - 1];
+      const wa = base[index + 1];
+      if (
+        previous?.end === entry.start &&
+        wa?.start === entry.end &&
+        wa.japanese === "は" &&
+        finite(previous) &&
+        !previous.wordTypes.includes("Noun")
+      ) {
+        const clause = text.slice(wa.end).match(/^[^。！？?!]*/u)![0];
+        const last = base.findLast(
+          (part) =>
+            part.start >= wa.end &&
+            part.end <= wa.end + clause.length &&
+            !(
+              part.wordTypes.includes("Particle") &&
+              /^[よねわさ]$/u.test(part.japanese)
+            ),
+        );
+        const reaction =
+          !!last &&
+          last.start > wa.end &&
+          (last.wordTypes.includes("い-adjective") ||
+            last.wordTypes.includes("Copula") ||
+            (last.wordTypes.includes("Verb") &&
+              /(?:なかった|ませんでした)$/u.test(last.japanese) &&
+              /^(?:思|予期|予想|想像|夢)/u.test(
+                text.slice(wa.end, last.end).replace(/^[^思予想夢]*/u, ""),
+              )));
+        if (reaction && !/^(?:限|言|いえ)/u.test(text.slice(wa.end)))
+          add(entry.start, "とは", "to-wa");
+      }
     }
     // Joined ので has already been distinguished from possessive の + で
     // by the maintained conjunction reviews used to generate word boundaries.

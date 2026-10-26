@@ -531,3 +531,109 @@ test("N2 lessons link real sentences without annotations", () => {
     ).not.toContain(lesson);
   }
 });
+
+test("N1 verb endings: as soon as, in order to, resolve and literary negatives", () => {
+  const cases: [string[], string, string][] = [
+    [["見る", "なり"], "見る", "nari"],
+    [["着く", "やいなや"], "着く", "ya-ina-ya"],
+    [["行く", "べく"], "行く", "beku"],
+    [["すべからず"], "する", "bekarazu-bekarazaru"],
+    [["知る", "べくもない"], "知る", "beku-mo-nai"],
+    [["起こる", "べくして"], "起こる", "beku-shite"],
+    [["願って", "やまない"], "願う", "te-yamanai"],
+    [["来て", "からというもの"], "来る", "te-kara-to-iu-mono"],
+    [["言って", "はばからない"], "言う", "te-habakaranai"],
+    [["休んで", "もさしつかえない"], "休む", "te-mo-sashitsukae-nai"],
+    [["知らず", "じまい"], "知る", "zu-jimai"],
+    [["笑わず", "にはおかない"], "笑う", "zu-ni-wa-okanai-nai-de-wa-okanai"],
+    [["謝らず", "にはすまない"], "謝る", "zu-ni-wa-sumanai-nai-de-wa-sumanai"],
+    [["行かず", "とも"], "行く", "zu-tomo"],
+    [["考える", "だに"], "考える", "dani"],
+    [["行かない", "までも"], "行く", "nai-made-mo"],
+    [["行かない", "ものでもない"], "行く", "nai-mono-de-mo-nai"],
+    [["起こらない", "とも限らない"], "起こる", "nai-to-mo-kagiranai"],
+    [["思う", "に難くない"], "思う", "ni-kataku-nai"],
+    [["知れば", "こそ"], "知る", "ba-koso"],
+    [["言えば", "それまでだ"], "言う", "ba-sore-made-da"],
+    [["見た", "そばから"], "見る", "soba-kara"],
+    [["待った", "かいもなく"], "待つ", "kai-mo-naku"],
+    [["歩き", "がてら"], "歩く", "gatera"],
+    [["見る", "が早いか"], "見る", "ga-hayai-ka"],
+    [["見たら", "最後"], "見る", "tara-saigo-ga-saigo"],
+    [["行こう", "ものなら"], "行く", "you-mono-nara"],
+    [["休む", "ことなしに"], "休む", "koto-nashi-ni"],
+    [["泣く", "始末だ"], "泣く", "shimatsu-da"],
+    [["勝た", "んがため"], "勝つ", "n-ga-tame-ni"],
+    [["諦める", "までだ"], "諦める", "made-da-made-no-koto-da"],
+    [["する", "まじき"], "する", "majiki"],
+    [["行く", "ともなると"], "行く", "tomo-naru-to-tomo-nareba"],
+  ];
+  for (const [words, lemma, id] of cases) {
+    const { reference, base } = fixture(words, lemma);
+    expect(verbGrammar(reference, base), words.join(" / ")).toEqual([
+      {
+        start: 0,
+        end: words.join("").length,
+        japanese: words.join(""),
+        grammarIds: [id],
+      },
+    ]);
+  }
+  // それなり / 見るなりの are not "as soon as".
+  const { reference, base } = fixture(["見る", "なりに"], "見る");
+  expect(
+    verbGrammar(reference, base).flatMap((match) => match.grammarIds),
+  ).not.toContain("nari");
+});
+
+test("N1 lessons link real sentences without annotations", () => {
+  for (const [id, word, lesson, span] of [
+    ["d5da8eef", "すべく", "beku", "すべく"],
+    ["b23ce757", "秋めい", "meku", "秋めいて"],
+    ["66ac2963", "なら", "nara-iza-shirazu-wa-iza-shirazu", "ならいざ知らず"],
+    ["11072a0d", "見る", "nari", "見るなり"],
+    ["f5ed7c1b", "を", "o-motte", "をもって"],
+    ["9f001538", "と", "to-wa", "とは"],
+    ["17eefecd", "と", "to-wa", "とは"],
+    ["adf61f8a", "着く", "ya-ina-ya", "着くやいなや"],
+  ]) {
+    const s = [...exerciseById.values()].find((row) => row.id.startsWith(id!))!;
+    const { entries } = sentenceAnswerEntries(s, {
+      sentenceId: s.id,
+      english: s.english,
+      japanese: s.reference.japanese,
+      furigana: primaryReading(s.reference).furigana,
+      answerEntries: [],
+      hintMappings: [],
+    });
+    expect(
+      entries.flatMap((p) => (p.japanese === word ? (p.grammar ?? []) : [])),
+      s.reference.japanese,
+    ).toContainEqual(expect.objectContaining({ id: lesson, japanese: span }));
+  }
+  // 置いて "put", おろかにも "foolishly", とはいえない "can't be called",
+  // とは思わない "don't think", definitions and 持っている.
+  for (const [id, lesson] of [
+    ["202abfc0", "o-oite"],
+    ["dbd1d2a4", "wa-oroka"],
+    ["835dd3f3", "to-wa-ie"],
+    ["0f31716f", "to-wa"],
+    ["6de61bf7", "to-wa"],
+    ["0f5eaa35", "o-motte"],
+    ["15c0b1d8", "o-motte"],
+  ]) {
+    const s = [...exerciseById.values()].find((row) => row.id.startsWith(id!))!;
+    const { entries } = sentenceAnswerEntries(s, {
+      sentenceId: s.id,
+      english: s.english,
+      japanese: s.reference.japanese,
+      furigana: primaryReading(s.reference).furigana,
+      answerEntries: [],
+      hintMappings: [],
+    });
+    expect(
+      entries.flatMap((p) => p.grammar ?? []).map((g) => g.id),
+      s.reference.japanese,
+    ).not.toContain(lesson);
+  }
+});

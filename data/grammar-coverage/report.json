@@ -3,9 +3,9 @@
   "lessons": 529,
   "sentences": 10312,
   "statusCounts": {
-    "automatic": 401,
+    "automatic": 503,
     "annotation-only": 1,
-    "unsupported": 127
+    "unsupported": 25
   },
   "byLevel": {
     "N5": {
@@ -29,9 +29,9 @@
       "unsupported": 8
     },
     "N1": {
-      "automatic": 11,
+      "automatic": 113,
       "annotation-only": 0,
-      "unsupported": 112
+      "unsupported": 10
     }
   },
   "regressionSummary": {
@@ -52,8 +52,8 @@
         }
       ],
       "automatic": {
-        "sentences": 6830,
-        "occurrences": 7087,
+        "sentences": 6825,
+        "occurrences": 7080,
         "examples": [
           {
             "sentenceId": "0000978f3525f2d6e60e600b",
@@ -135,8 +135,8 @@
         }
       ],
       "automatic": {
-        "sentences": 3994,
-        "occurrences": 4217,
+        "sentences": 3992,
+        "occurrences": 4215,
         "examples": [
           {
             "sentenceId": "00110190dcb7bfdba58f46c4",
@@ -667,8 +667,8 @@
         }
       ],
       "automatic": {
-        "sentences": 41,
-        "occurrences": 46,
+        "sentences": 39,
+        "occurrences": 42,
         "examples": [
           {
             "sentenceId": "00fa00747aae2a575f1edbcd",
@@ -1806,23 +1806,39 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 845
+          "line": 829
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 881
+          "line": 880
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 884
+          "line": 932
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 886
+          "line": 951
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 929
+          "line": 982
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1018
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1021
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1023
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1066
         },
         {
           "file": "server/utils/inflection-grammar.ts",
@@ -1982,7 +1998,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 880
+          "line": 1017
         }
       ],
       "automatic": {
@@ -2087,7 +2103,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1111
+          "line": 1248
         }
       ],
       "automatic": {
@@ -2123,7 +2139,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 104
+          "line": 141
         }
       ],
       "automatic": {
@@ -2231,7 +2247,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1037
+          "line": 1174
         }
       ],
       "automatic": {
@@ -2278,7 +2294,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 986
+          "line": 1123
         }
       ],
       "automatic": {
@@ -2314,7 +2330,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1019
+          "line": 1156
         }
       ],
       "automatic": {
@@ -2350,11 +2366,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1029
+          "line": 1166
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1035
+          "line": 1172
         }
       ],
       "automatic": {
@@ -2390,19 +2406,19 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 991
+          "line": 1128
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 999
+          "line": 1136
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1008
+          "line": 1145
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1014
+          "line": 1151
         },
         {
           "file": "server/utils/structural-grammar.ts",
@@ -2451,7 +2467,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 976
+          "line": 1113
         }
       ],
       "automatic": {
@@ -2491,7 +2507,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1059
+          "line": 1196
         },
         {
           "file": "server/utils/scope-grammar.ts",
@@ -2590,51 +2606,35 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 824
+          "line": 830
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 836
+          "line": 832
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 854
+          "line": 884
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 866
+          "line": 945
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 942
+          "line": 961
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 958
+          "line": 973
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1017
+          "line": 991
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1022
-        },
-        {
-          "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1027
-        },
-        {
-          "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1037
-        },
-        {
-          "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1039
-        },
-        {
-          "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1062
+          "line": 1003
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
@@ -2642,15 +2642,47 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1093
+          "line": 1095
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1106
+          "line": 1154
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1107
+          "line": 1159
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1164
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1174
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1176
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1199
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1216
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1230
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1243
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 1244
         },
         {
           "file": "server/utils/inflection-grammar.ts",
@@ -2662,8 +2694,8 @@
         }
       ],
       "automatic": {
-        "sentences": 970,
-        "occurrences": 1000,
+        "sentences": 969,
+        "occurrences": 998,
         "examples": [
           {
             "sentenceId": "007af134931cba98f852914b",
@@ -2705,7 +2737,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1106
+          "line": 1243
         }
       ],
       "automatic": {
@@ -2741,7 +2773,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 884
+          "line": 1021
         },
         {
           "file": "server/utils/inflection-grammar.ts",
@@ -2749,15 +2781,15 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 276
+          "line": 277
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 302
+          "line": 303
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 310
+          "line": 311
         }
       ],
       "automatic": {
@@ -2797,7 +2829,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 903
+          "line": 1040
         },
         {
           "file": "server/utils/inflection-grammar.ts",
@@ -2854,7 +2886,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 843
+          "line": 980
         }
       ],
       "automatic": {
@@ -2907,7 +2939,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 845
+          "line": 982
         },
         {
           "file": "server/utils/inflection-grammar.ts",
@@ -2964,7 +2996,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1113
+          "line": 1250
         }
       ],
       "automatic": {
@@ -4367,7 +4399,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 971
+          "line": 1108
         }
       ],
       "automatic": {
@@ -4407,7 +4439,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 878
+          "line": 1015
         }
       ],
       "automatic": {
@@ -4447,7 +4479,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 955
+          "line": 1092
         }
       ],
       "automatic": {
@@ -4664,7 +4696,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1104
+          "line": 1241
         }
       ],
       "automatic": {
@@ -4710,7 +4742,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1090
+          "line": 1227
         }
       ],
       "automatic": {
@@ -4750,7 +4782,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1076
+          "line": 1213
         }
       ],
       "automatic": {
@@ -4792,7 +4824,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 833
+          "line": 970
         },
         {
           "file": "server/utils/verb-grammar.ts",
@@ -5010,7 +5042,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 302
+          "line": 313
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -5116,7 +5148,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 393
+          "line": 407
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -5365,11 +5397,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 935
+          "line": 1072
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 939
+          "line": 1076
         }
       ],
       "automatic": {
@@ -5544,7 +5576,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 927
+          "line": 1064
         }
       ],
       "automatic": {
@@ -5588,7 +5620,7 @@
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
-          "line": 82
+          "line": 103
         },
         {
           "file": "server/utils/rareru-grammar.ts",
@@ -5676,7 +5708,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
-          "line": 86
+          "line": 107
         },
         {
           "file": "server/utils/rareru-grammar.ts",
@@ -6106,15 +6138,15 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 55
+          "line": 92
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 846
+          "line": 983
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 847
+          "line": 984
         }
       ],
       "automatic": {
@@ -6159,23 +6191,23 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 53
+          "line": 90
         },
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 80
+          "line": 117
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 881
+          "line": 1018
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 882
+          "line": 1019
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 883
+          "line": 1020
         },
         {
           "file": "server/utils/inflection-grammar.ts",
@@ -6183,7 +6215,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 267
+          "line": 268
         }
       ],
       "automatic": {
@@ -6231,8 +6263,8 @@
         }
       ],
       "automatic": {
-        "sentences": 23,
-        "occurrences": 23,
+        "sentences": 22,
+        "occurrences": 22,
         "examples": [
           {
             "sentenceId": "0622f907f1289a4924ed04c8",
@@ -6348,7 +6380,7 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1107
+          "line": 1244
         },
         {
           "file": "server/utils/verb-grammar.ts",
@@ -6486,7 +6518,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 47
+          "line": 84
         }
       ],
       "automatic": {
@@ -6926,7 +6958,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 863
+          "line": 1000
         }
       ],
       "automatic": {
@@ -7280,7 +7312,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 372
+          "line": 386
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -7288,7 +7320,7 @@
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 273
+          "line": 385
         }
       ],
       "automatic": {
@@ -8254,11 +8286,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 851
+          "line": 988
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 245
+          "line": 246
         }
       ],
       "automatic": {
@@ -8581,7 +8613,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 1024
+          "line": 1161
         }
       ],
       "automatic": {
@@ -8617,7 +8649,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 73
+          "line": 110
         }
       ],
       "automatic": {
@@ -8775,11 +8807,11 @@
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 929
+          "line": 1066
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 933
+          "line": 1070
         },
         {
           "file": "server/utils/inflection-grammar.ts",
@@ -9227,7 +9259,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/verb.ts",
-          "line": 838
+          "line": 975
         }
       ],
       "automatic": {
@@ -9282,7 +9314,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 250
+          "line": 251
         }
       ],
       "automatic": {
@@ -9622,7 +9654,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 295
+          "line": 407
         }
       ],
       "automatic": {
@@ -9662,7 +9694,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 305
+          "line": 417
         }
       ],
       "automatic": {
@@ -9715,7 +9747,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 235
+          "line": 236
         }
       ],
       "automatic": {
@@ -9936,7 +9968,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 329
+          "line": 441
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -9985,7 +10017,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 267
+          "line": 278
         }
       ],
       "automatic": {
@@ -10030,11 +10062,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 350
+          "line": 361
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 319
+          "line": 431
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -10083,11 +10115,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 334
+          "line": 345
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 324
+          "line": 436
         }
       ],
       "automatic": {
@@ -10165,7 +10197,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 268
+          "line": 380
         }
       ],
       "automatic": {
@@ -10482,7 +10514,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 406
+          "line": 420
         }
       ],
       "automatic": {
@@ -10744,11 +10776,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 307
+          "line": 318
         },
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 309
+          "line": 320
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -11130,11 +11162,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 343
+          "line": 354
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 341
+          "line": 453
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -11183,11 +11215,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 337
+          "line": 348
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 333
+          "line": 445
         }
       ],
       "automatic": {
@@ -11236,7 +11268,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 304
+          "line": 321
         }
       ],
       "automatic": {
@@ -11293,7 +11325,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 305
+          "line": 322
         }
       ],
       "automatic": {
@@ -11338,7 +11370,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 335
+          "line": 447
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -11387,7 +11419,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 343
+          "line": 455
         }
       ],
       "automatic": {
@@ -11427,7 +11459,7 @@
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 452
+          "line": 696
         }
       ],
       "automatic": {
@@ -11533,11 +11565,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 352
+          "line": 363
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 340
+          "line": 452
         }
       ],
       "automatic": {
@@ -11590,7 +11622,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 339
+          "line": 451
         }
       ],
       "automatic": {
@@ -11635,7 +11667,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 316
+          "line": 327
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -11692,7 +11724,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 317
+          "line": 429
         },
         {
           "file": "server/utils/structural-grammar.ts",
@@ -11749,7 +11781,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 325
+          "line": 336
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -11971,7 +12003,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 268
+          "line": 269
         }
       ],
       "automatic": {
@@ -12015,7 +12047,7 @@
         },
         {
           "file": "server/utils/verb-grammar.ts",
-          "line": 239
+          "line": 240
         }
       ],
       "automatic": {
@@ -12331,7 +12363,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 273
+          "line": 284
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
@@ -12384,7 +12416,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 273
+          "line": 284
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
@@ -12777,7 +12809,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 637
+          "line": 677
         }
       ],
       "automatic": {
@@ -13712,7 +13744,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 364
+          "line": 476
         }
       ],
       "automatic": {
@@ -13743,7 +13775,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 369
+          "line": 481
         }
       ],
       "automatic": {
@@ -13943,11 +13975,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 370
+          "line": 384
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 352
+          "line": 464
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -14024,7 +14056,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 359
+          "line": 471
         }
       ],
       "automatic": {
@@ -14350,7 +14382,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 295
+          "line": 312
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -14469,11 +14501,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 261
+          "line": 272
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 297
+          "line": 314
         }
       ],
       "automatic": {
@@ -14498,7 +14530,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 251
+          "line": 262
         }
       ],
       "automatic": {
@@ -14798,7 +14830,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 419
+          "line": 531
         }
       ],
       "automatic": {
@@ -14823,7 +14855,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 421
+          "line": 533
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -14872,7 +14904,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 426
+          "line": 538
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -14968,7 +15000,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 438
+          "line": 550
         }
       ],
       "automatic": {
@@ -14993,7 +15025,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 355
+          "line": 366
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -15176,11 +15208,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 302
+          "line": 319
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 444
+          "line": 556
         }
       ],
       "automatic": {
@@ -15245,7 +15277,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 448
+          "line": 560
         }
       ],
       "automatic": {
@@ -15634,7 +15666,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 300
+          "line": 317
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -15864,7 +15896,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 380
+          "line": 492
         }
       ],
       "automatic": {
@@ -15889,7 +15921,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 378
+          "line": 490
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -15924,7 +15956,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 379
+          "line": 491
         }
       ],
       "automatic": {
@@ -15949,7 +15981,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 353
+          "line": 364
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -16069,11 +16101,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 368
+          "line": 382
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 374
+          "line": 486
         }
       ],
       "automatic": {
@@ -16138,11 +16170,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 298
+          "line": 315
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 266
+          "line": 378
         }
       ],
       "automatic": {
@@ -16167,7 +16199,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 244
+          "line": 255
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -16616,7 +16648,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 408
+          "line": 520
         }
       ],
       "automatic": {
@@ -16681,7 +16713,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 382
+          "line": 494
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -16716,7 +16748,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 393
+          "line": 505
         }
       ],
       "automatic": {
@@ -16741,7 +16773,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 399
+          "line": 511
         }
       ],
       "automatic": {
@@ -16766,7 +16798,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 401
+          "line": 513
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -16840,7 +16872,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/construction-grammar.ts",
-          "line": 363
+          "line": 374
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -17289,7 +17321,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 415
+          "line": 527
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -17361,7 +17393,7 @@
         },
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 607
+          "line": 627
         }
       ],
       "automatic": {
@@ -17421,7 +17453,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/construction.ts",
-          "line": 449
+          "line": 561
         }
       ],
       "automatic": {
@@ -17670,7 +17702,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/structural-grammar.ts",
-          "line": 630
+          "line": 670
         }
       ],
       "automatic": {
@@ -17771,8 +17803,17 @@
       "id": "gatera",
       "level": "N1",
       "pattern": "〜がてら",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 562
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 823
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17791,8 +17832,13 @@
       "id": "katawara",
       "level": "N1",
       "pattern": "〜かたわら",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 347
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17811,8 +17857,13 @@
       "id": "ga-hayai-ka",
       "level": "N1",
       "pattern": "〜が早いか",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 827
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17831,8 +17882,13 @@
       "id": "sura",
       "level": "N1",
       "pattern": "〜すら",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 564
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17895,8 +17951,13 @@
       "id": "tara-saigo-ga-saigo",
       "level": "N1",
       "pattern": "〜たら最後 / 〜が最後",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 829
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17915,8 +17976,17 @@
       "id": "te-kara-to-iu-mono",
       "level": "N1",
       "pattern": "〜てからというもの",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 70
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 830
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17935,8 +18005,17 @@
       "id": "te-yamanai",
       "level": "N1",
       "pattern": "〜てやまない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 69
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 834
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17955,8 +18034,13 @@
       "id": "to-aimatte",
       "level": "N1",
       "pattern": "〜と相まって",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 566
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17975,8 +18059,17 @@
       "id": "tomo-naru-to-tomo-nareba",
       "level": "N1",
       "pattern": "〜ともなると / 〜ともなれば",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 573
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 839
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -17995,8 +18088,13 @@
       "id": "nara-de-wa",
       "level": "N1",
       "pattern": "〜ならでは",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 578
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18015,12 +18113,27 @@
       "id": "beku",
       "level": "N1",
       "pattern": "〜べく",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 924
+        },
+        {
+          "file": "server/utils/structural-grammar.ts",
+          "line": 607
+        }
+      ],
       "automatic": {
-        "sentences": 0,
-        "occurrences": 0,
-        "examples": []
+        "sentences": 1,
+        "occurrences": 1,
+        "examples": [
+          {
+            "sentenceId": "d5da8eef9e147610d7b7e48d",
+            "japanese": "彼らは男を逮捕すべく追いかけた。",
+            "english": "They chased the man to arrest him."
+          }
+        ]
       },
       "annotations": {
         "sentences": 0,
@@ -18035,8 +18148,13 @@
       "id": "you-mono-nara",
       "level": "N1",
       "pattern": "〜(よ)うものなら",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 841
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18095,8 +18213,17 @@
       "id": "o-kinjienai",
       "level": "N1",
       "pattern": "〜を禁じ得ない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 583
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 73
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18115,8 +18242,17 @@
       "id": "o-yogi-naku-sareru",
       "level": "N1",
       "pattern": "〜を余儀なくされる",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 588
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 72
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18135,8 +18271,13 @@
       "id": "atte-no",
       "level": "N1",
       "pattern": "〜あっての",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 594
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18155,8 +18296,13 @@
       "id": "ikan-de-ikan-ni-yorazu",
       "level": "N1",
       "pattern": "〜いかんで / 〜いかんによらず",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 596
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18235,8 +18381,13 @@
       "id": "kagiri-da",
       "level": "N1",
       "pattern": "〜かぎりだ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 361
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18255,8 +18406,13 @@
       "id": "katagata",
       "level": "N1",
       "pattern": "〜かたがた",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 563
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18275,8 +18431,17 @@
       "id": "ka-to-omoikiya",
       "level": "N1",
       "pattern": "〜かと思いきや",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 267
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 82
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18295,8 +18460,13 @@
       "id": "kirai-ga-aru",
       "level": "N1",
       "pattern": "〜きらいがある",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 276
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18315,8 +18485,13 @@
       "id": "kiwamaru-kiwamari-nai",
       "level": "N1",
       "pattern": "〜極まる / 〜極まりない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 610
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18335,8 +18510,13 @@
       "id": "no-kiwami",
       "level": "N1",
       "pattern": "〜の極み",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 608
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18355,8 +18535,13 @@
       "id": "gotoki-gotoku",
       "level": "N1",
       "pattern": "〜ごとき / 〜ごとく",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 368
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18375,8 +18560,13 @@
       "id": "koto-tote",
       "level": "N1",
       "pattern": "〜こととて",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 280
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18395,8 +18585,13 @@
       "id": "koto-nashi-ni",
       "level": "N1",
       "pattern": "〜ことなしに",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 845
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18415,8 +18610,13 @@
       "id": "shimatsu-da",
       "level": "N1",
       "pattern": "〜始末だ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 852
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18435,8 +18635,13 @@
       "id": "zu-jimai",
       "level": "N1",
       "pattern": "〜ずじまい",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 857
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18455,8 +18660,21 @@
       "id": "zu-ni-wa-okanai-nai-de-wa-okanai",
       "level": "N1",
       "pattern": "〜ずにはおかない / 〜ないではおかない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 77
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 862
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 867
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18475,8 +18693,21 @@
       "id": "zu-ni-wa-sumanai-nai-de-wa-sumanai",
       "level": "N1",
       "pattern": "〜ずにはすまない / 〜ないではすまない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 78
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 872
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 877
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18495,8 +18726,17 @@
       "id": "soba-kara",
       "level": "N1",
       "pattern": "〜そばから",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 879
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 880
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18515,8 +18755,13 @@
       "id": "tari-tomo",
       "level": "N1",
       "pattern": "〜たりとも",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 615
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18535,8 +18780,13 @@
       "id": "dani",
       "level": "N1",
       "pattern": "〜だに",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 882
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18675,8 +18925,13 @@
       "id": "de-wa-aru-mai-shi",
       "level": "N1",
       "pattern": "〜ではあるまいし",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 351
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18695,8 +18950,13 @@
       "id": "temae",
       "level": "N1",
       "pattern": "〜手前",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 349
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18715,8 +18975,13 @@
       "id": "te-mo-sashitsukae-nai",
       "level": "N1",
       "pattern": "〜てもさしつかえない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 888
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18735,8 +19000,13 @@
       "id": "to-atte",
       "level": "N1",
       "pattern": "〜とあって",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 281
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18755,8 +19025,13 @@
       "id": "to-areba",
       "level": "N1",
       "pattern": "〜とあれば",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 282
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18795,8 +19070,13 @@
       "id": "to-itta-tokoro-da",
       "level": "N1",
       "pattern": "〜といったところだ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 284
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18815,8 +19095,17 @@
       "id": "to-iedomo",
       "level": "N1",
       "pattern": "〜といえども",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 271
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 80
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18835,8 +19124,17 @@
       "id": "to-ittara-nai",
       "level": "N1",
       "pattern": "〜といったらない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 289
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 79
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18855,8 +19153,13 @@
       "id": "to-kitara",
       "level": "N1",
       "pattern": "〜ときたら",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 688
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18875,8 +19178,13 @@
       "id": "to-shita-tokoro-de-ni-shita-tokoro-de",
       "level": "N1",
       "pattern": "〜としたところで / 〜にしたところで",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 294
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18895,12 +19203,28 @@
       "id": "to-wa",
       "level": "N1",
       "pattern": "〜とは",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/clause-grammar.ts",
+          "line": 78
+        }
+      ],
       "automatic": {
-        "sentences": 0,
-        "occurrences": 0,
-        "examples": []
+        "sentences": 7,
+        "occurrences": 7,
+        "examples": [
+          {
+            "sentenceId": "17eefecdd262956f77cd70e4",
+            "japanese": "ここでお目に掛かれるとは全然予期しませんでした。",
+            "english": "I little expected to see you here."
+          },
+          {
+            "sentenceId": "4c9d1f4f1376f4e33f6dccd1",
+            "japanese": "バスに傘を忘れるとは彼女はそそっかしい。",
+            "english": "It was careless of her to leave her umbrella in the bus."
+          }
+        ]
       },
       "annotations": {
         "sentences": 0,
@@ -18915,8 +19239,13 @@
       "id": "to-bakari-ni",
       "level": "N1",
       "pattern": "〜とばかりに",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 298
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18935,8 +19264,13 @@
       "id": "to-mo-naku-to-mo-nashi-ni",
       "level": "N1",
       "pattern": "〜ともなく / 〜ともなしに",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 300
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18955,8 +19289,13 @@
       "id": "nai-made-mo",
       "level": "N1",
       "pattern": "〜ないまでも",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 890
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -18975,8 +19314,13 @@
       "id": "nai-mono-de-mo-nai",
       "level": "N1",
       "pattern": "〜ないものでもない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 894
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19015,8 +19359,13 @@
       "id": "nakushite-wa",
       "level": "N1",
       "pattern": "〜なくして(は)",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 616
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19084,12 +19433,27 @@
       "id": "nara-iza-shirazu-wa-iza-shirazu",
       "level": "N1",
       "pattern": "〜ならいざしらず / 〜はいざしらず",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 306
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 83
+        }
+      ],
       "automatic": {
-        "sentences": 0,
-        "occurrences": 0,
-        "examples": []
+        "sentences": 1,
+        "occurrences": 1,
+        "examples": [
+          {
+            "sentenceId": "66ac2963ce3a59bb03ca9d94",
+            "japanese": "昔ならいざ知らず、今はＦＡＸも、メールもある。",
+            "english": "I don't know about the past, but now we have faxes and emails."
+          }
+        ]
       },
       "annotations": {
         "sentences": 0,
@@ -19104,8 +19468,13 @@
       "id": "nara-mada-shimo",
       "level": "N1",
       "pattern": "〜ならまだしも",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 304
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19124,12 +19493,32 @@
       "id": "nari",
       "level": "N1",
       "pattern": "〜なり",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 937
+        },
+        {
+          "file": "server/utils/verb-grammar.ts",
+          "line": 234
+        }
+      ],
       "automatic": {
-        "sentences": 0,
-        "occurrences": 0,
-        "examples": []
+        "sentences": 2,
+        "occurrences": 2,
+        "examples": [
+          {
+            "sentenceId": "11072a0dc54f791dea573062",
+            "japanese": "犬は私を見るなり私に走り寄った。",
+            "english": "No sooner had the dog seen me than it ran up to me."
+          },
+          {
+            "sentenceId": "e9ff42ed0e50532498b7c491",
+            "japanese": "しかし城にたどりつくなり、近衛兵を率いた人によって、わたしはこの牢獄に勾引されてしまった。",
+            "english": "However, when I finally reached the castle I was thrown into this prison by the commander of the imperial guard."
+          }
+        ]
       },
       "annotations": {
         "sentences": 0,
@@ -19213,8 +19602,17 @@
       "id": "ni-wa-ataranai",
       "level": "N1",
       "pattern": "〜には当たらない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 313
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 84
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19286,8 +19684,17 @@
       "id": "ni-kataku-nai",
       "level": "N1",
       "pattern": "〜に難くない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 318
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 899
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19306,8 +19713,13 @@
       "id": "ni-shite",
       "level": "N1",
       "pattern": "〜にして",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/construction-grammar.ts",
+          "line": 249
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19326,8 +19738,13 @@
       "id": "ni-sokushite",
       "level": "N1",
       "pattern": "〜に即して",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 618
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19346,8 +19763,13 @@
       "id": "ni-taeru-ni-taenai",
       "level": "N1",
       "pattern": "〜に堪える / 〜に堪えない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 324
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19366,8 +19788,13 @@
       "id": "ni-taru",
       "level": "N1",
       "pattern": "〜に足る",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 328
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19386,8 +19813,13 @@
       "id": "ni-todomarazu",
       "level": "N1",
       "pattern": "〜にとどまらず",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 330
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19406,8 +19838,13 @@
       "id": "ni-hikikae",
       "level": "N1",
       "pattern": "〜にひきかえ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 335
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19466,8 +19903,13 @@
       "id": "no-itari",
       "level": "N1",
       "pattern": "〜の至り",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 614
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19486,8 +19928,13 @@
       "id": "nomi-narazu",
       "level": "N1",
       "pattern": "〜のみならず",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 339
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19506,8 +19953,17 @@
       "id": "wa-oroka",
       "level": "N1",
       "pattern": "〜はおろか",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/advanced.ts",
+          "line": 302
+        },
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 622
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19526,8 +19982,17 @@
       "id": "ba-koso",
       "level": "N1",
       "pattern": "〜ばこそ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 901
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 902
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19546,8 +20011,21 @@
       "id": "ba-sore-made-da",
       "level": "N1",
       "pattern": "〜ばそれまでだ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 87
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 906
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 911
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19566,8 +20044,13 @@
       "id": "bekarazu-bekarazaru",
       "level": "N1",
       "pattern": "〜べからず / 〜べからざる",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 916
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19586,8 +20069,13 @@
       "id": "beku-mo-nai",
       "level": "N1",
       "pattern": "〜べくもない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 921
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19606,8 +20094,17 @@
       "id": "majiki",
       "level": "N1",
       "pattern": "〜まじき",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 690
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 925
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19666,8 +20163,17 @@
       "id": "made-da-made-no-koto-da",
       "level": "N1",
       "pattern": "〜までだ / 〜までのことだ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 929
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 934
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19686,8 +20192,13 @@
       "id": "mamire",
       "level": "N1",
       "pattern": "〜まみれ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 624
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19706,12 +20217,23 @@
       "id": "meku",
       "level": "N1",
       "pattern": "〜めく",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/structural-grammar.ts",
+          "line": 622
+        }
+      ],
       "automatic": {
-        "sentences": 0,
-        "occurrences": 0,
-        "examples": []
+        "sentences": 1,
+        "occurrences": 1,
+        "examples": [
+          {
+            "sentenceId": "b23ce757bd5335ea427d393f",
+            "japanese": "だいぶ秋めいてまいりました。",
+            "english": "It has become quite autumnal."
+          }
+        ]
       },
       "annotations": {
         "sentences": 0,
@@ -19726,8 +20248,17 @@
       "id": "mo-saru-koto-nagara",
       "level": "N1",
       "pattern": "〜もさることながら",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 629
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 86
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19746,8 +20277,17 @@
       "id": "mono-o",
       "level": "N1",
       "pattern": "〜ものを",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/advanced.ts",
+          "line": 294
+        },
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 341
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19766,12 +20306,28 @@
       "id": "ya-ina-ya",
       "level": "N1",
       "pattern": "〜や否や",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 938
+        }
+      ],
       "automatic": {
-        "sentences": 0,
-        "occurrences": 0,
-        "examples": []
+        "sentences": 2,
+        "occurrences": 2,
+        "examples": [
+          {
+            "sentenceId": "72b808e27eabfab7d427e56f",
+            "japanese": "人は生まれるやいなや、死に向かう。",
+            "english": "As soon as man is born, he begins to die."
+          },
+          {
+            "sentenceId": "adf61f8a202cbce7d11cc079",
+            "japanese": "私が駅に着くやいなや汽車は出た。",
+            "english": "I had no sooner reached the station than the train started."
+          }
+        ]
       },
       "annotations": {
         "sentences": 0,
@@ -19786,8 +20342,17 @@
       "id": "yue-ni",
       "level": "N1",
       "pattern": "〜ゆえ(に)",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/construction-grammar.ts",
+          "line": 379
+        },
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 343
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19806,8 +20371,21 @@
       "id": "o-oite",
       "level": "N1",
       "pattern": "〜をおいて",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/advanced.ts",
+          "line": 297
+        },
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 634
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 75
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19826,8 +20404,13 @@
       "id": "o-kawakiri-ni",
       "level": "N1",
       "pattern": "〜を皮切りに",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 636
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19846,8 +20429,13 @@
       "id": "o-ki-ni",
       "level": "N1",
       "pattern": "〜を機に",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 640
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19866,8 +20454,13 @@
       "id": "o-kagiri-ni",
       "level": "N1",
       "pattern": "〜を限りに",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 641
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19886,12 +20479,36 @@
       "id": "o-motte",
       "level": "N1",
       "pattern": "〜をもって",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/advanced.ts",
+          "line": 307
+        },
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 644
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 74
+        }
+      ],
       "automatic": {
-        "sentences": 0,
-        "occurrences": 0,
-        "examples": []
+        "sentences": 2,
+        "occurrences": 2,
+        "examples": [
+          {
+            "sentenceId": "5373a5fca799ebb46c7c07a2",
+            "japanese": "もっと思いやりをもって接してやらないといけませんよ。",
+            "english": "You must treat them with more consideration."
+          },
+          {
+            "sentenceId": "f5ed7c1bda4b5e2c58444158",
+            "japanese": "その条項は、議決はすべて過半数をもって成立すると規定している。",
+            "english": "The clause provides that all decisions shall be made by majority vote."
+          }
+        ]
       },
       "annotations": {
         "sentences": 0,
@@ -19906,8 +20523,17 @@
       "id": "o-mono-tomo-sezu",
       "level": "N1",
       "pattern": "〜をものともせず",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 649
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 76
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19926,8 +20552,13 @@
       "id": "o-yoso-ni",
       "level": "N1",
       "pattern": "〜をよそに",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 653
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -19946,8 +20577,13 @@
       "id": "n-ga-tame-ni",
       "level": "N1",
       "pattern": "〜んがため(に)",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 942
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20006,8 +20642,13 @@
       "id": "ue-wa",
       "level": "N1",
       "pattern": "〜うえは",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 265
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20046,8 +20687,13 @@
       "id": "dano-dano",
       "level": "N1",
       "pattern": "〜だの〜だの",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/structural-grammar.ts",
+          "line": 646
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20066,8 +20712,17 @@
       "id": "te-habakaranai",
       "level": "N1",
       "pattern": "〜てはばからない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 71
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 947
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20086,8 +20741,13 @@
       "id": "tomo-arou",
       "level": "N1",
       "pattern": "〜ともあろう",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 654
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20106,8 +20766,13 @@
       "id": "ni-kakotsukete",
       "level": "N1",
       "pattern": "〜にかこつけて",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 655
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20126,8 +20791,17 @@
       "id": "ni-iwasereba",
       "level": "N1",
       "pattern": "〜に言わせれば",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 657
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 85
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20146,8 +20820,13 @@
       "id": "ni-kamakete",
       "level": "N1",
       "pattern": "〜にかまけて",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 661
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20166,8 +20845,13 @@
       "id": "kai-mo-naku",
       "level": "N1",
       "pattern": "〜かいもなく",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 953
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20186,8 +20870,13 @@
       "id": "kitte-no",
       "level": "N1",
       "pattern": "〜きっての",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 662
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20206,8 +20895,13 @@
       "id": "zu-tomo",
       "level": "N1",
       "pattern": "〜ずとも",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 949
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20226,8 +20920,21 @@
       "id": "to-wa-ie",
       "level": "N1",
       "pattern": "〜とはいえ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/advanced.ts",
+          "line": 304
+        },
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 274
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 81
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20246,8 +20953,13 @@
       "id": "beku-shite",
       "level": "N1",
       "pattern": "〜べくして",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 923
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20266,8 +20978,13 @@
       "id": "jimiru-jimita",
       "level": "N1",
       "pattern": "〜じみる / 〜じみた",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 664
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20286,8 +21003,13 @@
       "id": "gurumi",
       "level": "N1",
       "pattern": "〜ぐるみ",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 669
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20346,8 +21068,13 @@
       "id": "o-ii-koto-ni",
       "level": "N1",
       "pattern": "〜をいいことに",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 674
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20366,8 +21093,13 @@
       "id": "ni-nottotte",
       "level": "N1",
       "pattern": "〜に則って",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 679
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20406,8 +21138,13 @@
       "id": "koto-kono-ue-nai",
       "level": "N1",
       "pattern": "〜ことこの上ない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 356
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20426,8 +21163,17 @@
       "id": "to-mieru-to-miete",
       "level": "N1",
       "pattern": "〜とみえる / 〜とみえて",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 373
+        },
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 89
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20446,8 +21192,13 @@
       "id": "o-fumaete",
       "level": "N1",
       "pattern": "〜を踏まえて",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/construction.ts",
+          "line": 684
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20466,8 +21217,17 @@
       "id": "nai-to-mo-kagiranai",
       "level": "N1",
       "pattern": "〜ないとも限らない",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/lesson-policy.ts",
+          "line": 88
+        },
+        {
+          "file": "server/utils/grammar-rules/verb.ts",
+          "line": 958
+        }
+      ],
       "automatic": {
         "sentences": 0,
         "occurrences": 0,
@@ -20521,7 +21281,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
-          "line": 88
+          "line": 109
         },
         {
           "file": "server/utils/rareru-grammar.ts",

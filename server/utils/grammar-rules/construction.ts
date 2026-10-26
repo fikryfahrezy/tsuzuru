@@ -262,6 +262,118 @@ export const predicateConstructions: Rule[] = [
     forms: ["にかかわらず", "に関わらず", "に拘らず", "に拘わらず"],
     prefix: "plain",
   },
+  { id: "ue-wa", forms: ["上は", "うえは"], prefix: "finite" },
+  {
+    id: "ka-to-omoikiya",
+    forms: ["かと思いきや", "かとおもいきや"],
+    prefix: "plain",
+  },
+  { id: "to-iedomo", forms: ["といえども", "と言えども"], prefix: "plain" },
+  // とはいえない "can't be called" keeps its plain reading; see
+  // validAdvancedTail.
+  { id: "to-wa-ie", forms: ["とはいえ", "とは言え"], prefix: "plain" },
+  {
+    id: "kirai-ga-aru",
+    forms: ["きらいがある", "きらいがあります"],
+    prefix: "adnominal",
+  },
+  { id: "koto-tote", forms: ["こととて"], prefix: "adnominal" },
+  { id: "to-atte", forms: ["とあって"], prefix: "plain" },
+  { id: "to-areba", forms: ["とあれば"], prefix: "plain" },
+  {
+    id: "to-itta-tokoro-da",
+    forms: ["といったところだ", "といったところです", "といった所だ"],
+    prefix: "plain",
+  },
+  {
+    id: "to-ittara-nai",
+    forms: ["といったらない", "と言ったらない", "といったらありゃしない"],
+    prefix: "plain",
+  },
+  {
+    id: "to-shita-tokoro-de-ni-shita-tokoro-de",
+    forms: ["としたところで", "にしたところで"],
+    prefix: "plain",
+  },
+  { id: "to-bakari-ni", forms: ["とばかりに"], prefix: "plain" },
+  {
+    id: "to-mo-naku-to-mo-nashi-ni",
+    forms: ["ともなく", "ともなしに"],
+    prefix: "dictionary",
+  },
+  { id: "nara-mada-shimo", forms: ["ならまだしも"], prefix: "plain" },
+  {
+    id: "nara-iza-shirazu-wa-iza-shirazu",
+    forms: ["なら", "は"].flatMap((particle) =>
+      ["いざ知らず", "いざしらず"].map((ending) => particle + ending),
+    ),
+    prefix: "plain",
+  },
+  {
+    id: "ni-wa-ataranai",
+    forms: ["には当たらない", "にはあたらない", "には当たりません"],
+    prefix: "plain",
+  },
+  {
+    id: "ni-kataku-nai",
+    forms: ["に難くない", "にかたくない"],
+    prefix: "plain",
+  },
+  // Kanji only: kana にたえない may be 絶えない "never ceases".
+  {
+    id: "ni-taeru-ni-taenai",
+    forms: ["に堪える", "に堪えない", "に堪えません"],
+    prefix: "plain",
+  },
+  { id: "ni-taru", forms: ["に足る"], prefix: "plain" },
+  {
+    id: "ni-todomarazu",
+    forms: ["にとどまらず", "に止まらず", "に留まらず"],
+    prefix: "plain",
+  },
+  {
+    id: "ni-hikikae",
+    forms: ["にひきかえ", "に引き換え", "に引きかえ"],
+    prefix: "plain",
+  },
+  { id: "nomi-narazu", forms: ["のみならず"], prefix: "plain" },
+  // Only at the end of a sentence; see validAdvancedTail.
+  { id: "mono-o", forms: ["ものを"], prefix: "finite" },
+  {
+    id: "yue-ni",
+    forms: ["ゆえ", "ゆえに", "故に", "がゆえに", "がゆえ", "が故に", "ゆえの"],
+    prefix: "plain",
+  },
+  { id: "katawara", forms: ["かたわら", "傍ら"], prefix: "adnominal" },
+  // After a finite clause only: 信号の手前 is a place.
+  { id: "temae", forms: ["手前"], prefix: "finite" },
+  {
+    id: "de-wa-aru-mai-shi",
+    forms: ["ではあるまいし", "じゃあるまいし"],
+    prefix: "plain",
+  },
+  {
+    id: "koto-kono-ue-nai",
+    forms: ["ことこの上ない", "ことこのうえない"],
+    prefix: "finite",
+  },
+  {
+    id: "kagiri-da",
+    forms: ["限り", "かぎり"].flatMap((word) =>
+      ["だ", "です"].map((ending) => word + ending),
+    ),
+    prefix: "adnominal",
+  },
+  {
+    id: "gotoki-gotoku",
+    forms: ["ごとく", "ごとき", "如く", "如き", "がごとく", "がごとき"],
+    prefix: "adnominal",
+  },
+  {
+    id: "to-mieru-to-miete",
+    forms: ["とみえる", "とみえて", "と見える", "と見えて"],
+    prefix: "finite",
+  },
   // Not at the end, where にしろ is an order (静かにしろ).
   { id: "ni-shiro-ni-seyo", forms: ["にしろ", "にせよ"], prefix: "plain" },
   {
@@ -447,6 +559,138 @@ export const nounConstructions: Rule[] = [
   },
   { id: "wa-sateoki", forms: ["はさておき", "はさておいて"], prefix: "noun" },
   { id: "mo-kamawazu", forms: ["もかまわず", "も構わず"], prefix: "noun" },
+  { id: "gatera", forms: ["がてら"], prefix: "noun" },
+  { id: "katagata", forms: ["かたがた"], prefix: "noun" },
+  { id: "sura", forms: ["すら", "ですら", "にすら"], prefix: "noun" },
+  {
+    id: "to-aimatte",
+    forms: ["と", "も"].flatMap((particle) =>
+      ["相まって", "あいまって"].map((verb) => particle + verb),
+    ),
+    prefix: "noun",
+  },
+  {
+    id: "tomo-naru-to-tomo-nareba",
+    forms: ["ともなると", "ともなれば"],
+    prefix: "noun",
+  },
+  {
+    id: "nara-de-wa",
+    forms: ["ならでは", "ならではの", "ならではだ"],
+    prefix: "noun",
+  },
+  {
+    id: "o-kinjienai",
+    forms: ["を禁じ得ない", "を禁じえない", "を禁じ得なかった"],
+    prefix: "noun",
+  },
+  {
+    id: "o-yogi-naku-sareru",
+    forms: ["された", "される", "されて", "させる", "させた"].map(
+      (ending) => "を余儀なく" + ending,
+    ),
+    prefix: "noun",
+  },
+  { id: "atte-no", forms: ["あっての"], prefix: "noun" },
+  {
+    id: "ikan-de-ikan-ni-yorazu",
+    forms: ["", "の"].flatMap((particle) =>
+      [
+        "いかんで",
+        "いかんによって",
+        "いかんによらず",
+        "いかんにかかわらず",
+        "いかんでは",
+      ].map((ending) => particle + ending),
+    ),
+    prefix: "noun",
+  },
+  { id: "no-kiwami", forms: ["の極み"], prefix: "noun" },
+  {
+    id: "kiwamaru-kiwamari-nai",
+    forms: ["極まる", "極まりない", "極まりありません", "きわまりない"],
+    prefix: "plain",
+  },
+  { id: "no-itari", forms: ["の至り", "の至りです"], prefix: "noun" },
+  { id: "tari-tomo", forms: ["たりとも"], prefix: "noun" },
+  { id: "nakushite-wa", forms: ["なくして", "なくしては"], prefix: "noun" },
+  {
+    id: "ni-sokushite",
+    forms: ["に即して", "に即した", "に即し"],
+    prefix: "noun",
+  },
+  { id: "wa-oroka", forms: ["はおろか"], prefix: "noun" },
+  {
+    id: "mamire",
+    forms: ["まみれ", "まみれの", "まみれに", "まみれだ"],
+    prefix: "noun",
+  },
+  {
+    id: "mo-saru-koto-nagara",
+    forms: ["もさることながら"],
+    prefix: "noun",
+  },
+  // Kanji 置いて is "put"; see validAdvancedTail.
+  { id: "o-oite", forms: ["をおいて"], prefix: "noun" },
+  {
+    id: "o-kawakiri-ni",
+    forms: ["を皮切りに", "を皮切りとして"],
+    prefix: "noun",
+  },
+  { id: "o-ki-ni", forms: ["を機に", "を機として"], prefix: "noun" },
+  { id: "o-kagiri-ni", forms: ["を限りに"], prefix: "noun" },
+  // Kana もって is usually 持って; see validAdvancedTail.
+  {
+    id: "o-motte",
+    forms: ["をもって", "を以て", "をもちまして", "をもってすれば"],
+    prefix: "noun",
+  },
+  {
+    id: "o-mono-tomo-sezu",
+    forms: ["をものともせず", "をものともせずに"],
+    prefix: "noun",
+  },
+  { id: "o-yoso-ni", forms: ["をよそに"], prefix: "noun" },
+  { id: "tomo-arou", forms: ["ともあろう"], prefix: "noun" },
+  { id: "ni-kakotsukete", forms: ["にかこつけて"], prefix: "noun" },
+  {
+    id: "ni-iwasereba",
+    forms: ["に言わせれば", "に言わせると", "にいわせれば", "にいわせると"],
+    prefix: "noun",
+  },
+  { id: "ni-kamakete", forms: ["にかまけて"], prefix: "noun" },
+  { id: "kitte-no", forms: ["きっての"], prefix: "noun" },
+  {
+    id: "jimiru-jimita",
+    forms: ["じみる", "じみた", "じみて"],
+    prefix: "noun",
+  },
+  {
+    id: "gurumi",
+    forms: ["ぐるみ", "ぐるみで", "ぐるみの"],
+    prefix: "noun",
+  },
+  {
+    id: "o-ii-koto-ni",
+    forms: ["をいいことに", "をいい事に", "を良いことに"],
+    prefix: "noun",
+  },
+  {
+    id: "ni-nottotte",
+    forms: ["に則って", "に則った", "にのっとって", "にのっとった"],
+    prefix: "noun",
+  },
+  {
+    id: "o-fumaete",
+    forms: ["を踏まえて", "を踏まえた", "をふまえて", "をふまえた"],
+    prefix: "noun",
+  },
+  { id: "to-kitara", forms: ["ときたら"], prefix: "noun" },
+  {
+    id: "majiki",
+    forms: ["にあるまじき", "としてあるまじき"],
+    prefix: "noun",
+  },
   // Kana かわって may also be 変わって "change"; see construction-grammar.ts.
   {
     id: "ni-kawatte",

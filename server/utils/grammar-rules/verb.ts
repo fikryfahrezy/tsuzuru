@@ -820,6 +820,143 @@ export const constructions: Construction[] = [
     id: "you-de-wa-nai-ka",
   },
   { form: "stem", endings: ["ようによっては"], id: "you-ni-yotte-wa" },
+  { form: "stem", endings: ["がてら"], id: "gatera" },
+  {
+    form: "dictionary",
+    endings: ["が早いか", "がはやいか"],
+    id: "ga-hayai-ka",
+  },
+  { form: "ta", endings: ["ら最後", "が最後"], id: "tara-saigo-ga-saigo" },
+  { form: "te", endings: ["からというもの"], id: "te-kara-to-iu-mono" },
+  {
+    form: "te",
+    endings: ["やまない", "やみません", "止まない"],
+    id: "te-yamanai",
+  },
+  {
+    form: "dictionary",
+    endings: ["ともなると", "ともなれば"],
+    id: "tomo-naru-to-tomo-nareba",
+  },
+  { form: "volitional", endings: ["ものなら"], id: "you-mono-nara" },
+  {
+    form: "dictionary",
+    endings: ["ことなしに", "ことなしには"],
+    id: "koto-nashi-ni",
+  },
+  {
+    form: "dictionary",
+    endings: ["始末", "しまつ"].flatMap((word) =>
+      ["だ", "です", "だった"].map((ending) => word + ending),
+    ),
+    id: "shimatsu-da",
+  },
+  {
+    form: "zu",
+    endings: ["じまい", "じまいだ", "じまいだった", "じまいでした"],
+    id: "zu-jimai",
+  },
+  {
+    form: "zu",
+    endings: ["にはおかない", "にはおかなかった"],
+    id: "zu-ni-wa-okanai-nai-de-wa-okanai",
+  },
+  {
+    form: "negative",
+    endings: ["いではおかない"],
+    id: "zu-ni-wa-okanai-nai-de-wa-okanai",
+  },
+  {
+    form: "zu",
+    endings: ["にはすまない", "には済まない", "にはすまされない"],
+    id: "zu-ni-wa-sumanai-nai-de-wa-sumanai",
+  },
+  {
+    form: "negative",
+    endings: ["いではすまない", "いでは済まない"],
+    id: "zu-ni-wa-sumanai-nai-de-wa-sumanai",
+  },
+  { form: "dictionary", endings: ["そばから"], id: "soba-kara" },
+  { form: "ta", endings: ["そばから"], id: "soba-kara" },
+  // 考えるだに "just thinking of it".
+  { form: "dictionary", endings: ["だに"], id: "dani" },
+  {
+    form: "te",
+    endings: ["さしつかえ", "差し支え"].flatMap((word) =>
+      ["ない", "ありません"].map((ending) => `も${word}${ending}`),
+    ),
+    id: "te-mo-sashitsukae-nai",
+  },
+  { form: "negative", endings: ["いまでも"], id: "nai-made-mo" },
+  {
+    form: "negative",
+    endings: ["いものでもない"],
+    id: "nai-mono-de-mo-nai",
+  },
+  {
+    form: "dictionary",
+    endings: ["に難くない", "にかたくない"],
+    id: "ni-kataku-nai",
+  },
+  { form: "conditional", endings: ["ばこそ"], id: "ba-koso" },
+  { form: "negative", endings: ["ければこそ"], id: "ba-koso" },
+  {
+    form: "conditional",
+    endings: ["ばそれまでだ", "ばそれまでです"],
+    id: "ba-sore-made-da",
+  },
+  {
+    form: "negative",
+    endings: ["ければそれまでだ"],
+    id: "ba-sore-made-da",
+  },
+  {
+    form: "beki",
+    endings: ["べからず", "べからざる"],
+    id: "bekarazu-bekarazaru",
+  },
+  {
+    form: "beki",
+    endings: ["べくもない", "べくもありません"],
+    id: "beku-mo-nai",
+  },
+  { form: "beki", endings: ["べくして"], id: "beku-shite" },
+  { form: "beki", endings: ["べく"], id: "beku" },
+  { form: "dictionary", endings: ["まじき"], id: "majiki" },
+  {
+    form: "dictionary",
+    endings: ["までだ", "までです", "までのことだ"],
+    id: "made-da-made-no-koto-da",
+  },
+  {
+    form: "ta",
+    endings: ["までだ", "までです", "までのことだ"],
+    id: "made-da-made-no-koto-da",
+  },
+  // As soon as: 見るなり. それなり / 彼らなりの are a different lesson.
+  { form: "dictionary", endings: ["なり"], id: "nari" },
+  { form: "dictionary", endings: ["やいなや", "や否や"], id: "ya-ina-ya" },
+  {
+    form: "classical",
+    endings: ["んがため", "んがために"],
+    id: "n-ga-tame-ni",
+  },
+  {
+    form: "te",
+    endings: ["はばからない", "憚らない"],
+    id: "te-habakaranai",
+  },
+  { form: "zu", endings: ["とも"], id: "zu-tomo" },
+  {
+    form: "ta",
+    endings: ["かいもなく", "甲斐もなく", "かいもなかった"],
+    id: "kai-mo-naku",
+  },
+  {
+    form: "negative",
+    endings: ["いとも限らない", "いともかぎらない"],
+    id: "nai-to-mo-kagiranai",
+  },
   {
     form: "te",
     endings: [

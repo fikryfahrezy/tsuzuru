@@ -291,6 +291,23 @@ export function contextualAdvancedRules(
 export function validAdvancedTail(id: string, tail: string): boolean {
   const sentenceEnd = /^(?:[。！？?!」』]|[よね]|$)/u.test(tail);
   if (id === "mono-ka" && !sentenceEnd) return false;
+  if (id === "mono-o" && !sentenceEnd) return false;
+  // をおいて(ほかに)〜ない; otherwise おいて is 置いて "put".
+  if (
+    id === "o-oite" &&
+    !/^(?:ほか|他)|^[^。！？?!、]*(?:いない|はない|はいない)/u.test(tail)
+  )
+    return false;
+  // おろかにも "foolishly".
+  if (id === "wa-oroka" && /^[になだで]/u.test(tail)) return false;
+  // とはいえない "can't be called"; とはいえ "even so" opens a contrast.
+  if (id === "to-wa-ie" && /^(?:な|ま)/u.test(tail)) return false;
+  // をもっている / をもってくる are 持つ "have, bring".
+  if (
+    id === "o-motte" &&
+    /^(?:い|お|き|く|こ|ま|行|来|帰|出|歩|走)/u.test(tail)
+  )
+    return false;
   // Concessive ものの opens a contrast; というもののよさ is possessive.
   if (id === "mono-no" && !/^[、,]/u.test(tail)) return false;
   // 困ることになる is a decision or outcome, not a remark.
