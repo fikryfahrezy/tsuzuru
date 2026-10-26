@@ -253,3 +253,31 @@ test("a lesson may end inside a word that only adds だろう", () => {
   expect(queue).toContain("darou");
   expect(queue).not.toContain("te");
 });
+
+test("the condition inside an obligation explains its ‘if’", () => {
+  const word = (id: string, japanese: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown.find(
+      (part) => part.japanese === japanese,
+    );
+  for (const [id, japanese, form] of [
+    ["1157847d3ece6f310895fa47", "出さなきゃ", "なきゃ"],
+    ["0942a880256cc47f4ad11088", "気をつけなければ", "なければ"],
+    ["c51c696d9f7ab8f5b72880ea", "乗らねば", "ねば"],
+    ["0319a850bc9266132158d86f", "なければ", "なければ"],
+  ] as const) {
+    expect(word(id, japanese)?.note, japanese).toStartWith(`${form} is `);
+    expect(word(id, japanese)?.note, japanese).toContain("‘if (you) don’t …’");
+  }
+  // The verb keeps its own sense; only the condition is explained.
+  expect(
+    word("0942a880256cc47f4ad11088", "気をつけなければ")?.dictionaryMeanings,
+  ).toContain("to be careful");
+  expect(word("0319a850bc9266132158d86f", "で")?.note).toContain("‘must be’");
+  expect(word("4487ab110a31c3f62a42fd0f", "ちゃ")?.note).toStartWith(
+    "Part of 〜なくちゃ",
+  );
+  // で outside the pattern keeps its usual note.
+  expect(word("4487ab110a31c3f62a42fd0f", "で")?.note).toStartWith(
+    "Can mark where",
+  );
+});

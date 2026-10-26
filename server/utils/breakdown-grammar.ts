@@ -7,6 +7,7 @@ import { detectGrammar } from "./detect-grammar";
 import { resolveGrammarMatches } from "./grammar-matches";
 import { inflectionGrammar } from "./inflection-grammar";
 import {
+  contextualConditionNote,
   contextualObligationNote,
   contextualParticleNote,
   contextualNaNote,
@@ -95,6 +96,7 @@ export function withBreakdownGrammar(
       contextualPatternNote(part, matches);
     const note =
       pattern ??
+      contextualConditionNote(part, contextual) ??
       contextualParticleNote(part, contextual) ??
       contextualNaNote(sentence.reference.japanese, entries, index);
     // The dictionary sense (なる "to become") misleads inside the pattern.

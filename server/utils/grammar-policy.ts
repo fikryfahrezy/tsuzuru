@@ -53,6 +53,42 @@ const obligationIds = [
   "nai-to-ikenai-nakucha",
 ];
 
+// The verb that opens an obligation often carries the condition inside it
+// (出さなきゃ, 払わなければ), so no separate は or と can explain the "if".
+const conditionForms: [string, string][] = [
+  ["なければ", "the conditional of ない"],
+  ["なきゃ", "short for なければ"],
+  ["なくっちゃ", "short for なくては"],
+  ["なくちゃ", "short for なくては"],
+  ["なくては", "the て-form of ない plus は"],
+  ["ねば", "a literary form of なければ"],
+  ["ないと", "ない plus と"],
+];
+
+export function contextualConditionNote(
+  part: { japanese: string; start: number; end: number },
+  contextual: GrammarAnnotation[],
+) {
+  // The word may begin before the lesson span: 気をつけなければ.
+  const opens = contextual.some(
+    (match) =>
+      match.grammarIds.some((id) => obligationIds.includes(id)) &&
+      part.start <= match.start &&
+      part.end > match.start,
+  );
+  if (!opens) return;
+  // でなければならない: で is the copula, "must be".
+  if (part.japanese === "で")
+    return "Here で is the connective form of だ (‘is’), so でなければならない means ‘must be’.";
+  return conditionNote(part.japanese);
+}
+
+function conditionNote(japanese: string) {
+  const form = conditionForms.find(([ending]) => japanese.endsWith(ending));
+  if (!form) return;
+  return `${form[0]} is ${form[1]}: ‘if (you) don’t …’. Followed by ならない, いけない or だめ, or with the rest left unsaid, it means ‘must’.`;
+}
+
 // Words after the verb in an obligation (なくては + なりません) or a
 // prohibition (ては + ならない) belong to the construction: は is not the topic
 // and ならない does not mean "become".
@@ -75,6 +111,11 @@ export function contextualObligationNote(
       ? "Part of 〜ては: after a て-form, は makes the condition ‘if (you) do …’. Pronounced wa."
       : "Part of 〜なくては: after a negative て-form, は makes the condition ‘if (you) don’t …’. Pronounced wa.";
   if (part.japanese === "と") return "Part of 〜ないと: ‘if (you) don’t …’.";
+  if (part.japanese === "ちゃ" || part.japanese === "っちゃ")
+    return "Part of 〜なくちゃ: ちゃ is short for ては, so なくちゃ means ‘if (you) don’t …’, and so ‘must’.";
+  // でなければならない: the condition is its own word after で.
+  const condition = prohibition ? undefined : conditionNote(part.japanese);
+  if (condition) return condition;
   if (/^(?:なら|なり|いけ|ダメ|だめ|駄目)/u.test(part.japanese))
     return prohibition
       ? "Part of the prohibition pattern: literally ‘(it) won’t do’, so together with the condition it means ‘must not’."
