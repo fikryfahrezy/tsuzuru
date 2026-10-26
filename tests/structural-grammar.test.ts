@@ -1412,6 +1412,13 @@ test("N1 noun and clause constructions require their preceding role", () => {
       "にしたところで",
     ],
     [[["今だ", ["Copula"]], ["とばかりに"]], "to-bakari-ni", "とばかりに"],
+    [[["怠った", ["Verb"], "怠る"], ["ばかりに"]], "bakari-ni", "ばかりに"],
+    [
+      [["いい", ["い-adjective"]], ["というものではない"]],
+      "to-iu-mono-de-wa-nai",
+      "というものではない",
+    ],
+    [[["休み", ["Noun"]], ["の"], ["こととて"]], "koto-tote", "こととて"],
     [
       [["見る", ["Verb"]], ["ともなく"]],
       "to-mo-naku-to-mo-nashi-ni",
