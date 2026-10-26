@@ -20,6 +20,7 @@ function toQuestion(
     romaji: romajiHint(sentence),
     ...practiceDetails(sentence),
     wordCount: sentence.englishWordCount,
+    level: sentence.level,
     poolSize,
     ...(widened && { widened }),
     alternativeCount: sentence.alternatives.length,

@@ -109,6 +109,8 @@ export interface Question {
   romaji: string;
   wordHints: PromptPart[];
   wordCount: number;
+  // The sentence's own grade; null when it has no generated level.
+  level: Level | null;
   poolSize: number;
   // Set when too few sentences exist at the requested level and length, so
   // the pool also includes harder sentences, up to level `to`.

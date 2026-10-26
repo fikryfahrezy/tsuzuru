@@ -122,6 +122,7 @@ const question: Question = {
     },
   ],
   wordCount: 1,
+  level: null,
   poolSize: 1,
   alternativeCount: 0,
   spellingOptions: [],

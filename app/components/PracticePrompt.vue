@@ -57,7 +57,16 @@ watch(
 
 <template>
   <div class="prompt">
-    <p class="paper-label">Translate into Japanese</p>
+    <div class="prompt-heading">
+      <p class="paper-label">Translate into Japanese</p>
+      <span
+        v-if="question?.level"
+        class="sentence-level"
+        :title="`This sentence is graded ${question.level} by its vocabulary and grammar`"
+      >
+        {{ question.level }}
+      </span>
+    </div>
     <p v-if="widenedNote" class="widened-note" role="note">
       {{ widenedNote }}
     </p>
@@ -199,8 +208,20 @@ watch(
 .prompt {
   padding: 28px 32px 22px;
 }
-.prompt > .paper-label {
+.prompt-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 15px;
+}
+.sentence-level {
+  font:
+    10px/1.5 ui-monospace,
+    monospace;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  color: var(--secondary);
 }
 .widened-note {
   margin: -6px 0 15px;

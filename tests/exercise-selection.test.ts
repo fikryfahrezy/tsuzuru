@@ -58,6 +58,7 @@ test("sentence selection loads a dataset entry regardless of filters or previous
       romaji: romajiHint(selected),
       wordHints: practiceDetails(selected).wordHints,
       wordCount: selected.englishWordCount,
+      level: selected.level,
       poolSize: 1,
       spellingOptions: spellingOptions(selected),
     });
