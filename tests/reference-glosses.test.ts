@@ -1,5 +1,7 @@
 import { expect, test } from "bun:test";
 import glossBank from "../data/reference-glosses/bank.json";
+import { answerBreakdown } from "../server/utils/answer-breakdown";
+import { answerChips } from "../server/utils/answer-chips";
 import { exerciseById } from "../server/utils/exercises";
 import { practiceDetails } from "../server/utils/practice-details";
 import { lessons } from "./helpers/grammar";
@@ -21,18 +23,21 @@ test("words missing from OpenJLPT show JMdict reference senses", () => {
 });
 
 test("kana verbs use their single common JMdict verb, per lemma", () => {
-  const came = practiceDetails(
-    exerciseById.get("008b8bb4762af4f907615633")!,
-  ).answerBreakdown.find((part) => part.japanese === "きた");
+  // Looked up before grammar: inside 〜てくる the breakdown explains the lesson.
+  const dawn = exerciseById.get("008b8bb4762af4f907615633")!;
+  const came = answerBreakdown(dawn, answerChips(dawn)).find(
+    (part) => part.japanese === "きた",
+  );
   expect(came?.dictionaryForm).toBe("くる");
   expect(came?.wordTypes).toContain("Verb");
   expect(came?.dictionaryMeanings).toContain(
     "to come (spatially or temporally)",
   );
   // The same chip keeps the meaning of its own lemma in each sentence.
-  const went = practiceDetails(
-    exerciseById.get("0cc3c923493c5be7050ba36b")!,
-  ).answerBreakdown.find((part) => part.japanese === "いった");
+  const away = exerciseById.get("0cc3c923493c5be7050ba36b")!;
+  const went = answerBreakdown(away, answerChips(away)).find(
+    (part) => part.japanese === "いった",
+  );
   expect(went?.dictionaryForm).toBe("いく");
   expect(went?.dictionaryMeanings).toContain("to go");
   expect(went?.dictionaryMeanings).not.toContain("to say");

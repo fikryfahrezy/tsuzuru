@@ -23,6 +23,8 @@ for (const entry of vocabulary) {
   transitive.set(entry.word, readings);
 }
 
+const conjecturalTails = new Set(["だろう", "でしょう"]);
+
 const conditionalEndings: Record<string, string> = {
   う: "え",
   く: "け",
@@ -46,9 +48,15 @@ function constructionBase(
     case "dictionary":
       return lemma;
     case "classical":
-      return lemma.endsWith("する")
-        ? lemma.slice(0, -2) + "せ"
-        : forms.negative.slice(0, -1);
+      if (lemma.endsWith("する")) return lemma.slice(0, -2) + "せ";
+      // ある's negative is ない, but its classical base is あら (あらねば).
+      return lemma === "ある" ? "あら" : forms.negative.slice(0, -1);
+    case "passive": {
+      if (lemma.endsWith("する")) return lemma.slice(0, -2) + "され";
+      // Ichidan and 来る verbs take られ; godan verbs take れ.
+      const root = forms.negative.slice(0, -1);
+      return root + (forms.causative === root + "させ" ? "られ" : "れ");
+    }
     case "beki":
       return lemma.endsWith("する") ? lemma.slice(0, -1) : lemma;
     case "honorificStem":
@@ -74,6 +82,16 @@ export function verbGrammar(
   const text = sentence.reference.japanese;
   const lexemes = referenceLexemes(sentence);
   const boundaries = new Set(base.map((entry) => entry.end));
+  // A construction may end inside a word whose rest is only a conjectural
+  // tail: 出さなきゃ + なら|ないだろう. だろう keeps its own lesson.
+  const endsWord = (end: number) =>
+    boundaries.has(end) ||
+    base.some(
+      (part) =>
+        part.start < end &&
+        part.end > end &&
+        conjecturalTails.has(text.slice(end, part.end)),
+    );
   const matches: GrammarAnnotation[] = [];
   for (const entry of base) {
     if (!entry.wordTypes.includes("Verb")) continue;
@@ -106,7 +124,7 @@ export function verbGrammar(
           // several chips. Punctuation and whitespace cannot be skipped.
           if (
             end < entry.end ||
-            !boundaries.has(end) ||
+            !endsWord(end) ||
             !text.startsWith(japanese, entry.start) ||
             !validAdvancedTail(rule.id, text.slice(end)) ||
             !explanatoryTail(rule.id, japanese, text.slice(end)) ||
@@ -163,6 +181,13 @@ export function verbGrammar(
             (rule.id === "na-prohibition" &&
               !/^(?:[。！？?!」』]|[よねぞ]|$)/u.test(text.slice(end))) ||
             (rule.id === "zu-ni" && /^(?:は|も)/u.test(text.slice(end))) ||
+            // A bare なきゃ / なくちゃ is obligation only when the sentence
+            // stops there; otherwise it is a condition (しなきゃ大丈夫).
+            (rule.id === "nai-to-ikenai-nakucha" &&
+              /(?:ちゃ|きゃ)$/u.test(japanese) &&
+              !/^(?:[。！？?!」』…]|[よねなぞわ]|なら|なり|いけ|$)/u.test(
+                text.slice(end),
+              )) ||
             (rule.id === "naide" &&
               (!base.some(
                 (part) =>

@@ -22,7 +22,8 @@ export type ConstructionForm =
   | "classical"
   | "beki"
   | "honorificStem"
-  | "zu";
+  | "zu"
+  | "passive";
 interface Construction {
   form: ConstructionForm;
   endings: string[];
@@ -32,9 +33,33 @@ interface Construction {
 const polite = (forms: string[]) =>
   forms.flatMap((form) => [form, `${form}です`]);
 
+// "Is good / all right", plain or polite, stated or tentative: いい,
+// よろしいですか, よいでしょうか.
+const fine = [
+  ...["いい", "よい", "良い"].flatMap((word) =>
+    ["", "です", "でしょう", "だろう"].map((tail) => word + tail),
+  ),
+  ...["", "です", "でしょう"].map((tail) => "よろしい" + tail),
+];
 const advice = ["ほう", "方"].flatMap((word) =>
-  polite([`${word}がいい`, `${word}がよい`, `${word}が良い`]),
+  fine.map((ending) => `${word}が${ending}`),
 );
+// "Doesn't matter": 構わない, かまいません.
+const noMatter = ["構", "かま"].flatMap((word) =>
+  ["わない", "わないです", "いません"].map((tail) => word + tail),
+);
+// Prohibition: てはいけない, てはならない, てはダメだ.
+const prohibition = [
+  "いけない",
+  "いけません",
+  "いけなかった",
+  "ならない",
+  "なりません",
+  "ならん",
+  "ダメ",
+  "だめ",
+  "駄目",
+].map((auxiliary) => "は" + auxiliary);
 const intention = ["つもり", "積もり"].flatMap((word) =>
   [
     "",
@@ -48,6 +73,33 @@ const intention = ["つもり", "積もり"].flatMap((word) =>
     "はありません",
   ].map((ending) => word + ending),
 );
+
+// Obligation is a negative condition followed by "won't do", in any tense or
+// politeness: なければならなかった, なくてはいけません, ならん.
+const obligationAuxiliaries = [
+  "ならない",
+  "ならなかった",
+  "なりません",
+  "なりませんでした",
+  "ならん",
+  "いけない",
+  "いけなかった",
+  "いけません",
+  "いけませんでした",
+];
+const obligation = ["ければ", "くては"].flatMap((condition) =>
+  obligationAuxiliaries.map((auxiliary) => condition + auxiliary),
+);
+// Contracted forms, which may also stand alone: 行かなきゃ.
+const casualObligation = [
+  ...["くちゃ", "くっちゃ", "きゃ"].flatMap((condition) => [
+    condition,
+    ...obligationAuxiliaries.map((auxiliary) => condition + auxiliary),
+  ]),
+  ...["いけない", "いけません", "ダメ", "だめ", "駄目"].map(
+    (auxiliary) => "いと" + auxiliary,
+  ),
+];
 
 export const constructions: Construction[] = [
   {
@@ -68,12 +120,18 @@ export const constructions: Construction[] = [
   { form: "conditional", endings: ["ば"], id: "ba-hodo" },
   {
     form: "classical",
-    endings: [
-      "ざるを得ない",
-      "ざるをえない",
-      "ざるを得なかった",
-      "ざるを得ません",
-    ],
+    endings: ["得", "え"].flatMap((verb) =>
+      [
+        "ない",
+        "なかった",
+        "ません",
+        "ませんでした",
+        "なくなる",
+        "なくなった",
+        "ないだろう",
+        "ないでしょう",
+      ].map((tail) => `ざるを${verb}${tail}`),
+    ),
     id: "zaru-o-enai",
   },
   {
@@ -605,15 +663,7 @@ export const constructions: Construction[] = [
   { form: "negative", endings: ["ければ"], id: "ba" },
   {
     form: "negative",
-    endings: [
-      "いといけない",
-      "いといけません",
-      "くちゃ",
-      "くちゃいけない",
-      "くちゃいけません",
-      "くちゃならない",
-      "くちゃなりません",
-    ],
+    endings: casualObligation,
     id: "nai-to-ikenai-nakucha",
   },
   {
@@ -738,7 +788,7 @@ export const constructions: Construction[] = [
   },
   {
     form: "negative",
-    endings: polite(["くてもいい", "くてもよい", "くても良い"]),
+    endings: [...fine, ...noMatter].map((ending) => "くても" + ending),
     id: "nakute-mo-ii",
   },
   {
@@ -753,33 +803,51 @@ export const constructions: Construction[] = [
   },
   {
     form: "negative",
+    endings: obligation,
+    id: "nakereba-naranai-nakute-wa-ikenai",
+  },
+  // Causative obligation: 脱退させなければならなかった.
+  {
+    form: "causative",
+    endings: [...obligation, ...casualObligation].map(
+      (ending) => "な" + ending,
+    ),
+    id: "nakereba-naranai-nakute-wa-ikenai",
+  },
+  // Passive obligation: 提出されなければならない, 尊重されねばならない.
+  {
+    form: "passive",
     endings: [
-      "ければならない",
-      "ければなりません",
-      "ければいけない",
-      "ければいけません",
-      "くてはいけない",
-      "くてはいけません",
+      ...[...obligation, ...casualObligation].map((ending) => "な" + ending),
+      ...obligationAuxiliaries.map((auxiliary) => "ねば" + auxiliary),
     ],
+    id: "nakereba-naranai-nakute-wa-ikenai",
+  },
+  // Literary ねばならない shares the lesson's meaning.
+  {
+    form: "classical",
+    endings: obligationAuxiliaries.map((auxiliary) => "ねば" + auxiliary),
     id: "nakereba-naranai-nakute-wa-ikenai",
   },
   {
     form: "te",
-    endings: polite(["もいい", "もよい", "も良い"]),
+    endings: fine.map((ending) => "も" + ending),
     id: "te-mo-ii",
   },
   {
     form: "te",
-    endings: [
-      ...polite(["も構わない", "もかまわない"]),
-      "も構いません",
-      "もかまいません",
-    ],
+    endings: noMatter.map((ending) => "も" + ending),
     id: "te-mo-kamawanai",
   },
   {
     form: "te",
-    endings: [...polite(["はいけない"]), "はいけません"],
+    endings: [...prohibition, "はいけないです"],
+    id: "te-wa-ikenai",
+  },
+  // Causative prohibition: わがままさせてはいけない.
+  {
+    form: "causative",
+    endings: prohibition.map((ending) => "て" + ending),
     id: "te-wa-ikenai",
   },
   { form: "te", endings: ["ください", "下さい"], id: "te-kudasai" },

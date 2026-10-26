@@ -94,6 +94,7 @@ const particles: Record<string, string> = {
   に: "Can mark a destination, a time, a recipient, or the location of existence.",
   へ: "Direction marker: indicates movement toward something. Pronounced e.",
   で: "Can mark where an action happens, a means, or a method.",
+  な: "Can link a な-adjective or noun to what follows (静かな部屋, 病気なのです), soften a sentence ending (…だよな), or, after a verb's dictionary form, mean ‘don't’.",
   の: "Can connect nouns to show possession or description, or turn a clause into a noun.",
   と: "Can mean ‘and’ or ‘with’, mark a quotation, or introduce a condition.",
   も: "Adds the sense of ‘also’, ‘too’, or ‘even’.",

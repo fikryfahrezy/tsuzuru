@@ -6,7 +6,12 @@ import { grammarById } from "./grammar-reference";
 import { detectGrammar } from "./detect-grammar";
 import { resolveGrammarMatches } from "./grammar-matches";
 import { inflectionGrammar } from "./inflection-grammar";
-import { contextualParticleNote } from "./grammar-policy";
+import {
+  contextualObligationNote,
+  contextualParticleNote,
+  contextualNaNote,
+  contextualPatternNote,
+} from "./grammar-policy";
 
 export function validGrammarAnnotations(
   sentence: Sentence,
@@ -83,11 +88,19 @@ export function withBreakdownGrammar(
     }
     if (explanations.length) assigned.set(owner.entryId, explanations);
   }
-  return entries.map((part) => {
+  return entries.map((part, index) => {
     const grammar = assigned.get(part.entryId);
-    const note = contextualParticleNote(part, contextual);
+    const pattern =
+      contextualObligationNote(part, contextual) ??
+      contextualPatternNote(part, matches);
+    const note =
+      pattern ??
+      contextualParticleNote(part, contextual) ??
+      contextualNaNote(sentence.reference.japanese, entries, index);
+    // The dictionary sense (なる "to become") misleads inside the pattern.
+    const { dictionaryMeanings: _sense, ...rest } = part;
     return {
-      ...part,
+      ...(pattern ? rest : part),
       ...(note ? { note } : {}),
       ...(grammar ? { grammar } : {}),
     };

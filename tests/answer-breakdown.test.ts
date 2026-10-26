@@ -131,3 +131,125 @@ test("unsupported forms keep supplied readings without inventing a meaning", () 
     },
   ]);
 });
+
+test("なくてはなりません is read as obligation with contextual meanings", () => {
+  const bed = exerciseById.get("5578e84c4f5263a7148c814d")!;
+  const parts = practiceDetails(bed).answerBreakdown;
+  const verb = parts.find((part) => part.japanese === "つかなくて");
+  expect(verb?.meanings).toEqual([
+    "not go to (bed); 就く in the negative te-form",
+  ]);
+  expect(verb?.grammar?.map((g) => [g.id, g.start, g.end])).toEqual([
+    ["nakereba-naranai-nakute-wa-ikenai", 6, 17],
+  ]);
+  expect(
+    parts.find((part) => part.japanese === "なりません")?.meanings,
+  ).toEqual(["won't do"]);
+});
+
+test("words inside an obligation explain the pattern instead of their usual senses", () => {
+  const parts = (id: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown;
+  const bed = parts("5578e84c4f5263a7148c814d");
+  const wa = bed.find((part) => part.japanese === "は");
+  expect(wa?.note).toStartWith("Part of 〜なくては");
+  const auxiliary = bed.find((part) => part.japanese === "なりません");
+  expect(auxiliary?.note).toStartWith("Part of the obligation pattern");
+  expect(auxiliary?.dictionaryMeanings).toBeUndefined();
+  const lamp = parts("6ee9540c31fbcc7225c62480");
+  const [withNew, ifNot] = lamp.filter((part) => part.japanese === "と");
+  expect(withNew?.note).toStartWith("Can mean");
+  expect(ifNot?.note).toStartWith("Part of 〜ないと");
+  // は outside the pattern keeps the topic note.
+  expect(
+    parts("5566699fea2b063edfee26ce").find((part) => part.japanese === "は"),
+  ).toBeUndefined();
+  expect(
+    parts("19204cee60046af3d4df30c9").find((part) => part.japanese === "は")
+      ?.note,
+  ).toStartWith("Topic marker");
+});
+
+test("prohibition words explain the pattern instead of their usual senses", () => {
+  const parts = practiceDetails(
+    exerciseById.get("e39ae7e19e32e487ac696ff3")!,
+  ).answerBreakdown;
+  expect(
+    parts.find((part) => part.japanese === "侵して")?.grammar?.[0]?.id,
+  ).toBe("te-wa-ikenai");
+  expect(parts.find((part) => part.japanese === "は")?.note).toStartWith(
+    "Part of 〜ては",
+  );
+  const auxiliary = parts.find((part) => part.japanese === "ならない");
+  expect(auxiliary?.note).toStartWith("Part of the prohibition pattern");
+  expect(auxiliary?.dictionaryMeanings).toBeUndefined();
+});
+
+test("な never shows the prohibition sense outside a prohibition", () => {
+  const parts = (id: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown;
+  const explanatory = parts("0948c4137b203ab74b5dba62").find(
+    (part) => part.japanese === "な",
+  );
+  expect(explanatory?.note).toStartWith("Links a noun or な-adjective to の");
+  expect(explanatory?.dictionaryMeanings).toBeUndefined();
+  const attributive = parts("036c684479363bffc2c0d107").find(
+    (part) => part.japanese === "な" && part.start === 6,
+  );
+  expect(attributive?.note).toStartWith("Part of 〜な（na-adjective）");
+  expect(attributive?.dictionaryMeanings).toBeUndefined();
+});
+
+test("grammatical words inside a lesson explain the lesson, not their dictionary sense", () => {
+  const word = (id: string, japanese: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown.find(
+      (part) => part.japanese === japanese,
+    );
+  for (const [id, japanese, pattern] of [
+    ["008b8bb4762af4f907615633", "きた", "〜てくる"],
+    ["024de7875c8e422cf555b4c3", "しれない", "〜かもしれない"],
+    ["060943254d1ccc134a4ed8c4", "方", "〜ほうがいい"],
+  ] as const) {
+    const part = word(id, japanese);
+    expect(part?.note, japanese).toStartWith(`Part of ${pattern}`);
+    expect(part?.dictionaryMeanings, japanese).toBeUndefined();
+  }
+  // The word that starts the lesson keeps its own sense: 切って is "cut".
+  expect(word("060943254d1ccc134a4ed8c4", "髪")?.note).toBeUndefined();
+  // Literal senses that are accurate remain: なる in 〜くなる is "to become".
+  expect(
+    word("008b8bb4762af4f907615633", "なって")?.dictionaryMeanings,
+  ).toContain("to become");
+});
+
+test("な outside a detected lesson is explained by its context", () => {
+  const na = (id: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown.findLast(
+      (part) => part.japanese === "な",
+    )?.note;
+  expect(na("17a8e837bc8614ad90d8ca8d")).toStartWith(
+    "Links a な-adjective to the noun",
+  );
+  expect(na("d85ae0ece1db86dd375094c5")).toStartWith(
+    "After a verb's dictionary form",
+  );
+  expect(na("47f547312b749bfda73e4fe9")).toStartWith("With か");
+  expect(na("0112661dedba7a69e85b98fc")).toStartWith("Sentence-ending");
+  expect(na("1d0e729d2bb4576a3ab7494d")).toStartWith("After a verb's stem");
+});
+
+test("a lesson may end inside a word that only adds だろう", () => {
+  const grammar = (id: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown.flatMap(
+      (part) => part.grammar ?? [],
+    );
+  const tar = grammar("1157847d3ece6f310895fa47");
+  expect(tar.find((g) => g.id === "nai-to-ikenai-nakucha")?.japanese).toBe(
+    "出さなきゃならない",
+  );
+  expect(tar.some((g) => g.id === "darou")).toBe(true);
+  const queue = grammar("c8126eecc32c54066222ac23").map((g) => g.id);
+  expect(queue).toContain("te-iru");
+  expect(queue).toContain("darou");
+  expect(queue).not.toContain("te");
+});

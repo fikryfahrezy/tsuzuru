@@ -2871,6 +2871,96 @@
         "japanese": "なられる",
         "grammarIds": ["reru-rareru-honorific"]
       }]
+    },
+    {
+      "sentenceId": "5578e84c4f5263a7148c814d",
+      "english": "I'd better go to bed now.",
+      "japanese": "もうベッドにつかなくてはなりません。",
+      "furigana": "もうベッドにつかなくてはなりません。",
+      "answerEntries": [
+        {
+          "id": "ja-0-2",
+          "start": 0,
+          "end": 2,
+          "japanese": "もう",
+          "reading": "もう",
+          "meaning": "now; by now"
+        },
+        {
+          "id": "ja-2-5",
+          "start": 2,
+          "end": 5,
+          "japanese": "ベッド",
+          "reading": "ベッド",
+          "meaning": "bed"
+        },
+        {
+          "id": "ja-6-11",
+          "start": 6,
+          "end": 11,
+          "japanese": "つかなくて",
+          "reading": "つかなくて",
+          "meaning": "not go to (bed); 就く in the negative te-form"
+        },
+        {
+          "id": "ja-12-17",
+          "start": 12,
+          "end": 17,
+          "japanese": "なりません",
+          "reading": "なりません",
+          "meaning": "won't do"
+        }
+      ],
+      "hintMappings": [
+        {
+          "spans": [
+            {
+              "start": 4,
+              "end": 10,
+              "text": "better"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-12-17"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 11,
+              "end": 16,
+              "text": "go to"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-6-11"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 17,
+              "end": 20,
+              "text": "bed"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-2-5"
+          ]
+        },
+        {
+          "spans": [
+            {
+              "start": 21,
+              "end": 24,
+              "text": "now"
+            }
+          ],
+          "answerEntryIds": [
+            "ja-0-2"
+          ]
+        }
+      ]
     }
   ]
 }

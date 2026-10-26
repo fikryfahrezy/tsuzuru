@@ -63,6 +63,7 @@ test("shared constructions recognize different conjugation classes and token spl
       "食べる",
       "nakereba-naranai-nakute-wa-ikenai",
     ],
+    [["寝なくては", "なりません"], "寝る", "nakereba-naranai-nakute-wa-ikenai"],
     [["飲みたいです"], "飲む", "tai"],
     [["食べたくなかった"], "食べる", "tai"],
     [["歩き", "ながら"], "歩く", "nagara"],
@@ -99,6 +100,35 @@ test("shared constructions recognize different conjugation classes and token spl
     [["来て", "欲しくない"], "来る", "te-hoshii"],
     [["守らないと", "いけない"], "守る", "nai-to-ikenai-nakucha"],
     [["行かなくちゃ"], "行く", "nai-to-ikenai-nakucha"],
+    [
+      ["払わなければ", "ならなかった"],
+      "払う",
+      "nakereba-naranai-nakute-wa-ikenai",
+    ],
+    [["しなくては", "ならん"], "する", "nakereba-naranai-nakute-wa-ikenai"],
+    [["刈らねば", "ならない"], "刈る", "nakereba-naranai-nakute-wa-ikenai"],
+    [["せねば", "ならない"], "する", "nakereba-naranai-nakute-wa-ikenai"],
+    [["あらねば", "ならない"], "ある", "nakereba-naranai-nakute-wa-ikenai"],
+    [
+      ["させなければ", "ならなかった"],
+      "する",
+      "nakereba-naranai-nakute-wa-ikenai",
+    ],
+    [["されなければ", "ならない"], "する", "nakereba-naranai-nakute-wa-ikenai"],
+    [["されねば", "ならない"], "する", "nakereba-naranai-nakute-wa-ikenai"],
+    [["いなきゃ", "いけない"], "いる", "nai-to-ikenai-nakucha"],
+    [["しなきゃ", "ならない"], "する", "nai-to-ikenai-nakucha"],
+    [["しまわなきゃ"], "しまう", "nai-to-ikenai-nakucha"],
+    [["しないと", "ダメ"], "する", "nai-to-ikenai-nakucha"],
+    [["使っては", "ならない"], "使う", "te-wa-ikenai"],
+    [["忘れては", "なりません"], "忘れる", "te-wa-ikenai"],
+    [["させては", "ダメ"], "する", "te-wa-ikenai"],
+    [["借りても", "よろしいです"], "借りる", "te-mo-ii"],
+    [["食べても", "よいでしょう"], "食べる", "te-mo-ii"],
+    [["通さなくても", "構わない"], "通す", "nakute-mo-ii"],
+    [["せざる", "を", "えなかった"], "する", "zaru-o-enai"],
+    [["せざる", "を", "得なく", "なる"], "する", "zaru-o-enai"],
+    [["したほうが", "よいだろう"], "する", "hou-ga-ii"],
   ];
   for (const [words, lemma, id] of cases) {
     const { reference, base } = fixture(words, lemma);
@@ -136,6 +166,9 @@ test("word boundaries, dictionary conjugations, and grammatical categories preve
     [["飲む", "後で"], "飲む"],
     [["食べて", "欲望"], "食べる"],
     [["見ればかり"], "見る"],
+    // A bare なきゃ followed by more of the clause is a condition.
+    [["しなきゃ", "大丈夫です"], "する"],
+    [["ならなきゃ", "いいけどね"], "なる"],
   ];
   for (const [words, lemma, types] of cases) {
     const { reference, base } = fixture(words, lemma, types);
