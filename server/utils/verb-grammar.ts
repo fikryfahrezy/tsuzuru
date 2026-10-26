@@ -5,7 +5,11 @@ import { verbForms, type VerbForms } from "./verb-forms";
 import { referenceLexemes } from "./reference-lexemes";
 import { vocabulary } from "./vocabulary";
 import { hiragana } from "../../shared/practice";
-import { constructions, type ConstructionForm } from "./grammar-rules/verb";
+import {
+  constructions,
+  lexicalKakeruStems,
+  type ConstructionForm,
+} from "./grammar-rules/verb";
 import { validAdvancedTail } from "./grammar-rules/advanced";
 import { explanatoryTail } from "./grammar-rules/construction";
 import { potentialDerivation } from "./potential-forms";
@@ -24,6 +28,38 @@ for (const entry of vocabulary) {
 }
 
 const conjecturalTails = new Set(["だろう", "でしょう"]);
+
+// 〜たら followed by a past main clause reports what happened or was found
+// (見たらおもしろかった). Wishes (たらよかった), questions, quotations and
+// embedded thoughts (晴れたら行こうと思った) are excluded.
+function pastMainClause(text: string, base: AnswerEntry[], end: number) {
+  const rest = text.slice(end).match(/^[^。！？?!]*/u)![0];
+  const stop = text[end + rest.length];
+  if (
+    stop === "？" ||
+    stop === "?" ||
+    /^[、,]?(?:よかった|良かった|いい|よい|どう)/u.test(rest) ||
+    /[「」『』]|と(?:思|言|考)|って(?:言|思)/u.test(rest)
+  )
+    return false;
+  const last = base.findLast(
+    (part) =>
+      part.start >= end &&
+      part.end <= end + rest.length &&
+      !(
+        part.wordTypes.includes("Particle") &&
+        /^[よねわさ]$/u.test(part.japanese)
+      ),
+  );
+  return (
+    !!last &&
+    (last.japanese.endsWith("た") ||
+      (last.wordTypes.includes("Verb") &&
+        last.japanese.endsWith("だ") &&
+        last.dictionaryForm !== undefined &&
+        last.dictionaryForm !== last.japanese))
+  );
+}
 
 const conditionalEndings: Record<string, string> = {
   う: "え",
@@ -69,6 +105,12 @@ function constructionBase(
       return forms.te.replace(/て$/u, "た").replace(/で$/u, "だ");
     case "conditional":
       return lemma.slice(0, -1) + (conditionalEndings[lemma.at(-1)!] ?? "");
+    // The tokenizer may keep a stem + かける as one dictionary compound
+    // (終わりかける) or split it (おぼれ + かけた).
+    case "compoundStem":
+      return lemma.endsWith("かける") && lemma.length > 3
+        ? lemma.slice(0, -3)
+        : forms.stem;
     default:
       return forms[kind];
   }
@@ -181,6 +223,16 @@ export function verbGrammar(
             (rule.id === "na-prohibition" &&
               !/^(?:[。！？?!」』]|[よねぞ]|$)/u.test(text.slice(end))) ||
             (rule.id === "zu-ni" && /^(?:は|も)/u.test(text.slice(end))) ||
+            (rule.id === "kakeru" && lexicalKakeruStems.has(form)) ||
+            // こと closes the sentence; elsewhere it is a nominalizer.
+            (rule.id === "koto-instruction" &&
+              !/^(?:[。！!」』]|$)/u.test(text.slice(end))) ||
+            // 〜たって before a verb of saying or at the end is a quotation
+            // or hearsay (遅れたって言った), not "even if".
+            (rule.id === "tatte-datte" &&
+              /^(?:[。！？?!」』]|[ねよば]|言|いう|いっ|聞|思|$)/u.test(
+                text.slice(end),
+              )) ||
             // A bare なきゃ / なくちゃ is obligation only when the sentence
             // stops there; otherwise it is a condition (しなきゃ大丈夫).
             (rule.id === "nai-to-ikenai-nakucha" &&
@@ -205,6 +257,8 @@ export function verbGrammar(
         }
       }
     }
+    if (best?.grammarIds[0] === "tara" && pastMainClause(text, base, best.end))
+      best.grammarIds.push("tara-ta");
     if (best) matches.push(best);
   }
   // A たり occurrence establishes a listing only when its final する is

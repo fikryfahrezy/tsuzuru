@@ -279,3 +279,138 @@ test("real sentence breakdowns link constructions without sentence-specific anno
     ).toBe(true);
   }
 });
+
+test("N3 verb endings: half-done, hard to, ever more, even if, rules and no choice", () => {
+  const cases: [string[], string, string][] = [
+    [["忘れ", "かけた"], "忘れる", "kakeru"],
+    [["死に", "かけて", "いる"], "死ぬ", "kakeru"],
+    [["読み", "づらい"], "読む", "zurai"],
+    [["読み", "づらかったです"], "読む", "zurai"],
+    [["増える", "一方だ"], "増える", "ippou-da"],
+    [["行く", "わけにはいかない"], "行く", "wake-ni-wa-ikanai"],
+    [["言わない", "わけにはいきません"], "言う", "wake-ni-wa-ikanai"],
+    [["しない", "こと"], "する", "koto-instruction"],
+    [["煮る", "こと"], "煮る", "koto-instruction"],
+    [["分からない", "ことはない"], "分かる", "nai-koto-wa-nai"],
+    [["行かない", "こともない"], "行く", "nai-koto-wa-nai"],
+  ];
+  for (const [words, lemma, id] of cases) {
+    const { reference, base } = fixture(words, lemma);
+    expect(verbGrammar(reference, base), words.join(" / ")).toEqual([
+      {
+        start: 0,
+        end: words.join("").length,
+        japanese: words.join(""),
+        grammarIds: [id],
+      },
+    ]);
+  }
+  // Concessive たって needs a following clause.
+  for (const [words, lemma, span] of [
+    [["遅れた", "って", "大丈夫だ"], "遅れる", "遅れたって"],
+    [["行かなくたって", "いい"], "行く", "行かなくたって"],
+  ] as [string[], string, string][]) {
+    const { reference, base } = fixture(words, lemma);
+    expect(verbGrammar(reference, base), words.join(" / ")).toContainEqual(
+      expect.objectContaining({ japanese: span, grammarIds: ["tatte-datte"] }),
+    );
+  }
+});
+
+test("N3 verb endings reject lexical compounds, quotations and nominalizers", () => {
+  const cases: [string[], string][] = [
+    // 話しかける "speak to", 見かける "spot", 仕掛ける "set up".
+    [["話し", "かけた"], "話す"],
+    [["見", "かけた"], "見る"],
+    [["し", "かけた"], "する"],
+    [["遅れた", "って", "言った"], "遅れる"],
+    [["遅れた", "って"], "遅れる"],
+    [["する", "こと", "が", "ある程度"], "する"],
+  ];
+  for (const [words, lemma] of cases) {
+    const { reference, base } = fixture(words, lemma);
+    expect(
+      verbGrammar(reference, base).flatMap((match) => match.grammarIds),
+      words.join(" / "),
+    ).not.toContainAnyValues(["kakeru", "tatte-datte", "koto-instruction"]);
+  }
+});
+
+test("たら before a past main clause also links the discovery lesson", () => {
+  const cases: [string[], string, string[]][] = [
+    [["見たら", "おもしろかった"], "見る", ["tara", "tara-ta"]],
+    [["洗ったら", "色が", "落ちた"], "洗う", ["tara", "tara-ta"]],
+    [["見たら", "おもしろい"], "見る", ["tara"]],
+    [["行ったら", "よかった"], "行く", ["tara"]],
+    [["行ったら", "いいと", "思った"], "行く", ["tara"]],
+    [["行ったら", "いなかった", "？"], "行く", ["tara"]],
+  ];
+  for (const [words, lemma, ids] of cases) {
+    const { reference, base } = fixture(words, lemma);
+    const tara = verbGrammar(reference, base).find((match) =>
+      match.grammarIds.includes("tara"),
+    );
+    expect(tara?.grammarIds, words.join(" / ")).toEqual(ids);
+  }
+});
+
+test("N3 lessons link real sentences without annotations", () => {
+  for (const [id, word, lesson, span] of [
+    ["29749dab94f18303df6e509c", "終わりかけて", "kakeru", "終わりかけていた"],
+    ["4e66fc8e9e6a890e70ee4464", "おぼれ", "kakeru", "おぼれかけた"],
+    ["14da789a84bf30d431edf928", "遅れた", "tatte-datte", "遅れたって"],
+    ["5aeff6b05761358adc2c35d3", "しない", "koto-instruction", "しないこと"],
+    ["18089290c7d128cf76683ba9", "見たら", "tara-ta", "見たら"],
+    ["c4d971b02e7b8a649af0bc86", "あった", "wake-da", "あったわけです"],
+    ["2987c5885ae87dab7245068f", "も", "mo-ba-mo", "もあれば"],
+    ["3e3db8de311e7dfcf0f0ce61", "も", "mo-ba-mo", "もなければ"],
+    ["03f65dfbd86fb73b8fa38ef1", "って", "tte", "って"],
+    ["9e02e887f7d608baeaf37085", "って", "tte", "って"],
+    [
+      "d6107541b1240da691d666a1",
+      "ところ",
+      "tokoro-ni-tokoro-e-tokoro-o",
+      "ところを",
+    ],
+    ["dd26dc04bbf9efce4e2447bc", "に", "ni-kurabete", "に比べると"],
+    ["6502884d235e435677628715", "警戒ぶり", "buri", "警戒ぶり"],
+    ["75960f436595106b71adaccb", "久しぶり", "buri", "久しぶり"],
+  ]) {
+    const s = exerciseById.get(id!)!;
+    const { entries } = sentenceAnswerEntries(s, {
+      sentenceId: s.id,
+      english: s.english,
+      japanese: s.reference.japanese,
+      furigana: primaryReading(s.reference).furigana,
+      answerEntries: [],
+      hintMappings: [],
+    });
+    expect(
+      entries.find((p) => p.japanese === word && p.grammar?.length)?.grammar,
+      s.reference.japanese,
+    ).toContainEqual(expect.objectContaining({ id: lesson, japanese: span }));
+  }
+  // Lexical かける compounds and places are not these lessons.
+  for (const [id, lesson] of [
+    ["3749c6ee115b00bc4676590a", "kakeru"],
+    ["7eb4b95e8d9fec01631e6d28", "kakeru"],
+    ["40a2963f2ce1e5e8d8beabad", "kakeru"],
+    ["1319493902f269504ce3cc71", "tokoro-ni-tokoro-e-tokoro-o"],
+    ["3424f096dcddd52e0d6c7eb1", "ki-ga-suru"],
+    ["c170341800d1ff31582b9230", "tatte-datte"],
+  ]) {
+    const s = exerciseById.get(id!)!;
+    const { entries } = sentenceAnswerEntries(s, {
+      sentenceId: s.id,
+      english: s.english,
+      japanese: s.reference.japanese,
+      furigana: primaryReading(s.reference).furigana,
+      answerEntries: [],
+      hintMappings: [],
+    });
+    expect(
+      entries.flatMap((p) => p.grammar ?? []).map((g) => g.id),
+      s.reference.japanese,
+    ).not.toContain(lesson);
+  }
+});

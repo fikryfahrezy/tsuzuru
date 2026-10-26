@@ -1,7 +1,7 @@
 import type { GrammarAnnotation } from "../../shared/answer-entries";
 import type { Sentence } from "../../shared/sentence";
 import type { AnswerEntry } from "./answer-entries";
-import { finite, nominal } from "./grammar-context";
+import { finite, humans, nominal } from "./grammar-context";
 import { verbForms } from "./verb-forms";
 import { referenceLexemes } from "./reference-lexemes";
 import {
@@ -167,6 +167,14 @@ export function constructionGrammar(
       )
     )
       rules.push({ id: "tsuide-ni", forms: ["ついでに"], prefix: "noun" });
+    // Kana かわって is "in place of" only after a person; otherwise it may be
+    // 変わって "change into".
+    if (humans.has(previous.japanese))
+      rules.push({
+        id: "ni-kawatte",
+        forms: ["にかわって", "にかわり"],
+        prefix: "noun",
+      });
     // について shares a spelling with arriving / taking a position. Only
     // recognized topics qualify; places and unknown noun readings need review.
     if (topics.has(previous.japanese) && nominal(previous))

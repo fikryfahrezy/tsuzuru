@@ -1115,3 +1115,130 @@ test("参考までに is a set phrase, not a deadline", () => {
     ]).some((g) => g.id === "made-ni"),
   ).toBe(false);
 });
+
+test("N3 noun and clause constructions require their preceding role", () => {
+  const cases: [Word[], string, string][] = [
+    [
+      [["行く", ["Verb"]], ["わけ", ["Noun"]], ["が"], ["ない"]],
+      "wake-ga-nai",
+      "わけがない",
+    ],
+    [
+      [["負ける", ["Verb"]], ["に"], ["決まって"], ["いる"]],
+      "ni-kimatte-iru",
+      "に決まっている",
+    ],
+    [
+      [["彼", ["Pronoun"]], ["ばかりでなく"], ["私", ["Pronoun"]]],
+      "bakari-de-naku",
+      "ばかりでなく",
+    ],
+    [
+      [["雨が"], ["降る", ["Verb"]], ["気"], ["が"], ["する"]],
+      "ki-ga-suru",
+      "気がする",
+    ],
+    [
+      [["知らない", ["Verb"], "知る"], ["ふり"], ["を"], ["した"]],
+      "furi-o-suru",
+      "ふりをした",
+    ],
+    [
+      [["働く", ["Verb"]], ["一方で"], ["遊ぶ", ["Verb"]]],
+      "ippou-de",
+      "一方で",
+    ],
+    [
+      [["去年", ["Noun"]], ["に"], ["比べて"], ["暑い", ["い-adjective"]]],
+      "ni-kurabete",
+      "に比べて",
+    ],
+    [
+      [["社長", ["Noun"]], ["に"], ["代わって"], ["話す", ["Verb"]]],
+      "ni-kawatte",
+      "に代わって",
+    ],
+    [
+      [["彼", ["Pronoun"]], ["に"], ["かわって"], ["話す", ["Verb"]]],
+      "ni-kawatte",
+      "にかわって",
+    ],
+    [[["何", ["Pronoun"]], ["だった"], ["っけ"], ["。"]], "kke", "っけ"],
+    [[["３年"], ["ぶり"], ["に"]], "buri", "３年ぶり"],
+  ];
+  // Explanations of clause constructions start at the clause's predicate.
+  for (const [words, id, span] of cases)
+    expect(
+      lessons(words).some(
+        (lesson) => lesson.id === id && lesson.japanese.endsWith(span),
+      ),
+      span,
+    ).toBe(true);
+  // Kana かわって after a non-person may be 変わって "change into".
+  expect(
+    hasLesson(
+      [["青", ["Noun"]], ["に"], ["かわって"], ["止まる", ["Verb"]]],
+      "ni-kawatte",
+    ),
+  ).toBe(false);
+  // っけ inside a word is not the recall particle.
+  expect(
+    hasLesson(
+      [
+        ["あっけなく", ["Adverb"]],
+        ["負けた", ["Verb"], "負ける"],
+      ],
+      "kke",
+    ),
+  ).toBe(false);
+  // Lexical nouns ending in ぶり.
+  expect(hasLesson([["どしゃぶり", ["Noun"]], ["だ"]], "buri")).toBe(false);
+  // も〜ば needs a second も.
+  expect(
+    hasLesson(
+      [
+        ["本", ["Noun"]],
+        ["も", ["Particle"]],
+        ["あれば", ["Verb"], "ある"],
+        ["読む", ["Verb"]],
+      ],
+      "mo-ba-mo",
+    ),
+  ).toBe(false);
+});
+
+test("から〜にかけて needs both ends of the range, and 気味 a preceding noun", () => {
+  expect(
+    hasLesson(
+      [
+        ["夏", ["Noun"]],
+        ["から", ["Particle"]],
+        ["秋", ["Noun"]],
+        ["に"],
+        ["かけて"],
+        ["雨が"],
+        ["多い", ["い-adjective"]],
+      ],
+      "kara-ni-kakete",
+    ),
+  ).toBe(true);
+  expect(
+    hasLesson(
+      [["料理", ["Noun"]], ["に"], ["かけて"], ["は"], ["名人だ"]],
+      "kara-ni-kakete",
+    ),
+  ).toBe(false);
+  expect(
+    hasLesson(
+      [["壁", ["Noun"]], ["に"], ["かけて"], ["ください"]],
+      "kara-ni-kakete",
+    ),
+  ).toBe(false);
+  expect(hasLesson([["風邪", ["Noun"]], ["気味"], ["だ"]], "gimi")).toBe(true);
+  expect(
+    hasLesson(
+      [["何となく", ["Adverb"]], ["気味"], ["の"], ["悪い", ["い-adjective"]]],
+      "gimi",
+    ),
+  ).toBe(false);
+});

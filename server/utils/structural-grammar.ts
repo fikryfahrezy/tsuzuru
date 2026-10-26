@@ -81,6 +81,56 @@ const period = new RegExp(
   "u",
 );
 
+// ぶり after a time span or an action noun (久しぶり, 警戒ぶり), but not
+// lexical nouns that merely end in it (どしゃぶり "downpour", 身ぶり).
+const lexicalBuri = new Set([
+  "ぶり",
+  "どしゃぶり",
+  "土砂ぶり",
+  "身ぶり",
+  "手ぶり",
+  "大ぶり",
+  "小ぶり",
+  "素ぶり",
+  "そぶり",
+  "羽ぶり",
+]);
+// ところを / ところに "just when" needs a predicate that rescues, catches or
+// interrupts: 危ないところを助かった, 出かけるところに電話がかかってきた.
+const momentPredicates: Record<string, Set<string>> = {
+  を: new Set([
+    "助かる",
+    "助ける",
+    "救う",
+    "見る",
+    "見つかる",
+    "見られる",
+    "見つける",
+    "捕まる",
+    "邪魔する",
+  ]),
+  に: new Set([
+    "来る",
+    "くる",
+    "やって来る",
+    "現れる",
+    "かかる",
+    "帰る",
+    "訪ねる",
+    "入る",
+  ]),
+  へ: new Set([
+    "来る",
+    "くる",
+    "やって来る",
+    "現れる",
+    "かかる",
+    "帰る",
+    "訪ねる",
+    "入る",
+  ]),
+};
+
 // These rules require positioned words and neighboring grammatical roles.
 // They never search across punctuation or infer a word from an internal suffix.
 export function structuralGrammar(
@@ -417,6 +467,108 @@ export function structuralGrammar(
       )
         add(word.start, word.japanese, "toki");
     }
+    // A range in time or space: 夏から秋にかけて. にかけては "when it comes
+    // to" is a different lesson.
+    if (
+      word.japanese === "に" &&
+      nominal(previous) &&
+      following &&
+      next.japanese === "かけて" &&
+      !text.startsWith("は", next.end)
+    ) {
+      const clause = text
+        .slice(0, previous.start)
+        .match(/[^。！？?!、,]*$/u)![0];
+      const from = base.findLast(
+        (part) =>
+          part.japanese === "から" &&
+          part.wordTypes.includes("Particle") &&
+          part.start >= previous.start - clause.length &&
+          nominal(base[base.indexOf(part) - 1]),
+      );
+      if (from) add(word.start, "にかけて", "kara-ni-kakete");
+    }
+    // A slight tendency: 風邪気味. 気味が悪い "creepy" has no noun before it.
+    if (
+      word.japanese === "気味" &&
+      (nominal(previous) || previous.wordTypes.includes("Verb"))
+    )
+      add(previous.start, previous.japanese + "気味", "gimi");
+    // Casual って: hearsay after んだ / のだ (とられるんだって), a quotation
+    // before a verb of saying or thinking, or a topic after a noun
+    // (あなたって素直じゃない). After a past verb it may instead be
+    // concessive 〜たって, which the verb rules handle.
+    if (word.japanese === "って" && word.wordTypes.includes("Particle")) {
+      const after = text.slice(word.end);
+      const hearsay =
+        previous.japanese === "だ" &&
+        ["ん", "の"].includes(base[index - 2]?.japanese ?? "") &&
+        /^(?:[。！？?!」』]|[ねよ]|$)/u.test(after);
+      const quotation =
+        following &&
+        next.wordTypes.includes("Verb") &&
+        /^(?:言|い[うっいわ]|聞|思|書)/u.test(next.japanese);
+      const topic =
+        nominal(previous) &&
+        following &&
+        !next.wordTypes.includes("Verb") &&
+        !after.startsWith("ば");
+      if (hearsay || quotation || topic) add(word.start, "って", "tte");
+    }
+    if (word.japanese === "ぶり" && period.test(previous.japanese))
+      add(previous.start, previous.japanese + "ぶり", "buri");
+    // 〜も〜ば〜も: AもあればBもある, AもなければBもない.
+    if (
+      word.japanese === "も" &&
+      word.wordTypes.includes("Particle") &&
+      following &&
+      ["あれば", "有れば", "いれば", "なければ"].includes(next.japanese)
+    ) {
+      const clause = text.slice(next.end).match(/^[^。！？?!]*/u)![0];
+      if (
+        base.some(
+          (part) =>
+            part.japanese === "も" &&
+            part.wordTypes.includes("Particle") &&
+            part.start > next.end &&
+            part.end <= next.end + clause.length,
+        )
+      )
+        add(word.start, "も" + next.japanese, "mo-ba-mo");
+    }
+    if (
+      ["ところ", "所"].includes(word.japanese) &&
+      finite(previous) &&
+      following &&
+      Object.hasOwn(momentPredicates, next.japanese)
+    ) {
+      const clause = text.slice(next.end).match(/^[^。！？?!]*/u)![0];
+      const predicate = base.find(
+        (part) =>
+          part.start >= next.end &&
+          part.end <= next.end + clause.length &&
+          part.wordTypes.includes("Verb"),
+      );
+      if (predicate && momentPredicates[next.japanese]!.has(lemma(predicate)))
+        add(
+          word.start,
+          word.japanese + next.japanese,
+          "tokoro-ni-tokoro-e-tokoro-o",
+        );
+    }
   }
+  for (const word of base) {
+    if (
+      word.wordTypes.includes("Noun") &&
+      word.japanese.endsWith("ぶり") &&
+      !lexicalBuri.has(word.japanese)
+    )
+      add(word.start, word.japanese, "buri");
+  }
+  // っけ after a past or copula form at the end: 何だっけ, 言ったっけ.
+  for (const found of text.matchAll(
+    /(?<=[ただ])っけ(?=[。？?！!」』]|[ねな]|$)/gu,
+  ))
+    add(found.index, "っけ", "kke");
   return matches;
 }

@@ -98,6 +98,57 @@ export const predicateConstructions: Rule[] = [
     prefix: "adnominal",
   },
   {
+    id: "wake-da",
+    forms: ["わけ", "訳"].flatMap((word) =>
+      ["だ", "です", "だった", "でした"].map((ending) => word + ending),
+    ),
+    prefix: "adnominal",
+  },
+  {
+    id: "wake-ga-nai",
+    forms: ["わけ", "訳"].flatMap((word) =>
+      ["がない", "がありません", "はない", "はありません"].map(
+        (ending) => word + ending,
+      ),
+    ),
+    prefix: "adnominal",
+  },
+  {
+    id: "ni-kimatte-iru",
+    forms: ["に決まって", "にきまって"].flatMap((word) =>
+      ["いる", "います", "る", "いた"].map((ending) => word + ending),
+    ),
+    prefix: "plain",
+  },
+  {
+    id: "bakari-de-naku",
+    forms: ["ばかりでなく", "ばかりではなく", "ばかりじゃなく"],
+    prefix: "plain",
+  },
+  {
+    id: "ki-ga-suru",
+    forms: ["する", "します", "した", "しました", "している", "しています"].map(
+      (ending) => "気が" + ending,
+    ),
+    prefix: "finite",
+  },
+  {
+    id: "furi-o-suru",
+    forms: ["ふり", "振り"].flatMap((word) =>
+      [
+        "をする",
+        "をします",
+        "をした",
+        "をしました",
+        "をしている",
+        "をしていた",
+        "をして",
+      ].map((ending) => word + ending),
+    ),
+    prefix: "adnominal",
+  },
+  { id: "ippou-de", forms: ["一方で"], prefix: "adnominal" },
+  {
     id: "dake-de-naku",
     forms: ["だけでなく", "だけではなく", "だけじゃなく"],
     prefix: "adnominal",
@@ -172,4 +223,19 @@ export const nounConstructions: Rule[] = [
   { id: "to-tomo-ni", forms: ["とともに", "と共に"], prefix: "plain" },
   { id: "ni-tsurete", forms: ["につれて"], prefix: "plain" },
   { id: "to-shite", forms: ["として"], prefix: "noun" },
+  {
+    id: "ni-kurabete",
+    forms: ["に", "と"].flatMap((particle) =>
+      ["比べ", "くらべ"].flatMap((verb) =>
+        ["て", "", "ると", "れば"].map((ending) => particle + verb + ending),
+      ),
+    ),
+    prefix: "noun",
+  },
+  // Kana かわって may also be 変わって "change"; see construction-grammar.ts.
+  {
+    id: "ni-kawatte",
+    forms: ["に代わって", "に代わり", "に代わる"],
+    prefix: "noun",
+  },
 ];

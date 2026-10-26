@@ -23,7 +23,8 @@ export type ConstructionForm =
   | "beki"
   | "honorificStem"
   | "zu"
-  | "passive";
+  | "passive"
+  | "compoundStem";
 interface Construction {
   form: ConstructionForm;
   endings: string[];
@@ -100,6 +101,55 @@ const casualObligation = [
     (auxiliary) => "いと" + auxiliary,
   ),
 ];
+
+// Tense and politeness of an ichidan auxiliary after its root: 始め + る,
+// かけ + ました.
+const ichidanTails = ["る", "ます", "た", "ました", "ない", "ません", "て"];
+// An い-adjective auxiliary after its root: やす + い, づら + くなかった.
+const adjectiveTails = [
+  "い",
+  "いです",
+  "くない",
+  "くないです",
+  "かった",
+  "かったです",
+  "くなかった",
+  "くなかったです",
+];
+const copulaTails = ["だ", "です", "だった", "でした"];
+
+// Stems whose かける is a lexical compound rather than "half-done": speaking
+// or acting toward someone (話しかける, 呼びかける, 微笑みかける), going out
+// (出かける), spotting (見かける), setting up (仕掛ける, kana しかける), or
+// hanging and leaning (もたせかける).
+export const lexicalKakeruStems = new Set([
+  "話し",
+  "呼び",
+  "問い",
+  "語り",
+  "笑い",
+  "微笑み",
+  "ほほえみ",
+  "働き",
+  "投げ",
+  "持ち",
+  "押し",
+  "詰め",
+  "追い",
+  "追っ",
+  "誘い",
+  "訴え",
+  "見",
+  "出",
+  "ひっ",
+  "引っ",
+  "もたせ",
+  "立て",
+  "振り",
+  "仕",
+  "し",
+  "腰",
+]);
 
 export const constructions: Construction[] = [
   {
@@ -407,11 +457,7 @@ export const constructions: Construction[] = [
   {
     form: "stem",
     endings: ["始め", "はじめ", "続け", "つづけ"]
-      .flatMap((root) =>
-        ["る", "ます", "た", "ました", "ない", "ません", "て"].map(
-          (ending) => root + ending,
-        ),
-      )
+      .flatMap((root) => ichidanTails.map((ending) => root + ending))
       .concat([
         "終わる",
         "終わります",
@@ -613,6 +659,15 @@ export const constructions: Construction[] = [
         ),
         id: "koto-ga-aru",
       },
+      {
+        form,
+        endings: ["わけ", "訳"].flatMap((word) =>
+          ["いかない", "いきません", "いかなかった", "いきませんでした"].map(
+            (ending) => `${prefix}${word}には${ending}`,
+          ),
+        ),
+        id: "wake-ni-wa-ikanai",
+      },
     ];
   }),
   {
@@ -623,18 +678,46 @@ export const constructions: Construction[] = [
   {
     form: "stem",
     endings: ["やす", "にく"].flatMap((root) =>
-      [
-        "い",
-        "いです",
-        "くない",
-        "くないです",
-        "かった",
-        "かったです",
-        "くなかった",
-        "くなかったです",
-      ].map((ending) => root + ending),
+      adjectiveTails.map((ending) => root + ending),
     ),
     id: "yasui-nikui",
+  },
+  {
+    form: "stem",
+    endings: adjectiveTails.map((ending) => "づら" + ending),
+    id: "zurai",
+  },
+  // Half-done or about to happen: 終わりかけていた, おぼれかけた,
+  // 読みかけの本. ている stays inside, as in 開きかけている.
+  {
+    form: "compoundStem",
+    endings: [
+      ...ichidanTails,
+      "ている",
+      "ています",
+      "ていた",
+      "ていました",
+      "の",
+    ].map((ending) => "かけ" + ending),
+    id: "kakeru",
+  },
+  {
+    form: "dictionary",
+    endings: copulaTails.map((ending) => "一方" + ending),
+    id: "ippou-da",
+  },
+  // Concession: 遅れたって, 行かなくたって "even if".
+  { form: "ta", endings: ["って"], id: "tatte-datte" },
+  { form: "negative", endings: ["くたって"], id: "tatte-datte" },
+  // A rule or instruction that ends the sentence: 放置しないこと。
+  { form: "dictionary", endings: ["こと"], id: "koto-instruction" },
+  { form: "negative", endings: ["いこと"], id: "koto-instruction" },
+  {
+    form: "negative",
+    endings: ["は", "も"].flatMap((particle) =>
+      ["ない", "ありません"].map((ending) => `いこと${particle}${ending}`),
+    ),
+    id: "nai-koto-wa-nai",
   },
   {
     form: "te",

@@ -36,6 +36,14 @@ const grammaticalizedLessons = [
   "te-morau",
   "te-kudasai",
   "nasai",
+  "kakeru",
+  "wake-ni-wa-ikanai",
+  "wake-ga-nai",
+  "nai-koto-wa-nai",
+  "ki-ga-suru",
+  "ni-kimatte-iru",
+  "furi-o-suru",
+  "mo-ba-mo",
 ];
 
 // These are separate capabilities: retaining a derivation inside a construction
