@@ -414,3 +414,120 @@ test("N3 lessons link real sentences without annotations", () => {
     ).not.toContain(lesson);
   }
 });
+
+test("N2 verb endings: as soon as, while, to the end, resolve and since", () => {
+  const cases: [string[], string, string][] = [
+    [["着き", "次第"], "着く", "shidai"],
+    [["歩き", "つつ"], "歩く", "tsutsu-tsutsu-mo"],
+    [["戦い", "抜いた"], "戦う", "nuku"],
+    [["信じ", "がたい"], "信じる", "gatai"],
+    [["行く", "まい"], "行く", "mai"],
+    [["増える", "ばかりだ"], "増える", "bakari-da"],
+    [["待って", "はいられない"], "待つ", "te-wa-irarenai"],
+    [["なって", "ならない"], "なる", "te-naranai"],
+    [["見て", "こそ"], "見る", "te-koso"],
+    [["食べて", "からでないと"], "食べる", "te-kara-de-nai-to"],
+    [["来て", "以来"], "来る", "te-irai"],
+    [["降った", "かと思ったら"], "降る", "ka-to-omottara-ka-to-omou-to"],
+    [["出かけた", "きり"], "出かける", "kiri"],
+    [["考えた", "あげく"], "考える", "ageku"],
+    [["謝らない", "限り"], "謝る", "nai-kagiri"],
+    [["見ない", "ことには"], "見る", "nai-koto-ni-wa"],
+    [["始めよう", "ではないか"], "始める", "you-de-wa-nai-ka"],
+    [["考え", "ようによっては"], "考える", "you-ni-yotte-wa"],
+  ];
+  for (const [words, lemma, id] of cases) {
+    const { reference, base } = fixture(words, lemma);
+    expect(verbGrammar(reference, base), words.join(" / ")).toEqual([
+      {
+        start: 0,
+        end: words.join("").length,
+        japanese: words.join(""),
+        grammarIds: [id],
+      },
+    ]);
+  }
+  const { reference, base } = fixture(["聞いた", "ところ", "、"], "聞く");
+  expect(verbGrammar(reference, base)).toContainEqual(
+    expect.objectContaining({
+      japanese: "聞いたところ",
+      grammarIds: ["ta-tokoro"],
+    }),
+  );
+  for (const [words, lemma, id] of [
+    // 撃ち抜く "shoot through", ありがたい "grateful", たところだ "just did".
+    [["撃ち", "抜いた"], "撃つ", "nuku"],
+    [["あり", "がたい"], "ある", "gatai"],
+    [["帰った", "ところ", "だ"], "帰る", "ta-tokoro"],
+  ] as [string[], string, string][]) {
+    const { reference, base } = fixture(words, lemma);
+    expect(
+      verbGrammar(reference, base).flatMap((match) => match.grammarIds),
+      words.join(" / "),
+    ).not.toContain(id);
+  }
+});
+
+test("N2 lessons link real sentences without annotations", () => {
+  for (const [id, word, lesson, span] of [
+    ["0a7b200b", "仕事上", "jou", "仕事上"],
+    ["4e7d4340", "にくらしげ", "ge", "にくらしげ"],
+    ["ce43e14a", "得意げ", "ge", "得意げ"],
+    ["a8f1b58c", "それ", "kiri", "それっきり"],
+    ["8bcda627", "着き", "shidai", "着き次第"],
+    ["ed38cbe1", "すまい", "mai", "すまい"],
+    ["cb64367a", "考えた", "sue-ni", "考えた末"],
+    ["81817be3", "する", "sai-ni", "する際には"],
+    ["0ad0aff0", "ある", "kagiri", "ある限り"],
+    ["80b9e613", "しない", "nai-kagiri", "しない限り"],
+    ["0fb22c54", "に", "ni-kagitte", "に限って"],
+    ["dee60d0c", "やら", "yara-yara", "やら雨やら"],
+    ["e64deb89", "と", "to-ieba-to-iu-to", "といえば"],
+    ["282df75c", "どころ", "dokoro-de-wa-nai", "どころじゃない"],
+    ["bb1f5e44", "に", "ni-hoka-naranai", "に他ならなかった"],
+    ["0368c980", "を", "o-chuushin-ni", "を中心とする"],
+    ["4d8c33da", "に", "ni-atatte", "に当たり"],
+    ["35371816", "に", "ni-oujite", "に応じた"],
+    ["9fef77c0", "戦い", "nuku", "戦い抜こう"],
+  ]) {
+    const s = [...exerciseById.values()].find((row) => row.id.startsWith(id!))!;
+    const { entries } = sentenceAnswerEntries(s, {
+      sentenceId: s.id,
+      english: s.english,
+      japanese: s.reference.japanese,
+      furigana: primaryReading(s.reference).furigana,
+      answerEntries: [],
+      hintMappings: [],
+    });
+    expect(
+      entries.flatMap((p) => (p.japanese === word ? (p.grammar ?? []) : [])),
+      s.reference.japanese,
+    ).toContainEqual(expect.objectContaining({ id: lesson, japanese: span }));
+  }
+  // Places, possessive の, limits and hitting are not these lessons.
+  for (const [id, lesson] of [
+    ["f2c20ab0", "jou"],
+    ["63d19bd7", "jou"],
+    ["00d25494", "kiri"],
+    ["6d6c19b9", "mono-no"],
+    ["de926a27", "ni-atatte"],
+    ["83cbeb73", "ni-oujite"],
+    ["e6ce484e", "nuku"],
+    ["33908aea", "ka-to-iu-to"],
+    ["642a650f", "sue-ni"],
+  ]) {
+    const s = [...exerciseById.values()].find((row) => row.id.startsWith(id!))!;
+    const { entries } = sentenceAnswerEntries(s, {
+      sentenceId: s.id,
+      english: s.english,
+      japanese: s.reference.japanese,
+      furigana: primaryReading(s.reference).furigana,
+      answerEntries: [],
+      hintMappings: [],
+    });
+    expect(
+      entries.flatMap((p) => p.grammar ?? []).map((g) => g.id),
+      s.reference.japanese,
+    ).not.toContain(lesson);
+  }
+});

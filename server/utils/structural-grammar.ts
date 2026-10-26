@@ -95,6 +95,12 @@ const lexicalBuri = new Set([
   "そぶり",
   "羽ぶり",
 ]);
+const naAdjectives = new Set(
+  vocabulary
+    .filter((entry) => entry.pos?.includes("adj-na"))
+    .map((entry) => entry.word),
+);
+
 // ところを / ところに "just when" needs a predicate that rescues, catches or
 // interrupts: 危ないところを助かった, 出かけるところに電話がかかってきた.
 const momentPredicates: Record<string, Set<string>> = {
@@ -137,7 +143,7 @@ export function structuralGrammar(
   sentence: Sentence,
   base: AnswerEntry[],
 ): GrammarAnnotation[] {
-  const { text, matches, add, longest } = grammarMatcher(sentence, base);
+  const { text, matches, span, add, longest } = grammarMatcher(sentence, base);
   for (const [index, word] of base.entries()) {
     const previous = base[index - 1];
     const next = base[index + 1];
@@ -557,13 +563,72 @@ export function structuralGrammar(
         );
     }
   }
-  for (const word of base) {
+  for (const [index, word] of base.entries()) {
+    const previous = base[index - 1];
     if (
       word.wordTypes.includes("Noun") &&
       word.japanese.endsWith("ぶり") &&
       !lexicalBuri.has(word.japanese)
     )
       add(word.start, word.japanese, "buri");
+    // Noun + 上 "in terms of" (仕事上の, 法律上), not a lexical word
+    // (以上, 年上).
+    if (
+      word.wordTypes.includes("Noun") &&
+      word.japanese.length >= 3 &&
+      word.japanese.endsWith("上") &&
+      word.kana.endsWith("じょう") &&
+      // Before a place particle it is "on" a surface (地球上に, 路上で).
+      !/^[にでをへ]/u.test(text.slice(word.end))
+    )
+      add(word.start, word.japanese, "jou");
+    // Seeming: 得意げ, にくらしげ.
+    if (
+      word.japanese.endsWith("げ") &&
+      ((word.wordTypes.includes("い-adjective") &&
+        lemma(word).slice(0, -1) + "げ" === word.japanese) ||
+        (word.wordTypes.includes("な-adjective") &&
+          naAdjectives.has(word.japanese.slice(0, -1))))
+    )
+      add(word.start, word.japanese, "ge");
+    // それっきり, 二人きり.
+    if (
+      ["きり", "っきり"].includes(word.japanese) &&
+      word.wordTypes.includes("Particle") &&
+      previous?.end === word.start &&
+      nominal(previous) &&
+      !previous.wordTypes.includes("Adverb") &&
+      // きりがない "endless" is the noun "limit".
+      !/^[がはも]/u.test(text.slice(word.end))
+    )
+      add(previous.start, previous.japanese + word.japanese, "kiri");
+    // すまい is the classical negative will of する (勉強すまい).
+    if (word.japanese === "すまい" && word.dictionaryForm === "する")
+      add(word.start, word.japanese, "mai");
+    // 〜やら〜やら: 風やら雨やら.
+    if (
+      word.japanese === "やら" &&
+      word.wordTypes.includes("Particle") &&
+      previous?.end === word.start &&
+      (nominal(previous) || finite(previous))
+    ) {
+      const second = base.find(
+        (part) =>
+          part.start > word.end &&
+          part.japanese === "やら" &&
+          part.wordTypes.includes("Particle") &&
+          !/[。！？?!]/u.test(text.slice(word.end, part.start)),
+      );
+      // A list of three starts at the first やら only.
+      const earlier = base.some(
+        (part) =>
+          part.end < word.start &&
+          part.japanese === "やら" &&
+          part.wordTypes.includes("Particle") &&
+          !/[。！？?!]/u.test(text.slice(part.end, word.start)),
+      );
+      if (second && !earlier) span(word.start, second.end, "yara-yara");
+    }
   }
   // っけ after a past or copula form at the end: 何だっけ, 言ったっけ.
   for (const found of text.matchAll(

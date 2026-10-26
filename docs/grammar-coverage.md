@@ -19,7 +19,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | N5    | 82                  | 0               | 0           |
 | N4    | 99                  | 1               | 0           |
 | N3    | 94                  | 0               | 7           |
-| N2    | 39                  | 0               | 84          |
+| N2    | 115                 | 0               | 8           |
 | N1    | 11                  | 0               | 112         |
 
 ## Reviewed corpus checks
@@ -391,7 +391,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 
 | Lesson ID                         | Pattern                                 | Status    | Automatic sentences | Annotated sentences | Reviewed checks |
 | --------------------------------- | --------------------------------------- | --------- | ------------------- | ------------------- | --------------- |
-| wa                                | 〜は                                    | automatic | 6833                | 0                   | 0/0             |
+| wa                                | 〜は                                    | automatic | 6830                | 0                   | 0/0             |
 | ga-subject                        | 〜が（subject）                         | automatic | 1760                | 5                   | 0/0             |
 | o                                 | 〜を                                    | automatic | 3994                | 0                   | 1/1             |
 | ni-time                           | 〜に（time）                            | automatic | 21                  | 3                   | 0/0             |
@@ -425,8 +425,8 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | masen                             | 〜ません                                | automatic | 129                 | 1                   | 3/3             |
 | mashita                           | 〜ました                                | automatic | 237                 | 0                   | 1/1             |
 | masen-deshita                     | 〜ませんでした                          | automatic | 16                  | 0                   | 0/0             |
-| nai                               | 〜ない                                  | automatic | 574                 | 2                   | 3/3             |
-| ta                                | 〜た                                    | automatic | 3424                | 13                  | 7/7             |
+| nai                               | 〜ない                                  | automatic | 572                 | 2                   | 3/3             |
+| ta                                | 〜た                                    | automatic | 3425                | 13                  | 7/7             |
 | mashou                            | 〜ましょう                              | automatic | 44                  | 0                   | 0/0             |
 | mashou-ka                         | 〜ましょうか                            | automatic | 15                  | 1                   | 0/0             |
 | masen-ka                          | 〜ませんか                              | automatic | 1                   | 0                   | 2/2             |
@@ -440,10 +440,10 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | nakereba-naranai-nakute-wa-ikenai | 〜なければならない / 〜なくてはいけない | automatic | 107                 | 0                   | 1/1             |
 | nakute-mo-ii                      | 〜なくてもいい                          | automatic | 4                   | 0                   | 0/0             |
 | te-iru                            | 〜ている                                | automatic | 1399                | 6                   | 0/0             |
-| te                                | 〜て                                    | automatic | 971                 | 2                   | 0/0             |
+| te                                | 〜て                                    | automatic | 970                 | 2                   | 0/0             |
 | te-kara                           | 〜てから                                | automatic | 11                  | 0                   | 0/0             |
 | tari-tari-suru                    | 〜たり〜たりする                        | automatic | 9                   | 0                   | 0/0             |
-| ta-koto-ga-aru                    | 〜たことがある                          | automatic | 20                  | 0                   | 2/2             |
+| ta-koto-ga-aru                    | 〜たことがある                          | automatic | 19                  | 0                   | 2/2             |
 | mae-ni                            | 〜前に                                  | automatic | 16                  | 0                   | 2/2             |
 | ato-de                            | 〜後で                                  | automatic | 2                   | 0                   | 2/2             |
 | nagara                            | 〜ながら（while）                       | automatic | 12                  | 0                   | 0/0             |
@@ -465,7 +465,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | goro                              | 〜ごろ                                  | automatic | 1                   | 1                   | 1/1             |
 | nani-mo-nai-dare-mo-nai           | 何も〜ない / 誰も〜ない                 | automatic | 16                  | 0                   | 1/1             |
 | nani-ka-dare-ka-doko-ka           | 何か / 誰か / どこか                    | automatic | 5                   | 0                   | 1/1             |
-| kore-sore-are-dore                | これ / それ / あれ / どれ               | automatic | 312                 | 1                   | 1/1             |
+| kore-sore-are-dore                | これ / それ / あれ / どれ               | automatic | 311                 | 1                   | 1/1             |
 | kono-sono-ano-dono                | この / その / あの / どの               | automatic | 1914                | 3                   | 1/1             |
 | koko-soko-asoko-doko              | ここ / そこ / あそこ / どこ             | automatic | 208                 | 1                   | 1/1             |
 | ku-nai-katta-ku-nakatta           | 〜くない / 〜かった / 〜くなかった      | automatic | 79                  | 2                   | 4/4             |
@@ -508,12 +508,12 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | reru-rareru-passive                | 〜れる / 〜られる（passive）            | automatic       | 10                  | 6                   | 5/5             |
 | seru-saseru                        | 〜せる / 〜させる                       | automatic       | 90                  | 0                   | 1/1             |
 | serareru-saserareru                | 〜せられる / 〜させられる               | annotation-only | 0                   | 3                   | 0/0             |
-| ou-you                             | 〜おう / 〜よう                         | automatic       | 84                  | 1                   | 2/2             |
+| ou-you                             | 〜おう / 〜よう                         | automatic       | 83                  | 1                   | 2/2             |
 | you-to-omou                        | 〜(よ)うと思う                          | automatic       | 10                  | 0                   | 1/1             |
 | e-ro                               | 〜え / 〜ろ                             | automatic       | 17                  | 0                   | 2/2             |
 | na-prohibition                     | 〜な（prohibition）                     | automatic       | 46                  | 0                   | 0/0             |
 | nasai                              | 〜なさい                                | automatic       | 193                 | 0                   | 1/1             |
-| ba                                 | 〜ば                                    | automatic       | 63                  | 0                   | 1/1             |
+| ba                                 | 〜ば                                    | automatic       | 62                  | 0                   | 1/1             |
 | tara                               | 〜たら                                  | automatic       | 65                  | 0                   | 0/0             |
 | nara                               | 〜なら                                  | automatic       | 23                  | 0                   | 2/2             |
 | to                                 | 〜と（conditional）                     | automatic       | 2                   | 0                   | 2/2             |
@@ -689,129 +689,129 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 
 | Lesson ID                    | Pattern                       | Status      | Automatic sentences | Annotated sentences | Reviewed checks |
 | ---------------------------- | ----------------------------- | ----------- | ------------------- | ------------------- | --------------- |
-| ni-saishite                  | 〜に際して                    | unsupported | 0                   | 0                   | 0/0             |
-| ni-tomonatte                 | 〜に伴って                    | unsupported | 0                   | 0                   | 0/0             |
-| ni-oujite                    | 〜に応じて                    | unsupported | 0                   | 0                   | 0/0             |
-| ni-hanshite                  | 〜に反して                    | unsupported | 0                   | 0                   | 0/0             |
+| ni-saishite                  | 〜に際して                    | automatic   | 0                   | 0                   | 0/0             |
+| ni-tomonatte                 | 〜に伴って                    | automatic   | 0                   | 0                   | 0/0             |
+| ni-oujite                    | 〜に応じて                    | automatic   | 1                   | 0                   | 0/0             |
+| ni-hanshite                  | 〜に反して                    | automatic   | 0                   | 0                   | 0/0             |
 | ni-motozuite                 | 〜に基づいて                  | automatic   | 4                   | 0                   | 1/1             |
 | ni-watatte                   | 〜にわたって                  | automatic   | 3                   | 0                   | 1/1             |
 | ni-sotte                     | 〜に沿って                    | automatic   | 2                   | 0                   | 1/1             |
 | ni-kuwaete                   | 〜に加えて                    | automatic   | 1                   | 0                   | 1/1             |
-| o-megutte                    | 〜をめぐって                  | unsupported | 0                   | 0                   | 0/0             |
+| o-megutte                    | 〜をめぐって                  | automatic   | 0                   | 0                   | 0/0             |
 | o-tsuujite-o-tooshite        | 〜を通じて / 〜を通して       | automatic   | 1                   | 0                   | 2/2             |
-| o-kikkake-ni                 | 〜をきっかけに                | unsupported | 0                   | 0                   | 0/0             |
+| o-kikkake-ni                 | 〜をきっかけに                | automatic   | 0                   | 0                   | 0/0             |
 | o-nozoite                    | 〜を除いて                    | automatic   | 1                   | 0                   | 1/1             |
-| ka-no-you-da                 | 〜かのようだ                  | unsupported | 0                   | 0                   | 0/0             |
+| ka-no-you-da                 | 〜かのようだ                  | automatic   | 0                   | 0                   | 0/0             |
 | kanenai                      | 〜かねない                    | automatic   | 1                   | 0                   | 1/1             |
 | kaneru                       | 〜かねる                      | automatic   | 1                   | 0                   | 1/1             |
 | zu-ni-wa-irarenai            | 〜ずにはいられない            | automatic   | 7                   | 0                   | 1/1             |
 | zaru-o-enai                  | 〜ざるを得ない                | automatic   | 8                   | 0                   | 1/1             |
-| te-wa-irarenai               | 〜てはいられない              | unsupported | 0                   | 0                   | 0/0             |
-| mono-ka                      | 〜ものか                      | unsupported | 0                   | 0                   | 0/0             |
-| mono-no                      | 〜ものの                      | unsupported | 0                   | 0                   | 0/0             |
-| mono-nara                    | 〜ものなら                    | unsupported | 0                   | 0                   | 0/0             |
-| kurai-nara-gurai-nara        | 〜くらいなら / 〜ぐらいなら   | unsupported | 0                   | 0                   | 0/0             |
+| te-wa-irarenai               | 〜てはいられない              | automatic   | 0                   | 0                   | 0/0             |
+| mono-ka                      | 〜ものか                      | automatic   | 0                   | 0                   | 0/0             |
+| mono-no                      | 〜ものの                      | automatic   | 0                   | 0                   | 0/0             |
+| mono-nara                    | 〜ものなら                    | automatic   | 0                   | 0                   | 0/0             |
+| kurai-nara-gurai-nara        | 〜くらいなら / 〜ぐらいなら   | automatic   | 0                   | 0                   | 0/0             |
 | mono-ga-aru                  | 〜ものがある                  | unsupported | 0                   | 0                   | 0/0             |
 | koto-ka                      | 〜ことか                      | unsupported | 0                   | 0                   | 0/0             |
-| koto-ni-wa                   | 〜ことに（は）                | unsupported | 0                   | 0                   | 0/0             |
-| koto-dakara                  | 〜ことだから                  | unsupported | 0                   | 0                   | 0/0             |
+| koto-ni-wa                   | 〜ことに（は）                | automatic   | 0                   | 0                   | 0/0             |
+| koto-dakara                  | 〜ことだから                  | automatic   | 0                   | 0                   | 0/0             |
 | koto-naku                    | 〜ことなく                    | automatic   | 1                   | 0                   | 1/1             |
 | koto-kara                    | 〜ことから                    | unsupported | 0                   | 0                   | 0/0             |
-| nai-koto-ni-wa               | 〜ないことには                | unsupported | 0                   | 0                   | 0/0             |
+| nai-koto-ni-wa               | 〜ないことには                | automatic   | 0                   | 0                   | 0/0             |
 | koto-wa-ga                   | 〜ことは〜が                  | unsupported | 0                   | 0                   | 0/0             |
-| ageku                        | 〜あげく                      | unsupported | 0                   | 0                   | 0/0             |
+| ageku                        | 〜あげく                      | automatic   | 0                   | 0                   | 0/0             |
 | amari-ni                     | 〜あまり（に）                | unsupported | 0                   | 0                   | 0/0             |
-| ue-ni                        | 〜上（に）                    | unsupported | 0                   | 0                   | 0/0             |
-| ue-de                        | 〜上で                        | unsupported | 0                   | 0                   | 0/0             |
-| ijou-wa                      | 〜以上（は）                  | unsupported | 0                   | 0                   | 0/0             |
-| kara-ni-wa                   | 〜からには                    | unsupported | 0                   | 0                   | 0/0             |
-| kara-koso                    | 〜からこそ                    | unsupported | 0                   | 0                   | 0/0             |
-| kara-shite                   | 〜からして                    | unsupported | 0                   | 0                   | 0/0             |
-| kara-suru-to-kara-sureba     | 〜からすると / 〜からすれば   | unsupported | 0                   | 0                   | 0/0             |
+| ue-ni                        | 〜上（に）                    | automatic   | 0                   | 0                   | 0/0             |
+| ue-de                        | 〜上で                        | automatic   | 0                   | 0                   | 0/0             |
+| ijou-wa                      | 〜以上（は）                  | automatic   | 0                   | 0                   | 0/0             |
+| kara-ni-wa                   | 〜からには                    | automatic   | 0                   | 0                   | 0/0             |
+| kara-koso                    | 〜からこそ                    | automatic   | 0                   | 0                   | 0/0             |
+| kara-shite                   | 〜からして                    | automatic   | 0                   | 0                   | 0/0             |
+| kara-suru-to-kara-sureba     | 〜からすると / 〜からすれば   | automatic   | 0                   | 0                   | 0/0             |
 | kara-miru-to-kara-mireba     | 〜から見ると / 〜から見れば   | unsupported | 0                   | 0                   | 0/0             |
-| kara-iu-to-kara-itte         | 〜からいうと / 〜からいって   | unsupported | 0                   | 0                   | 0/0             |
-| sai-ni                       | 〜際（に）                    | unsupported | 0                   | 0                   | 0/0             |
-| shidai                       | 〜次第                        | unsupported | 0                   | 0                   | 0/0             |
-| shidai-da-shidai-de          | 〜次第だ / 〜次第で           | unsupported | 0                   | 0                   | 0/0             |
-| sue-ni                       | 〜末（に）                    | unsupported | 0                   | 0                   | 0/0             |
+| kara-iu-to-kara-itte         | 〜からいうと / 〜からいって   | automatic   | 0                   | 0                   | 0/0             |
+| sai-ni                       | 〜際（に）                    | automatic   | 3                   | 0                   | 0/0             |
+| shidai                       | 〜次第                        | automatic   | 1                   | 0                   | 0/0             |
+| shidai-da-shidai-de          | 〜次第だ / 〜次第で           | automatic   | 0                   | 0                   | 0/0             |
+| sue-ni                       | 〜末（に）                    | automatic   | 2                   | 0                   | 0/0             |
 | ta-tokoro-de                 | 〜たところで                  | unsupported | 0                   | 0                   | 0/0             |
-| ta-tokoro                    | 〜たところ                    | unsupported | 0                   | 0                   | 0/0             |
+| ta-tokoro                    | 〜たところ                    | automatic   | 0                   | 0                   | 0/0             |
 | bakari-ka                    | 〜ばかりか                    | automatic   | 1                   | 0                   | 1/1             |
-| bakari-ni                    | 〜ばかりに                    | unsupported | 0                   | 0                   | 0/0             |
-| bakari-da                    | 〜ばかりだ                    | unsupported | 0                   | 0                   | 0/0             |
-| wa-mochiron-wa-motoyori      | 〜はもちろん / 〜はもとより   | unsupported | 0                   | 0                   | 0/0             |
+| bakari-ni                    | 〜ばかりに                    | automatic   | 0                   | 0                   | 0/0             |
+| bakari-da                    | 〜ばかりだ                    | automatic   | 0                   | 0                   | 0/0             |
+| wa-mochiron-wa-motoyori      | 〜はもちろん / 〜はもとより   | automatic   | 0                   | 0                   | 0/0             |
 | wa-tomokaku                  | 〜はともかく                  | automatic   | 1                   | 0                   | 1/1             |
-| wa-sateoki                   | 〜はさておき                  | unsupported | 0                   | 0                   | 0/0             |
-| hanmen                       | 〜反面 / 〜半面               | unsupported | 0                   | 0                   | 0/0             |
+| wa-sateoki                   | 〜はさておき                  | automatic   | 0                   | 0                   | 0/0             |
+| hanmen                       | 〜反面 / 〜半面               | automatic   | 0                   | 0                   | 0/0             |
 | nagara-mo                    | 〜ながら（も）                | automatic   | 4                   | 0                   | 1/1             |
-| tsutsu-tsutsu-mo             | 〜つつ / 〜つつも             | unsupported | 0                   | 0                   | 0/0             |
+| tsutsu-tsutsu-mo             | 〜つつ / 〜つつも             | automatic   | 0                   | 0                   | 0/0             |
 | tsutsu-aru                   | 〜つつある                    | automatic   | 10                  | 0                   | 1/1             |
 | ppanashi                     | 〜っぱなし                    | automatic   | 1                   | 0                   | 1/1             |
-| nuku                         | 〜抜く                        | unsupported | 0                   | 0                   | 1/1             |
+| nuku                         | 〜抜く                        | automatic   | 1                   | 0                   | 1/1             |
 | uru-enai                     | 〜得る / 〜得ない             | automatic   | 2                   | 0                   | 1/1             |
-| gatai                        | 〜がたい                      | unsupported | 0                   | 0                   | 2/2             |
+| gatai                        | 〜がたい                      | automatic   | 0                   | 0                   | 2/2             |
 | you-ga-nai                   | 〜ようがない                  | automatic   | 2                   | 0                   | 1/1             |
-| you-de-wa                    | 〜ようでは                    | unsupported | 0                   | 0                   | 0/0             |
-| te-naranai                   | 〜てならない                  | unsupported | 0                   | 0                   | 0/0             |
-| te-koso                      | 〜てこそ                      | unsupported | 0                   | 0                   | 0/0             |
-| te-kara-de-nai-to            | 〜てからでないと              | unsupported | 0                   | 0                   | 0/0             |
-| te-irai                      | 〜て以来                      | unsupported | 0                   | 0                   | 0/0             |
+| you-de-wa                    | 〜ようでは                    | automatic   | 0                   | 0                   | 0/0             |
+| te-naranai                   | 〜てならない                  | automatic   | 0                   | 0                   | 0/0             |
+| te-koso                      | 〜てこそ                      | automatic   | 0                   | 0                   | 0/0             |
+| te-kara-de-nai-to            | 〜てからでないと              | automatic   | 0                   | 0                   | 0/0             |
+| te-irai                      | 〜て以来                      | automatic   | 0                   | 0                   | 0/0             |
 | ni-suginai                   | 〜に過ぎない                  | automatic   | 6                   | 0                   | 1/1             |
 | ni-kagiru                    | 〜に限る                      | automatic   | 1                   | 0                   | 2/2             |
-| ni-kagirazu                  | 〜に限らず                    | unsupported | 0                   | 0                   | 0/0             |
-| ni-kagitte                   | 〜に限って                    | unsupported | 0                   | 0                   | 0/0             |
-| ni-kagiri                    | 〜に限り                      | unsupported | 0                   | 0                   | 0/0             |
-| kagiri                       | 〜かぎり                      | unsupported | 0                   | 0                   | 0/0             |
-| nai-kagiri                   | 〜ないかぎり                  | unsupported | 0                   | 0                   | 0/0             |
+| ni-kagirazu                  | 〜に限らず                    | automatic   | 0                   | 0                   | 0/0             |
+| ni-kagitte                   | 〜に限って                    | automatic   | 1                   | 0                   | 0/0             |
+| ni-kagiri                    | 〜に限り                      | automatic   | 0                   | 0                   | 0/0             |
+| kagiri                       | 〜かぎり                      | automatic   | 3                   | 0                   | 0/0             |
+| nai-kagiri                   | 〜ないかぎり                  | automatic   | 1                   | 0                   | 0/0             |
 | ni-kakete-wa                 | 〜にかけては                  | automatic   | 2                   | 0                   | 1/1             |
-| ni-kotaete                   | 〜にこたえて                  | unsupported | 0                   | 0                   | 0/0             |
+| ni-kotaete                   | 〜にこたえて                  | automatic   | 0                   | 0                   | 0/0             |
 | ni-sakidatte                 | 〜に先立って                  | automatic   | 1                   | 0                   | 1/1             |
-| ni-shiro-ni-seyo             | 〜にしろ / 〜にせよ           | unsupported | 0                   | 0                   | 0/0             |
-| ni-sureba-ni-shitara         | 〜にすれば / 〜にしたら       | unsupported | 0                   | 0                   | 0/0             |
-| ni-soui-nai                  | 〜に相違ない                  | unsupported | 0                   | 0                   | 0/0             |
-| ni-koshita-koto-wa-nai       | 〜に越したことはない          | unsupported | 0                   | 0                   | 0/0             |
-| ni-hoka-naranai              | 〜にほかならない              | unsupported | 0                   | 0                   | 0/0             |
+| ni-shiro-ni-seyo             | 〜にしろ / 〜にせよ           | automatic   | 0                   | 0                   | 0/0             |
+| ni-sureba-ni-shitara         | 〜にすれば / 〜にしたら       | automatic   | 0                   | 0                   | 0/0             |
+| ni-soui-nai                  | 〜に相違ない                  | automatic   | 0                   | 0                   | 0/0             |
+| ni-koshita-koto-wa-nai       | 〜に越したことはない          | automatic   | 1                   | 0                   | 0/0             |
+| ni-hoka-naranai              | 〜にほかならない              | automatic   | 1                   | 0                   | 0/0             |
 | ni-mo-kakawarazu             | 〜にもかかわらず              | automatic   | 3                   | 0                   | 1/1             |
-| ni-atatte                    | 〜にあたって                  | unsupported | 0                   | 0                   | 0/0             |
+| ni-atatte                    | 〜にあたって                  | automatic   | 1                   | 0                   | 0/0             |
 | ni-oite-ni-okeru             | 〜において / 〜における       | automatic   | 4                   | 0                   | 1/1             |
-| ni-kakawarazu                | 〜にかかわらず                | unsupported | 0                   | 0                   | 0/0             |
+| ni-kakawarazu                | 〜にかかわらず                | automatic   | 0                   | 0                   | 0/0             |
 | ni-kakawaru                  | 〜にかかわる                  | automatic   | 1                   | 0                   | 1/1             |
 | ni-tsuki                     | 〜につき                      | automatic   | 2                   | 0                   | 1/1             |
 | ni-mukete                    | 〜に向けて                    | automatic   | 6                   | 0                   | 1/1             |
 | no-moto-de-no-moto-ni        | 〜のもとで / 〜のもとに       | automatic   | 2                   | 0                   | 1/1             |
-| nuki-de-nuki-ni              | 〜抜きで / 〜抜きに           | unsupported | 0                   | 0                   | 0/0             |
+| nuki-de-nuki-ni              | 〜抜きで / 〜抜きに           | automatic   | 0                   | 0                   | 0/0             |
 | o-komete                     | 〜をこめて                    | automatic   | 1                   | 0                   | 1/1             |
-| o-chuushin-ni                | 〜を中心に                    | unsupported | 0                   | 0                   | 0/0             |
-| o-moto-ni                    | 〜をもとに                    | unsupported | 0                   | 0                   | 0/0             |
-| o-towazu                     | 〜を問わず                    | unsupported | 0                   | 0                   | 0/0             |
-| o-hajime                     | 〜をはじめ                    | unsupported | 0                   | 0                   | 0/0             |
+| o-chuushin-ni                | 〜を中心に                    | automatic   | 1                   | 0                   | 0/0             |
+| o-moto-ni                    | 〜をもとに                    | automatic   | 0                   | 0                   | 0/0             |
+| o-towazu                     | 〜を問わず                    | automatic   | 0                   | 0                   | 0/0             |
+| o-hajime                     | 〜をはじめ                    | automatic   | 0                   | 0                   | 0/0             |
 | o-to-shite                   | 〜を〜として                  | automatic   | 11                  | 0                   | 1/1             |
-| ka-to-iu-to                  | 〜かというと                  | unsupported | 0                   | 0                   | 0/0             |
-| ka-to-omottara-ka-to-omou-to | 〜かと思ったら / 〜かと思うと | unsupported | 0                   | 0                   | 0/0             |
+| ka-to-iu-to                  | 〜かというと                  | automatic   | 0                   | 0                   | 0/0             |
+| ka-to-omottara-ka-to-omou-to | 〜かと思ったら / 〜かと思うと | automatic   | 0                   | 0                   | 0/0             |
 | ka-nai-ka-no-uchi-ni         | 〜か〜ないかのうちに          | unsupported | 0                   | 0                   | 0/0             |
-| kiri                         | 〜きり                        | unsupported | 0                   | 0                   | 0/0             |
-| ge                           | 〜げ                          | unsupported | 0                   | 0                   | 0/0             |
+| kiri                         | 〜きり                        | automatic   | 1                   | 0                   | 0/0             |
+| ge                           | 〜げ                          | automatic   | 2                   | 0                   | 0/0             |
 | kko-nai                      | 〜っこない                    | automatic   | 1                   | 0                   | 2/2             |
 | dokoro-ka                    | 〜どころか                    | automatic   | 3                   | 0                   | 1/1             |
-| dokoro-de-wa-nai             | 〜どころではない              | unsupported | 0                   | 0                   | 0/0             |
+| dokoro-de-wa-nai             | 〜どころではない              | automatic   | 2                   | 0                   | 0/0             |
 | to-wa-kagiranai              | 〜とは限らない                | automatic   | 12                  | 0                   | 1/1             |
 | to-iu-mono-da                | 〜というものだ                | automatic   | 1                   | 0                   | 1/1             |
-| to-iu-mono-de-wa-nai         | 〜というものではない          | unsupported | 0                   | 0                   | 0/0             |
+| to-iu-mono-de-wa-nai         | 〜というものではない          | automatic   | 0                   | 0                   | 0/0             |
 | to-itte-mo                   | 〜といっても                  | automatic   | 2                   | 0                   | 1/1             |
-| to-ieba-to-iu-to             | 〜といえば / 〜というと       | unsupported | 0                   | 0                   | 0/0             |
-| hoka-nai                     | 〜ほかない                    | unsupported | 0                   | 0                   | 0/0             |
-| mai                          | 〜まい                        | unsupported | 0                   | 0                   | 0/0             |
-| you-de-wa-nai-ka             | 〜（よ）うではないか          | unsupported | 0                   | 0                   | 0/0             |
-| mo-kamawazu                  | 〜もかまわず                  | unsupported | 0                   | 0                   | 0/0             |
-| jou                          | 〜上                          | unsupported | 0                   | 0                   | 0/0             |
+| to-ieba-to-iu-to             | 〜といえば / 〜というと       | automatic   | 1                   | 0                   | 0/0             |
+| hoka-nai                     | 〜ほかない                    | automatic   | 0                   | 0                   | 0/0             |
+| mai                          | 〜まい                        | automatic   | 1                   | 0                   | 0/0             |
+| you-de-wa-nai-ka             | 〜（よ）うではないか          | automatic   | 0                   | 0                   | 0/0             |
+| mo-kamawazu                  | 〜もかまわず                  | automatic   | 0                   | 0                   | 0/0             |
+| jou                          | 〜上                          | automatic   | 5                   | 0                   | 0/0             |
 | osore-ga-aru                 | 〜おそれがある                | automatic   | 1                   | 0                   | 1/1             |
 | sei-ka                       | 〜せいか                      | automatic   | 2                   | 0                   | 1/1             |
-| dake-atte-dake-ni            | 〜だけあって / 〜だけに       | unsupported | 0                   | 0                   | 0/0             |
-| dake-no-koto-wa-aru          | 〜だけのことはある            | unsupported | 0                   | 0                   | 0/0             |
+| dake-atte-dake-ni            | 〜だけあって / 〜だけに       | automatic   | 0                   | 0                   | 0/0             |
+| dake-no-koto-wa-aru          | 〜だけのことはある            | automatic   | 0                   | 0                   | 0/0             |
 | tatoe-te-mo                  | たとえ〜ても                  | automatic   | 4                   | 0                   | 1/1             |
-| yara-yara                    | 〜やら〜やら                  | unsupported | 0                   | 0                   | 0/0             |
+| yara-yara                    | 〜やら〜やら                  | automatic   | 1                   | 0                   | 0/0             |
 | zu-ni-sumu-naide-sumu        | 〜ずに済む / 〜ないで済む     | automatic   | 3                   | 0                   | 1/1             |
-| you-ni-yotte-wa              | 〜ようによっては              | unsupported | 0                   | 0                   | 0/0             |
+| you-ni-yotte-wa              | 〜ようによっては              | automatic   | 0                   | 0                   | 0/0             |
 
 ## N1 inventory
 

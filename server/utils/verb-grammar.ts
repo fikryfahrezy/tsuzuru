@@ -8,6 +8,7 @@ import { hiragana } from "../../shared/practice";
 import {
   constructions,
   lexicalKakeruStems,
+  lexicalNukuStems,
   type ConstructionForm,
 } from "./grammar-rules/verb";
 import { validAdvancedTail } from "./grammar-rules/advanced";
@@ -105,12 +106,14 @@ function constructionBase(
       return forms.te.replace(/て$/u, "た").replace(/で$/u, "だ");
     case "conditional":
       return lemma.slice(0, -1) + (conditionalEndings[lemma.at(-1)!] ?? "");
-    // The tokenizer may keep a stem + かける as one dictionary compound
-    // (終わりかける) or split it (おぼれ + かけた).
-    case "compoundStem":
-      return lemma.endsWith("かける") && lemma.length > 3
-        ? lemma.slice(0, -3)
-        : forms.stem;
+    // The tokenizer may keep a stem + かける / 抜く as one dictionary
+    // compound (終わりかける, 撃ち抜く) or split it (おぼれ + かけた).
+    case "compoundStem": {
+      const auxiliary = ["かける", "抜く", "ぬく"].find(
+        (word) => lemma.endsWith(word) && lemma.length > word.length,
+      );
+      return auxiliary ? lemma.slice(0, -auxiliary.length) : forms.stem;
+    }
     default:
       return forms[kind];
   }
@@ -224,6 +227,10 @@ export function verbGrammar(
               !/^(?:[。！？?!」』]|[よねぞ]|$)/u.test(text.slice(end))) ||
             (rule.id === "zu-ni" && /^(?:は|も)/u.test(text.slice(end))) ||
             (rule.id === "kakeru" && lexicalKakeruStems.has(form)) ||
+            (rule.id === "nuku" && lexicalNukuStems.has(form)) ||
+            // ありがたい "grateful" is lexical.
+            (rule.id === "gatai" && ["ある", "有る"].includes(lemma)) ||
+            (rule.id === "ta-tokoro" && !/^[、,]/u.test(text.slice(end))) ||
             // こと closes the sentence; elsewhere it is a nominalizer.
             (rule.id === "koto-instruction" &&
               !/^(?:[。！!」』]|$)/u.test(text.slice(end))) ||

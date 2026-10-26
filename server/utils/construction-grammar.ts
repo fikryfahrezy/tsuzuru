@@ -91,6 +91,55 @@ const sources = new Set([
   "発表",
 ]);
 
+// 月の末 is "the end of the month", not "after a long process".
+const periods = new Set([
+  "月",
+  "年",
+  "週",
+  "今月",
+  "来月",
+  "先月",
+  "今年",
+  "去年",
+  "来年",
+  "世紀",
+  "学期",
+  "年度",
+]);
+// にあたって marks an occasion (出発するにあたって, 開店にあたり); after
+// other nouns 当たる is "hit" (雨に当たって).
+const occasions = new Set([
+  "とき",
+  "時",
+  "際",
+  "開始",
+  "開店",
+  "開会",
+  "出発",
+  "卒業",
+  "入学",
+  "就職",
+  "結婚",
+  "新年",
+  "年頭",
+  "契約",
+  "実施",
+]);
+// Feelings that introduce a remark with ことに(は): 残念なことに.
+const remarks = new Set([
+  "驚く",
+  "残念",
+  "嬉しい",
+  "うれしい",
+  "悲しい",
+  "困る",
+  "不思議",
+  "幸い",
+  "面白い",
+  "意外",
+  "感心",
+]);
+
 export function constructionGrammar(
   sentence: Sentence,
   base: AnswerEntry[],
@@ -177,6 +226,42 @@ export function constructionGrammar(
       });
     // について shares a spelling with arriving / taking a position. Only
     // recognized topics qualify; places and unknown noun readings need review.
+    if (dictionary || (occasions.has(previous.japanese) && nominal(previous)))
+      rules.push({
+        id: "ni-atatte",
+        forms: [
+          "にあたって",
+          "に当たって",
+          "にあたり",
+          "に当たり",
+          "にあたっては",
+          "に当たっては",
+        ],
+        prefix: "lexical",
+      });
+    if (humans.has(previous.japanese))
+      rules.push({
+        id: "ni-sureba-ni-shitara",
+        forms: ["にすれば", "にしたら", "にしてみれば", "にしてみたら"],
+        prefix: "noun",
+      });
+    // 彼のことだから: knowing what someone is like.
+    if (linkedNoun)
+      rules.push({
+        id: "koto-dakara",
+        forms: ["ことだから", "ことですから"],
+        prefix: "adnominal",
+      });
+    if (
+      remarks.has(previous.dictionaryForm ?? previous.japanese) ||
+      (previous.japanese === "な" &&
+        remarks.has(owner?.dictionaryForm ?? owner?.japanese ?? ""))
+    )
+      rules.push({
+        id: "koto-ni-wa",
+        forms: ["ことに", "ことには"],
+        prefix: "lexical",
+      });
     if (topics.has(previous.japanese) && nominal(previous))
       rules.push({
         id: "ni-tsuite",
@@ -265,6 +350,24 @@ export function constructionGrammar(
       if (rule.id === "ni-yotte-ni-yoru" && places.test(previous.japanese))
         continue;
       if (rule.id === "ni-tsurete" && !finite(previous)) continue;
+      if (rule.id === "kagiri" && previous.japanese.endsWith("ない")) continue;
+      if (
+        rule.id === "sue-ni" &&
+        ((previous.wordTypes.includes("Verb") &&
+          !/[ただ]$/u.test(previous.japanese)) ||
+          (linkedNoun && periods.has(owner!.japanese)))
+      )
+        continue;
+      // どちらかというと is the idiom "if anything".
+      if (
+        rule.id === "ka-to-iu-to" &&
+        ["どちら", "どっち"].includes(previous.japanese)
+      )
+        continue;
+      // 身にこたえる: "tell on (one's health)".
+      if (rule.id === "ni-kotaete" && previous.japanese === "身") continue;
+      // 名所を巡る is touring places.
+      if (rule.id === "o-megutte" && places.test(previous.japanese)) continue;
       // Explanatory nouns require な, while expectation uses noun + の.
       if (rule.id === "n-desu-no-desu" && linkedNoun) continue;
       const found = rule.forms

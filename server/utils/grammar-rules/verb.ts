@@ -150,6 +150,37 @@ export const lexicalKakeruStems = new Set([
   "し",
   "腰",
 ]);
+// Stems whose 抜く is physical: shooting, pulling or overtaking through
+// (撃ち抜く, 引き抜く, 追い抜く), or seeing through (見抜く).
+export const lexicalNukuStems = new Set([
+  "撃ち",
+  "打ち",
+  "引き",
+  "追い",
+  "見",
+  "書き",
+  "切り",
+  "突き",
+  "射",
+  "刺し",
+  "踏み",
+  "掘り",
+  "くり",
+  "繰り",
+  "ぶち",
+  "引っこ",
+]);
+// Tense and politeness of a godan く auxiliary after its root: 抜 + いた.
+const kuTails = [
+  "く",
+  "きます",
+  "いた",
+  "きました",
+  "いて",
+  "こう",
+  "かない",
+  "きません",
+];
 
 export const constructions: Construction[] = [
   {
@@ -478,6 +509,9 @@ export const constructions: Construction[] = [
       .filter((form) => rule.prefix !== "dictionary" || form === "dictionary")
       .filter((form) => rule.id !== "sou-da-hearsay" || form !== "ta")
       .filter((form) => rule.id !== "uchi-ni" || form !== "ta")
+      // ない限り is its own lesson; 末 follows only a た form.
+      .filter((form) => rule.id !== "kagiri" || form !== "negative")
+      .filter((form) => rule.id !== "sue-ni" || form === "ta")
       .filter(
         (form) =>
           !["tabi-ni", "saichuu-ni"].includes(rule.id) ||
@@ -719,6 +753,73 @@ export const constructions: Construction[] = [
     ),
     id: "nai-koto-wa-nai",
   },
+  { form: "stem", endings: ["次第"], id: "shidai" },
+  { form: "stem", endings: ["つつ", "つつも"], id: "tsutsu-tsutsu-mo" },
+  // Doing to the very end: 戦い抜こう, やり抜いた.
+  {
+    form: "compoundStem",
+    endings: ["抜", "ぬ"].flatMap((root) =>
+      kuTails.map((ending) => root + ending),
+    ),
+    id: "nuku",
+  },
+  {
+    form: "stem",
+    endings: adjectiveTails.map((ending) => "がた" + ending),
+    id: "gatai",
+  },
+  // Negative resolve or conjecture: 行くまい, 勉強すまい.
+  { form: "dictionary", endings: ["まい"], id: "mai" },
+  { form: "beki", endings: ["まい"], id: "mai" },
+  {
+    form: "dictionary",
+    endings: copulaTails.map((ending) => "ばかり" + ending),
+    id: "bakari-da",
+  },
+  {
+    form: "te",
+    endings: ["はいられない", "はいられません", "はいられなかった"],
+    id: "te-wa-irarenai",
+  },
+  // Can't help feeling: 気になってならない.
+  {
+    form: "te",
+    endings: ["ならない", "なりません", "ならなかった"],
+    id: "te-naranai",
+  },
+  { form: "te", endings: ["こそ"], id: "te-koso" },
+  {
+    form: "te",
+    endings: ["からでないと", "からでなければ", "からじゃないと"],
+    id: "te-kara-de-nai-to",
+  },
+  { form: "te", endings: ["以来"], id: "te-irai" },
+  {
+    form: "ta",
+    endings: ["かと思ったら", "かと思うと", "かと思えば"],
+    id: "ka-to-omottara-ka-to-omou-to",
+  },
+  // Only before a comma: たところだ "have just done" is a different lesson.
+  { form: "ta", endings: ["ところ"], id: "ta-tokoro" },
+  { form: "ta", endings: ["きり", "っきり"], id: "kiri" },
+  {
+    form: "ta",
+    endings: ["あげく", "挙句", "挙げ句"].flatMap((word) => [
+      word,
+      word + "に",
+    ]),
+    id: "ageku",
+  },
+  { form: "negative", endings: ["い限り", "いかぎり"], id: "nai-kagiri" },
+  { form: "negative", endings: ["いことには"], id: "nai-koto-ni-wa" },
+  {
+    form: "volitional",
+    endings: ["では", "じゃ"].flatMap((word) =>
+      ["ないか", "ありませんか"].map((ending) => word + ending),
+    ),
+    id: "you-de-wa-nai-ka",
+  },
+  { form: "stem", endings: ["ようによっては"], id: "you-ni-yotte-wa" },
   {
     form: "te",
     endings: [

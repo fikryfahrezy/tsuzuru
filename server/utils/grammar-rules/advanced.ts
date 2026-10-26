@@ -289,6 +289,18 @@ export function contextualAdvancedRules(
 }
 
 export function validAdvancedTail(id: string, tail: string): boolean {
+  const sentenceEnd = /^(?:[。！？?!」』]|[よね]|$)/u.test(tail);
+  if (id === "mono-ka" && !sentenceEnd) return false;
+  // Concessive ものの opens a contrast; というもののよさ is possessive.
+  if (id === "mono-no" && !/^[、,]/u.test(tail)) return false;
+  // 困ることになる is a decision or outcome, not a remark.
+  if (id === "koto-ni-wa" && !/^(?:[、,]|は)/u.test(tail)) return false;
+  if (id === "ni-shiro-ni-seyo" && sentenceEnd) return false;
+  // ようではない "doesn't seem" is the appearance lesson.
+  if (id === "you-de-wa" && /^(?:ない|ありません)/u.test(tail)) return false;
+  // AはもちろんBも: without a later も, もちろん is "of course".
+  if (id === "wa-mochiron-wa-motoyori" && !/^[^。！？?!]*も/u.test(tail))
+    return false;
   if (id === "ni-shite-wa" && /^(?:いけ|なら|困)/u.test(tail)) return false;
   if (id === "ni-shite-mo" && /^(?:ら|いい|よい|良い|構わ|かまわ)/u.test(tail))
     return false;

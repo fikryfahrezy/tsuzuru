@@ -149,6 +149,122 @@ export const predicateConstructions: Rule[] = [
   },
   { id: "ippou-de", forms: ["一方で"], prefix: "adnominal" },
   {
+    id: "sai-ni",
+    forms: ["際", "際に", "際は", "際には"],
+    prefix: "adnominal",
+  },
+  // After a verb, only its た form; time nouns (月の末) are excluded in
+  // construction-grammar.ts.
+  { id: "sue-ni", forms: ["末", "末に"], prefix: "adnominal" },
+  {
+    id: "kagiri",
+    forms: ["限り", "かぎり", "限りは", "限りでは"],
+    prefix: "adnominal",
+  },
+  { id: "hanmen", forms: ["反面", "半面"], prefix: "adnominal" },
+  { id: "ue-ni", forms: ["上に", "うえに"], prefix: "finite" },
+  { id: "ue-de", forms: ["上で", "うえで"], prefix: "finite" },
+  { id: "ijou-wa", forms: ["以上", "以上は"], prefix: "finite" },
+  { id: "kara-ni-wa", forms: ["からには"], prefix: "finite" },
+  { id: "kara-koso", forms: ["からこそ"], prefix: "plain" },
+  { id: "bakari-ni", forms: ["ばかりに"], prefix: "finite" },
+  { id: "mono-no", forms: ["ものの"], prefix: "finite" },
+  { id: "mono-nara", forms: ["ものなら"], prefix: "finite" },
+  // Only at the end of a sentence; see validAdvancedTail.
+  { id: "mono-ka", forms: ["ものか", "もんか"], prefix: "finite" },
+  { id: "you-de-wa", forms: ["ようでは"], prefix: "finite" },
+  {
+    id: "kurai-nara-gurai-nara",
+    forms: ["くらいなら", "ぐらいなら"],
+    prefix: "dictionary",
+  },
+  {
+    id: "hoka-nai",
+    forms: ["ほかない", "他ない", "ほかはない", "ほかありません"],
+    prefix: "dictionary",
+  },
+  {
+    id: "ka-no-you-da",
+    forms: ["かのようだ", "かのようです", "かのように", "かのような"],
+    prefix: "plain",
+  },
+  {
+    id: "ka-to-iu-to",
+    forms: ["かというと", "かといえば", "かと言うと", "かと言えば"],
+    prefix: "plain",
+  },
+  {
+    id: "dokoro-de-wa-nai",
+    forms: ["どころ"].flatMap((word) =>
+      [
+        "ではない",
+        "じゃない",
+        "ではありません",
+        "じゃありません",
+        "ではなかった",
+      ].map((ending) => word + ending),
+    ),
+    prefix: "plain",
+  },
+  {
+    id: "to-iu-mono-de-wa-nai",
+    forms: ["というもの"].flatMap((word) =>
+      ["ではない", "でもない", "じゃない", "ではありません"].map(
+        (ending) => word + ending,
+      ),
+    ),
+    prefix: "plain",
+  },
+  {
+    id: "dake-atte-dake-ni",
+    forms: ["だけあって", "だけあり"],
+    prefix: "plain",
+  },
+  { id: "dake-atte-dake-ni", forms: ["だけに"], prefix: "finite" },
+  {
+    id: "dake-no-koto-wa-aru",
+    forms: ["だけのことはある", "だけのことはあります", "だけのことはあった"],
+    prefix: "finite",
+  },
+  {
+    id: "ni-soui-nai",
+    forms: ["に相違ない", "に相違ありません"],
+    prefix: "plain",
+  },
+  {
+    id: "ni-koshita-koto-wa-nai",
+    forms: ["越した", "こした", "超した"].flatMap((verb) =>
+      ["ことはない", "ことはありません"].map((ending) => `に${verb}${ending}`),
+    ),
+    prefix: "plain",
+  },
+  {
+    id: "ni-hoka-naranai",
+    forms: ["ほか", "他"].flatMap((word) =>
+      ["ならない", "ならなかった", "なりません"].map(
+        (ending) => `に${word}${ending}`,
+      ),
+    ),
+    prefix: "plain",
+  },
+  {
+    id: "ni-saishite",
+    forms: ["に際して", "に際し", "に際しての"],
+    prefix: "plain",
+  },
+  {
+    id: "ni-tomonatte",
+    forms: ["に伴って", "に伴い", "に伴う", "にともなって", "にともない"],
+    prefix: "plain",
+  },
+  {
+    id: "ni-kakawarazu",
+    forms: ["にかかわらず", "に関わらず", "に拘らず", "に拘わらず"],
+    prefix: "plain",
+  },
+  // Not at the end, where にしろ is an order (静かにしろ).
+  { id: "ni-shiro-ni-seyo", forms: ["にしろ", "にせよ"], prefix: "plain" },
+  {
     id: "dake-de-naku",
     forms: ["だけでなく", "だけではなく", "だけじゃなく"],
     prefix: "adnominal",
@@ -232,6 +348,105 @@ export const nounConstructions: Rule[] = [
     ),
     prefix: "noun",
   },
+  {
+    id: "o-megutte",
+    forms: ["をめぐ", "を巡"].flatMap((verb) =>
+      ["って", "る", "り"].map((ending) => verb + ending),
+    ),
+    prefix: "noun",
+  },
+  {
+    id: "o-kikkake-ni",
+    forms: ["をきっかけに", "をきっかけとして", "をきっかけにして"],
+    prefix: "noun",
+  },
+  {
+    id: "ni-oujite",
+    forms: ["に応じて", "に応じた"],
+    prefix: "noun",
+  },
+  {
+    id: "ni-hanshite",
+    forms: ["に反して", "に反し", "に反した"],
+    prefix: "noun",
+  },
+  {
+    id: "ni-kotaete",
+    forms: ["に応えて", "にこたえて", "に応え", "に応える"],
+    prefix: "noun",
+  },
+  { id: "ni-kagitte", forms: ["に限って"], prefix: "noun" },
+  { id: "ni-kagiri", forms: ["に限り", "に限ります"], prefix: "noun" },
+  { id: "ni-kagirazu", forms: ["に限らず"], prefix: "noun" },
+  {
+    id: "o-chuushin-ni",
+    forms: [
+      "を中心に",
+      "を中心として",
+      "を中心とする",
+      "を中心とした",
+      "を中心にして",
+    ],
+    prefix: "noun",
+  },
+  {
+    id: "o-moto-ni",
+    forms: ["をもと", "を基"].flatMap((word) =>
+      ["に", "にして", "にした"].map((ending) => word + ending),
+    ),
+    prefix: "noun",
+  },
+  { id: "o-towazu", forms: ["を問わず"], prefix: "noun" },
+  {
+    id: "o-hajime",
+    forms: ["をはじめ", "を始め"].flatMap((word) =>
+      ["として", "とする"].map((ending) => word + ending),
+    ),
+    prefix: "noun",
+  },
+  {
+    id: "nuki-de-nuki-ni",
+    forms: ["抜き", "ぬき"].flatMap((word) =>
+      ["で", "に", "には"].map((ending) => word + ending),
+    ),
+    prefix: "noun",
+  },
+  {
+    id: "to-ieba-to-iu-to",
+    forms: ["といえば", "と言えば", "というと", "と言うと"],
+    prefix: "noun",
+  },
+  { id: "kara-shite", forms: ["からして"], prefix: "noun" },
+  {
+    id: "kara-suru-to-kara-sureba",
+    forms: ["からすると", "からすれば"],
+    prefix: "noun",
+  },
+  {
+    id: "kara-iu-to-kara-itte",
+    forms: [
+      "からいうと",
+      "から言うと",
+      "からいって",
+      "から言って",
+      "からいえば",
+      "から言えば",
+    ],
+    prefix: "noun",
+  },
+  {
+    id: "shidai-da-shidai-de",
+    forms: ["次第だ", "次第で", "次第です", "次第では"],
+    prefix: "noun",
+  },
+  // Only before a later も; see validAdvancedTail.
+  {
+    id: "wa-mochiron-wa-motoyori",
+    forms: ["はもちろん", "はもとより"],
+    prefix: "noun",
+  },
+  { id: "wa-sateoki", forms: ["はさておき", "はさておいて"], prefix: "noun" },
+  { id: "mo-kamawazu", forms: ["もかまわず", "も構わず"], prefix: "noun" },
   // Kana かわって may also be 変わって "change"; see construction-grammar.ts.
   {
     id: "ni-kawatte",
