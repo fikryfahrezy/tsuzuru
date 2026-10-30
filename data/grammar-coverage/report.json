@@ -799,8 +799,8 @@
         }
       ],
       "automatic": {
-        "sentences": 2649,
-        "occurrences": 2932,
+        "sentences": 2652,
+        "occurrences": 2935,
         "examples": [
           {
             "sentenceId": "00110190dcb7bfdba58f46c4",
@@ -8012,18 +8012,18 @@
         }
       ],
       "automatic": {
-        "sentences": 2,
-        "occurrences": 2,
+        "sentences": 3,
+        "occurrences": 3,
         "examples": [
+          {
+            "sentenceId": "0ec2d75843866f78346fb778",
+            "japanese": "この本はあの本ほどやさしくない。",
+            "english": "This book is not as easy as that one."
+          },
           {
             "sentenceId": "65b182ac2afd5014f49dd797",
             "japanese": "この本はあの本ほど重くない。",
             "english": "This book isn't as heavy as that book."
-          },
-          {
-            "sentenceId": "96c481eed098780b6b085bf9",
-            "japanese": "その相違は私にはそれほど重要でない。",
-            "english": "The difference is not so great for me."
           }
         ]
       },

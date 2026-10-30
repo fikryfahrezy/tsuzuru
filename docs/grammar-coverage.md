@@ -407,7 +407,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | ya                                | 〜や                                    | automatic | 39                  | 0                   | 0/0             |
 | ka-or                             | 〜か（or）                              | automatic | 4                   | 0                   | 1/1             |
 | mo                                | 〜も                                    | automatic | 306                 | 1                   | 1/1             |
-| no                                | 〜の（possessive）                      | automatic | 2649                | 10                  | 0/0             |
+| no                                | 〜の（possessive）                      | automatic | 2652                | 10                  | 0/0             |
 | kara-from                         | 〜から（from）                          | automatic | 33                  | 0                   | 0/0             |
 | made                              | 〜まで（until）                         | automatic | 104                 | 0                   | 0/0             |
 | ka-question                       | 〜か（question）                        | automatic | 650                 | 3                   | 2/2             |
@@ -547,7 +547,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | yasui-nikui                        | 〜やすい / 〜にくい                     | automatic       | 23                  | 0                   | 2/2             |
 | hajimeru-owaru-tsuzukeru           | 〜始める / 〜終わる / 〜続ける          | automatic       | 39                  | 0                   | 2/2             |
 | dasu                               | 〜出す                                  | automatic       | 3                   | 0                   | 1/1             |
-| hodo-nai                           | 〜ほど〜ない                            | automatic       | 2                   | 0                   | 1/1             |
+| hodo-nai                           | 〜ほど〜ない                            | automatic       | 3                   | 0                   | 1/1             |
 | nakanaka-nai                       | なかなか〜ない                          | automatic       | 8                   | 0                   | 1/1             |
 | zutsu                              | 〜ずつ                                  | automatic       | 4                   | 0                   | 1/1             |
 | mo-emphasis                        | 〜も（emphasis）                        | automatic       | 6                   | 0                   | 1/1             |
