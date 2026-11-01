@@ -6675,6 +6675,103 @@
       "spellings": ["櫛"],
       "reviewer": "Claude",
       "note": "くし in this sentence is the everyday word written 櫛 (JMdict 1246490); the English confirms this sense over the dictionary homophones."
+    },
+    {
+      "sentenceId": "27def0ef4728744911ecf22b",
+      "sourceEnglish": "Look out! There's a hole in the road.",
+      "sourceJapanese": "注意して！道路に穴があいてるよ。",
+      "furigana": "{注意|ちゅうい}して！{道路|どうろ}に{穴|あな}があいてるよ。",
+      "start": 10,
+      "end": 12,
+      "surface": "あい",
+      "reading": "あい",
+      "dictionaryEntryId": "1586270",
+      "spellings": [
+        "開い",
+        "空い"
+      ],
+      "reviewer": "Claude",
+      "note": "あい in this sentence is あく (JMdict 1586270), not 飽く (2083420): a hole forming in the road is written 開く or 空く."
+    },
+    {
+      "sentenceId": "39352b4eccc501a2fd8cfacf",
+      "sourceEnglish": "What time does the dining room open?",
+      "sourceJapanese": "食堂は何時にあきますか。",
+      "furigana": "{食堂|しょくどう}は{何時|なんじ}にあきますか。",
+      "start": 6,
+      "end": 8,
+      "surface": "あき",
+      "reading": "あき",
+      "dictionaryEntryId": "1586270",
+      "spellings": [
+        "開き"
+      ],
+      "reviewer": "Claude",
+      "note": "あき in this sentence is あく (JMdict 1586270), not 飽く (2083420): a dining room opening for business is written 開く."
+    },
+    {
+      "sentenceId": "49b7f738dc3ad0b3d41aac30",
+      "sourceEnglish": "How late are you open?",
+      "sourceJapanese": "お宅の店は何時まであいていますか。",
+      "furigana": "お{宅|たく}の{店|みせ}は{何時|なんじ}まであいていますか。",
+      "start": 9,
+      "end": 11,
+      "surface": "あい",
+      "reading": "あい",
+      "dictionaryEntryId": "1586270",
+      "spellings": [
+        "開い"
+      ],
+      "reviewer": "Claude",
+      "note": "あい in this sentence is あく (JMdict 1586270), not 飽く (2083420): a shop being open for business is written 開く."
+    },
+    {
+      "sentenceId": "7fa8feebf1becc702b643f34",
+      "sourceEnglish": "Excuse me, is this seat taken?",
+      "sourceJapanese": "すみません、この席あいていますか。",
+      "furigana": "すみません、この{席|せき}あいていますか。",
+      "start": 9,
+      "end": 11,
+      "surface": "あい",
+      "reading": "あい",
+      "dictionaryEntryId": "1586270",
+      "spellings": [
+        "空い"
+      ],
+      "reviewer": "Claude",
+      "note": "あい in this sentence is あく (JMdict 1586270), not 飽く (2083420): a seat being free is written 空く."
+    },
+    {
+      "sentenceId": "dd74ba2a4d6b7664656b73ff",
+      "sourceEnglish": "The curtain was rising then.",
+      "sourceJapanese": "そのとき幕はあきかけていた。",
+      "furigana": "そのとき{幕|まく}はあきかけていた。",
+      "start": 6,
+      "end": 8,
+      "surface": "あき",
+      "reading": "あき",
+      "dictionaryEntryId": "1586270",
+      "spellings": [
+        "開き"
+      ],
+      "reviewer": "Claude",
+      "note": "あき in this sentence is あく (JMdict 1586270), not 飽く (2083420): a stage curtain opening is written 開く."
+    },
+    {
+      "sentenceId": "dd74ba2a4d6b7664656b73ff",
+      "sourceEnglish": "The curtain was rising then.",
+      "sourceJapanese": "そのとき幕はあきかけていました。",
+      "furigana": "そのとき{幕|まく}はあきかけていました。",
+      "start": 6,
+      "end": 8,
+      "surface": "あき",
+      "reading": "あき",
+      "dictionaryEntryId": "1586270",
+      "spellings": [
+        "開き"
+      ],
+      "reviewer": "Claude",
+      "note": "あき in this sentence is あく (JMdict 1586270), not 飽く (2083420): a stage curtain opening is written 開く."
     }
   ]
 }

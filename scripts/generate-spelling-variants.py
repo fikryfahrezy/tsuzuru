@@ -200,17 +200,18 @@ def generate(args):
                         changed_tokens = list(tokenizer.tokenize(changed, SplitMode.A))
                         # A whole-sentence round trip must preserve lexical identity,
                         # pronunciation, POS, and conjugation of every token.
-                        # A pronoun's written form may have another default
-                        # tokenizer reading (私 -> ワタクシ). JMdict's permitted
+                        # A pronoun's or reviewed word's written form may have
+                        # another default tokenizer reading (私 -> ワタクシ,
+                        # 開く -> ヒラク for あく). JMdict's permitted
                         # spelling/reading pair above still verifies the supplied
                         # pronunciation. Other tokens must keep their readings.
-                        if len(changed_tokens) != len(tokens) or any((a.normalized_form() != b.normalized_form() and not (review and position == index)) or (a.reading_form() != b.reading_form() and not (position == index and pos[0] == "代名詞")) or a.part_of_speech() != b.part_of_speech() for position, (a, b) in enumerate(zip(tokens, changed_tokens))):
+                        if len(changed_tokens) != len(tokens) or any((a.normalized_form() != b.normalized_form() and not (review and position == index)) or (a.reading_form() != b.reading_form() and not (position == index and (review or pos[0] == "代名詞"))) or a.part_of_speech() != b.part_of_speech() for position, (a, b) in enumerate(zip(tokens, changed_tokens))):
                             continue
                         spellings.append(variant)
                     if spellings:
-                        span = {"start": utf16_offset(japanese, token.begin()), "end": utf16_offset(japanese, token.end()), "surface": token.surface(), "reading": reading, "spellings": sorted(set(spellings)), "dictionaryEntryId": entry["id"], "lemma": token.normalized_form(), "method": "reviewed-context" if review else "unambiguous-dictionary"}
+                        span = {"start": utf16_offset(japanese, token.begin()), "end": utf16_offset(japanese, token.end()), "surface": token.surface(), "reading": reading, "spellings": list(dict.fromkeys(spellings)), "dictionaryEntryId": entry["id"], "lemma": token.normalized_form(), "method": "reviewed-context" if review else "unambiguous-dictionary"}
                         if review:
-                            if sorted(set(review["spellings"])) != span["spellings"]:
+                            if sorted(set(review["spellings"])) != sorted(span["spellings"]):
                                 raise ValueError(f"Reviewed spelling failed dictionary/inflection validation: {review_key}")
                             span["reviewer"], span["note"] = review["reviewer"], review["note"]
                         spans.append(span)

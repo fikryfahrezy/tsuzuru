@@ -69,13 +69,16 @@ dictionary entry; kanji references additionally require their dictionary spellin
 in that entry. Sense-restricted spellings are held for review.
 
 Pronouns match only dictionary pronoun entries, excluding same-reading nouns.
-For a replacement pronoun, the tokenizer may default to a different reading
-(for example, 私 defaults to わたくし). The permitted JMdict spelling/reading
+For a replacement pronoun or a context-reviewed word, the tokenizer may default
+to a different reading (for example, 私 defaults to わたくし, and 開く for あく
+defaults to ひらく). The permitted JMdict spelling/reading
 pair verifies the original pronunciation instead; the recorded reading remains
 わたし when that was supplied. All other tokens must retain their readings, and
 lexical identity, part of speech, conjugation and segmentation still must match.
 
-Only the kanji prefix is substituted; inflected kana, auxiliaries, and particles
+Spellings keep JMdict's order, which lists the most common written form first,
+so the breakdown shows 良く before 善く. Only the kanji prefix is substituted;
+inflected kana, auxiliaries, and particles
 stay unchanged. A full-sentence retokenization must preserve lexical normalized
 forms, readings, part of speech, conjugation, and segmentation. This procedure
 does not establish grammatical correctness or semantic equivalence for every
