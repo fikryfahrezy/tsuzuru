@@ -281,3 +281,114 @@ test("the condition inside an obligation explains its ‘if’", () => {
     "Can mark where",
   );
 });
+
+test("a suggestion with てはどうですか is not the linking て", () => {
+  const parts = (id: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown;
+  for (const [id, japanese] of [
+    ["90fd3b862e9551524be86819", "してはどうですか"],
+    ["43c5bebf26fd638ba018caa7", "なってはいかがですか"],
+    ["ecf12d15deabc4895d5947a5", "あげてはどうですか"],
+  ] as const) {
+    const lessons = parts(id).flatMap((part) => part.grammar ?? []);
+    expect(lessons).toContainEqual(
+      expect.objectContaining({ id: "te-wa-dou", japanese }),
+    );
+    expect(lessons.map((lesson) => lesson.id)).not.toContain("te");
+  }
+  expect(
+    parts("90fd3b862e9551524be86819").find((part) => part.japanese === "は")
+      ?.note,
+  ).toStartWith("Part of 〜てはどうですか");
+});
+
+test("a sentence that stops on a reason explains the unsaid result", () => {
+  const parts = (id: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown;
+  for (const [id, japanese] of [
+    ["b2e72e7ccfd5db18e6815755", "冷たくって"],
+    ["47d4e51bc4541cbd071574aa", "忙しくて"],
+    ["37637445d3c8840420b3967d", "足りなくて"],
+    ["44da417678c48ad9acbc8c34", "抜けなくて"],
+  ] as const) {
+    const lessons = parts(id).flatMap((part) => part.grammar ?? []);
+    expect(lessons).toContainEqual(
+      expect.objectContaining({ id: "te-trailing", japanese }),
+    );
+    expect(lessons.map((lesson) => lesson.id)).not.toContain("te");
+  }
+  // くって is casual くて, not the quotation って.
+  const tte = parts("b2e72e7ccfd5db18e6815755").find(
+    (part) => part.japanese === "って",
+  );
+  expect(tte?.note).toStartWith("Part of 〜て。（言いさし）");
+  expect(tte?.dictionaryMeanings ?? []).not.toContain("you said");
+});
+
+test("a て-form that ends a sentence is a request, not ‘and’", () => {
+  const lessons = (id: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown.flatMap(
+      (part) => part.grammar ?? [],
+    );
+  for (const [id, japanese] of [
+    ["3e8e045cf59907a137e71276", "つけて"],
+    ["407f48074b275b7988270da0", "破らないで"],
+    ["b5710e9b4f5c662bd65f46e5", "してて"],
+    ["d02a9d0028e61bc755da2962", "入れといて"],
+  ] as const) {
+    expect(lessons(id)).toContainEqual(
+      expect.objectContaining({ id: "te-request", japanese }),
+    );
+    expect(lessons(id).map((lesson) => lesson.id)).not.toContain("te");
+  }
+  // A polite まして and と思って trail off instead.
+  for (const [id, japanese] of [
+    ["03cbe8742f72cbe7a21f6b6c", "会いまして"],
+    ["d14155dc23eac6b7ec79f6e9", "思って"],
+  ] as const)
+    expect(lessons(id)).toContainEqual(
+      expect.objectContaining({ id: "te-trailing", japanese }),
+    );
+  // 待て is an imperative.
+  expect(
+    lessons("715e61bd5c90d63ac8597bca").map((lesson) => lesson.id),
+  ).not.toContain("te-request");
+});
+
+test("て + は is a condition only when no helper or compound particle claims it", () => {
+  const parts = (id: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown;
+  const lessons = (id: string) =>
+    parts(id).flatMap((part) => part.grammar ?? []);
+  expect(lessons("6d8378e548f95bfe4b49b410")).toContainEqual(
+    expect.objectContaining({ id: "te-wa-condition", japanese: "減っては" }),
+  );
+  expect(lessons("81fe374451086484e3fd0ad3")).toContainEqual(
+    expect.objectContaining({ id: "te-iru", japanese: "甘んじてはいない" }),
+  );
+  for (const id of ["65e7c9608c77a34ad1f316e7", "20419574776d35aba056719a"]) {
+    const ids = lessons(id).map((lesson) => lesson.id);
+    expect(ids).toContain("ni-tsuite");
+    expect(ids).not.toContain("te");
+    expect(ids).not.toContain("te-wa-condition");
+  }
+});
+
+test("tokenizer misreads of どうして, はじめまして and 取っ手 are repaired", () => {
+  const word = (id: string, japanese: string) =>
+    practiceDetails(exerciseById.get(id)!).answerBreakdown.find(
+      (part) => part.japanese === japanese,
+    );
+  expect(word("5074b1370d37a59a658adc9c", "どうして")).toMatchObject({
+    dictionaryMeanings: expect.arrayContaining(["why"]),
+  });
+  expect(word("5074b1370d37a59a658adc9c", "どうして")?.grammar).toBeUndefined();
+  expect(
+    word("28fcc44faeea2dd8d30ed29a", "はじめまして")?.grammar,
+  ).toBeUndefined();
+  expect(word("e09259816382388ffd152e86", "とって")).toMatchObject({
+    dictionaryForm: "取っ手",
+    wordTypes: ["Noun"],
+  });
+  expect(word("e09259816382388ffd152e86", "とって")?.grammar).toBeUndefined();
+});

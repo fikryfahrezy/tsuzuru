@@ -658,6 +658,21 @@ export const constructions: Construction[] = [
     ],
     id: "tara-dou",
   },
+  {
+    form: "te",
+    endings: [
+      "はどう",
+      "はどうですか",
+      "はどうでしょう",
+      "はどうでしょうか",
+      "はどうだろう",
+      "はどうか",
+      "はいかが",
+      "はいかがですか",
+      "はいかがでしょうか",
+    ],
+    id: "te-wa-dou",
+  },
   ...(["dictionary", "negative"] as const).flatMap((form): Construction[] => {
     const prefix = form === "negative" ? "い" : "";
     return [
@@ -1192,6 +1207,11 @@ export const constructions: Construction[] = [
       "ました",
       "ません",
       "ませんでした",
+      // は in a negative contrasts the state: 甘んじてはいない "not content".
+      "はいない",
+      "はいません",
+      "はいなかった",
+      "はいませんでした",
     ],
     id: "te-iru",
   },

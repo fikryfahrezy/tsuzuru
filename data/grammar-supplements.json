@@ -45,5 +45,65 @@
       "furigana": "{学校|がっこう}では{日本語|にほんご}を{勉強|べんきょう}します。",
       "en": "At school, I study Japanese."
     }]
+  },
+  {
+    "id": "te-wa-dou",
+    "pattern": "〜てはどうですか",
+    "romaji": "te wa dou desu ka",
+    "level": "N4",
+    "meaning": "how about (doing) …?; why don't you …?",
+    "formation": "Verb-te + は + どうですか / いかがですか",
+    "notes": "Literally ‘if (you) do …, how is it?’: て + は sets up the condition and どうですか asks how that would be. It makes a suggestion, so the て-form reads as ‘doing …’, not ‘and’. いかがですか is more polite; 〜たらどうですか means the same.",
+    "tags": ["suggestion", "advice"],
+    "examples": [{
+      "ja": "少し休んではどうですか。",
+      "furigana": "{少|すこ}し{休|やす}んではどうですか。",
+      "en": "How about taking a short rest?"
+    }]
+  },
+  {
+    "id": "te-trailing",
+    "pattern": "〜て。（言いさし）",
+    "romaji": "te (trailing off)",
+    "level": "N4",
+    "meaning": "it's just that …; because … (the rest is left unsaid)",
+    "formation": "i-Adj-ku + て (casual くって) / Verb-nakute / Verb-まして / と思って, at the end of a sentence (often + ね)",
+    "notes": "In conversation a sentence can stop on a て-form that gives a reason, a complaint or a bit of news; the listener fills in the rest (‘…, so I can't’, ‘…, sorry’, ‘…, you see’), and English usually just states it. After an い-adjective, casual speech often says くって for くて: 冷たくって = 冷たくて. This って is not the quotation particle. A plain verb て-form at the end is usually a request instead (待って ‘wait’).",
+    "tags": ["reason", "casual"],
+    "examples": [{
+      "ja": "すみません、最近忙しくて。",
+      "furigana": "すみません、{最近|さいきん}{忙|いそが}しくて。",
+      "en": "Sorry, I've been busy lately."
+    }]
+  },
+  {
+    "id": "te-request",
+    "pattern": "〜て / 〜ないで（依頼）",
+    "romaji": "te / naide (request)",
+    "level": "N4",
+    "meaning": "(casual request) please do …; please don't …",
+    "formation": "Verb-te / Verb-nai + で, at the end of a sentence (often + ね or よ)",
+    "notes": "Casual speech drops ください from 〜てください and 〜ないでください: 見て ‘look’, 触らないで ‘don't touch’. ね softens the request and よ presses it. Used with family and friends; to others, say 〜てください.",
+    "tags": ["request", "casual"],
+    "examples": [{
+      "ja": "ちょっと待って。",
+      "furigana": "ちょっと{待|ま}って。",
+      "en": "Wait a moment."
+    }]
+  },
+  {
+    "id": "te-wa-condition",
+    "pattern": "〜ては（条件）",
+    "romaji": "te wa (condition)",
+    "level": "N3",
+    "meaning": "if (you) do …; when … (usually with a bad result)",
+    "formation": "Verb-te + は + result",
+    "notes": "て + は sets up a condition, and the rest says what goes wrong if it holds: 腹が減っては戦ができぬ ‘you can't fight on an empty stomach’. This は is not the topic marker. It is the same condition as in 〜てはいけない (‘if you do …, it won't do’).",
+    "tags": ["condition"],
+    "examples": [{
+      "ja": "そんなに食べては体に悪いよ。",
+      "furigana": "そんなに{食|た}べては{体|からだ}に{悪|わる}いよ。",
+      "en": "Eating that much is bad for you."
+    }]
   }
 ]

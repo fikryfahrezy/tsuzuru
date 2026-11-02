@@ -27,6 +27,22 @@
       "wordTypes": ["Expression", "Adverb"]
     },
     {
+      "dictionaryForm": "どうして",
+      "reading": "どうして",
+      "forms": ["どうして"],
+      "meanings": ["why", "for what reason", "how"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "はじめまして",
+      "reading": "はじめまして",
+      "forms": ["はじめまして", "初めまして"],
+      "meanings": ["nice to meet you", "how do you do?"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
       "dictionaryForm": "とんでもない",
       "reading": "とんでもない",
       "forms": ["とんでもない"],

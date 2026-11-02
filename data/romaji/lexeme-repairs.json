@@ -6,5 +6,13 @@
     "lemma": "つくろう",
     "verbClass": "v5u",
     "reason": "The te-form of 繕う (mend) is つくろって. 作る has the te-form つくって. Preserve the supplied reading."
+  },
+  {
+    "japanese": "とって",
+    "reading": "とって",
+    "generatedLemma": "とる",
+    "lemma": "取っ手",
+    "sentence": "このフライパンのとっては持ちやすい。",
+    "reason": "Here the noun 取っ手 (handle) is written in kana; the tokenizer reads it as the te-form of 取る."
   }
 ]

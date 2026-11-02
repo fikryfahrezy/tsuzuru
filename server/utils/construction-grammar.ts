@@ -273,7 +273,13 @@ export function constructionGrammar(
         forms: ["ことに", "ことには"],
         prefix: "lexical",
       });
-    if (topics.has(previous.japanese) && nominal(previous))
+    // Arriving takes a place and rarely a contrastive は, so については
+    // after any noun is "about".
+    if (
+      nominal(previous) &&
+      (topics.has(previous.japanese) ||
+        /^に(?:ついて|就いて)は/u.test(text.slice(previous.end)))
+    )
       rules.push({
         id: "ni-tsuite",
         forms: ["について", "に就いて"],

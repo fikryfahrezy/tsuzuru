@@ -191,8 +191,15 @@ def reference_lexemes(tokens, surface, offsets, furigana, boundaries):
             row["verbClass"] = conjugation
         for repair in LEXEME_REPAIRS:
             if (row["japanese"] == repair["japanese"] and row["reading"] == repair["reading"]
-                    and row["lemma"] == repair["generatedLemma"]):
-                row.update(lemma=repair["lemma"], verbClass=repair["verbClass"])
+                    and row["lemma"] == repair["generatedLemma"]
+                    and repair.get("sentence", surface) == surface):
+                row["lemma"] = repair["lemma"]
+                # A repair may turn a misread verb into a noun (とって: 取っ手),
+                # which needs its sentence: 写真をとって is still 取る.
+                if repair.get("verbClass"):
+                    row["verbClass"] = repair["verbClass"]
+                else:
+                    row.pop("verbClass", None)
         if row not in result:
             result.append(row)
     return result

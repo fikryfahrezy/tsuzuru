@@ -148428,10 +148428,9 @@
     "readings": {
       "このフライパンのとっては{持|も}ちやすい。": [
         {
-          "lemma": "とる",
+          "lemma": "取っ手",
           "japanese": "とって",
-          "reading": "とって",
-          "verbClass": "v5r"
+          "reading": "とって"
         },
         {
           "lemma": "持つ",

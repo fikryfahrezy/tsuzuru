@@ -543,6 +543,84 @@ export function contextGrammar(
         forms.push(verb.te, verb.negative + "くて");
     if (entry.wordTypes.includes("い-adjective") && lemma.endsWith("い"))
       forms.push((lemma === "いい" ? "よ" : lemma.slice(0, -1)) + "くて");
+    // A reason that ends the sentence leaves its result unsaid (忙しくてね,
+    // 抜けなくて). Casual speech says くって for くて. A verb's plain て-form
+    // at the end is usually a request (待って), so only なくて counts.
+    for (const form of forms.filter((form) => form.endsWith("くて"))) {
+      for (const spoken of [form, form.slice(0, -1) + "って"]) {
+        const end = entry.start + spoken.length;
+        if (
+          text.startsWith(spoken, entry.start) &&
+          base.some((part) => part.end === end) &&
+          /^(?:[ねさ])?[。！？?!…」』]*$/u.test(text.slice(end))
+        )
+          add(entry.start, end, "te-trailing");
+      }
+    }
+    // A verb's て-form or ないで that ends a statement is a casual request
+    // (見て, 触らないでよ), except a polite まして or と思って, which trail
+    // off like the reasons above. A question (どうして？) is neither.
+    if (
+      entry.wordTypes.includes("Verb") &&
+      entry.dictionaryForm &&
+      entry.dictionaryForm !== entry.japanese &&
+      /(?:て|[んい]で)$/u.test(entry.japanese) &&
+      !entry.japanese.endsWith("なくて") &&
+      // 待て is the imperative, not a て-form.
+      !verbForms(entry.dictionaryForm).some(
+        (form) => form.imperative === entry.japanese,
+      ) &&
+      // Nobody asks someone to be able to (読めて).
+      !voices.some(
+        (voice) =>
+          voice.grammarIds.includes("eru-rareru-potential") &&
+          voice.start < entry.end &&
+          voice.end > entry.start,
+      ) &&
+      /^[ねよ]?[。！!…」』]*$/u.test(text.slice(entry.end))
+    ) {
+      const thought =
+        ["思う", "考える"].includes(entry.dictionaryForm) &&
+        base[index - 1]?.japanese === "と";
+      add(
+        entry.start,
+        entry.end,
+        entry.japanese.endsWith("まして") || thought
+          ? "te-trailing"
+          : "te-request",
+      );
+    }
+    // て + は is a condition (減っては戦ができぬ) unless a helper follows,
+    // as in 甘んじてはいない or the prohibition and suggestion lessons.
+    const topic = base[index + 1];
+    const after = base[index + 2];
+    if (
+      entry.wordTypes.includes("Verb") &&
+      entry.dictionaryForm &&
+      entry.dictionaryForm !== entry.japanese &&
+      /(?:て|[んい]で)$/u.test(entry.japanese) &&
+      topic?.japanese === "は" &&
+      topic.start === entry.end &&
+      after?.start === topic.end &&
+      // Compound particles: については, としては, に関しては, にとっては.
+      !(
+        ["に", "と"].includes(base[index - 1]?.japanese ?? "") &&
+        /^(?:ついて|就いて|対して|関して|とって|して|際して|おいて|よって|当たって|あたって)$/u.test(
+          entry.japanese,
+        )
+      )
+    ) {
+      const helper = after.dictionaryForm ?? after.japanese;
+      if (["いる", "居る"].includes(helper))
+        add(entry.start, after.end, "te-iru");
+      else if (
+        !after.wordTypes.includes("Auxiliary verb") &&
+        !/^(?:いけ|行け|なら|なり|だめ|駄目|ダメ|いられ|どう|いかが|いい|良い|よい|みる|おく|しま|くれ|もら|あげ|いただ|くださ)/u.test(
+          after.japanese,
+        )
+      )
+        add(entry.start, topic.end, "te-wa-condition");
+    }
     if (entry.wordTypes.includes("な-adjective"))
       forms.push(entry.japanese + "で");
     const illness = [
