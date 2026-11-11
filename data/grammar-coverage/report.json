@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lessons": 533,
+  "lessons": 542,
   "sentences": 10312,
   "statusCounts": {
-    "automatic": 507,
+    "automatic": 517,
     "annotation-only": 1,
-    "unsupported": 25
+    "unsupported": 24
   },
   "byLevel": {
     "N5": {
@@ -14,17 +14,17 @@
       "unsupported": 0
     },
     "N4": {
-      "automatic": 102,
+      "automatic": 105,
       "annotation-only": 1,
       "unsupported": 0
     },
     "N3": {
-      "automatic": 95,
+      "automatic": 101,
       "annotation-only": 0,
-      "unsupported": 7
+      "unsupported": 6
     },
     "N2": {
-      "automatic": 115,
+      "automatic": 116,
       "annotation-only": 0,
       "unsupported": 8
     },
@@ -35,8 +35,8 @@
     }
   },
   "regressionSummary": {
-    "total": 351,
-    "passed": 351,
+    "total": 397,
+    "passed": 397,
     "failed": 0
   },
   "entries": [
@@ -48,12 +48,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 48
+          "line": 51
         }
       ],
       "automatic": {
-        "sentences": 6820,
-        "occurrences": 7074,
+        "sentences": 6803,
+        "occurrences": 7056,
         "examples": [
           {
             "sentenceId": "0000978f3525f2d6e60e600b",
@@ -131,7 +131,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 49
+          "line": 52
         }
       ],
       "automatic": {
@@ -453,7 +453,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 50
+          "line": 53
         }
       ],
       "automatic": {
@@ -663,12 +663,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 52
+          "line": 55
         }
       ],
       "automatic": {
-        "sentences": 39,
-        "occurrences": 42,
+        "sentences": 32,
+        "occurrences": 35,
         "examples": [
           {
             "sentenceId": "00fa00747aae2a575f1edbcd",
@@ -687,7 +687,24 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "ya",
+          "sentenceId": "650b572a74861eefe90c7ef3",
+          "japanese": "できやしない",
+          "expect": "absent",
+          "note": "Emphatic や after a verb stem is not listing and.",
+          "passed": true
+        },
+        {
+          "lessonId": "ya",
+          "sentenceId": "9ce53620d773ab5b6dcb3982",
+          "japanese": "ないや",
+          "expect": "absent",
+          "note": "Sentence-final casual や is not listing and.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -744,12 +761,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 51
+          "line": 54
         }
       ],
       "automatic": {
-        "sentences": 306,
-        "occurrences": 324,
+        "sentences": 249,
+        "occurrences": 266,
         "examples": [
           {
             "sentenceId": "00b0b4d7281d4f8143a5ac62",
@@ -781,6 +798,22 @@
           "japanese": "も",
           "expect": "absent",
           "note": "The opening quantifier marker belongs to nobody, not an independent also lesson.",
+          "passed": true
+        },
+        {
+          "lessonId": "mo",
+          "sentenceId": "99b6e7424b88ba7a9843387f",
+          "japanese": "ケンよりも",
+          "expect": "absent",
+          "note": "も after comparative より only adds emphasis; it is not an also lesson.",
+          "passed": true
+        },
+        {
+          "lessonId": "mo",
+          "sentenceId": "bcc0ede67ac9957c558b8438",
+          "japanese": "何よりも",
+          "expect": "absent",
+          "note": "The も of 何よりも is part of the expression, not also.",
           "passed": true
         }
       ],
@@ -878,12 +911,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 53
+          "line": 56
         }
       ],
       "automatic": {
-        "sentences": 104,
-        "occurrences": 104,
+        "sentences": 100,
+        "occurrences": 100,
         "examples": [
           {
             "sentenceId": "05264197ad3b0bbae43693a5",
@@ -902,7 +935,16 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "made",
+          "sentenceId": "6adccbed66dce5722572a4ce",
+          "japanese": "にまで",
+          "expect": "absent",
+          "note": "にまで is not until or as far as.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -922,8 +964,8 @@
         }
       ],
       "automatic": {
-        "sentences": 647,
-        "occurrences": 647,
+        "sentences": 643,
+        "occurrences": 643,
         "examples": [
           {
             "sentenceId": "00ea66573f1cdafc5a7aa650",
@@ -982,7 +1024,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 54
+          "line": 57
         }
       ],
       "automatic": {
@@ -1018,7 +1060,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 55
+          "line": 58
         }
       ],
       "automatic": {
@@ -1054,16 +1096,16 @@
       "ruleReferences": [
         {
           "file": "server/utils/comparison-grammar.ts",
-          "line": 71
+          "line": 48
         },
         {
           "file": "server/utils/comparison-grammar.ts",
-          "line": 93
+          "line": 130
         }
       ],
       "automatic": {
-        "sentences": 41,
-        "occurrences": 41,
+        "sentences": 61,
+        "occurrences": 61,
         "examples": [
           {
             "sentenceId": "0028ff5e1ccfd69a615c5240",
@@ -1071,9 +1113,9 @@
             "english": "I am inferior to him in mathematics."
           },
           {
-            "sentenceId": "03ce3e609cb81ef05d21b3c3",
-            "japanese": "娘は言語や芸術よりも自然科学が好きです。",
-            "english": "My daughter prefers science to languages or art."
+            "sentenceId": "0179787e0c3a35aecffa6c1b",
+            "japanese": "私は怖かったよりもびっくりした。",
+            "english": "I was not so much scared as amazed."
           }
         ]
       },
@@ -1082,7 +1124,72 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "yori",
+          "sentenceId": "2523e91d8d3eaee14c3aa561",
+          "japanese": "降伏するより",
+          "expect": "present",
+          "note": "Rather than surrendering: a verb is the standard.",
+          "passed": true
+        },
+        {
+          "lessonId": "yori",
+          "sentenceId": "257573d17c6a3d19603e80b7",
+          "japanese": "するより他に",
+          "expect": "absent",
+          "note": "より他に is other than, not a comparison of degree.",
+          "passed": true
+        },
+        {
+          "lessonId": "yori",
+          "sentenceId": "25a94ae3440ea22d6dc3e591",
+          "japanese": "木曜日よりむしろ",
+          "expect": "present",
+          "note": "よりむしろ marks the less preferred option.",
+          "passed": true
+        },
+        {
+          "lessonId": "yori",
+          "sentenceId": "41b9434cf7920970dafeb483",
+          "japanese": "旅行するよりも",
+          "expect": "present",
+          "note": "A clause can be the standard of comparison.",
+          "passed": true
+        },
+        {
+          "lessonId": "yori",
+          "sentenceId": "50dabcb078f160d5329b250b",
+          "japanese": "治療よりも",
+          "expect": "present",
+          "note": "Emphatic よりも after a noun, confirmed by the English comparison.",
+          "passed": true
+        },
+        {
+          "lessonId": "yori",
+          "sentenceId": "99b6e7424b88ba7a9843387f",
+          "japanese": "ケンよりも",
+          "expect": "present",
+          "note": "The comparison lesson covers emphatic よりも.",
+          "passed": true
+        },
+        {
+          "lessonId": "yori",
+          "sentenceId": "bcc0ede67ac9957c558b8438",
+          "japanese": "何よりも",
+          "expect": "absent",
+          "note": "何よりも is the expression above all.",
+          "passed": true
+        },
+        {
+          "lessonId": "yori",
+          "sentenceId": "cf08d482b632af46e69a23b7",
+          "japanese": "発表するより先に",
+          "expect": "absent",
+          "note": "より先に is before, not a comparison of degree.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -1094,7 +1201,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/comparison-grammar.ts",
-          "line": 114
+          "line": 151
         }
       ],
       "automatic": {
@@ -1139,7 +1246,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/comparison-grammar.ts",
-          "line": 137
+          "line": 174
         }
       ],
       "automatic": {
@@ -1179,7 +1286,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/comparison-grammar.ts",
-          "line": 148
+          "line": 185
         }
       ],
       "automatic": {
@@ -1204,7 +1311,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 56
+          "line": 59
         }
       ],
       "automatic": {
@@ -1240,12 +1347,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 58
+          "line": 61
         }
       ],
       "automatic": {
-        "sentences": 584,
-        "occurrences": 592,
+        "sentences": 580,
+        "occurrences": 588,
         "examples": [
           {
             "sentenceId": "008b8bb4762af4f907615633",
@@ -1264,7 +1371,16 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "da",
+          "sentenceId": "aac7a95c52f1c75c9e0a9539",
+          "japanese": "だって",
+          "expect": "absent",
+          "note": "The だ of だって is not a copula.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -1276,15 +1392,15 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 59
+          "line": 62
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 60
+          "line": 63
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 61
+          "line": 64
         },
         {
           "file": "server/utils/structural-grammar.ts",
@@ -1300,8 +1416,8 @@
         }
       ],
       "automatic": {
-        "sentences": 109,
-        "occurrences": 110,
+        "sentences": 97,
+        "occurrences": 98,
         "examples": [
           {
             "sentenceId": "011277728579d980704b526a",
@@ -1435,7 +1551,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 57
+          "line": 60
         }
       ],
       "automatic": {
@@ -1471,7 +1587,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 76
+          "line": 83
         }
       ],
       "automatic": {
@@ -1522,7 +1638,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 75
+          "line": 82
         }
       ],
       "automatic": {
@@ -1589,12 +1705,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 74
+          "line": 81
         }
       ],
       "automatic": {
-        "sentences": 237,
-        "occurrences": 237,
+        "sentences": 236,
+        "occurrences": 236,
         "examples": [
           {
             "sentenceId": "010a33c40a5b65135dd33d72",
@@ -1634,11 +1750,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 40
+          "line": 43
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 73
+          "line": 80
         }
       ],
       "automatic": {
@@ -1674,16 +1790,16 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 71
+          "line": 78
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 78
+          "line": 85
         }
       ],
       "automatic": {
-        "sentences": 572,
-        "occurrences": 577,
+        "sentences": 554,
+        "occurrences": 559,
         "examples": [
           {
             "sentenceId": "0091f2803f8abdf12e351631",
@@ -1732,10 +1848,26 @@
         },
         {
           "lessonId": "nai",
+          "sentenceId": "3b142cfa70d0090416d3c108",
+          "japanese": "つまらない",
+          "expect": "absent",
+          "note": "つまらない is the adjective boring, not do not.",
+          "passed": true
+        },
+        {
+          "lessonId": "nai",
           "sentenceId": "3dec770e61de264aa6559126",
           "japanese": "とらなかった",
           "expect": "present",
           "note": "Nobody scopes the clause without hiding the verb's negation.",
+          "passed": true
+        },
+        {
+          "lessonId": "nai",
+          "sentenceId": "bb1ada96f4d20d4171e1dd0b",
+          "japanese": "いけない",
+          "expect": "absent",
+          "note": "The いけない of in case is not do not.",
           "passed": true
         }
       ],
@@ -1842,19 +1974,19 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 71
+          "line": 78
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 79
+          "line": 86
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 80
+          "line": 87
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 150
+          "line": 180
         },
         {
           "file": "server/utils/verb-grammar.ts",
@@ -1862,8 +1994,8 @@
         }
       ],
       "automatic": {
-        "sentences": 3425,
-        "occurrences": 3592,
+        "sentences": 3388,
+        "occurrences": 3536,
         "examples": [
           {
             "sentenceId": "0000e8f8c0565c3fbcea0a4c",
@@ -1900,6 +2032,14 @@
           "japanese": "きた",
           "expect": "present",
           "note": "Past tense inside 〜てくる.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta",
+          "sentenceId": "0ef7150bfc1794a8d4c1990f",
+          "japanese": "壊れた",
+          "expect": "absent",
+          "note": "壊れた花瓶 is a state, not a past action.",
           "passed": true
         },
         {
@@ -1962,7 +2102,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 77
+          "line": 84
         }
       ],
       "automatic": {
@@ -2139,7 +2279,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 141
+          "line": 142
         }
       ],
       "automatic": {
@@ -2365,6 +2505,10 @@
       "status": "automatic",
       "ruleReferences": [
         {
+          "file": "server/utils/context-grammar.ts",
+          "line": 396
+        },
+        {
           "file": "server/utils/grammar-rules/verb.ts",
           "line": 1181
         },
@@ -2374,8 +2518,8 @@
         }
       ],
       "automatic": {
-        "sentences": 59,
-        "occurrences": 59,
+        "sentences": 62,
+        "occurrences": 62,
         "examples": [
           {
             "sentenceId": "0656f98af9c01c609e237530",
@@ -2394,7 +2538,32 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "te-wa-ikenai",
+          "sentenceId": "50108ab9daca2eb6b2655a79",
+          "japanese": "さぼっちゃダメ",
+          "expect": "present",
+          "note": "ちゃダメ is a casual prohibition.",
+          "passed": true
+        },
+        {
+          "lessonId": "te-wa-ikenai",
+          "sentenceId": "6ad65e9140608c6735f5778e",
+          "japanese": "しちゃいけない",
+          "expect": "present",
+          "note": "ちゃいけない is the contracted てはいけない.",
+          "passed": true
+        },
+        {
+          "lessonId": "te-wa-ikenai",
+          "sentenceId": "c7f3727389923100a729d01f",
+          "japanese": "なくちゃならない",
+          "expect": "absent",
+          "note": "なくちゃならない is obligation, not prohibition.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -2503,7 +2672,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 615
+          "line": 735
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -2515,7 +2684,7 @@
         },
         {
           "file": "server/utils/scope-grammar.ts",
-          "line": 82
+          "line": 107
         }
       ],
       "automatic": {
@@ -2694,11 +2863,11 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 81
+          "line": 88
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 82
+          "line": 89
         }
       ],
       "automatic": {
@@ -2785,7 +2954,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 18
+          "line": 19
         },
         {
           "file": "server/utils/verb-grammar.ts",
@@ -2841,7 +3010,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 15
+          "line": 16
         }
       ],
       "automatic": {
@@ -2951,7 +3120,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 20
+          "line": 21
         }
       ],
       "automatic": {
@@ -3580,15 +3749,15 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/scope.ts",
-          "line": 20
+          "line": 24
         },
         {
           "file": "server/utils/scope-grammar.ts",
-          "line": 54
+          "line": 69
         },
         {
           "file": "server/utils/scope-grammar.ts",
-          "line": 79
+          "line": 104
         }
       ],
       "automatic": {
@@ -3903,16 +4072,20 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/scope.ts",
-          "line": 18
+          "line": 21
         },
         {
           "file": "server/utils/scope-grammar.ts",
-          "line": 50
+          "line": 54
+        },
+        {
+          "file": "server/utils/scope-grammar.ts",
+          "line": 97
         }
       ],
       "automatic": {
-        "sentences": 16,
-        "occurrences": 16,
+        "sentences": 17,
+        "occurrences": 17,
         "examples": [
           {
             "sentenceId": "02cb469b4193cbcf21c1460c",
@@ -3938,6 +4111,14 @@
           "japanese": "何もありませんでした",
           "expect": "present",
           "note": "Nothing paired with negative existence.",
+          "passed": true
+        },
+        {
+          "lessonId": "nani-mo-nai-dare-mo-nai",
+          "sentenceId": "08a7da2678b2b717413659ef",
+          "japanese": "何も",
+          "expect": "present",
+          "note": "A verb modifying ように or こと stays inside the 何も scope.",
           "passed": true
         }
       ],
@@ -4155,7 +4336,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 96
+          "line": 103
         },
         {
           "file": "server/utils/structural-grammar.ts",
@@ -4358,7 +4539,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 506
+          "line": 626
         }
       ],
       "automatic": {
@@ -4945,11 +5126,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 466
+          "line": 586
         },
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 468
+          "line": 588
         }
       ],
       "automatic": {
@@ -5620,15 +5801,15 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 384
+          "line": 504
         },
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 576
+          "line": 696
         },
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 656
+          "line": 776
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -6150,7 +6331,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 92
+          "line": 93
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
@@ -6203,11 +6384,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 90
+          "line": 91
         },
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 117
+          "line": 118
         },
         {
           "file": "server/utils/grammar-rules/verb.ts",
@@ -6223,7 +6404,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 16
+          "line": 17
         },
         {
           "file": "server/utils/verb-grammar.ts",
@@ -6335,7 +6516,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 495
+          "line": 615
         }
       ],
       "automatic": {
@@ -6485,7 +6666,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 482
+          "line": 602
         }
       ],
       "automatic": {
@@ -6530,7 +6711,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 84
+          "line": 85
         }
       ],
       "automatic": {
@@ -6577,7 +6758,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 663
+          "line": 783
         }
       ],
       "automatic": {
@@ -7117,12 +7298,12 @@
         },
         {
           "file": "server/utils/predicate-grammar.ts",
-          "line": 210
+          "line": 216
         }
       ],
       "automatic": {
-        "sentences": 24,
-        "occurrences": 24,
+        "sentences": 28,
+        "occurrences": 28,
         "examples": [
           {
             "sentenceId": "024de7875c8e422cf555b4c3",
@@ -7149,21 +7330,26 @@
           "expect": "present",
           "note": "Possibility after a complete predicate.",
           "passed": true
+        },
+        {
+          "lessonId": "kamo-shirenai",
+          "sentenceId": "41373db68c189ff6d599490c",
+          "japanese": "のかもしれない",
+          "expect": "present",
+          "note": "Explanatory の can precede かもしれない.",
+          "passed": true
+        },
+        {
+          "lessonId": "kamo-shirenai",
+          "sentenceId": "a1a04035c88f497560c500b9",
+          "japanese": "かもしれない",
+          "expect": "present",
+          "note": "An untyped negative ない can precede かもしれない.",
+          "passed": true
         }
       ],
       "candidateReviewNote": "Review possibility constructions.",
-      "candidatesNeedingReview": [
-        {
-          "sentenceId": "41373db68c189ff6d599490c",
-          "japanese": "列車に乗り遅れたのかもしれない。",
-          "english": "He may have missed the train."
-        },
-        {
-          "sentenceId": "99f5c37974e5b4333b84eb40",
-          "japanese": "ピーターは新しいオムツを必要としているのかもしれない。",
-          "english": "Peter may need a new diaper."
-        }
-      ]
+      "candidatesNeedingReview": []
     },
     {
       "id": "darou",
@@ -7465,7 +7651,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/predicate-grammar.ts",
-          "line": 200
+          "line": 206
         }
       ],
       "automatic": {
@@ -7522,7 +7708,7 @@
         },
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 342
+          "line": 462
         }
       ],
       "automatic": {
@@ -7645,11 +7831,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/scope.ts",
-          "line": 19
+          "line": 23
         },
         {
           "file": "server/utils/scope-grammar.ts",
-          "line": 39
+          "line": 43
         }
       ],
       "automatic": {
@@ -7762,7 +7948,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 21
+          "line": 22
         }
       ],
       "automatic": {
@@ -7807,7 +7993,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 416
+          "line": 536
         }
       ],
       "automatic": {
@@ -8020,7 +8206,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 446
+          "line": 566
         }
       ],
       "automatic": {
@@ -8155,12 +8341,12 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 323
+          "line": 326
         }
       ],
       "automatic": {
-        "sentences": 6,
-        "occurrences": 6,
+        "sentences": 26,
+        "occurrences": 26,
         "examples": [
           {
             "sentenceId": "03c47d5ab9f03d1fa4d89259",
@@ -8168,9 +8354,9 @@
             "english": "The train was delayed for one hour on account of the typhoon."
           },
           {
-            "sentenceId": "24c270b60aea2d2c3df9ffa6",
-            "japanese": "彼は５００冊もの本を持っている。",
-            "english": "He has no fewer than five hundred books."
+            "sentenceId": "03f65dfbd86fb73b8fa38ef1",
+            "japanese": "キャンセル料３割もとられるんだって。",
+            "english": "Apparently there's a cancellation charge of 30 percent."
           }
         ]
       },
@@ -8186,6 +8372,30 @@
           "japanese": "一時間も",
           "expect": "present",
           "note": "Reviewed corpus formation and sentence context.",
+          "passed": true
+        },
+        {
+          "lessonId": "mo-emphasis",
+          "sentenceId": "03f65dfbd86fb73b8fa38ef1",
+          "japanese": "３割も",
+          "expect": "present",
+          "note": "A percentage amount + も stresses how large it is.",
+          "passed": true
+        },
+        {
+          "lessonId": "mo-emphasis",
+          "sentenceId": "656df8b36c644c71885ea802",
+          "japanese": "何年も",
+          "expect": "present",
+          "note": "何 + counter + も is as many as, here for years.",
+          "passed": true
+        },
+        {
+          "lessonId": "mo-emphasis",
+          "sentenceId": "f1bd827f0104a7fa5cb84513",
+          "japanese": "一言も",
+          "expect": "present",
+          "note": "一 + counter + も with a negative is not even one.",
           "passed": true
         }
       ],
@@ -8661,7 +8871,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 110
+          "line": 111
         }
       ],
       "automatic": {
@@ -8770,7 +8980,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 17
+          "line": 18
         }
       ],
       "automatic": {
@@ -8827,7 +9037,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 19
+          "line": 20
         }
       ],
       "automatic": {
@@ -8863,7 +9073,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 349
+          "line": 469
         }
       ],
       "automatic": {
@@ -10735,7 +10945,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 23
+          "line": 24
         }
       ],
       "automatic": {
@@ -11011,7 +11221,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 100
+          "line": 104
         }
       ],
       "automatic": {
@@ -11121,7 +11331,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 99
+          "line": 103
         }
       ],
       "automatic": {
@@ -11280,7 +11490,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 321
+          "line": 325
         }
       ],
       "automatic": {
@@ -11337,7 +11547,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 322
+          "line": 326
         }
       ],
       "automatic": {
@@ -11532,7 +11742,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 103
+          "line": 107
         }
       ],
       "automatic": {
@@ -11970,7 +12180,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 22
+          "line": 23
         }
       ],
       "automatic": {
@@ -12383,7 +12593,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 26
+          "line": 27
         }
       ],
       "automatic": {
@@ -12436,7 +12646,7 @@
         },
         {
           "file": "server/utils/inflection-grammar.ts",
-          "line": 25
+          "line": 26
         }
       ],
       "automatic": {
@@ -12590,7 +12800,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 104
+          "line": 108
         }
       ],
       "automatic": {
@@ -12635,7 +12845,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 45
+          "line": 46
         }
       ],
       "automatic": {
@@ -12666,6 +12876,14 @@
           "japanese": "ピンクというより",
           "expect": "present",
           "note": "Reviewed formation in the supplied Japanese and English corpus context.",
+          "passed": true
+        },
+        {
+          "lessonId": "to-iu-yori",
+          "sentenceId": "6ac80fe9da4000b8c78705ee",
+          "japanese": "というよりも",
+          "expect": "present",
+          "note": "というよりも is the emphatic というより.",
           "passed": true
         }
       ],
@@ -12716,7 +12934,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 46
+          "line": 50
         }
       ],
       "automatic": {
@@ -12846,7 +13064,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 370
+          "line": 490
         }
       ],
       "automatic": {
@@ -13058,7 +13276,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 105
+          "line": 109
         }
       ],
       "automatic": {
@@ -13424,7 +13642,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 456
+          "line": 576
         }
       ],
       "automatic": {
@@ -13469,7 +13687,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 58
+          "line": 62
         }
       ],
       "automatic": {
@@ -13501,19 +13719,44 @@
       "id": "made-even",
       "level": "N3",
       "pattern": "〜まで（even）",
-      "status": "unsupported",
-      "ruleReferences": [],
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 355
+        }
+      ],
       "automatic": {
-        "sentences": 0,
-        "occurrences": 0,
-        "examples": []
+        "sentences": 4,
+        "occurrences": 4,
+        "examples": [
+          {
+            "sentenceId": "4498e787677c7120891d3fae",
+            "japanese": "歓呼の声はどよめきにまで高まった。",
+            "english": "The cheers swelled to a roar."
+          },
+          {
+            "sentenceId": "6adccbed66dce5722572a4ce",
+            "japanese": "愛とは夢にまで彼女を見ることだ。",
+            "english": "Love is seeing her in your dreams."
+          }
+        ]
       },
       "annotations": {
         "sentences": 0,
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "made-even",
+          "sentenceId": "6adccbed66dce5722572a4ce",
+          "japanese": "にまで",
+          "expect": "present",
+          "note": "A case particle before まで makes it even.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -13525,7 +13768,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 425
+          "line": 545
         }
       ],
       "automatic": {
@@ -13572,7 +13815,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 48
+          "line": 52
         }
       ],
       "automatic": {
@@ -13621,7 +13864,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 53
+          "line": 57
         }
       ],
       "automatic": {
@@ -13670,7 +13913,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 102
+          "line": 106
         }
       ],
       "automatic": {
@@ -13812,7 +14055,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 107
+          "line": 111
         }
       ],
       "automatic": {
@@ -13857,7 +14100,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 112
+          "line": 116
         }
       ],
       "automatic": {
@@ -13902,7 +14145,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 116
+          "line": 120
         }
       ],
       "automatic": {
@@ -14020,7 +14263,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 284
+          "line": 288
         }
       ],
       "automatic": {
@@ -14365,7 +14608,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 293
+          "line": 297
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -14394,7 +14637,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 312
+          "line": 316
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -14517,7 +14760,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 314
+          "line": 318
         }
       ],
       "automatic": {
@@ -15130,7 +15373,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 90
+          "line": 94
         }
       ],
       "automatic": {
@@ -15220,7 +15463,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 319
+          "line": 323
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -15249,7 +15492,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 131
+          "line": 135
         }
       ],
       "automatic": {
@@ -15678,7 +15921,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 317
+          "line": 321
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -15815,7 +16058,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 68
+          "line": 72
         }
       ],
       "automatic": {
@@ -16068,7 +16311,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 117
+          "line": 121
         }
       ],
       "automatic": {
@@ -16142,7 +16385,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 119
+          "line": 123
         }
       ],
       "automatic": {
@@ -16182,7 +16425,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 315
+          "line": 319
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -16308,13 +16551,18 @@
         }
       ],
       "automatic": {
-        "sentences": 1,
-        "occurrences": 1,
+        "sentences": 2,
+        "occurrences": 2,
         "examples": [
           {
             "sentenceId": "bb1f5e44662a1dd866aea3f5",
             "japanese": "その脱出は全く奇跡に他ならなかった。",
             "english": "The escape was nothing less than a miracle."
+          },
+          {
+            "sentenceId": "dcdd605da10e7f82d7e60aee",
+            "japanese": "世界の歴史は偉人の伝記に外ならない。",
+            "english": "The history of the world is but the biography of great men."
           }
         ]
       },
@@ -16323,7 +16571,16 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "ni-hoka-naranai",
+          "sentenceId": "dcdd605da10e7f82d7e60aee",
+          "japanese": "に外ならない",
+          "expect": "present",
+          "note": "外 is a spelling of ほか in にほかならない.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -16335,7 +16592,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 124
+          "line": 128
         }
       ],
       "automatic": {
@@ -16415,7 +16672,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 258
+          "line": 262
         }
       ],
       "automatic": {
@@ -16485,7 +16742,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 128
+          "line": 132
         }
       ],
       "automatic": {
@@ -16525,7 +16782,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 520
+          "line": 640
         }
       ],
       "automatic": {
@@ -16570,7 +16827,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 129
+          "line": 133
         }
       ],
       "automatic": {
@@ -16615,7 +16872,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 270
+          "line": 274
         }
       ],
       "automatic": {
@@ -16685,7 +16942,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 276
+          "line": 280
         }
       ],
       "automatic": {
@@ -17089,7 +17346,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 72
+          "line": 76
         }
       ],
       "automatic": {
@@ -17174,7 +17431,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 74
+          "line": 78
         }
       ],
       "automatic": {
@@ -17219,7 +17476,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 79
+          "line": 83
         }
       ],
       "automatic": {
@@ -17288,7 +17545,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 83
+          "line": 87
         }
       ],
       "automatic": {
@@ -17526,7 +17783,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 85
+          "line": 89
         }
       ],
       "automatic": {
@@ -17566,7 +17823,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 89
+          "line": 93
         }
       ],
       "automatic": {
@@ -17927,7 +18184,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 135
+          "line": 139
         }
       ],
       "automatic": {
@@ -18189,7 +18446,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 252
+          "line": 256
         }
       ],
       "automatic": {
@@ -19219,22 +19476,22 @@
       "ruleReferences": [
         {
           "file": "server/utils/clause-grammar.ts",
-          "line": 78
+          "line": 79
         }
       ],
       "automatic": {
-        "sentences": 7,
-        "occurrences": 7,
+        "sentences": 11,
+        "occurrences": 11,
         "examples": [
+          {
+            "sentenceId": "12050d359dd2bd3cdea416bb",
+            "japanese": "彼がああ臆病だとは思わなかった。",
+            "english": "I did not think he was so timid."
+          },
           {
             "sentenceId": "17eefecdd262956f77cd70e4",
             "japanese": "ここでお目に掛かれるとは全然予期しませんでした。",
             "english": "I little expected to see you here."
-          },
-          {
-            "sentenceId": "4c9d1f4f1376f4e33f6dccd1",
-            "japanese": "バスに傘を忘れるとは彼女はそそっかしい。",
-            "english": "It was careless of her to leave her umbrella in the bus."
           }
         ]
       },
@@ -19243,7 +19500,16 @@
         "occurrences": 0,
         "examples": []
       },
-      "reviewedCases": [],
+      "reviewedCases": [
+        {
+          "lessonId": "to-wa",
+          "sentenceId": "287059b4eb5f4c53f33ebcd8",
+          "japanese": "とは",
+          "expect": "present",
+          "note": "The reaction verb can follow surprise とは directly.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     },
@@ -19404,7 +19670,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 137
+          "line": 141
         }
       ],
       "automatic": {
@@ -19573,7 +19839,7 @@
         },
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 101
+          "line": 105
         }
       ],
       "automatic": {
@@ -19647,7 +19913,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 264
+          "line": 268
         }
       ],
       "automatic": {
@@ -19879,7 +20145,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 141
+          "line": 145
         }
       ],
       "automatic": {
@@ -19969,7 +20235,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 302
+          "line": 306
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -20293,7 +20559,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 294
+          "line": 298
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -20387,7 +20653,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 297
+          "line": 301
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -20495,7 +20761,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 307
+          "line": 311
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -20936,7 +21202,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 304
+          "line": 308
         },
         {
           "file": "server/utils/grammar-rules/construction.ts",
@@ -21044,7 +21310,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/grammar-rules/advanced.ts",
-          "line": 92
+          "line": 96
         }
       ],
       "automatic": {
@@ -21413,11 +21679,11 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 557
+          "line": 677
         },
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 589
+          "line": 709
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -21457,7 +21723,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 590
+          "line": 710
         }
       ],
       "automatic": {
@@ -21493,7 +21759,7 @@
       "ruleReferences": [
         {
           "file": "server/utils/context-grammar.ts",
-          "line": 622
+          "line": 742
         },
         {
           "file": "server/utils/grammar-rules/lesson-policy.ts",
@@ -21517,6 +21783,474 @@
         "examples": []
       },
       "reviewedCases": [],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "sukoshi-mo-nai",
+      "level": "N4",
+      "pattern": "少しも / ちっとも〜ない",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/grammar-rules/scope.ts",
+          "line": 22
+        },
+        {
+          "file": "server/utils/scope-grammar.ts",
+          "line": 65
+        }
+      ],
+      "automatic": {
+        "sentences": 7,
+        "occurrences": 7,
+        "examples": [
+          {
+            "sentenceId": "1013a01d077f9c481d5281c0",
+            "japanese": "このごろ少しも見ないです。",
+            "english": "I have seen nothing of him lately."
+          },
+          {
+            "sentenceId": "293745c640ede99abdb3c199",
+            "japanese": "母の加減は少しもよくなっていなかった。むしろ悪くなっているようだった。",
+            "english": "My mother was not feeling any better. If anything, she looked worse."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "sukoshi-mo-nai",
+          "sentenceId": "2157ee30c6413a05da9f66fa",
+          "japanese": "少しもって",
+          "expect": "absent",
+          "note": "少し + 持ってきて has no 少しも.",
+          "passed": true
+        },
+        {
+          "lessonId": "sukoshi-mo-nai",
+          "sentenceId": "c16db8d35b265f381fa0b883",
+          "japanese": "少しも",
+          "expect": "present",
+          "note": "少しも with a negative predicate is not at all.",
+          "passed": true
+        }
+      ],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "ya-shinai",
+      "level": "N2",
+      "pattern": "〜やしない",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 338
+        }
+      ],
+      "automatic": {
+        "sentences": 1,
+        "occurrences": 1,
+        "examples": [
+          {
+            "sentenceId": "650b572a74861eefe90c7ef3",
+            "japanese": "むかしのような激しい日雇い労働はできやしない。",
+            "english": "I can't work as hard as I used to."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "ya-shinai",
+          "sentenceId": "650b572a74861eefe90c7ef3",
+          "japanese": "やしない",
+          "expect": "present",
+          "note": "Verb stem + や + しない is an emphatic negative.",
+          "passed": true
+        }
+      ],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "datte-even",
+      "level": "N3",
+      "pattern": "〜だって（でも）",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 348
+        }
+      ],
+      "automatic": {
+        "sentences": 4,
+        "occurrences": 4,
+        "examples": [
+          {
+            "sentenceId": "1031db6b58aa72ed80bf06ed",
+            "japanese": "この核時代にあっては、世界中どこの国だって安全ではない。",
+            "english": "No country under the sun is safe in this nuclear age."
+          },
+          {
+            "sentenceId": "24407a96629a73335cbce783",
+            "japanese": "いつだって読書の時間は見つけられる。",
+            "english": "We can always find time for reading."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "datte-even",
+          "sentenceId": "aac7a95c52f1c75c9e0a9539",
+          "japanese": "にだって",
+          "expect": "present",
+          "note": "Particle + だって is casual even.",
+          "passed": true
+        }
+      ],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "no-de-wa-nai-ka",
+      "level": "N3",
+      "pattern": "〜のではないか（推量）",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 374
+        },
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 377
+        }
+      ],
+      "automatic": {
+        "sentences": 5,
+        "occurrences": 5,
+        "examples": [
+          {
+            "sentenceId": "61c701ca44acce94c34a27c3",
+            "japanese": "私は彼が嘘つきではないかと思った。",
+            "english": "I suspected he was a liar."
+          },
+          {
+            "sentenceId": "74656fc679c9406996a17210",
+            "japanese": "彼は死んでいるのではないかと危ぶまれている。",
+            "english": "They fear that he may be dead."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "no-de-wa-nai-ka",
+          "sentenceId": "aa8e2fa60e43d4a825d31c82",
+          "japanese": "のではないか",
+          "expect": "present",
+          "note": "ではないかと + worry is a guess, not a negative.",
+          "passed": true
+        }
+      ],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "de-wa-arimasen-ka-confirm",
+      "level": "N4",
+      "pattern": "〜ではありませんか / 〜じゃないですか（確認）",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 376
+        }
+      ],
+      "automatic": {
+        "sentences": 4,
+        "occurrences": 4,
+        "examples": [
+          {
+            "sentenceId": "28903a280a35c237e9ade8f0",
+            "japanese": "自動車にひかれたのではないですか。",
+            "english": "Wasn't he killed by a car?"
+          },
+          {
+            "sentenceId": "483c68fc3561b3ed0f442ae3",
+            "japanese": "それはちょっと極端じゃないですか。",
+            "english": "You're carrying this too far."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "de-wa-arimasen-ka-confirm",
+          "sentenceId": "db247b21414051b3b87dbff0",
+          "japanese": "ではありませんか",
+          "expect": "present",
+          "note": "A sentence-final ではありませんか asks for agreement.",
+          "passed": true
+        }
+      ],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "no-de-wa-nai",
+      "level": "N3",
+      "pattern": "〜のではない",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 382
+        }
+      ],
+      "automatic": {
+        "sentences": 4,
+        "occurrences": 4,
+        "examples": [
+          {
+            "sentenceId": "03ea21386583f85272df83a9",
+            "japanese": "彼は決して勇気がないのではない。",
+            "english": "He is by no means wanting in courage."
+          },
+          {
+            "sentenceId": "90c99ffaaa59354dec5c5850",
+            "japanese": "幸福は単に富にあるのではない。",
+            "english": "Happiness does not consist simply in wealth."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "no-de-wa-nai",
+          "sentenceId": "90c99ffaaa59354dec5c5850",
+          "japanese": "のではない",
+          "expect": "present",
+          "note": "のではない denies an explanation.",
+          "passed": true
+        }
+      ],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "to-wa-definition",
+      "level": "N3",
+      "pattern": "〜とは（定義）",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 442
+        }
+      ],
+      "automatic": {
+        "sentences": 13,
+        "occurrences": 14,
+        "examples": [
+          {
+            "sentenceId": "0ad011472f29b2d20c57ca52",
+            "japanese": "要するに、独裁とは「黙れ」ということ、民主主義とは「話し続けろ」ということである。",
+            "english": "Dictatorship can be summed up by \"shut up!\", democracy by \"keep talking\"."
+          },
+          {
+            "sentenceId": "1ba6a18d5d428fad4dff376a",
+            "japanese": "眼窩とは、目をいれている骨のいれもののことです。",
+            "english": "The eye socket is the bone receptacle in which the eye fits."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "to-wa-definition",
+          "sentenceId": "224d4695d75f0d40b14e41a3",
+          "japanese": "私とは",
+          "expect": "absent",
+          "note": "With a topic before it, とは compares rather than defines.",
+          "passed": true
+        },
+        {
+          "lessonId": "to-wa-definition",
+          "sentenceId": "3fdb121be9c6026978e9cc84",
+          "japanese": "僕とは",
+          "expect": "absent",
+          "note": "Paired と…とは lists the two compared.",
+          "passed": true
+        },
+        {
+          "lessonId": "to-wa-definition",
+          "sentenceId": "6de61bf712b94d790797b509",
+          "japanese": "誕生日とは",
+          "expect": "present",
+          "note": "A sentence that opens with X とは and ends in a copula defines X.",
+          "passed": true
+        }
+      ],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "ta-state",
+      "level": "N4",
+      "pattern": "〜た＋名詞（状態）",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 827
+        },
+        {
+          "file": "server/utils/inflection-grammar.ts",
+          "line": 29
+        }
+      ],
+      "automatic": {
+        "sentences": 52,
+        "occurrences": 52,
+        "examples": [
+          {
+            "sentenceId": "019e298745d5a6af0918a488",
+            "japanese": "それほどばかげた意見は聞いた事がない。",
+            "english": "That's the most absurd idea I've ever heard."
+          },
+          {
+            "sentenceId": "02da5cd65ed3353f90b7e79b",
+            "japanese": "彼は数学に優れた能力を示した。",
+            "english": "He showed exceptional ability in mathematics."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "ta-state",
+          "sentenceId": "04f30162a34e66d96a017cda",
+          "japanese": "堂々とした",
+          "expect": "present",
+          "note": "Manner word + とした describes how something is.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta-state",
+          "sentenceId": "0ee2ea097a39fd6b0b16dea4",
+          "japanese": "征服した",
+          "expect": "absent",
+          "note": "A past action in a relative clause stays past.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta-state",
+          "sentenceId": "0ef7150bfc1794a8d4c1990f",
+          "japanese": "壊れた",
+          "expect": "present",
+          "note": "A result verb before a noun names a state: broken.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta-state",
+          "sentenceId": "27e158c6419929720fcb9234",
+          "japanese": "折れた",
+          "expect": "absent",
+          "note": "Before とき the change is an event.",
+          "passed": true
+        },
+        {
+          "lessonId": "ta-state",
+          "sentenceId": "d42bf62618fdea29551c1706",
+          "japanese": "面した",
+          "expect": "present",
+          "note": "面する only describes a state: facing.",
+          "passed": true
+        }
+      ],
+      "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
+      "candidatesNeedingReview": []
+    },
+    {
+      "id": "to-ikenai-in-case",
+      "level": "N3",
+      "pattern": "〜といけないので / から",
+      "status": "automatic",
+      "ruleReferences": [
+        {
+          "file": "server/utils/context-grammar.ts",
+          "line": 408
+        }
+      ],
+      "automatic": {
+        "sentences": 2,
+        "occurrences": 2,
+        "examples": [
+          {
+            "sentenceId": "bb1ada96f4d20d4171e1dd0b",
+            "japanese": "もし眠るといけないので目覚し時計をセットしなさい。",
+            "english": "In case you sleep, set the alarm."
+          },
+          {
+            "sentenceId": "c1baa9e9299109630653093c",
+            "japanese": "この手紙は紛失するといけないから、書留にするがよい。",
+            "english": "You had better get this letter registered for fear it should be lost."
+          }
+        ]
+      },
+      "annotations": {
+        "sentences": 0,
+        "occurrences": 0,
+        "examples": []
+      },
+      "reviewedCases": [
+        {
+          "lessonId": "to-ikenai-in-case",
+          "sentenceId": "bb1ada96f4d20d4171e1dd0b",
+          "japanese": "といけない",
+          "expect": "present",
+          "note": "Dictionary verb + といけないので is in case.",
+          "passed": true
+        }
+      ],
       "candidateReviewNote": "Only exact upstream example matches are suggested; no general candidate probe exists.",
       "candidatesNeedingReview": []
     }

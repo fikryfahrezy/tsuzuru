@@ -20,6 +20,9 @@ export interface Expression {
   notAfter?: string[];
   // The form must end at a word boundary, so いま never matches います.
   wholeWords?: boolean;
+  // The form opens a sentence or follows punctuation: だから at the start is
+  // "so", but 春先だから is a copula + から.
+  opensSentence?: boolean;
 }
 
 export const expressions: readonly Expression[] =
@@ -59,6 +62,9 @@ function matchAt(entries: AnswerEntry[], index: number) {
         japanese.startsWith(form) &&
         kana.startsWith(hiragana(expression.reading)) &&
         (!expression.wholeWords || japanese === form) &&
+        (!expression.opensSentence ||
+          !previous ||
+          previous.end !== entries[index]!.start) &&
         (!expression.before ||
           (next &&
             next.start === entries[index + count - 1]?.end &&

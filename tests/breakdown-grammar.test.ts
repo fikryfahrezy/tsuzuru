@@ -207,7 +207,7 @@ test("verified conjugations get lessons even without a maintained grammar annota
 });
 
 test("every maintained annotation resolves against the shared library and actual word boundaries", () => {
-  expect(grammarEntries).toHaveLength(533);
+  expect(grammarEntries).toHaveLength(542);
   expect(grammarById.size).toBe(grammarEntries.length);
   for (const record of answerAnnotationRecords) {
     const sentence = exerciseById.get(record.sentenceId)!;

@@ -42,7 +42,11 @@ export const advancedPredicateConstructions: ConstructionRule[] = [
   { id: "to-shite-mo", forms: ["としても"], prefix: "finite" },
   { id: "ni-shite-wa", forms: ["にしては"], prefix: "plain" },
   { id: "ni-shite-mo", forms: ["にしても"], prefix: "plain" },
-  { id: "to-iu-yori", forms: ["というより", "と言うより"], prefix: "plain" },
+  {
+    id: "to-iu-yori",
+    forms: ["というより", "と言うより", "というよりも", "と言うよりも"],
+    prefix: "plain",
+  },
   { id: "kuse-ni", forms: ["くせに", "癖に"], prefix: "adnominal" },
   {
     id: "kara-to-itte",

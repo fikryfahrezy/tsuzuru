@@ -46,6 +46,26 @@ export function contextualParticleNote(
   );
   if (scope)
     return "With だれ/誰 or なに/何 and a negative predicate, も forms ‘nobody’ or ‘nothing’.";
+  if (
+    contextual.some(
+      (match) =>
+        match.grammarIds.includes("sukoshi-mo-nai") &&
+        part.start >= match.start &&
+        part.end <= (clauseMarkerEnd(match, "sukoshi-mo-nai") ?? match.start),
+    )
+  )
+    return "With 少し and a negative predicate, も means ‘not even a little’: not at all.";
+  const comparison = contextual.some(
+    (match) =>
+      match.grammarIds.some((id) =>
+        ["yori", "to-iu-yori", "no-hou-ga-yori"].includes(id),
+      ) &&
+      match.japanese.includes("よりも") &&
+      part.start >= match.start &&
+      part.end <= match.end,
+  );
+  if (comparison)
+    return "After より, も only adds emphasis: よりも means the same ‘than’ as より.";
 }
 
 const obligationIds = [

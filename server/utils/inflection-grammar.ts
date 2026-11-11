@@ -6,6 +6,7 @@ import {
   permitsClauseContent,
 } from "./grammar-policy";
 import { overlaps } from "./grammar-matcher";
+import { nominal } from "./grammar-context";
 import { grammarById } from "./grammar-reference";
 
 // Lessons built on the た form, where た is not past tense: 見たことがある,
@@ -24,6 +25,8 @@ const taBased = new Set([
   // Hypothetical: あったとしても, 起こったとすれば.
   "to-shite-mo",
   "to-sureba-to-shitara",
+  // A state, not a past action: 壊れた花瓶.
+  "ta-state",
 ]);
 const pattern = (id: string) => grammarById.get(id)?.pattern ?? "";
 // Forms a larger lesson leaves to the verb, each with a test for the
@@ -68,6 +71,10 @@ function formGrammar(entry: AnswerEntry): string[] {
   const lemma = entry.dictionaryForm ?? potentialDerivation(entry);
   if (!lemma || lemma === entry.japanese) return [];
   if (entry.wordTypes.includes("Verb")) {
+    // つまらない "boring", くだらない "trivial" and すまない "sorry" are
+    // adjectives in use, not "do not".
+    if (/^(?:つまら|詰まら|くだら|下らない|すま|済ま)/u.test(entry.japanese))
+      return [];
     if (entry.japanese.endsWith("なかった")) return ["nai", "ta"];
     for (const [ending, grammarId] of [
       ["ませんでした", "masen-deshita"],
@@ -127,7 +134,30 @@ export function inflectionGrammar(
         : undefined;
       return { ...match, grammarIds: entry ? formGrammar(entry) : [] };
     });
-  const automatic = base.flatMap((part) => {
+  const automatic = base.flatMap((part, index) => {
+    // The も of 何よりも ("above all") belongs to the expression, not "also".
+    // Other よりも are covered by the comparison lesson; the formal より
+    // "from" can still take a real "also" (先生よりもお手紙が届いた).
+    if (
+      part.japanese === "も" &&
+      base[index - 1]?.japanese === "より" &&
+      base[index - 2]?.japanese === "何" &&
+      base[index - 2]!.end === base[index - 1]!.start &&
+      base[index - 1]!.end === part.start
+    )
+      return [];
+    // Listing や joins two nouns (言語や芸術). After a verb it is emphasis
+    // (できやしない) or a casual ending (つかないや), and after の it is
+    // a word of its own (矢).
+    if (
+      part.japanese === "や" &&
+      !(
+        nominal(base[index - 1]) &&
+        base[index - 1]!.end === part.start &&
+        base[index + 1]?.start === part.end
+      )
+    )
+      return [];
     const owners = contextual.filter(
       (annotation) =>
         overlaps(annotation, part) && !permitsClauseContent(annotation, part),

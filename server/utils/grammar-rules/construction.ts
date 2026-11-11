@@ -240,7 +240,7 @@ export const predicateConstructions: Rule[] = [
   },
   {
     id: "ni-hoka-naranai",
-    forms: ["ほか", "他"].flatMap((word) =>
+    forms: ["ほか", "他", "外"].flatMap((word) =>
       ["ならない", "ならなかった", "なりません"].map(
         (ending) => `に${word}${ending}`,
       ),

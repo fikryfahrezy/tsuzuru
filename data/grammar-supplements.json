@@ -105,5 +105,184 @@
       "furigana": "そんなに{食|た}べては{体|からだ}に{悪|わる}いよ。",
       "en": "Eating that much is bad for you."
     }]
+  },
+  {
+    "id": "sukoshi-mo-nai",
+    "pattern": "少しも / ちっとも〜ない",
+    "romaji": "sukoshi mo / chittomo … nai",
+    "level": "N4",
+    "meaning": "not at all; not in the least; not even a little",
+    "formation": "少しも / ちっとも + negative predicate",
+    "notes": "少し means ‘a little’, and も here is ‘even’, not ‘also’: ‘not even a little’. ちっとも is a casual word with the same meaning. Both need a negative predicate, like 全然〜ない. Without one, 少しも does not occur: 少しもってきて is 少し + 持ってきて.",
+    "tags": [
+      "negation",
+      "emphasis"
+    ],
+    "examples": [
+      {
+        "ja": "私は少しもお金を持っていません。",
+        "furigana": "{私|わたし}は{少|すこ}しもお{金|かね}を{持|も}っていません。",
+        "en": "I don't have any money at all."
+      }
+    ]
+  },
+  {
+    "id": "ya-shinai",
+    "pattern": "〜やしない",
+    "romaji": "ya shinai",
+    "level": "N2",
+    "meaning": "(will) never; can't possibly (casual, emphatic negative)",
+    "formation": "Verb-masu stem + や + しない",
+    "notes": "A casual, stronger form of 〜はしない: できやしない ‘can't possibly do it’. This や is emphasis, not the listing ‘and’ of 本や雑誌.",
+    "tags": [
+      "negation",
+      "emphasis"
+    ],
+    "examples": [
+      {
+        "ja": "こんな量、一人で食べられやしない。",
+        "furigana": "こんな{量|りょう}、{一人|ひとり}で{食|た}べられやしない。",
+        "en": "There's no way I can eat this much by myself."
+      }
+    ]
+  },
+  {
+    "id": "datte-even",
+    "pattern": "〜だって（でも）",
+    "romaji": "datte (even)",
+    "level": "N3",
+    "meaning": "even …; (with a question word) any …, always",
+    "formation": "Noun (+ particle) + だって",
+    "notes": "Casual でも after a noun: 子供にだって分かる ‘even a child understands’. With a question word it covers every case: いつだって = いつでも ‘any time, always’. At the start of a sentence だって is a different word, ‘because’.",
+    "tags": [
+      "emphasis",
+      "casual"
+    ],
+    "examples": [
+      {
+        "ja": "子供にだってそんな事は分かるよ。",
+        "furigana": "{子供|こども}にだってそんな{事|こと}は{分|わ}かるよ。",
+        "en": "Even children can understand it."
+      }
+    ]
+  },
+  {
+    "id": "no-de-wa-nai-ka",
+    "pattern": "〜のではないか（推量）",
+    "romaji": "no de wa nai ka",
+    "level": "N3",
+    "meaning": "I suspect that …; I'm afraid that …; maybe …",
+    "formation": "Verb-plain / Noun + な + のではないか (+ と思う / 心配する)",
+    "notes": "Not a negative: ではないか here offers a guess, usually followed by と思う, と心配する or と危ぶむ. 遅刻するのではないかと心配した ‘I was afraid I might be late’.",
+    "tags": [
+      "conjecture"
+    ],
+    "examples": [
+      {
+        "ja": "遅刻するのではないかと心配した。",
+        "furigana": "{遅刻|ちこく}するのではないかと{心配|しんぱい}した。",
+        "en": "I was afraid I might be late."
+      }
+    ]
+  },
+  {
+    "id": "de-wa-arimasen-ka-confirm",
+    "pattern": "〜ではありませんか / 〜じゃないですか（確認）",
+    "romaji": "de wa arimasen ka",
+    "level": "N4",
+    "meaning": "isn't it …?; don't you think …? (seeking agreement)",
+    "formation": "Noun / Adjective / Verb-plain (+ の) + ではありませんか / じゃないですか",
+    "notes": "A question that expects ‘yes’, not a negative statement: 気持ちのいい朝ではありませんか ‘Isn't it a lovely morning?’.",
+    "tags": [
+      "question",
+      "confirmation"
+    ],
+    "examples": [
+      {
+        "ja": "それはちょっと極端じゃないですか。",
+        "furigana": "それはちょっと{極端|きょくたん}じゃないですか。",
+        "en": "Isn't that a bit extreme?"
+      }
+    ]
+  },
+  {
+    "id": "no-de-wa-nai",
+    "pattern": "〜のではない",
+    "romaji": "no de wa nai",
+    "level": "N3",
+    "meaning": "it is not that …; it is not the case that …",
+    "formation": "Verb-plain / Noun + な + のではない",
+    "notes": "Denies an explanation or an assumed reason rather than the action itself: このテーブルを頼んだのではない ‘It isn't this table that I asked for’. Compare 〜わけではない.",
+    "tags": [
+      "negation",
+      "explanation"
+    ],
+    "examples": [
+      {
+        "ja": "幸福は単に富にあるのではない。",
+        "furigana": "{幸福|こうふく}は{単|たん}に{富|とみ}にあるのではない。",
+        "en": "Happiness does not consist simply in wealth."
+      }
+    ]
+  },
+  {
+    "id": "to-wa-definition",
+    "pattern": "〜とは（定義）",
+    "romaji": "to wa (definition)",
+    "level": "N3",
+    "meaning": "… means; … is (defining a word or idea)",
+    "formation": "Noun + とは + definition + (のこと)だ / です",
+    "notes": "Introduces the word or idea being defined, often ending in 〜のことだ or 〜という意味だ: 誕生日とは人が生まれた日のことだ ‘A birthday is the day a person was born’. A more formal topic than は.",
+    "tags": [
+      "topic",
+      "definition"
+    ],
+    "examples": [
+      {
+        "ja": "誕生日とは人が生まれた日のことだ。",
+        "furigana": "{誕生日|たんじょうび}とは{人|ひと}が{生|う}まれた{日|ひ}のことだ。",
+        "en": "A birthday is the day on which a person was born."
+      }
+    ]
+  },
+  {
+    "id": "ta-state",
+    "pattern": "〜た＋名詞（状態）",
+    "romaji": "ta (state)",
+    "level": "N4",
+    "meaning": "describes a state, like an adjective: broken, wet, excellent, wearing …",
+    "formation": "Verb-ta + Noun",
+    "notes": "Before a noun, the た form of some verbs names the state something is in rather than a past action: 壊れた花瓶 ‘a broken vase’, 濡れた服 ‘wet clothes’, 優れた能力 ‘excellent ability’, ピンクの服を着た女性 ‘the woman wearing pink’. A manner word + (と)した works the same way: 堂々とした顔 ‘a dignified face’, ちょっとした資産 ‘a bit of money’. English often uses an adjective or -ing.",
+    "tags": [
+      "state",
+      "modification"
+    ],
+    "examples": [
+      {
+        "ja": "彼は壊れた花瓶の破片をくっつけようとした。",
+        "furigana": "{彼|かれ}は{壊|こわ}れた{花瓶|かびん}の{破片|はへん}をくっつけようとした。",
+        "en": "He tried to put the fragments of a broken vase together."
+      }
+    ]
+  },
+  {
+    "id": "to-ikenai-in-case",
+    "pattern": "〜といけないので / から",
+    "romaji": "to ikenai (in case)",
+    "level": "N3",
+    "meaning": "in case …; for fear that …",
+    "formation": "Verb-dictionary + といけないので / から",
+    "notes": "‘It would be bad if …, so …’: the と is a condition and いけない says the result would be bad. 眠るといけないので目覚まし時計をセットしなさい ‘Set the alarm in case you fall asleep’. Compare 〜ないといけない ‘must’, where the verb before と is negative.",
+    "tags": [
+      "condition",
+      "reason"
+    ],
+    "examples": [
+      {
+        "ja": "この手紙は紛失するといけないから、書留にするがよい。",
+        "furigana": "この{手紙|てがみ}は{紛失|ふんしつ}するといけないから、{書留|かきとめ}にするがよい。",
+        "en": "You had better register this letter in case it gets lost."
+      }
+    ]
   }
 ]

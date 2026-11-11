@@ -2455,5 +2455,327 @@
     "japanese": "では",
     "expect": "present",
     "note": "The test establishes the setting and topic of the following action."
+  },
+  {
+    "lessonId": "mo",
+    "sentenceId": "99b6e7424b88ba7a9843387f",
+    "japanese": "ケンよりも",
+    "expect": "absent",
+    "note": "も after comparative より only adds emphasis; it is not an also lesson."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "99b6e7424b88ba7a9843387f",
+    "japanese": "ケンよりも",
+    "expect": "present",
+    "note": "The comparison lesson covers emphatic よりも."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "41b9434cf7920970dafeb483",
+    "japanese": "旅行するよりも",
+    "expect": "present",
+    "note": "A clause can be the standard of comparison."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "50dabcb078f160d5329b250b",
+    "japanese": "治療よりも",
+    "expect": "present",
+    "note": "Emphatic よりも after a noun, confirmed by the English comparison."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "2523e91d8d3eaee14c3aa561",
+    "japanese": "降伏するより",
+    "expect": "present",
+    "note": "Rather than surrendering: a verb is the standard."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "25a94ae3440ea22d6dc3e591",
+    "japanese": "木曜日よりむしろ",
+    "expect": "present",
+    "note": "よりむしろ marks the less preferred option."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "cf08d482b632af46e69a23b7",
+    "japanese": "発表するより先に",
+    "expect": "absent",
+    "note": "より先に is before, not a comparison of degree."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "257573d17c6a3d19603e80b7",
+    "japanese": "するより他に",
+    "expect": "absent",
+    "note": "より他に is other than, not a comparison of degree."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "bcc0ede67ac9957c558b8438",
+    "japanese": "何よりも",
+    "expect": "absent",
+    "note": "何よりも is the expression above all."
+  },
+  {
+    "lessonId": "mo",
+    "sentenceId": "bcc0ede67ac9957c558b8438",
+    "japanese": "何よりも",
+    "expect": "absent",
+    "note": "The も of 何よりも is part of the expression, not also."
+  },
+  {
+    "lessonId": "to-iu-yori",
+    "sentenceId": "6ac80fe9da4000b8c78705ee",
+    "japanese": "というよりも",
+    "expect": "present",
+    "note": "というよりも is the emphatic というより."
+  },
+  {
+    "lessonId": "mo-emphasis",
+    "sentenceId": "03f65dfbd86fb73b8fa38ef1",
+    "japanese": "３割も",
+    "expect": "present",
+    "note": "A percentage amount + も stresses how large it is."
+  },
+  {
+    "lessonId": "nani-mo-nai-dare-mo-nai",
+    "sentenceId": "08a7da2678b2b717413659ef",
+    "japanese": "何も",
+    "expect": "present",
+    "note": "A verb modifying ように or こと stays inside the 何も scope."
+  },
+  {
+    "lessonId": "sukoshi-mo-nai",
+    "sentenceId": "2157ee30c6413a05da9f66fa",
+    "japanese": "少しもって",
+    "expect": "absent",
+    "note": "少し + 持ってきて has no 少しも."
+  },
+  {
+    "lessonId": "kamo-shirenai",
+    "sentenceId": "41373db68c189ff6d599490c",
+    "japanese": "のかもしれない",
+    "expect": "present",
+    "note": "Explanatory の can precede かもしれない."
+  },
+  {
+    "lessonId": "mo-emphasis",
+    "sentenceId": "656df8b36c644c71885ea802",
+    "japanese": "何年も",
+    "expect": "present",
+    "note": "何 + counter + も is as many as, here for years."
+  },
+  {
+    "lessonId": "kamo-shirenai",
+    "sentenceId": "a1a04035c88f497560c500b9",
+    "japanese": "かもしれない",
+    "expect": "present",
+    "note": "An untyped negative ない can precede かもしれない."
+  },
+  {
+    "lessonId": "sukoshi-mo-nai",
+    "sentenceId": "c16db8d35b265f381fa0b883",
+    "japanese": "少しも",
+    "expect": "present",
+    "note": "少しも with a negative predicate is not at all."
+  },
+  {
+    "lessonId": "mo-emphasis",
+    "sentenceId": "f1bd827f0104a7fa5cb84513",
+    "japanese": "一言も",
+    "expect": "present",
+    "note": "一 + counter + も with a negative is not even one."
+  },
+  {
+    "lessonId": "ya",
+    "sentenceId": "650b572a74861eefe90c7ef3",
+    "japanese": "できやしない",
+    "expect": "absent",
+    "note": "Emphatic や after a verb stem is not listing and."
+  },
+  {
+    "lessonId": "ya-shinai",
+    "sentenceId": "650b572a74861eefe90c7ef3",
+    "japanese": "やしない",
+    "expect": "present",
+    "note": "Verb stem + や + しない is an emphatic negative."
+  },
+  {
+    "lessonId": "ya",
+    "sentenceId": "9ce53620d773ab5b6dcb3982",
+    "japanese": "ないや",
+    "expect": "absent",
+    "note": "Sentence-final casual や is not listing and."
+  },
+  {
+    "lessonId": "datte-even",
+    "sentenceId": "aac7a95c52f1c75c9e0a9539",
+    "japanese": "にだって",
+    "expect": "present",
+    "note": "Particle + だって is casual even."
+  },
+  {
+    "lessonId": "da",
+    "sentenceId": "aac7a95c52f1c75c9e0a9539",
+    "japanese": "だって",
+    "expect": "absent",
+    "note": "The だ of だって is not a copula."
+  },
+  {
+    "lessonId": "made-even",
+    "sentenceId": "6adccbed66dce5722572a4ce",
+    "japanese": "にまで",
+    "expect": "present",
+    "note": "A case particle before まで makes it even."
+  },
+  {
+    "lessonId": "made",
+    "sentenceId": "6adccbed66dce5722572a4ce",
+    "japanese": "にまで",
+    "expect": "absent",
+    "note": "にまで is not until or as far as."
+  },
+  {
+    "lessonId": "no-de-wa-nai-ka",
+    "sentenceId": "aa8e2fa60e43d4a825d31c82",
+    "japanese": "のではないか",
+    "expect": "present",
+    "note": "ではないかと + worry is a guess, not a negative."
+  },
+  {
+    "lessonId": "de-wa-arimasen-ka-confirm",
+    "sentenceId": "db247b21414051b3b87dbff0",
+    "japanese": "ではありませんか",
+    "expect": "present",
+    "note": "A sentence-final ではありませんか asks for agreement."
+  },
+  {
+    "lessonId": "no-de-wa-nai",
+    "sentenceId": "90c99ffaaa59354dec5c5850",
+    "japanese": "のではない",
+    "expect": "present",
+    "note": "のではない denies an explanation."
+  },
+  {
+    "lessonId": "to-wa-definition",
+    "sentenceId": "6de61bf712b94d790797b509",
+    "japanese": "誕生日とは",
+    "expect": "present",
+    "note": "A sentence that opens with X とは and ends in a copula defines X."
+  },
+  {
+    "lessonId": "to-wa-definition",
+    "sentenceId": "224d4695d75f0d40b14e41a3",
+    "japanese": "私とは",
+    "expect": "absent",
+    "note": "With a topic before it, とは compares rather than defines."
+  },
+  {
+    "lessonId": "to-wa-definition",
+    "sentenceId": "3fdb121be9c6026978e9cc84",
+    "japanese": "僕とは",
+    "expect": "absent",
+    "note": "Paired と…とは lists the two compared."
+  },
+  {
+    "lessonId": "to-wa",
+    "sentenceId": "287059b4eb5f4c53f33ebcd8",
+    "japanese": "とは",
+    "expect": "present",
+    "note": "The reaction verb can follow surprise とは directly."
+  },
+  {
+    "lessonId": "ta-state",
+    "sentenceId": "0ef7150bfc1794a8d4c1990f",
+    "japanese": "壊れた",
+    "expect": "present",
+    "note": "A result verb before a noun names a state: broken."
+  },
+  {
+    "lessonId": "ta",
+    "sentenceId": "0ef7150bfc1794a8d4c1990f",
+    "japanese": "壊れた",
+    "expect": "absent",
+    "note": "壊れた花瓶 is a state, not a past action."
+  },
+  {
+    "lessonId": "ta-state",
+    "sentenceId": "d42bf62618fdea29551c1706",
+    "japanese": "面した",
+    "expect": "present",
+    "note": "面する only describes a state: facing."
+  },
+  {
+    "lessonId": "ta-state",
+    "sentenceId": "04f30162a34e66d96a017cda",
+    "japanese": "堂々とした",
+    "expect": "present",
+    "note": "Manner word + とした describes how something is."
+  },
+  {
+    "lessonId": "ta-state",
+    "sentenceId": "27e158c6419929720fcb9234",
+    "japanese": "折れた",
+    "expect": "absent",
+    "note": "Before とき the change is an event."
+  },
+  {
+    "lessonId": "ta-state",
+    "sentenceId": "0ee2ea097a39fd6b0b16dea4",
+    "japanese": "征服した",
+    "expect": "absent",
+    "note": "A past action in a relative clause stays past."
+  },
+  {
+    "lessonId": "nai",
+    "sentenceId": "3b142cfa70d0090416d3c108",
+    "japanese": "つまらない",
+    "expect": "absent",
+    "note": "つまらない is the adjective boring, not do not."
+  },
+  {
+    "lessonId": "te-wa-ikenai",
+    "sentenceId": "6ad65e9140608c6735f5778e",
+    "japanese": "しちゃいけない",
+    "expect": "present",
+    "note": "ちゃいけない is the contracted てはいけない."
+  },
+  {
+    "lessonId": "te-wa-ikenai",
+    "sentenceId": "50108ab9daca2eb6b2655a79",
+    "japanese": "さぼっちゃダメ",
+    "expect": "present",
+    "note": "ちゃダメ is a casual prohibition."
+  },
+  {
+    "lessonId": "te-wa-ikenai",
+    "sentenceId": "c7f3727389923100a729d01f",
+    "japanese": "なくちゃならない",
+    "expect": "absent",
+    "note": "なくちゃならない is obligation, not prohibition."
+  },
+  {
+    "lessonId": "to-ikenai-in-case",
+    "sentenceId": "bb1ada96f4d20d4171e1dd0b",
+    "japanese": "といけない",
+    "expect": "present",
+    "note": "Dictionary verb + といけないので is in case."
+  },
+  {
+    "lessonId": "nai",
+    "sentenceId": "bb1ada96f4d20d4171e1dd0b",
+    "japanese": "いけない",
+    "expect": "absent",
+    "note": "The いけない of in case is not do not."
+  },
+  {
+    "lessonId": "ni-hoka-naranai",
+    "sentenceId": "dcdd605da10e7f82d7e60aee",
+    "japanese": "に外ならない",
+    "expect": "present",
+    "note": "外 is a spelling of ほか in にほかならない."
   }
 ]

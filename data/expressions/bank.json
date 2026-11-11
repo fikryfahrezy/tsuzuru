@@ -35,6 +35,187 @@
       "wholeWords": true
     },
     {
+      "dictionaryForm": "何よりも",
+      "reading": "なによりも",
+      "forms": ["何よりも"],
+      "meanings": ["above all", "more than anything"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "どうも",
+      "reading": "どうも",
+      "forms": ["どうも"],
+      "meanings": ["very much (どうもありがとう)", "somehow", "it seems"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "今にも",
+      "reading": "いまにも",
+      "forms": ["今にも"],
+      "meanings": ["at any moment", "on the verge of"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "いかにも",
+      "reading": "いかにも",
+      "forms": ["いかにも", "如何にも"],
+      "meanings": ["truly", "indeed", "just like (someone)"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "それとも",
+      "reading": "それとも",
+      "forms": ["それとも"],
+      "meanings": ["or", "or else"],
+      "wordTypes": ["Expression", "Conjunction"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "いつまでも",
+      "reading": "いつまでも",
+      "forms": ["いつまでも", "何時までも"],
+      "meanings": ["forever", "for as long as one likes"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "何とも",
+      "reading": "なんとも",
+      "forms": ["何とも", "なんとも"],
+      "meanings": ["(with a negative) not at all, nothing", "truly, extremely", "beyond words"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "もしも",
+      "reading": "もしも",
+      "forms": ["もしも"],
+      "meanings": ["if", "in case", "supposing"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "あくまでも",
+      "reading": "あくまでも",
+      "forms": ["あくまでも", "飽くまでも"],
+      "meanings": ["to the end", "persistently", "strictly"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "当てもなく",
+      "reading": "あてもなく",
+      "forms": ["当てもなく", "当ても無く", "あてもなく"],
+      "meanings": ["aimlessly", "without a goal"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "来る日も来る日も",
+      "reading": "くるひもくるひも",
+      "forms": ["来る日も来る日も"],
+      "meanings": ["day after day"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "何もかも",
+      "reading": "なにもかも",
+      "forms": ["何もかも"],
+      "meanings": ["everything", "all of it"],
+      "wordTypes": ["Expression", "Noun"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "よくも",
+      "reading": "よくも",
+      "forms": ["よくも"],
+      "meanings": ["how dare (you)", "to think that one would …"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "だからといって",
+      "reading": "だからといって",
+      "forms": ["だからといって", "だからと言って"],
+      "meanings": ["that doesn't mean", "even so"],
+      "wordTypes": ["Expression", "Conjunction"],
+      "wholeWords": true,
+      "opensSentence": true
+    },
+    {
+      "dictionaryForm": "だから",
+      "reading": "だから",
+      "forms": ["だから"],
+      "meanings": ["so", "that's why", "therefore"],
+      "wordTypes": ["Expression", "Conjunction"],
+      "wholeWords": true,
+      "opensSentence": true
+    },
+    {
+      "dictionaryForm": "だって",
+      "reading": "だって",
+      "forms": ["だって"],
+      "meanings": ["because (casual)", "but", "after all"],
+      "wordTypes": ["Expression", "Conjunction"],
+      "wholeWords": true,
+      "opensSentence": true
+    },
+    {
+      "dictionaryForm": "ましてや",
+      "reading": "ましてや",
+      "forms": ["ましてや"],
+      "meanings": ["let alone", "much less", "still more"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "いいや",
+      "reading": "いいや",
+      "forms": ["いいや"],
+      "meanings": ["no (casual, emphatic)"],
+      "wordTypes": ["Expression", "Interjection"],
+      "wholeWords": true,
+      "opensSentence": true
+    },
+    {
+      "dictionaryForm": "やだ",
+      "reading": "やだ",
+      "forms": ["やだ"],
+      "meanings": ["no way", "yuck (casual 嫌だ)"],
+      "wordTypes": ["Expression", "Interjection"],
+      "wholeWords": true,
+      "opensSentence": true
+    },
+    {
+      "dictionaryForm": "参考までに",
+      "reading": "さんこうまでに",
+      "forms": ["参考までに"],
+      "meanings": ["for your information", "for reference"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "ご参考までに",
+      "reading": "ごさんこうまでに",
+      "forms": ["ご参考までに"],
+      "meanings": ["for your information", "for reference"],
+      "wordTypes": ["Expression"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "あれよあれよ",
+      "reading": "あれよあれよ",
+      "forms": ["あれよあれよ"],
+      "meanings": ["before one knows it", "in the blink of an eye"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
       "dictionaryForm": "はじめまして",
       "reading": "はじめまして",
       "forms": ["はじめまして", "初めまして"],

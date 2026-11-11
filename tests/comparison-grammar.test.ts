@@ -69,15 +69,117 @@ test("comparisons recognize adjectives, age, comparative verbs, and unlisted pro
   for (const words of cases) {
     const { sentence, base } = fixture(words);
     const yori = base.find((entry) => entry.japanese === "より")!;
+    const mo = base.find(
+      (entry) => entry.japanese === "も" && entry.start === yori.end,
+    );
     expect(comparisonGrammar(sentence, base)).toEqual([
       {
         start: yori.start,
-        end: yori.end,
-        japanese: "より",
+        end: mo?.end ?? yori.end,
+        japanese: mo ? "よりも" : "より",
         grammarIds: ["yori"],
       },
     ]);
   }
+});
+
+test("emphatic よりも is one comparison, not より plus also", () => {
+  const { sentence, base } = fixture([
+    ["ケン"],
+    ["より", ["Particle"]],
+    ["も", ["Particle"]],
+    ["二つ", ["Number"]],
+    ["年上", ["Noun"]],
+    ["です", ["Copula"]],
+  ]);
+  const lessons = withBreakdownGrammar(sentence, base, base);
+  expect(lessons.flatMap((entry) => entry.grammar ?? [])).toContainEqual(
+    expect.objectContaining({ id: "yori", japanese: "よりも" }),
+  );
+  expect(
+    lessons.flatMap((entry) => entry.grammar ?? []).map((lesson) => lesson.id),
+  ).not.toContain("mo");
+  expect(lessons.find((entry) => entry.japanese === "も")!.note).toContain(
+    "emphasis",
+  );
+});
+
+test("a clause can be the standard of comparison", () => {
+  for (const words of [
+    [
+      ["降伏", ["Noun", "Verb"]],
+      ["する", ["Verb"]],
+      ["より", ["Particle"]],
+      ["死んだ", ["Verb"], "死ぬ"],
+    ],
+    [
+      ["怖かった", ["い-adjective"], "怖い"],
+      ["より", ["Particle"]],
+      ["も", ["Particle"]],
+      ["びっくり", ["Noun"]],
+    ],
+    [["ない"], ["より", ["Particle"]], ["は", ["Particle"]], ["よい"]],
+  ] as Word[][]) {
+    const { sentence, base } = fixture(words);
+    expect(
+      comparisonGrammar(sentence, base).map((match) => match.grammarIds),
+      sentence.reference.japanese,
+    ).toEqual([["yori"]]);
+  }
+});
+
+test("より先に, より他に and 何より are not comparisons of degree", () => {
+  for (const words of [
+    [
+      ["発表", ["Noun", "Verb"]],
+      ["する", ["Verb"]],
+      ["より", ["Particle"]],
+      ["先", ["Noun"]],
+      ["に", ["Particle"]],
+    ],
+    [
+      ["する", ["Verb"]],
+      ["より", ["Particle"]],
+      ["他", ["Noun"]],
+      ["に", ["Particle"]],
+    ],
+    [
+      ["何", ["Pronoun"]],
+      ["より", ["Particle"]],
+      ["も", ["Particle"]],
+      ["大切", ["な-adjective"]],
+    ],
+  ] as Word[][]) {
+    const { sentence, base } = fixture(words);
+    expect(
+      comparisonGrammar(sentence, base),
+      sentence.reference.japanese,
+    ).toEqual([]);
+  }
+});
+
+test("a noun before よりも or よりむしろ needs the English to confirm a comparison", () => {
+  const words: Word[] = [
+    ["先生", ["Noun"]],
+    ["より", ["Particle"]],
+    ["も", ["Particle"]],
+    ["手紙", ["Noun"]],
+    ["が", ["Particle"]],
+    ["届いた", ["Verb"], "届く"],
+  ];
+  const { sentence, base } = fixture(words);
+  expect(
+    comparisonGrammar(
+      { ...sentence, english: "A letter also came from the teacher." },
+      base,
+    ),
+  ).toEqual([]);
+  expect(
+    comparisonGrammar(
+      { ...sentence, english: "Prevention is better than cure." },
+      base,
+    ).map((match) => match.japanese),
+  ).toEqual(["よりも"]);
 });
 
 test("source より, により, lexical substrings, punctuation, and ambiguous modifiers are not comparisons", () => {

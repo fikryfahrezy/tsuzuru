@@ -2,7 +2,11 @@ import type { GrammarAnnotation } from "../../shared/answer-entries";
 import type { Sentence } from "../../shared/sentence";
 import type { AnswerEntry } from "./answer-entries";
 import { finite, nominal } from "./grammar-context";
-import { negativeQuantifiers, scopeAdverbs } from "./grammar-rules/scope";
+import {
+  negativeEmphasis,
+  negativeQuantifiers,
+  scopeAdverbs,
+} from "./grammar-rules/scope";
 
 const negative = /(?:ない|なかった|ません|ませんでした)(?:です)?$/u;
 const adverbs: Record<string, string> = Object.fromEntries(
@@ -51,6 +55,17 @@ export function scopeGrammar(
         markerEnd = entry.start + form.length;
       }
     }
+    if (!id) {
+      const form = negativeEmphasis.find(
+        (word) =>
+          text.startsWith(word, entry.start) &&
+          ends.has(entry.start + word.length),
+      );
+      if (form) {
+        id = "sukoshi-mo-nai";
+        markerEnd = entry.start + form.length;
+      }
+    }
     if (!id && entry.japanese === "まだ") id = "mada-te-inai";
     if (!id) continue;
     let cursor = markerEnd;
@@ -74,6 +89,16 @@ export function scopeGrammar(
             candidate.japanese,
           ));
       if (!isNegative && !finite(candidate)) continue;
+      // A verb that modifies a noun is inside the scope, not its predicate:
+      // 何も私にそれをあきらめるように強制することができない.
+      const following = base.find((word) => word.start === candidate.end);
+      if (
+        !isNegative &&
+        id === "nani-mo-nai-dare-mo-nai" &&
+        following &&
+        ["よう", "こと", "事"].includes(following.japanese)
+      )
+        continue;
       if (
         isNegative &&
         (id !== "mada-te-inai" ||

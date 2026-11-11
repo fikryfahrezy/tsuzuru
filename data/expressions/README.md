@@ -20,6 +20,8 @@ Each expression contains:
   するなんて奇妙だ is “that she would do …”, not “what a …”.
 - `wholeWords` (optional): the form ends at a word boundary. Set it for a
   short form that begins longer words: いま is not います, まし is not まして.
+- `opensSentence` (optional): the form starts the sentence or follows
+  punctuation. だから at the start is “so”, but 春先だから is a copula + から.
 
 A kana form starts with the reading. When forms of one word differ in meaning,
 list the longer forms in their own expression: いやだ (嫌, “unpleasant”) wins over

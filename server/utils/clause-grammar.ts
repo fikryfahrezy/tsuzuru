@@ -66,7 +66,8 @@ export function clauseGrammar(
         );
         const reaction =
           !!last &&
-          last.start > wa.end &&
+          // The reaction may follow とは directly: 会えるとは思わなかった.
+          last.start >= wa.end &&
           (last.wordTypes.includes("い-adjective") ||
             last.wordTypes.includes("Copula") ||
             (last.wordTypes.includes("Verb") &&

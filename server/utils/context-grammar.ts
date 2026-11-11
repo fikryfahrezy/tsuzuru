@@ -313,14 +313,134 @@ export function contextGrammar(
       )
     )
       add(entry.start, entry.end, "de-mo-suggestion");
+    // An amount + も is "as many as" (３割も, 何年も), and 一 + counter + も
+    // with a negative is "not even one" (一言も答えなかった). 何 alone is not
+    // an amount: 何も is "nothing", 何事も "everything".
     if (
       entry.japanese === "も" &&
       new RegExp(
-        `^${count}(?:時間|分|日|年|円|ドル|人|個|つ|枚|本|冊|杯|台|回|度)$`,
+        `^(?:${count}|何)(?:時間|分|秒|日|週|年|年間|日間|週間|か月|ヶ月|カ月|円|ドル|人|個|つ|枚|本|冊|杯|台|回|度|倍|割|％|%|件|軒|匹|点|歩|言|敗|銭|床|マイル|キロ|メートル|ページ)$`,
         "u",
       ).test(previous.japanese)
     )
       add(previous.start, entry.end, "mo-emphasis");
+    const next =
+      base[index + 1]?.start === entry.end ? base[index + 1] : undefined;
+    // できやしない: emphatic や between a verb stem and a negative する.
+    if (
+      entry.japanese === "や" &&
+      previous.wordTypes.includes("Verb") &&
+      !previous.wordTypes.includes("Noun") &&
+      next &&
+      (next.dictionaryForm ?? next.japanese) === "する" &&
+      /(?:ない|ません|なかった)$/u.test(next.japanese)
+    )
+      add(entry.start, next.end, "ya-shinai");
+    // Noun + だって is casual "even" (君だって, 子供にだって, いつだって).
+    if (
+      entry.japanese === "って" &&
+      previous.japanese === "だ" &&
+      owner?.end === previous.start &&
+      (nominal(owner) ||
+        (owner.wordTypes.includes("Particle") &&
+          ["に", "で", "と", "から", "へ"].includes(owner.japanese)))
+    )
+      add(previous.start, entry.end, "datte-even");
+    // A case particle before まで makes it "even": 夢にまで見る.
+    if (
+      entry.japanese === "まで" &&
+      previous.wordTypes.includes("Particle") &&
+      ["に", "で", "と", "から", "へ"].includes(previous.japanese)
+    )
+      add(entry.start, entry.end, "made-even");
+    // では / じゃ + ない / ありません is split by the tokenizer.
+    const negative =
+      next && /^(?:ない|ないです|ありません)$/u.test(next.japanese)
+        ? next
+        : undefined;
+    if (["では", "じゃ"].includes(entry.japanese) && negative) {
+      const explanatory =
+        ["の", "ん"].includes(previous.japanese) &&
+        previous.wordTypes.includes("Particle");
+      const start = explanatory ? previous.start : entry.start;
+      const ka = base.find(
+        (word) => word.start === negative.end && word.japanese === "か",
+      );
+      const after = text.slice(negative.end);
+      if (ka && !after.startsWith("かもしれ")) {
+        // ではないかと思う / 心配する is a guess; ではありませんか。 asks for
+        // agreement.
+        if (/^か(?:と|って)/u.test(after))
+          add(start, ka.end, "no-de-wa-nai-ka");
+        else if (/^か(?:[。？！?!」]|$)/u.test(after))
+          add(entry.start, ka.end, "de-wa-arimasen-ka-confirm");
+        else if (explanatory) add(start, ka.end, "no-de-wa-nai-ka");
+      } else if (
+        explanatory &&
+        !base.some((word) => word.start === negative.end && nominal(word))
+      )
+        add(start, negative.end, "no-de-wa-nai");
+    }
+    // Contracted prohibition: 過信しちゃいけない, 食べちゃダメ, 飲んじゃだめ.
+    if (
+      ["ちゃ", "じゃ"].includes(entry.japanese) &&
+      previous.wordTypes.includes("Verb") &&
+      // やらなくちゃならない is obligation, 〜なくちゃ.
+      !previous.japanese.endsWith("なく") &&
+      (entry.japanese === "ちゃ" || /[んい]$/u.test(previous.japanese)) &&
+      next &&
+      /^(?:いけない|いけません|いけなかった|ダメ|だめ|駄目|ならない|なりません)/u.test(
+        next.japanese,
+      )
+    )
+      add(previous.start, next.end, "te-wa-ikenai");
+    // 眠るといけないので: "in case". A negative verb before と is
+    // 〜ないといけない "must".
+    if (
+      entry.japanese === "と" &&
+      entry.wordTypes.includes("Particle") &&
+      previous.wordTypes.includes("Verb") &&
+      !/(?:ない|ず|ません)$/u.test(previous.japanese) &&
+      next &&
+      ["いけない", "いけません"].includes(next.japanese) &&
+      /^(?:ので|から|し)/u.test(text.slice(next.end))
+    )
+      add(entry.start, next.end, "to-ikenai-in-case");
+    // 誕生日とは人が生まれた日のことだ: a sentence that opens with X とは
+    // and ends in a copula defines X. Another topic or subject before it
+    // (私とは正反対だ) or a second と (君と僕とは) makes it a comparison.
+    if (
+      entry.japanese === "は" &&
+      previous.japanese === "と" &&
+      previous.wordTypes.includes("Particle") &&
+      (text.slice(0, previous.start).endsWith("」") ||
+        (owner?.end === previous.start && nominal(owner)))
+    ) {
+      const opening = text.slice(0, previous.start);
+      const sentenceStart =
+        Math.max(
+          ...[..."。！？?!、"].map((mark) => opening.lastIndexOf(mark)),
+        ) + 1;
+      const closing = text
+        .slice(entry.end)
+        .match(/^[^。！？?!]*[。！？?!]?/u)![0];
+      const earlier = base.filter(
+        (word) =>
+          word.start >= sentenceStart &&
+          word.end <= previous.start &&
+          word.wordTypes.includes("Particle") &&
+          ["は", "が"].includes(word.japanese),
+      );
+      const paired = base[index - 3];
+      if (
+        !earlier.length &&
+        !(paired?.japanese === "と" && paired.end === owner?.start) &&
+        /(?:だ|です|である|ですか|でしょう)[。！？?!」]*$|ということ/u.test(
+          closing,
+        )
+      )
+        add(previous.start, entry.end, "to-wa-definition");
+    }
     if (
       entry.japanese === "か" &&
       entry.wordTypes.includes("Particle") &&
@@ -663,5 +783,109 @@ export function contextGrammar(
         add(entry.start, end, "te-reason");
     }
   }
+  for (const [index, entry] of base.entries()) {
+    const next = base[index + 1];
+    if (
+      !next ||
+      next.start !== entry.end ||
+      !nominal(next) ||
+      !entry.wordTypes.includes("Verb") ||
+      !/(?:た|だ)$/u.test(entry.japanese)
+    )
+      continue;
+    const lemma = entry.dictionaryForm ?? entry.japanese;
+    // Before a time or occasion a change is still an event: 折れたとき.
+    const event = notStateNouns.has(next.japanese);
+    const previous =
+      base[index - 1]?.end === entry.start ? base[index - 1] : undefined;
+    const before = base[index - 2];
+    // 堂々とした顔, ほっそりした姿, ちょっとした資産: a manner word + した
+    // describes how something is. Noun + とした (子供を対象とした本) is
+    // 〜とする, and 研究した人 is a past action.
+    const manner =
+      lemma === "する" &&
+      entry.japanese === "した" &&
+      !!previous &&
+      (["ちょっと", "そう", "こう", "ああ"].includes(previous.japanese) ||
+        (previous.wordTypes.includes("Adverb") &&
+          !previous.wordTypes.includes("Noun")) ||
+        (previous.japanese === "と" &&
+          before?.end === previous.start &&
+          !before.wordTypes.some((type) =>
+            ["Noun", "Pronoun", "Particle"].includes(type),
+          ) &&
+          /(?:り|っ|々|ん)$/u.test(before.japanese)) ||
+        (previous.japanese === "と" &&
+          before?.end === previous.start &&
+          /^(?:堂々|どんより|すらり|むっつり|ピリッ|ウラウラ|きちん|ちゃん|しっかり|さっぱり|がっしり|がっちり|ほっそり)$/u.test(
+            before.japanese,
+          )));
+    if (
+      stativeVerbs.has(lemma) ||
+      (!event && (resultVerbs.has(lemma) || manner))
+    )
+      add(entry.start, entry.end, "ta-state");
+  }
   return matches;
 }
+
+// Verbs that only describe a state before a noun: 優れた能力 "excellent",
+// 似た話 "similar", 庭に面した部屋 "facing".
+const stativeVerbs = new Set([
+  "優れる",
+  "ばかげる",
+  "馬鹿げる",
+  "違う",
+  "似る",
+  "尖る",
+  "とがる",
+  "面する",
+  "ありふれる",
+  "聳える",
+  "そびえる",
+]);
+// Changes whose result is a state: 壊れた花瓶 "broken", 服を着た女性
+// "wearing", 間違った方角 "wrong".
+const resultVerbs = new Set([
+  "間違う",
+  "決まる",
+  "汚れる",
+  "濡れる",
+  "ぬれる",
+  "壊れる",
+  "折れる",
+  "倒れる",
+  "冷える",
+  "凍る",
+  "疲れる",
+  "老いる",
+  "曲がる",
+  "太る",
+  "痩せる",
+  "やせる",
+  "腐る",
+  "錆びる",
+  "乾く",
+  "割れる",
+  "欠ける",
+  "破れる",
+  "着る",
+  "混む",
+  "込む",
+]);
+const notStateNouns = new Set([
+  "時",
+  "とき",
+  "後",
+  "あと",
+  "瞬間",
+  "ところ",
+  "所",
+  "際",
+  "前",
+  "日",
+  "年",
+  "こと",
+  "事",
+  "の",
+]);

@@ -195,7 +195,13 @@ export function predicateGrammar(
     } else if (
       entry.japanese === "か" &&
       entry.wordTypes.includes("Particle") &&
-      (noun(previous) || predicate(previous))
+      // The tokenizer may leave a negative ない untyped (よくないかも), and
+      // explanatory の can come first (乗り遅れたのかもしれない).
+      (previous.japanese === "ない" ||
+        (previous.japanese === "の" &&
+          previous.wordTypes.includes("Particle")) ||
+        noun(previous) ||
+        predicate(previous))
     ) {
       longest(entry, ["かどうか"], "ka-dou-ka");
       longest(
