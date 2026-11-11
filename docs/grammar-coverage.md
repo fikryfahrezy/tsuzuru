@@ -24,7 +24,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 
 ## Reviewed corpus checks
 
-397/397 passing. Add reviewed cases in `data/grammar-coverage/regressions.json`.
+407/407 passing. Add reviewed cases in `data/grammar-coverage/regressions.json`.
 
 | Check | Lesson                             | Sentence ID                | Japanese region                | Expected |
 | ----- | ---------------------------------- | -------------------------- | ------------------------------ | -------- |
@@ -251,6 +251,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | ni-tsuki                           | `35933f6b68fb7451e5824912` | １ダースにつき                 | present  |
 | [x]   | naide                              | `35e6037215b14ff6dcd03ed6` | つないでおいた                 | absent   |
 | [x]   | you-ni                             | `36f4d6b2bdbb98552bc0e967` | ように                         | absent   |
+| [x]   | yori                               | `3756c5e80fa8ceb4e3fec7be` | 床掃除より                     | present  |
 | [x]   | te-aru                             | `37db45bd289ac014c4037c2c` | 打ってある                     | present  |
 | [x]   | nai                                | `3b142cfa70d0090416d3c108` | つまらない                     | absent   |
 | [x]   | o-tsuujite-o-tooshite              | `3d3073f372cf06dba3cdd95c` | 目を通している                 | absent   |
@@ -272,6 +273,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | yori                               | `41b9434cf7920970dafeb483` | 旅行するよりも                 | present  |
 | [x]   | au                                 | `427d411034fdcf90ac2cbe68` | 語り合った                     | present  |
 | [x]   | eru-rareru-potential               | `43beadb953c0b997e226c1ae` | 来られなかった                 | present  |
+| [x]   | yori                               | `448af44314bd5b77001cf360` | 昨年より                       | absent   |
 | [x]   | de-wa-arimasen-ja-nai              | `449e3217b0052efe14efcd8b` | ではなく                       | present  |
 | [x]   | rashii-typical-of                  | `44af37e1e83ccfa017e30e27` | メグらしい                     | present  |
 | [x]   | dake-de-naku                       | `4581fd81540aa9bbe1b6d9e0` | 寒いだけでなく                 | present  |
@@ -300,6 +302,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | nari-ni-nari-no                    | `55c37a63b43cc9d3efadcbd8` | 彼らなりの                     | present  |
 | [x]   | te-hajimete                        | `57a3707635e3d10406908898` | かれて初めて                   | present  |
 | [x]   | to-iu-mono-da                      | `57e05882245ee41db4d8025e` | 順序というものだろう           | present  |
+| [x]   | yori                               | `5851c741bcf0c034a7e031f9` | イギリス人より                 | present  |
 | [x]   | n-desu-no-desu                     | `5916c8667afa3d5f57e35a8d` | んじゃない                     | present  |
 | [x]   | ga-aru-ga-iru                      | `59b9d0bbe6e66b2d900b05f1` | をほとんど話せない             | absent   |
 | [x]   | ni-suru                            | `5b0111f122314d23f46461be` | 日替わり定食にしませんか       | present  |
@@ -333,6 +336,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | de-wa-arimasen-ja-nai              | `6ade39086631af46ee943365` | でもない                       | absent   |
 | [x]   | bakari-ka                          | `6dc62a4dcf17aa53e65fc861` | であるばかりか                 | present  |
 | [x]   | to-wa-definition                   | `6de61bf712b94d790797b509` | 誕生日とは                     | present  |
+| [x]   | yori                               | `6deacdc2b7678047ea074f26` | 夫より                         | present  |
 | [x]   | ta                                 | `6e1e2eab7f0df1922dff6132` | 食べた                         | present  |
 | [x]   | you-ni-iu-you-ni-tanomu            | `6fdc6981959b893f05c8a7e2` | ように                         | present  |
 | [x]   | koso                               | `73209127eabfedccbb9178fd` | 引き起こそう                   | absent   |
@@ -340,6 +344,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | kko-nai                            | `7691cea347444e835ccdfb3b` | まちがいっこない               | present  |
 | [x]   | tagaru                             | `77466b67fa5b1ebba2bb5144` | 飼いたがっています             | present  |
 | [x]   | muki-muke                          | `7b8696f9f954cbeb9b6d3b69` | 若者向き                       | present  |
+| [x]   | yori                               | `7eabdeed8d507de3fd5ffc43` | 心より                         | absent   |
 | [x]   | sei-de                             | `811f38ebb663a1fe13d90e25` | 雑音のせいで                   | present  |
 | [x]   | ni-atte                            | `81478539a3508c54d47d623f` | 野球場にあたっていた           | absent   |
 | [x]   | you-na-you-ni-like                 | `8318c733c147076a809179e6` | このような                     | present  |
@@ -372,6 +377,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | o-tsuujite-o-tooshite              | `9d09a1ac63b694db0f87907c` | 銀行制度を通じて               | present  |
 | [x]   | de-wa-arimasen-ja-nai              | `9e02e887f7d608baeaf37085` | じゃない                       | present  |
 | [x]   | sae                                | `9e4ac1c07021aab68517f03e` | 上空でさえ                     | present  |
+| [x]   | yori                               | `9ed95d0f02b9d8328ef7886b` | 車より                         | present  |
 | [x]   | kaneru                             | `9f86da1567fe7ab38c78eb76` | そいかねます                   | present  |
 | [x]   | ta                                 | `a1673606ae90e1385485042a` | 起こった                       | absent   |
 | [x]   | to-sureba-to-shitara               | `a1673606ae90e1385485042a` | 起こったとすれば               | present  |
@@ -390,10 +396,13 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | ga-aru-ga-iru                      | `af67668c798b26c6ad7cf529` | はなかった                     | absent   |
 | [x]   | ni-suginai                         | `af815c756bd9a0a68a238ac1` | 農民に過ぎない                 | present  |
 | [x]   | de-wa-arimasen-ja-nai              | `b1ba6b9b40833139351b05cf` | じゃなくて                     | present  |
+| [x]   | yori                               | `b7ccb271988cfbdacb410613` | 花より                         | present  |
+| [x]   | yori                               | `b8bbd7f2aa5bd932989669ff` | 言葉より                       | present  |
 | [x]   | to-ikenai-in-case                  | `bb1ada96f4d20d4171e1dd0b` | といけない                     | present  |
 | [x]   | nai                                | `bb1ada96f4d20d4171e1dd0b` | いけない                       | absent   |
 | [x]   | yori                               | `bcc0ede67ac9957c558b8438` | 何よりも                       | absent   |
 | [x]   | mo                                 | `bcc0ede67ac9957c558b8438` | 何よりも                       | absent   |
+| [x]   | yori                               | `bf91c25f8ebc39831f1b3b3c` | いつもより                     | present  |
 | [x]   | sukoshi-mo-nai                     | `c16db8d35b265f381fa0b883` | 少しも                         | present  |
 | [x]   | nani-ka-dare-ka-doko-ka            | `c2d3aab9de6af0b1c896f640` | 誰かが                         | present  |
 | [x]   | reru-rareru-passive                | `c7bc3a4238fb1691124f6a7b` | 見られた                       | absent   |
@@ -410,6 +419,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | [x]   | to-itte-mo                         | `d4a733e8ed349d8bf10b45db` | 先生といっても                 | present  |
 | [x]   | kuse-ni                            | `d5762b35cd4e57a95b03949e` | いるくせに                     | present  |
 | [x]   | you-ni                             | `d63fe07e00fcf781c98594c7` | よう                           | present  |
+| [x]   | yori                               | `d64d145abc7965892ea9da30` | 彼より                         | present  |
 | [x]   | o-nozoite                          | `d81ed661d6b6d80b5d183a83` | 価格を除いては                 | present  |
 | [x]   | koto-naku                          | `d9088c4b71c74243708f8c42` | 途切れることなく               | present  |
 | [x]   | de-wa-arimasen-ka-confirm          | `db247b21414051b3b87dbff0` | ではありませんか               | present  |
@@ -459,7 +469,7 @@ Lesson patterns retain the source library attribution in [the data disclosure](.
 | ka-question                       | 〜か（question）                        | automatic | 643                 | 3                   | 2/2             |
 | ne                                | 〜ね                                    | automatic | 135                 | 0                   | 0/0             |
 | yo                                | 〜よ                                    | automatic | 255                 | 0                   | 0/0             |
-| yori                              | 〜より                                  | automatic | 61                  | 0                   | 8/8             |
+| yori                              | 〜より                                  | automatic | 69                  | 0                   | 18/18           |
 | no-hou-ga-yori                    | 〜の方が〜より                          | automatic | 9                   | 0                   | 1/1             |
 | to-to-dochira-ga                  | 〜と〜とどちらが                        | automatic | 1                   | 0                   | 1/1             |
 | no-naka-de-ga-ichiban             | 〜の中で〜が一番                        | automatic | 0                   | 0                   | 0/0             |

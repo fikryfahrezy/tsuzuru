@@ -2777,5 +2777,75 @@
     "japanese": "に外ならない",
     "expect": "present",
     "note": "外 is a spelling of ほか in にほかならない."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "5851c741bcf0c034a7e031f9",
+    "japanese": "イギリス人より",
+    "expect": "present",
+    "note": "A plain verb predicate compares when the English says than."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "6deacdc2b7678047ea074f26",
+    "japanese": "夫より",
+    "expect": "present",
+    "note": "Outlive: 長生きする after より is a comparison."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "9ed95d0f02b9d8328ef7886b",
+    "japanese": "車より",
+    "expect": "present",
+    "note": "Prefers X to cars: 好む after より is a comparison."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "b7ccb271988cfbdacb410613",
+    "japanese": "花より",
+    "expect": "present",
+    "note": "Outgrow: 伸びる after より is a comparison."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "d64d145abc7965892ea9da30",
+    "japanese": "彼より",
+    "expect": "present",
+    "note": "A comma after より does not end the comparison when the English confirms it."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "b8bbd7f2aa5bd932989669ff",
+    "japanese": "言葉より",
+    "expect": "present",
+    "note": "Better than well said: 勝る after より、."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "3756c5e80fa8ceb4e3fec7be",
+    "japanese": "床掃除より",
+    "expect": "present",
+    "note": "ましな is better than."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "bf91c25f8ebc39831f1b3b3c",
+    "japanese": "いつもより",
+    "expect": "present",
+    "note": "More than usual: いつも is the standard."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "448af44314bd5b77001cf360",
+    "japanese": "昨年より",
+    "expect": "absent",
+    "note": "より is since; the English has no comparison."
+  },
+  {
+    "lessonId": "yori",
+    "sentenceId": "7eabdeed8d507de3fd5ffc43",
+    "japanese": "心より",
+    "expect": "absent",
+    "note": "心より is from the heart, not a comparison."
   }
 ]

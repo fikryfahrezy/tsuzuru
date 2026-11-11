@@ -131,6 +131,22 @@
       "wholeWords": true
     },
     {
+      "dictionaryForm": "何事も",
+      "reading": "なにごとも",
+      "forms": ["何事も"],
+      "meanings": ["everything", "anything (at all)"],
+      "wordTypes": ["Expression", "Noun"],
+      "wholeWords": true
+    },
+    {
+      "dictionaryForm": "何事にも",
+      "reading": "なにごとにも",
+      "forms": ["何事にも"],
+      "meanings": ["in everything", "in all things"],
+      "wordTypes": ["Expression", "Adverb"],
+      "wholeWords": true
+    },
+    {
       "dictionaryForm": "よくも",
       "reading": "よくも",
       "forms": ["よくも"],

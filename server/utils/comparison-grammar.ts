@@ -5,7 +5,10 @@ import type { AnswerEntry } from "./answer-entries";
 import { nominal } from "./grammar-context";
 
 const comparativeVerbs = new Set(["劣る", "勝る", "優れる", "勝つ"]);
-const comparativeNouns = new Set(["年上", "年下", "上", "下"]);
+// まし "better" (床掃除よりましな仕事).
+const comparativeNouns = new Set(["年上", "年下", "上", "下", "まし"]);
+// Adverbs that can be the standard: いつもより多い "more than usual".
+const adverbStandards = new Set(["いつも", "普段", "ふだん"]);
 // より先に is "before" and より他に / よりほかない "other than"; neither is a
 // comparison of degree.
 const notDegree = /^(?:先|前|後|他|ほか|外)/u;
@@ -55,6 +58,7 @@ export function comparisonGrammar(
     if (standard.japanese === "何") continue;
     if (
       !standard.wordTypes.some((type) => ["Noun", "Pronoun"].includes(type)) &&
+      !adverbStandards.has(standard.japanese) &&
       // Proper names are often absent from the vocabulary bank. Restrict
       // untyped standards to noun-like spellings or demonstrative pronouns.
       !(
@@ -83,9 +87,21 @@ export function comparisonGrammar(
     }
     // より also means "from". Require a following comparative predicate in
     // the same uninterrupted clause; the particle alone cannot select a lesson.
+    const cue = comparisonCue.test(sentence.english);
     let cursor = entry.end;
+    // When the English confirms a comparison, a comma right after より does
+    // not end the clause (彼より、数学において劣っている).
+    if (cue) {
+      const comma = sentence.reference.japanese.slice(cursor, cursor + 1);
+      if (comma === "、" || comma === ",") cursor += 1;
+    }
+    let skippedComma = cursor !== entry.end;
     for (let nextIndex = index + 1; nextIndex < base.length; nextIndex++) {
       const following = base[nextIndex]!;
+      if (skippedComma && /^[、,]$/u.test(following.japanese)) {
+        skippedComma = false;
+        continue;
+      }
       const gap = sentence.reference.japanese.slice(cursor, following.start);
       if (gap || /[。？！?!、,「」『』]/u.test(following.japanese)) break;
       cursor = following.end;
@@ -111,12 +127,17 @@ export function comparisonGrammar(
       }
       // A different verb or copula establishes a predicate without providing
       // evidence of comparison. Do not search a later clause for an adjective.
+      if (following.wordTypes.includes("Copula")) break;
       if (
-        following.wordTypes.includes("Copula") ||
-        (following.wordTypes.includes("Verb") &&
-          !following.wordTypes.includes("Noun"))
-      )
+        following.wordTypes.includes("Verb") &&
+        !following.wordTypes.includes("Noun")
+      ) {
+        // A plain verb compares only when the English says so (イギリス人より
+        // 牛肉を食べる "more beef than", 夫より長生きする "outlive"). Without
+        // it, より is "from" or "since" (昨年より物価の上昇が続いている).
+        if (cue) comparison();
         break;
+      }
     }
   }
   for (const [index, entry] of base.entries()) {

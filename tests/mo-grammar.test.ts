@@ -37,6 +37,8 @@ test("fixed words that contain も are expressions, not also", () => {
     ["六月は来る日も来る日も雨が降る。", "来る日も来る日も"],
     ["この保険は何もかもカバーする。", "何もかも"],
     ["よくもまあ私にそんな口がきけるね。", "よくも"],
+    ["何事も最初が肝心だよな。", "何事も"],
+    ["私は何事にも彼の指導を仰ぐ。", "何事にも"],
   ]) {
     const entries = breakdown(japanese!);
     expect(

@@ -152,7 +152,7 @@ test("より先に, より他に and 何より are not comparisons of degree", (
   ] as Word[][]) {
     const { sentence, base } = fixture(words);
     expect(
-      comparisonGrammar(sentence, base),
+      comparisonGrammar({ ...sentence, english: "It came from Tokyo." }, base),
       sentence.reference.japanese,
     ).toEqual([]);
   }
@@ -180,6 +180,81 @@ test("a noun before よりも or よりむしろ needs the English to confirm a 
       base,
     ).map((match) => match.japanese),
   ).toEqual(["よりも"]);
+});
+
+test("a plain verb after a noun + より compares only when the English says so", () => {
+  const words: Word[] = [
+    ["イギリス人", ["Noun"]],
+    ["より", ["Particle"]],
+    ["牛肉", ["Noun"]],
+    ["を", ["Particle"]],
+    ["食べる", ["Verb"], "食べる"],
+  ];
+  const { sentence, base } = fixture(words);
+  expect(
+    comparisonGrammar(
+      {
+        ...sentence,
+        english: "The Japanese eat more beef than the British do.",
+      },
+      base,
+    ).map((match) => match.japanese),
+  ).toEqual(["より"]);
+  expect(
+    comparisonGrammar(
+      { ...sentence, english: "They eat beef from Britain." },
+      base,
+    ),
+  ).toEqual([]);
+});
+
+test("ましな, いつもより and a comma after より still compare", () => {
+  const better = fixture([
+    ["床掃除", ["Noun"]],
+    ["より", ["Particle"]],
+    ["まし", ["Expression"]],
+    ["な", ["Particle"]],
+    ["仕事", ["Noun"]],
+  ]);
+  expect(
+    comparisonGrammar(
+      { ...better.sentence, english: "A better job than cleaning floors." },
+      better.base,
+    ),
+  ).toHaveLength(1);
+  const usual = fixture([
+    ["いつも", ["Adverb"]],
+    ["より", ["Particle"]],
+    ["回数", ["Noun"]],
+    ["が", ["Particle"]],
+    ["多い", ["い-adjective"]],
+  ]);
+  expect(
+    comparisonGrammar(
+      { ...usual.sentence, english: "More often than usual." },
+      usual.base,
+    ),
+  ).toHaveLength(1);
+  const comma = fixture([
+    ["彼", ["Pronoun"]],
+    ["より", ["Particle"]],
+    ["、", []],
+    ["数学", ["Noun"]],
+    ["に", ["Particle"]],
+    ["劣って", ["Verb"], "劣る"],
+  ]);
+  expect(
+    comparisonGrammar(
+      { ...comma.sentence, english: "She is inferior to him in math." },
+      comma.base,
+    ),
+  ).toHaveLength(1);
+  expect(
+    comparisonGrammar(
+      { ...comma.sentence, english: "From him, math fell behind." },
+      comma.base,
+    ),
+  ).toEqual([]);
 });
 
 test("source より, により, lexical substrings, punctuation, and ambiguous modifiers are not comparisons", () => {
@@ -225,7 +300,7 @@ test("source より, により, lexical substrings, punctuation, and ambiguous m
   for (const words of cases) {
     const { sentence, base } = fixture(words);
     expect(
-      comparisonGrammar(sentence, base),
+      comparisonGrammar({ ...sentence, english: "It came from Tokyo." }, base),
       sentence.reference.japanese,
     ).toEqual([]);
   }
